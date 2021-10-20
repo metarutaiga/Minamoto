@@ -384,6 +384,14 @@
         return (_window);
 
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+#if defined(xxMACCATALYST)
+    UITitlebar* titlebar = _window.windowScene.titlebar;
+    if (titlebar)
+    {
+        titlebar.titleVisibility = UITitlebarTitleVisibilityHidden;
+        titlebar.toolbar = nil;
+    }
+#endif
 
     return (_window);
 }
