@@ -55,7 +55,7 @@ void Plugin::Create(const char* path, uint64_t device)
     char temp[4096];
 #if defined(xxWINDOWS)
     snprintf(temp, 4096, "%s\\%s", app, path);
-#elif defined(xxMACOS)
+#elif defined(xxMACOS) || defined(xxMACCATALYST)
     snprintf(temp, 4096, "%s/../Frameworks", app);
 #elif defined(xxIOS)
     snprintf(temp, 4096, "%s/Frameworks", app);
