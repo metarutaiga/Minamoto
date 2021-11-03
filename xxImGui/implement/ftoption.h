@@ -47,6 +47,13 @@
 #undef TT_USE_BYTECODE_INTERPRETER
 #undef TT_SUPPORT_COLRV1
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wunused-function"
+#endif
+
+#define sfnt_find_encoding FT_ERR_CAT(sfnt_find_encoding, __LINE__)
+#define sfnt_find_encoding1142(...) FT_ENCODING_UNICODE
+
 #define tt_check_trickyness FT_ERR_CAT(tt_check_trickyness, __LINE__)
 #define tt_check_trickyness719(...) 0
 
