@@ -85,6 +85,10 @@
 		CE935EEF25AC268E00CEF503 /* type1cid.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A036231ED5CB00B75B77 /* type1cid.c */; };
 		CE935EF025AC268E00CEF503 /* type42.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A032231ED13200B75B77 /* type42.c */; };
 		CE935EF125AC268E00CEF503 /* winfnt.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A034231ED27D00B75B77 /* winfnt.c */; };
+		CEF2AD912730E50A00017908 /* sdf.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF2AD902730E50A00017908 /* sdf.c */; };
+		CEF2AD922730E50A00017908 /* sdf.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF2AD902730E50A00017908 /* sdf.c */; };
+		CEF2AD932730E50A00017908 /* sdf.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF2AD902730E50A00017908 /* sdf.c */; };
+		CEF2AD942730E50A00017908 /* sdf.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF2AD902730E50A00017908 /* sdf.c */; };
 		D6022C7123258EFB00B9BFB8 /* ftbbox.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FEE231EC9B800B75B77 /* ftbbox.c */; };
 		D6022C7223258EFB00B9BFB8 /* ftbdf.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FED231EC9B800B75B77 /* ftbdf.c */; };
 		D6022C7323258EFB00B9BFB8 /* ftbitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FF3231EC9B900B75B77 /* ftbitmap.c */; };
@@ -183,6 +187,7 @@
 		CE935EC125AC264700CEF503 /* freetype.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = freetype.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE999CA425D24AA400351116 /* chkstk.obj */ = {isa = PBXFileReference; lastKnownFileType = file; name = chkstk.obj; path = ../msvc/lib/chkstk.obj; sourceTree = "<group>"; };
 		CE999CAE25D2594D00351116 /* kernel32.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = kernel32.lib; path = ../msvc/lib/um/kernel32.lib; sourceTree = "<group>"; };
+		CEF2AD902730E50A00017908 /* sdf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sdf.c; path = ../3rdParty/freetype/src/sdf/sdf.c; sourceTree = "<group>"; };
 		D6022C28232588CC00B9BFB8 /* libfreetype.bundle */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfreetype.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60EC63026A85B7F0051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../3rdParty/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
 		D60EC63226A85B920051A948 /* CrossPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CrossPlatform.Windows.xcconfig; sourceTree = "<group>"; };
@@ -300,6 +305,7 @@
 				D644A024231ECE0300B75B77 /* pshinter.c */,
 				D644A026231ECE1800B75B77 /* psmodule.c */,
 				D644A028231ECE2600B75B77 /* raster.c */,
+				CEF2AD902730E50A00017908 /* sdf.c */,
 				D644A02A231ECE3900B75B77 /* sfnt.c */,
 				D644A02C231ECE4700B75B77 /* smooth.c */,
 				D644A02E231ECE5800B75B77 /* truetype.c */,
@@ -490,6 +496,7 @@
 				30A9A72F25ADC54F000FA104 /* ftinit.c in Sources */,
 				30A9A73025ADC54F000FA104 /* ftlzw.c in Sources */,
 				30A9A73125ADC54F000FA104 /* pcf.c in Sources */,
+				CEF2AD942730E50A00017908 /* sdf.c in Sources */,
 				30A9A73225ADC54F000FA104 /* pfr.c in Sources */,
 				30A9A73325ADC54F000FA104 /* psaux.c in Sources */,
 				30A9A73425ADC54F000FA104 /* pshinter.c in Sources */,
@@ -526,6 +533,7 @@
 				CE935ED825AC268E00CEF503 /* ftsynth.c in Sources */,
 				CE935ED925AC268E00CEF503 /* ftsystem.c in Sources */,
 				CE935EDA25AC268E00CEF503 /* fttype1.c in Sources */,
+				CEF2AD932730E50A00017908 /* sdf.c in Sources */,
 				CE935EDB25AC268E00CEF503 /* ftwinfnt.c in Sources */,
 				CE935EDC25AC268E00CEF503 /* autofit.c in Sources */,
 				CE935EDD25AC268E00CEF503 /* bdf.c in Sources */,
@@ -583,6 +591,7 @@
 				D6022C8923258EFB00B9BFB8 /* ftinit.c in Sources */,
 				D6022C8A23258EFB00B9BFB8 /* ftlzw.c in Sources */,
 				D6022C8B23258EFB00B9BFB8 /* pcf.c in Sources */,
+				CEF2AD922730E50A00017908 /* sdf.c in Sources */,
 				D6022C8C23258EFB00B9BFB8 /* pfr.c in Sources */,
 				D6022C8D23258EFB00B9BFB8 /* psaux.c in Sources */,
 				D6022C8E23258EFB00B9BFB8 /* pshinter.c in Sources */,
@@ -629,6 +638,7 @@
 				D644A017231ECB3300B75B77 /* ftdebug.c in Sources */,
 				D644A01D231ECCC100B75B77 /* ftlzw.c in Sources */,
 				D644A027231ECE1800B75B77 /* psmodule.c in Sources */,
+				CEF2AD912730E50A00017908 /* sdf.c in Sources */,
 				D644A000231EC9B900B75B77 /* ftwinfnt.c in Sources */,
 				D644A035231ED27D00B75B77 /* winfnt.c in Sources */,
 				D6449FFE231EC9B900B75B77 /* ftbdf.c in Sources */,

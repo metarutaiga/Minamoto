@@ -34,7 +34,26 @@
 #undef TT_CONFIG_OPTION_GX_VAR_SUPPORT
 #undef TT_CONFIG_OPTION_BDF
 
+#undef TT_CONFIG_CMAP_FORMAT_0
+#undef TT_CONFIG_CMAP_FORMAT_2
+/* #undef TT_CONFIG_CMAP_FORMAT_4 */
+#undef TT_CONFIG_CMAP_FORMAT_6
+#undef TT_CONFIG_CMAP_FORMAT_8
+#undef TT_CONFIG_CMAP_FORMAT_10
+#undef TT_CONFIG_CMAP_FORMAT_12
+#undef TT_CONFIG_CMAP_FORMAT_13
+#undef TT_CONFIG_CMAP_FORMAT_14
+
 #undef TT_USE_BYTECODE_INTERPRETER
 #undef TT_SUPPORT_COLRV1
+
+#define tt_check_trickyness FT_ERR_CAT(tt_check_trickyness, __LINE__)
+#define tt_check_trickyness719(...) 0
+
+#define woff_open_font FT_ERR_CAT(woff_open_font, __LINE__)
+#define woff_open_font381(...) 0
+
+#define woff2_open_font FT_ERR_CAT(woff2_open_font, __LINE__)
+#define woff2_open_font397(...) 0
 
 /* END */
