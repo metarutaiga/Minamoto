@@ -52,15 +52,6 @@
 #endif
 
 #define sfnt_find_encoding FT_ERR_CAT(sfnt_find_encoding, __LINE__)
-#define sfnt_find_encoding1142(...) FT_ENCODING_UNICODE
-
-#define tt_check_trickyness FT_ERR_CAT(tt_check_trickyness, __LINE__)
-#define tt_check_trickyness719(...) 0
-
-#define woff_open_font FT_ERR_CAT(woff_open_font, __LINE__)
-#define woff_open_font381(...) 0
-
-#define woff2_open_font FT_ERR_CAT(woff2_open_font, __LINE__)
-#define woff2_open_font397(...) 0
+#define sfnt_find_encoding1155(...) FT_ENCODING_UNICODE
 
 /* END */
