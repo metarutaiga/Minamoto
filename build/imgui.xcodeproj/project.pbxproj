@@ -30,27 +30,15 @@
 		D6DA664A23258F3000953C5B /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A075231ED90400B75B77 /* imgui.cpp */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		D6022C3323258B5D00B9BFB8 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		30A9A74A25ADC5C3000FA104 /* libimgui.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libimgui.so; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE935F5325AC2F4800CEF503 /* imgui.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = imgui.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9C2A2825AFCB9000AB37F6 /* imgui_tables.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_tables.cpp; path = ../3rdParty/imgui/imgui_tables.cpp; sourceTree = "<group>"; };
-		D6022C3523258B5D00B9BFB8 /* libimgui.bundle */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libimgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		D60EC63426A85BA60051A948 /* CrossPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CrossPlatform.Android.xcconfig; sourceTree = "<group>"; };
-		D60EC63526A85BA70051A948 /* CrossPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CrossPlatform.Windows.xcconfig; sourceTree = "<group>"; };
+		D6022C3523258B5D00B9BFB8 /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
+		D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D60EC63626A85BB00051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../3rdParty/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
-		D644A041231ED82900B75B77 /* libimgui.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libimgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D644A041231ED82900B75B77 /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D644A06C231ED90300B75B77 /* imgui_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_internal.h; path = ../3rdParty/imgui/imgui_internal.h; sourceTree = "<group>"; };
 		D644A06D231ED90300B75B77 /* imgui_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_draw.cpp; path = ../3rdParty/imgui/imgui_draw.cpp; sourceTree = "<group>"; };
 		D644A06E231ED90300B75B77 /* imgui_widgets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_widgets.cpp; path = ../3rdParty/imgui/imgui_widgets.cpp; sourceTree = "<group>"; };
@@ -98,8 +86,8 @@
 		CE999BC925D21D9F00351116 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				D60EC63426A85BA60051A948 /* CrossPlatform.Android.xcconfig */,
-				D60EC63526A85BA70051A948 /* CrossPlatform.Windows.xcconfig */,
+				D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */,
+				D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */,
 				D60EC63626A85BB00051A948 /* llvm_wrapper.cpp */,
 			);
 			name = Configs;
@@ -127,8 +115,8 @@
 		D644A042231ED82900B75B77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D644A041231ED82900B75B77 /* libimgui.dylib */,
-				D6022C3523258B5D00B9BFB8 /* libimgui.bundle */,
+				D644A041231ED82900B75B77 /* imgui.dylib */,
+				D6022C3523258B5D00B9BFB8 /* imgui.bundle */,
 				CE935F5325AC2F4800CEF503 /* imgui.dll */,
 				30A9A74A25ADC5C3000FA104 /* libimgui.so */,
 			);
@@ -138,9 +126,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30A9A74925ADC5C3000FA104 /* imgui (Android) */ = {
+		30A9A74925ADC5C3000FA104 /* imgui-Android */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30A9A74D25ADC5C3000FA104 /* Build configuration list for PBXNativeTarget "imgui (Android)" */;
+			buildConfigurationList = 30A9A74D25ADC5C3000FA104 /* Build configuration list for PBXNativeTarget "imgui-Android" */;
 			buildPhases = (
 				30A9A74725ADC5C3000FA104 /* Sources */,
 				30A9A74825ADC5C3000FA104 /* Frameworks */,
@@ -149,14 +137,14 @@
 			);
 			dependencies = (
 			);
-			name = "imgui (Android)";
-			productName = "imgui (Android)";
+			name = "imgui-Android";
+			productName = "imgui-Android";
 			productReference = 30A9A74A25ADC5C3000FA104 /* libimgui.so */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		CE935F5225AC2F4800CEF503 /* imgui (Windows) */ = {
+		CE935F5225AC2F4800CEF503 /* imgui-Windows */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE935F5625AC2F4800CEF503 /* Build configuration list for PBXNativeTarget "imgui (Windows)" */;
+			buildConfigurationList = CE935F5625AC2F4800CEF503 /* Build configuration list for PBXNativeTarget "imgui-Windows" */;
 			buildPhases = (
 				CE935F5025AC2F4800CEF503 /* Sources */,
 				CE935F5125AC2F4800CEF503 /* Frameworks */,
@@ -165,31 +153,30 @@
 			);
 			dependencies = (
 			);
-			name = "imgui (Windows)";
-			productName = "imgui (Windows)";
+			name = "imgui-Windows";
+			productName = "imgui-Windows";
 			productReference = CE935F5325AC2F4800CEF503 /* imgui.dll */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		D6022C3423258B5D00B9BFB8 /* imgui (iOS) */ = {
+		D6022C3423258B5D00B9BFB8 /* imgui-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6022C3B23258B5D00B9BFB8 /* Build configuration list for PBXNativeTarget "imgui (iOS)" */;
+			buildConfigurationList = D6022C3B23258B5D00B9BFB8 /* Build configuration list for PBXNativeTarget "imgui-iOS" */;
 			buildPhases = (
 				D6022C3123258B5D00B9BFB8 /* Sources */,
 				D6022C3223258B5D00B9BFB8 /* Frameworks */,
-				D6022C3323258B5D00B9BFB8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "imgui (iOS)";
-			productName = "imgui (iOS)";
-			productReference = D6022C3523258B5D00B9BFB8 /* libimgui.bundle */;
-			productType = "com.apple.product-type.library.static";
+			name = "imgui-iOS";
+			productName = "imgui-iOS";
+			productReference = D6022C3523258B5D00B9BFB8 /* imgui.bundle */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
-		D644A040231ED82900B75B77 /* imgui (macOS) */ = {
+		D644A040231ED82900B75B77 /* imgui-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D644A04C231ED82900B75B77 /* Build configuration list for PBXNativeTarget "imgui (macOS)" */;
+			buildConfigurationList = D644A04C231ED82900B75B77 /* Build configuration list for PBXNativeTarget "imgui-macOS" */;
 			buildPhases = (
 				D644A03E231ED82900B75B77 /* Sources */,
 				D644A03F231ED82900B75B77 /* Frameworks */,
@@ -198,10 +185,10 @@
 			);
 			dependencies = (
 			);
-			name = "imgui (macOS)";
+			name = "imgui-macOS";
 			productName = imgui;
-			productReference = D644A041231ED82900B75B77 /* libimgui.dylib */;
-			productType = "com.apple.product-type.library.static";
+			productReference = D644A041231ED82900B75B77 /* imgui.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
@@ -238,10 +225,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D644A040231ED82900B75B77 /* imgui (macOS) */,
-				D6022C3423258B5D00B9BFB8 /* imgui (iOS) */,
-				CE935F5225AC2F4800CEF503 /* imgui (Windows) */,
-				30A9A74925ADC5C3000FA104 /* imgui (Android) */,
+				30A9A74925ADC5C3000FA104 /* imgui-Android */,
+				D6022C3423258B5D00B9BFB8 /* imgui-iOS */,
+				D644A040231ED82900B75B77 /* imgui-macOS */,
+				CE935F5225AC2F4800CEF503 /* imgui-Windows */,
 			);
 		};
 /* End PBXProject section */
@@ -301,7 +288,7 @@
 /* Begin XCBuildConfiguration section */
 		30A9A74B25ADC5C3000FA104 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63426A85BA60051A948 /* CrossPlatform.Android.xcconfig */;
+			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__attribute__((visibility(\\\"default\\\")))",
@@ -312,7 +299,7 @@
 		};
 		30A9A74C25ADC5C3000FA104 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63426A85BA60051A948 /* CrossPlatform.Android.xcconfig */;
+			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__attribute__((visibility(\\\"default\\\")))",
@@ -323,7 +310,7 @@
 		};
 		CE935F5425AC2F4800CEF503 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63526A85BA70051A948 /* CrossPlatform.Windows.xcconfig */;
+			baseConfigurationReference = D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__declspec(dllexport)",
@@ -340,7 +327,7 @@
 		};
 		CE935F5525AC2F4800CEF503 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63526A85BA70051A948 /* CrossPlatform.Windows.xcconfig */;
+			baseConfigurationReference = D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__declspec(dllexport)",
@@ -358,6 +345,7 @@
 		D6022C3C23258B5D00B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = bundle;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__attribute__((visibility(\\\"default\\\")))",
 					"$(inherited)",
@@ -369,6 +357,7 @@
 		D6022C3D23258B5D00B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = bundle;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__attribute__((visibility(\\\"default\\\")))",
 					"$(inherited)",
@@ -418,8 +407,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXECUTABLE_EXTENSION = bundle;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -502,8 +489,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = bundle;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -545,7 +530,6 @@
 		D644A04D231ED82900B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__attribute__((visibility(\\\"default\\\")))",
 					"$(inherited)",
@@ -556,7 +540,6 @@
 		D644A04E231ED82900B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__attribute__((visibility(\\\"default\\\")))",
 					"$(inherited)",
@@ -567,7 +550,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30A9A74D25ADC5C3000FA104 /* Build configuration list for PBXNativeTarget "imgui (Android)" */ = {
+		30A9A74D25ADC5C3000FA104 /* Build configuration list for PBXNativeTarget "imgui-Android" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30A9A74B25ADC5C3000FA104 /* Debug */,
@@ -576,7 +559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE935F5625AC2F4800CEF503 /* Build configuration list for PBXNativeTarget "imgui (Windows)" */ = {
+		CE935F5625AC2F4800CEF503 /* Build configuration list for PBXNativeTarget "imgui-Windows" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE935F5425AC2F4800CEF503 /* Debug */,
@@ -585,7 +568,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6022C3B23258B5D00B9BFB8 /* Build configuration list for PBXNativeTarget "imgui (iOS)" */ = {
+		D6022C3B23258B5D00B9BFB8 /* Build configuration list for PBXNativeTarget "imgui-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6022C3C23258B5D00B9BFB8 /* Debug */,
@@ -603,7 +586,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D644A04C231ED82900B75B77 /* Build configuration list for PBXNativeTarget "imgui (macOS)" */ = {
+		D644A04C231ED82900B75B77 /* Build configuration list for PBXNativeTarget "imgui-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D644A04D231ED82900B75B77 /* Debug */,

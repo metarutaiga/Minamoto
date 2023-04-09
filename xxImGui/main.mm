@@ -90,8 +90,8 @@
             uint64_t commandEncoder = Renderer::Begin();
             if (commandEncoder)
             {
-                DearImGui::Render(commandEncoder);
                 Plugin::Render();
+                DearImGui::Render(commandEncoder);
                 Renderer::End();
                 Renderer::Present();
             }
@@ -208,7 +208,7 @@
         io.KeyMap[ImGuiKey_Space]       = UIKeyboardHIDUsageKeyboardSpacebar;
         io.KeyMap[ImGuiKey_Enter]       = UIKeyboardHIDUsageKeyboardReturnOrEnter;
         io.KeyMap[ImGuiKey_Escape]      = UIKeyboardHIDUsageKeyboardEscape;
-        io.KeyMap[ImGuiKey_KeyPadEnter] = UIKeyboardHIDUsageKeypadEnter;
+        io.KeyMap[ImGuiKey_KeypadEnter] = UIKeyboardHIDUsageKeypadEnter;
         io.KeyMap[ImGuiKey_A]           = UIKeyboardHIDUsageKeyboardA;
         io.KeyMap[ImGuiKey_C]           = UIKeyboardHIDUsageKeyboardC;
         io.KeyMap[ImGuiKey_V]           = UIKeyboardHIDUsageKeyboardV;
@@ -451,6 +451,7 @@
 int main(int argc, char* argv[])
 {
 #if defined(xxMACOS)
+    chdir(xxGetExecutablePath());
     @autoreleasepool
     {
         NSApp = [NSApplication sharedApplication];

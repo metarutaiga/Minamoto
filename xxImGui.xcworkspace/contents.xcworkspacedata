@@ -5,10 +5,10 @@
       location = "container:"
       name = "plugin">
       <FileRef
-         location = "group:plugin/validator/validator.xcodeproj">
+         location = "group:plugin/sample/sample.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:plugin/sample/sample.xcodeproj">
+         location = "group:plugin/validator/validator.xcodeproj">
       </FileRef>
    </Group>
    <FileRef

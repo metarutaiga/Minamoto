@@ -1,13 +1,14 @@
 //==============================================================================
 // xxImGui : Dear ImGui Source
 //
-// Copyright (c) 2019-2021 TAiGA
+// Copyright (c) 2019-2023 TAiGA
 // https://github.com/metarutaiga/xxImGui
 //==============================================================================
 #define _CRT_SECURE_NO_WARNINGS
 #include <sys/stat.h>
-#include <imgui/misc/freetype/imgui_freetype.h>
-#if defined(__APPLE__)
+#if defined(__ANDROID__)
+#   include <imgui/imgui.h>
+#elif defined(__APPLE__)
 #   include <TargetConditionals.h>
 #   include <CoreGraphics/CoreGraphics.h>
 #if TARGET_OS_OSX
@@ -15,7 +16,7 @@
 #elif TARGET_OS_IOS
 #   include <UIKit/UIKit.h>
 #endif
-#   include "implement/imgui_impl_osx.h"
+#   include <imgui/backends/imgui_impl_osx.h>
 #elif defined(_WIN32)
 #   define WIN32_LEAN_AND_MEAN
 #   include <windows.h>
@@ -72,9 +73,7 @@ void DearImGui::Create(void* view, float scale, float font)
     // Setup Platform/Renderer bindings
 #if defined(xxMACOS)
     NSView* nsView = (__bridge NSView*)view;
-    NSViewController* nsViewController = (NSViewController*)[[nsView window] contentViewController];
     ImGui_ImplOSX_Init(nsView);
-    ImGui_ImplOSX_AddTrackingArea(nsViewController);
 #elif defined(xxWINDOWS)
     ImGui_ImplWin32_Init(view);
 #endif
@@ -108,14 +107,10 @@ void DearImGui::Create(void* view, float scale, float font)
 #if defined(xxMACOS)
     font_config.SizePixels          = 13.0f * io.FontGlobalScale;
     font_config.RasterizerMultiply  = 2.0f / io.FontGlobalScale;
-    font_config.FontBuilderFlags    = io.FontGlobalScale >= 2.0f ? 0 : ImGuiFreeTypeBuilderFlags_Bitmap;
-    font_config.GlyphExtraSpacing.x = io.FontGlobalScale >= 2.0f ? 8.0f : 0.0f;
     io.Fonts->AddFontFromFileTTF("/System/Library/Fonts/PingFang.ttc", 16.0f * io.FontGlobalScale, &font_config, io.Fonts->GetGlyphRangesJapanese());
 #elif defined(xxWINDOWS)
     font_config.SizePixels          = 13.0f * io.FontGlobalScale;
     font_config.RasterizerMultiply  = 2.0f / io.FontGlobalScale;
-    font_config.FontBuilderFlags    = io.FontGlobalScale >= 2.0f ? 0 : ImGuiFreeTypeBuilderFlags_Bitmap;
-    font_config.GlyphExtraSpacing.x = io.FontGlobalScale >= 2.0f ? 8.0f : 0.0f;
     if (io.FontGlobalScale == 1.0f)
     {
         if (GetFileAttributesA("C:\\Windows\\Fonts\\msgothic.ttc") != INVALID_FILE_ATTRIBUTES)
@@ -131,8 +126,6 @@ void DearImGui::Create(void* view, float scale, float font)
             io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\msjh.ttc", 13.0f * io.FontGlobalScale, &font_config, io.Fonts->GetGlyphRangesJapanese());
     }
 #endif
-    io.Fonts->FontBuilderIO         = ImGuiFreeType::GetBuilderForFreeType();
-    io.Fonts->FontBuilderFlags      = 0;
     io.Fonts->Build();
     io.FontGlobalScale              = scale / font;
 }
@@ -241,7 +234,7 @@ void DearImGui::NewFrame(void* view)
         if (ImGui::Begin("About xxGraphic", &showAbout))
         {
             ImGui::Text("%s", "xxGraphic");
-            ImGui::Text("%s", "Copyright (c) 2019-2021 TAiGA");
+            ImGui::Text("%s", "Copyright (c) 2019-2023 TAiGA");
             ImGui::Separator();
             ImGui::Text("Build Date : %s %s", __DATE__, __TIME__);
 #if defined(__clang_version__)
@@ -396,9 +389,7 @@ void* DearImGui::PostUpdate(void* view, bool render)
 #endif
 #if defined(xxMACOS)
         NSView* nsView = (__bridge NSView*)view;
-        NSViewController* nsViewController = (NSViewController*)[[nsView window] contentViewController];
         ImGui_ImplOSX_Init(nsView);
-        ImGui_ImplOSX_AddTrackingArea(nsViewController);
 #elif defined(xxWINDOWS)
         ImGui_ImplWin32_Init(view);
 #endif

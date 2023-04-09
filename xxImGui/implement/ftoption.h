@@ -52,6 +52,6 @@
 #endif
 
 #define sfnt_find_encoding FT_ERR_CAT(sfnt_find_encoding, __LINE__)
-#define sfnt_find_encoding1155(...) FT_ENCODING_UNICODE
+#define sfnt_find_encoding1173(...) FT_ENCODING_UNICODE
 
 /* END */

@@ -188,11 +188,11 @@
 		CE999CA425D24AA400351116 /* chkstk.obj */ = {isa = PBXFileReference; lastKnownFileType = file; name = chkstk.obj; path = ../msvc/lib/chkstk.obj; sourceTree = "<group>"; };
 		CE999CAE25D2594D00351116 /* kernel32.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = kernel32.lib; path = ../msvc/lib/um/kernel32.lib; sourceTree = "<group>"; };
 		CEF2AD902730E50A00017908 /* sdf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sdf.c; path = ../3rdParty/freetype/src/sdf/sdf.c; sourceTree = "<group>"; };
-		D6022C28232588CC00B9BFB8 /* libfreetype.bundle */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfreetype.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6022C28232588CC00B9BFB8 /* freetype.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = freetype.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60EC63026A85B7F0051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../3rdParty/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
-		D60EC63226A85B920051A948 /* CrossPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CrossPlatform.Windows.xcconfig; sourceTree = "<group>"; };
-		D60EC63326A85B920051A948 /* CrossPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CrossPlatform.Android.xcconfig; sourceTree = "<group>"; };
-		D6449FDA231EC3D800B75B77 /* libfreetype.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60EC63226A85B920051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
+		D60EC63326A85B920051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
+		D6449FDA231EC3D800B75B77 /* freetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = freetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6449FEA231EC9B800B75B77 /* ftpatent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ftpatent.c; path = ../3rdParty/freetype/src/base/ftpatent.c; sourceTree = "<group>"; };
 		D6449FEB231EC9B800B75B77 /* ftsystem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ftsystem.c; path = ../3rdParty/freetype/src/base/ftsystem.c; sourceTree = "<group>"; };
 		D6449FEC231EC9B800B75B77 /* fttype1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fttype1.c; path = ../3rdParty/freetype/src/base/fttype1.c; sourceTree = "<group>"; };
@@ -269,8 +269,8 @@
 		CE999BC825D21D9100351116 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				D60EC63326A85B920051A948 /* CrossPlatform.Android.xcconfig */,
-				D60EC63226A85B920051A948 /* CrossPlatform.Windows.xcconfig */,
+				D60EC63326A85B920051A948 /* ClangPlatform.Android.xcconfig */,
+				D60EC63226A85B920051A948 /* ClangPlatform.Windows.xcconfig */,
 				D60EC63026A85B7F0051A948 /* llvm_wrapper.cpp */,
 			);
 			name = Configs;
@@ -321,8 +321,8 @@
 		D6449FDB231EC3D800B75B77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D6449FDA231EC3D800B75B77 /* libfreetype.dylib */,
-				D6022C28232588CC00B9BFB8 /* libfreetype.bundle */,
+				D6449FDA231EC3D800B75B77 /* freetype.dylib */,
+				D6022C28232588CC00B9BFB8 /* freetype.bundle */,
 				CE935EC125AC264700CEF503 /* freetype.dll */,
 				30A9A70B25ADC4B1000FA104 /* libfreetype.so */,
 			);
@@ -356,9 +356,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30A9A70A25ADC4B1000FA104 /* freetype (Android) */ = {
+		30A9A70A25ADC4B1000FA104 /* freetype-Android */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30A9A70E25ADC4B1000FA104 /* Build configuration list for PBXNativeTarget "freetype (Android)" */;
+			buildConfigurationList = 30A9A70E25ADC4B1000FA104 /* Build configuration list for PBXNativeTarget "freetype-Android" */;
 			buildPhases = (
 				30A9A70825ADC4B1000FA104 /* Sources */,
 				30A9A70925ADC4B1000FA104 /* Frameworks */,
@@ -367,14 +367,14 @@
 			);
 			dependencies = (
 			);
-			name = "freetype (Android)";
-			productName = "freetype (Android)";
+			name = "freetype-Android";
+			productName = "freetype-Android";
 			productReference = 30A9A70B25ADC4B1000FA104 /* libfreetype.so */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		CE935EC025AC264700CEF503 /* freetype (Windows) */ = {
+		CE935EC025AC264700CEF503 /* freetype-Windows */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE935EC425AC264700CEF503 /* Build configuration list for PBXNativeTarget "freetype (Windows)" */;
+			buildConfigurationList = CE935EC425AC264700CEF503 /* Build configuration list for PBXNativeTarget "freetype-Windows" */;
 			buildPhases = (
 				CE935EBE25AC264700CEF503 /* Sources */,
 				CE935EBF25AC264700CEF503 /* Frameworks */,
@@ -383,14 +383,14 @@
 			);
 			dependencies = (
 			);
-			name = "freetype (Windows)";
+			name = "freetype-Windows";
 			productName = freetype;
 			productReference = CE935EC125AC264700CEF503 /* freetype.dll */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		D6022C27232588CC00B9BFB8 /* freetype (iOS) */ = {
+		D6022C27232588CC00B9BFB8 /* freetype-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6022C2E232588CD00B9BFB8 /* Build configuration list for PBXNativeTarget "freetype (iOS)" */;
+			buildConfigurationList = D6022C2E232588CD00B9BFB8 /* Build configuration list for PBXNativeTarget "freetype-iOS" */;
 			buildPhases = (
 				D6022C24232588CC00B9BFB8 /* Sources */,
 				D6022C25232588CC00B9BFB8 /* Frameworks */,
@@ -400,14 +400,14 @@
 			);
 			dependencies = (
 			);
-			name = "freetype (iOS)";
+			name = "freetype-iOS";
 			productName = freetype;
-			productReference = D6022C28232588CC00B9BFB8 /* libfreetype.bundle */;
-			productType = "com.apple.product-type.library.static";
+			productReference = D6022C28232588CC00B9BFB8 /* freetype.bundle */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
-		D6449FD9231EC3D800B75B77 /* freetype (macOS) */ = {
+		D6449FD9231EC3D800B75B77 /* freetype-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6449FE5231EC3D800B75B77 /* Build configuration list for PBXNativeTarget "freetype (macOS)" */;
+			buildConfigurationList = D6449FE5231EC3D800B75B77 /* Build configuration list for PBXNativeTarget "freetype-macOS" */;
 			buildPhases = (
 				D6449FD7231EC3D800B75B77 /* Sources */,
 				D6449FD8231EC3D800B75B77 /* Frameworks */,
@@ -416,10 +416,10 @@
 			);
 			dependencies = (
 			);
-			name = "freetype (macOS)";
+			name = "freetype-macOS";
 			productName = freetype;
-			productReference = D6449FDA231EC3D800B75B77 /* libfreetype.dylib */;
-			productType = "com.apple.product-type.library.static";
+			productReference = D6449FDA231EC3D800B75B77 /* freetype.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
@@ -456,10 +456,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D6449FD9231EC3D800B75B77 /* freetype (macOS) */,
-				D6022C27232588CC00B9BFB8 /* freetype (iOS) */,
-				CE935EC025AC264700CEF503 /* freetype (Windows) */,
-				30A9A70A25ADC4B1000FA104 /* freetype (Android) */,
+				30A9A70A25ADC4B1000FA104 /* freetype-Android */,
+				D6022C27232588CC00B9BFB8 /* freetype-iOS */,
+				D6449FD9231EC3D800B75B77 /* freetype-macOS */,
+				CE935EC025AC264700CEF503 /* freetype-Windows */,
 			);
 		};
 /* End PBXProject section */
@@ -659,21 +659,21 @@
 /* Begin XCBuildConfiguration section */
 		30A9A70C25ADC4B1000FA104 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63326A85B920051A948 /* CrossPlatform.Android.xcconfig */;
+			baseConfigurationReference = D60EC63326A85B920051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		30A9A70D25ADC4B1000FA104 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63326A85B920051A948 /* CrossPlatform.Android.xcconfig */;
+			baseConfigurationReference = D60EC63326A85B920051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
 		CE935EC225AC264700CEF503 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63226A85B920051A948 /* CrossPlatform.Windows.xcconfig */;
+			baseConfigurationReference = D60EC63226A85B920051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DLL_EXPORT,
@@ -693,7 +693,7 @@
 		};
 		CE935EC325AC264700CEF503 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63226A85B920051A948 /* CrossPlatform.Windows.xcconfig */;
+			baseConfigurationReference = D60EC63226A85B920051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DLL_EXPORT,
@@ -714,6 +714,7 @@
 		D6022C2F232588CD00B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = bundle;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -721,6 +722,7 @@
 		D6022C30232588CD00B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = bundle;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -766,8 +768,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXECUTABLE_EXTENSION = bundle;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -847,8 +847,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = bundle;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -888,21 +886,19 @@
 		D6449FE6231EC3D800B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
 			};
 			name = Debug;
 		};
 		D6449FE7231EC3D800B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30A9A70E25ADC4B1000FA104 /* Build configuration list for PBXNativeTarget "freetype (Android)" */ = {
+		30A9A70E25ADC4B1000FA104 /* Build configuration list for PBXNativeTarget "freetype-Android" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30A9A70C25ADC4B1000FA104 /* Debug */,
@@ -911,7 +907,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE935EC425AC264700CEF503 /* Build configuration list for PBXNativeTarget "freetype (Windows)" */ = {
+		CE935EC425AC264700CEF503 /* Build configuration list for PBXNativeTarget "freetype-Windows" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE935EC225AC264700CEF503 /* Debug */,
@@ -920,7 +916,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6022C2E232588CD00B9BFB8 /* Build configuration list for PBXNativeTarget "freetype (iOS)" */ = {
+		D6022C2E232588CD00B9BFB8 /* Build configuration list for PBXNativeTarget "freetype-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6022C2F232588CD00B9BFB8 /* Debug */,
@@ -938,7 +934,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6449FE5231EC3D800B75B77 /* Build configuration list for PBXNativeTarget "freetype (macOS)" */ = {
+		D6449FE5231EC3D800B75B77 /* Build configuration list for PBXNativeTarget "freetype-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6449FE6231EC3D800B75B77 /* Debug */,

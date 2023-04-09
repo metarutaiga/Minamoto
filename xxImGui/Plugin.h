@@ -1,7 +1,7 @@
 //==============================================================================
 // xxImGui : Plugin Header
 //
-// Copyright (c) 2019-2021 TAiGA
+// Copyright (c) 2019-2023 TAiGA
 // https://github.com/metarutaiga/xxImGui
 //==============================================================================
 #pragma once
@@ -15,6 +15,7 @@ public:
     static void Shutdown();
 
     static int Count();
+    static void Message(std::initializer_list<const char*> list);
     static bool Update();
     static void Render();
 };

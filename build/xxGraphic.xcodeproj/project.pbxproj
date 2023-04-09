@@ -90,18 +90,6 @@
 		D6DA665023258F8E00953C5B /* xxSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A2231EDE9A00B75B77 /* xxSystem.cpp */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		D6022C4023258BB600B9BFB8 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		3039FA01244766EE00E671A7 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
 		3039FA052447670900E671A7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
@@ -146,11 +134,11 @@
 		CE9D56B824D165130037EBE6 /* xxGraphicMetal2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = xxGraphicMetal2.mm; path = ../3rdParty/xxGraphic/xxGraphicMetal2.mm; sourceTree = "<group>"; };
 		CE9D56B924D165130037EBE6 /* xxGraphicMetal2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicMetal2.h; path = ../3rdParty/xxGraphic/xxGraphicMetal2.h; sourceTree = "<group>"; };
 		CEACD48E2612AC4F00D1AFC0 /* xxVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxVector.h; path = ../3rdParty/xxGraphic/xxVector.h; sourceTree = "<group>"; };
-		D6022C4223258BB600B9BFB8 /* libxxGraphic.bundle */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxxGraphic.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		D60EC63826A85BC30051A948 /* CrossPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CrossPlatform.Windows.xcconfig; sourceTree = "<group>"; };
-		D60EC63926A85BC30051A948 /* CrossPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CrossPlatform.Android.xcconfig; sourceTree = "<group>"; };
+		D6022C4223258BB600B9BFB8 /* xxGraphic.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = xxGraphic.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
+		D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC63A26A85BCE0051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../3rdParty/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
-		D644A092231EDDFA00B75B77 /* libxxGraphic.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxxGraphic.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D644A092231EDDFA00B75B77 /* xxGraphic.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = xxGraphic.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D644A0A0231EDE9A00B75B77 /* xxGraphicNULL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicNULL.h; path = ../3rdParty/xxGraphic/xxGraphicNULL.h; sourceTree = "<group>"; };
 		D644A0A2231EDE9A00B75B77 /* xxSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxSystem.cpp; path = ../3rdParty/xxGraphic/xxSystem.cpp; sourceTree = "<group>"; };
 		D644A0A3231EDE9A00B75B77 /* xxGraphic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxGraphic.cpp; path = ../3rdParty/xxGraphic/xxGraphic.cpp; sourceTree = "<group>"; };
@@ -333,8 +321,8 @@
 		CE999BCA25D21DAA00351116 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				D60EC63926A85BC30051A948 /* CrossPlatform.Android.xcconfig */,
-				D60EC63826A85BC30051A948 /* CrossPlatform.Windows.xcconfig */,
+				D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */,
+				D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */,
 				D60EC63A26A85BCE0051A948 /* llvm_wrapper.cpp */,
 			);
 			name = Configs;
@@ -366,8 +354,8 @@
 		D644A093231EDDFA00B75B77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D644A092231EDDFA00B75B77 /* libxxGraphic.dylib */,
-				D6022C4223258BB600B9BFB8 /* libxxGraphic.bundle */,
+				D644A092231EDDFA00B75B77 /* xxGraphic.dylib */,
+				D6022C4223258BB600B9BFB8 /* xxGraphic.bundle */,
 				CE935F7425AC35B000CEF503 /* xxGraphic.dll */,
 				30A9A75E25ADC60D000FA104 /* libxxGraphic.so */,
 			);
@@ -633,9 +621,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30A9A75D25ADC60D000FA104 /* xxGraphic (Android) */ = {
+		30A9A75D25ADC60D000FA104 /* xxGraphic-Android */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30A9A76125ADC60D000FA104 /* Build configuration list for PBXNativeTarget "xxGraphic (Android)" */;
+			buildConfigurationList = 30A9A76125ADC60D000FA104 /* Build configuration list for PBXNativeTarget "xxGraphic-Android" */;
 			buildPhases = (
 				30A9A75B25ADC60D000FA104 /* Sources */,
 				30A9A75C25ADC60D000FA104 /* Frameworks */,
@@ -644,14 +632,14 @@
 			);
 			dependencies = (
 			);
-			name = "xxGraphic (Android)";
-			productName = "xxGraphic (Android)";
+			name = "xxGraphic-Android";
+			productName = "xxGraphic-Android";
 			productReference = 30A9A75E25ADC60D000FA104 /* libxxGraphic.so */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		CE935F7325AC35B000CEF503 /* xxGraphic (Windows) */ = {
+		CE935F7325AC35B000CEF503 /* xxGraphic-Windows */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE935F7725AC35B000CEF503 /* Build configuration list for PBXNativeTarget "xxGraphic (Windows)" */;
+			buildConfigurationList = CE935F7725AC35B000CEF503 /* Build configuration list for PBXNativeTarget "xxGraphic-Windows" */;
 			buildPhases = (
 				CE935F7125AC35B000CEF503 /* Sources */,
 				CE935F7225AC35B000CEF503 /* Frameworks */,
@@ -660,31 +648,30 @@
 			);
 			dependencies = (
 			);
-			name = "xxGraphic (Windows)";
-			productName = "xxGraphic (Windows)";
+			name = "xxGraphic-Windows";
+			productName = "xxGraphic-Windows";
 			productReference = CE935F7425AC35B000CEF503 /* xxGraphic.dll */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		D6022C4123258BB600B9BFB8 /* xxGraphic (iOS) */ = {
+		D6022C4123258BB600B9BFB8 /* xxGraphic-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6022C4823258BB600B9BFB8 /* Build configuration list for PBXNativeTarget "xxGraphic (iOS)" */;
+			buildConfigurationList = D6022C4823258BB600B9BFB8 /* Build configuration list for PBXNativeTarget "xxGraphic-iOS" */;
 			buildPhases = (
 				D6022C3E23258BB600B9BFB8 /* Sources */,
 				D6022C3F23258BB600B9BFB8 /* Frameworks */,
-				D6022C4023258BB600B9BFB8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "xxGraphic (iOS)";
-			productName = "xxGraphic (iOS)";
-			productReference = D6022C4223258BB600B9BFB8 /* libxxGraphic.bundle */;
-			productType = "com.apple.product-type.library.static";
+			name = "xxGraphic-iOS";
+			productName = "xxGraphic-iOS";
+			productReference = D6022C4223258BB600B9BFB8 /* xxGraphic.bundle */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
-		D644A091231EDDFA00B75B77 /* xxGraphic (macOS) */ = {
+		D644A091231EDDFA00B75B77 /* xxGraphic-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D644A09D231EDDFA00B75B77 /* Build configuration list for PBXNativeTarget "xxGraphic (macOS)" */;
+			buildConfigurationList = D644A09D231EDDFA00B75B77 /* Build configuration list for PBXNativeTarget "xxGraphic-macOS" */;
 			buildPhases = (
 				D644A08F231EDDFA00B75B77 /* Sources */,
 				D644A090231EDDFA00B75B77 /* Frameworks */,
@@ -693,10 +680,10 @@
 			);
 			dependencies = (
 			);
-			name = "xxGraphic (macOS)";
+			name = "xxGraphic-macOS";
 			productName = xxGraphic;
-			productReference = D644A092231EDDFA00B75B77 /* libxxGraphic.dylib */;
-			productType = "com.apple.product-type.library.static";
+			productReference = D644A092231EDDFA00B75B77 /* xxGraphic.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
@@ -733,10 +720,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D644A091231EDDFA00B75B77 /* xxGraphic (macOS) */,
-				D6022C4123258BB600B9BFB8 /* xxGraphic (iOS) */,
-				CE935F7325AC35B000CEF503 /* xxGraphic (Windows) */,
-				30A9A75D25ADC60D000FA104 /* xxGraphic (Android) */,
+				30A9A75D25ADC60D000FA104 /* xxGraphic-Android */,
+				D6022C4123258BB600B9BFB8 /* xxGraphic-iOS */,
+				D644A091231EDDFA00B75B77 /* xxGraphic-macOS */,
+				CE935F7325AC35B000CEF503 /* xxGraphic-Windows */,
 			);
 		};
 /* End PBXProject section */
@@ -853,21 +840,21 @@
 /* Begin XCBuildConfiguration section */
 		30A9A75F25ADC60D000FA104 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63926A85BC30051A948 /* CrossPlatform.Android.xcconfig */;
+			baseConfigurationReference = D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		30A9A76025ADC60D000FA104 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63926A85BC30051A948 /* CrossPlatform.Android.xcconfig */;
+			baseConfigurationReference = D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
 		CE935F7525AC35B000CEF503 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63826A85BC30051A948 /* CrossPlatform.Windows.xcconfig */;
+			baseConfigurationReference = D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -880,7 +867,7 @@
 		};
 		CE935F7625AC35B000CEF503 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D60EC63826A85BC30051A948 /* CrossPlatform.Windows.xcconfig */;
+			baseConfigurationReference = D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -894,6 +881,7 @@
 		D6022C4923258BB600B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = bundle;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -901,6 +889,7 @@
 		D6022C4A23258BB600B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = bundle;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -946,8 +935,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXECUTABLE_EXTENSION = bundle;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -1026,8 +1013,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = bundle;
-				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -1065,21 +1050,19 @@
 		D644A09E231EDDFA00B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
 			};
 			name = Debug;
 		};
 		D644A09F231EDDFA00B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30A9A76125ADC60D000FA104 /* Build configuration list for PBXNativeTarget "xxGraphic (Android)" */ = {
+		30A9A76125ADC60D000FA104 /* Build configuration list for PBXNativeTarget "xxGraphic-Android" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30A9A75F25ADC60D000FA104 /* Debug */,
@@ -1088,7 +1071,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE935F7725AC35B000CEF503 /* Build configuration list for PBXNativeTarget "xxGraphic (Windows)" */ = {
+		CE935F7725AC35B000CEF503 /* Build configuration list for PBXNativeTarget "xxGraphic-Windows" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE935F7525AC35B000CEF503 /* Debug */,
@@ -1097,7 +1080,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6022C4823258BB600B9BFB8 /* Build configuration list for PBXNativeTarget "xxGraphic (iOS)" */ = {
+		D6022C4823258BB600B9BFB8 /* Build configuration list for PBXNativeTarget "xxGraphic-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6022C4923258BB600B9BFB8 /* Debug */,
@@ -1115,7 +1098,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D644A09D231EDDFA00B75B77 /* Build configuration list for PBXNativeTarget "xxGraphic (macOS)" */ = {
+		D644A09D231EDDFA00B75B77 /* Build configuration list for PBXNativeTarget "xxGraphic-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D644A09E231EDDFA00B75B77 /* Debug */,

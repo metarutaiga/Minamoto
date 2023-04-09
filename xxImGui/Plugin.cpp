@@ -1,7 +1,7 @@
 //==============================================================================
 // xxImGui : Plugin Source
 //
-// Copyright (c) 2019-2021 TAiGA
+// Copyright (c) 2019-2023 TAiGA
 // https://github.com/metarutaiga/xxImGui
 //==============================================================================
 #include "xxGraphic/xxSystem.h"
@@ -13,6 +13,7 @@ static ImVector<void*>                  g_pluginLibraries;
 static ImVector<const char*>            g_pluginTitles;
 static ImVector<PFN_PLUGIN_CREATE>      g_pluginCreates;
 static ImVector<PFN_PLUGIN_SHUTDOWN>    g_pluginShutdowns;
+static ImVector<PFN_PLUGIN_MESSAGE>     g_pluginMessages;
 static ImVector<PFN_PLUGIN_UPDATE>      g_pluginUpdates;
 static ImVector<PFN_PLUGIN_RENDER>      g_pluginRenders;
 //------------------------------------------------------------------------------
@@ -84,9 +85,10 @@ void Plugin::Create(const char* path, uint64_t device)
 
         PFN_PLUGIN_CREATE create = (PFN_PLUGIN_CREATE)xxGetProcAddress(library, "Create");
         PFN_PLUGIN_SHUTDOWN shutdown = (PFN_PLUGIN_SHUTDOWN)xxGetProcAddress(library, "Shutdown");
+        PFN_PLUGIN_MESSAGE message = (PFN_PLUGIN_MESSAGE)xxGetProcAddress(library, "Message");
         PFN_PLUGIN_UPDATE update = (PFN_PLUGIN_UPDATE)xxGetProcAddress(library, "Update");
         PFN_PLUGIN_RENDER render = (PFN_PLUGIN_RENDER)xxGetProcAddress(library, "Render");
-        if (create == nullptr || shutdown == nullptr || update == nullptr || render == nullptr)
+        if (create == nullptr || shutdown == nullptr || update == nullptr)
         {
             xxFreeLibrary(library);
             free(filename);
@@ -98,8 +100,9 @@ void Plugin::Create(const char* path, uint64_t device)
         g_pluginLibraries.push_back(library);
         g_pluginCreates.push_back(create);
         g_pluginShutdowns.push_back(shutdown);
+        if (message) g_pluginMessages.push_back(message);
         g_pluginUpdates.push_back(update);
-        g_pluginRenders.push_back(render);
+        if (render) g_pluginRenders.push_back(render);
     }
     xxCloseDirectory(&handle);
 
@@ -133,6 +136,7 @@ void Plugin::Shutdown()
     g_pluginTitles.clear();
     g_pluginCreates.clear();
     g_pluginShutdowns.clear();
+    g_pluginMessages.clear();
     g_pluginUpdates.clear();
     g_pluginRenders.clear();
 }
@@ -140,6 +144,18 @@ void Plugin::Shutdown()
 int Plugin::Count()
 {
     return (int)g_pluginUpdates.size();
+}
+//------------------------------------------------------------------------------
+void Plugin::Message(std::initializer_list<const char*> list)
+{
+    MessageData messageData;
+    messageData.data = &(*list.begin());
+    messageData.length = list.size();
+    for (int i = 0; i < g_pluginMessages.size(); ++i)
+    {
+        PFN_PLUGIN_MESSAGE message = g_pluginMessages[i];
+        message(messageData);
+    }
 }
 //------------------------------------------------------------------------------
 bool Plugin::Update()
@@ -157,14 +173,20 @@ bool Plugin::Update()
         updateCount = 1;
     }
 
+    static float previousTime = 0;
+    float time = xxGetCurrentTime();
+    float elapsed = time - previousTime;
+    previousTime = time;
+
     UpdateData updateData;
     updateData.instance = Renderer::g_instance;
     updateData.device = Renderer::g_device;
     updateData.renderPass = Renderer::g_renderPass;
     updateData.width = Renderer::g_width;
     updateData.height = Renderer::g_height;
-    updateData.time = xxGetCurrentTime();
-    updateData.windowScale = ImGui::GetStyle().MouseCursorScale;
+    updateData.time = time;
+    updateData.elapsed = elapsed;
+    updateData.message = Plugin::Message;
     for (int i = 0; i < g_pluginUpdates.size(); ++i)
     {
         PFN_PLUGIN_UPDATE update = g_pluginUpdates[i];
