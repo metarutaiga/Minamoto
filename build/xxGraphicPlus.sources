@@ -1,6 +1,7 @@
 ﻿/DXXPLUS_BUILD_LIBRARY
 /DNDEBUG
 /I..\..\..\..\3rdParty\xxGraphic
+..\..\..\..\3rdParty\xxGraphic\utility\xxCamera.cpp
 ..\..\..\..\3rdParty\xxGraphic\utility\xxImage.cpp
 ..\..\..\..\3rdParty\xxGraphic\utility\xxMaterial.cpp
 ..\..\..\..\3rdParty\xxGraphic\utility\xxMath.cpp

@@ -35,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\3rdParty\xxGraphic\utility\xxCamera.cpp" />
     <ClCompile Include="..\3rdParty\xxGraphic\utility\xxImage.cpp" />
     <ClCompile Include="..\3rdParty\xxGraphic\utility\xxMaterial.cpp" />
     <ClCompile Include="..\3rdParty\xxGraphic\utility\xxMath.cpp" />
@@ -42,11 +43,13 @@
     <ClCompile Include="..\3rdParty\xxGraphic\utility\xxNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\3rdParty\xxGraphic\utility\xxCamera.h" />
     <ClInclude Include="..\3rdParty\xxGraphic\utility\xxImage.h" />
     <ClInclude Include="..\3rdParty\xxGraphic\utility\xxMaterial.h" />
     <ClInclude Include="..\3rdParty\xxGraphic\utility\xxMath.h" />
     <ClInclude Include="..\3rdParty\xxGraphic\utility\xxMesh.h" />
     <ClInclude Include="..\3rdParty\xxGraphic\utility\xxNode.h" />
+    <ClInclude Include="..\3rdParty\xxGraphic\utility\xxUtility.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="xxGraphic.vcxproj">

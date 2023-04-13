@@ -34,9 +34,6 @@
     <ClInclude Include="..\xxImGui\implement\imgui_user_config.h">
       <Filter>implement</Filter>
     </ClInclude>
-    <ClInclude Include="..\xxImGui\implement\imgui_impl_osx.h">
-      <Filter>implement</Filter>
-    </ClInclude>
     <ClInclude Include="..\xxImGui\DearImGui.h" />
     <ClInclude Include="..\xxImGui\Renderer.h" />
     <ClInclude Include="..\xxImGui\Plugin.h" />
@@ -54,9 +51,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\xxImGui\implement\imgui_impl_osx.mm">
-      <Filter>implement</Filter>
-    </None>
     <None Include="..\xxImGui\main.mm" />
   </ItemGroup>
 </Project>

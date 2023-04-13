@@ -351,7 +351,6 @@
     <ClInclude Include="..\3rdParty\imgui\misc\freetype\imgui_freetype.h" />
     <ClInclude Include="..\xxImGui\implement\ftmodule.h" />
     <ClInclude Include="..\xxImGui\implement\ftoption.h" />
-    <ClInclude Include="..\xxImGui\implement\imgui_impl_osx.h" />
     <ClInclude Include="..\xxImGui\implement\imgui_impl_xx.h" />
     <ClInclude Include="..\xxImGui\implement\imgui_user_config.h" />
     <ClInclude Include="..\xxImGui\DearImGui.h" />
@@ -359,7 +358,6 @@
     <ClInclude Include="..\xxImGui\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\xxImGui\implement\imgui_impl_osx.mm" />
     <None Include="..\xxImGui\main.mm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

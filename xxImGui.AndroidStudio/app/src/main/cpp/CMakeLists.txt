@@ -192,6 +192,7 @@ target_link_libraries( xxGraphic
 
 add_library( xxGraphicPlus
              SHARED
+             ../../../../../3rdParty/xxGraphic/utility/xxCamera.cpp
              ../../../../../3rdParty/xxGraphic/utility/xxImage.cpp
              ../../../../../3rdParty/xxGraphic/utility/xxMaterial.cpp
              ../../../../../3rdParty/xxGraphic/utility/xxMath.cpp
