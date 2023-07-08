@@ -46,12 +46,13 @@
 
 #undef TT_USE_BYTECODE_INTERPRETER
 #undef TT_SUPPORT_COLRV1
+#undef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
 
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-function"
 #endif
 
 #define sfnt_find_encoding FT_ERR_CAT(sfnt_find_encoding, __LINE__)
-#define sfnt_find_encoding1173(...) FT_ENCODING_UNICODE
+#define sfnt_find_encoding1192(...) FT_ENCODING_UNICODE
 
 /* END */
