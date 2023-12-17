@@ -200,16 +200,24 @@
 			name = Configs;
 			sourceTree = "<group>";
 		};
+		D63370652B2ED967001D4057 /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+				3083107425F49FEB0095892D /* backends */,
+				D644A0DA231F107D00B75B77 /* implement */,
+				3001404025F327DD00B8B851 /* misc */,
+			);
+			name = imgui;
+			sourceTree = "<group>";
+		};
 		D644A0BD231F021F00B75B77 = {
 			isa = PBXGroup;
 			children = (
+				D690A3802333F7FA00A149EF /* info.plist */,
 				CEE9E620257640C000C180FB /* Minamoto.entitlements */,
 				CE999BD025D21E4B00351116 /* Configs */,
-				3083107425F49FEB0095892D /* backends */,
-				D644A0DA231F107D00B75B77 /* implement */,
+				D63370652B2ED967001D4057 /* imgui */,
 				D690A3852333FDBC00A149EF /* main */,
-				3001404025F327DD00B8B851 /* misc */,
-				D6F3891B232978A000EE9716 /* project */,
 				D644A0C7231F021F00B75B77 /* Products */,
 				D644A0EB231F116C00B75B77 /* Frameworks */,
 			);
@@ -273,14 +281,6 @@
 				D690A3872333FE7B00A149EF /* Renderer.h */,
 			);
 			name = main;
-			sourceTree = "<group>";
-		};
-		D6F3891B232978A000EE9716 /* project */ = {
-			isa = PBXGroup;
-			children = (
-				D690A3802333F7FA00A149EF /* info.plist */,
-			);
-			name = project;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
