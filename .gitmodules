@@ -1,15 +1,12 @@
 [submodule "xxGraphic"]
-	path = 3rdParty/xxGraphic
+	path = SDK/xxGraphic
 	url = https://github.com/metarutaiga/xxGraphic
 [submodule "freetype"]
-	path = 3rdParty/freetype
+	path = SDK/freetype
 	url = https://gitlab.freedesktop.org/freetype/freetype
 [submodule "imgui"]
-	path = 3rdParty/imgui
+	path = SDK/imgui
 	url = https://github.com/ocornut/imgui
-[submodule "stb"]
-	path = 3rdParty/stb
-	url = https://github.com/metarutaiga/stb
 [submodule "3rdParty/ClangPlatform"]
-	path = 3rdParty/ClangPlatform
+	path = SDK/ClangPlatform
 	url = https://github.com/metarutaiga/ClangPlatform

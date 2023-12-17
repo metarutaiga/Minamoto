@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "container:"
+      name = "module">
+      <FileRef
+         location = "group:Module/Editor/Build/Editor.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Module/Sample/Build/Sample.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Module/Validator/Build/Validator.xcodeproj">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:Build/freetype.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Build/imgui.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Build/xxGraphic.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Build/xxGraphicPlus.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Module/Minamoto/Build/Minamoto.xcodeproj">
+   </FileRef>
+</Workspace>

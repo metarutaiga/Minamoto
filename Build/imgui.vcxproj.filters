@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\SDK\imgui\imgui.cpp" />
+    <ClCompile Include="..\SDK\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\SDK\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\SDK\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\SDK\imgui\imgui_tables.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SDK\imgui\imconfig.h" />
+    <ClInclude Include="..\SDK\imgui\imgui.h" />
+    <ClInclude Include="..\SDK\imgui\imgui_internal.h" />
+    <ClInclude Include="..\SDK\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\SDK\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\SDK\imgui\imstb_truetype.h" />
+  </ItemGroup>
+</Project>
