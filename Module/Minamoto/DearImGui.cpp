@@ -198,7 +198,7 @@ void DearImGui::NewFrame(void* view)
                 deviceStringTarget = Renderer::GetGraphicFullName(i);
                 if (deviceStringTarget == nullptr)
                     break;
-                bool selected = (deviceStringTarget == deviceStringCurrent);
+                bool selected = (strcmp(deviceStringTarget, deviceStringCurrent) == 0);
                 if (ImGui::MenuItem(deviceStringTarget, nullptr, &selected))
                 {
                     g_graphicShortName = Renderer::GetGraphicShortName(i);

@@ -252,7 +252,7 @@ bool ImGui_ImplXX_Init(uint64_t instance, uint64_t device, uint64_t renderPass)
     g_renderPass = renderPass;
 
 #if defined(xxWINDOWS)
-    const char* deviceString = xxGetDeviceName();
+    const char* deviceString = xxGetInstanceName();
     g_halfPixel = false;
     g_halfPixel |= (strncmp(deviceString, "Direct3D 5", 10) == 0);
     g_halfPixel |= (strncmp(deviceString, "Direct3D 6", 10) == 0);

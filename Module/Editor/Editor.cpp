@@ -5,9 +5,14 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
+#include <utility/xxImage.h>
+#include <utility/xxMaterial.h>
+#include <utility/xxMesh.h>
 #include <utility/xxNode.h>
 #include "Object/Camera.h"
 #include "Utility/Grid.h"
+#include "Window/Hierarchy.h"
+#include "Window/Log.h"
 
 #define MODULE_NAME     "Editor"
 #define MODULE_MAJOR    1
@@ -15,6 +20,7 @@
 
 static Camera* camera;
 static xxNodePtr grid;
+static xxNodePtr root;
 //------------------------------------------------------------------------------
 moduleAPI const char* Create(const CreateData& createData)
 {
@@ -24,15 +30,23 @@ moduleAPI const char* Create(const CreateData& createData)
     camera->GetCamera()->Update();
 
     grid = Grid::Create(xxVector3::ZERO, {10000, 10000});
+    root = xxNode::Create();
+
+    Hierarchy::Initialize();
+    Log::Initialize();
 
     return MODULE_NAME;
 }
 //------------------------------------------------------------------------------
 moduleAPI void Shutdown(const ShutdownData& shutdownData)
 {
+    Hierarchy::Shutdown();
+    Log::Shutdown();
+
     Camera::DestroyCamera(camera);
     camera = nullptr;
     grid = nullptr;
+    root = nullptr;
 }
 //------------------------------------------------------------------------------
 moduleAPI void Message(const MessageData& messageData)
@@ -45,7 +59,25 @@ moduleAPI void Message(const MessageData& messageData)
             grid = Grid::Create(xxVector3::ZERO, {10000, 10000});
             break;
         case xxHash("SHUTDOWN"):
+        {
             grid = nullptr;
+            std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
+            {
+                if (node == nullptr)
+                    return;
+                for (xxImagePtr const& image : node->Images)
+                    image->Invalidate();
+                if (node->Mesh)
+                    node->Mesh->Invalidate();
+                if (node->Material)
+                    node->Material->Invalidate();
+                for (size_t i = 0; i < node->GetChildCount(); ++i)
+                    traversal(node->GetChild(i));
+            };
+            traversal(root);
+            break;
+        }
+        default:
             break;
         }
     }
@@ -54,6 +86,8 @@ moduleAPI void Message(const MessageData& messageData)
 moduleAPI bool Update(const UpdateData& updateData)
 {
     static bool showAbout = false;
+    static bool showHierarchy = true;
+    static bool showLog = true;
     bool updated = false;
 
     if (ImGui::BeginMainMenuBar())
@@ -61,6 +95,9 @@ moduleAPI bool Update(const UpdateData& updateData)
         if (ImGui::BeginMenu(MODULE_NAME))
         {
             ImGui::MenuItem("About " MODULE_NAME, nullptr, &showAbout);
+            ImGui::Separator();
+            ImGui::MenuItem("Hierarchy", nullptr, &showHierarchy);
+            ImGui::MenuItem("Log", nullptr, &showLog);
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
@@ -78,13 +115,17 @@ moduleAPI bool Update(const UpdateData& updateData)
         }
     }
 
-    ImGuiIO& io = ImGui::GetIO();
+    updated |= Hierarchy::Update(updateData, showHierarchy, root);
+    updated |= Log::Update(updateData, showLog);
 
-    if (grid)
+    if (camera)
     {
+        ImGuiIO& io = ImGui::GetIO();
+
         float forward_backward = 0;
         float left_right = 0;
         float speed = 10;
+
         if (io.WantCaptureMouse == false)
         {
             if (io.KeysDown[ImGuiKey_LeftShift])
@@ -128,6 +169,16 @@ moduleAPI bool Update(const UpdateData& updateData)
         }
     }
 
+    std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
+    {
+        if (node == nullptr)
+            return;
+        node->Update(updateData.time);
+        for (size_t i = 0; i < node->GetChildCount(); ++i)
+            traversal(node->GetChild(i));
+    };
+    traversal(root);
+
     return updated;
 }
 //------------------------------------------------------------------------------
@@ -137,5 +188,15 @@ moduleAPI void Render(const RenderData& renderData)
     {
         grid->Draw(renderData.device, renderData.commandEncoder, camera->GetCamera());
     }
+
+    std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
+    {
+        if (node == nullptr)
+            return;
+        node->Draw(renderData.device, renderData.commandEncoder, camera->GetCamera());
+        for (size_t i = 0; i < node->GetChildCount(); ++i)
+            traversal(node->GetChild(i));
+    };
+    traversal(root);
 }
-//------------------------------------------------------------------------------
+//---------------------------------------------------------------------------

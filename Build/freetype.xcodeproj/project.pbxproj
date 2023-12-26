@@ -129,6 +129,7 @@
 		D6022C9623258EFB00B9BFB8 /* type42.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A032231ED13200B75B77 /* type42.c */; };
 		D6022C9723258EFB00B9BFB8 /* winfnt.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A034231ED27D00B75B77 /* winfnt.c */; };
 		D60EC63126A85B7F0051A948 /* llvm_wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60EC63026A85B7F0051A948 /* llvm_wrapper.cpp */; };
+		D63370A62B3B2533001D4057 /* freetype.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6449FDA231EC3D800B75B77 /* freetype.dylib */; };
 		D6449FFB231EC9B900B75B77 /* ftpatent.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FEA231EC9B800B75B77 /* ftpatent.c */; };
 		D6449FFC231EC9B900B75B77 /* ftsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FEB231EC9B800B75B77 /* ftsystem.c */; };
 		D6449FFD231EC9B900B75B77 /* fttype1.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FEC231EC9B800B75B77 /* fttype1.c */; };
@@ -171,12 +172,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D6022C26232588CC00B9BFB8 /* CopyFiles */ = {
+		D63370A52B3B252B001D4057 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
+			dstPath = Minamoto.app/Contents/Frameworks;
 			dstSubfolderSpec = 16;
 			files = (
+				D63370A62B3B2533001D4057 /* freetype.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +396,6 @@
 			buildPhases = (
 				D6022C24232588CC00B9BFB8 /* Sources */,
 				D6022C25232588CC00B9BFB8 /* Frameworks */,
-				D6022C26232588CC00B9BFB8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -411,6 +412,7 @@
 			buildPhases = (
 				D6449FD7231EC3D800B75B77 /* Sources */,
 				D6449FD8231EC3D800B75B77 /* Frameworks */,
+				D63370A52B3B252B001D4057 /* CopyFiles */,
 			);
 			buildRules = (
 			);

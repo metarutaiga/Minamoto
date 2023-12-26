@@ -21,6 +21,10 @@
 		CEC4337D25AD24A400936983 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A3862333FE7B00A149EF /* Renderer.cpp */; };
 		D6022C6A23258E9500B9BFB8 /* imgui_impl_xx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0E7231F109C00B75B77 /* imgui_impl_xx.cpp */; };
 		D60EC64326A85C0A0051A948 /* llvm_wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60EC64226A85C0A0051A948 /* llvm_wrapper.cpp */; };
+		D63370682B3534FE001D4057 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370662B3534FE001D4057 /* Logger.cpp */; };
+		D63370692B3534FE001D4057 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370662B3534FE001D4057 /* Logger.cpp */; };
+		D633706A2B3534FE001D4057 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370662B3534FE001D4057 /* Logger.cpp */; };
+		D633706B2B3534FE001D4057 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370662B3534FE001D4057 /* Logger.cpp */; };
 		D644A0EA231F109D00B75B77 /* imgui_impl_xx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0E7231F109C00B75B77 /* imgui_impl_xx.cpp */; };
 		D690A3882333FE7B00A149EF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A3862333FE7B00A149EF /* Renderer.cpp */; };
 		D690A3892333FE7B00A149EF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A3862333FE7B00A149EF /* Renderer.cpp */; };
@@ -86,6 +90,8 @@
 		D60EC64026A85C000051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC64126A85C000051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D60EC64226A85C0A0051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
+		D63370662B3534FE001D4057 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logger.cpp; path = ../Logger.cpp; sourceTree = "<group>"; };
+		D63370672B3534FE001D4057 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logger.h; path = ../Logger.h; sourceTree = "<group>"; };
 		D644A0C6231F021F00B75B77 /* Minamoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minamoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D644A0E7231F109C00B75B77 /* imgui_impl_xx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_impl_xx.cpp; path = ../implement/imgui_impl_xx.cpp; sourceTree = "<group>"; };
 		D644A0E8231F109C00B75B77 /* imgui_impl_xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_impl_xx.h; path = ../implement/imgui_impl_xx.h; sourceTree = "<group>"; };
@@ -272,6 +278,8 @@
 			children = (
 				D690A38A23341A8400A149EF /* DearImGui.cpp */,
 				D690A38B23341A8400A149EF /* DearImGui.h */,
+				D63370662B3534FE001D4057 /* Logger.cpp */,
+				D63370672B3534FE001D4057 /* Logger.h */,
 				D690A3922334291E00A149EF /* main.cpp */,
 				D690A3932334291E00A149EF /* main.mm */,
 				3039F986244743DB00E671A7 /* mainJNI.cpp */,
@@ -422,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEAF9CB725AE756C008B7C57 /* imgui_impl_xx.cpp in Sources */,
+				D63370682B3534FE001D4057 /* Logger.cpp in Sources */,
 				D698A4D0266BABB200C74361 /* imgui_freetype.cpp in Sources */,
 				CEAF9CB825AE756C008B7C57 /* DearImGui.cpp in Sources */,
 				CEAF9CB925AE756C008B7C57 /* mainJNI.cpp in Sources */,
@@ -435,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC4337925AD24A400936983 /* imgui_impl_xx.cpp in Sources */,
+				D633706B2B3534FE001D4057 /* Logger.cpp in Sources */,
 				D698A4CF266BABB200C74361 /* imgui_freetype.cpp in Sources */,
 				CEC4337A25AD24A400936983 /* DearImGui.cpp in Sources */,
 				D698A4E1266BACBD00C74361 /* imgui_impl_win32.cpp in Sources */,
@@ -450,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6022C6A23258E9500B9BFB8 /* imgui_impl_xx.cpp in Sources */,
+				D63370692B3534FE001D4057 /* Logger.cpp in Sources */,
 				D698A4CE266BABB200C74361 /* imgui_freetype.cpp in Sources */,
 				D690A38D23341A8400A149EF /* DearImGui.cpp in Sources */,
 				D690A3972334291E00A149EF /* main.mm in Sources */,
@@ -465,6 +476,7 @@
 				D698A4CD266BABB200C74361 /* imgui_freetype.cpp in Sources */,
 				D6BA700529E266BC0056FE5F /* imgui_impl_osx.mm in Sources */,
 				D644A0EA231F109D00B75B77 /* imgui_impl_xx.cpp in Sources */,
+				D633706A2B3534FE001D4057 /* Logger.cpp in Sources */,
 				D690A38C23341A8400A149EF /* DearImGui.cpp in Sources */,
 				D690A3962334291E00A149EF /* main.mm in Sources */,
 				300264C2242687B7004559E0 /* Module.cpp in Sources */,

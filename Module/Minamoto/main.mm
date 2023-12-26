@@ -1,9 +1,10 @@
 // dear imgui: standalone example application
 // If you are new to dear imgui, see examples/README.txt and documentation at the top of imgui.cpp.
 
-#include "Renderer.h"
-#include "Module.h"
 #include "DearImGui.h"
+#include "Logger.h"
+#include "Module.h"
+#include "Renderer.h"
 
 #include <stdio.h>
 
@@ -335,8 +336,8 @@
     NSMenu* appMenu;
     NSMenuItem* menuItem;
 
-    appMenu = [[NSMenu alloc] initWithTitle:@"Dear ImGui XX Example"];
-    menuItem = [appMenu addItemWithTitle:@"Quit Dear ImGui XX Example"
+    appMenu = [[NSMenu alloc] initWithTitle:@"Minamoto"];
+    menuItem = [appMenu addItemWithTitle:@"Quit Minamoto"
                                   action:@selector(terminate:)
                            keyEquivalent:@"q"];
     [menuItem setKeyEquivalentModifierMask:NSEventModifierFlagCommand];
@@ -363,7 +364,7 @@
                                               defer:YES];
     [_window setDelegate:self];
     [_window setOpaque:YES];
-    [_window setTitle:@"Dear ImGui XX Example"];
+    [_window setTitle:@"Minamoto"];
     [_window makeKeyAndOrderFront:NSApp];
 
     return (_window);
@@ -441,6 +442,7 @@
     CGSize size = [view bounds].size;
 #endif
 
+    Logger::Init();
     Renderer::Create((__bridge void*)self.window, size.width, size.height);
     DearImGui::Create((__bridge void*)view, 1.0f, scale);
     Module::Create("module", Renderer::g_device);
@@ -451,6 +453,7 @@
     Module::Shutdown();
     DearImGui::Shutdown();
     Renderer::Shutdown();
+    Logger::Shutdown();
 }
 @end
 

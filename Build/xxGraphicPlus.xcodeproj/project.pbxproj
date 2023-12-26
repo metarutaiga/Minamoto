@@ -30,6 +30,7 @@
 		CE93600D25AC440100CEF503 /* xxNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED924DDA2EA00C0F4EC /* xxNode.cpp */; };
 		CE999D2725D261DF00351116 /* xxGraphic.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = CE999D2625D261DF00351116 /* xxGraphic.dll */; };
 		D60EC63F26A85BE90051A948 /* llvm_wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60EC63E26A85BE90051A948 /* llvm_wrapper.cpp */; };
+		D63370A42B3B24ED001D4057 /* xxGraphicPlus.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A092231EDDFA00B75B77 /* xxGraphicPlus.dylib */; };
 		D6BA6FFF29E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
 		D6BA700029E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
 		D6BA700129E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
@@ -37,6 +38,19 @@
 		D6BA702529E26FF40056FE5F /* xxGraphic.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702429E26FF40056FE5F /* xxGraphic.dylib */; };
 		D6BA702729E270000056FE5F /* xxGraphic.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702629E270000056FE5F /* xxGraphic.bundle */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D63370A32B3B24DF001D4057 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Minamoto.app/Contents/Frameworks;
+			dstSubfolderSpec = 16;
+			files = (
+				D63370A42B3B24ED001D4057 /* xxGraphicPlus.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		30A9A78125ADC6D9000FA104 /* libxxGraphicPlus.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libxxGraphicPlus.so; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +240,7 @@
 			buildPhases = (
 				D644A08F231EDDFA00B75B77 /* Sources */,
 				D644A090231EDDFA00B75B77 /* Frameworks */,
+				D63370A32B3B24DF001D4057 /* CopyFiles */,
 			);
 			buildRules = (
 			);

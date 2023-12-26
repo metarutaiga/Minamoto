@@ -1,0 +1,16 @@
+//==============================================================================
+// Minamoto : Import Header
+//
+// Copyright (c) 2019-2023 TAiGA
+// https://github.com/metarutaiga/minamoto
+//==============================================================================
+#pragma once
+
+#include <utility/xxUtility.h>
+
+class Import
+{
+public:
+    static xxImagePtr CreateImage(char const* img);
+    static xxMeshPtr CreateMesh(std::vector<xxVector3> const& vertices, std::vector<xxVector3> const& normals, std::vector<xxVector4> const& colors, std::vector<xxVector2> const& textures);
+};

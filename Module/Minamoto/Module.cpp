@@ -7,10 +7,12 @@
 #include "xxGraphic/xxSystem.h"
 #include "DearImGui.h"
 #include "Renderer.h"
+#include "Logger.h"
 #include "Module.h"
 
 static ImVector<void*>                  g_moduleLibraries;
 static ImVector<const char*>            g_moduleTitles;
+static ImVector<float>                  g_moduleTimers;
 static ImVector<PFN_MODULE_CREATE>      g_moduleCreates;
 static ImVector<PFN_MODULE_SHUTDOWN>    g_moduleShutdowns;
 static ImVector<PFN_MODULE_MESSAGE>     g_moduleMessages;
@@ -76,7 +78,9 @@ void Module::Create(const char* path, uint64_t device)
 #elif defined(xxANDROID)
         snprintf(temp, 4096, "%s/%s", app, filename);
 #endif
+        float begin = xxGetCurrentTime();
         void* library = xxLoadLibrary(temp);
+        float end = xxGetCurrentTime();
         if (library == nullptr)
         {
             free(filename);
@@ -94,11 +98,11 @@ void Module::Create(const char* path, uint64_t device)
             free(filename);
             continue;
         }
-        xxLog("Plugin", "Loaded : %s", filename);
         free(filename);
 
         g_moduleLibraries.push_back(library);
         g_moduleCreates.push_back(create);
+        g_moduleTimers.push_back(end - begin);
         g_moduleShutdowns.push_back(shutdown);
         if (message) g_moduleMessages.push_back(message);
         g_moduleUpdates.push_back(update);
@@ -112,8 +116,13 @@ void Module::Create(const char* path, uint64_t device)
     for (int i = 0; i < g_moduleCreates.size(); ++i)
     {
         PFN_MODULE_CREATE create = g_moduleCreates[i];
+        float begin = xxGetCurrentTime();
         const char* title = create(createData);
+        float end = xxGetCurrentTime();
         g_moduleTitles.push_back(title);
+
+        g_moduleTimers[i] += end - begin;
+        xxLog("Plugin", "Loaded : %s (%.0fus)", title, g_moduleTimers[i] * 1000000);
     }
 }
 //------------------------------------------------------------------------------
@@ -151,6 +160,17 @@ void Module::Message(std::initializer_list<const char*> list)
     MessageData messageData;
     messageData.data = &(*list.begin());
     messageData.length = list.size();
+    if (messageData.length >= 1)
+    {
+        switch (xxHash(messageData.data[0]))
+        {
+        case xxHash("LOGGER_UPDATE"):
+            Logger::Update(*(std::deque<char*>*)messageData.data[1]);
+            break;
+        default:
+            break;
+        }
+    }
     for (int i = 0; i < g_moduleMessages.size(); ++i)
     {
         PFN_MODULE_MESSAGE message = g_moduleMessages[i];

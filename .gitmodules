@@ -10,3 +10,9 @@
 [submodule "3rdParty/ClangPlatform"]
 	path = SDK/ClangPlatform
 	url = https://github.com/metarutaiga/ClangPlatform
+[submodule "SDK/stb"]
+	path = SDK/stb
+	url = https://github.com/nothings/stb
+[submodule "SDK/ImGuiFileDialog"]
+	path = SDK/ImGuiFileDialog
+	url = https://github.com/aiekick/ImGuiFileDialog

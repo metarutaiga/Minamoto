@@ -52,42 +52,42 @@ static const struct { const char* const shortName; const char* const fullName; u
 {
 #if defined(xxWINDOWS)
 #if defined(_M_IX86)
-    { "D3D5",           xxGetDeviceNameD3D5(),          xxCreateInstanceD3D5            },
-    { "D3D6",           xxGetDeviceNameD3D6(),          xxCreateInstanceD3D6            },
-    { "D3D7",           xxGetDeviceNameD3D7(),          xxCreateInstanceD3D7            },
-    { "D3D8",           xxGetDeviceNameD3D8(),          xxCreateInstanceD3D8            },
-    { "D3D8PS",         xxGetDeviceNameD3D8PS(),        xxCreateInstanceD3D8PS          },
+    { "D3D5",           xxGetInstanceNameD3D5(),            xxCreateInstanceD3D5            },
+    { "D3D6",           xxGetInstanceNameD3D6(),            xxCreateInstanceD3D6            },
+    { "D3D7",           xxGetInstanceNameD3D7(),            xxCreateInstanceD3D7            },
+    { "D3D8",           xxGetInstanceNameD3D8(),            xxCreateInstanceD3D8            },
+    { "D3D8PS",         xxGetInstanceNameD3D8PS(),          xxCreateInstanceD3D8PS          },
 #endif
-    { "D3D9",           xxGetDeviceNameD3D9(),          xxCreateInstanceD3D9            },
-    { "D3D9PS",         xxGetDeviceNameD3D9PS(),        xxCreateInstanceD3D9PS          },
-    { "D3D9Ex",         xxGetDeviceNameD3D9Ex(),        xxCreateInstanceD3D9Ex          },
-    { "D3D9ExPS",       xxGetDeviceNameD3D9ExPS(),      xxCreateInstanceD3D9ExPS        },
-    { "D3D9On12",       xxGetDeviceNameD3D9On12(),      xxCreateInstanceD3D9On12        },
-    { "D3D9On12PS",     xxGetDeviceNameD3D9On12PS(),    xxCreateInstanceD3D9On12PS      },
-    { "D3D9On12Ex",     xxGetDeviceNameD3D9On12Ex(),    xxCreateInstanceD3D9On12Ex      },
-    { "D3D9On12ExPS",   xxGetDeviceNameD3D9On12ExPS(),  xxCreateInstanceD3D9On12ExPS    },
-    { "D3D10",          xxGetDeviceNameD3D10(),         xxCreateInstanceD3D10           },
-    { "D3D10_1",        xxGetDeviceNameD3D10_1(),       xxCreateInstanceD3D10_1         },
-    { "D3D11",          xxGetDeviceNameD3D11(),         xxCreateInstanceD3D11           },
-    { "D3D11On12",      xxGetDeviceNameD3D11On12(),     xxCreateInstanceD3D11On12       },
-    { "D3D12",          xxGetDeviceNameD3D12(),         xxCreateInstanceD3D12           },
+    { "D3D9",           xxGetInstanceNameD3D9(),            xxCreateInstanceD3D9            },
+    { "D3D9PS",         xxGetInstanceNameD3D9PS(),          xxCreateInstanceD3D9PS          },
+    { "D3D9Ex",         xxGetInstanceNameD3D9Ex(),          xxCreateInstanceD3D9Ex          },
+    { "D3D9ExPS",       xxGetInstanceNameD3D9ExPS(),        xxCreateInstanceD3D9ExPS        },
+    { "D3D9On12",       xxGetInstanceNameD3D9On12(),        xxCreateInstanceD3D9On12        },
+    { "D3D9On12PS",     xxGetInstanceNameD3D9On12PS(),      xxCreateInstanceD3D9On12PS      },
+    { "D3D9On12Ex",     xxGetInstanceNameD3D9On12Ex(),      xxCreateInstanceD3D9On12Ex      },
+    { "D3D9On12ExPS",   xxGetInstanceNameD3D9On12ExPS(),    xxCreateInstanceD3D9On12ExPS    },
+    { "D3D10",          xxGetInstanceNameD3D10(),           xxCreateInstanceD3D10           },
+    { "D3D10_1",        xxGetInstanceNameD3D10_1(),         xxCreateInstanceD3D10_1         },
+    { "D3D11",          xxGetInstanceNameD3D11(),           xxCreateInstanceD3D11           },
+    { "D3D11On12",      xxGetInstanceNameD3D11On12(),       xxCreateInstanceD3D11On12       },
+    { "D3D12",          xxGetInstanceNameD3D12(),           xxCreateInstanceD3D12           },
 #endif
 #if defined(xxMACOS) || defined(xxWINDOWS)
-    { "Glide",          xxGetDeviceNameGlide(),         xxCreateInstanceGlide           },
+    { "Glide",          xxGetInstanceNameGlide(),            xxCreateInstanceGlide           },
 #endif
 #if defined(xxMACCATALYST)
 #else
-    { "GLES2",          xxGetDeviceNameGLES2(),         xxCreateInstanceGLES2           },
-    { "GLES3",          xxGetDeviceNameGLES3(),         xxCreateInstanceGLES3           },
-    { "GLES31",         xxGetDeviceNameGLES31(),        xxCreateInstanceGLES31          },
-    { "GLES32",         xxGetDeviceNameGLES32(),        xxCreateInstanceGLES32          },
+    { "GLES2",          xxGetInstanceNameGLES2(),           xxCreateInstanceGLES2           },
+    { "GLES3",          xxGetInstanceNameGLES3(),           xxCreateInstanceGLES3           },
+    { "GLES31",         xxGetInstanceNameGLES31(),          xxCreateInstanceGLES31          },
+    { "GLES32",         xxGetInstanceNameGLES32(),          xxCreateInstanceGLES32          },
 #endif
 #if defined(xxMACOS) || defined(xxIOS)
-    { "MTL",            xxGetDeviceNameMetal(),         xxCreateInstanceMetal           },
-    { "MTL2",           xxGetDeviceNameMetal2(),        xxCreateInstanceMetal2          },
+    { "MTL",            xxGetInstanceNameMetal(),           xxCreateInstanceMetal           },
+    { "MTL2",           xxGetInstanceNameMetal2(),          xxCreateInstanceMetal2          },
 #endif
-    { "NULL",           xxGetDeviceNameNULL(),          xxCreateInstanceNULL            },
-    { "VK",             xxGetDeviceNameVulkan(),        xxCreateInstanceVulkan          },
+    { "NULL",           xxGetInstanceNameNULL(),            xxCreateInstanceNULL            },
+    { "VK",             xxGetInstanceNameVulkan(),          xxCreateInstanceVulkan          },
 };
 //==============================================================================
 //  Renderer
@@ -197,7 +197,7 @@ bool Renderer::Present()
 //------------------------------------------------------------------------------
 const char* Renderer::GetCurrentFullName()
 {
-    return xxGetDeviceName();
+    return xxGetInstanceName();
 }
 //------------------------------------------------------------------------------
 const char* Renderer::GetGraphicFullName(int index)

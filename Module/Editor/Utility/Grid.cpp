@@ -7,7 +7,7 @@
 //------------------------------------------------------------------------------
 xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
 {
-    xxMeshPtr mesh = xxMesh::Create(1, 0, 1);
+    xxMeshPtr mesh = xxMesh::Create(0, 1, 1);
     if (mesh == nullptr)
         return nullptr;
 
@@ -42,26 +42,26 @@ xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
     xxMaterialPtr material = xxMaterial::Create();
     if (material == nullptr)
         return nullptr;
-    material->m_blending = true;
-    material->m_depthTest = "LessEqual";
-    material->m_depthWrite = false;
+    material->Blending = true;
+    material->DepthTest = "LessEqual";
+    material->DepthWrite = false;
 
     xxImagePtr image = CreateTexture();
     if (image == nullptr)
         return nullptr;
-    image->m_clampU = false;
-    image->m_clampV = false;
-    image->m_clampW = false;
-    image->m_filterMag = true;
-    image->m_filterMin = true;
-    image->m_filterMip = true;
-    image->m_anisotropic = 16;
+    image->ClampU = false;
+    image->ClampV = false;
+    image->ClampW = false;
+    image->FilterMag = true;
+    image->FilterMin = true;
+    image->FilterMip = true;
+    image->Anisotropic = 16;
 
     xxNodePtr node = xxNode::Create();
     if (node == nullptr)
         return nullptr;
-    node->SetMesh(mesh);
-    node->SetMaterial(material);
+    node->Mesh = mesh;
+    node->Material = material;
     node->SetImage(0, image);
     node->SetTranslate(translate);
 
