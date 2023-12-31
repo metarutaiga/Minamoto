@@ -10,6 +10,14 @@
 #include "Import/ImportWavefront.h"
 #include "Hierarchy.h"
 
+#if defined(__APPLE__)
+#define HAVE_FILEDIALOG 1
+#elif defined(_WIN32) && !defined(__clang__)
+#define HAVE_FILEDIALOG 1
+#else
+#define HAVE_FILEDIALOG 0
+#endif
+
 xxNodePtr Hierarchy::selectedLeft;
 xxNodePtr Hierarchy::selectedRight;
 xxNodePtr Hierarchy::importNode;
@@ -20,13 +28,16 @@ void Hierarchy::Initialize()
     selectedLeft = nullptr;
     selectedRight = nullptr;
     importNode = nullptr;
+#if HAVE_FILEDIALOG
     fileDialog = new ImGuiFileDialog;
+#endif
 }
 //------------------------------------------------------------------------------
 void Hierarchy::Shutdown()
 {
+#if HAVE_FILEDIALOG
     delete fileDialog;
-
+#endif
     selectedLeft = nullptr;
     selectedRight = nullptr;
     importNode = nullptr;
@@ -100,7 +111,9 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                         update = true;
                         importNode = selectedRight;
                         selectedRight = nullptr;
+#if HAVE_FILEDIALOG
                         fileDialog->OpenDialog("Import Wavefront", "Choose File", ".obj", ".");
+#endif
                     }
                     ImGui::EndPopup();
                 }
@@ -122,6 +135,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
     }
     ImGui::End();
 
+#if HAVE_FILEDIALOG
     if (importNode && fileDialog->Display("Import Wavefront"))
     {
         if (fileDialog->IsOk())
@@ -132,6 +146,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
         importNode = nullptr;
         fileDialog->Close();
     }
+#endif
 
     return update;
 }

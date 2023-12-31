@@ -12,7 +12,7 @@
 static std::deque<char*> logAccum;
 static xxMutex logAccumLock;
 //------------------------------------------------------------------------------
-void Logger::Init()
+void Logger::Create()
 {
     xxMutexInit(&logAccumLock);
     xxLogCallback(Logger::Printf);
@@ -33,10 +33,7 @@ void Logger::Printf(char const* tag, char const* format, va_list list)
     char fmt[256];
     snprintf(fmt, 256, "[%s] %s\n", tag, format);
 
-    int size = 0;
-    if (size == 0)
-        size = vsnprintf(nullptr, 0, fmt, list);
-
+    int size = vsnprintf(nullptr, 0, fmt, list);
     char* temp = xxAlloc(char, size + 1);
     if (temp == nullptr)
         return;

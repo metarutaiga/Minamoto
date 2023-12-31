@@ -55,7 +55,6 @@
 		D63370992B399792001D4057 /* ImGuiFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370962B399792001D4057 /* ImGuiFileDialog.cpp */; };
 		D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370962B399792001D4057 /* ImGuiFileDialog.cpp */; };
 		D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370962B399792001D4057 /* ImGuiFileDialog.cpp */; settings = {COMPILER_FLAGS = "-include assert.h -frtti -fexceptions"; }; };
-		D633709C2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370962B399792001D4057 /* ImGuiFileDialog.cpp */; settings = {COMPILER_FLAGS = "-include assert.h -frtti"; }; };
 		D6BA702929E2701C0056FE5F /* imgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702829E2701C0056FE5F /* imgui.dylib */; };
 		D6BA702B29E270210056FE5F /* imgui.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702A29E270210056FE5F /* imgui.bundle */; };
 /* End PBXBuildFile section */
@@ -431,7 +430,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
-				D633709C2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D60EC62F26A85B570051A948 /* llvm_wrapper.cpp in Sources */,
 				D6012A132B1DE05A00C3875A /* Camera.cpp in Sources */,

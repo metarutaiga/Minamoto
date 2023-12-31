@@ -1,9 +1,10 @@
 // dear imgui: standalone example application
 // If you are new to dear imgui, see examples/README.txt and documentation at the top of imgui.cpp.
 
-#include "Renderer.h"
-#include "Module.h"
 #include "DearImGui.h"
+#include "Logger.h"
+#include "Module.h"
+#include "Renderer.h"
 #include <imgui/backends/imgui_impl_win32.h>
 
 #define NOMINMAX
@@ -26,6 +27,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, in
     ::RegisterClassExW(&wc);
     HWND hWnd = ::CreateWindowW(wc.lpszClassName, L"Minamoto", WS_OVERLAPPEDWINDOW, 100, 100, (int)(1280 * scale), (int)(720 * scale), NULL, NULL, wc.hInstance, NULL);
 
+    Logger::Create();
     Renderer::Create(hWnd, (int)(1280 * scale), (int)(720 * scale));
     DearImGui::Create(hWnd, scale, scale);
     Module::Create("module", Renderer::g_device);
@@ -100,6 +102,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, in
     Module::Shutdown();
     DearImGui::Shutdown();
     Renderer::Shutdown();
+    Logger::Shutdown();
 
     ::DestroyWindow(hWnd);
     ::UnregisterClassW(wc.lpszClassName, wc.hInstance);

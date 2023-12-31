@@ -4,30 +4,6 @@
 // Copyright (c) 2019-2023 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <xxGraphic/xxGraphic.h>
-#include <xxGraphic/xxGraphicD3D5.h>
-#include <xxGraphic/xxGraphicD3D6.h>
-#include <xxGraphic/xxGraphicD3D7.h>
-#include <xxGraphic/xxGraphicD3D8.h>
-#include <xxGraphic/xxGraphicD3D8PS.h>
-#include <xxGraphic/xxGraphicD3D9.h>
-#include <xxGraphic/xxGraphicD3D9PS.h>
-#include <xxGraphic/xxGraphicD3D9Ex.h>
-#include <xxGraphic/xxGraphicD3D9On12.h>
-#include <xxGraphic/xxGraphicD3D10.h>
-#include <xxGraphic/xxGraphicD3D10_1.h>
-#include <xxGraphic/xxGraphicD3D11.h>
-#include <xxGraphic/xxGraphicD3D11On12.h>
-#include <xxGraphic/xxGraphicD3D12.h>
-#include <xxGraphic/xxGraphicGlide.h>
-#include <xxGraphic/xxGraphicGLES2.h>
-#include <xxGraphic/xxGraphicGLES3.h>
-#include <xxGraphic/xxGraphicGLES31.h>
-#include <xxGraphic/xxGraphicGLES32.h>
-#include <xxGraphic/xxGraphicMetal.h>
-#include <xxGraphic/xxGraphicMetal2.h>
-#include <xxGraphic/xxGraphicNULL.h>
-#include <xxGraphic/xxGraphicVulkan.h>
 #include "ShaderWavefront.h"
 
 //==============================================================================
@@ -39,58 +15,72 @@ R"(#if SHADER_GLSL
 #define float3 vec3
 #define float4 vec4
 #define float4x4 mat4
-#elif SHADER_METAL
-#include <metal_stdlib>
-using namespace metal;
 #endif
 
-#if SHADER_GLSL
-uniform vec4 buf[12];
-#elif SHADER_METAL
+#if SHADER_GLSL || SHADER_MSL
+#define mul(a, b) (b * a)
+#endif
+
+#if SHADER_GLSL || SHADER_HLSL
+uniform float4 uniBuffer[12];
+#elif SHADER_MSL
 struct Uniform
 {
-#if __METAL_USE_ARGUMENT__ == 0
-    float4x4 matrix[3];
+#if SHADER_MSL_ARGUMENT
+    device float4* Buffer [[id(0)]];
 #else
-    device float4x4* matrix [[id(0)]];
+    float4 Buffer[12];
 #endif
 };
 #endif
 
 #if SHADER_GLSL
-attribute vec3 position;
-attribute vec3 normal;
-attribute vec2 uv;
-#elif SHADER_METAL
+attribute vec3 attrPosition;
+attribute vec3 attrNormal;
+attribute vec2 attrUV0;
+#elif SHADER_HLSL
 struct Attribute
 {
-    float3 position [[attribute(0)]];
-    float3 normal   [[attribute(1)]];
-    float2 uv       [[attribute(2)]];
+    float3 Position : POSITION;
+    float3 Normal   : NORMAL;
+    float2 UV0      : TEXCOORD;
+};
+#elif SHADER_MSL
+struct Attribute
+{
+    float3 Position [[attribute(0)]];
+    float3 Normal   [[attribute(1)]];
+    float2 UV0      [[attribute(2)]];
 };
 #endif
 
 #if SHADER_GLSL
-varying vec2 varyUV;
-#elif SHADER_METAL
+varying vec2 varyUV0;
+#elif SHADER_HLSL
 struct Varying
 {
-    float4 varyPosition [[position]];
-    float2 varyUV;
+    float4 Position : SV_POSITION;
+    float2 UV0      : TEXCOORD0;
+};
+#elif SHADER_MSL
+struct Varying
+{
+    float4 Position [[position]];
+    float2 UV0;
 };
 #endif
 
-#if SHADER_GLSL
-uniform sampler2D tex;
-#elif SHADER_METAL
-struct TextureSampler
+#if SHADER_GLSL || SHADER_HLSL
+uniform sampler2D samDiffuse;
+#elif SHADER_MSL
+struct Sampler
 {
-#if __METAL_USE_ARGUMENT__ == 0
-    texture2d<float> tex [[texture(0)]];
-    sampler sam          [[sampler(0)]];
+#if SHADER_MSL_ARGUMENT
+    texture2d<float> Diffuse    [[id(4)]];
+    sampler DiffuseSampler      [[id(18)]];
 #else
-    texture2d<float> tex [[id(4)]];
-    sampler sam          [[id(18)]];
+    texture2d<float> Diffuse    [[texture(0)]];
+    sampler DiffuseSampler      [[sampler(0)]];
 #endif
 };
 #endif
@@ -98,31 +88,32 @@ struct TextureSampler
 #if SHADER_VERTEX
 #if SHADER_GLSL
 void main()
-#elif SHADER_METAL
-vertex Varying Main(Attribute in [[stage_in]],
-                    constant Uniform& uniforms [[buffer(0)]])
+#elif SHADER_HLSL
+Varying Main(Attribute attr)
+#elif SHADER_MSL
+vertex Varying Main(Attribute attr [[stage_in]],
+                    constant Uniform& uni [[buffer(0)]])
 #endif
 {
-#if SHADER_GLSL
-    float4x4 world = float4x4(buf[0], buf[1], buf[2], buf[3]);
-    float4x4 view = float4x4(buf[4], buf[5], buf[6], buf[7]);
-    float4x4 projection = float4x4(buf[8], buf[9], buf[10], buf[11]);
-#elif SHADER_METAL
-    float4x4 world = uniforms.matrix[0];
-    float4x4 view = uniforms.matrix[1];
-    float4x4 projection = uniforms.matrix[2];
-    float3 position = in.position;
-    float2 uv = in.uv;
+#if SHADER_HLSL || SHADER_MSL
+    float3 attrPosition = attr.Position;
+    float2 attrUV0 = attr.UV0;
 #endif
-    float4 vpos = projection * (view * (world * float4(position, 1.0)));
+#if SHADER_MSL
+    auto uniBuffer = uni.Buffer;
+#endif
+    float4x4 world = float4x4(uniBuffer[0], uniBuffer[1], uniBuffer[2], uniBuffer[3]);
+    float4x4 view = float4x4(uniBuffer[4], uniBuffer[5], uniBuffer[6], uniBuffer[7]);
+    float4x4 projection = float4x4(uniBuffer[8], uniBuffer[9], uniBuffer[10], uniBuffer[11]);
+    float4 vpos = mul(mul(mul(float4(attrPosition, 1.0), world), view), projection);
 #if SHADER_GLSL
     gl_Position = vpos;
-    varyUV = uv;
-#elif SHADER_METAL
-    Varying out;
-    out.varyPosition = vpos;
-    out.varyUV = uv;
-    return out;
+    varyUV0 = attrUV0;
+#elif SHADER_HLSL || SHADER_MSL
+    Varying vary;
+    vary.Position = vpos;
+    vary.UV0 = attrUV0;
+    return vary;
 #endif
 }
 #endif
@@ -130,29 +121,29 @@ vertex Varying Main(Attribute in [[stage_in]],
 #if SHADER_FRAGMENT
 #if SHADER_GLSL
 void main()
-#elif SHADER_METAL
-fragment float4 Main(Varying in [[stage_in]],
-#if __METAL_USE_ARGUMENT__ == 0
-                     TextureSampler textureSampler)
+#elif SHADER_HLSL
+float4 Main(Varying vary) : COLOR0
+#elif SHADER_MSL
+fragment float4 Main(Varying vary [[stage_in]],
+#if SHADER_MSL_ARGUMENT
+                     constant Sampler& sam [[buffer(0)]])
 #else
-                     constant TextureSampler& textureSampler [[buffer(0)]])
+                     Sampler sam)
 #endif
 #endif
 {
 #if SHADER_GLSL
-    gl_FragColor = texture2D(tex, varyUV);
-#elif SHADER_METAL
-    return textureSampler.tex.sample(textureSampler.sam, in.varyUV);
+    gl_FragColor = texture2D(samDiffuse, varyUV0);
+#elif SHADER_HLSL
+    return tex2D(samDiffuse, vary.UV0);
+#elif SHADER_MSL
+    return sam.Diffuse.sample(sam.DiffuseSampler, vary.UV0);
 #endif
 }
 #endif)";
 //-----------------------------------------------------------------------------
 char const* ShaderWavefront::Illumination(int type)
 {
-    char const* graphic = xxGetInstanceName();
-    if (graphic == nullptr)
-        return "default";
-
     return IllumShaderCode;
 }
 //==============================================================================

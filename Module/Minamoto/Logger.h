@@ -11,7 +11,7 @@
 class Logger
 {
 public:
-    static void Init();
+    static void Create();
     static void Shutdown();
     static void Printf(char const* tag, char const* format, va_list list);
     static void Update(std::deque<char*>& log);

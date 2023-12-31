@@ -160,7 +160,7 @@ void Module::Message(std::initializer_list<const char*> list)
     MessageData messageData;
     messageData.data = &(*list.begin());
     messageData.length = list.size();
-    if (messageData.length >= 1)
+    if (messageData.length != 0)
     {
         switch (xxHash(messageData.data[0]))
         {

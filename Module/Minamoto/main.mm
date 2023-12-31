@@ -442,7 +442,7 @@
     CGSize size = [view bounds].size;
 #endif
 
-    Logger::Init();
+    Logger::Create();
     Renderer::Create((__bridge void*)self.window, size.width, size.height);
     DearImGui::Create((__bridge void*)view, 1.0f, scale);
     Module::Create("module", Renderer::g_device);

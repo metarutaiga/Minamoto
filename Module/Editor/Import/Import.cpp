@@ -10,6 +10,7 @@
 
 #define STBI_ONLY_PNG
 #define STB_IMAGE_IMPLEMENTATION
+#pragma clang diagnostic ignored "-Wunused-function"
 #include <stb/stb_image.h>
 
 //==============================================================================
