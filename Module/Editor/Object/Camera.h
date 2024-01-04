@@ -1,3 +1,9 @@
+//==============================================================================
+// Minamoto : Camera Header
+//
+// Copyright (c) 2019-2023 TAiGA
+// https://github.com/metarutaiga/minamoto
+//==============================================================================
 #pragma once
 
 #include <utility/xxCamera.h>

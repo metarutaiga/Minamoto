@@ -6,7 +6,6 @@
 //==============================================================================
 #include <utility/xxMaterial.h>
 #include <utility/xxNode.h>
-#include "Shader/ShaderWavefront.h"
 #include "ImportWavefront.h"
 
 //==============================================================================
@@ -41,6 +40,24 @@ static std::string GeneratePath(char const* path, char const* name)
     return output;
 }
 //------------------------------------------------------------------------------
+static std::string GetName(char const* path)
+{
+    const char* leftName = strrchr(path, '/');
+    if (leftName == nullptr)
+        leftName = strrchr(path, '\\');
+
+    if (leftName)
+        leftName++;
+    else if (leftName == nullptr)
+        leftName = path;
+
+    const char* rightName = strrchr(path, '.');
+    if (rightName == nullptr)
+        rightName = path + strlen(path);
+
+    return std::string(leftName, rightName);
+}
+//------------------------------------------------------------------------------
 std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial(const char* mtl)
 {
     std::map<std::string, Material> materials;
@@ -52,9 +69,27 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
 
     auto finish = [&]()
     {
-        if (material.material)
+        if (material.output)
         {
-            materials[material.material->Name] = material;
+            if (material.output->Specular)
+            {
+                if (material.output->SpecularColor == xxVector3::BLACK &&
+                    material.output->SpecularHighlight == 0.0f)
+                {
+                    material.output->Specular = false;
+                }
+            }
+            if (material.output->Lighting)
+            {
+                if (material.output->AmbientColor == xxVector3::WHITE &&
+                    material.output->DiffuseColor == xxVector3::BLACK &&
+                    material.output->EmissiveColor == xxVector3::BLACK &&
+                    material.output->Specular == false)
+                {
+                    material.output->Lighting = false;
+                }
+            }
+            materials[material.output->Name] = material;
         }
         material = {};
     };
@@ -74,42 +109,57 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
             finish();
 
             xxLog("ImportWavefront", "Create Material : %s", lasts);
-            material.material = xxMaterial::Create();
-            material.material->Name = lasts;
-            material.material->DepthTest = "LessEqual";
-            material.material->DepthWrite = true;
-            material.material->Cull = true;
+            material.output = xxMaterial::Create();
+            material.output->Name = lasts;
+            material.output->DepthTest = "LessEqual";
+            material.output->DepthWrite = true;
+            material.output->Cull = true;
         }
-        if (material.material == nullptr)
+        if (material.output == nullptr)
             continue;
 
         switch (xxHash(statement))
         {
         case xxHash("Ka"):
-            material.material->AmbientColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.material->AmbientColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.material->AmbientColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->AmbientColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->AmbientColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->AmbientColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
             break;
         case xxHash("Kd"):
-            material.material->DiffuseColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.material->DiffuseColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.material->DiffuseColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->DiffuseColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->DiffuseColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->DiffuseColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
             break;
         case xxHash("Ks"):
-            material.material->SpecularColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.material->SpecularColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.material->SpecularColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->SpecularColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->SpecularColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->SpecularColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
             break;
         case xxHash("Ke"):
-            material.material->EmissiveColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.material->EmissiveColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.material->EmissiveColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->EmissiveColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->EmissiveColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->EmissiveColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
             break;
         case xxHash("Ns"):
-            material.material->SpecularHighlight = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->SpecularHighlight = ToFloat(strtok_r(nullptr, " ", &lasts));
             break;
         case xxHash("illum"):
-            material.material->VertexShader = material.material->FragmentShader = ShaderWavefront::Illumination(ToInt(strtok_r(nullptr, " ", &lasts)));
+            switch (ToInt(strtok_r(nullptr, " ", &lasts)))
+            {
+            default:
+            case 0:
+                material.output->Lighting = false;
+                material.output->Specular = false;
+                break;
+            case 1:
+                material.output->Lighting = true;
+                material.output->Specular = false;
+                break;
+            case 2:
+                material.output->Lighting = true;
+                material.output->Specular = true;
+                break;
+            }
             break;
         case xxHash("map_Ka"):
             material.map_Ka = CreateImage(GeneratePath(mtl, lasts).c_str());
@@ -159,6 +209,7 @@ xxNodePtr ImportWavefront::CreateObject(char const* obj)
         if (root == nullptr)
         {
             root = xxNode::Create();
+            root->Name = GetName(obj);
         }
         root->AttachChild(child);
     };
@@ -207,7 +258,7 @@ xxNodePtr ImportWavefront::CreateObject(char const* obj)
             {
                 xxLog("ImportWavefront", "Use Material : %s", lasts);
                 auto material = materials[lasts];
-                child->Material = material.material;
+                child->Material = material.output;
                 if (material.map_Kd)
                 {
                     child->SetImage(0, material.map_Kd);

@@ -12,6 +12,7 @@
 #include "Object/Camera.h"
 #include "Utility/Grid.h"
 #include "Window/Hierarchy.h"
+#include "Window/Inspector.h"
 #include "Window/Log.h"
 
 #define MODULE_NAME     "Editor"
@@ -25,14 +26,18 @@ static xxNodePtr root;
 moduleAPI const char* Create(const CreateData& createData)
 {
     camera = Camera::CreateCamera();
-    camera->GetCamera()->m_location = (xxVector3::Y * -100 + xxVector3::Z * 100);
+    camera->GetCamera()->Location = (xxVector3::Y * -100 + xxVector3::Z * 100);
     camera->GetCamera()->LookAt(xxVector3::ZERO, xxVector3::Z);
     camera->GetCamera()->Update();
+
+    camera->GetCamera()->LightColor = {1.0f, 0.5f, 0.5f};
+    camera->GetCamera()->LightDirection = -xxVector3::Y;
 
     grid = Grid::Create(xxVector3::ZERO, {10000, 10000});
     root = xxNode::Create();
 
     Hierarchy::Initialize();
+    Inspector::Initialize();
     Log::Initialize();
 
     return MODULE_NAME;
@@ -41,6 +46,7 @@ moduleAPI const char* Create(const CreateData& createData)
 moduleAPI void Shutdown(const ShutdownData& shutdownData)
 {
     Hierarchy::Shutdown();
+    Inspector::Shutdown();
     Log::Shutdown();
 
     Camera::DestroyCamera(camera);
@@ -87,6 +93,7 @@ moduleAPI bool Update(const UpdateData& updateData)
 {
     static bool showAbout = false;
     static bool showHierarchy = true;
+    static bool showInspector = true;
     static bool showLog = true;
     bool updated = false;
 
@@ -97,6 +104,7 @@ moduleAPI bool Update(const UpdateData& updateData)
             ImGui::MenuItem("About " MODULE_NAME, nullptr, &showAbout);
             ImGui::Separator();
             ImGui::MenuItem("Hierarchy", nullptr, &showHierarchy);
+            ImGui::MenuItem("Inspector", nullptr, &showInspector);
             ImGui::MenuItem("Log", nullptr, &showLog);
             ImGui::EndMenu();
         }
@@ -116,6 +124,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     }
 
     updated |= Hierarchy::Update(updateData, showHierarchy, root);
+    updated |= Inspector::Update(updateData, showInspector, camera->GetCamera());
     updated |= Log::Update(updateData, showLog);
 
     if (camera)
@@ -184,11 +193,6 @@ moduleAPI bool Update(const UpdateData& updateData)
 //------------------------------------------------------------------------------
 moduleAPI void Render(const RenderData& renderData)
 {
-    if (grid)
-    {
-        grid->Draw(renderData.device, renderData.commandEncoder, camera->GetCamera());
-    }
-
     std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
     {
         if (node == nullptr)
@@ -198,5 +202,10 @@ moduleAPI void Render(const RenderData& renderData)
             traversal(node->GetChild(i));
     };
     traversal(root);
+
+    if (grid)
+    {
+        grid->Draw(renderData.device, renderData.commandEncoder, camera->GetCamera());
+    }
 }
 //---------------------------------------------------------------------------

@@ -1,3 +1,9 @@
+//==============================================================================
+// Minamoto : Camera Source
+//
+// Copyright (c) 2019-2023 TAiGA
+// https://github.com/metarutaiga/minamoto
+//==============================================================================
 #include <xxGraphic/utility/xxCamera.h>
 #include "Camera.h"
 
@@ -36,7 +42,7 @@ float Camera::GetDistance() const
 //------------------------------------------------------------------------------
 xxVector3 const& Camera::GetDirection()
 {
-    return camera->m_direction;
+    return camera->Direction;
 }
 //------------------------------------------------------------------------------
 void Camera::MoveArcball(float x, float y)
@@ -64,25 +70,25 @@ void Camera::Update(float elapsed, float forward_backward, float left_right, flo
     bool update = false;
     if (left_right != 0)
     {
-        camera->m_location = (camera->m_location + camera->m_right * left_right * elapsed);
+        camera->Location = (camera->Location + camera->Right * left_right * elapsed);
         update = true;
     }
     if (forward_backward != 0)
     {
-        camera->m_location = (camera->m_location + camera->m_direction * forward_backward * elapsed);
+        camera->Location = (camera->Location + camera->Direction * forward_backward * elapsed);
         update = true;
     }
     if (x != 0 || y != 0)
     {
-        xxVector3 pos = camera->m_location + camera->m_direction;
+        xxVector3 pos = camera->Location + camera->Direction;
 
         if (x != 0)
         {
-            pos = pos + camera->m_right * x;
+            pos = pos + camera->Right * x;
         }
         if (y != 0)
         {
-            pos = pos - camera->m_up * y;
+            pos = pos - camera->Up * y;
         }
 
         camera->LookAt(pos, xxVector3::Z);

@@ -13,7 +13,7 @@ class ImportWavefront : public Import
 {
     struct Material
     {
-        xxMaterialPtr material;
+        xxMaterialPtr output;
         xxImagePtr map_Ka;
         xxImagePtr map_Kd;
         xxImagePtr map_Ks;

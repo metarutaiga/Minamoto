@@ -1,3 +1,9 @@
+//==============================================================================
+// Minamoto : Grid Source
+//
+// Copyright (c) 2019-2023 TAiGA
+// https://github.com/metarutaiga/minamoto
+//==============================================================================
 #include <utility/xxImage.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>

@@ -131,13 +131,13 @@ void ValidateNode(float time, char* text, size_t count)
     }
 
     // 8. Set Local Matrix
-    root->SetLocalMatrix({ xxVector4::Z, -xxVector4::Y, xxVector4::X, xxVector4::WHITE });
-    child->SetLocalMatrix({ xxVector4::Y, -xxVector4::X, xxVector4::Z, xxVector4::WHITE });
+    root->LocalMatrix = { xxVector4::Z, -xxVector4::Y, xxVector4::X, xxVector4::WHITE };
+    child->LocalMatrix = { xxVector4::Y, -xxVector4::X, xxVector4::Z, xxVector4::WHITE };
     child->SetRotate({ xxVector3::Y, -xxVector3::X, xxVector3::Z });
     child->SetTranslate(xxVector3::WHITE);
     child->SetScale(2.0f);
     child->UpdateRotateTranslateScale();
-    grandChild->SetLocalMatrix({ xxVector4::X, -xxVector4::Z, xxVector4::Y, xxVector4::WHITE });
+    grandChild->LocalMatrix = { xxVector4::X, -xxVector4::Z, xxVector4::Y, xxVector4::WHITE };
     step += snprintf(text + step, count - step, "SetLocalMatrix\n");
 
     // 9. Update
@@ -147,21 +147,21 @@ void ValidateNode(float time, char* text, size_t count)
     // 10. Get Root World Matrix
     for (int i = 0; i < 4; ++i)
     {
-        xxMatrix4 worldMatrix = root->GetWorldMatrix();
+        const xxMatrix4& worldMatrix = root->WorldMatrix;
         step += snprintf(text + step, count - step, "Root Matrix (%u) : %f %f %f %f\n", i, worldMatrix.v[i].x, worldMatrix.v[i].y, worldMatrix.v[i].z, worldMatrix.v[i].w);
     }
 
     // 11. Get Child World Matrix
     for (int i = 0; i < 4; ++i)
     {
-        xxMatrix4 worldMatrix = child->GetWorldMatrix();
+        const xxMatrix4& worldMatrix = child->WorldMatrix;
         step += snprintf(text + step, count - step, "Child Matrix (%u) : %f %f %f %f\n", i, worldMatrix.v[i].x, worldMatrix.v[i].y, worldMatrix.v[i].z, worldMatrix.v[i].w);
     }
 
     // 12. Get GrandChild World Matrix
     for (int i = 0; i < 4; ++i)
     {
-        xxMatrix4 worldMatrix = grandChild->GetWorldMatrix();
+        const xxMatrix4& worldMatrix = grandChild->WorldMatrix;
         step += snprintf(text + step, count - step, "GrandChild Matrix (%u) : %f %f %f %f\n", i, worldMatrix.v[i].x, worldMatrix.v[i].y, worldMatrix.v[i].z, worldMatrix.v[i].w);
     }
 

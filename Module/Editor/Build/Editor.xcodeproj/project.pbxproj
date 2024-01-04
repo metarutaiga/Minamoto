@@ -48,13 +48,13 @@
 		D63370892B395B54001D4057 /* libxxGraphic.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D63370882B395B54001D4057 /* libxxGraphic.so */; };
 		D633708B2B395B61001D4057 /* xxGraphic.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D633708A2B395B61001D4057 /* xxGraphic.bundle */; };
 		D633708D2B395B70001D4057 /* xxGraphic.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D633708C2B395B70001D4057 /* xxGraphic.dll */; };
-		D63370912B39869B001D4057 /* ShaderWavefront.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D633708F2B39869B001D4057 /* ShaderWavefront.cpp */; };
-		D63370922B39869B001D4057 /* ShaderWavefront.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D633708F2B39869B001D4057 /* ShaderWavefront.cpp */; };
-		D63370932B39869B001D4057 /* ShaderWavefront.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D633708F2B39869B001D4057 /* ShaderWavefront.cpp */; };
-		D63370942B39869B001D4057 /* ShaderWavefront.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D633708F2B39869B001D4057 /* ShaderWavefront.cpp */; };
 		D63370992B399792001D4057 /* ImGuiFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370962B399792001D4057 /* ImGuiFileDialog.cpp */; };
 		D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370962B399792001D4057 /* ImGuiFileDialog.cpp */; };
 		D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370962B399792001D4057 /* ImGuiFileDialog.cpp */; settings = {COMPILER_FLAGS = "-include assert.h -frtti -fexceptions"; }; };
+		D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
+		D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
+		D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
+		D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
 		D6BA702929E2701C0056FE5F /* imgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702829E2701C0056FE5F /* imgui.dylib */; };
 		D6BA702B29E270210056FE5F /* imgui.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702A29E270210056FE5F /* imgui.bundle */; };
 /* End PBXBuildFile section */
@@ -119,12 +119,12 @@
 		D63370882B395B54001D4057 /* libxxGraphic.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libxxGraphic.so; sourceTree = BUILT_PRODUCTS_DIR; };
 		D633708A2B395B61001D4057 /* xxGraphic.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = xxGraphic.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D633708C2B395B70001D4057 /* xxGraphic.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = xxGraphic.dll; sourceTree = BUILT_PRODUCTS_DIR; };
-		D633708F2B39869B001D4057 /* ShaderWavefront.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderWavefront.cpp; path = ../Shader/ShaderWavefront.cpp; sourceTree = "<group>"; };
-		D63370902B39869B001D4057 /* ShaderWavefront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderWavefront.h; path = ../Shader/ShaderWavefront.h; sourceTree = "<group>"; };
 		D63370962B399792001D4057 /* ImGuiFileDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImGuiFileDialog.cpp; path = ../../../SDK/ImGuiFileDialog/ImGuiFileDialog.cpp; sourceTree = "<group>"; };
 		D63370972B399792001D4057 /* ImGuiFileDialogConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImGuiFileDialogConfig.h; path = ../../../SDK/ImGuiFileDialog/ImGuiFileDialogConfig.h; sourceTree = "<group>"; };
 		D63370982B399792001D4057 /* ImGuiFileDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImGuiFileDialog.h; path = ../../../SDK/ImGuiFileDialog/ImGuiFileDialog.h; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* Editor.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Editor.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6A25B7A2B4644B600974946 /* Inspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Inspector.h; path = ../Window/Inspector.h; sourceTree = "<group>"; };
+		D6A25B7B2B4644B600974946 /* Inspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Inspector.cpp; path = ../Window/Inspector.cpp; sourceTree = "<group>"; };
 		D6BA702829E2701C0056FE5F /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA702A29E270210056FE5F /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -244,19 +244,12 @@
 			children = (
 				D63370762B382155001D4057 /* Hierarchy.cpp */,
 				D63370772B382155001D4057 /* Hierarchy.h */,
+				D6A25B7B2B4644B600974946 /* Inspector.cpp */,
+				D6A25B7A2B4644B600974946 /* Inspector.h */,
 				D63370742B382155001D4057 /* Log.cpp */,
 				D63370752B382155001D4057 /* Log.h */,
 			);
 			name = Window;
-			sourceTree = "<group>";
-		};
-		D633708E2B39867E001D4057 /* Shader */ = {
-			isa = PBXGroup;
-			children = (
-				D633708F2B39869B001D4057 /* ShaderWavefront.cpp */,
-				D63370902B39869B001D4057 /* ShaderWavefront.h */,
-			);
-			name = Shader;
 			sourceTree = "<group>";
 		};
 		D63370952B399774001D4057 /* ImGuiFileDialog */ = {
@@ -275,7 +268,6 @@
 				CE999BD625D21EC800351116 /* Configs */,
 				D633706C2B3729E8001D4057 /* Import */,
 				D6012A0D2B1DE04800C3875A /* Object */,
-				D633708E2B39867E001D4057 /* Shader */,
 				D6012A1C2B1DE28200C3875A /* Utility */,
 				D63370732B382141001D4057 /* Window */,
 				300264C4242690D0004559E0 /* Editor.cpp */,
@@ -414,13 +406,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6012A1F2B1DE28F00C3875A /* Grid.cpp in Sources */,
+				D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370782B382156001D4057 /* Log.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6012A102B1DE05A00C3875A /* Camera.cpp in Sources */,
 				30A9A7C325ADC7C0000FA104 /* Editor.cpp in Sources */,
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
-				D63370912B39869B001D4057 /* ShaderWavefront.cpp in Sources */,
 				D63370992B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,11 +422,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
+				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D60EC62F26A85B570051A948 /* llvm_wrapper.cpp in Sources */,
 				D6012A132B1DE05A00C3875A /* Camera.cpp in Sources */,
 				D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */,
-				D63370942B39869B001D4057 /* ShaderWavefront.cpp in Sources */,
 				CE93601F25AC457A00CEF503 /* Editor.cpp in Sources */,
 				D63370852B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707F2B382156001D4057 /* Hierarchy.cpp in Sources */,
@@ -446,13 +438,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */,
+				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6012A112B1DE05A00C3875A /* Camera.cpp in Sources */,
 				3039F9D92447499200E671A7 /* Editor.cpp in Sources */,
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707D2B382156001D4057 /* Hierarchy.cpp in Sources */,
-				D63370922B39869B001D4057 /* ShaderWavefront.cpp in Sources */,
 				D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,13 +454,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */,
+				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6012A122B1DE05A00C3875A /* Camera.cpp in Sources */,
 				300264C5242690D0004559E0 /* Editor.cpp in Sources */,
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707E2B382156001D4057 /* Hierarchy.cpp in Sources */,
-				D63370932B39869B001D4057 /* ShaderWavefront.cpp in Sources */,
 				D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
