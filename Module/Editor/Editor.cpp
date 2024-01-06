@@ -1,7 +1,7 @@
 //==============================================================================
 // Minamoto : Editor Source
 //
-// Copyright (c) 2019-2023 TAiGA
+// Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
@@ -71,6 +71,7 @@ moduleAPI void Message(const MessageData& messageData)
             {
                 if (node == nullptr)
                     return;
+                node->Invalidate();
                 for (xxImagePtr const& image : node->Images)
                     image->Invalidate();
                 if (node->Mesh)
@@ -193,11 +194,16 @@ moduleAPI bool Update(const UpdateData& updateData)
 //------------------------------------------------------------------------------
 moduleAPI void Render(const RenderData& renderData)
 {
+    xxDrawData data;
+    data.device = renderData.device;
+    data.commandEncoder = renderData.commandEncoder;
+    data.camera = camera->GetCamera().get();
+
     std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
     {
         if (node == nullptr)
             return;
-        node->Draw(renderData.device, renderData.commandEncoder, camera->GetCamera());
+        node->Draw(data);
         for (size_t i = 0; i < node->GetChildCount(); ++i)
             traversal(node->GetChild(i));
     };
@@ -205,7 +211,7 @@ moduleAPI void Render(const RenderData& renderData)
 
     if (grid)
     {
-        grid->Draw(renderData.device, renderData.commandEncoder, camera->GetCamera());
+        grid->Draw(data);
     }
 }
 //---------------------------------------------------------------------------

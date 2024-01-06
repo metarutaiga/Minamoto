@@ -1,7 +1,7 @@
 //==============================================================================
 // Minamoto : Dear ImGui Source
 //
-// Copyright (c) 2019-2023 TAiGA
+// Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <sys/stat.h>
@@ -234,7 +234,7 @@ void DearImGui::NewFrame(void* view)
         if (ImGui::Begin("About xxGraphic", &showAbout))
         {
             ImGui::Text("%s", "xxGraphic");
-            ImGui::Text("%s", "Copyright (c) 2019-2023 TAiGA");
+            ImGui::Text("%s", "Copyright (c) 2019-2024 TAiGA");
             ImGui::Separator();
             ImGui::Text("Build Date : %s %s", __DATE__, __TIME__);
 #if defined(__clang_version__)

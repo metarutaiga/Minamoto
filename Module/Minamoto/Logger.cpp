@@ -1,7 +1,7 @@
 //==============================================================================
 // Minamoto : Logger Header
 //
-// Copyright (c) 2019-2023 TAiGA
+// Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <xxGraphic/xxSystem.h>
@@ -46,8 +46,8 @@ void Logger::Printf(char const* tag, char const* format, va_list list)
     vprintf(fmt, list);
 #endif
 
-    char* latest;
-    char* text = strtok_r(temp, "\n", &latest);
+    char* lasts = temp;
+    char* text = strsep(&lasts, "\n");
     while (text)
     {
         size_t length = strlen(text);
@@ -65,7 +65,7 @@ void Logger::Printf(char const* tag, char const* format, va_list list)
                 xxMutexUnlock(&logAccumLock);
             }
         }
-        text = strtok_r(nullptr, "\n", &latest);
+        text = strsep(&lasts, "\n");
     }
 
     xxFree(temp);

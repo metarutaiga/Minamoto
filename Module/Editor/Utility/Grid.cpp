@@ -1,7 +1,7 @@
 //==============================================================================
 // Minamoto : Grid Source
 //
-// Copyright (c) 2019-2023 TAiGA
+// Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <utility/xxImage.h>

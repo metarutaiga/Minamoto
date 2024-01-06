@@ -1,7 +1,7 @@
 //==============================================================================
 // Minamoto : Camera Source
 //
-// Copyright (c) 2019-2023 TAiGA
+// Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <xxGraphic/utility/xxCamera.h>

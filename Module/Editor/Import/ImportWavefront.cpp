@@ -1,7 +1,7 @@
 //==============================================================================
 // Minamoto : ImportWavefront Source
 //
-// Copyright (c) 2019-2023 TAiGA
+// Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <utility/xxMaterial.h>
@@ -99,8 +99,8 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
     {
         RemoveBreakline(line);
 
-        char* lasts;
-        const char* statement = strtok_r(line, " ", &lasts);
+        char* lasts = line;
+        const char* statement = strsep(&lasts, " ");
         if (statement == nullptr || lasts == nullptr)
             continue;
 
@@ -121,30 +121,30 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
         switch (xxHash(statement))
         {
         case xxHash("Ka"):
-            material.output->AmbientColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.output->AmbientColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.output->AmbientColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->AmbientColor.r = ToFloat(strsep(&lasts, " "));
+            material.output->AmbientColor.g = ToFloat(strsep(&lasts, " "));
+            material.output->AmbientColor.b = ToFloat(strsep(&lasts, " "));
             break;
         case xxHash("Kd"):
-            material.output->DiffuseColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.output->DiffuseColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.output->DiffuseColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->DiffuseColor.r = ToFloat(strsep(&lasts, " "));
+            material.output->DiffuseColor.g = ToFloat(strsep(&lasts, " "));
+            material.output->DiffuseColor.b = ToFloat(strsep(&lasts, " "));
             break;
         case xxHash("Ks"):
-            material.output->SpecularColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.output->SpecularColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.output->SpecularColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->SpecularColor.r = ToFloat(strsep(&lasts, " "));
+            material.output->SpecularColor.g = ToFloat(strsep(&lasts, " "));
+            material.output->SpecularColor.b = ToFloat(strsep(&lasts, " "));
             break;
         case xxHash("Ke"):
-            material.output->EmissiveColor.r = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.output->EmissiveColor.g = ToFloat(strtok_r(nullptr, " ", &lasts));
-            material.output->EmissiveColor.b = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->EmissiveColor.r = ToFloat(strsep(&lasts, " "));
+            material.output->EmissiveColor.g = ToFloat(strsep(&lasts, " "));
+            material.output->EmissiveColor.b = ToFloat(strsep(&lasts, " "));
             break;
         case xxHash("Ns"):
-            material.output->SpecularHighlight = ToFloat(strtok_r(nullptr, " ", &lasts));
+            material.output->SpecularHighlight = ToFloat(strsep(&lasts, " "));
             break;
         case xxHash("illum"):
-            switch (ToInt(strtok_r(nullptr, " ", &lasts)))
+            switch (ToInt(strsep(&lasts, " ")))
             {
             default:
             case 0:
@@ -219,8 +219,8 @@ xxNodePtr ImportWavefront::CreateObject(char const* obj)
     {
         RemoveBreakline(line);
 
-        char* lasts;
-        const char* statement = strtok_r(line, " ", &lasts);
+        char* lasts = line;
+        const char* statement = strsep(&lasts, " ");
         if (statement == nullptr || lasts == nullptr)
             continue;
 
@@ -231,20 +231,20 @@ xxNodePtr ImportWavefront::CreateObject(char const* obj)
             break;
         case xxHash("v"):
             vertices.push_back(xxVector3::ZERO);
-            vertices.back().x = ToFloat(strtok_r(nullptr, " ", &lasts));
-            vertices.back().z = ToFloat(strtok_r(nullptr, " ", &lasts));
-            vertices.back().y = -ToFloat(strtok_r(nullptr, " ", &lasts));
+            vertices.back().x = ToFloat(strsep(&lasts, " "));
+            vertices.back().z = ToFloat(strsep(&lasts, " "));
+            vertices.back().y = -ToFloat(strsep(&lasts, " "));
             break;
         case xxHash("vn"):
             normals.push_back(xxVector3::ZERO);
-            normals.back().x = ToFloat(strtok_r(nullptr, " ", &lasts));
-            normals.back().z = ToFloat(strtok_r(nullptr, " ", &lasts));
-            normals.back().y = -ToFloat(strtok_r(nullptr, " ", &lasts));
+            normals.back().x = ToFloat(strsep(&lasts, " "));
+            normals.back().z = ToFloat(strsep(&lasts, " "));
+            normals.back().y = -ToFloat(strsep(&lasts, " "));
             break;
         case xxHash("vt"):
             textures.push_back(xxVector2::ZERO);
-            textures.back().x = 0 + ToFloat(strtok_r(nullptr, " ", &lasts));
-            textures.back().y = 1 - ToFloat(strtok_r(nullptr, " ", &lasts));
+            textures.back().x = 0 + ToFloat(strsep(&lasts, " "));
+            textures.back().y = 1 - ToFloat(strsep(&lasts, " "));
             break;
         case xxHash("g"):
             finish();
@@ -268,13 +268,13 @@ xxNodePtr ImportWavefront::CreateObject(char const* obj)
         case xxHash("f"):
             for (int i = 0; i < 3; ++i)
             {
-                char* face = strtok_r(nullptr, " ", &lasts);
+                char* face = strsep(&lasts, " ");
                 if (face == nullptr)
                     break;
-                char* parts;
-                int v = ToInt(strtok_r(face, "/", &parts)) - 1;
-                int t = ToInt(strtok_r(nullptr, "/", &parts)) - 1;
-                int n = ToInt(strtok_r(nullptr, "/", &parts)) - 1;
+                char* parts = face;
+                int v = ToInt(strsep(&parts, "/")) - 1;
+                int t = ToInt(strsep(&parts, "/")) - 1;
+                int n = ToInt(strsep(&parts, "/")) - 1;
                 if (v >= 0 && v < vertices.size())
                 {
                     faceVertices.push_back(vertices[v]);

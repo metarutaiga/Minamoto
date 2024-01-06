@@ -1,7 +1,7 @@
 //==============================================================================
 // Minamoto : Module Header
 //
-// Copyright (c) 2019-2023 TAiGA
+// Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #pragma once

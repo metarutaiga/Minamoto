@@ -1,7 +1,7 @@
 //==============================================================================
 // Minamoto : Inspector Source
 //
-// Copyright (c) 2019-2023 TAiGA
+// Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
@@ -117,7 +117,7 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
                     if (material->Specular)
                     {
                         ImGui::ColorEdit3("Specular##44", material->SpecularColor.Array());
-                        ImGui::SliderFloat("Power##45", &material->SpecularHighlight, 0.0f, 64.0f);
+                        ImGui::SliderFloat("Power##45", &material->SpecularHighlight, 0.0f, 256.0f);
                     }
                 }
             }
@@ -130,9 +130,7 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
 
             xxNodePtr parent = selected;
             while (parent->GetParent())
-            {
                 parent = parent->GetParent();
-            }
 
             std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
             {
