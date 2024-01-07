@@ -20,21 +20,21 @@ void Import::Initialize()
     {
         if (image == nullptr || (*image)() != nullptr)
             return;
+        struct xxImageInternal : public xxImage { using xxImage::Initialize; };
+        xxImageInternal* internal = reinterpret_cast<xxImageInternal*>(image.get());
 
-        std::string filename = path + image->Name;
-
+        uint64_t format = *(uint64_t*)"RGBA8888";
         int width = 0;
         int height = 0;
+        std::string filename = path + image->Name;
         stbi_uc* uc = stbi_load(filename.c_str(), &width, &height, nullptr, 4);
         if (uc == nullptr)
+        {
+            internal->Initialize(format, 1, 1, 1, 1, 1);
             return;
+        }
 
-        const_cast<int&>(image->Width) = width;
-        const_cast<int&>(image->Height) = height;
-        const_cast<int&>(image->Depth) = 1;
-        const_cast<int&>(image->Mipmap) = 1;
-        const_cast<int&>(image->Array) = 1;
-        image->Initialize();
+        internal->Initialize(format, width, height, 1, 1, 1);
         memcpy((*image)(), uc, width * height * 4);
 
         stbi_image_free(uc);
