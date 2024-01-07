@@ -14,6 +14,38 @@
 #include <stb/stb_image.h>
 
 //==============================================================================
+void Import::Initialize()
+{
+    xxImage::ImageLoader = [](xxImagePtr const& image, std::string const& path)
+    {
+        if (image == nullptr || (*image)() != nullptr)
+            return;
+
+        std::string filename = path + image->Name;
+
+        int width = 0;
+        int height = 0;
+        stbi_uc* uc = stbi_load(filename.c_str(), &width, &height, nullptr, 4);
+        if (uc == nullptr)
+            return;
+
+        const_cast<int&>(image->Width) = width;
+        const_cast<int&>(image->Height) = height;
+        const_cast<int&>(image->Depth) = 1;
+        const_cast<int&>(image->Mipmap) = 1;
+        const_cast<int&>(image->Array) = 1;
+        image->Initialize();
+        memcpy((*image)(), uc, width * height * 4);
+
+        stbi_image_free(uc);
+    };
+}
+//------------------------------------------------------------------------------
+void Import::Shutdown()
+{
+    
+}
+//------------------------------------------------------------------------------
 xxImagePtr Import::CreateImage(char const* img)
 {
     int width = 0;
@@ -25,6 +57,13 @@ xxImagePtr Import::CreateImage(char const* img)
     xxImagePtr image = xxImage::Create2D(0, width, height, 1);
     if (image)
     {
+        char const* name = strrchr(img, '/');
+        if (name == nullptr)
+            name = strrchr(img, '\\');
+        if (name == nullptr)
+            name = img - 1;
+        name += 1;
+        image->Name = name;
         memcpy((*image)(), uc, width * height * 4);
     }
 

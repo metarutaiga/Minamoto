@@ -5,6 +5,7 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
+#include <utility/xxBinary.h>
 #include <utility/xxNode.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include "Import/ImportWavefront.h"
@@ -183,6 +184,11 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                 selectedRight = nullptr;
             }
             ImGui::Separator();
+            if (ImGui::Button("Import Object"))
+            {
+                update = true;
+                selectedRight = nullptr;
+            }
             if (ImGui::Button("Import Wavefront"))
             {
                 update = true;
@@ -193,6 +199,12 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
 #else
                 importNode->AttachChild(ImportWavefront::CreateObject("Miku/HatsuneMiku.obj"));
 #endif
+            }
+            ImGui::Separator();
+            if (ImGui::Button("Export Object"))
+            {
+                update = true;
+                selectedRight = nullptr;
             }
             ImGui::EndPopup();
         }

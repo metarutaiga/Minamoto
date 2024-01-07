@@ -31,6 +31,10 @@
 		CE999D2725D261DF00351116 /* xxGraphic.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = CE999D2625D261DF00351116 /* xxGraphic.dll */; };
 		D60EC63F26A85BE90051A948 /* llvm_wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60EC63E26A85BE90051A948 /* llvm_wrapper.cpp */; };
 		D63370A42B3B24ED001D4057 /* xxGraphicPlus.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A092231EDDFA00B75B77 /* xxGraphicPlus.dylib */; };
+		D69E7A8A2B4A57BB00C3E12D /* xxBinary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D69E7A892B4A57BB00C3E12D /* xxBinary.cpp */; };
+		D69E7A8B2B4A57BB00C3E12D /* xxBinary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D69E7A892B4A57BB00C3E12D /* xxBinary.cpp */; };
+		D69E7A8C2B4A57BB00C3E12D /* xxBinary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D69E7A892B4A57BB00C3E12D /* xxBinary.cpp */; };
+		D69E7A8D2B4A57BB00C3E12D /* xxBinary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D69E7A892B4A57BB00C3E12D /* xxBinary.cpp */; };
 		D6BA6FFF29E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
 		D6BA700029E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
 		D6BA700129E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
@@ -79,6 +83,8 @@
 		D60EC63D26A85BE00051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D60EC63E26A85BE90051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../SDK/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
 		D644A092231EDDFA00B75B77 /* xxGraphicPlus.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = xxGraphicPlus.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D69E7A882B4A57BB00C3E12D /* xxBinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxBinary.h; path = ../SDK/xxGraphic/utility/xxBinary.h; sourceTree = "<group>"; };
+		D69E7A892B4A57BB00C3E12D /* xxBinary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxBinary.cpp; path = ../SDK/xxGraphic/utility/xxBinary.cpp; sourceTree = "<group>"; };
 		D6BA6FFC29E265080056FE5F /* xxCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxCamera.h; path = ../SDK/xxGraphic/utility/xxCamera.h; sourceTree = "<group>"; };
 		D6BA6FFD29E265080056FE5F /* xxUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxUtility.h; path = ../SDK/xxGraphic/utility/xxUtility.h; sourceTree = "<group>"; };
 		D6BA6FFE29E265080056FE5F /* xxCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxCamera.cpp; path = ../SDK/xxGraphic/utility/xxCamera.cpp; sourceTree = "<group>"; };
@@ -136,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				CE999BCD25D21DE000351116 /* Configs */,
+				D69E7A892B4A57BB00C3E12D /* xxBinary.cpp */,
+				D69E7A882B4A57BB00C3E12D /* xxBinary.h */,
 				D6BA6FFE29E265080056FE5F /* xxCamera.cpp */,
 				D6BA6FFC29E265080056FE5F /* xxCamera.h */,
 				30F22EDE24DDA2EA00C0F4EC /* xxImage.cpp */,
@@ -302,6 +310,7 @@
 			files = (
 				D6BA700229E265080056FE5F /* xxCamera.cpp in Sources */,
 				30A9A79C25ADC711000FA104 /* xxImage.cpp in Sources */,
+				D69E7A8A2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				30A9A79D25ADC711000FA104 /* xxMaterial.cpp in Sources */,
 				30A9A79E25ADC711000FA104 /* xxMath.cpp in Sources */,
 				30A9A79F25ADC711000FA104 /* xxMesh.cpp in Sources */,
@@ -315,6 +324,7 @@
 			files = (
 				D6BA700129E265080056FE5F /* xxCamera.cpp in Sources */,
 				CE93600925AC440100CEF503 /* xxImage.cpp in Sources */,
+				D69E7A8D2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				CE93600A25AC440100CEF503 /* xxMaterial.cpp in Sources */,
 				CE93600B25AC440100CEF503 /* xxMath.cpp in Sources */,
 				CE93600C25AC440100CEF503 /* xxMesh.cpp in Sources */,
@@ -329,6 +339,7 @@
 			files = (
 				D6BA700029E265080056FE5F /* xxCamera.cpp in Sources */,
 				30F22EEB24DDA2EA00C0F4EC /* xxImage.cpp in Sources */,
+				D69E7A8B2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				30F22EEF24DDA2EA00C0F4EC /* xxMaterial.cpp in Sources */,
 				30F22EE324DDA2EA00C0F4EC /* xxMath.cpp in Sources */,
 				30F22EED24DDA2EA00C0F4EC /* xxMesh.cpp in Sources */,
@@ -342,6 +353,7 @@
 			files = (
 				D6BA6FFF29E265080056FE5F /* xxCamera.cpp in Sources */,
 				30F22EEA24DDA2EA00C0F4EC /* xxImage.cpp in Sources */,
+				D69E7A8C2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				30F22EEE24DDA2EA00C0F4EC /* xxMaterial.cpp in Sources */,
 				30F22EE224DDA2EA00C0F4EC /* xxMath.cpp in Sources */,
 				30F22EEC24DDA2EA00C0F4EC /* xxMesh.cpp in Sources */,

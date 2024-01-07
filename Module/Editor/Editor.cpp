@@ -9,6 +9,7 @@
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
+#include "Import/Import.h"
 #include "Object/Camera.h"
 #include "Utility/Grid.h"
 #include "Window/Hierarchy.h"
@@ -36,6 +37,7 @@ moduleAPI const char* Create(const CreateData& createData)
     grid = Grid::Create(xxVector3::ZERO, {10000, 10000});
     root = xxNode::Create();
 
+    Import::Initialize();
     Hierarchy::Initialize();
     Inspector::Initialize();
     Log::Initialize();
@@ -45,6 +47,7 @@ moduleAPI const char* Create(const CreateData& createData)
 //------------------------------------------------------------------------------
 moduleAPI void Shutdown(const ShutdownData& shutdownData)
 {
+    Import::Shutdown();
     Hierarchy::Shutdown();
     Inspector::Shutdown();
     Log::Shutdown();
