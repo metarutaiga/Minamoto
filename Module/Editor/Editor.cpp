@@ -70,10 +70,8 @@ moduleAPI void Message(const MessageData& messageData)
         case xxHash("SHUTDOWN"):
         {
             grid = nullptr;
-            std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
+            xxNode::Traversal([](xxNodePtr const& node)
             {
-                if (node == nullptr)
-                    return;
                 node->Invalidate();
                 for (xxImagePtr const& image : node->Images)
                     image->Invalidate();
@@ -81,10 +79,8 @@ moduleAPI void Message(const MessageData& messageData)
                     node->Mesh->Invalidate();
                 if (node->Material)
                     node->Material->Invalidate();
-                for (size_t i = 0; i < node->GetChildCount(); ++i)
-                    traversal(node->GetChild(i));
-            };
-            traversal(root);
+                return true;
+            }, root);
             break;
         }
         default:
@@ -182,15 +178,10 @@ moduleAPI bool Update(const UpdateData& updateData)
         }
     }
 
-    std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
+    if (root)
     {
-        if (node == nullptr)
-            return;
-        node->Update(updateData.time);
-        for (size_t i = 0; i < node->GetChildCount(); ++i)
-            traversal(node->GetChild(i));
-    };
-    traversal(root);
+        root->Update(updateData.time);
+    }
 
     return updated;
 }
@@ -202,15 +193,11 @@ moduleAPI void Render(const RenderData& renderData)
     data.commandEncoder = renderData.commandEncoder;
     data.camera = camera->GetCamera().get();
 
-    std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
+    xxNode::Traversal([&](xxNodePtr const& node)
     {
-        if (node == nullptr)
-            return;
         node->Draw(data);
-        for (size_t i = 0; i < node->GetChildCount(); ++i)
-            traversal(node->GetChild(i));
-    };
-    traversal(root);
+        return true;
+    }, root);
 
     if (grid)
     {

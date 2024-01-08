@@ -4,7 +4,9 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
+#include <utility/xxFile.h>
 #include <utility/xxMaterial.h>
+#include <utility/xxMesh.h>
 #include <utility/xxNode.h>
 #include "ImportWavefront.h"
 
@@ -29,33 +31,7 @@ static float ToFloat(char const* text)
 //------------------------------------------------------------------------------
 static std::string GeneratePath(char const* path, char const* name)
 {
-    size_t pos;
-    std::string output = path;
-    if ((pos = output.rfind('/')) != std::string::npos)
-        output.resize(pos + 1);
-    else if ((pos = output.rfind('\\')) != std::string::npos)
-        output.resize(pos + 1);
-    if (name)
-        output += name;
-    return output;
-}
-//------------------------------------------------------------------------------
-static std::string GetName(char const* path)
-{
-    const char* leftName = strrchr(path, '/');
-    if (leftName == nullptr)
-        leftName = strrchr(path, '\\');
-
-    if (leftName)
-        leftName++;
-    else if (leftName == nullptr)
-        leftName = path;
-
-    const char* rightName = strrchr(path, '.');
-    if (rightName == nullptr)
-        rightName = path + strlen(path);
-
-    return std::string(leftName, rightName);
+    return xxFile::GetPath(path) + (name ? name : "");
 }
 //------------------------------------------------------------------------------
 std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial(const char* mtl)
@@ -202,6 +178,10 @@ xxNodePtr ImportWavefront::CreateObject(char const* obj)
         if (faceVertices.empty() == false)
         {
             child->Mesh = CreateMesh(faceVertices, faceNormals, {}, faceTextures);
+            if (child->Mesh)
+            {
+                child->Mesh->Name = child->Name;
+            }
             faceVertices.clear();
             faceNormals.clear();
             faceTextures.clear();
@@ -209,7 +189,7 @@ xxNodePtr ImportWavefront::CreateObject(char const* obj)
         if (root == nullptr)
         {
             root = xxNode::Create();
-            root->Name = GetName(obj);
+            root->Name = xxFile::GetName(obj);
         }
         root->AttachChild(child);
     };

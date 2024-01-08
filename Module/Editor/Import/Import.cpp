@@ -23,7 +23,11 @@ void Import::Initialize()
         struct xxImageInternal : public xxImage { using xxImage::Initialize; };
         xxImageInternal* internal = reinterpret_cast<xxImageInternal*>(image.get());
 
+#if defined(xxWINDOWS)
+        uint64_t format = *(uint64_t*)"BGRA8888";
+#else
         uint64_t format = *(uint64_t*)"RGBA8888";
+#endif
         int width = 0;
         int height = 0;
         std::string filename = path + image->Name;
@@ -34,6 +38,12 @@ void Import::Initialize()
             return;
         }
 
+#if defined(xxWINDOWS)
+        for (size_t i = 0; i < width * height * 4; i += 4)
+        {
+            std::swap(uc[i + 0], uc[i + 2]);
+        }
+#endif
         internal->Initialize(format, width, height, 1, 1, 1);
         memcpy((*image)(), uc, width * height * 4);
 

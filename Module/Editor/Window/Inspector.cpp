@@ -119,6 +119,7 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
         strcpy(name, material->Name.c_str());
         if (ImGui::InputText("Name" Q, name, 64))
             material->Name = name;
+        ImGui::SliderFloat("Opacity" Q, &material->Opacity, 0.0f, 1.0f);
         if (ImGui::Checkbox("Lighting" Q, &material->Lighting))
             invalidate = material;
         if (material->Lighting)
@@ -177,8 +178,6 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
                 }
             };
 
-            ImGui::SliderFloat("Opacity" Q, &material->Opacity, 0.0f, 1.0f);
-            ImGui::Separator();
             ImGui::TextUnformatted("Color");
             Combo("Source" Q, blendTypes, material->BlendSourceColor);
             Combo("Operation" Q, blendOps, material->BlendOperationColor);
@@ -200,18 +199,12 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
         while (parent->GetParent())
             parent = parent->GetParent();
 
-        std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
+        xxNode::Traversal([invalidate](xxNodePtr const& node)
         {
-            if (node == nullptr)
-                return;
-
             if (node->Material == invalidate)
                 node->Invalidate();
-
-            for (size_t i = 0; i < node->GetChildCount(); ++i)
-                traversal(node->GetChild(i));
-        };
-        traversal(parent);
+            return true;
+        }, parent);
     }
 }
 //------------------------------------------------------------------------------
