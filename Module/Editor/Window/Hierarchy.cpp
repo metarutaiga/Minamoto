@@ -195,7 +195,11 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                 importNode = selectedRight;
                 selectedRight = nullptr;
 #if HAVE_FILEDIALOG
-                fileDialog->OpenDialog("Import Wavefront", "Choose File", ".obj", ".");
+                IGFD::FileDialogConfig config =
+                {
+                    .path = xxGetDocumentPath(),
+                };
+                fileDialog->OpenDialog("Import Wavefront", "Choose File", ".obj", config);
 #else
                 importNode->AttachChild(ImportWavefront::CreateObject("Miku/HatsuneMiku.obj"));
 #endif

@@ -216,8 +216,8 @@ void Inspector::UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh)
         strcpy(name, mesh->Name.c_str());
         if (ImGui::InputText("Name" Q, name, 64))
             mesh->Name = name;
-        int vertexCount = mesh->GetVertexCount();
-        int indexCount = mesh->GetIndexCount();
+        int vertexCount = mesh->VertexCount;
+        int indexCount = mesh->IndexCount;
         ImGui::InputInt("Vertex" Q, &vertexCount, 1, 100, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Index" Q, &indexCount, 1, 100, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Stride" Q, (int*)&mesh->Stride, 1, 100, ImGuiInputTextFlags_ReadOnly);

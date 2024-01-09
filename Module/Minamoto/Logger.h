@@ -13,6 +13,6 @@ class Logger
 public:
     static void Create();
     static void Shutdown();
-    static void Printf(char const* tag, char const* format, va_list list);
+    static void Printf(char const* tag, char const* format, ...);
     static void Update(std::deque<char*>& log);
 };

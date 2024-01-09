@@ -15,7 +15,7 @@ static xxMutex logAccumLock;
 void Logger::Create()
 {
     xxMutexInit(&logAccumLock);
-    xxLogCallback(Logger::Printf);
+    xxLog = Logger::Printf;
 }
 //------------------------------------------------------------------------------
 void Logger::Shutdown()
@@ -28,22 +28,30 @@ void Logger::Shutdown()
     xxMutexDestroy(&logAccumLock);
 }
 //------------------------------------------------------------------------------
-void Logger::Printf(char const* tag, char const* format, va_list list)
+void Logger::Printf(char const* tag, char const* format, ...)
 {
     char fmt[256];
     snprintf(fmt, 256, "[%s] %s\n", tag, format);
 
-    int size = vsnprintf(nullptr, 0, fmt, list);
+    va_list va;
+    va_start(va, format);
+    int size = vsnprintf(nullptr, 0, fmt, va);
+    va_end(va);
+
     char* temp = xxAlloc(char, size + 1);
     if (temp == nullptr)
         return;
 
-    vsnprintf(temp, size + 1, fmt, list);
+    va_start(va, format);
+    vsnprintf(temp, size + 1, fmt, va);
+    va_end(va);
+
 #if defined(_WIN32)
     OutputDebugStringA(temp);
-    OutputDebugStringA("\n");
 #else
-    vprintf(fmt, list);
+    va_start(va, format);
+    vprintf(fmt, va);
+    va_end(va);
 #endif
 
     char* lasts = temp;
