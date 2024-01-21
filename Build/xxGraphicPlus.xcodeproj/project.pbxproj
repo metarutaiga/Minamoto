@@ -45,6 +45,10 @@
 		D6BA700229E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
 		D6BA702529E26FF40056FE5F /* xxGraphic.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702429E26FF40056FE5F /* xxGraphic.dylib */; };
 		D6BA702729E270000056FE5F /* xxGraphic.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702629E270000056FE5F /* xxGraphic.bundle */; };
+		D6F7F8D22B5D21150092A084 /* xxModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F7F8D02B5D21140092A084 /* xxModifier.cpp */; };
+		D6F7F8D32B5D21150092A084 /* xxModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F7F8D02B5D21140092A084 /* xxModifier.cpp */; };
+		D6F7F8D42B5D21150092A084 /* xxModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F7F8D02B5D21140092A084 /* xxModifier.cpp */; };
+		D6F7F8D52B5D21150092A084 /* xxModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F7F8D02B5D21140092A084 /* xxModifier.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,6 +100,8 @@
 		D6BA6FFE29E265080056FE5F /* xxCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxCamera.cpp; path = ../SDK/xxGraphic/utility/xxCamera.cpp; sourceTree = "<group>"; };
 		D6BA702429E26FF40056FE5F /* xxGraphic.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = xxGraphic.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA702629E270000056FE5F /* xxGraphic.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = xxGraphic.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F7F8D02B5D21140092A084 /* xxModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxModifier.cpp; path = ../SDK/xxGraphic/utility/xxModifier.cpp; sourceTree = "<group>"; };
+		D6F7F8D12B5D21150092A084 /* xxModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxModifier.h; path = ../SDK/xxGraphic/utility/xxModifier.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,8 @@
 				30F22EDA24DDA2EA00C0F4EC /* xxMath.h */,
 				30F22EDF24DDA2EA00C0F4EC /* xxMesh.cpp */,
 				30F22EDB24DDA2EA00C0F4EC /* xxMesh.h */,
+				D6F7F8D02B5D21140092A084 /* xxModifier.cpp */,
+				D6F7F8D12B5D21150092A084 /* xxModifier.h */,
 				30F22ED924DDA2EA00C0F4EC /* xxNode.cpp */,
 				30F22EDC24DDA2EA00C0F4EC /* xxNode.h */,
 				D6BA6FFD29E265080056FE5F /* xxUtility.h */,
@@ -320,6 +328,7 @@
 				30A9A79C25ADC711000FA104 /* xxImage.cpp in Sources */,
 				D69E7A8A2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				D6366D3D2B4BB015000E6872 /* xxFile.cpp in Sources */,
+				D6F7F8D22B5D21150092A084 /* xxModifier.cpp in Sources */,
 				30A9A79D25ADC711000FA104 /* xxMaterial.cpp in Sources */,
 				30A9A79E25ADC711000FA104 /* xxMath.cpp in Sources */,
 				30A9A79F25ADC711000FA104 /* xxMesh.cpp in Sources */,
@@ -337,6 +346,7 @@
 				CE93600A25AC440100CEF503 /* xxMaterial.cpp in Sources */,
 				CE93600B25AC440100CEF503 /* xxMath.cpp in Sources */,
 				CE93600C25AC440100CEF503 /* xxMesh.cpp in Sources */,
+				D6F7F8D52B5D21150092A084 /* xxModifier.cpp in Sources */,
 				CE93600D25AC440100CEF503 /* xxNode.cpp in Sources */,
 				D6366D402B4BB015000E6872 /* xxFile.cpp in Sources */,
 				D60EC63F26A85BE90051A948 /* llvm_wrapper.cpp in Sources */,
@@ -351,6 +361,7 @@
 				30F22EEB24DDA2EA00C0F4EC /* xxImage.cpp in Sources */,
 				D69E7A8B2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				D6366D3E2B4BB015000E6872 /* xxFile.cpp in Sources */,
+				D6F7F8D32B5D21150092A084 /* xxModifier.cpp in Sources */,
 				30F22EEF24DDA2EA00C0F4EC /* xxMaterial.cpp in Sources */,
 				30F22EE324DDA2EA00C0F4EC /* xxMath.cpp in Sources */,
 				30F22EED24DDA2EA00C0F4EC /* xxMesh.cpp in Sources */,
@@ -366,6 +377,7 @@
 				30F22EEA24DDA2EA00C0F4EC /* xxImage.cpp in Sources */,
 				D69E7A8C2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				D6366D3F2B4BB015000E6872 /* xxFile.cpp in Sources */,
+				D6F7F8D42B5D21150092A084 /* xxModifier.cpp in Sources */,
 				30F22EEE24DDA2EA00C0F4EC /* xxMaterial.cpp in Sources */,
 				30F22EE224DDA2EA00C0F4EC /* xxMath.cpp in Sources */,
 				30F22EEC24DDA2EA00C0F4EC /* xxMesh.cpp in Sources */,
