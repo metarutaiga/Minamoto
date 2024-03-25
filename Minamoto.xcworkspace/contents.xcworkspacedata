@@ -11,6 +11,9 @@
          location = "group:Build/imgui.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Build/libcxx.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Build/xxGraphic.xcodeproj">
       </FileRef>
       <FileRef

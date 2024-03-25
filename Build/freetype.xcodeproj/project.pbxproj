@@ -128,7 +128,6 @@
 		D6022C9523258EFB00B9BFB8 /* type1cid.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A036231ED5CB00B75B77 /* type1cid.c */; };
 		D6022C9623258EFB00B9BFB8 /* type42.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A032231ED13200B75B77 /* type42.c */; };
 		D6022C9723258EFB00B9BFB8 /* winfnt.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A034231ED27D00B75B77 /* winfnt.c */; };
-		D60EC63126A85B7F0051A948 /* llvm_wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60EC63026A85B7F0051A948 /* llvm_wrapper.cpp */; };
 		D63370A62B3B2533001D4057 /* freetype.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6449FDA231EC3D800B75B77 /* freetype.dylib */; };
 		D6449FFB231EC9B900B75B77 /* ftpatent.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FEA231EC9B800B75B77 /* ftpatent.c */; };
 		D6449FFC231EC9B900B75B77 /* ftsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FEB231EC9B800B75B77 /* ftsystem.c */; };
@@ -191,7 +190,6 @@
 		CE999CAE25D2594D00351116 /* kernel32.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = kernel32.lib; path = ../msvc/lib/um/kernel32.lib; sourceTree = "<group>"; };
 		CEF2AD902730E50A00017908 /* sdf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sdf.c; path = ../SDK/freetype/src/sdf/sdf.c; sourceTree = "<group>"; };
 		D6022C28232588CC00B9BFB8 /* freetype.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = freetype.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		D60EC63026A85B7F0051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../SDK/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
 		D60EC63226A85B920051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D60EC63326A85B920051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D6449FDA231EC3D800B75B77 /* freetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = freetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,7 +271,6 @@
 			children = (
 				D60EC63326A85B920051A948 /* ClangPlatform.Android.xcconfig */,
 				D60EC63226A85B920051A948 /* ClangPlatform.Windows.xcconfig */,
-				D60EC63026A85B7F0051A948 /* llvm_wrapper.cpp */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -523,7 +520,6 @@
 				CE935ECC25AC268E00CEF503 /* ftbdf.c in Sources */,
 				CE935ECD25AC268E00CEF503 /* ftbitmap.c in Sources */,
 				CE935ECE25AC268E00CEF503 /* ftcid.c in Sources */,
-				D60EC63126A85B7F0051A948 /* llvm_wrapper.cpp in Sources */,
 				CE935ECF25AC268E00CEF503 /* ftfstype.c in Sources */,
 				CE935ED025AC268E00CEF503 /* ftgasp.c in Sources */,
 				CE935ED125AC268E00CEF503 /* ftglyph.c in Sources */,

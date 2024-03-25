@@ -27,7 +27,10 @@
 		D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A1E2B1DE28F00C3875A /* Grid.cpp */; };
 		D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A1E2B1DE28F00C3875A /* Grid.cpp */; };
 		D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A1E2B1DE28F00C3875A /* Grid.cpp */; };
-		D60EC62F26A85B570051A948 /* llvm_wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60EC62E26A85B570051A948 /* llvm_wrapper.cpp */; };
+		D6169D162BB17FE200E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D152BB17FE200E5490C /* new.cpp */; };
+		D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6169D172BB17FF400E5490C /* libcxx.lib */; };
+		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
+		D6169D1C2BB1802100E5490C /* tls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D1B2BB1802100E5490C /* tls.cpp */; };
 		D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D633706D2B372A04001D4057 /* ImportWavefront.cpp */; };
 		D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D633706D2B372A04001D4057 /* ImportWavefront.cpp */; };
 		D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D633706D2B372A04001D4057 /* ImportWavefront.cpp */; };
@@ -106,7 +109,10 @@
 		D6022C3523258B5D00B9BFB8 /* Editor.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Editor.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
-		D60EC62E26A85B570051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
+		D6169D152BB17FE200E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
+		D6169D172BB17FF400E5490C /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6169D192BB1801100E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
+		D6169D1B2BB1802100E5490C /* tls.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tls.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/tls.cpp"; sourceTree = "<group>"; };
 		D633706D2B372A04001D4057 /* ImportWavefront.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImportWavefront.cpp; path = ../Import/ImportWavefront.cpp; sourceTree = "<group>"; };
 		D633706E2B372A04001D4057 /* ImportWavefront.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportWavefront.h; path = ../Import/ImportWavefront.h; sourceTree = "<group>"; };
 		D63370742B382155001D4057 /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Log.cpp; path = ../Window/Log.cpp; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */,
 				CE999D5525D266E300351116 /* imgui.dll in Frameworks */,
 				D633708D2B395B70001D4057 /* xxGraphic.dll in Frameworks */,
 				D6012A1B2B1DE18200C3875A /* xxGraphicPlus.dll in Frameworks */,
@@ -176,6 +183,7 @@
 		300264BD24266097004559E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6169D172BB17FF400E5490C /* libcxx.lib */,
 				D633708C2B395B70001D4057 /* xxGraphic.dll */,
 				D633708A2B395B61001D4057 /* xxGraphic.bundle */,
 				D63370882B395B54001D4057 /* libxxGraphic.so */,
@@ -204,7 +212,9 @@
 			children = (
 				D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */,
 				D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */,
-				D60EC62E26A85B570051A948 /* llvm_wrapper.cpp */,
+				D6169D152BB17FE200E5490C /* new.cpp */,
+				D6169D1B2BB1802100E5490C /* tls.cpp */,
+				D6169D192BB1801100E5490C /* ucrt.cpp */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -363,7 +373,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					30A9A7BA25ADC792000FA104 = {
 						CreatedOnToolsVersion = 12.3;
@@ -424,7 +434,9 @@
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
 				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
-				D60EC62F26A85B570051A948 /* llvm_wrapper.cpp in Sources */,
+				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
+				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
+				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
 				D6012A132B1DE05A00C3875A /* Camera.cpp in Sources */,
 				D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */,
 				CE93601F25AC457A00CEF503 /* Editor.cpp in Sources */,

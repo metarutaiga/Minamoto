@@ -19,7 +19,7 @@
 		CE9C2A2A25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C2A2825AFCB9000AB37F6 /* imgui_tables.cpp */; };
 		CE9C2A2B25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C2A2825AFCB9000AB37F6 /* imgui_tables.cpp */; };
 		CE9C2A2C25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C2A2825AFCB9000AB37F6 /* imgui_tables.cpp */; };
-		D60EC63726A85BB10051A948 /* llvm_wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60EC63626A85BB00051A948 /* llvm_wrapper.cpp */; };
+		D6169D042BB17D3400E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CFD2BB17CCA00E5490C /* ucrt.cpp */; };
 		D63370A02B3B24C9001D4057 /* imgui.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* imgui.dylib */; };
 		D644A077231ED90400B75B77 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A06D231ED90300B75B77 /* imgui_draw.cpp */; };
 		D644A078231ED90400B75B77 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A06E231ED90300B75B77 /* imgui_widgets.cpp */; };
@@ -51,7 +51,7 @@
 		D6022C3523258B5D00B9BFB8 /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
-		D60EC63626A85BB00051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../SDK/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
+		D6169CFD2BB17CCA00E5490C /* ucrt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D644A06C231ED90300B75B77 /* imgui_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_internal.h; path = ../SDK/imgui/imgui_internal.h; sourceTree = "<group>"; };
 		D644A06D231ED90300B75B77 /* imgui_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_draw.cpp; path = ../SDK/imgui/imgui_draw.cpp; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			children = (
 				D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */,
 				D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */,
-				D60EC63626A85BB00051A948 /* llvm_wrapper.cpp */,
+				D6169CFD2BB17CCA00E5490C /* ucrt.cpp */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -212,7 +212,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					30A9A74925ADC5C3000FA104 = {
 						CreatedOnToolsVersion = 12.3;
@@ -268,10 +268,10 @@
 			files = (
 				CE935F6025AC2F8800CEF503 /* imgui.cpp in Sources */,
 				CE935F5D25AC2F8800CEF503 /* imgui_demo.cpp in Sources */,
-				D60EC63726A85BB10051A948 /* llvm_wrapper.cpp in Sources */,
 				CE935F5E25AC2F8800CEF503 /* imgui_draw.cpp in Sources */,
 				CE935F5F25AC2F8800CEF503 /* imgui_widgets.cpp in Sources */,
 				CE9C2A2B25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */,
+				D6169D042BB17D3400E5490C /* ucrt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

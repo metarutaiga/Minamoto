@@ -55,7 +55,8 @@
 		CE935F9625AC35DB00CEF503 /* xxSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A2231EDE9A00B75B77 /* xxSystem.cpp */; };
 		CE9D56BA24D165130037EBE6 /* xxGraphicMetal2.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE9D56B824D165130037EBE6 /* xxGraphicMetal2.mm */; };
 		CE9D56BB24D165130037EBE6 /* xxGraphicMetal2.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE9D56B824D165130037EBE6 /* xxGraphicMetal2.mm */; };
-		D60EC63B26A85BCE0051A948 /* llvm_wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60EC63A26A85BCE0051A948 /* llvm_wrapper.cpp */; };
+		D6169D002BB17CEB00E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CFE2BB17CEB00E5490C /* ucrt.cpp */; };
+		D6169D012BB17CEB00E5490C /* tls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CFF2BB17CEB00E5490C /* tls.cpp */; };
 		D63370A22B3B24D8001D4057 /* xxGraphic.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A092231EDDFA00B75B77 /* xxGraphic.dylib */; };
 		D644A0AC231EDE9B00B75B77 /* xxSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A2231EDE9A00B75B77 /* xxSystem.cpp */; };
 		D644A0AD231EDE9B00B75B77 /* xxGraphic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A3231EDE9A00B75B77 /* xxGraphic.cpp */; };
@@ -151,7 +152,8 @@
 		D6022C4223258BB600B9BFB8 /* xxGraphic.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = xxGraphic.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
-		D60EC63A26A85BCE0051A948 /* llvm_wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = llvm_wrapper.cpp; path = "../SDK/ClangPlatform/windows-msvc/llvm_wrapper.cpp"; sourceTree = "<group>"; };
+		D6169CFE2BB17CEB00E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
+		D6169CFF2BB17CEB00E5490C /* tls.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tls.cpp; path = "../SDK/ClangPlatform/windows-msvc/tls.cpp"; sourceTree = "<group>"; };
 		D644A092231EDDFA00B75B77 /* xxGraphic.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = xxGraphic.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D644A0A0231EDE9A00B75B77 /* xxGraphicNULL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicNULL.h; path = ../SDK/xxGraphic/xxGraphicNULL.h; sourceTree = "<group>"; };
 		D644A0A2231EDE9A00B75B77 /* xxSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxSystem.cpp; path = ../SDK/xxGraphic/xxSystem.cpp; sourceTree = "<group>"; };
@@ -337,7 +339,8 @@
 			children = (
 				D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */,
 				D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */,
-				D60EC63A26A85BCE0051A948 /* llvm_wrapper.cpp */,
+				D6169CFF2BB17CEB00E5490C /* tls.cpp */,
+				D6169CFE2BB17CEB00E5490C /* ucrt.cpp */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -707,7 +710,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					30A9A75D25ADC60D000FA104 = {
 						CreatedOnToolsVersion = 12.3;
@@ -798,10 +801,11 @@
 				CE935F8925AC35DB00CEF503 /* xxGraphicMantle.cpp in Sources */,
 				CE935F8A25AC35DB00CEF503 /* xxGraphicMantleAsm.cpp in Sources */,
 				CE935F8B25AC35DB00CEF503 /* xxGraphicNULL.cpp in Sources */,
-				D60EC63B26A85BCE0051A948 /* llvm_wrapper.cpp in Sources */,
 				CE935F9325AC35DB00CEF503 /* xxGraphicVulkan.cpp in Sources */,
 				CE935F9425AC35DB00CEF503 /* xxGraphicVulkanAsm.cpp in Sources */,
 				CE935F9625AC35DB00CEF503 /* xxSystem.cpp in Sources */,
+				D6169D012BB17CEB00E5490C /* tls.cpp in Sources */,
+				D6169D002BB17CEB00E5490C /* ucrt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
