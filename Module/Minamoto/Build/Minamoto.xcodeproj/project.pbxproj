@@ -28,6 +28,8 @@
 		D633706A2B3534FE001D4057 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370662B3534FE001D4057 /* Logger.cpp */; };
 		D633706B2B3534FE001D4057 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370662B3534FE001D4057 /* Logger.cpp */; };
 		D644A0EA231F109D00B75B77 /* imgui_impl_xx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0E7231F109C00B75B77 /* imgui_impl_xx.cpp */; };
+		D65309F02BB2E0B40006AD64 /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D65309EF2BB2E0B40006AD64 /* libcxx.lib */; };
+		D65309FF2BB2F3A50006AD64 /* except.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D65309FE2BB2F3A50006AD64 /* except.cpp */; };
 		D690A3882333FE7B00A149EF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A3862333FE7B00A149EF /* Renderer.cpp */; };
 		D690A3892333FE7B00A149EF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A3862333FE7B00A149EF /* Renderer.cpp */; };
 		D690A38C23341A8400A149EF /* DearImGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A38A23341A8400A149EF /* DearImGui.cpp */; settings = {COMPILER_FLAGS = "-x objective-c++ -fobjc-arc -fobjc-weak -fmodules"; }; };
@@ -99,6 +101,9 @@
 		D644A0C6231F021F00B75B77 /* Minamoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minamoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D644A0E7231F109C00B75B77 /* imgui_impl_xx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_impl_xx.cpp; path = ../implement/imgui_impl_xx.cpp; sourceTree = "<group>"; };
 		D644A0E8231F109C00B75B77 /* imgui_impl_xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_impl_xx.h; path = ../implement/imgui_impl_xx.h; sourceTree = "<group>"; };
+		D65309ED2BB2E0A50006AD64 /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D65309EF2BB2E0B40006AD64 /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D65309FE2BB2F3A50006AD64 /* except.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = except.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/except.cpp"; sourceTree = "<group>"; };
 		D690A3802333F7FA00A149EF /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		D690A3862333FE7B00A149EF /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Renderer.cpp; path = ../Renderer.cpp; sourceTree = "<group>"; };
 		D690A3872333FE7B00A149EF /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Renderer.h; path = ../Renderer.h; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D65309F02BB2E0B40006AD64 /* libcxx.lib in Frameworks */,
 				D6BA701529E26F130056FE5F /* freetype.dll in Frameworks */,
 				D6BA701729E26F130056FE5F /* imgui.dll in Frameworks */,
 				D6BA701929E26F130056FE5F /* xxGraphic.dll in Frameworks */,
@@ -205,6 +211,7 @@
 			children = (
 				D60EC64026A85C000051A948 /* ClangPlatform.Android.xcconfig */,
 				D60EC64126A85C000051A948 /* ClangPlatform.Windows.xcconfig */,
+				D65309FE2BB2F3A50006AD64 /* except.cpp */,
 				D6169D102BB17F3700E5490C /* main.cpp */,
 				D6169D112BB17F3700E5490C /* new.cpp */,
 				D6169D0F2BB17F3700E5490C /* ucrt.cpp */,
@@ -258,6 +265,8 @@
 		D644A0EB231F116C00B75B77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D65309EF2BB2E0B40006AD64 /* libcxx.lib */,
+				D65309ED2BB2E0A50006AD64 /* libcxx.lib */,
 				D6BA704629E271350056FE5F /* libfreetype.so */,
 				D6BA704829E271350056FE5F /* libimgui.so */,
 				D6BA704A29E271350056FE5F /* libxxGraphic.so */,
@@ -453,6 +462,7 @@
 				D633706B2B3534FE001D4057 /* Logger.cpp in Sources */,
 				D6169D122BB17F3700E5490C /* ucrt.cpp in Sources */,
 				D698A4CF266BABB200C74361 /* imgui_freetype.cpp in Sources */,
+				D65309FF2BB2F3A50006AD64 /* except.cpp in Sources */,
 				CEC4337A25AD24A400936983 /* DearImGui.cpp in Sources */,
 				D698A4E1266BACBD00C74361 /* imgui_impl_win32.cpp in Sources */,
 				CEC4337B25AD24A400936983 /* main.cpp in Sources */,

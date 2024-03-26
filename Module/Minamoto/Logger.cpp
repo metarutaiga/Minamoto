@@ -9,23 +9,28 @@
 #include <mutex>
 #include "Logger.h"
 
+#if defined(xxWINDOWS)
+#include <windows.h>
+#endif
+
+static char logAccumLockMemory[sizeof(std::mutex)];
+static std::mutex& logAccumLock = *(std::mutex*)logAccumLockMemory;
 static std::deque<char*> logAccum;
-static xxMutex logAccumLock;
 //------------------------------------------------------------------------------
 void Logger::Create()
 {
-    xxMutexInit(&logAccumLock);
+    new (&logAccumLock) std::mutex;
     xxLog = Logger::Printf;
 }
 //------------------------------------------------------------------------------
 void Logger::Shutdown()
 {
-    xxMutexLock(&logAccumLock);
+    logAccumLock.lock();
     for (char* line : logAccum)
         xxFree(line);
     logAccum.clear();
-    xxMutexUnlock(&logAccumLock);
-    xxMutexDestroy(&logAccumLock);
+    logAccumLock.unlock();
+    logAccumLock.~mutex();
 }
 //------------------------------------------------------------------------------
 void Logger::Printf(char const* tag, char const* format, ...)
@@ -68,9 +73,9 @@ void Logger::Printf(char const* tag, char const* format, ...)
                 struct tm* tm = localtime(&t);
                 snprintf(line, 9 + length + 1, "%02d:%02d:%02d %s", tm->tm_hour, tm->tm_min, tm->tm_sec, text);
 
-                xxMutexLock(&logAccumLock);
+                logAccumLock.lock();
                 logAccum.push_back(line);
-                xxMutexUnlock(&logAccumLock);
+                logAccumLock.unlock();
             }
         }
         text = strsep(&lasts, "\n");
@@ -83,10 +88,10 @@ void Logger::Update(std::deque<char*>& log)
 {
     if (logAccum.empty())
         return;
-    if (xxMutexTryLock(&logAccumLock) == false)
+    if (logAccumLock.try_lock() == false)
         return;
     log.insert(log.end(), logAccum.begin(), logAccum.end());
     logAccum.clear();
-    xxMutexUnlock(&logAccumLock);
+    logAccumLock.unlock();
 }
 //------------------------------------------------------------------------------
