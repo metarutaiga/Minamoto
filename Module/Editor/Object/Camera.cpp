@@ -24,7 +24,7 @@ void Camera::SetFOV(float aspect, float fov, float far_value)
     camera->SetFOV(aspect, fov, far_value);
 }
 //------------------------------------------------------------------------------
-xxCameraPtr Camera::GetCamera() const
+xxCameraPtr const& Camera::GetCamera() const
 {
     return camera;
 }

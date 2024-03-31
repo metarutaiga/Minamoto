@@ -30,6 +30,9 @@
          location = "group:Module/Minamoto/Build/Minamoto.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Module/Runtime/Build/Runtime.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Module/Sample/Build/Sample.xcodeproj">
       </FileRef>
       <FileRef

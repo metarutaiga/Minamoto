@@ -709,6 +709,7 @@
 		D644A04D231ED82900B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXCLUDED_ARCHS = x86_64;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"libcxx_API=__attribute__((visibility(\\\"default\\\")))",
 					"$(inherited)",
@@ -720,6 +721,7 @@
 		D644A04E231ED82900B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXCLUDED_ARCHS = x86_64;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"libcxx_API=__attribute__((visibility(\\\"default\\\")))",
 					"$(inherited)",

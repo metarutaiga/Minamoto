@@ -155,7 +155,7 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
     return materials;
 }
 //------------------------------------------------------------------------------
-xxNodePtr ImportWavefront::CreateObject(char const* obj)
+xxNodePtr ImportWavefront::Create(char const* obj)
 {
     std::map<std::string, Material> materials;
     std::vector<xxVector3> vertices;

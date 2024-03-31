@@ -16,3 +16,6 @@
 [submodule "SDK/ImGuiFileDialog"]
 	path = SDK/ImGuiFileDialog
 	url = https://github.com/aiekick/ImGuiFileDialog
+[submodule "SDK/ufbx"]
+	path = SDK/ufbx
+	url = https://github.com/ufbx/ufbx

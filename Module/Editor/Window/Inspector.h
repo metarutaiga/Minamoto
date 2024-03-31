@@ -8,6 +8,7 @@
 
 class Inspector
 {
+    static float windowWidth;
     static xxNodePtr selected;
 public:
     static void Initialize();
@@ -18,4 +19,5 @@ public:
     static void UpdateNode(const UpdateData& updateData, xxNodePtr const& node);
     static void UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const& material);
     static void UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh);
+    static void UpdateTexture(const UpdateData& updateData, xxNodePtr const& node);
 };

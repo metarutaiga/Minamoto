@@ -204,6 +204,7 @@ bool Module::Update()
     updateData.renderPass = Renderer::g_renderPass;
     updateData.width = Renderer::g_width;
     updateData.height = Renderer::g_height;
+    updateData.scale = Renderer::g_scale;
     updateData.time = time;
     updateData.elapsed = elapsed;
     updateData.message = Module::Message;
@@ -227,6 +228,7 @@ void Module::Render()
     renderData.commandFramebuffer = Renderer::g_currentCommandFramebuffer;
     renderData.width = Renderer::g_width;
     renderData.height = Renderer::g_height;
+    renderData.scale = Renderer::g_scale;
     for (int i = 0; i < g_moduleRenders.size(); ++i)
     {
         PFN_MODULE_RENDER render = g_moduleRenders[i];

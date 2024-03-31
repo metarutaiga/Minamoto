@@ -22,7 +22,7 @@ class Camera
 public:
     void SetFOV(float aspect, float fov, float far_value);
 
-    xxCameraPtr GetCamera() const;
+    xxCameraPtr const& GetCamera() const;
 
     void SetDistance(float distance);
     float GetDistance() const;

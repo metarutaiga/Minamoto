@@ -15,4 +15,9 @@ public:
     static void Shutdown();
     static xxImagePtr CreateImage(char const* img);
     static xxMeshPtr CreateMesh(std::vector<xxVector3> const& vertices, std::vector<xxVector3> const& normals, std::vector<xxVector4> const& colors, std::vector<xxVector2> const& textures);
+    static xxMeshPtr OptimizeMesh(xxMeshPtr const& mesh);
+public:
+    static bool EnableAxisUpYToZ;
+    static bool EnableOptimizeMesh;
+    static bool EnableTextureFlipV;
 };

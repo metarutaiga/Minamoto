@@ -26,5 +26,5 @@ class ImportWavefront : public Import
 
 public:
     static std::map<std::string, Material> CreateMaterial(char const* mtl);
-    static xxNodePtr CreateObject(char const* obj);
+    static xxNodePtr Create(char const* obj);
 };

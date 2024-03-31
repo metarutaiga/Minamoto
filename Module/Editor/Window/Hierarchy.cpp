@@ -5,9 +5,11 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
-#include <utility/xxBinary.h>
+#include <Runtime/xxBinaryV2.h>
+#include <utility/xxFile.h>
 #include <utility/xxNode.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
+#include "Import/ImportFBX.h"
 #include "Import/ImportWavefront.h"
 #include "Hierarchy.h"
 #include "Inspector.h"
@@ -20,30 +22,171 @@
 #define HAVE_FILEDIALOG 0
 #endif
 
+float Hierarchy::windowWidth = 256.0f;
 xxNodePtr Hierarchy::selectedLeft;
 xxNodePtr Hierarchy::selectedRight;
 xxNodePtr Hierarchy::importNode;
-ImGuiFileDialog* Hierarchy::fileDialog;
+xxNodePtr Hierarchy::exportNode;
+char Hierarchy::importName[1024];
+char Hierarchy::exportName[1024];
+ImGuiFileDialog* Hierarchy::importFileDialog;
+ImGuiFileDialog* Hierarchy::exportFileDialog;
 //==============================================================================
 void Hierarchy::Initialize()
 {
     selectedLeft = nullptr;
     selectedRight = nullptr;
     importNode = nullptr;
+    exportNode = nullptr;
 #if HAVE_FILEDIALOG
-    fileDialog = new ImGuiFileDialog;
+    importFileDialog = new ImGuiFileDialog;
+    exportFileDialog = new ImGuiFileDialog;
 #endif
 }
 //------------------------------------------------------------------------------
 void Hierarchy::Shutdown()
 {
 #if HAVE_FILEDIALOG
-    delete fileDialog;
+    delete importFileDialog;
+    delete exportFileDialog;
 #endif
     selectedLeft = nullptr;
     selectedRight = nullptr;
     importNode = nullptr;
-    fileDialog = nullptr;
+    exportNode = nullptr;
+    importFileDialog = nullptr;
+    exportFileDialog = nullptr;
+}
+//------------------------------------------------------------------------------
+void Hierarchy::Import(const UpdateData& updateData)
+{
+    if (importNode == nullptr)
+        return;
+
+    bool show = true;
+    if (ImGui::Begin("Import", &show, ImGuiWindowFlags_AlwaysAutoResize))
+    {
+        ImGui::SetNextItemWidth(384 * updateData.scale);
+        ImGui::InputText("Path", importName, 1024);
+        ImGui::SameLine();
+        if (ImGui::Button("..."))
+        {
+#if HAVE_FILEDIALOG
+#if defined(_WIN32)
+            IGFD::FileDialogConfig config = { importName[0] ? importName : std::string(xxGetDocumentPath()) + '\\' };
+            if (config.path.size() && config.path.back() != '\\')
+                config.path.resize(config.path.rfind('\\') + 1);
+#else
+            IGFD::FileDialogConfig config = { importName[0] ? importName : std::string(xxGetDocumentPath()) + '/' };
+            if (config.path.size() && config.path.back() != '/')
+                config.path.resize(config.path.rfind('/') + 1);
+#endif
+            importFileDialog->OpenDialog("Import", "Choose File", ".fbx,.obj,.xx", config);
+#endif
+        }
+        ImGui::Checkbox("Axis Up Y to Z", &Import::EnableAxisUpYToZ);
+        ImGui::Checkbox("Optimize Mesh", &Import::EnableOptimizeMesh);
+        ImGui::Checkbox("Texture Flip V", &Import::EnableTextureFlipV);
+        if (ImGui::Button("Import"))
+        {
+            float begin = xxGetCurrentTime();
+            xxNodePtr node;
+            if (strstr(importName, ".fbx"))
+                node = ImportFBX::Create(importName);
+            if (strstr(importName, ".obj"))
+                node = ImportWavefront::Create(importName);
+            if (strstr(importName, ".xx"))
+                node = xxBinaryV2::Load(importName);
+            if (node)
+            {
+                float time = xxGetCurrentTime() - begin;
+                xxLog("Hierarchy", "Import : %s (%0.fus)", xxFile::GetName(importName).c_str(), time * 1000000);
+                importNode->AttachChild(node);
+                importNode = nullptr;
+                show = false;
+            }
+        }
+        ImGui::End();
+    }
+
+#if HAVE_FILEDIALOG
+    if (importFileDialog->Display("Import", 0, ImVec2(384 * updateData.scale, 256 * updateData.scale)))
+    {
+        if (importFileDialog->IsOk())
+        {
+            strcpy(importName, importFileDialog->GetFilePathName().c_str());
+        }
+        importFileDialog->Close();
+    }
+#endif
+
+    if (show == false)
+    {
+        importNode = nullptr;
+#if HAVE_FILEDIALOG
+        importFileDialog->Close();
+#endif
+    }
+}
+//------------------------------------------------------------------------------
+void Hierarchy::Export(const UpdateData& updateData)
+{
+    if (exportNode == nullptr)
+        return;
+
+    bool show = true;
+    if (ImGui::Begin("Export", &show, ImGuiWindowFlags_AlwaysAutoResize))
+    {
+        ImGui::SetNextItemWidth(384 * updateData.scale);
+        ImGui::InputText("Path", exportName, 1024);
+        ImGui::SameLine();
+        if (ImGui::Button("..."))
+        {
+#if HAVE_FILEDIALOG
+#if defined(_WIN32)
+            IGFD::FileDialogConfig config = { exportName[0] ? exportName : std::string(xxGetDocumentPath()) + '\\' };
+            if (config.path.size() && config.path.back() != '\\')
+                config.path.resize(config.path.rfind('\\') + 1);
+#else
+            IGFD::FileDialogConfig config = { exportName[0] ? exportName : std::string(xxGetDocumentPath()) + '/' };
+            if (config.path.size() && config.path.back() != '/')
+                config.path.resize(config.path.rfind('/') + 1);
+#endif
+            exportFileDialog->OpenDialog("Export", "Choose File", ".xx", config);
+#endif
+        }
+        if (ImGui::Button("Export"))
+        {
+            float begin = xxGetCurrentTime();
+            if (xxBinaryV2::Save(exportName, exportNode))
+            {
+                float time = xxGetCurrentTime() - begin;
+                xxLog("Hierarchy", "Export : %s (%0.fus)", xxFile::GetName(exportName).c_str(), time * 1000000);
+                exportNode = nullptr;
+                show = false;
+            }
+        }
+        ImGui::End();
+    }
+
+#if HAVE_FILEDIALOG
+    if (exportFileDialog->Display("Export", 0, ImVec2(384 * updateData.scale, 256 * updateData.scale)))
+    {
+        if (exportFileDialog->IsOk())
+        {
+            strcpy(exportName, exportFileDialog->GetFilePathName().c_str());
+        }
+        exportFileDialog->Close();
+    }
+#endif
+
+    if (show == false)
+    {
+        exportNode = nullptr;
+#if HAVE_FILEDIALOG
+        exportFileDialog->Close();
+#endif
+    }
 }
 //------------------------------------------------------------------------------
 bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const& root)
@@ -57,12 +200,13 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
 
     float windowHeight = ImGui::GetFontSize() + style.FramePadding.y * 2.0f;
     float borderHeight = style.FramePadding.y * 2.0f;
-    float windowWidth = 256.0f;
 
     ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x, viewport->Pos.y + windowHeight));
     ImGui::SetNextWindowSize(ImVec2(windowWidth, viewport->Size.y - windowHeight * 2.0f - borderHeight * 2.0f));
     if (ImGui::Begin("Hierarchy", &show))
     {
+        windowWidth = ImGui::GetWindowWidth();
+
         bool clickedLeft = false;
         bool clickedRight = false;
         std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
@@ -187,27 +331,14 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             if (ImGui::Button("Import Object"))
             {
                 update = true;
-                selectedRight = nullptr;
-            }
-            if (ImGui::Button("Import Wavefront"))
-            {
-                update = true;
                 importNode = selectedRight;
                 selectedRight = nullptr;
-#if HAVE_FILEDIALOG
-                IGFD::FileDialogConfig config =
-                {
-                    .path = xxGetDocumentPath(),
-                };
-                fileDialog->OpenDialog("Import Wavefront", "Choose File", ".obj", config);
-#else
-                importNode->AttachChild(ImportWavefront::CreateObject("Miku/HatsuneMiku.obj"));
-#endif
             }
             ImGui::Separator();
             if (ImGui::Button("Export Object"))
             {
                 update = true;
+                exportNode = selectedRight;
                 selectedRight = nullptr;
             }
             ImGui::EndPopup();
@@ -215,18 +346,8 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
     }
     ImGui::End();
 
-#if HAVE_FILEDIALOG
-    if (importNode && fileDialog->Display("Import Wavefront"))
-    {
-        if (fileDialog->IsOk())
-        {
-            std::string name = fileDialog->GetFilePathName();
-            importNode->AttachChild(ImportWavefront::CreateObject(name.c_str()));
-        }
-        importNode = nullptr;
-        fileDialog->Close();
-    }
-#endif
+    Import(updateData);
+    Export(updateData);
 
     return update;
 }

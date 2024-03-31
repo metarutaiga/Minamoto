@@ -6,11 +6,13 @@
 //==============================================================================
 #include <Interface.h>
 #include <utility/xxCamera.h>
+#include <utility/xxImage.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
 #include "Inspector.h"
 
+float Inspector::windowWidth = 256.0f;
 xxNodePtr Inspector::selected;
 //==============================================================================
 void Inspector::Initialize()
@@ -39,12 +41,13 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
 
     float windowHeight = ImGui::GetFontSize() + style.FramePadding.y * 2.0f;
     float borderHeight = style.FramePadding.y * 2.0f;
-    float windowWidth = 256.0f;
 
     ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x + viewport->Size.x - windowWidth, viewport->Pos.y + windowHeight));
     ImGui::SetNextWindowSize(ImVec2(windowWidth, viewport->Size.y - windowHeight * 2.0f - borderHeight * 2.0f));
     if (ImGui::Begin("Inspector", &show))
     {
+        windowWidth = ImGui::GetWindowWidth();
+
         // Camera
         if (camera && selected == nullptr)
         {
@@ -62,6 +65,10 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
             if (selected->Material)
             {
                 UpdateMaterial(updateData, selected->Material);
+            }
+            if (selected->Images.empty() == false)
+            {
+                UpdateTexture(updateData, selected);
             }
         }
     }
@@ -224,6 +231,33 @@ void Inspector::UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh)
         ImGui::InputInt("Color" Q, (int*)&mesh->ColorCount, 1, 100, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Normal" Q, (int*)&mesh->NormalCount, 1, 100, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Texture" Q, (int*)&mesh->TextureCount, 1, 100, ImGuiInputTextFlags_ReadOnly);
+    }
+}
+//------------------------------------------------------------------------------
+void Inspector::UpdateTexture(const UpdateData& updateData, xxNodePtr const& node)
+{
+    if (ImGui::CollapsingHeader("Texture" Q, nullptr, ImGuiTreeNodeFlags_None))
+    {
+        for (auto& image : node->Images)
+        {
+            if (ImGui::CollapsingHeader(image->Name.c_str(), nullptr, ImGuiTreeNodeFlags_None))
+            {
+                ImGui::InputInt("Width" Q, (int*)&image->Width, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Height" Q, (int*)&image->Height, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Depth" Q, (int*)&image->Depth, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Mipmap" Q, (int*)&image->Mipmap, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Array" Q, (int*)&image->Array, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::Separator();
+                ImGui::Checkbox("Clamp U" Q, &image->ClampU);
+                ImGui::Checkbox("Clamp V" Q, &image->ClampV);
+                ImGui::Checkbox("Clamp W" Q, &image->ClampW);
+                ImGui::Separator();
+                ImGui::Checkbox("Linear MAG" Q, &image->FilterMag);
+                ImGui::Checkbox("Linear MIN" Q, &image->FilterMin);
+                ImGui::Checkbox("Linear MIP" Q, &image->FilterMip);
+                ImGui::SliderInt("Anisotropic" Q, &image->Anisotropic, 1, 16);
+            }
+        }
     }
 }
 //==============================================================================

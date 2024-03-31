@@ -43,6 +43,7 @@ struct UpdateData
     uint64_t    renderPass;
     int         width;
     int         height;
+    float       scale;
     float       time;
     float       elapsed;
     void      (*message)(std::initializer_list<const char*> list);
@@ -58,6 +59,7 @@ struct RenderData
     uint64_t    commandFramebuffer;
     int         width;
     int         height;
+    float       scale;
 };
 
 typedef const char* (*PFN_MODULE_CREATE)(const CreateData&);
