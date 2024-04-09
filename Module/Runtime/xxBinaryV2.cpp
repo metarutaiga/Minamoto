@@ -109,19 +109,17 @@ bool xxBinaryV2::ReadStream()
     m_binaryStream.resize(size - position);
     if (m_file->Read(m_binaryStream.data(), m_binaryStream.size()) == false)
         return false;
+    m_binaryStream.push_back(0);
 
     for (;;)
     {
-        size_t length = 0;
-        if (ReadSize(length) == false)
-            return false;
-        if (length == 0)
+        std::string string = (char*)m_binaryStream.data() + m_binaryStreamPosition;
+        if (string.empty())
             break;
-        std::string string(length, 0);
-        if (ReadArray(string.data(), length) == false)
-            return false;
         m_stringStream.push_back(string);
+        m_binaryStreamPosition += string.length() + 1;
     }
+    m_binaryStreamPosition++;
 
     return true;
 }
@@ -134,12 +132,9 @@ bool xxBinaryV2::WriteStream()
     for (size_t i = 1; i < m_stringStream.size(); ++i)
     {
         const std::string& string = m_stringStream[i];
-        size_t length = string.length();
-        if (length == 0)
-            return false;
-        if (WriteSize(length) == false)
-            return false;
-        if (WriteArray(string.data(), length) == false)
+        if (string.empty())
+            break;
+        if (WriteArray(string.data(), string.length() + 1) == false)
             return false;
     }
     m_binaryStream.push_back(0);

@@ -66,10 +66,6 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
             {
                 UpdateMaterial(updateData, selected->Material);
             }
-            if (selected->Images.empty() == false)
-            {
-                UpdateTexture(updateData, selected);
-            }
         }
     }
     ImGui::End();
@@ -195,6 +191,26 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
             Combo("Operation" Q, blendOps, material->BlendOperationAlpha);
             Combo("Destination" Q, blendTypes, material->BlendDestinationAlpha);
         }
+        for (auto& image : material->Images)
+        {
+            if (ImGui::CollapsingHeader(image->Name.c_str(), nullptr, ImGuiTreeNodeFlags_None))
+            {
+                ImGui::InputInt("Width" Q, (int*)&image->Width, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Height" Q, (int*)&image->Height, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Depth" Q, (int*)&image->Depth, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Mipmap" Q, (int*)&image->Mipmap, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Array" Q, (int*)&image->Array, 1, 100, ImGuiInputTextFlags_ReadOnly);
+                ImGui::Separator();
+                ImGui::Checkbox("Clamp U" Q, &image->ClampU);
+                ImGui::Checkbox("Clamp V" Q, &image->ClampV);
+                ImGui::Checkbox("Clamp W" Q, &image->ClampW);
+                ImGui::Separator();
+                ImGui::Checkbox("Linear MAG" Q, &image->FilterMag);
+                ImGui::Checkbox("Linear MIN" Q, &image->FilterMin);
+                ImGui::Checkbox("Linear MIP" Q, &image->FilterMip);
+                ImGui::SliderInt("Anisotropic" Q, &image->Anisotropic, 1, 16);
+            }
+        }
     }
 
     // Material Invalidate
@@ -231,33 +247,6 @@ void Inspector::UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh)
         ImGui::InputInt("Color" Q, (int*)&mesh->ColorCount, 1, 100, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Normal" Q, (int*)&mesh->NormalCount, 1, 100, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Texture" Q, (int*)&mesh->TextureCount, 1, 100, ImGuiInputTextFlags_ReadOnly);
-    }
-}
-//------------------------------------------------------------------------------
-void Inspector::UpdateTexture(const UpdateData& updateData, xxNodePtr const& node)
-{
-    if (ImGui::CollapsingHeader("Texture" Q, nullptr, ImGuiTreeNodeFlags_None))
-    {
-        for (auto& image : node->Images)
-        {
-            if (ImGui::CollapsingHeader(image->Name.c_str(), nullptr, ImGuiTreeNodeFlags_None))
-            {
-                ImGui::InputInt("Width" Q, (int*)&image->Width, 1, 100, ImGuiInputTextFlags_ReadOnly);
-                ImGui::InputInt("Height" Q, (int*)&image->Height, 1, 100, ImGuiInputTextFlags_ReadOnly);
-                ImGui::InputInt("Depth" Q, (int*)&image->Depth, 1, 100, ImGuiInputTextFlags_ReadOnly);
-                ImGui::InputInt("Mipmap" Q, (int*)&image->Mipmap, 1, 100, ImGuiInputTextFlags_ReadOnly);
-                ImGui::InputInt("Array" Q, (int*)&image->Array, 1, 100, ImGuiInputTextFlags_ReadOnly);
-                ImGui::Separator();
-                ImGui::Checkbox("Clamp U" Q, &image->ClampU);
-                ImGui::Checkbox("Clamp V" Q, &image->ClampV);
-                ImGui::Checkbox("Clamp W" Q, &image->ClampW);
-                ImGui::Separator();
-                ImGui::Checkbox("Linear MAG" Q, &image->FilterMag);
-                ImGui::Checkbox("Linear MIN" Q, &image->FilterMin);
-                ImGui::Checkbox("Linear MIP" Q, &image->FilterMip);
-                ImGui::SliderInt("Anisotropic" Q, &image->Anisotropic, 1, 16);
-            }
-        }
     }
 }
 //==============================================================================

@@ -63,16 +63,6 @@ static xxImagePtr createImage(ufbx_texture* texture)
     return image;
 }
 //------------------------------------------------------------------------------
-static void createImages(xxNodePtr const& node, ufbx_material* material)
-{
-    if (material == nullptr)
-        return;
-    for (size_t i = 0; i < material->textures.count; ++i)
-    {
-        node->SetImage(i, createImage(material->textures.data[i].texture));
-    }
-}
-//------------------------------------------------------------------------------
 static xxMaterialPtr createMaterial(ufbx_material* material)
 {
     if (material == nullptr)
@@ -100,6 +90,10 @@ static xxMaterialPtr createMaterial(ufbx_material* material)
     output->DepthWrite = true;
     output->Cull = true;
     output->Scissor = false;
+    for (size_t i = 0; i < material->textures.count; ++i)
+    {
+        output->SetImage(i, createImage(material->textures.data[i].texture));
+    }
     return output;
 };
 //------------------------------------------------------------------------------
@@ -207,7 +201,6 @@ static xxNodePtr createNode(ufbx_node* node)
         {
             ufbx_material* material = node->mesh->materials.data[0];
             geometryNode->Material = createMaterial(material);
-            createImages(geometryNode, material);
         }
         geometryNode->Mesh = createMesh(node->mesh);
         if (Import::EnableOptimizeMesh)

@@ -73,12 +73,14 @@ moduleAPI void Message(const MessageData& messageData)
             xxNode::Traversal([](xxNodePtr const& node)
             {
                 node->Invalidate();
-                for (xxImagePtr const& image : node->Images)
-                    image->Invalidate();
                 if (node->Mesh)
                     node->Mesh->Invalidate();
                 if (node->Material)
+                {
                     node->Material->Invalidate();
+                    for (xxImagePtr const& image : node->Material->Images)
+                        image->Invalidate();
+                }
                 return true;
             }, root);
             break;

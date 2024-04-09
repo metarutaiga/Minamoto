@@ -241,7 +241,7 @@ xxNodePtr ImportWavefront::Create(char const* obj)
                 child->Material = material.output;
                 if (material.map_Kd)
                 {
-                    child->SetImage(0, material.map_Kd);
+                    child->Material->SetImage(0, material.map_Kd);
                 }
             }
             break;

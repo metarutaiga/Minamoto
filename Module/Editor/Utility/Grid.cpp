@@ -45,13 +45,6 @@ xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
     (*it_index++) = 1;
     (*it_index++) = 2;
 
-    xxMaterialPtr material = xxMaterial::Create();
-    if (material == nullptr)
-        return nullptr;
-    material->Blending = true;
-    material->DepthTest = "LessEqual";
-    material->DepthWrite = false;
-
     xxImagePtr image = CreateTexture();
     if (image == nullptr)
         return nullptr;
@@ -63,12 +56,19 @@ xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
     image->FilterMip = true;
     image->Anisotropic = 16;
 
+    xxMaterialPtr material = xxMaterial::Create();
+    if (material == nullptr)
+        return nullptr;
+    material->Blending = true;
+    material->DepthTest = "LessEqual";
+    material->DepthWrite = false;
+    material->SetImage(0, image);
+
     xxNodePtr node = xxNode::Create();
     if (node == nullptr)
         return nullptr;
     node->Mesh = mesh;
     node->Material = material;
-    node->SetImage(0, image);
     node->SetTranslate(translate);
 
     return node;

@@ -43,6 +43,13 @@
     self.localMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskAny handler:^NSEvent * _Nullable(NSEvent *event)
     {
         self.imguiUpdate = YES;
+        if (event.type == NSEventTypeKeyDown)
+        {
+            for (NSUInteger i = 0; i < event.charactersIgnoringModifiers.length; ++i)
+            {
+                ImGui::GetIO().AddInputCharacter([event.charactersIgnoringModifiers characterAtIndex:i]);
+            }
+        }
         return event;
     }];
 
