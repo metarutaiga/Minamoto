@@ -139,23 +139,23 @@ moduleAPI bool Update(const UpdateData& updateData)
 
         if (io.WantCaptureMouse == false)
         {
-            if (io.KeysDown[ImGuiKey_LeftShift])
+            if (ImGui::IsKeyDown(ImGuiKey_LeftShift))
             {
                 speed = 50;
             }
-            if (io.KeysDown[ImGuiKey_A])
+            if (ImGui::IsKeyDown(ImGuiKey_A))
             {
                 left_right = -speed;
             }
-            if (io.KeysDown[ImGuiKey_D])
+            if (ImGui::IsKeyDown(ImGuiKey_D))
             {
                 left_right = speed;
             }
-            if (io.KeysDown[ImGuiKey_S])
+            if (ImGui::IsKeyDown(ImGuiKey_S))
             {
                 forward_backward = -speed;
             }
-            if (io.KeysDown[ImGuiKey_W])
+            if (ImGui::IsKeyDown(ImGuiKey_W))
             {
                 forward_backward = speed;
             }
@@ -164,7 +164,7 @@ moduleAPI bool Update(const UpdateData& updateData)
         static xxVector2 mouse = xxVector2::ZERO;
         float x = 0.0f;
         float y = 0.0f;
-        if (io.MouseDown[ImGuiMouseButton_Right])
+        if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
         {
             x = (io.MousePos.x - mouse.x) / 1000.0f;
             y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f);

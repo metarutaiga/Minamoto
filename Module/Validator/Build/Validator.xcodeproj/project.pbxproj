@@ -9,25 +9,17 @@
 /* Begin PBXBuildFile section */
 		3039F9D82447498C00E671A7 /* Validator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30EDB9E02427CD3A00D599B5 /* Validator.cpp */; };
 		30A9A7DF25ADC80D000FA104 /* Validator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30EDB9E02427CD3A00D599B5 /* Validator.cpp */; };
-		30ED317226355E0A00AA60B2 /* libimgui.so in Frameworks */ = {isa = PBXBuildFile; fileRef = 30ED317126355E0A00AA60B2 /* libimgui.so */; };
-		30ED317426355E0A00AA60B2 /* libxxGraphic.so in Frameworks */ = {isa = PBXBuildFile; fileRef = 30ED317326355E0A00AA60B2 /* libxxGraphic.so */; };
-		30ED317626355E0A00AA60B2 /* libxxGraphicPlus.so in Frameworks */ = {isa = PBXBuildFile; fileRef = 30ED317526355E0A00AA60B2 /* libxxGraphicPlus.so */; };
 		30EDB9E12427CD3A00D599B5 /* Validator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30EDB9E02427CD3A00D599B5 /* Validator.cpp */; };
 		CE93604725AC476F00CEF503 /* Validator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30EDB9E02427CD3A00D599B5 /* Validator.cpp */; };
-		CE999D3525D2652500351116 /* imgui.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = CE999D3425D2652500351116 /* imgui.dll */; };
-		CE999D3725D2652500351116 /* xxGraphic.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = CE999D3625D2652500351116 /* xxGraphic.dll */; };
-		CE999D3925D2652500351116 /* xxGraphicPlus.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = CE999D3825D2652500351116 /* xxGraphicPlus.dll */; };
 		CE999D9B25D275C200351116 /* Validator.dll in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE93603325AC470300CEF503 /* Validator.dll */; };
 		CEB0E87C2608198500D13FE3 /* Validator.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* Validator.dylib */; };
-		D6169D062BB17DFA00E5490C /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6169D052BB17DFA00E5490C /* libcxx.lib */; };
 		D6169D0A2BB17E3100E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D092BB17E3100E5490C /* new.cpp */; };
 		D6169D0C2BB17E4900E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D0B2BB17E4900E5490C /* ucrt.cpp */; };
-		D6BA702D29E2703E0056FE5F /* imgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702C29E2703E0056FE5F /* imgui.dylib */; };
-		D6BA702F29E2703E0056FE5F /* xxGraphic.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702E29E2703E0056FE5F /* xxGraphic.dylib */; };
-		D6BA703129E2703E0056FE5F /* xxGraphicPlus.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA703029E2703E0056FE5F /* xxGraphicPlus.dylib */; };
-		D6BA703329E2704B0056FE5F /* imgui.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA703229E2704B0056FE5F /* imgui.bundle */; };
-		D6BA703529E2704B0056FE5F /* xxGraphic.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA703429E2704B0056FE5F /* xxGraphic.bundle */; };
-		D6BA703729E2704B0056FE5F /* xxGraphicPlus.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA703629E2704B0056FE5F /* xxGraphicPlus.bundle */; };
+		D6F066732BC6EB6A00C4DFE6 /* Runtime.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066722BC6EB6A00C4DFE6 /* Runtime.dll */; };
+		D6F066862BC6F14800C4DFE6 /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066852BC6F14800C4DFE6 /* libcxx.lib */; };
+		D6F066922BC6F25B00C4DFE6 /* Runtime.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066912BC6F25B00C4DFE6 /* Runtime.dylib */; };
+		D6F066D12BC7921C00C4DFE6 /* Runtime.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D02BC7921C00C4DFE6 /* Runtime.bundle */; };
+		D6F066D32BC7922900C4DFE6 /* libRuntime.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D22BC7922900C4DFE6 /* libRuntime.so */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,6 +88,11 @@
 		D6BA703229E2704B0056FE5F /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA703429E2704B0056FE5F /* xxGraphic.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = xxGraphic.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA703629E2704B0056FE5F /* xxGraphicPlus.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = xxGraphicPlus.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066722BC6EB6A00C4DFE6 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066852BC6F14800C4DFE6 /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066912BC6F25B00C4DFE6 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066D02BC7921C00C4DFE6 /* Runtime.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066D22BC7922900C4DFE6 /* libRuntime.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libRuntime.so; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30ED317226355E0A00AA60B2 /* libimgui.so in Frameworks */,
-				30ED317426355E0A00AA60B2 /* libxxGraphic.so in Frameworks */,
-				30ED317626355E0A00AA60B2 /* libxxGraphicPlus.so in Frameworks */,
+				D6F066D32BC7922900C4DFE6 /* libRuntime.so in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,10 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6169D062BB17DFA00E5490C /* libcxx.lib in Frameworks */,
-				CE999D3525D2652500351116 /* imgui.dll in Frameworks */,
-				CE999D3725D2652500351116 /* xxGraphic.dll in Frameworks */,
-				CE999D3925D2652500351116 /* xxGraphicPlus.dll in Frameworks */,
+				D6F066862BC6F14800C4DFE6 /* libcxx.lib in Frameworks */,
+				D6F066732BC6EB6A00C4DFE6 /* Runtime.dll in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,9 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6BA703329E2704B0056FE5F /* imgui.bundle in Frameworks */,
-				D6BA703529E2704B0056FE5F /* xxGraphic.bundle in Frameworks */,
-				D6BA703729E2704B0056FE5F /* xxGraphicPlus.bundle in Frameworks */,
+				D6F066D12BC7921C00C4DFE6 /* Runtime.bundle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,9 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6BA702D29E2703E0056FE5F /* imgui.dylib in Frameworks */,
-				D6BA702F29E2703E0056FE5F /* xxGraphic.dylib in Frameworks */,
-				D6BA703129E2703E0056FE5F /* xxGraphicPlus.dylib in Frameworks */,
+				D6F066922BC6F25B00C4DFE6 /* Runtime.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +135,11 @@
 		300264BD24266097004559E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6F066D22BC7922900C4DFE6 /* libRuntime.so */,
+				D6F066D02BC7921C00C4DFE6 /* Runtime.bundle */,
+				D6F066912BC6F25B00C4DFE6 /* Runtime.dylib */,
+				D6F066852BC6F14800C4DFE6 /* libcxx.lib */,
+				D6F066722BC6EB6A00C4DFE6 /* Runtime.dll */,
 				D6169D052BB17DFA00E5490C /* libcxx.lib */,
 				D6BA703229E2704B0056FE5F /* imgui.bundle */,
 				D6BA703429E2704B0056FE5F /* xxGraphic.bundle */,

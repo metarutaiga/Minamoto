@@ -205,34 +205,50 @@
 -(void)updateIOWithPresses:(NSSet<UIPress *> *)presses
 {
     ImGuiIO& io = ImGui::GetIO();
-    if (io.KeyMap[ImGuiKey_Tab] == -1)
-    {
-        io.KeyMap[ImGuiKey_Tab]         = UIKeyboardHIDUsageKeyboardTab;
-        io.KeyMap[ImGuiKey_LeftArrow]   = UIKeyboardHIDUsageKeyboardLeftArrow;
-        io.KeyMap[ImGuiKey_RightArrow]  = UIKeyboardHIDUsageKeyboardRightArrow;
-        io.KeyMap[ImGuiKey_UpArrow]     = UIKeyboardHIDUsageKeyboardUpArrow;
-        io.KeyMap[ImGuiKey_DownArrow]   = UIKeyboardHIDUsageKeyboardDownArrow;
-        io.KeyMap[ImGuiKey_PageUp]      = UIKeyboardHIDUsageKeyboardPageUp;
-        io.KeyMap[ImGuiKey_PageDown]    = UIKeyboardHIDUsageKeyboardPageDown;
-        io.KeyMap[ImGuiKey_Home]        = UIKeyboardHIDUsageKeyboardHome;
-        io.KeyMap[ImGuiKey_End]         = UIKeyboardHIDUsageKeyboardEnd;
-        io.KeyMap[ImGuiKey_Insert]      = UIKeyboardHIDUsageKeyboardInsert;
-        io.KeyMap[ImGuiKey_Delete]      = UIKeyboardHIDUsageKeyboardDeleteForward;
-        io.KeyMap[ImGuiKey_Backspace]   = UIKeyboardHIDUsageKeyboardDeleteOrBackspace;
-        io.KeyMap[ImGuiKey_Space]       = UIKeyboardHIDUsageKeyboardSpacebar;
-        io.KeyMap[ImGuiKey_Enter]       = UIKeyboardHIDUsageKeyboardReturnOrEnter;
-        io.KeyMap[ImGuiKey_Escape]      = UIKeyboardHIDUsageKeyboardEscape;
-        io.KeyMap[ImGuiKey_KeypadEnter] = UIKeyboardHIDUsageKeypadEnter;
-        io.KeyMap[ImGuiKey_A]           = UIKeyboardHIDUsageKeyboardA;
-        io.KeyMap[ImGuiKey_C]           = UIKeyboardHIDUsageKeyboardC;
-        io.KeyMap[ImGuiKey_V]           = UIKeyboardHIDUsageKeyboardV;
-        io.KeyMap[ImGuiKey_X]           = UIKeyboardHIDUsageKeyboardX;
-        io.KeyMap[ImGuiKey_Y]           = UIKeyboardHIDUsageKeyboardY;
-        io.KeyMap[ImGuiKey_Z]           = UIKeyboardHIDUsageKeyboardZ;
 
-        // TODO
-        io.ConfigMacOSXBehaviors = false;
-    }
+    // TODO
+    io.ConfigMacOSXBehaviors = false;
+
+    auto HIDUsageToKey = [](UIKeyboardHIDUsage usage) -> ImGuiKey
+    {
+        switch (usage)
+        {
+        case UIKeyboardHIDUsageKeyboardA ... UIKeyboardHIDUsageKeyboardZ:   return ImGuiKey(ImGuiKey_A + usage - UIKeyboardHIDUsageKeyboardA);
+        case UIKeyboardHIDUsageKeyboard0:                                   return ImGuiKey_0;
+        case UIKeyboardHIDUsageKeyboard1 ... UIKeyboardHIDUsageKeyboard9:   return ImGuiKey(ImGuiKey_1 + usage - UIKeyboardHIDUsageKeyboard1);
+
+        case UIKeyboardHIDUsageKeyboardReturnOrEnter:                       return ImGuiKey_Enter;
+        case UIKeyboardHIDUsageKeyboardEscape:                              return ImGuiKey_Escape;
+        case UIKeyboardHIDUsageKeyboardDeleteOrBackspace:                   return ImGuiKey_Backspace;
+        case UIKeyboardHIDUsageKeyboardTab:                                 return ImGuiKey_Tab;
+        case UIKeyboardHIDUsageKeyboardSpacebar:                            return ImGuiKey_Space;
+        case UIKeyboardHIDUsageKeyboardHyphen:                              return ImGuiKey_Minus;
+        case UIKeyboardHIDUsageKeyboardEqualSign:                           return ImGuiKey_Equal;
+        case UIKeyboardHIDUsageKeyboardOpenBracket:                         return ImGuiKey_LeftBracket;
+        case UIKeyboardHIDUsageKeyboardCloseBracket:                        return ImGuiKey_RightBracket;
+        case UIKeyboardHIDUsageKeyboardBackslash:                           return ImGuiKey_Backslash;
+        case UIKeyboardHIDUsageKeyboardSemicolon:                           return ImGuiKey_Semicolon;
+        case UIKeyboardHIDUsageKeyboardQuote:                               return ImGuiKey_Apostrophe;
+        case UIKeyboardHIDUsageKeyboardGraveAccentAndTilde:                 return ImGuiKey_CapsLock;
+        case UIKeyboardHIDUsageKeyboardComma:                               return ImGuiKey_Comma;
+        case UIKeyboardHIDUsageKeyboardPeriod:                              return ImGuiKey_Period;
+        case UIKeyboardHIDUsageKeyboardSlash:                               return ImGuiKey_Slash;
+        case UIKeyboardHIDUsageKeyboardCapsLock:                            return ImGuiKey_CapsLock;
+
+        case UIKeyboardHIDUsageKeyboardF1 ... UIKeyboardHIDUsageKeyboardF12:return ImGuiKey(ImGuiKey_F1 + usage - UIKeyboardHIDUsageKeyboardF1);
+
+        case UIKeyboardHIDUsageKeyboardLeftShift:                           return ImGuiKey_LeftShift;
+        case UIKeyboardHIDUsageKeyboardRightShift:                          return ImGuiKey_RightShift;
+        case UIKeyboardHIDUsageKeyboardLeftControl:                         return ImGuiKey_LeftCtrl;
+        case UIKeyboardHIDUsageKeyboardRightControl:                        return ImGuiKey_RightCtrl;
+        case UIKeyboardHIDUsageKeyboardLeftAlt:                             return ImGuiKey_LeftAlt;
+        case UIKeyboardHIDUsageKeyboardRightAlt:                            return ImGuiKey_RightAlt;
+
+        default:
+            return ImGuiKey_None;
+        }
+    };
+
     for (UIPress* press : presses)
     {
         if (press.key == nil)
@@ -271,7 +287,7 @@
             default:
                 break;
             }
-            io.KeysDown[press.key.keyCode] = true;
+            io.AddKeyEvent(HIDUsageToKey(press.key.keyCode), true);
             break;
         case UIPressPhaseEnded:
         case UIPressPhaseCancelled:
@@ -299,7 +315,7 @@
             default:
                 break;
             }
-            io.KeysDown[press.key.keyCode] = false;
+            io.AddKeyEvent(HIDUsageToKey(press.key.keyCode), false);
             break;
         }
     }

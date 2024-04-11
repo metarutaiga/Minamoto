@@ -42,23 +42,22 @@
 		D698A4D0266BABB200C74361 /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D698A4CB266BABB200C74361 /* imgui_freetype.cpp */; };
 		D698A4E1266BACBD00C74361 /* imgui_impl_win32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D698A4E0266BACBD00C74361 /* imgui_impl_win32.cpp */; };
 		D6BA700529E266BC0056FE5F /* imgui_impl_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6BA700429E266BC0056FE5F /* imgui_impl_osx.mm */; };
-		D6BA701529E26F130056FE5F /* freetype.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA701429E26F130056FE5F /* freetype.dll */; };
-		D6BA701729E26F130056FE5F /* imgui.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA701629E26F130056FE5F /* imgui.dll */; };
-		D6BA701929E26F130056FE5F /* xxGraphic.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA701829E26F130056FE5F /* xxGraphic.dll */; };
-		D6BA701B29E26F740056FE5F /* freetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA701A29E26F740056FE5F /* freetype.dylib */; };
-		D6BA701D29E26F740056FE5F /* imgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA701C29E26F740056FE5F /* imgui.dylib */; };
-		D6BA701F29E26F740056FE5F /* xxGraphic.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA701E29E26F740056FE5F /* xxGraphic.dylib */; };
 		D6BA702129E26FC00056FE5F /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702029E26FC00056FE5F /* GameController.framework */; };
 		D6BA702329E26FC60056FE5F /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702229E26FC60056FE5F /* Metal.framework */; };
 		D6BA703929E270650056FE5F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA703829E270650056FE5F /* AppKit.framework */; };
-		D6BA703B29E270990056FE5F /* freetype.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA703A29E270990056FE5F /* freetype.bundle */; };
-		D6BA703D29E270990056FE5F /* imgui.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA703C29E270990056FE5F /* imgui.bundle */; };
-		D6BA703F29E270990056FE5F /* xxGraphic.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA703E29E270990056FE5F /* xxGraphic.bundle */; };
 		D6BA704329E270D30056FE5F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA704229E270D30056FE5F /* UIKit.framework */; };
 		D6BA704529E270ED0056FE5F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA704429E270ED0056FE5F /* QuartzCore.framework */; };
-		D6BA704729E271350056FE5F /* libfreetype.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA704629E271350056FE5F /* libfreetype.so */; };
-		D6BA704929E271350056FE5F /* libimgui.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA704829E271350056FE5F /* libimgui.so */; };
-		D6BA704B29E271350056FE5F /* libxxGraphic.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA704A29E271350056FE5F /* libxxGraphic.so */; };
+		D6F0667F2BC6ED7100C4DFE6 /* Runtime.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F0667E2BC6ED7100C4DFE6 /* Runtime.dll */; };
+		D6F066902BC6F25000C4DFE6 /* Runtime.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F0668F2BC6F25000C4DFE6 /* Runtime.dylib */; };
+		D6F066BB2BC7913000C4DFE6 /* libRuntime.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066BA2BC7913000C4DFE6 /* libRuntime.so */; };
+		D6F066D82BC7A2C600C4DFE6 /* Editor.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D42BC7A2C600C4DFE6 /* Editor.bundle */; };
+		D6F066D92BC7A2C600C4DFE6 /* Editor.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = D6F066D42BC7A2C600C4DFE6 /* Editor.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		D6F066DA2BC7A2C600C4DFE6 /* Runtime.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D52BC7A2C600C4DFE6 /* Runtime.bundle */; };
+		D6F066DB2BC7A2C600C4DFE6 /* Runtime.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = D6F066D52BC7A2C600C4DFE6 /* Runtime.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		D6F066DC2BC7A2C600C4DFE6 /* Sample.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D62BC7A2C600C4DFE6 /* Sample.bundle */; };
+		D6F066DD2BC7A2C600C4DFE6 /* Sample.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = D6F066D62BC7A2C600C4DFE6 /* Sample.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		D6F066DE2BC7A2C600C4DFE6 /* Validator.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D72BC7A2C600C4DFE6 /* Validator.bundle */; };
+		D6F066DF2BC7A2C600C4DFE6 /* Validator.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = D6F066D72BC7A2C600C4DFE6 /* Validator.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +76,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D6F066DB2BC7A2C600C4DFE6 /* Runtime.bundle in Copy Files */,
+				D6F066D92BC7A2C600C4DFE6 /* Editor.bundle in Copy Files */,
+				D6F066DF2BC7A2C600C4DFE6 /* Validator.bundle in Copy Files */,
+				D6F066DD2BC7A2C600C4DFE6 /* Sample.bundle in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +137,14 @@
 		D6BA704629E271350056FE5F /* libfreetype.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libfreetype.so; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA704829E271350056FE5F /* libimgui.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libimgui.so; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA704A29E271350056FE5F /* libxxGraphic.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libxxGraphic.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F0667C2BC6EC7D00C4DFE6 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F0667E2BC6ED7100C4DFE6 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F0668F2BC6F25000C4DFE6 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066BA2BC7913000C4DFE6 /* libRuntime.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libRuntime.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066D42BC7A2C600C4DFE6 /* Editor.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Editor.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066D52BC7A2C600C4DFE6 /* Runtime.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066D62BC7A2C600C4DFE6 /* Sample.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Sample.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F066D72BC7A2C600C4DFE6 /* Validator.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Validator.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6BA704729E271350056FE5F /* libfreetype.so in Frameworks */,
-				D6BA704929E271350056FE5F /* libimgui.so in Frameworks */,
-				D6BA704B29E271350056FE5F /* libxxGraphic.so in Frameworks */,
+				D6F066BB2BC7913000C4DFE6 /* libRuntime.so in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,9 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D65309F02BB2E0B40006AD64 /* libcxx.lib in Frameworks */,
-				D6BA701529E26F130056FE5F /* freetype.dll in Frameworks */,
-				D6BA701729E26F130056FE5F /* imgui.dll in Frameworks */,
-				D6BA701929E26F130056FE5F /* xxGraphic.dll in Frameworks */,
+				D6F0667F2BC6ED7100C4DFE6 /* Runtime.dll in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,11 +169,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6BA703B29E270990056FE5F /* freetype.bundle in Frameworks */,
-				D6BA703D29E270990056FE5F /* imgui.bundle in Frameworks */,
-				D6BA703F29E270990056FE5F /* xxGraphic.bundle in Frameworks */,
 				D6BA704529E270ED0056FE5F /* QuartzCore.framework in Frameworks */,
 				D6BA704329E270D30056FE5F /* UIKit.framework in Frameworks */,
+				D6F066DE2BC7A2C600C4DFE6 /* Validator.bundle in Frameworks */,
+				D6F066DA2BC7A2C600C4DFE6 /* Runtime.bundle in Frameworks */,
+				D6F066D82BC7A2C600C4DFE6 /* Editor.bundle in Frameworks */,
+				D6F066DC2BC7A2C600C4DFE6 /* Sample.bundle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,9 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6BA701B29E26F740056FE5F /* freetype.dylib in Frameworks */,
-				D6BA701D29E26F740056FE5F /* imgui.dylib in Frameworks */,
-				D6BA701F29E26F740056FE5F /* xxGraphic.dylib in Frameworks */,
+				D6F066902BC6F25000C4DFE6 /* Runtime.dylib in Frameworks */,
 				D6BA703929E270650056FE5F /* AppKit.framework in Frameworks */,
 				D6BA702329E26FC60056FE5F /* Metal.framework in Frameworks */,
 				D6BA702129E26FC00056FE5F /* GameController.framework in Frameworks */,
@@ -265,6 +271,14 @@
 		D644A0EB231F116C00B75B77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6F066D42BC7A2C600C4DFE6 /* Editor.bundle */,
+				D6F066D52BC7A2C600C4DFE6 /* Runtime.bundle */,
+				D6F066D62BC7A2C600C4DFE6 /* Sample.bundle */,
+				D6F066D72BC7A2C600C4DFE6 /* Validator.bundle */,
+				D6F066BA2BC7913000C4DFE6 /* libRuntime.so */,
+				D6F0668F2BC6F25000C4DFE6 /* Runtime.dylib */,
+				D6F0667E2BC6ED7100C4DFE6 /* Runtime.dll */,
+				D6F0667C2BC6EC7D00C4DFE6 /* Runtime.dll */,
 				D65309EF2BB2E0B40006AD64 /* libcxx.lib */,
 				D65309ED2BB2E0A50006AD64 /* libcxx.lib */,
 				D6BA704629E271350056FE5F /* libfreetype.so */,

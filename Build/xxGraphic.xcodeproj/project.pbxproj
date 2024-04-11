@@ -55,9 +55,7 @@
 		CE935F9625AC35DB00CEF503 /* xxSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A2231EDE9A00B75B77 /* xxSystem.cpp */; };
 		CE9D56BA24D165130037EBE6 /* xxGraphicMetal2.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE9D56B824D165130037EBE6 /* xxGraphicMetal2.mm */; };
 		CE9D56BB24D165130037EBE6 /* xxGraphicMetal2.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE9D56B824D165130037EBE6 /* xxGraphicMetal2.mm */; };
-		D6169D002BB17CEB00E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CFE2BB17CEB00E5490C /* ucrt.cpp */; };
-		D6169D012BB17CEB00E5490C /* tls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CFF2BB17CEB00E5490C /* tls.cpp */; };
-		D63370A22B3B24D8001D4057 /* xxGraphic.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A092231EDDFA00B75B77 /* xxGraphic.dylib */; };
+		D63370A22B3B24D8001D4057 /* libxxGraphic.macOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A092231EDDFA00B75B77 /* libxxGraphic.macOS.a */; };
 		D644A0AC231EDE9B00B75B77 /* xxSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A2231EDE9A00B75B77 /* xxSystem.cpp */; };
 		D644A0AD231EDE9B00B75B77 /* xxGraphic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A3231EDE9A00B75B77 /* xxGraphic.cpp */; };
 		D644A0AF231EDE9B00B75B77 /* xxGraphicGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A5231EDE9B00B75B77 /* xxGraphicGLES2.cpp */; };
@@ -70,7 +68,6 @@
 		D690A36E232C346500A149EF /* xxGraphicVulkanAsm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A36B232C346500A149EF /* xxGraphicVulkanAsm.cpp */; };
 		D690A370232D90DC00A149EF /* xxGraphicVulkan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A366232AC54600A149EF /* xxGraphicVulkan.cpp */; settings = {COMPILER_FLAGS = "-x objective-c++ -fobjc-arc -fobjc-weak -fmodules"; }; };
 		D6A727F3232318E4009981AD /* xxGraphicMetal.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6A727F1232318E4009981AD /* xxGraphicMetal.mm */; };
-		D6A727F7232414A7009981AD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A727F6232414A7009981AD /* QuartzCore.framework */; };
 		D6A86A5A25EA32CC00074B9C /* xxGraphicInternalMantle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A86A5825EA32CC00074B9C /* xxGraphicInternalMantle.cpp */; };
 		D6A86A6B25EA332A00074B9C /* xxGraphicInternalGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A86A6925EA332A00074B9C /* xxGraphicInternalGL.cpp */; };
 		D6A86A6C25EA332A00074B9C /* xxGraphicInternalGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A86A6925EA332A00074B9C /* xxGraphicInternalGL.cpp */; };
@@ -83,7 +80,6 @@
 		D6A86A9A25EA790000074B9C /* xxGraphicInternalMetal.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6A86A9925EA790000074B9C /* xxGraphicInternalMetal.mm */; };
 		D6A86A9B25EA790000074B9C /* xxGraphicInternalMetal.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6A86A9925EA790000074B9C /* xxGraphicInternalMetal.mm */; };
 		D6B338562320209A0096D02F /* xxGraphicCGL.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6B33854232020990096D02F /* xxGraphicCGL.mm */; };
-		D6B3385D232044100096D02F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B3385C232044100096D02F /* Cocoa.framework */; };
 		D6B70EC823283AEC000FFCBB /* xxGraphicEAGL.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6D0AA6323283A3D0044D0CF /* xxGraphicEAGL.mm */; };
 		D6DA664B23258F6F00953C5B /* xxGraphicMetal.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6A727F1232318E4009981AD /* xxGraphicMetal.mm */; };
 		D6DA664D23258F6F00953C5B /* xxGraphicGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A5231EDE9B00B75B77 /* xxGraphicGLES2.cpp */; };
@@ -99,7 +95,7 @@
 			dstPath = Minamoto.app/Contents/Frameworks;
 			dstSubfolderSpec = 16;
 			files = (
-				D63370A22B3B24D8001D4057 /* xxGraphic.dylib in CopyFiles */,
+				D63370A22B3B24D8001D4057 /* libxxGraphic.macOS.a in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +106,7 @@
 		3039FA052447670900E671A7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS13.4.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
 		30A1B642260E4C3100941EB3 /* xxGraphicD3D5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicD3D5.h; path = ../SDK/xxGraphic/xxGraphicD3D5.h; sourceTree = "<group>"; };
 		30A1B643260E4C3100941EB3 /* xxGraphicD3D5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxGraphicD3D5.cpp; path = ../SDK/xxGraphic/xxGraphicD3D5.cpp; sourceTree = "<group>"; };
-		30A9A75E25ADC60D000FA104 /* libxxGraphic.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libxxGraphic.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		30A9A75E25ADC60D000FA104 /* libxxGraphic.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxxGraphic.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		30C4066E2610CE22008B134A /* glide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glide.h; path = ../SDK/xxGraphic/glide/glide.h; sourceTree = "<group>"; };
 		30C4066F2610CE22008B134A /* glideutl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glideutl.h; path = ../SDK/xxGraphic/glide/glideutl.h; sourceTree = "<group>"; };
 		30C406702610CE22008B134A /* glidesys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glidesys.h; path = ../SDK/xxGraphic/glide/glidesys.h; sourceTree = "<group>"; };
@@ -145,16 +141,14 @@
 		CE05B0B325DFB870007B76D7 /* gl2ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = gl2ext.h; path = ../SDK/xxGraphic/gl/gl2ext.h; sourceTree = "<group>"; };
 		CE05B0B425DFB88A007B76D7 /* vulkan_directfb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vulkan_directfb.h; path = ../SDK/xxGraphic/vulkan/vulkan_directfb.h; sourceTree = "<group>"; };
 		CE05B0B525DFB88A007B76D7 /* vulkan_beta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vulkan_beta.h; path = ../SDK/xxGraphic/vulkan/vulkan_beta.h; sourceTree = "<group>"; };
-		CE935F7425AC35B000CEF503 /* xxGraphic.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = xxGraphic.dll; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE935F7425AC35B000CEF503 /* xxGraphic.Windows.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = xxGraphic.Windows.lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9D56B824D165130037EBE6 /* xxGraphicMetal2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = xxGraphicMetal2.mm; path = ../SDK/xxGraphic/xxGraphicMetal2.mm; sourceTree = "<group>"; };
 		CE9D56B924D165130037EBE6 /* xxGraphicMetal2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicMetal2.h; path = ../SDK/xxGraphic/xxGraphicMetal2.h; sourceTree = "<group>"; };
 		CEACD48E2612AC4F00D1AFC0 /* xxVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxVector.h; path = ../SDK/xxGraphic/xxVector.h; sourceTree = "<group>"; };
-		D6022C4223258BB600B9BFB8 /* xxGraphic.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = xxGraphic.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6022C4223258BB600B9BFB8 /* libxxGraphic.iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxxGraphic.iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
-		D6169CFE2BB17CEB00E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
-		D6169CFF2BB17CEB00E5490C /* tls.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tls.cpp; path = "../SDK/ClangPlatform/windows-msvc/tls.cpp"; sourceTree = "<group>"; };
-		D644A092231EDDFA00B75B77 /* xxGraphic.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = xxGraphic.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D644A092231EDDFA00B75B77 /* libxxGraphic.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxxGraphic.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D644A0A0231EDE9A00B75B77 /* xxGraphicNULL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicNULL.h; path = ../SDK/xxGraphic/xxGraphicNULL.h; sourceTree = "<group>"; };
 		D644A0A2231EDE9A00B75B77 /* xxSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxSystem.cpp; path = ../SDK/xxGraphic/xxSystem.cpp; sourceTree = "<group>"; };
 		D644A0A3231EDE9A00B75B77 /* xxGraphic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxGraphic.cpp; path = ../SDK/xxGraphic/xxGraphic.cpp; sourceTree = "<group>"; };
@@ -294,8 +288,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6B3385D232044100096D02F /* Cocoa.framework in Frameworks */,
-				D6A727F7232414A7009981AD /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,8 +331,6 @@
 			children = (
 				D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */,
 				D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */,
-				D6169CFF2BB17CEB00E5490C /* tls.cpp */,
-				D6169CFE2BB17CEB00E5490C /* ucrt.cpp */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -371,10 +361,10 @@
 		D644A093231EDDFA00B75B77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D644A092231EDDFA00B75B77 /* xxGraphic.dylib */,
-				D6022C4223258BB600B9BFB8 /* xxGraphic.bundle */,
-				CE935F7425AC35B000CEF503 /* xxGraphic.dll */,
-				30A9A75E25ADC60D000FA104 /* libxxGraphic.so */,
+				D644A092231EDDFA00B75B77 /* libxxGraphic.macOS.a */,
+				D6022C4223258BB600B9BFB8 /* libxxGraphic.iOS.a */,
+				CE935F7425AC35B000CEF503 /* xxGraphic.Windows.lib */,
+				30A9A75E25ADC60D000FA104 /* libxxGraphic.Android.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -651,8 +641,8 @@
 			);
 			name = "xxGraphic-Android";
 			productName = "xxGraphic-Android";
-			productReference = 30A9A75E25ADC60D000FA104 /* libxxGraphic.so */;
-			productType = "com.apple.product-type.library.dynamic";
+			productReference = 30A9A75E25ADC60D000FA104 /* libxxGraphic.Android.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		CE935F7325AC35B000CEF503 /* xxGraphic-Windows */ = {
 			isa = PBXNativeTarget;
@@ -667,8 +657,8 @@
 			);
 			name = "xxGraphic-Windows";
 			productName = "xxGraphic-Windows";
-			productReference = CE935F7425AC35B000CEF503 /* xxGraphic.dll */;
-			productType = "com.apple.product-type.library.dynamic";
+			productReference = CE935F7425AC35B000CEF503 /* xxGraphic.Windows.lib */;
+			productType = "com.apple.product-type.library.static";
 		};
 		D6022C4123258BB600B9BFB8 /* xxGraphic-iOS */ = {
 			isa = PBXNativeTarget;
@@ -683,8 +673,8 @@
 			);
 			name = "xxGraphic-iOS";
 			productName = "xxGraphic-iOS";
-			productReference = D6022C4223258BB600B9BFB8 /* xxGraphic.bundle */;
-			productType = "com.apple.product-type.library.dynamic";
+			productReference = D6022C4223258BB600B9BFB8 /* libxxGraphic.iOS.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		D644A091231EDDFA00B75B77 /* xxGraphic-macOS */ = {
 			isa = PBXNativeTarget;
@@ -700,8 +690,8 @@
 			);
 			name = "xxGraphic-macOS";
 			productName = xxGraphic;
-			productReference = D644A092231EDDFA00B75B77 /* xxGraphic.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
+			productReference = D644A092231EDDFA00B75B77 /* libxxGraphic.macOS.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -804,8 +794,6 @@
 				CE935F9325AC35DB00CEF503 /* xxGraphicVulkan.cpp in Sources */,
 				CE935F9425AC35DB00CEF503 /* xxGraphicVulkanAsm.cpp in Sources */,
 				CE935F9625AC35DB00CEF503 /* xxSystem.cpp in Sources */,
-				D6169D012BB17CEB00E5490C /* tls.cpp in Sources */,
-				D6169D002BB17CEB00E5490C /* ucrt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +851,7 @@
 			baseConfigurationReference = D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = xxGraphic.Android;
 			};
 			name = Debug;
 		};
@@ -871,6 +860,7 @@
 			baseConfigurationReference = D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = xxGraphic.Android;
 			};
 			name = Release;
 		};
@@ -878,6 +868,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = lib;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -885,6 +876,7 @@
 					"$(inherited)",
 					"-Wl,-noentry",
 				);
+				PRODUCT_NAME = xxGraphic.Windows;
 			};
 			name = Debug;
 		};
@@ -892,6 +884,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = lib;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -899,14 +892,15 @@
 					"$(inherited)",
 					"-Wl,-noentry",
 				);
+				PRODUCT_NAME = xxGraphic.Windows;
 			};
 			name = Release;
 		};
 		D6022C4923258BB600B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = bundle;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = xxGraphic.iOS;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -914,8 +908,8 @@
 		D6022C4A23258BB600B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = bundle;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = xxGraphic.iOS;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -983,7 +977,7 @@
 				HEADER_SEARCH_PATHS = ../SDK/xxGraphic;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OBJROOT = ../Build/temp;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1060,7 +1054,7 @@
 				HEADER_SEARCH_PATHS = ../SDK/xxGraphic;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OBJROOT = ../Build/temp;
 				OTHER_CFLAGS = (
@@ -1081,6 +1075,7 @@
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = xxGraphic.macOS;
 			};
 			name = Debug;
 		};
@@ -1089,6 +1084,7 @@
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = xxGraphic.macOS;
 			};
 			name = Release;
 		};

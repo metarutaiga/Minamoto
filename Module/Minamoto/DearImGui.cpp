@@ -277,15 +277,17 @@ bool DearImGui::Update(bool demo)
 
     if (demo == false)
     {
+#ifndef IMGUI_DISABLE_DEMO_WINDOWS
         if (g_demoWindow)
         {
             ImGui::ShowDemoWindow(&g_demoWindow);
         }
+#endif
         ImGui::EndFrame();
         ImGui::Render();
         return g_powerSaving == false;
     }
-
+#ifndef IMGUI_DISABLE_DEMO_WINDOWS
     // Global data for the demo
     static bool show_demo_window = true;
     static bool show_another_window = false;
@@ -327,7 +329,7 @@ bool DearImGui::Update(bool demo)
             show_another_window = false;
         ImGui::End();
     }
-
+#endif
     // Rendering
     ImGui::EndFrame();
     ImGui::Render();
