@@ -37,7 +37,21 @@
 		D6F066C72BC791D400C4DFE6 /* libimgui.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066C62BC791D400C4DFE6 /* libimgui.Android.a */; };
 		D6F066C92BC791D500C4DFE6 /* libxxGraphic.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066C82BC791D500C4DFE6 /* libxxGraphic.Android.a */; };
 		D6F066CB2BC791D500C4DFE6 /* libxxGraphicPlus.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066CA2BC791D500C4DFE6 /* libxxGraphicPlus.Android.a */; };
+		D6F066E12BC7B60100C4DFE6 /* Runtime.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* Runtime.dylib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D6F066E02BC7B5D900C4DFE6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Minamoto.app/Contents/Frameworks;
+			dstSubfolderSpec = 16;
+			files = (
+				D6F066E12BC7B60100C4DFE6 /* Runtime.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		30A9A7BB25ADC792000FA104 /* libRuntime.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libRuntime.so; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,6 +258,7 @@
 			buildPhases = (
 				D644A03E231ED82900B75B77 /* Sources */,
 				D644A03F231ED82900B75B77 /* Frameworks */,
+				D6F066E02BC7B5D900C4DFE6 /* CopyFiles */,
 			);
 			buildRules = (
 			);

@@ -36,10 +36,6 @@
 		D690A38D23341A8400A149EF /* DearImGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A38A23341A8400A149EF /* DearImGui.cpp */; settings = {COMPILER_FLAGS = "-x objective-c++ -fobjc-arc -fobjc-weak -fmodules"; }; };
 		D690A3962334291E00A149EF /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D690A3932334291E00A149EF /* main.mm */; };
 		D690A3972334291E00A149EF /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D690A3932334291E00A149EF /* main.mm */; };
-		D698A4CD266BABB200C74361 /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D698A4CB266BABB200C74361 /* imgui_freetype.cpp */; };
-		D698A4CE266BABB200C74361 /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D698A4CB266BABB200C74361 /* imgui_freetype.cpp */; };
-		D698A4CF266BABB200C74361 /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D698A4CB266BABB200C74361 /* imgui_freetype.cpp */; };
-		D698A4D0266BABB200C74361 /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D698A4CB266BABB200C74361 /* imgui_freetype.cpp */; };
 		D698A4E1266BACBD00C74361 /* imgui_impl_win32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D698A4E0266BACBD00C74361 /* imgui_impl_win32.cpp */; };
 		D6BA700529E266BC0056FE5F /* imgui_impl_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6BA700429E266BC0056FE5F /* imgui_impl_osx.mm */; };
 		D6BA702129E26FC00056FE5F /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702029E26FC00056FE5F /* GameController.framework */; };
@@ -114,8 +110,6 @@
 		D690A38B23341A8400A149EF /* DearImGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DearImGui.h; path = ../DearImGui.h; sourceTree = "<group>"; };
 		D690A3922334291E00A149EF /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = "<group>"; };
 		D690A3932334291E00A149EF /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../main.mm; sourceTree = "<group>"; };
-		D698A4CB266BABB200C74361 /* imgui_freetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_freetype.cpp; path = ../../../SDK/imgui/misc/freetype/imgui_freetype.cpp; sourceTree = "<group>"; };
-		D698A4CC266BABB200C74361 /* imgui_freetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_freetype.h; path = ../../../SDK/imgui/misc/freetype/imgui_freetype.h; sourceTree = "<group>"; };
 		D698A4DF266BACBD00C74361 /* imgui_impl_win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_impl_win32.h; path = ../../../SDK/imgui/backends/imgui_impl_win32.h; sourceTree = "<group>"; };
 		D698A4E0266BACBD00C74361 /* imgui_impl_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_impl_win32.cpp; path = ../../../SDK/imgui/backends/imgui_impl_win32.cpp; sourceTree = "<group>"; };
 		D6BA700329E266BC0056FE5F /* imgui_impl_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_impl_osx.h; path = ../../../SDK/imgui/backends/imgui_impl_osx.h; sourceTree = "<group>"; };
@@ -192,15 +186,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3001404025F327DD00B8B851 /* misc */ = {
-			isa = PBXGroup;
-			children = (
-				D698A4CB266BABB200C74361 /* imgui_freetype.cpp */,
-				D698A4CC266BABB200C74361 /* imgui_freetype.h */,
-			);
-			name = misc;
-			sourceTree = "<group>";
-		};
 		3083107425F49FEB0095892D /* backends */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +215,6 @@
 			children = (
 				3083107425F49FEB0095892D /* backends */,
 				D644A0DA231F107D00B75B77 /* implement */,
-				3001404025F327DD00B8B851 /* misc */,
 			);
 			name = imgui;
 			sourceTree = "<group>";
@@ -460,7 +444,6 @@
 			files = (
 				CEAF9CB725AE756C008B7C57 /* imgui_impl_xx.cpp in Sources */,
 				D63370682B3534FE001D4057 /* Logger.cpp in Sources */,
-				D698A4D0266BABB200C74361 /* imgui_freetype.cpp in Sources */,
 				CEAF9CB825AE756C008B7C57 /* DearImGui.cpp in Sources */,
 				CEAF9CB925AE756C008B7C57 /* mainJNI.cpp in Sources */,
 				CEAF9CBA25AE756C008B7C57 /* Module.cpp in Sources */,
@@ -475,7 +458,6 @@
 				CEC4337925AD24A400936983 /* imgui_impl_xx.cpp in Sources */,
 				D633706B2B3534FE001D4057 /* Logger.cpp in Sources */,
 				D6169D122BB17F3700E5490C /* ucrt.cpp in Sources */,
-				D698A4CF266BABB200C74361 /* imgui_freetype.cpp in Sources */,
 				D65309FF2BB2F3A50006AD64 /* except.cpp in Sources */,
 				CEC4337A25AD24A400936983 /* DearImGui.cpp in Sources */,
 				D698A4E1266BACBD00C74361 /* imgui_impl_win32.cpp in Sources */,
@@ -493,7 +475,6 @@
 			files = (
 				D6022C6A23258E9500B9BFB8 /* imgui_impl_xx.cpp in Sources */,
 				D63370692B3534FE001D4057 /* Logger.cpp in Sources */,
-				D698A4CE266BABB200C74361 /* imgui_freetype.cpp in Sources */,
 				D690A38D23341A8400A149EF /* DearImGui.cpp in Sources */,
 				D690A3972334291E00A149EF /* main.mm in Sources */,
 				300264C3242687B7004559E0 /* Module.cpp in Sources */,
@@ -505,7 +486,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D698A4CD266BABB200C74361 /* imgui_freetype.cpp in Sources */,
 				D6BA700529E266BC0056FE5F /* imgui_impl_osx.mm in Sources */,
 				D644A0EA231F109D00B75B77 /* imgui_impl_xx.cpp in Sources */,
 				D633706A2B3534FE001D4057 /* Logger.cpp in Sources */,

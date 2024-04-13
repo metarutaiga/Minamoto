@@ -62,8 +62,8 @@ moduleAPI bool Update(const UpdateData& updateData)
     {
         if (ImGui::Begin("Clock", &showClock))
         {
-            char textPrevious[64];
-            char textCurrent[64];
+            static char textPrevious[64];
+            static char textCurrent[64];
             time_t t = time(nullptr);
             struct tm* tm = localtime(&t);
             strftime(textCurrent, sizeof(textCurrent), "%c", tm);

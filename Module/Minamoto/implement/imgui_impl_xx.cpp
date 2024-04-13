@@ -320,9 +320,9 @@ bool ImGui_ImplXX_CreateDeviceObjects()
     ImDrawVert vert;
     int attributes[] =
     {
-        0, (int)xxOffsetOf(ImDrawVert, pos),  3, xxSizeOf(vert.pos) + xxSizeOf(vert.z),
-        0, (int)xxOffsetOf(ImDrawVert, col),  4, xxSizeOf(vert.col),
-        0, (int)xxOffsetOf(ImDrawVert, uv),   2, xxSizeOf(vert.uv)
+        0, (int)xxOffsetOf(ImDrawVert, pos), 'POS3', xxSizeOf(vert.pos) + xxSizeOf(vert.z),
+        0, (int)xxOffsetOf(ImDrawVert, col), 'COL4', xxSizeOf(vert.col),
+        0, (int)xxOffsetOf(ImDrawVert, uv),  'TEX2', xxSizeOf(vert.uv)
     };
 
     g_fontSampler = xxCreateSampler(g_device, false, false, false, true, true, true, 1);

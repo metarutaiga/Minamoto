@@ -13,7 +13,7 @@
 //------------------------------------------------------------------------------
 xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
 {
-    xxMeshPtr mesh = xxMesh::Create(0, 1, 1);
+    xxMeshPtr mesh = xxMesh::Create(false, 0, 1, 1);
     if (mesh == nullptr)
         return nullptr;
 

@@ -118,7 +118,7 @@ static xxMeshPtr createMesh(ufbx_mesh* mesh)
     }
     colorCount = std::min((int)mesh->color_sets.count, 8);
     textureCount = std::min((int)mesh->uv_sets.count, 8);
-    xxMeshPtr output = xxMesh::Create(normalCount, colorCount, textureCount);
+    xxMeshPtr output = xxMesh::Create(false, normalCount, colorCount, textureCount);
     output->Name = str(mesh->name);
     output->SetVertexCount((int)mesh->num_indices);
 

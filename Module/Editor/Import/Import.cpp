@@ -96,7 +96,7 @@ xxMeshPtr Import::CreateMesh(std::vector<xxVector3> const& vertices, std::vector
     int normal = int(normals.size() / vertices.size());
     int color = int(colors.size() / vertices.size());
     int texture = int(textures.size() / vertices.size());
-    xxMeshPtr mesh = xxMesh::Create(normal, color, texture);
+    xxMeshPtr mesh = xxMesh::Create(false, normal, color, texture);
     if (mesh == nullptr)
         return nullptr;
 
@@ -240,7 +240,7 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
         }
     }
 
-    xxMeshPtr output = xxMesh::Create(normalCount, colorCount, textureCount);
+    xxMeshPtr output = xxMesh::Create(false, normalCount, colorCount, textureCount);
     output->Name = mesh->Name;
     output->SetVertexCount((int)vertices.size());
     output->SetIndexCount((int)indices.size());
