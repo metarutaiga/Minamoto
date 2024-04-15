@@ -13,6 +13,8 @@
 
 #include "ufbx/ufbx.h"
 
+#define TAG "ImportFBX"
+
 //==============================================================================
 static std::string str(const ufbx_string& string)
 {
@@ -97,10 +99,11 @@ static xxMaterialPtr createMaterial(ufbx_material* material)
     return output;
 };
 //------------------------------------------------------------------------------
-static xxMeshPtr createMesh(ufbx_mesh* mesh)
+static xxMeshPtr createMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr const& root)
 {
     if (mesh == nullptr)
         return xxMeshPtr();
+    ufbx_skin_deformer* skin_deformer = mesh->skin_deformers.count ? mesh->skin_deformers.data[0] : nullptr;
     int normalCount = 0;
     int colorCount = 0;
     int textureCount = 0;
@@ -118,11 +121,13 @@ static xxMeshPtr createMesh(ufbx_mesh* mesh)
     }
     colorCount = std::min((int)mesh->color_sets.count, 8);
     textureCount = std::min((int)mesh->uv_sets.count, 8);
-    xxMeshPtr output = xxMesh::Create(false, normalCount, colorCount, textureCount);
+    xxMeshPtr output = xxMesh::Create(skin_deformer != nullptr, normalCount, colorCount, textureCount);
     output->Name = str(mesh->name);
     output->SetVertexCount((int)mesh->num_indices);
 
     xxStrideIterator<xxVector3> vertices = output->GetVertex();
+    xxStrideIterator<xxVector3> boneWeight = output->GetBoneWeight();
+    xxStrideIterator<uint32_t> boneIndices = output->GetBoneIndices();
     xxStrideIterator<xxVector3> normals = output->GetNormal(0);
     xxStrideIterator<xxVector3> tangents = output->GetNormal(1);
     xxStrideIterator<xxVector3> bitangents = output->GetNormal(2);
@@ -140,6 +145,21 @@ static xxMeshPtr createMesh(ufbx_mesh* mesh)
     for (size_t i = 0; i < mesh->num_indices; ++i)
     {
         (*vertices++) = vec3(ufbx_get_vertex_vec3(&mesh->vertex_position, i));
+        if (skin_deformer)
+        {
+            uint32_t index = mesh->vertex_position.indices.data[i];
+            uint32_t weightBegin = skin_deformer->vertices.data[index].weight_begin;
+            uint32_t numWeights = skin_deformer->vertices.data[index].num_weights;
+            xxVector4 weight = xxVector4::ZERO;
+            uint32_t indices = 0;
+            for (uint32_t i = 0; i < numWeights && i < 4; ++i)
+            {
+                weight[i] = skin_deformer->weights.data[weightBegin + i].weight;
+                indices |= skin_deformer->weights.data[weightBegin + i].cluster_index << (i * 8);
+            }
+            (*boneWeight++) = weight.xyz;
+            (*boneIndices++) = indices;
+        }
         if (normalCount >= 1)
             (*normals++) = vec3(ufbx_get_vertex_vec3(&mesh->vertex_normal, i));
         if (normalCount >= 2)
@@ -160,17 +180,49 @@ static xxMeshPtr createMesh(ufbx_mesh* mesh)
         }
     }
 
+    if (skin_deformer)
+    {
+        for (size_t i = 0; i < skin_deformer->clusters.count; ++i)
+        {
+            ufbx_skin_cluster* cluster = skin_deformer->clusters.data[i];
+            ufbx_node* from = cluster->bone_node;
+            xxNodePtr to;
+            if (from)
+            {
+                const char* name = from->name.data;
+                xxNode::Traversal([&](xxNodePtr const& node)
+                {
+                    if (node->Name == name)
+                        to = node;
+                    return to == nullptr;
+                }, root);
+            }
+            if (to == nullptr)
+            {
+                to = root;
+                xxLog(TAG, "Bone %s is not found", from ? from->name.data : "(nullptr)");
+            }
+            node->Bones.push_back({ to, mat4(cluster->geometry_to_bone) });
+        }
+        for (auto& boneData : node->Bones)
+        {
+            boneData.ResetPointer();
+        }
+    }
+
     return output;
 }
 //------------------------------------------------------------------------------
-static xxNodePtr createNode(ufbx_node* node)
+static xxNodePtr createNode(ufbx_node* node, xxNodePtr root)
 {
     if (node == nullptr)
         return xxNodePtr();
     xxNodePtr output = xxNode::Create();
+    if (root == nullptr)
+        root = output;
     for (size_t i = 0; i < node->children.count; ++i)
     {
-        xxNodePtr child = createNode(node->children.data[i]);
+        xxNodePtr child = createNode(node->children.data[i], root);
         if (child)
         {
             output->AttachChild(child);
@@ -202,7 +254,7 @@ static xxNodePtr createNode(ufbx_node* node)
             ufbx_material* material = node->mesh->materials.data[0];
             geometryNode->Material = createMaterial(material);
         }
-        geometryNode->Mesh = createMesh(node->mesh);
+        geometryNode->Mesh = createMesh(node->mesh, geometryNode, root);
         if (Import::EnableOptimizeMesh)
         {
             geometryNode->Mesh = Import::OptimizeMesh(geometryNode->Mesh);
@@ -218,11 +270,11 @@ xxNodePtr ImportFBX::Create(char const* fbx)
     ufbx_scene* scene = ufbx_load_file(fbx, &opts, &error);
     if (scene == nullptr)
     {
-        xxLog("ImportFBX", "Failed to load: %s", error.description.data);
+        xxLog(TAG, "Failed to load: %s", error.description.data);
         return nullptr;
     }
 
-    xxNodePtr root = createNode(scene->root_node);
+    xxNodePtr root = createNode(scene->root_node, nullptr);
     if (root)
     {
         if (root->Name.empty())

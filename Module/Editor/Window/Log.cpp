@@ -9,6 +9,7 @@
 #include "Log.h"
 
 std::deque<char*> Log::systemLog;
+float Log::windowHeights[2];
 //------------------------------------------------------------------------------
 void Log::Initialize()
 {
@@ -31,29 +32,32 @@ bool Log::Update(const UpdateData& updateData, bool& show)
     static bool resetScroll = false;
     static size_t logCount = 0;
 
-    ImGuiStyle& style = ImGui::GetStyle();
-    ImGuiViewport* viewport = ImGui::GetMainViewport();
-
     int flags;
-
-    float titleHeight = ImGui::GetFontSize() + style.FramePadding.y * 2.0f;
-    float borderHeight = style.FramePadding.y * 2.0f;
-    float windowHeight = ImGui::GetFontSize() + style.FramePadding.y * 2.0f;
+    ImGuiViewport* viewport = ImGui::GetMainViewport();
     if (collapse)
     {
-        ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x, viewport->Pos.y - 1.0f + viewport->Size.y - titleHeight - borderHeight - windowHeight * 10.0f));
-        ImGui::SetNextWindowSize(ImVec2(viewport->Size.x, titleHeight + borderHeight + windowHeight * 10.0f));
         flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysVerticalScrollbar;
+        ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x, viewport->Pos.y + viewport->Size.y - windowHeights[0]));
+        ImGui::SetNextWindowSize(ImVec2(viewport->Size.x, windowHeights[0]));
     }
     else
     {
-        ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x, viewport->Pos.y - 1.0f + viewport->Size.y - borderHeight * 2.0f - windowHeight));
-        ImGui::SetNextWindowSize(ImVec2(viewport->Size.x, borderHeight * 2.0f + windowHeight));
         flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoScrollbar;
+        ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x, viewport->Pos.y + viewport->Size.y - windowHeights[1]));
+        ImGui::SetNextWindowSize(ImVec2(viewport->Size.x, windowHeights[1]));
     }
 
     if (ImGui::Begin("Log", nullptr, flags))
     {
+        if (collapse)
+        {
+            windowHeights[0] = windowHeights[1] * 5.0f;
+        }
+        else
+        {
+            windowHeights[1] = ImGui::GetWindowHeight();
+        }
+
         if (ImGui::IsWindowHovered() && ImGui::IsMouseDoubleClicked(0))
         {
             collapse = !collapse;
@@ -89,9 +93,15 @@ bool Log::Update(const UpdateData& updateData, bool& show)
         {
             ImGui::TextUnformatted(systemLog.back());
         }
+
+        ImGui::End();
     }
-    ImGui::End();
 
     return false;
+}
+//------------------------------------------------------------------------------
+float Log::GetWindowHeight()
+{
+    return windowHeights[1];
 }
 //------------------------------------------------------------------------------

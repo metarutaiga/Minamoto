@@ -12,6 +12,7 @@
 #include "Import/ImportFBX.h"
 #include "Import/ImportWavefront.h"
 #include "Hierarchy.h"
+#include "Log.h"
 #include "Inspector.h"
 
 #if defined(__APPLE__)
@@ -72,6 +73,8 @@ void Hierarchy::Import(const UpdateData& updateData)
         if (ImGui::Button("..."))
         {
 #if HAVE_FILEDIALOG
+            if (importName[0] == 0 && exportName[0])
+                strcpy(importName, exportName);
 #if defined(_WIN32)
             IGFD::FileDialogConfig config = { importName[0] ? importName : std::string(xxGetDocumentPath()) + '\\' };
             if (config.path.size() && config.path.back() != '\\')
@@ -81,12 +84,17 @@ void Hierarchy::Import(const UpdateData& updateData)
             if (config.path.size() && config.path.back() != '/')
                 config.path.resize(config.path.rfind('/') + 1);
 #endif
-            importFileDialog->OpenDialog("Import", "Choose File", ".fbx,.obj,.xx", config);
+            const char* filters =
+                "Kaydara Flimbox(*.fbx){.fbx},"
+                "Wavefront Object(*.obj){.obj},"
+                "Double Cross(*.xx){.xx},";
+            importFileDialog->OpenDialog("Import", "Choose File", filters, config);
 #endif
         }
         ImGui::Checkbox("Axis Up Y to Z", &Import::EnableAxisUpYToZ);
         ImGui::Checkbox("Optimize Mesh", &Import::EnableOptimizeMesh);
         ImGui::Checkbox("Texture Flip V", &Import::EnableTextureFlipV);
+        ImGui::Checkbox("Merge Node", &Import::EnableMergeNode);
         if (ImGui::Button("Import"))
         {
             float begin = xxGetCurrentTime();
@@ -101,7 +109,14 @@ void Hierarchy::Import(const UpdateData& updateData)
             {
                 float time = xxGetCurrentTime() - begin;
                 xxLog("Hierarchy", "Import : %s (%0.fus)", xxFile::GetName(importName).c_str(), time * 1000000);
-                importNode->AttachChild(node);
+                if (Import::EnableMergeNode)
+                {
+                    Import::MergeNode(importNode, node, importNode);
+                }
+                else
+                {
+                    importNode->AttachChild(node);
+                }
                 importNode = nullptr;
                 show = false;
             }
@@ -143,6 +158,8 @@ void Hierarchy::Export(const UpdateData& updateData)
         if (ImGui::Button("..."))
         {
 #if HAVE_FILEDIALOG
+            if (exportName[0] == 0 && importName[0])
+                strcpy(exportName, importName);
 #if defined(_WIN32)
             IGFD::FileDialogConfig config = { exportName[0] ? exportName : std::string(xxGetDocumentPath()) + '\\' };
             if (config.path.size() && config.path.back() != '\\')
@@ -152,7 +169,9 @@ void Hierarchy::Export(const UpdateData& updateData)
             if (config.path.size() && config.path.back() != '/')
                 config.path.resize(config.path.rfind('/') + 1);
 #endif
-            exportFileDialog->OpenDialog("Export", "Choose File", ".xx", config);
+            const char* filters =
+                "Double Cross(*.xx){.xx},";
+            exportFileDialog->OpenDialog("Export", "Choose File", filters, config);
 #endif
         }
         if (ImGui::Button("Export"))
@@ -189,20 +208,16 @@ void Hierarchy::Export(const UpdateData& updateData)
     }
 }
 //------------------------------------------------------------------------------
-bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const& root)
+bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& show, xxNodePtr const& root)
 {
     if (show == false)
         return false;
 
     bool update = false;
-    ImGuiStyle& style = ImGui::GetStyle();
     ImGuiViewport* viewport = ImGui::GetMainViewport();
+    ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x, viewport->Pos.y + menuBarHeight));
+    ImGui::SetNextWindowSize(ImVec2(windowWidth, viewport->Size.y - menuBarHeight - Log::GetWindowHeight()));
 
-    float windowHeight = ImGui::GetFontSize() + style.FramePadding.y * 2.0f;
-    float borderHeight = style.FramePadding.y * 2.0f;
-
-    ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x, viewport->Pos.y + windowHeight));
-    ImGui::SetNextWindowSize(ImVec2(windowWidth, viewport->Size.y - windowHeight * 2.0f - borderHeight * 2.0f));
     if (ImGui::Begin("Hierarchy", &show))
     {
         windowWidth = ImGui::GetWindowWidth();
@@ -249,8 +264,10 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
         };
         if (root)
         {
+            ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.0f, 1.0f));
             for (size_t i = 0; i < root->GetChildCount(); ++i)
                 traversal(root->GetChild(i));
+            ImGui::PopStyleVar();
         }
 
         // Left

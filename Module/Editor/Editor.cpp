@@ -97,10 +97,13 @@ moduleAPI bool Update(const UpdateData& updateData)
     static bool showHierarchy = true;
     static bool showInspector = true;
     static bool showLog = true;
+    float menuBarHeight = 0.0f;
     bool updated = false;
 
     if (ImGui::BeginMainMenuBar())
     {
+        menuBarHeight = ImGui::GetWindowHeight();
+
         if (ImGui::BeginMenu(MODULE_NAME))
         {
             ImGui::MenuItem("About " MODULE_NAME, nullptr, &showAbout);
@@ -125,8 +128,8 @@ moduleAPI bool Update(const UpdateData& updateData)
         }
     }
 
-    updated |= Hierarchy::Update(updateData, showHierarchy, root);
-    updated |= Inspector::Update(updateData, showInspector, camera->GetCamera());
+    updated |= Hierarchy::Update(updateData, menuBarHeight, showHierarchy, root);
+    updated |= Inspector::Update(updateData, menuBarHeight, showInspector, camera->GetCamera());
     updated |= Log::Update(updateData, showLog);
 
     if (camera)

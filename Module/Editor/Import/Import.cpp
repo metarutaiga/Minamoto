@@ -6,6 +6,7 @@
 //==============================================================================
 #include <utility/xxImage.h>
 #include <utility/xxMesh.h>
+#include <utility/xxNode.h>
 #include "Import.h"
 
 #define STBI_ONLY_PNG
@@ -13,9 +14,12 @@
 #pragma clang diagnostic ignored "-Wunused-function"
 #include <stb/stb_image.h>
 
+#define TAG "Import"
+
 bool Import::EnableAxisUpYToZ = true;
 bool Import::EnableOptimizeMesh = true;
 bool Import::EnableTextureFlipV = true;
+bool Import::EnableMergeNode = false;
 //==============================================================================
 void Import::Initialize()
 {
@@ -149,6 +153,7 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
     if (mesh->Index)
         return mesh;
 
+    bool skinning = mesh->Skinning;
     int vertexCount = mesh->VertexCount;
     int normalCount = mesh->NormalCount;
     int colorCount = mesh->ColorCount;
@@ -162,6 +167,8 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
     float begin = xxGetCurrentTime();
 
     xxStrideIterator<xxVector3> inputVertices = mesh->GetVertex();
+    xxStrideIterator<xxVector3> inputBoneWeight = mesh->GetBoneWeight();
+    xxStrideIterator<uint32_t> inputBoneIndices = mesh->GetBoneIndices();
     xxStrideIterator<xxVector3> inputNormals[8] =
     {
         mesh->GetNormal(0), mesh->GetNormal(1), mesh->GetNormal(2), mesh->GetNormal(3),
@@ -179,6 +186,8 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
     };
 
     std::vector<xxVector3> vertices;
+    std::vector<xxVector3> boneWeights;
+    std::vector<uint32_t> boneIndices;
     std::vector<xxVector3> normals;
     std::vector<uint32_t> colors;
     std::vector<xxVector2> textures;
@@ -187,6 +196,11 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
     for (int i = 0; i < vertexCount; ++i)
     {
         vertices.push_back(*inputVertices++);
+        if (skinning)
+        {
+            boneWeights.push_back(*inputBoneWeight++);
+            boneIndices.push_back(*inputBoneIndices++);
+        }
         for (int j = 0; j < normalCount; ++j)
             normals.push_back(*inputNormals[j]++);
         for (int j = 0; j < colorCount; ++j)
@@ -224,6 +238,10 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
         {
             if (compare(vertices, i, j, 1) == false)
                 continue;
+            if (compare(boneWeights, i, j, skinning ? 1 : 0) == false)
+                continue;
+            if (compare(boneIndices, i, j, skinning ? 1 : 0) == false)
+                continue;
             if (compare(normals, i, j, normalCount) == false)
                 continue;
             if (compare(colors, i, j, colorCount) == false)
@@ -231,6 +249,8 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
             if (compare(textures, i, j, textureCount) == false)
                 continue;
             remove(vertices, j, 1);
+            remove(boneWeights, j, skinning ? 1 : 0);
+            remove(boneIndices, j, skinning ? 1 : 0);
             remove(normals, j, normalCount);
             remove(colors, j, colorCount);
             remove(textures, j, textureCount);
@@ -240,12 +260,14 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
         }
     }
 
-    xxMeshPtr output = xxMesh::Create(false, normalCount, colorCount, textureCount);
+    xxMeshPtr output = xxMesh::Create(skinning, normalCount, colorCount, textureCount);
     output->Name = mesh->Name;
     output->SetVertexCount((int)vertices.size());
     output->SetIndexCount((int)indices.size());
 
     xxStrideIterator<xxVector3> outputVertices = output->GetVertex();
+    xxStrideIterator<xxVector3> outputBoneWeight = output->GetBoneWeight();
+    xxStrideIterator<uint32_t> outputBoneIndices = output->GetBoneIndices();
     xxStrideIterator<xxVector3> outputNormals[8] =
     {
         output->GetNormal(0), output->GetNormal(1), output->GetNormal(2), output->GetNormal(3),
@@ -265,6 +287,11 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
     for (size_t i = 0; i < vertices.size(); ++i)
     {
         (*outputVertices++) = vertices[i];
+        if (skinning)
+        {
+            (*outputBoneWeight++) = boneWeights[i];
+            (*outputBoneIndices++) = boneIndices[i];
+        }
         for (int j = 0; j < normalCount; ++j)
             (*outputNormals[j]++) = normals[i * normalCount + j];
         for (int j = 0; j < colorCount; ++j)
@@ -280,8 +307,72 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
 
     float time = xxGetCurrentTime() - begin;
 
-    xxLog("Import", "OptimizeMesh : %s Vertex count from %d to %d and index count %d (%.0fus)", mesh->Name.c_str(), mesh->VertexCount, output->VertexCount, output->IndexCount, time * 1000000);
+    xxLog(TAG, "OptimizeMesh : %s Vertex count from %d to %d and index count %d (%.0fus)", mesh->Name.c_str(), mesh->VertexCount, output->VertexCount, output->IndexCount, time * 1000000);
 
     return output;
+}
+//------------------------------------------------------------------------------
+void Import::MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodePtr const& root)
+{
+    std::vector<std::pair<xxNodePtr, xxNodePtr>> merge;
+    std::vector<xxNodePtr> append;
+
+    for (size_t i = 0; i < source->GetChildCount(); ++i)
+    {
+        xxNodePtr const& right = source->GetChild(i);
+
+        bool found = false;
+        for (size_t j = 0; j < target->GetChildCount(); ++j)
+        {
+            xxNodePtr const& left = target->GetChild(j);
+            if (left->Name == right->Name)
+            {
+                merge.push_back({ left, right });
+                found = true;
+                break;
+            }
+        }
+        if (found)
+            continue;
+
+        append.push_back(right);
+    }
+
+    for (auto [left, right] : merge)
+    {
+        MergeNode(left, right, root);
+    }
+
+    for (auto node : append)
+    {
+        source->DetachChild(node);
+        target->AttachChild(node);
+    }
+
+    xxNode::Traversal([&](xxNodePtr const& node)
+    {
+        for (auto& boneData : node->Bones)
+        {
+            xxNodePtr from = boneData.bone.lock();
+            xxNodePtr to;
+            if (from)
+            {
+                std::string const& name = from->Name;
+                xxNode::Traversal([&](xxNodePtr const& node)
+                {
+                    if (node->Name == name)
+                        to = node;
+                    return to == nullptr;
+                }, root);
+            }
+            if (to == nullptr)
+            {
+                to = root;
+                xxLog(TAG, "Bone %s is not found", from ? from->Name.c_str() : "(nullptr)");
+            }
+            boneData.bone = to;
+        }
+        return true;
+    }, target);
 }
 //==============================================================================

@@ -104,13 +104,11 @@ void DearImGui::Create(void* view, float scale, float font)
     font_config.OversampleV         = 1;
     font_config.PixelSnapH          = true;
     font_config.MergeMode           = true;
+    font_config.SizePixels          = 13.0f * io.FontGlobalScale;
+    font_config.RasterizerMultiply  = 2.0f / io.FontGlobalScale;
 #if defined(xxMACOS)
-    font_config.SizePixels          = 13.0f * io.FontGlobalScale;
-    font_config.RasterizerMultiply  = 2.0f / io.FontGlobalScale;
-    io.Fonts->AddFontFromFileTTF("/System/Library/Fonts/PingFang.ttc", 16.0f * io.FontGlobalScale, &font_config, io.Fonts->GetGlyphRangesJapanese());
+    io.Fonts->AddFontFromFileTTF("/System/Library/Fonts/PingFang.ttc", 13.0f * io.FontGlobalScale, &font_config, io.Fonts->GetGlyphRangesJapanese());
 #elif defined(xxWINDOWS)
-    font_config.SizePixels          = 13.0f * io.FontGlobalScale;
-    font_config.RasterizerMultiply  = 2.0f / io.FontGlobalScale;
     if (io.FontGlobalScale == 1.0f)
     {
         if (GetFileAttributesA("C:\\Windows\\Fonts\\msgothic.ttc") != INVALID_FILE_ATTRIBUTES)

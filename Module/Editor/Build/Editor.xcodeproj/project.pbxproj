@@ -132,6 +132,7 @@
 		D6530A012BB70A270006AD64 /* ImportFBX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportFBX.h; path = ../Import/ImportFBX.h; sourceTree = "<group>"; };
 		D6530A062BB7D26B0006AD64 /* ufbx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ufbx.c; path = ../../../SDK/ufbx/ufbx.c; sourceTree = "<group>"; };
 		D6530A072BB7D26B0006AD64 /* ufbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ufbx.h; path = ../../../SDK/ufbx/ufbx.h; sourceTree = "<group>"; };
+		D67F2EF82BCC279600B4AA86 /* ImGuiHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImGuiHelper.h; path = ../ImGuiHelper.h; sourceTree = "<group>"; };
 		D6A25B7A2B4644B600974946 /* Inspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Inspector.h; path = ../Window/Inspector.h; sourceTree = "<group>"; };
 		D6A25B7B2B4644B600974946 /* Inspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Inspector.cpp; path = ../Window/Inspector.cpp; sourceTree = "<group>"; };
 		D6BA702829E2701C0056FE5F /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +289,7 @@
 				D6012A1C2B1DE28200C3875A /* Utility */,
 				D63370732B382141001D4057 /* Window */,
 				300264C4242690D0004559E0 /* Editor.cpp */,
+				D67F2EF82BCC279600B4AA86 /* ImGuiHelper.h */,
 				D644A042231ED82900B75B77 /* Products */,
 				300264BD24266097004559E0 /* Frameworks */,
 			);
