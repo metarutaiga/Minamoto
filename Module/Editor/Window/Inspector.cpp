@@ -114,11 +114,38 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
             if (ImGui::CollapsingHeader("Bones" Q, nullptr, ImGuiTreeNodeFlags_None))
             {
                 static int current = 0;
+                static unsigned int hovered = 0; hovered = UINT_MAX;
+
                 ImGui::ListBox("Bones" Q, &current, [](void* user_data, int idx)
                 {
+                    if (hovered == UINT_MAX && ImGui::IsItemHovered())
+                        hovered = idx - 1;
                     auto& bones = *(std::vector<xxBoneData>*)user_data;
-                    return bones[idx].bone.lock() ? bones[idx].bone.lock()->Name.c_str() : "(nullptr)";
+                    xxNodePtr bone = bones[idx].bone.lock();
+                    return bone ? bone->Name.c_str() : "(nullptr)";
                 }, &node->Bones, (int)node->Bones.size());
+                if (hovered == UINT_MAX && ImGui::IsItemHovered())
+                    hovered = (int)node->Bones.size() - 1;
+
+                xxNodePtr bone = (hovered < node->Bones.size()) ? node->Bones[hovered].bone.lock() : nullptr;
+                if (bone && ImGui::BeginTooltip())
+                {
+                    auto const& boneData = node->Bones[hovered];
+                    ImGui::InputText("Name" Q, bone->Name.data(), 64, ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("World" Q, bone->WorldMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::InputFloat3("" Q, bone->WorldMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("Skin" Q, boneData.skinMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::InputFloat3("" Q, boneData.skinMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("Bone" Q, boneData.boneMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::InputFloat3("" Q, boneData.boneMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::EndTooltip();
+                }
             }
         }
     }

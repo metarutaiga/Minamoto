@@ -85,16 +85,18 @@ void Hierarchy::Import(const UpdateData& updateData)
                 config.path.resize(config.path.rfind('/') + 1);
 #endif
             const char* filters =
+                "Supported Files(*.fbx,*.obj,*.xx){.fbx,.obj,.xx},"
+                "Double Cross(*.xx){.xx},"
                 "Kaydara Flimbox(*.fbx){.fbx},"
                 "Wavefront Object(*.obj){.obj},"
-                "Double Cross(*.xx){.xx},";
+                "All Files(*.*){.*},";
             importFileDialog->OpenDialog("Import", "Choose File", filters, config);
 #endif
         }
         ImGui::Checkbox("Axis Up Y to Z", &Import::EnableAxisUpYToZ);
+        ImGui::Checkbox("Merge Node", &Import::EnableMergeNode);
         ImGui::Checkbox("Optimize Mesh", &Import::EnableOptimizeMesh);
         ImGui::Checkbox("Texture Flip V", &Import::EnableTextureFlipV);
-        ImGui::Checkbox("Merge Node", &Import::EnableMergeNode);
         if (ImGui::Button("Import"))
         {
             float begin = xxGetCurrentTime();
@@ -170,7 +172,8 @@ void Hierarchy::Export(const UpdateData& updateData)
                 config.path.resize(config.path.rfind('/') + 1);
 #endif
             const char* filters =
-                "Double Cross(*.xx){.xx},";
+                "Double Cross(*.xx){.xx},"
+                "All Files(*.*){.*},";
             exportFileDialog->OpenDialog("Export", "Choose File", filters, config);
 #endif
         }

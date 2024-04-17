@@ -231,6 +231,7 @@ void ImGui_ImplXX_RenderDrawData(ImDrawData* draw_data, uint64_t commandEncoder)
                     {
                         boundTextureID = pcmd->TextureId;
 
+                        xxSetVertexConstantBuffer(commandEncoder, constantBuffer, 16 * 3 * sizeof(float));
                         xxSetFragmentTextures(commandEncoder, 1, &boundTextureID);
                         xxSetFragmentSamplers(commandEncoder, 1, &g_fontSampler);
                     }

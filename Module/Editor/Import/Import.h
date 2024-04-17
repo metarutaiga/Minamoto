@@ -19,7 +19,7 @@ public:
     static void MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodePtr const& root);
 public:
     static bool EnableAxisUpYToZ;
+    static bool EnableMergeNode;
     static bool EnableOptimizeMesh;
     static bool EnableTextureFlipV;
-    static bool EnableMergeNode;
 };

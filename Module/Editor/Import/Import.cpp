@@ -16,10 +16,10 @@
 
 #define TAG "Import"
 
-bool Import::EnableAxisUpYToZ = true;
+bool Import::EnableAxisUpYToZ = false;
+bool Import::EnableMergeNode = false;
 bool Import::EnableOptimizeMesh = true;
 bool Import::EnableTextureFlipV = true;
-bool Import::EnableMergeNode = false;
 //==============================================================================
 void Import::Initialize()
 {
@@ -160,7 +160,7 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
     int textureCount = mesh->TextureCount;
     if (normalCount > 8 || colorCount > 8 || textureCount > 8)
     {
-        xxLog("Input", "OptimizeMesh failed (%d,%d,%d)", normalCount, colorCount, textureCount);
+        xxLog(TAG, "OptimizeMesh failed (%d,%d,%d)", normalCount, colorCount, textureCount);
         return mesh;
     }
 

@@ -33,5 +33,5 @@ public:
     bool                        ReadString(std::string& string) override;
     bool                        WriteString(std::string const& string) override;
 
-    int const                   Version = 0x20240402;
+    int const                   Version = 0x20240416;
 };
