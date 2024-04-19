@@ -19,10 +19,12 @@ class Hierarchy
     static char exportName[];
     static IGFD::FileDialog* importFileDialog;
     static IGFD::FileDialog* exportFileDialog;
+    static bool drawNodeLine;
 public:
     static void Initialize();
     static void Shutdown();
     static void Import(const UpdateData& updateData);
     static void Export(const UpdateData& updateData);
-    static bool Update(const UpdateData& updateData, float menuBarHeight, bool& show, xxNodePtr const& root);
+    static void Option(const UpdateData& updateData, float menuBarHeight, xxNodePtr const& root, xxCameraPtr const& camera);
+    static bool Update(const UpdateData& updateData, float menuBarHeight, bool& show, xxNodePtr const& root, xxCameraPtr const& camera);
 };

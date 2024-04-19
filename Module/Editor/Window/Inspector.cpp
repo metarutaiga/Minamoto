@@ -120,7 +120,7 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
                 {
                     if (hovered == UINT_MAX && ImGui::IsItemHovered())
                         hovered = idx - 1;
-                    auto& bones = *(std::vector<xxBoneData>*)user_data;
+                    auto& bones = *(std::vector<xxNode::BoneData>*)user_data;
                     xxNodePtr bone = bones[idx].bone.lock();
                     return bone ? bone->Name.c_str() : "(nullptr)";
                 }, &node->Bones, (int)node->Bones.size());

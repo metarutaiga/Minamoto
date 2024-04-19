@@ -23,12 +23,12 @@ bool Import::EnableTextureFlipV = true;
 //==============================================================================
 void Import::Initialize()
 {
-    xxImage::ImageLoader = [](xxImagePtr const& image, std::string const& path)
+    xxImage::ImageLoader = [](xxImage& image, std::string const& path)
     {
-        if (image == nullptr || (*image)() != nullptr)
+        if (image() != nullptr)
             return;
         struct xxImageInternal : public xxImage { using xxImage::Initialize; };
-        xxImageInternal* internal = reinterpret_cast<xxImageInternal*>(image.get());
+        xxImageInternal* internal = reinterpret_cast<xxImageInternal*>(&image);
 
 #if defined(xxWINDOWS)
         uint64_t format = *(uint64_t*)"BGRA8888";
@@ -37,7 +37,7 @@ void Import::Initialize()
 #endif
         int width = 1;
         int height = 1;
-        std::string filename = path + image->Name;
+        std::string filename = path + image.Name;
         stbi_uc* uc = stbi_load(filename.c_str(), &width, &height, nullptr, 4);
 
         internal->Initialize(format, width, height, 1, 1, 1);
@@ -49,7 +49,7 @@ void Import::Initialize()
                 std::swap(uc[i + 0], uc[i + 2]);
             }
 #endif
-            memcpy((*image)(), uc, width * height * 4);
+            memcpy(image(), uc, width * height * 4);
         }
 
         stbi_image_free(uc);
@@ -341,6 +341,7 @@ void Import::MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodeP
     for (auto [left, right] : merge)
     {
         MergeNode(left, right, root);
+        left->Modifiers = right->Modifiers;
     }
 
     for (auto node : append)
@@ -357,13 +358,7 @@ void Import::MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodeP
             xxNodePtr to;
             if (from)
             {
-                std::string const& name = from->Name;
-                xxNode::Traversal([&](xxNodePtr const& node)
-                {
-                    if (node->Name == name)
-                        to = node;
-                    return to == nullptr;
-                }, root);
+                to = GetNodeByName(root, from->Name);
             }
             if (to == nullptr)
             {
@@ -374,5 +369,19 @@ void Import::MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodeP
         }
         return true;
     }, target);
+}
+//------------------------------------------------------------------------------
+xxNodePtr Import::GetNodeByName(xxNodePtr const& root, std::string const& name)
+{
+    xxNodePtr output;
+
+    xxNode::Traversal([&](xxNodePtr const& node)
+    {
+        if (node->Name == name)
+            output = node;
+        return output == nullptr;
+    }, root);
+
+    return output;
 }
 //==============================================================================

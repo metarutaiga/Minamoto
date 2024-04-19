@@ -609,6 +609,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					MODULE_BUILD_LIBRARY,
 					"IMGUI_USER_CONFIG=\\\"../../Build/include/imgui_user_config.h\\\"",
+					UFBX_REAL_IS_FLOAT,
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -622,6 +623,7 @@
 				HEADER_SEARCH_PATHS = (
 					..,
 					../..,
+					../../Runtime,
 					../../../SDK,
 					../../../SDK/imgui,
 					../../../SDK/xxGraphic,
@@ -693,6 +695,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					MODULE_BUILD_LIBRARY,
 					"IMGUI_USER_CONFIG=\\\"../../Build/include/imgui_user_config.h\\\"",
+					UFBX_REAL_IS_FLOAT,
 					"NDEBUG=1",
 					"$(inherited)",
 				);
@@ -706,6 +709,7 @@
 				HEADER_SEARCH_PATHS = (
 					..,
 					../..,
+					../../Runtime,
 					../../../SDK,
 					../../../SDK/imgui,
 					../../../SDK/xxGraphic,

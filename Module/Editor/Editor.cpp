@@ -9,6 +9,7 @@
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
+#include <Runtime/Runtime.h>
 #include "Import/Import.h"
 #include "Object/Camera.h"
 #include "Utility/Grid.h"
@@ -26,6 +27,8 @@ static xxNodePtr root;
 //------------------------------------------------------------------------------
 moduleAPI const char* Create(const CreateData& createData)
 {
+    Runtime::Initialize();
+
     camera = Camera::CreateCamera();
     camera->GetCamera()->Location = (xxVector3::Y * -100 + xxVector3::Z * 100);
     camera->GetCamera()->LookAt(xxVector3::ZERO, xxVector3::Z);
@@ -56,6 +59,8 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
     camera = nullptr;
     grid = nullptr;
     root = nullptr;
+
+    Runtime::Shutdown();
 }
 //------------------------------------------------------------------------------
 moduleAPI void Message(const MessageData& messageData)
@@ -128,10 +133,6 @@ moduleAPI bool Update(const UpdateData& updateData)
         }
     }
 
-    updated |= Hierarchy::Update(updateData, menuBarHeight, showHierarchy, root);
-    updated |= Inspector::Update(updateData, menuBarHeight, showInspector, camera->GetCamera());
-    updated |= Log::Update(updateData, showLog);
-
     if (camera)
     {
         ImGuiIO& io = ImGui::GetIO();
@@ -187,6 +188,10 @@ moduleAPI bool Update(const UpdateData& updateData)
     {
         root->Update(updateData.time);
     }
+
+    updated |= Hierarchy::Update(updateData, menuBarHeight, showHierarchy, root, camera->GetCamera());
+    updated |= Inspector::Update(updateData, menuBarHeight, showInspector, camera->GetCamera());
+    updated |= Log::Update(updateData, showLog);
 
     return updated;
 }

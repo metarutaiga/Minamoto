@@ -15,3 +15,9 @@
 #       define RuntimeAPI           __attribute__((visibility("default")))
 #   endif
 #endif
+
+struct RuntimeAPI Runtime
+{
+    static void Initialize();
+    static void Shutdown();
+};

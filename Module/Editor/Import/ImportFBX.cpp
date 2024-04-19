@@ -9,6 +9,9 @@
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
+#include <Runtime/Modifier/QuaternionModifier.h>
+#include <Runtime/Modifier/ScaleModifier.h>
+#include <Runtime/Modifier/TranslateModifier.h>
 #include "ImportFBX.h"
 
 #include "ufbx/ufbx.h"
@@ -23,17 +26,22 @@ static std::string str(const ufbx_string& string)
 //------------------------------------------------------------------------------
 static xxVector2 vec2(const ufbx_vec2& values)
 {
-    return { (float)values.x, (float)values.y };
+    return { values.x, values.y };
 }
 //------------------------------------------------------------------------------
 static xxVector3 vec3(const ufbx_vec3& values)
 {
-    return { (float)values.x, (float)values.y, (float)values.z };
+    return { values.x, values.y, values.z };
 }
 //------------------------------------------------------------------------------
 static xxVector4 vec4(const ufbx_vec4& values)
 {
-    return { (float)values.x, (float)values.y, (float)values.z, (float)values.w };
+    return { values.x, values.y, values.z, values.w };
+}
+//------------------------------------------------------------------------------
+static xxVector4 quat(const ufbx_quat& values)
+{
+    return { values.x, values.y, values.z, values.w };
 }
 //------------------------------------------------------------------------------
 static xxMatrix4x4 mat4(const ufbx_matrix& values)
@@ -63,6 +71,80 @@ static xxImagePtr createImage(ufbx_texture* texture)
         image->ClampW = (texture->wrap_u == UFBX_WRAP_CLAMP) && (texture->wrap_v == UFBX_WRAP_CLAMP);
     }
     return image;
+}
+//------------------------------------------------------------------------------
+static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
+{
+    ufbx_bake_opts opts = {};
+    ufbx_error error;
+    opts.key_reduction_enabled = true;
+    opts.key_reduction_rotation = true;
+    opts.key_reduction_passes = 16;
+    ufbx_baked_anim* bake = ufbx_bake_anim(scene, nullptr, &opts, &error);
+    if (bake == nullptr)
+    {
+        xxLog(TAG, "createAnimation : %s", error.info);
+        return;
+    }
+
+    for (size_t i = 0; i < bake->nodes.count; ++i)
+    {
+        ufbx_baked_node& baked_node = bake->nodes.data[i];
+        ufbx_element* element = scene->elements[baked_node.element_id];
+        if (element->type != UFBX_ELEMENT_NODE)
+        {
+            xxLog(TAG, "createAnimation : %s is not node", element->name.data);
+            continue;
+        }
+        ufbx_node* node = (ufbx_node*)element;
+        xxNodePtr target = Import::GetNodeByName(root, node->name.data);
+        if (target == nullptr)
+        {
+            xxLog(TAG, "createAnimation : %s is not found", node->name.data);
+            continue;
+        }
+        if (baked_node.rotation_keys.count)
+        {
+            size_t count = baked_node.constant_rotation ? 1 : baked_node.rotation_keys.count;
+            xxModifierPtr modifier = QuaternionModifier::Create();
+            modifier->Data.resize(sizeof(QuaternionModifier::Key) * count);
+            auto* key = (QuaternionModifier::Key*)modifier->Data.data();
+            for (size_t i = 0; i < count; ++i)
+            {
+                key[i].time = baked_node.rotation_keys.data[i].time;
+                key[i].quaternion = quat(baked_node.rotation_keys.data[i].value);
+            }
+            target->Modifiers.push_back({modifier});
+        }
+        if (baked_node.translation_keys.count)
+        {
+            size_t count = baked_node.constant_translation ? 1 : baked_node.translation_keys.count;
+            xxModifierPtr modifier = TranslateModifier::Create();
+            modifier->Data.resize(sizeof(TranslateModifier::Key) * count);
+            auto* key = (TranslateModifier::Key*)modifier->Data.data();
+            for (size_t i = 0; i < count; ++i)
+            {
+                key[i].time = baked_node.translation_keys.data[i].time;
+                key[i].translate = vec3(baked_node.translation_keys.data[i].value);
+            }
+            target->Modifiers.push_back({modifier});
+        }
+        if (baked_node.scale_keys.count)
+        {
+            size_t count = baked_node.constant_scale ? 1 : baked_node.scale_keys.count;
+            xxModifierPtr modifier = ScaleModifier::Create();
+            modifier->Data.resize(sizeof(ScaleModifier::Key) * count);
+            auto* key = (ScaleModifier::Key*)modifier->Data.data();
+            for (size_t i = 0; i < count; ++i)
+            {
+                key[i].time = baked_node.scale_keys.data[i].time;
+                key[i].scale = baked_node.scale_keys.data[i].value.x;
+            }
+            target->Modifiers.push_back({modifier});
+        }
+        xxLog(TAG, "createAnimation : Rotation %zd, Translate %zd, Scale %zd - %s", baked_node.rotation_keys.count, baked_node.translation_keys.count, baked_node.scale_keys.count, node->name.data);
+    }
+    ufbx_free_baked_anim(bake);
 }
 //------------------------------------------------------------------------------
 static xxMaterialPtr createMaterial(ufbx_material* material)
@@ -237,9 +319,9 @@ static xxNodePtr createNode(ufbx_node* node, xxNodePtr root)
         {
             if (node->children.count == 0)
             {
-                ufbx_matrix a = ufbx_transform_to_matrix(&node->local_transform);
-                ufbx_matrix b = ufbx_transform_to_matrix(&node->geometry_transform);
-                output->LocalMatrix = mat4(ufbx_matrix_mul(&a, &b));
+                ufbx_matrix local_transform = ufbx_transform_to_matrix(&node->local_transform);
+                ufbx_matrix geometry_transform = ufbx_transform_to_matrix(&node->geometry_transform);
+                output->LocalMatrix = mat4(ufbx_matrix_mul(&local_transform, &geometry_transform));
             }
             else
             {
@@ -293,6 +375,8 @@ xxNodePtr ImportFBX::Create(char const* fbx)
             };
             root->LocalMatrix = root->LocalMatrix * YtoZ;
         }
+
+        createAnimation(scene, root);
     }
 
     ufbx_free_scene(scene);

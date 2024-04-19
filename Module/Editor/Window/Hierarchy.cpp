@@ -6,6 +6,7 @@
 //==============================================================================
 #include <Interface.h>
 #include <Runtime/xxBinaryV2.h>
+#include <utility/xxCamera.h>
 #include <utility/xxFile.h>
 #include <utility/xxNode.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
@@ -32,6 +33,7 @@ char Hierarchy::importName[1024];
 char Hierarchy::exportName[1024];
 ImGuiFileDialog* Hierarchy::importFileDialog;
 ImGuiFileDialog* Hierarchy::exportFileDialog;
+bool Hierarchy::drawNodeLine = false;
 //==============================================================================
 void Hierarchy::Initialize()
 {
@@ -211,7 +213,39 @@ void Hierarchy::Export(const UpdateData& updateData)
     }
 }
 //------------------------------------------------------------------------------
-bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& show, xxNodePtr const& root)
+void Hierarchy::Option(const UpdateData& updateData, float menuBarHeight, xxNodePtr const& root, xxCameraPtr const& camera)
+{
+    ImGuiViewport* viewport = ImGui::GetMainViewport();
+    ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x + windowWidth, viewport->Pos.y + menuBarHeight));
+    if (ImGui::Begin("Options", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground))
+    {
+        ImGui::Checkbox("Node Line", &drawNodeLine);
+        ImGui::End();
+    }
+    if (drawNodeLine)
+    {
+        ImDrawList* drawList = ImGui::GetBackgroundDrawList();
+        xxNode::Traversal([&](xxNodePtr const& node)
+        {
+            size_t childCount = node->GetChildCount();
+            if (childCount)
+            {
+                xxVector2 from = camera->GetWorldPosToScreenPos(node->WorldMatrix[3].xyz).xy;
+                from = from * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
+                for (size_t i = 0; i < childCount; ++i)
+                {
+                    xxNodePtr const& child = node->GetChild(i);
+                    xxVector2 to = camera->GetWorldPosToScreenPos(child->WorldMatrix[3].xyz).xy;
+                    to = to * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
+                    drawList->AddLine(ImVec2(from.x, from.y), ImVec2(to.x, to.y), 0xFFFFFFFF);
+                }
+            }
+            return true;
+        }, root);
+    }
+}
+//------------------------------------------------------------------------------
+bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& show, xxNodePtr const& root, xxCameraPtr const& camera)
 {
     if (show == false)
         return false;
@@ -368,6 +402,7 @@ bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& 
 
     Import(updateData);
     Export(updateData);
+    Option(updateData, menuBarHeight, root, camera);
 
     return update;
 }

@@ -1,0 +1,35 @@
+//==============================================================================
+// Minamoto : ScaleModifier Source
+//
+// Copyright (c) 2019-2024 TAiGA
+// https://github.com/metarutaiga/minamoto
+//==============================================================================
+#include <utility/xxNode.h>
+#include "ScaleModifier.h"
+#include "Modifier.inl"
+
+//==============================================================================
+//  ScaleModifier
+//==============================================================================
+void ScaleModifier::Update(void* target, xxModifierData* data, float time)
+{
+    Key* A;
+    Key* B;
+    float X;
+    float Y;
+    if (GetUpdateRatio(data, time, A, B, X, Y) == false)
+        return;
+    auto node = (xxNode*)target;
+    node->SetScale(A->scale * X + B->scale * Y);
+}
+//------------------------------------------------------------------------------
+xxModifierPtr ScaleModifier::Create()
+{
+    xxModifierPtr modifier = xxModifier::Create();
+    if (modifier == nullptr)
+        return nullptr;
+
+    ModifierLoader(*modifier, SCALE);
+    return modifier;
+}
+//==============================================================================
