@@ -23,13 +23,21 @@ void QuaternionModifier::Update(void* target, xxModifierData* data, float time)
     node->SetRotate(xxMatrix3::Quaternion(A->quaternion * X + B->quaternion * Y));
 }
 //------------------------------------------------------------------------------
-xxModifierPtr QuaternionModifier::Create()
+xxModifierPtr QuaternionModifier::Create(size_t count, std::function<void(Key& key, size_t index)> fill)
 {
-    xxModifierPtr modifier = xxModifier::Create();
+    xxModifierPtr modifier = xxModifier::Create(sizeof(Key) * count);
     if (modifier == nullptr)
         return nullptr;
 
     ModifierLoader(*modifier, QUATERNION);
+    if (fill)
+    {
+        auto* key = (Key*)modifier->Data.data();
+        for (size_t i = 0; i < count; ++i)
+        {
+            fill(key[i], i);
+        }
+    }
     return modifier;
 }
 //==============================================================================

@@ -33,7 +33,7 @@ bool Modifier::GetUpdateRatio(xxModifierData* data, float time, T*& A, T*& B, fl
     }
     else
     {
-        float duration = key[count - 1].time - key[0].time;
+        float duration = key[count - 1].time;
         size_t maximum = count - 2;
         size_t index = std::min(data->index, maximum);
         A = &key[index + 0];
@@ -45,6 +45,10 @@ bool Modifier::GetUpdateRatio(xxModifierData* data, float time, T*& A, T*& B, fl
             data->index = index = 0;
             A = &key[0];
             B = &key[1];
+            if (A->time > time)
+            {
+                return false;
+            }
         }
         while (B->time < time && index < maximum)
         {

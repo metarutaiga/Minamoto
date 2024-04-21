@@ -24,6 +24,7 @@
 static Camera* camera;
 static xxNodePtr grid;
 static xxNodePtr root;
+static size_t modifierCount;
 //------------------------------------------------------------------------------
 moduleAPI const char* Create(const CreateData& createData)
 {
@@ -187,11 +188,19 @@ moduleAPI bool Update(const UpdateData& updateData)
     if (root)
     {
         root->Update(updateData.time);
+
+        modifierCount = 0;
+        xxNode::Traversal([&](xxNodePtr const& node)
+        {
+            modifierCount += node->Modifiers.size();
+            return true;
+        }, root);
     }
 
     updated |= Hierarchy::Update(updateData, menuBarHeight, showHierarchy, root, camera->GetCamera());
     updated |= Inspector::Update(updateData, menuBarHeight, showInspector, camera->GetCamera());
     updated |= Log::Update(updateData, showLog);
+    updated |= modifierCount != 0;
 
     return updated;
 }

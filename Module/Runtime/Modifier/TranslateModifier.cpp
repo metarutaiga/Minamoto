@@ -23,13 +23,21 @@ void TranslateModifier::Update(void* target, xxModifierData* data, float time)
     node->SetTranslate(A->translate * X + B->translate * Y);
 }
 //------------------------------------------------------------------------------
-xxModifierPtr TranslateModifier::Create()
+xxModifierPtr TranslateModifier::Create(size_t count, std::function<void(Key& key, size_t index)> fill)
 {
-    xxModifierPtr modifier = xxModifier::Create();
+    xxModifierPtr modifier = xxModifier::Create(sizeof(Key) * count);
     if (modifier == nullptr)
         return nullptr;
 
     ModifierLoader(*modifier, TRANSLATE);
+    if (fill)
+    {
+        auto* key = (Key*)modifier->Data.data();
+        for (size_t i = 0; i < count; ++i)
+        {
+            fill(key[i], i);
+        }
+    }
     return modifier;
 }
 //==============================================================================

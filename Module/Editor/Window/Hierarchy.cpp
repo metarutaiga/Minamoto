@@ -370,7 +370,7 @@ bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& 
                 selectedRight->AttachChild(xxNode::Create());
                 selectedRight = nullptr;
             }
-            if (selectedRight && selectedRight->GetParent() && selectedRight->GetChildCount() == 0 && ImGui::Button("Remove Node"))
+            if (selectedRight && selectedRight->GetParent() && ImGui::Button("Remove Node"))
             {
                 update = true;
                 if (selectedLeft == selectedRight)

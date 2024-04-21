@@ -1,5 +1,5 @@
 //==============================================================================
-// Minamoto : ScaleModifier Header
+// Minamoto : ConstantTranslateModifier Header
 //
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
@@ -8,18 +8,16 @@
 
 #include "Modifier.h"
 
-class RuntimeAPI ScaleModifier : public Modifier
+class RuntimeAPI ConstantTranslateModifier : public Modifier
 {
 public:
-    struct Key
+    struct Constant
     {
-        float time;
-        float scale;
+        xxVector3 translate;
     };
-    static_assert(sizeof(Key) == 8);
 
 public:
     void                    Update(void* target, xxModifierData* data, float time);
 
-    static xxModifierPtr    Create(size_t count = 0, std::function<void(Key& key, size_t index)> fill = nullptr);
+    static xxModifierPtr    Create(xxVector3 const& translate = xxVector3::ZERO);
 };

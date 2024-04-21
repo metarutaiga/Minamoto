@@ -9,6 +9,9 @@
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
+#include <Runtime/Modifier/ConstantQuaternionModifier.h>
+#include <Runtime/Modifier/ConstantScaleModifier.h>
+#include <Runtime/Modifier/ConstantTranslateModifier.h>
 #include <Runtime/Modifier/QuaternionModifier.h>
 #include <Runtime/Modifier/ScaleModifier.h>
 #include <Runtime/Modifier/TranslateModifier.h>
@@ -87,6 +90,7 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
         return;
     }
 
+    // Create
     for (size_t i = 0; i < bake->nodes.count; ++i)
     {
         ufbx_baked_node& baked_node = bake->nodes.data[i];
@@ -103,45 +107,64 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
             xxLog(TAG, "createAnimation : %s is not found", node->name.data);
             continue;
         }
+
+        // Modifier
+        xxModifierPtr modifier;
+
+        // Rotation
         if (baked_node.rotation_keys.count)
         {
-            size_t count = baked_node.constant_rotation ? 1 : baked_node.rotation_keys.count;
-            xxModifierPtr modifier = QuaternionModifier::Create();
-            modifier->Data.resize(sizeof(QuaternionModifier::Key) * count);
-            auto* key = (QuaternionModifier::Key*)modifier->Data.data();
-            for (size_t i = 0; i < count; ++i)
+            if (baked_node.constant_rotation)
             {
-                key[i].time = baked_node.rotation_keys.data[i].time;
-                key[i].quaternion = quat(baked_node.rotation_keys.data[i].value);
+                modifier = ConstantQuaternionModifier::Create(quat(baked_node.rotation_keys[0].value));
+            }
+            else
+            {
+                modifier = QuaternionModifier::Create(baked_node.rotation_keys.count, [&](QuaternionModifier::Key& key, size_t index)
+                {
+                    key.time = baked_node.rotation_keys.data[index].time - bake->key_time_min;
+                    key.quaternion = quat(baked_node.rotation_keys.data[index].value);
+                });
             }
             target->Modifiers.push_back({modifier});
         }
+
+        // Translate
         if (baked_node.translation_keys.count)
         {
-            size_t count = baked_node.constant_translation ? 1 : baked_node.translation_keys.count;
-            xxModifierPtr modifier = TranslateModifier::Create();
-            modifier->Data.resize(sizeof(TranslateModifier::Key) * count);
-            auto* key = (TranslateModifier::Key*)modifier->Data.data();
-            for (size_t i = 0; i < count; ++i)
+            if (baked_node.constant_translation)
             {
-                key[i].time = baked_node.translation_keys.data[i].time;
-                key[i].translate = vec3(baked_node.translation_keys.data[i].value);
+                modifier = ConstantTranslateModifier::Create(vec3(baked_node.translation_keys[0].value));
+            }
+            else
+            {
+                modifier = TranslateModifier::Create(baked_node.translation_keys.count, [&](TranslateModifier::Key& key, size_t index)
+                {
+                    key.time = baked_node.translation_keys.data[index].time - bake->key_time_min;
+                    key.translate = vec3(baked_node.translation_keys.data[index].value);
+                });
             }
             target->Modifiers.push_back({modifier});
         }
+
+        // Scale
         if (baked_node.scale_keys.count)
         {
-            size_t count = baked_node.constant_scale ? 1 : baked_node.scale_keys.count;
-            xxModifierPtr modifier = ScaleModifier::Create();
-            modifier->Data.resize(sizeof(ScaleModifier::Key) * count);
-            auto* key = (ScaleModifier::Key*)modifier->Data.data();
-            for (size_t i = 0; i < count; ++i)
+            if (baked_node.constant_scale)
             {
-                key[i].time = baked_node.scale_keys.data[i].time;
-                key[i].scale = baked_node.scale_keys.data[i].value.x;
+                modifier = ConstantScaleModifier::Create(baked_node.scale_keys[0].value.x);
+            }
+            else
+            {
+                modifier = ScaleModifier::Create(baked_node.scale_keys.count, [&](ScaleModifier::Key& key, size_t index)
+                {
+                    key.time = baked_node.scale_keys.data[index].time - bake->key_time_min;
+                    key.scale = baked_node.scale_keys.data[index].value.x;
+                });
             }
             target->Modifiers.push_back({modifier});
         }
+
         xxLog(TAG, "createAnimation : Rotation %zd, Translate %zd, Scale %zd - %s", baked_node.rotation_keys.count, baked_node.translation_keys.count, baked_node.scale_keys.count, node->name.data);
     }
     ufbx_free_baked_anim(bake);

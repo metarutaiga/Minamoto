@@ -15,6 +15,18 @@
 		D62286B82BD2AFC500440C24 /* Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286B52BD2AFC500440C24 /* Modifier.cpp */; };
 		D62286B92BD2AFC500440C24 /* Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286B52BD2AFC500440C24 /* Modifier.cpp */; };
 		D62286BA2BD2AFC500440C24 /* Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286B52BD2AFC500440C24 /* Modifier.cpp */; };
+		D62286C12BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BB2BD559B000440C24 /* ConstantQuaternionModifier.cpp */; };
+		D62286C22BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BB2BD559B000440C24 /* ConstantQuaternionModifier.cpp */; };
+		D62286C32BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BB2BD559B000440C24 /* ConstantQuaternionModifier.cpp */; };
+		D62286C42BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BB2BD559B000440C24 /* ConstantQuaternionModifier.cpp */; };
+		D62286C52BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BC2BD559B000440C24 /* ConstantTranslateModifier.cpp */; };
+		D62286C62BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BC2BD559B000440C24 /* ConstantTranslateModifier.cpp */; };
+		D62286C72BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BC2BD559B000440C24 /* ConstantTranslateModifier.cpp */; };
+		D62286C82BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BC2BD559B000440C24 /* ConstantTranslateModifier.cpp */; };
+		D62286C92BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */; };
+		D62286CA2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */; };
+		D62286CB2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */; };
+		D62286CC2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */; };
 		D645C4C92BD145AF00A89E16 /* ScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */; };
 		D645C4CA2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */; };
 		D645C4CB2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */; };
@@ -82,6 +94,12 @@
 		D62286B42BD28DE400440C24 /* Modifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Modifier.h; path = ../Modifier/Modifier.h; sourceTree = "<group>"; };
 		D62286B52BD2AFC500440C24 /* Modifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Modifier.cpp; path = ../Modifier/Modifier.cpp; sourceTree = "<group>"; };
 		D62286B62BD2AFC500440C24 /* Modifier.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Modifier.inl; path = ../Modifier/Modifier.inl; sourceTree = "<group>"; };
+		D62286BB2BD559B000440C24 /* ConstantQuaternionModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConstantQuaternionModifier.cpp; path = ../Modifier/ConstantQuaternionModifier.cpp; sourceTree = "<group>"; };
+		D62286BC2BD559B000440C24 /* ConstantTranslateModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConstantTranslateModifier.cpp; path = ../Modifier/ConstantTranslateModifier.cpp; sourceTree = "<group>"; };
+		D62286BD2BD559B000440C24 /* ConstantScaleModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConstantScaleModifier.h; path = ../Modifier/ConstantScaleModifier.h; sourceTree = "<group>"; };
+		D62286BE2BD559B000440C24 /* ConstantTranslateModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConstantTranslateModifier.h; path = ../Modifier/ConstantTranslateModifier.h; sourceTree = "<group>"; };
+		D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConstantScaleModifier.cpp; path = ../Modifier/ConstantScaleModifier.cpp; sourceTree = "<group>"; };
+		D62286C02BD559B000440C24 /* ConstantQuaternionModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConstantQuaternionModifier.h; path = ../Modifier/ConstantQuaternionModifier.h; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScaleModifier.cpp; path = ../Modifier/ScaleModifier.cpp; sourceTree = "<group>"; };
 		D645C4C82BD145AF00A89E16 /* ScaleModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaleModifier.h; path = ../Modifier/ScaleModifier.h; sourceTree = "<group>"; };
@@ -230,6 +248,12 @@
 		D645C4C32BD143BB00A89E16 /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
+				D62286BB2BD559B000440C24 /* ConstantQuaternionModifier.cpp */,
+				D62286C02BD559B000440C24 /* ConstantQuaternionModifier.h */,
+				D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */,
+				D62286BD2BD559B000440C24 /* ConstantScaleModifier.h */,
+				D62286BC2BD559B000440C24 /* ConstantTranslateModifier.cpp */,
+				D62286BE2BD559B000440C24 /* ConstantTranslateModifier.h */,
 				D62286B52BD2AFC500440C24 /* Modifier.cpp */,
 				D62286B42BD28DE400440C24 /* Modifier.h */,
 				D62286B62BD2AFC500440C24 /* Modifier.inl */,
@@ -360,10 +384,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D62286C12BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D6F066812BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D645C4C92BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B72BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6CB0B222BB95C56009DCD26 /* xxBinaryV2.cpp in Sources */,
+				D62286C52BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D62286C92BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4CF2BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D52BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 			);
@@ -376,9 +403,12 @@
 				D6CB0B252BB95C56009DCD26 /* xxBinaryV2.cpp in Sources */,
 				D645C4CC2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286BA2BD2AFC500440C24 /* Modifier.cpp in Sources */,
+				D62286CC2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
 				D6F066842BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D645C4D82BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
+				D62286C42BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
+				D62286C82BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
 				D645C4D22BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
@@ -389,10 +419,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D62286C22BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D6F066822BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D645C4CA2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B82BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6CB0B232BB95C56009DCD26 /* xxBinaryV2.cpp in Sources */,
+				D62286C62BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D62286CA2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4D02BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D62BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 			);
@@ -402,10 +435,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D62286C32BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D6F066832BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D645C4CB2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B92BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6CB0B242BB95C56009DCD26 /* xxBinaryV2.cpp in Sources */,
+				D62286C72BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D62286CB2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4D12BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D72BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 			);

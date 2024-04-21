@@ -1,5 +1,5 @@
 //==============================================================================
-// Minamoto : ScaleModifier Header
+// Minamoto : ConstantQuaternionModifier Header
 //
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
@@ -8,18 +8,16 @@
 
 #include "Modifier.h"
 
-class RuntimeAPI ScaleModifier : public Modifier
+class RuntimeAPI ConstantQuaternionModifier : public Modifier
 {
 public:
-    struct Key
+    struct Constant
     {
-        float time;
-        float scale;
+        xxVector4 quaternion;
     };
-    static_assert(sizeof(Key) == 8);
 
 public:
     void                    Update(void* target, xxModifierData* data, float time);
 
-    static xxModifierPtr    Create(size_t count = 0, std::function<void(Key& key, size_t index)> fill = nullptr);
+    static xxModifierPtr    Create(xxVector4 const& quaternion = xxVector4::W);
 };

@@ -86,7 +86,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, in
 
         HWND result = (HWND)DearImGui::PostUpdate(hWnd, imguiUpdate);
 
-        if (imguiUpdate == false && DearImGui::PowerSaving())
+        if (DearImGui::PowerSaving())
             xxSleep(1000 / 120);
 
         imguiUpdate = false;
