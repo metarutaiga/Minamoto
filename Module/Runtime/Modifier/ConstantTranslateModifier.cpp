@@ -12,8 +12,12 @@
 //==============================================================================
 void ConstantTranslateModifier::Update(void* target, xxModifierData* data, float time)
 {
+    if (data->time == time)
+        return;
+    data->time = time;
+
     auto node = (xxNode*)target;
-    Constant* constant = (Constant*)Data.data();
+    auto* constant = (Constant*)Data.data();
     node->SetTranslate(constant->translate);
 }
 //------------------------------------------------------------------------------
@@ -23,7 +27,7 @@ xxModifierPtr ConstantTranslateModifier::Create(xxVector3 const& translate)
     if (modifier == nullptr)
         return nullptr;
 
-    ModifierLoader(*modifier, CONSTANT_TRANSLATE);
+    Loader(*modifier, CONSTANT_TRANSLATE);
     auto* constant = (Constant*)modifier->Data.data();
     constant->translate = translate;
     return modifier;

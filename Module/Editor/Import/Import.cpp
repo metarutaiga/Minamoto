@@ -23,7 +23,7 @@ bool Import::EnableTextureFlipV = true;
 //==============================================================================
 void Import::Initialize()
 {
-    xxImage::ImageLoader = [](xxImage& image, std::string const& path)
+    xxImage::Loader = [](xxImage& image, std::string const& path)
     {
         if (image() != nullptr)
             return;

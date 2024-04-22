@@ -24,10 +24,11 @@ public:
     };
 
 public:
-    template<class T>
-    bool GetUpdateRatio(xxModifierData* data, float time, T*& A, T*& B, float& X, float& Y);
+    template<class T> bool      UpdateRatio(xxModifierData* data, float time, T*& A, T*& B, float& X, float& Y);
 
-    static void Initialize();
-    static void Shutdown();
-    static void ModifierLoader(xxModifier& modifier, size_t type);
+    static void                 Initialize();
+    static void                 Shutdown();
+    static void                 Loader(xxModifier& modifier, size_t type);
+    static std::string const&   Name(xxModifier& modifier);
+    static size_t               Count(xxModifier& modifier);
 };

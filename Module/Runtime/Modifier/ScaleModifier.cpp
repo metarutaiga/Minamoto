@@ -17,10 +17,11 @@ void ScaleModifier::Update(void* target, xxModifierData* data, float time)
     Key* B;
     float X;
     float Y;
-    if (GetUpdateRatio(data, time, A, B, X, Y) == false)
+    if (UpdateRatio(data, time, A, B, X, Y) == false)
         return;
     auto node = (xxNode*)target;
     node->SetScale(A->scale * X + B->scale * Y);
+    node->UpdateRotateTranslateScale();
 }
 //------------------------------------------------------------------------------
 xxModifierPtr ScaleModifier::Create(size_t count, std::function<void(Key& key, size_t index)> fill)
@@ -29,7 +30,7 @@ xxModifierPtr ScaleModifier::Create(size_t count, std::function<void(Key& key, s
     if (modifier == nullptr)
         return nullptr;
 
-    ModifierLoader(*modifier, SCALE);
+    Loader(*modifier, SCALE);
     if (fill)
     {
         auto* key = (Key*)modifier->Data.data();

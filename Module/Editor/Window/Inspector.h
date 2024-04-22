@@ -19,4 +19,5 @@ public:
     static void UpdateNode(const UpdateData& updateData, xxNodePtr const& node);
     static void UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const& material);
     static void UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh);
+    static void UpdateModifier(const UpdateData& updateData, std::vector<xxModifierData> const& modifierData);
 };

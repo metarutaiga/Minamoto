@@ -121,6 +121,12 @@ void Hierarchy::Import(const UpdateData& updateData)
                 {
                     importNode->AttachChild(node);
                 }
+
+                xxNodePtr parent = importNode;
+                while (parent->GetParent())
+                    parent = parent->GetParent();
+                parent->CreateLinearMatrix();
+
                 importNode = nullptr;
                 show = false;
             }

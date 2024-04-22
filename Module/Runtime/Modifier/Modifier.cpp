@@ -12,50 +12,51 @@
 #include "TranslateModifier.h"
 #include "Modifier.h"
 
+#define LOADER(class) reinterpret_cast<void(xxModifier::*)(void*, xxModifierData*, float)>(&class::Update)
+
+static const struct { std::string name; xxModifier::UpdateFunction function; size_t size; } loaders[] =
+{
+    [Modifier::UNKNOWN]             = { "UNKNOWN",              [](xxModifier*, void* target, xxModifierData* data, float time){}, 1 },
+    [Modifier::CONSTANT_QUATERNION] = { "CONSTANT_QUATERNION",  LOADER(ConstantQuaternionModifier), sizeof(ConstantQuaternionModifier::Constant) },
+    [Modifier::CONSTANT_TRANSLATE]  = { "CONSTANT_TRANSLATE",   LOADER(ConstantTranslateModifier), sizeof(ConstantTranslateModifier::Constant) },
+    [Modifier::CONSTANT_SCALE]      = { "CONSTANT_SCALE",       LOADER(ConstantScaleModifier), sizeof(ConstantScaleModifier::Constant) },
+    [Modifier::QUATERNION]          = { "QUATERNION",           LOADER(QuaternionModifier), sizeof(QuaternionModifier::Key) },
+    [Modifier::TRANSLATE]           = { "TRANSLATE",            LOADER(TranslateModifier), sizeof(TranslateModifier::Key) },
+    [Modifier::SCALE]               = { "SCALE",                LOADER(ScaleModifier), sizeof(ScaleModifier::Key) },
+};
 //==============================================================================
 void Modifier::Initialize()
 {
-    xxModifier::ModifierLoader = Modifier::ModifierLoader;
+    xxModifier::Loader = Modifier::Loader;
 }
 //------------------------------------------------------------------------------
 void Modifier::Shutdown()
 {
-    xxModifier::ModifierLoader = [](xxModifier&, size_t){};
+    xxModifier::Loader = [](xxModifier&, size_t){};
 }
 //------------------------------------------------------------------------------
-void Modifier::ModifierLoader(xxModifier& modifier, size_t type)
+void Modifier::Loader(xxModifier& modifier, size_t type)
 {
-    switch (type)
-    {
-    default:
-    case UNKNOWN:
-        const_cast<xxModifier::UpdateFunction&>(modifier.Update) = [](xxModifier*, void* target, xxModifierData* data, float time){};
-//      const_cast<size_t&>(modifier.DataType) = UNKNOWN;
-        break;
-    case CONSTANT_QUATERNION:
-        const_cast<xxModifier::UpdateFunction&>(modifier.Update) = reinterpret_cast<void(xxModifier::*)(void*, xxModifierData*, float)>(&ConstantQuaternionModifier::Update);
-        const_cast<size_t&>(modifier.DataType) = CONSTANT_QUATERNION;
-        break;
-    case CONSTANT_TRANSLATE:
-        const_cast<xxModifier::UpdateFunction&>(modifier.Update) = reinterpret_cast<void(xxModifier::*)(void*, xxModifierData*, float)>(&ConstantTranslateModifier::Update);
-        const_cast<size_t&>(modifier.DataType) = CONSTANT_TRANSLATE;
-        break;
-    case CONSTANT_SCALE:
-        const_cast<xxModifier::UpdateFunction&>(modifier.Update) = reinterpret_cast<void(xxModifier::*)(void*, xxModifierData*, float)>(&ConstantScaleModifier::Update);
-        const_cast<size_t&>(modifier.DataType) = CONSTANT_SCALE;
-        break;
-    case QUATERNION:
-        const_cast<xxModifier::UpdateFunction&>(modifier.Update) = reinterpret_cast<void(xxModifier::*)(void*, xxModifierData*, float)>(&QuaternionModifier::Update);
-        const_cast<size_t&>(modifier.DataType) = QUATERNION;
-        break;
-    case TRANSLATE:
-        const_cast<xxModifier::UpdateFunction&>(modifier.Update) = reinterpret_cast<void(xxModifier::*)(void*, xxModifierData*, float)>(&TranslateModifier::Update);
-        const_cast<size_t&>(modifier.DataType) = TRANSLATE;
-        break;
-    case SCALE:
-        const_cast<xxModifier::UpdateFunction&>(modifier.Update) = reinterpret_cast<void(xxModifier::*)(void*, xxModifierData*, float)>(&ScaleModifier::Update);
-        const_cast<size_t&>(modifier.DataType) = SCALE;
-        break;
-    }
+    if (type >= xxCountOf(loaders) || loaders[type].function == nullptr)
+        type = UNKNOWN;
+    const_cast<xxModifier::UpdateFunction&>(modifier.Update) = loaders[type].function;
+    if (type != UNKNOWN)
+        const_cast<size_t&>(modifier.DataType) = type;
+}
+//------------------------------------------------------------------------------
+std::string const& Modifier::Name(xxModifier& modifier)
+{
+    size_t type = modifier.DataType;
+    if (type >= xxCountOf(loaders))
+        type = UNKNOWN;
+    return loaders[type].name;
+}
+//------------------------------------------------------------------------------
+size_t Modifier::Count(xxModifier& modifier)
+{
+    size_t type = modifier.DataType;
+    if (type >= xxCountOf(loaders))
+        type = UNKNOWN;
+    return modifier.Data.size() / loaders[type].size;
 }
 //==============================================================================

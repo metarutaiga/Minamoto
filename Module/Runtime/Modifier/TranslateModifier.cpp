@@ -17,7 +17,7 @@ void TranslateModifier::Update(void* target, xxModifierData* data, float time)
     Key* B;
     float X;
     float Y;
-    if (GetUpdateRatio(data, time, A, B, X, Y) == false)
+    if (UpdateRatio(data, time, A, B, X, Y) == false)
         return;
     auto node = (xxNode*)target;
     node->SetTranslate(A->translate * X + B->translate * Y);
@@ -29,7 +29,7 @@ xxModifierPtr TranslateModifier::Create(size_t count, std::function<void(Key& ke
     if (modifier == nullptr)
         return nullptr;
 
-    ModifierLoader(*modifier, TRANSLATE);
+    Loader(*modifier, TRANSLATE);
     if (fill)
     {
         auto* key = (Key*)modifier->Data.data();

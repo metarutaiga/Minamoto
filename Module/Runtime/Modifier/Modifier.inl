@@ -9,10 +9,12 @@
 #include "Modifier.h"
 
 template<class T>
-bool Modifier::GetUpdateRatio(xxModifierData* data, float time, T*& A, T*& B, float& X, float& Y)
+bool Modifier::UpdateRatio(xxModifierData* data, float time, T*& A, T*& B, float& X, float& Y)
 {
     if (data->time == time)
         return false;
+    data->time = time;
+
     auto key = (T*)Data.data();
     auto count = Data.size() / sizeof(T);
 

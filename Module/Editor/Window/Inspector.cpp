@@ -10,6 +10,7 @@
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
+#include <Runtime/Modifier/Modifier.h>
 #include "ImGuiHelper.h"
 #include "Log.h"
 #include "Inspector.h"
@@ -65,6 +66,7 @@ bool Inspector::Update(const UpdateData& updateData, float menuBarHeight, bool& 
             {
                 UpdateMesh(updateData, selected->Mesh);
             }
+            UpdateModifier(updateData, selected->Modifiers);
         }
         ImGui::PopStyleVar();
     }
@@ -260,6 +262,7 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
                 ImGui::SliderChar("Anisotropic" Q, &image->Anisotropic, 1, 16);
             }
         }
+        UpdateModifier(updateData, material->Modifiers);
     }
 
     // Material Invalidate
@@ -294,6 +297,27 @@ void Inspector::UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh)
         ImGui::InputInt("Stride" Q, (int*)&mesh->Stride, 0, 0, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Vertex" Q, (int*)&mesh->VertexCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Index" Q, (int*)&mesh->IndexCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
+    }
+}
+//------------------------------------------------------------------------------
+void Inspector::UpdateModifier(const UpdateData& updateData, std::vector<xxModifierData> const& modifierData)
+{
+    if (modifierData.empty())
+        return;
+    if (ImGui::CollapsingHeader("Modifier" Q, nullptr, ImGuiTreeNodeFlags_None))
+    {
+        for (auto const& data : modifierData)
+        {
+            if (ImGui::CollapsingHeader(Modifier::Name(*data.modifier).c_str(), nullptr, ImGuiTreeNodeFlags_None))
+            {
+                size_t size = data.modifier->Data.size();
+                size_t count = Modifier::Count(*data.modifier);
+                ImGui::InputInt("Size" Q, (int*)&size, 0, 0, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Count" Q, (int*)&count, 0, 0, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputFloat("Time" Q, (float*)&data.time, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Index" Q, (int*)&data.index, 0, 0, ImGuiInputTextFlags_ReadOnly);
+            }
+        }
     }
 }
 //==============================================================================

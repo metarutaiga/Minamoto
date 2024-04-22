@@ -12,9 +12,14 @@
 //==============================================================================
 void ConstantScaleModifier::Update(void* target, xxModifierData* data, float time)
 {
+    if (data->time == time)
+        return;
+    data->time = time;
+
     auto node = (xxNode*)target;
-    Constant* constant = (Constant*)Data.data();
+    auto* constant = (Constant*)Data.data();
     node->SetScale(constant->scale);
+    node->UpdateRotateTranslateScale();
 }
 //------------------------------------------------------------------------------
 xxModifierPtr ConstantScaleModifier::Create(float scale)
@@ -23,7 +28,7 @@ xxModifierPtr ConstantScaleModifier::Create(float scale)
     if (modifier == nullptr)
         return nullptr;
 
-    ModifierLoader(*modifier, CONSTANT_SCALE);
+    Loader(*modifier, CONSTANT_SCALE);
     auto* constant = (Constant*)modifier->Data.data();
     constant->scale = scale;
     return modifier;
