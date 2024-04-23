@@ -1,5 +1,5 @@
 //==============================================================================
-// Minamoto : QuaternionModifier Header
+// Minamoto : BakedQuaternionModifier Header
 //
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
@@ -8,20 +8,22 @@
 
 #include "Modifier.h"
 
-class RuntimeAPI QuaternionModifier : public Modifier
+class RuntimeAPI BakedQuaternionModifier : public Modifier
 {
 public:
-    struct Key
+    struct Baked
     {
-        float time;
-        xxVector4 quaternion;
+        float duration;
+        float frequency;
+        float inverseFrequency;
+        xxVector4 values[];
     };
 #if defined(__aarch64__)
-    static_assert(sizeof(Key) == 20);
+    static_assert(sizeof(Baked) == 12);
 #endif
 
 public:
     void                    Update(void* target, xxModifierData* data, float time);
 
-    static xxModifierPtr    Create(size_t count = 0, std::function<void(size_t index, float& time, xxVector4& quaternion)> fill = nullptr);
+    static xxModifierPtr    Create(size_t count = 0, float duration = 0.0f, std::function<void(size_t index, xxVector4& quaternion)> fill = nullptr);
 };

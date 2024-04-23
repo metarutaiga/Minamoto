@@ -9,7 +9,7 @@
 #include "Modifier.h"
 
 template<class T>
-bool Modifier::UpdateRatio(xxModifierData* data, float time, T*& A, T*& B, float& X, float& Y)
+bool Modifier::UpdateKeyFactor(xxModifierData* data, float time, T*& A, T*& B, float& F)
 {
     if (data->time == time)
         return false;
@@ -24,8 +24,7 @@ bool Modifier::UpdateRatio(xxModifierData* data, float time, T*& A, T*& B, float
     {
         A = &key[0];
         B = &key[0];
-        X = 1.0f;
-        Y = 0.0f;
+        F = 1.0f;
         return true;
     }
     if (count == 2)
@@ -61,7 +60,28 @@ bool Modifier::UpdateRatio(xxModifierData* data, float time, T*& A, T*& B, float
     }
 
     float XY = B->time - A->time;
-    X = (time - A->time) / XY;
-    Y = 1.0f - X;
+    F = (time - A->time) / XY;
     return true;
+}
+
+template<class T, class D>
+bool Modifier::UpdateBakedFactor(xxModifierData* data, float time, D* baked, T*& A, T*& B, float& F)
+{
+    if (data->time == time)
+        return false;
+    data->time = time;
+
+    time = std::fmodf(time, baked->duration);
+    size_t index = data->index = size_t(time * baked->inverseFrequency);
+
+    A = &baked->values[index];
+    B = &baked->values[index + 1];
+    F = time - index * baked->frequency;
+    return true;
+}
+
+template<class T>
+T Modifier::Lerp(T const& A, T const &B, float F)
+{
+    return A + (B - A) * F;
 }

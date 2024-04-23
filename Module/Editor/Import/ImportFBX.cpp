@@ -15,6 +15,9 @@
 #include <Runtime/Modifier/QuaternionModifier.h>
 #include <Runtime/Modifier/ScaleModifier.h>
 #include <Runtime/Modifier/TranslateModifier.h>
+#include <Runtime/Modifier/BakedQuaternionModifier.h>
+#include <Runtime/Modifier/Quaternion16Modifier.h>
+#include <Runtime/Modifier/BakedQuaternion16Modifier.h>
 #include "ImportFBX.h"
 
 #include "ufbx/ufbx.h"
@@ -83,28 +86,29 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
     opts.key_reduction_enabled = true;
     opts.key_reduction_rotation = true;
     opts.key_reduction_passes = 16;
-    ufbx_baked_anim* bake = ufbx_bake_anim(scene, nullptr, &opts, &error);
-    if (bake == nullptr)
+    ufbx_baked_anim* baked = ufbx_bake_anim(scene, nullptr, nullptr, &error);
+    ufbx_baked_anim* reduction = ufbx_bake_anim(scene, nullptr, &opts, &error);
+    if (reduction == nullptr)
     {
         xxLog(TAG, "createAnimation : %s", error.info);
         return;
     }
 
     // Create
-    for (size_t i = 0; i < bake->nodes.count; ++i)
+    for (size_t i = 0; i < baked->nodes.count; ++i)
     {
-        ufbx_baked_node& baked_node = bake->nodes.data[i];
-        ufbx_element* element = scene->elements[baked_node.element_id];
+        ufbx_baked_node& baked_node = baked->nodes.data[i];
+        ufbx_baked_node& reduction_node = reduction->nodes.data[i];
+        ufbx_element* element = scene->elements[reduction_node.element_id];
         if (element->type != UFBX_ELEMENT_NODE)
         {
             xxLog(TAG, "createAnimation : %s is not node", element->name.data);
             continue;
         }
-        ufbx_node* node = (ufbx_node*)element;
-        xxNodePtr target = Import::GetNodeByName(root, node->name.data);
+        xxNodePtr target = Import::GetNodeByName(root, element->name.data);
         if (target == nullptr)
         {
-            xxLog(TAG, "createAnimation : %s is not found", node->name.data);
+            xxLog(TAG, "createAnimation : %s is not found", element->name.data);
             continue;
         }
 
@@ -112,62 +116,81 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
         xxModifierPtr modifier;
 
         // Rotation
-        if (baked_node.rotation_keys.count)
+        size_t rotation = 0;
+        if (reduction_node.rotation_keys.count)
         {
-            if (baked_node.constant_rotation)
+            if (reduction_node.constant_rotation)
             {
-                modifier = ConstantQuaternionModifier::Create(quat(baked_node.rotation_keys[0].value));
+                modifier = ConstantQuaternionModifier::Create(quat(reduction_node.rotation_keys[0].value));
+                rotation = 1;
+            }
+            else if (Modifier::CalculateSize(Modifier::QUATERNION16, reduction_node.rotation_keys.count) < Modifier::CalculateSize(Modifier::BAKED_QUATERNION16, baked_node.rotation_keys.count))
+            {
+                modifier = Quaternion16Modifier::Create(reduction_node.rotation_keys.count, [&](size_t index, float& time, xxVector4& quaternion)
+                {
+                    time = reduction_node.rotation_keys.data[index].time - reduction->key_time_min;
+                    quaternion = quat(reduction_node.rotation_keys.data[index].value);
+                });
+                rotation = reduction_node.rotation_keys.count;
             }
             else
             {
-                modifier = QuaternionModifier::Create(baked_node.rotation_keys.count, [&](QuaternionModifier::Key& key, size_t index)
+                modifier = BakedQuaternion16Modifier::Create(baked_node.rotation_keys.count, baked->playback_duration, [&](size_t index, xxVector4& quaternion)
                 {
-                    key.time = baked_node.rotation_keys.data[index].time - bake->key_time_min;
-                    key.quaternion = quat(baked_node.rotation_keys.data[index].value);
+                    quaternion = quat(baked_node.rotation_keys.data[index].value);
                 });
+                rotation = baked_node.rotation_keys.count;
             }
             target->Modifiers.push_back({modifier});
         }
 
         // Translate
-        if (baked_node.translation_keys.count)
+        size_t translate = 0;
+        if (reduction_node.translation_keys.count)
         {
-            if (baked_node.constant_translation)
+            if (reduction_node.constant_translation)
             {
-                modifier = ConstantTranslateModifier::Create(vec3(baked_node.translation_keys[0].value));
+                modifier = ConstantTranslateModifier::Create(vec3(reduction_node.translation_keys[0].value));
+                translate = 1;
             }
             else
             {
-                modifier = TranslateModifier::Create(baked_node.translation_keys.count, [&](TranslateModifier::Key& key, size_t index)
+                modifier = TranslateModifier::Create(reduction_node.translation_keys.count, [&](size_t index, float& time, xxVector3& translate)
                 {
-                    key.time = baked_node.translation_keys.data[index].time - bake->key_time_min;
-                    key.translate = vec3(baked_node.translation_keys.data[index].value);
+                    time = reduction_node.translation_keys.data[index].time - reduction->key_time_min;
+                    translate = vec3(reduction_node.translation_keys.data[index].value);
                 });
+                translate = reduction_node.translation_keys.count;
             }
             target->Modifiers.push_back({modifier});
         }
 
         // Scale
-        if (baked_node.scale_keys.count)
+        size_t scale = 0;
+        if (reduction_node.scale_keys.count)
         {
-            if (baked_node.constant_scale)
+            if (reduction_node.constant_scale)
             {
-                modifier = ConstantScaleModifier::Create(baked_node.scale_keys[0].value.x);
+                modifier = ConstantScaleModifier::Create(reduction_node.scale_keys[0].value.x);
+                scale = 1;
             }
             else
             {
-                modifier = ScaleModifier::Create(baked_node.scale_keys.count, [&](ScaleModifier::Key& key, size_t index)
+                modifier = ScaleModifier::Create(reduction_node.scale_keys.count, [&](size_t index, float& time, float& scale)
                 {
-                    key.time = baked_node.scale_keys.data[index].time - bake->key_time_min;
-                    key.scale = baked_node.scale_keys.data[index].value.x;
+                    time = reduction_node.scale_keys.data[index].time - reduction->key_time_min;
+                    scale = reduction_node.scale_keys.data[index].value.x;
                 });
+                scale = reduction_node.scale_keys.count;
             }
             target->Modifiers.push_back({modifier});
         }
 
-        xxLog(TAG, "createAnimation : Rotation %zd, Translate %zd, Scale %zd - %s", baked_node.rotation_keys.count, baked_node.translation_keys.count, baked_node.scale_keys.count, node->name.data);
+        xxLog(TAG, "createAnimation : Rotation %zd, Translate %zd, Scale %zd - %s", rotation, translate, scale, element->name.data);
     }
-    ufbx_free_baked_anim(bake);
+
+    ufbx_free_baked_anim(baked);
+    ufbx_free_baked_anim(reduction);
 }
 //------------------------------------------------------------------------------
 static xxMaterialPtr createMaterial(ufbx_material* material)

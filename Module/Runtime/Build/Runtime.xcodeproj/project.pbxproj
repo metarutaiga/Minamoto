@@ -27,6 +27,18 @@
 		D62286CA2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */; };
 		D62286CB2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */; };
 		D62286CC2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */; };
+		D62286CF2BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286CD2BD6C18900440C24 /* Quaternion16Modifier.cpp */; };
+		D62286D02BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286CD2BD6C18900440C24 /* Quaternion16Modifier.cpp */; };
+		D62286D12BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286CD2BD6C18900440C24 /* Quaternion16Modifier.cpp */; };
+		D62286D22BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286CD2BD6C18900440C24 /* Quaternion16Modifier.cpp */; };
+		D62286D52BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286D42BD7936300440C24 /* BakedQuaternionModifier.cpp */; };
+		D62286D62BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286D42BD7936300440C24 /* BakedQuaternionModifier.cpp */; };
+		D62286D72BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286D42BD7936300440C24 /* BakedQuaternionModifier.cpp */; };
+		D62286D82BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286D42BD7936300440C24 /* BakedQuaternionModifier.cpp */; };
+		D62286DB2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286D92BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp */; };
+		D62286DC2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286D92BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp */; };
+		D62286DD2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286D92BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp */; };
+		D62286DE2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286D92BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp */; };
 		D645C4C92BD145AF00A89E16 /* ScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */; };
 		D645C4CA2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */; };
 		D645C4CB2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */; };
@@ -100,6 +112,12 @@
 		D62286BE2BD559B000440C24 /* ConstantTranslateModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConstantTranslateModifier.h; path = ../Modifier/ConstantTranslateModifier.h; sourceTree = "<group>"; };
 		D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConstantScaleModifier.cpp; path = ../Modifier/ConstantScaleModifier.cpp; sourceTree = "<group>"; };
 		D62286C02BD559B000440C24 /* ConstantQuaternionModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConstantQuaternionModifier.h; path = ../Modifier/ConstantQuaternionModifier.h; sourceTree = "<group>"; };
+		D62286CD2BD6C18900440C24 /* Quaternion16Modifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Quaternion16Modifier.cpp; path = ../Modifier/Quaternion16Modifier.cpp; sourceTree = "<group>"; };
+		D62286CE2BD6C18900440C24 /* Quaternion16Modifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quaternion16Modifier.h; path = ../Modifier/Quaternion16Modifier.h; sourceTree = "<group>"; };
+		D62286D32BD7936300440C24 /* BakedQuaternionModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BakedQuaternionModifier.h; path = ../Modifier/BakedQuaternionModifier.h; sourceTree = "<group>"; };
+		D62286D42BD7936300440C24 /* BakedQuaternionModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BakedQuaternionModifier.cpp; path = ../Modifier/BakedQuaternionModifier.cpp; sourceTree = "<group>"; };
+		D62286D92BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BakedQuaternion16Modifier.cpp; path = ../Modifier/BakedQuaternion16Modifier.cpp; sourceTree = "<group>"; };
+		D62286DA2BD7A2C200440C24 /* BakedQuaternion16Modifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BakedQuaternion16Modifier.h; path = ../Modifier/BakedQuaternion16Modifier.h; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScaleModifier.cpp; path = ../Modifier/ScaleModifier.cpp; sourceTree = "<group>"; };
 		D645C4C82BD145AF00A89E16 /* ScaleModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaleModifier.h; path = ../Modifier/ScaleModifier.h; sourceTree = "<group>"; };
@@ -248,6 +266,10 @@
 		D645C4C32BD143BB00A89E16 /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
+				D62286D92BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp */,
+				D62286DA2BD7A2C200440C24 /* BakedQuaternion16Modifier.h */,
+				D62286D42BD7936300440C24 /* BakedQuaternionModifier.cpp */,
+				D62286D32BD7936300440C24 /* BakedQuaternionModifier.h */,
 				D62286BB2BD559B000440C24 /* ConstantQuaternionModifier.cpp */,
 				D62286C02BD559B000440C24 /* ConstantQuaternionModifier.h */,
 				D62286BF2BD559B000440C24 /* ConstantScaleModifier.cpp */,
@@ -257,6 +279,8 @@
 				D62286B52BD2AFC500440C24 /* Modifier.cpp */,
 				D62286B42BD28DE400440C24 /* Modifier.h */,
 				D62286B62BD2AFC500440C24 /* Modifier.inl */,
+				D62286CD2BD6C18900440C24 /* Quaternion16Modifier.cpp */,
+				D62286CE2BD6C18900440C24 /* Quaternion16Modifier.h */,
 				D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */,
 				D645C4D42BD145E700A89E16 /* QuaternionModifier.h */,
 				D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */,
@@ -389,7 +413,10 @@
 				D645C4C92BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B72BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6CB0B222BB95C56009DCD26 /* xxBinaryV2.cpp in Sources */,
+				D62286DB2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
+				D62286CF2BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C52BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D62286D52BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D62286C92BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4CF2BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D52BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
@@ -405,11 +432,14 @@
 				D62286BA2BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D62286CC2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
+				D62286DE2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D6F066842BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D645C4D82BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 				D62286C42BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
+				D62286D82BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D62286C82BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
+				D62286D22BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D645C4D22BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
 			);
@@ -424,7 +454,10 @@
 				D645C4CA2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B82BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6CB0B232BB95C56009DCD26 /* xxBinaryV2.cpp in Sources */,
+				D62286DC2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
+				D62286D02BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C62BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D62286D62BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D62286CA2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4D02BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D62BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
@@ -440,7 +473,10 @@
 				D645C4CB2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B92BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6CB0B242BB95C56009DCD26 /* xxBinaryV2.cpp in Sources */,
+				D62286DD2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
+				D62286D12BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C72BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D62286D72BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D62286CB2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4D12BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D72BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
@@ -672,6 +708,7 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					RUNTIME_BUILD_LIBRARY,
 					XXPLUS_BUILD_LIBRARY,

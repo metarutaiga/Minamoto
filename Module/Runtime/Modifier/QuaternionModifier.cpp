@@ -15,15 +15,15 @@ void QuaternionModifier::Update(void* target, xxModifierData* data, float time)
 {
     Key* A;
     Key* B;
-    float X;
-    float Y;
-    if (UpdateRatio(data, time, A, B, X, Y) == false)
+    float F;
+    if (UpdateKeyFactor(data, time, A, B, F) == false)
         return;
+
     auto node = (xxNode*)target;
-    node->SetRotate(xxMatrix3::Quaternion(A->quaternion * X + B->quaternion * Y));
+    node->SetRotate(xxMatrix3::Quaternion(Lerp(A->quaternion, B->quaternion, F)));
 }
 //------------------------------------------------------------------------------
-xxModifierPtr QuaternionModifier::Create(size_t count, std::function<void(Key& key, size_t index)> fill)
+xxModifierPtr QuaternionModifier::Create(size_t count, std::function<void(size_t index, float& time, xxVector4& quaternion)> fill)
 {
     xxModifierPtr modifier = xxModifier::Create(sizeof(Key) * count);
     if (modifier == nullptr)
@@ -35,7 +35,7 @@ xxModifierPtr QuaternionModifier::Create(size_t count, std::function<void(Key& k
         auto* key = (Key*)modifier->Data.data();
         for (size_t i = 0; i < count; ++i)
         {
-            fill(key[i], i);
+            fill(i, key[i].time, key[i].quaternion);
         }
     }
     return modifier;

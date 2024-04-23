@@ -87,8 +87,8 @@ void Hierarchy::Import(const UpdateData& updateData)
                 config.path.resize(config.path.rfind('/') + 1);
 #endif
             const char* filters =
-                "Supported Files(*.fbx,*.obj,*.xx){.fbx,.obj,.xx},"
-                "Double Cross(*.xx){.xx},"
+                "Supported Files(*.fbx,*.obj,*.xxb){.fbx,.obj,.xxb},"
+                "Double Cross Binary(*.xxb){.xxb},"
                 "Kaydara Flimbox(*.fbx){.fbx},"
                 "Wavefront Object(*.obj){.obj},"
                 "All Files(*.*){.*},";
@@ -107,7 +107,7 @@ void Hierarchy::Import(const UpdateData& updateData)
                 node = ImportFBX::Create(importName);
             if (strstr(importName, ".obj"))
                 node = ImportWavefront::Create(importName);
-            if (strstr(importName, ".xx"))
+            if (strstr(importName, ".xxb"))
                 node = xxBinaryV2::Load(importName);
             if (node)
             {
@@ -180,7 +180,7 @@ void Hierarchy::Export(const UpdateData& updateData)
                 config.path.resize(config.path.rfind('/') + 1);
 #endif
             const char* filters =
-                "Double Cross(*.xx){.xx},"
+                "Double Cross Binary(*.xxb){.xxb},"
                 "All Files(*.*){.*},";
             exportFileDialog->OpenDialog("Export", "Choose File", filters, config);
 #endif
