@@ -232,6 +232,7 @@
 		D644A032231ED13200B75B77 /* type42.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = type42.c; path = ../SDK/freetype/src/type42/type42.c; sourceTree = "<group>"; };
 		D644A034231ED27D00B75B77 /* winfnt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = winfnt.c; path = ../SDK/freetype/src/winfonts/winfnt.c; sourceTree = "<group>"; };
 		D644A036231ED5CB00B75B77 /* type1cid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = type1cid.c; path = ../SDK/freetype/src/cid/type1cid.c; sourceTree = "<group>"; };
+		D6AA5DB72BD7DA2400AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				D60EC63326A85B920051A948 /* ClangPlatform.Android.xcconfig */,
+				D6AA5DB72BD7DA2400AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC63226A85B920051A948 /* ClangPlatform.Windows.xcconfig */,
 			);
 			name = Configs;
@@ -722,6 +724,7 @@
 		};
 		D6022C2F232588CD00B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB72BD7DA2400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = freetype.iOS;
@@ -731,6 +734,7 @@
 		};
 		D6022C30232588CD00B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB72BD7DA2400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = freetype.iOS;
@@ -900,6 +904,7 @@
 		};
 		D6449FE6231EC3D800B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB72BD7DA2400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
@@ -909,6 +914,7 @@
 		};
 		D6449FE7231EC3D800B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB72BD7DA2400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";

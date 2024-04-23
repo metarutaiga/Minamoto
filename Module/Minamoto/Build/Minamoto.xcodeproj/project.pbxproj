@@ -112,6 +112,7 @@
 		D690A3932334291E00A149EF /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../main.mm; sourceTree = "<group>"; };
 		D698A4DF266BACBD00C74361 /* imgui_impl_win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_impl_win32.h; path = ../../../SDK/imgui/backends/imgui_impl_win32.h; sourceTree = "<group>"; };
 		D698A4E0266BACBD00C74361 /* imgui_impl_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_impl_win32.cpp; path = ../../../SDK/imgui/backends/imgui_impl_win32.cpp; sourceTree = "<group>"; };
+		D6AA5DBD2BD7DB6F00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6BA700329E266BC0056FE5F /* imgui_impl_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_impl_osx.h; path = ../../../SDK/imgui/backends/imgui_impl_osx.h; sourceTree = "<group>"; };
 		D6BA700429E266BC0056FE5F /* imgui_impl_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = imgui_impl_osx.mm; path = ../../../SDK/imgui/backends/imgui_impl_osx.mm; sourceTree = "<group>"; };
 		D6BA701429E26F130056FE5F /* freetype.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = freetype.dll; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				D60EC64026A85C000051A948 /* ClangPlatform.Android.xcconfig */,
+				D6AA5DBD2BD7DB6F00AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC64126A85C000051A948 /* ClangPlatform.Windows.xcconfig */,
 				D65309FE2BB2F3A50006AD64 /* except.cpp */,
 				D6169D102BB17F3700E5490C /* main.cpp */,
@@ -555,6 +557,7 @@
 		};
 		D6022C6623258C5600B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBD2BD7DB6F00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Minamoto.entitlements;
 				CODE_SIGN_IDENTITY = "";
@@ -579,6 +582,7 @@
 		};
 		D6022C6723258C5600B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBD2BD7DB6F00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Minamoto.entitlements;
 				CODE_SIGN_IDENTITY = "";
@@ -769,6 +773,7 @@
 		};
 		D644A0D8231F022200B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBD2BD7DB6F00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				EXCLUDED_ARCHS = x86_64;
@@ -785,6 +790,7 @@
 		};
 		D644A0D9231F022200B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBD2BD7DB6F00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				EXCLUDED_ARCHS = x86_64;

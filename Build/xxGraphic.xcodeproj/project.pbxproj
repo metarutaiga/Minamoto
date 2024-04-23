@@ -250,6 +250,7 @@
 		D6A86A7B25EA335400074B9C /* xxGraphicInternalVulkan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicInternalVulkan.h; path = ../SDK/xxGraphic/internal/xxGraphicInternalVulkan.h; sourceTree = "<group>"; };
 		D6A86A9425EA33C700074B9C /* xxGraphicInternalD3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicInternalD3D.h; path = ../SDK/xxGraphic/internal/xxGraphicInternalD3D.h; sourceTree = "<group>"; };
 		D6A86A9925EA790000074B9C /* xxGraphicInternalMetal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = xxGraphicInternalMetal.mm; path = ../SDK/xxGraphic/internal/xxGraphicInternalMetal.mm; sourceTree = "<group>"; };
+		D6AA5DBA2BD7DACE00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6B33854232020990096D02F /* xxGraphicCGL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = xxGraphicCGL.mm; path = ../SDK/xxGraphic/xxGraphicCGL.mm; sourceTree = "<group>"; };
 		D6B33855232020990096D02F /* xxGraphicCGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicCGL.h; path = ../SDK/xxGraphic/xxGraphicCGL.h; sourceTree = "<group>"; };
 		D6B3385C232044100096D02F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -330,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				D60EC63926A85BC30051A948 /* ClangPlatform.Android.xcconfig */,
+				D6AA5DBA2BD7DACE00AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC63826A85BC30051A948 /* ClangPlatform.Windows.xcconfig */,
 			);
 			name = Configs;
@@ -898,6 +900,7 @@
 		};
 		D6022C4923258BB600B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBA2BD7DACE00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = xxGraphic.iOS;
@@ -907,6 +910,7 @@
 		};
 		D6022C4A23258BB600B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBA2BD7DACE00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = xxGraphic.iOS;
@@ -1072,6 +1076,7 @@
 		};
 		D644A09E231EDDFA00B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBA2BD7DACE00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
@@ -1081,6 +1086,7 @@
 		};
 		D644A09F231EDDFA00B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBA2BD7DACE00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";

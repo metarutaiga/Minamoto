@@ -61,6 +61,7 @@
 		D644A073231ED90300B75B77 /* imstb_textedit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imstb_textedit.h; path = ../SDK/imgui/imstb_textedit.h; sourceTree = "<group>"; };
 		D644A074231ED90400B75B77 /* imstb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imstb_truetype.h; path = ../SDK/imgui/imstb_truetype.h; sourceTree = "<group>"; };
 		D644A075231ED90400B75B77 /* imgui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui.cpp; path = ../SDK/imgui/imgui.cpp; sourceTree = "<group>"; };
+		D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6F066B32BC7878900C4DFE6 /* imgui_freetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_freetype.cpp; path = ../SDK/imgui/misc/freetype/imgui_freetype.cpp; sourceTree = "<group>"; };
 		D6F066B42BC7878900C4DFE6 /* imgui_freetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_freetype.h; path = ../SDK/imgui/misc/freetype/imgui_freetype.h; sourceTree = "<group>"; };
 		D6F066B52BC7878900C4DFE6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../SDK/imgui/misc/freetype/README.md; sourceTree = "<group>"; };
@@ -102,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */,
+				D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */,
 			);
 			name = Configs;
@@ -388,6 +390,7 @@
 		};
 		D6022C3C23258B5D00B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__attribute__((visibility(\\\"default\\\")))",
@@ -401,6 +404,7 @@
 		};
 		D6022C3D23258B5D00B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"IMGUI_API=__attribute__((visibility(\\\"default\\\")))",
@@ -578,6 +582,7 @@
 		};
 		D644A04D231ED82900B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -591,6 +596,7 @@
 		};
 		D644A04E231ED82900B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				GCC_PREPROCESSOR_DEFINITIONS = (

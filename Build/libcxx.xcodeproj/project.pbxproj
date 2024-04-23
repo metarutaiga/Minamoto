@@ -124,6 +124,7 @@
 		D6169CF82BB17A7B00E5490C /* locale_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = locale_win32.cpp; path = ../SDK/ClangPlatform/libcxx/src/support/win32/locale_win32.cpp; sourceTree = "<group>"; };
 		D6169CF92BB17A7B00E5490C /* support.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = support.cpp; path = ../SDK/ClangPlatform/libcxx/src/support/win32/support.cpp; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* liblibcxx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibcxx.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */,
+				D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */,
 			);
 			name = Configs;
@@ -520,6 +522,7 @@
 		};
 		D6022C3C23258B5D00B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -533,6 +536,7 @@
 		};
 		D6022C3D23258B5D00B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -708,6 +712,7 @@
 		};
 		D644A04D231ED82900B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -720,6 +725,7 @@
 		};
 		D644A04E231ED82900B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				GCC_PREPROCESSOR_DEFINITIONS = (

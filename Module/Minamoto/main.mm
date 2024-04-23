@@ -114,7 +114,7 @@
         DearImGui::PostUpdate((__bridge void*)self, self.imguiUpdate);
 
         if (DearImGui::PowerSaving())
-            xxSleep(1000 / 120);
+            xxSleep(1000 / 60);
 
         self.imguiUpdate = NO;
     }

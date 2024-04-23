@@ -10,6 +10,7 @@
 #include "Import.h"
 
 #define STBI_ONLY_PNG
+#define STBI_NO_FAILURE_STRINGS
 #define STB_IMAGE_IMPLEMENTATION
 #pragma clang diagnostic ignored "-Wunused-function"
 #include <stb/stb_image.h>

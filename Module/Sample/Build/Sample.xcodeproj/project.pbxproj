@@ -61,6 +61,7 @@
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D0D2BB17EE100E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* Sample.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Sample.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6BA702829E2701C0056FE5F /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA702A29E270210056FE5F /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F066702BC6EB5800C4DFE6 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */,
+				D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */,
 				D6169D0D2BB17EE100E5490C /* ucrt.cpp */,
 			);
@@ -354,6 +356,7 @@
 		};
 		D6022C3C23258B5D00B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
@@ -363,6 +366,7 @@
 		};
 		D6022C3D23258B5D00B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
@@ -538,6 +542,7 @@
 		};
 		D644A04D231ED82900B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
@@ -546,6 +551,7 @@
 		};
 		D644A04E231ED82900B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";

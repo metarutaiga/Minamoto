@@ -125,6 +125,7 @@
 		D645C4CE2BD145C400A89E16 /* TranslateModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TranslateModifier.cpp; path = ../Modifier/TranslateModifier.cpp; sourceTree = "<group>"; };
 		D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuaternionModifier.cpp; path = ../Modifier/QuaternionModifier.cpp; sourceTree = "<group>"; };
 		D645C4D42BD145E700A89E16 /* QuaternionModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuaternionModifier.h; path = ../Modifier/QuaternionModifier.h; sourceTree = "<group>"; };
+		D6AA5DBE2BD7DB9400AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6CB0B202BB95C56009DCD26 /* xxBinaryV2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxBinaryV2.cpp; path = ../xxBinaryV2.cpp; sourceTree = "<group>"; };
 		D6CB0B212BB95C56009DCD26 /* xxBinaryV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxBinaryV2.h; path = ../xxBinaryV2.h; sourceTree = "<group>"; };
 		D6CB0B2E2BB97061009DCD26 /* Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Runtime.h; path = ../Runtime.h; sourceTree = "<group>"; };
@@ -230,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */,
+				D6AA5DBE2BD7DB9400AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */,
 				D6169D152BB17FE200E5490C /* new.cpp */,
 				D6169D1B2BB1802100E5490C /* tls.cpp */,
@@ -548,6 +550,7 @@
 		};
 		D6022C3C23258B5D00B9BFB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBE2BD7DB9400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
@@ -563,6 +566,7 @@
 		};
 		D6022C3D23258B5D00B9BFB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBE2BD7DB9400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
@@ -708,7 +712,6 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					RUNTIME_BUILD_LIBRARY,
 					XXPLUS_BUILD_LIBRARY,
@@ -749,6 +752,7 @@
 		};
 		D644A04D231ED82900B75B77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBE2BD7DB9400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
@@ -761,6 +765,7 @@
 		};
 		D644A04E231ED82900B75B77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6AA5DBE2BD7DB9400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
