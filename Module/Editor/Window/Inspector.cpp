@@ -132,7 +132,7 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
                 xxNodePtr bone = (hovered < node->Bones.size()) ? node->Bones[hovered].bone.lock() : nullptr;
                 if (bone && ImGui::BeginTooltip())
                 {
-                    auto const& boneData = node->Bones[hovered];
+                    auto& boneData = node->Bones[hovered];
                     ImGui::InputText("Name" Q, bone->Name.data(), 64, ImGuiInputTextFlags_ReadOnly);
                     ImGui::SliderFloat3("World" Q, bone->WorldMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
                     ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
@@ -146,6 +146,8 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
                     ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
                     ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
                     ImGui::InputFloat3("" Q, boneData.boneMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::SliderFloat3("Bound" Q, boneData.bound.Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                    ImGui::InputFloat("" Q, &boneData.bound.w, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
                     ImGui::EndTooltip();
                 }
             }
@@ -270,16 +272,16 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
     {
         invalidate->Invalidate();
 
-        xxNodePtr parent = selected;
-        while (parent->GetParent())
-            parent = parent->GetParent();
+        xxNodePtr root = selected;
+        while (xxNodePtr parent = root->GetParent())
+            root = parent;
 
         xxNode::Traversal([invalidate](xxNodePtr const& node)
         {
             if (node->Material == invalidate)
                 node->Invalidate();
             return true;
-        }, parent);
+        }, root);
     }
 }
 //------------------------------------------------------------------------------

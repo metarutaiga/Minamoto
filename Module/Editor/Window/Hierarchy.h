@@ -20,6 +20,7 @@ class Hierarchy
     static IGFD::FileDialog* importFileDialog;
     static IGFD::FileDialog* exportFileDialog;
     static bool drawNodeLine;
+    static bool drawNodeBound;
 public:
     static void Initialize();
     static void Shutdown();

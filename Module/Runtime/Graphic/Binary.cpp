@@ -1,32 +1,32 @@
 //==============================================================================
-// Minamoto : BinaryV2 Source
+// Minamoto : Binary Source
 //
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <utility/xxNode.h>
 #include <utility/xxFile.h>
-#include "xxBinaryV2.h"
+#include "Binary.h"
 
 //==============================================================================
 //  Binary
 //==============================================================================
-xxBinaryV2::xxBinaryV2()
+Binary::Binary()
 {
 }
 //------------------------------------------------------------------------------
-xxBinaryV2::~xxBinaryV2()
+Binary::~Binary()
 {
 }
 //------------------------------------------------------------------------------
-xxNodePtr xxBinaryV2::Load(char const* name)
+xxNodePtr Binary::Load(char const* name)
 {
     xxNodePtr node;
 
     xxFile* file = xxFile::Load(name);
     if (file)
     {
-        xxBinaryV2 binary;
+        Binary binary;
 
         binary.m_file = file;
         binary.m_reference.resize(1);
@@ -41,12 +41,14 @@ xxNodePtr xxBinaryV2::Load(char const* name)
             if (binary.Version == binary.xxBinary::Version)
             {
                 delete file;
-                return xxBinary::Load(name);
+                auto output = xxBinary::Load(name);
+                return (xxNodePtr&)output;
             }
 
             if (binary.ReadStream())
             {
-                node = xxNode::BinaryCreate();
+                auto output = xxNode::BinaryCreate();
+                node = (xxNodePtr&)output;
             }
             if (node)
             {
@@ -65,14 +67,14 @@ xxNodePtr xxBinaryV2::Load(char const* name)
     return node;
 }
 //------------------------------------------------------------------------------
-bool xxBinaryV2::Save(char const* name, xxNodePtr const& node)
+bool Binary::Save(char const* name, xxNodePtr const& node)
 {
     bool succeed = false;
 
     xxFile* file = xxFile::Save(name);
     if (file)
     {
-        xxBinaryV2 binary;
+        Binary binary;
 
         binary.m_file = file;
         binary.m_reference.resize(1);
@@ -100,7 +102,7 @@ bool xxBinaryV2::Save(char const* name, xxNodePtr const& node)
     return succeed;
 }
 //------------------------------------------------------------------------------
-bool xxBinaryV2::ReadStream()
+bool Binary::ReadStream()
 {
     size_t position = m_file->Position();
     size_t size = m_file->Size();
@@ -124,7 +126,7 @@ bool xxBinaryV2::ReadStream()
     return true;
 }
 //------------------------------------------------------------------------------
-bool xxBinaryV2::WriteStream()
+bool Binary::WriteStream()
 {
     std::vector<uint8_t> binaryStream;
     m_binaryStream.swap(binaryStream);
@@ -146,7 +148,7 @@ bool xxBinaryV2::WriteStream()
     return true;
 }
 //------------------------------------------------------------------------------
-bool xxBinaryV2::Read(void* data, size_t size)
+bool Binary::Read(void* data, size_t size)
 {
     m_called++;
     if (m_binaryStream.size() < m_binaryStreamPosition + size)
@@ -160,14 +162,14 @@ bool xxBinaryV2::Read(void* data, size_t size)
     return true;
 }
 //------------------------------------------------------------------------------
-bool xxBinaryV2::Write(void const* data, size_t size)
+bool Binary::Write(void const* data, size_t size)
 {
     m_called++;
     m_binaryStream.insert(m_binaryStream.end(), (uint8_t*)data, (uint8_t*)data + size);
     return true;
 }
 //------------------------------------------------------------------------------
-bool xxBinaryV2::ReadString(std::string& string)
+bool Binary::ReadString(std::string& string)
 {
     size_t index = 0;
     if (ReadSize(index) == false)
@@ -178,7 +180,7 @@ bool xxBinaryV2::ReadString(std::string& string)
     return true;
 }
 //------------------------------------------------------------------------------
-bool xxBinaryV2::WriteString(std::string const& string)
+bool Binary::WriteString(std::string const& string)
 {
     for (size_t i = 0; i < m_stringStream.size(); ++i)
     {

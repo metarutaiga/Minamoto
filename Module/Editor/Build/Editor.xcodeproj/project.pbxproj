@@ -43,6 +43,11 @@
 		D63370852B3958F3001D4057 /* Import.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370812B3958F3001D4057 /* Import.cpp */; };
 		D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370962B399792001D4057 /* ImGuiFileDialog.cpp */; };
 		D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370962B399792001D4057 /* ImGuiFileDialog.cpp */; settings = {COMPILER_FLAGS = "-include assert.h -frtti -fexceptions"; }; };
+		D6386A5D2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; };
+		D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; };
+		D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; settings = {COMPILER_FLAGS = "-x objective-c++ -fobjc-arc -fobjc-weak"; }; };
+		D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; };
+		D6386A622BDAAE500008C9D1 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6386A612BDAAE500008C9D1 /* Metal.framework */; };
 		D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6530A002BB70A270006AD64 /* ImportFBX.cpp */; };
 		D6530A032BB70A270006AD64 /* ImportFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6530A002BB70A270006AD64 /* ImportFBX.cpp */; };
 		D6530A042BB70A270006AD64 /* ImportFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6530A002BB70A270006AD64 /* ImportFBX.cpp */; };
@@ -127,6 +132,9 @@
 		D63370962B399792001D4057 /* ImGuiFileDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImGuiFileDialog.cpp; path = ../../../SDK/ImGuiFileDialog/ImGuiFileDialog.cpp; sourceTree = "<group>"; };
 		D63370972B399792001D4057 /* ImGuiFileDialogConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImGuiFileDialogConfig.h; path = ../../../SDK/ImGuiFileDialog/ImGuiFileDialogConfig.h; sourceTree = "<group>"; };
 		D63370982B399792001D4057 /* ImGuiFileDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImGuiFileDialog.h; path = ../../../SDK/ImGuiFileDialog/ImGuiFileDialog.h; sourceTree = "<group>"; };
+		D6386A5B2BDAAB2C0008C9D1 /* ShaderDisassembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderDisassembly.h; path = ../Graphic/ShaderDisassembly.h; sourceTree = "<group>"; };
+		D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderDisassembly.cpp; path = ../Graphic/ShaderDisassembly.cpp; sourceTree = "<group>"; };
+		D6386A612BDAAE500008C9D1 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		D644A041231ED82900B75B77 /* Editor.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Editor.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6530A002BB70A270006AD64 /* ImportFBX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImportFBX.cpp; path = ../Import/ImportFBX.cpp; sourceTree = "<group>"; };
 		D6530A012BB70A270006AD64 /* ImportFBX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportFBX.h; path = ../Import/ImportFBX.h; sourceTree = "<group>"; };
@@ -175,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6CB0B272BB95CE5009DCD26 /* Runtime.dylib in Frameworks */,
+				D6386A622BDAAE500008C9D1 /* Metal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +193,7 @@
 		300264BD24266097004559E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6386A612BDAAE500008C9D1 /* Metal.framework */,
 				D6CB0B2C2BB95D0D009DCD26 /* libRuntime.so */,
 				D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */,
 				D6CB0B282BB95CEF009DCD26 /* Runtime.dll */,
@@ -282,10 +292,20 @@
 			name = ImGuiFileDialog;
 			sourceTree = "<group>";
 		};
+		D6386A5A2BDAAB170008C9D1 /* Graphic */ = {
+			isa = PBXGroup;
+			children = (
+				D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */,
+				D6386A5B2BDAAB2C0008C9D1 /* ShaderDisassembly.h */,
+			);
+			name = Graphic;
+			sourceTree = "<group>";
+		};
 		D644A038231ED82900B75B77 = {
 			isa = PBXGroup;
 			children = (
 				CE999BD625D21EC800351116 /* Configs */,
+				D6386A5A2BDAAB170008C9D1 /* Graphic */,
 				D633706C2B3729E8001D4057 /* Import */,
 				D6012A0D2B1DE04800C3875A /* Object */,
 				D6012A1C2B1DE28200C3875A /* Utility */,
@@ -427,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6012A1F2B1DE28F00C3875A /* Grid.cpp in Sources */,
+				D6386A5D2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370782B382156001D4057 /* Log.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -445,6 +466,7 @@
 			files = (
 				D6530A0B2BB7D26B0006AD64 /* ufbx.c in Sources */,
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
+				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -463,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
@@ -481,6 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,

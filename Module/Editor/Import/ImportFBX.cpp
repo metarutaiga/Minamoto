@@ -307,12 +307,15 @@ static xxMeshPtr createMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
             (*textures[j]++) = uv;
         }
     }
+    output->CalculateBound();
 
     if (skin_deformer)
     {
         for (size_t i = 0; i < skin_deformer->clusters.count; ++i)
         {
             ufbx_skin_cluster* cluster = skin_deformer->clusters.data[i];
+
+            // Find the bone
             ufbx_node* from = cluster->bone_node;
             xxNodePtr to;
             if (from)
@@ -330,7 +333,19 @@ static xxMeshPtr createMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
                 to = root;
                 xxLog(TAG, "Bone %s is not found", from ? from->name.data : "(nullptr)");
             }
-            node->Bones.push_back({ to, mat4(cluster->geometry_to_bone) });
+
+            // Bound
+            xxVector4 bound = xxVector4::ZERO;
+            for (size_t j = 0; j < cluster->vertices.count; ++j)
+            {
+                uint32_t index = cluster->vertices.data[j];
+                xxVector3 vertex = vec3(mesh->vertices[index]);
+                bound.BoundMerge(vertex);
+            }
+            bound = bound.BoundTransform(mat4(cluster->geometry_to_bone), 1.0f);
+
+            // Add to list
+            node->Bones.push_back({ to, bound, mat4(cluster->geometry_to_bone) });
         }
         for (auto& boneData : node->Bones)
         {

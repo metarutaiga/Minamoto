@@ -5,10 +5,10 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
-#include <Runtime/xxBinaryV2.h>
 #include <utility/xxCamera.h>
 #include <utility/xxFile.h>
 #include <utility/xxNode.h>
+#include <Graphic/Binary.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include "Import/ImportFBX.h"
 #include "Import/ImportWavefront.h"
@@ -34,6 +34,7 @@ char Hierarchy::exportName[1024];
 ImGuiFileDialog* Hierarchy::importFileDialog;
 ImGuiFileDialog* Hierarchy::exportFileDialog;
 bool Hierarchy::drawNodeLine = false;
+bool Hierarchy::drawNodeBound = false;
 //==============================================================================
 void Hierarchy::Initialize()
 {
@@ -108,7 +109,7 @@ void Hierarchy::Import(const UpdateData& updateData)
             if (strstr(importName, ".obj"))
                 node = ImportWavefront::Create(importName);
             if (strstr(importName, ".xxb"))
-                node = xxBinaryV2::Load(importName);
+                node = Binary::Load(importName);
             if (node)
             {
                 float time = xxGetCurrentTime() - begin;
@@ -122,10 +123,10 @@ void Hierarchy::Import(const UpdateData& updateData)
                     importNode->AttachChild(node);
                 }
 
-                xxNodePtr parent = importNode;
-                while (parent->GetParent())
-                    parent = parent->GetParent();
-                parent->CreateLinearMatrix();
+                xxNode* root = importNode.get();
+                while (xxNode* parent = root->GetParent().get())
+                    root = parent;
+                root->CreateLinearMatrix();
 
                 importNode = nullptr;
                 show = false;
@@ -188,7 +189,7 @@ void Hierarchy::Export(const UpdateData& updateData)
         if (ImGui::Button("Export"))
         {
             float begin = xxGetCurrentTime();
-            if (xxBinaryV2::Save(exportName, exportNode))
+            if (Binary::Save(exportName, exportNode))
             {
                 float time = xxGetCurrentTime() - begin;
                 xxLog("Hierarchy", "Export : %s (%0.fus)", xxFile::GetName(exportName).c_str(), time * 1000000);
@@ -226,6 +227,7 @@ void Hierarchy::Option(const UpdateData& updateData, float menuBarHeight, xxNode
     if (ImGui::Begin("Options", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground))
     {
         ImGui::Checkbox("Node Line", &drawNodeLine);
+        ImGui::Checkbox("Node Bound", &drawNodeBound);
         ImGui::End();
     }
     if (drawNodeLine)
@@ -233,18 +235,31 @@ void Hierarchy::Option(const UpdateData& updateData, float menuBarHeight, xxNode
         ImDrawList* drawList = ImGui::GetBackgroundDrawList();
         xxNode::Traversal([&](xxNodePtr const& node)
         {
-            size_t childCount = node->GetChildCount();
-            if (childCount)
+            xxNodePtr const& parent = node->GetParent();
+            if (parent)
             {
-                xxVector2 from = camera->GetWorldPosToScreenPos(node->WorldMatrix[3].xyz).xy;
+                xxVector2 from = camera->GetWorldPosToScreenPos(parent->WorldMatrix[3].xyz).xy;
+                xxVector2 to = camera->GetWorldPosToScreenPos(node->WorldMatrix[3].xyz).xy;
                 from = from * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
-                for (size_t i = 0; i < childCount; ++i)
-                {
-                    xxNodePtr const& child = node->GetChild(i);
-                    xxVector2 to = camera->GetWorldPosToScreenPos(child->WorldMatrix[3].xyz).xy;
-                    to = to * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
-                    drawList->AddLine(ImVec2(from.x, from.y), ImVec2(to.x, to.y), 0xFFFFFFFF);
-                }
+                to = to * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
+                drawList->AddLine(ImVec2(from.x, from.y), ImVec2(to.x, to.y), 0xFFFFFFFF);
+            }
+            return true;
+        }, root);
+    }
+    if (drawNodeBound)
+    {
+        ImDrawList* drawList = ImGui::GetBackgroundDrawList();
+        xxNode::Traversal([&](xxNodePtr const& node)
+        {
+            xxVector4 const& bound = node->WorldBound;
+            if (bound.w != 0.0f)
+            {
+                xxVector2 center = camera->GetWorldPosToScreenPos(bound.xyz).xy;
+                float radius = (camera->GetWorldPosToScreenPos(bound.xyz + camera->Right * bound.w).xy - center).x;
+                center = center * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
+                radius = radius * std::max(viewport->Size.x, viewport->Size.y);
+                drawList->AddCircle(ImVec2(center.x, center.y), radius, 0xFFFFFFFF);
             }
             return true;
         }, root);
@@ -316,7 +331,7 @@ bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& 
         // Left
         if (clickedLeft == false && selectedLeft && ImGui::IsWindowHovered())
         {
-            xxNodePtr parent = selectedLeft->GetParent();
+            xxNodePtr const& parent = selectedLeft->GetParent();
             if (parent)
             {
                 size_t index = parent->GetChildCount();

@@ -10,6 +10,7 @@
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
 #include <Runtime/Runtime.h>
+#include "Graphic/ShaderDisassembly.h"
 #include "Import/Import.h"
 #include "Object/Camera.h"
 #include "Utility/Grid.h"
@@ -21,7 +22,7 @@
 #define MODULE_MAJOR    1
 #define MODULE_MINOR    0
 
-static Camera* camera;
+static Camera* editorCamera;
 static xxNodePtr grid;
 static xxNodePtr root;
 static size_t modifierCount;
@@ -29,14 +30,16 @@ static size_t modifierCount;
 moduleAPI const char* Create(const CreateData& createData)
 {
     Runtime::Initialize();
+    ShaderDisassembly::Initialize();
 
-    camera = Camera::CreateCamera();
-    camera->GetCamera()->Location = (xxVector3::Y * -100 + xxVector3::Z * 100);
-    camera->GetCamera()->LookAt(xxVector3::ZERO, xxVector3::Z);
-    camera->GetCamera()->Update();
+    editorCamera = Camera::CreateCamera();
+    xxCameraPtr const& camera = editorCamera->GetCamera();
+    camera->Location = (xxVector3::Y * -100 + xxVector3::Z * 100);
+    camera->LookAt(xxVector3::ZERO, xxVector3::Z);
+    camera->Update();
 
-    camera->GetCamera()->LightColor = {1.0f, 0.5f, 0.5f};
-    camera->GetCamera()->LightDirection = -xxVector3::Y;
+    camera->LightColor = {1.0f, 0.5f, 0.5f};
+    camera->LightDirection = -xxVector3::Y;
 
     grid = Grid::Create(xxVector3::ZERO, {10000, 10000});
     root = xxNode::Create();
@@ -56,11 +59,12 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
     Inspector::Shutdown();
     Log::Shutdown();
 
-    Camera::DestroyCamera(camera);
-    camera = nullptr;
+    Camera::DestroyCamera(editorCamera);
+    editorCamera = nullptr;
     grid = nullptr;
     root = nullptr;
 
+    ShaderDisassembly::Shutdown();
     Runtime::Shutdown();
 }
 //------------------------------------------------------------------------------
@@ -71,10 +75,11 @@ moduleAPI void Message(const MessageData& messageData)
         switch (xxHash(messageData.data[0]))
         {
         case xxHash("INIT"):
+            Runtime::Initialize();
+            ShaderDisassembly::Initialize();
             grid = Grid::Create(xxVector3::ZERO, {10000, 10000});
             break;
         case xxHash("SHUTDOWN"):
-        {
             grid = nullptr;
             xxNode::Traversal([](xxNodePtr const& node)
             {
@@ -89,8 +94,9 @@ moduleAPI void Message(const MessageData& messageData)
                 }
                 return true;
             }, root);
+            ShaderDisassembly::Shutdown();
+            Runtime::Shutdown();
             break;
-        }
         default:
             break;
         }
@@ -103,6 +109,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     static bool showHierarchy = true;
     static bool showInspector = true;
     static bool showLog = true;
+    static bool showShaderDisassembly = false;
     float menuBarHeight = 0.0f;
     bool updated = false;
 
@@ -117,6 +124,8 @@ moduleAPI bool Update(const UpdateData& updateData)
             ImGui::MenuItem("Hierarchy", nullptr, &showHierarchy);
             ImGui::MenuItem("Inspector", nullptr, &showInspector);
             ImGui::MenuItem("Log", nullptr, &showLog);
+            ImGui::Separator();
+            ImGui::MenuItem("Shader Disassembly", nullptr, &showShaderDisassembly);
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
@@ -134,7 +143,7 @@ moduleAPI bool Update(const UpdateData& updateData)
         }
     }
 
-    if (camera)
+    if (editorCamera)
     {
         ImGuiIO& io = ImGui::GetIO();
 
@@ -177,10 +186,10 @@ moduleAPI bool Update(const UpdateData& updateData)
         mouse.x = io.MousePos.x;
         mouse.y = io.MousePos.y;
 
-        camera->SetFOV(updateData.width / (float)updateData.height, 60.0f, 10000.0f);
+        editorCamera->SetFOV(updateData.width / (float)updateData.height, 60.0f, 10000.0f);
         if (forward_backward || left_right || x || y)
         {
-            camera->Update(updateData.elapsed, forward_backward, left_right, x, y);
+            editorCamera->Update(updateData.elapsed, forward_backward, left_right, x, y);
             updated = true;
         }
     }
@@ -197,9 +206,10 @@ moduleAPI bool Update(const UpdateData& updateData)
         }, root);
     }
 
-    updated |= Hierarchy::Update(updateData, menuBarHeight, showHierarchy, root, camera->GetCamera());
-    updated |= Inspector::Update(updateData, menuBarHeight, showInspector, camera->GetCamera());
+    updated |= Hierarchy::Update(updateData, menuBarHeight, showHierarchy, root, editorCamera->GetCamera());
+    updated |= Inspector::Update(updateData, menuBarHeight, showInspector, editorCamera->GetCamera());
     updated |= Log::Update(updateData, showLog);
+    updated |= ShaderDisassembly::Update(updateData, showShaderDisassembly);
     updated |= modifierCount != 0;
 
     return updated;
@@ -210,7 +220,7 @@ moduleAPI void Render(const RenderData& renderData)
     xxDrawData data;
     data.device = renderData.device;
     data.commandEncoder = renderData.commandEncoder;
-    data.camera = camera->GetCamera().get();
+    data.camera = editorCamera->GetCamera().get();
 
     xxNode::Traversal([&](xxNodePtr const& node)
     {

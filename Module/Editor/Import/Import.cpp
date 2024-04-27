@@ -300,6 +300,7 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
         for (int j = 0; j < textureCount; ++j)
             (*outputTextures[j]++) = textures[i * textureCount + j];
     }
+    output->CalculateBound();
 
     uint16_t* outputIndices = output->Index;
 

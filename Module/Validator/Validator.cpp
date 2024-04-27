@@ -6,7 +6,7 @@
 //==============================================================================
 #include <Interface.h>
 
-#include <xxGraphic/utility/xxNode.h>
+#include <utility/xxNode.h>
 
 #if DirectXMath
 #include "DirectXMath.h"
@@ -104,7 +104,7 @@ void ValidateNode(float time, char* text, size_t count)
     step += snprintf(text + step, count - step, "Root Children Count : %zu\n", root->GetChildCount());
     for (size_t i = 0; i < root->GetChildCount(); ++i)
     {
-        xxNodePtr node = root->GetChild(i);
+        xxNodePtr const& node = root->GetChild(i);
         if (node != nullptr)
         {
             step += snprintf(text + step, count - step, "Children (%zu) : %p\n", i, node.get());
@@ -123,7 +123,7 @@ void ValidateNode(float time, char* text, size_t count)
     step += snprintf(text + step, count - step, "Child's Children Count : %zu\n", child->GetChildCount());
     for (size_t i = 0; i < child->GetChildCount(); ++i)
     {
-        xxNodePtr node = child->GetChild(i);
+        xxNodePtr const& node = child->GetChild(i);
         if (node != nullptr)
         {
             step += snprintf(text + step, count - step, "Children (%zu) : %p\n", i, node.get());

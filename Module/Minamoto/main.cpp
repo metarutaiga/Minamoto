@@ -31,6 +31,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, in
     Renderer::Create(hWnd, (int)(1280 * scale), (int)(720 * scale));
     DearImGui::Create(hWnd, scale, scale);
     Module::Create("module", Renderer::g_device);
+    Module::Message({ "INIT" });
 
     // Show the window
     ::ShowWindow(hWnd, SW_SHOWDEFAULT);
@@ -99,6 +100,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, in
         }
     }
 
+    Module::Message({ "SHUTDOWN" });
     Module::Shutdown();
     DearImGui::Shutdown();
     Renderer::Shutdown();

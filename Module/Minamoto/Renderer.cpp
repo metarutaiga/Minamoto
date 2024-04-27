@@ -168,6 +168,8 @@ uint64_t Renderer::Begin()
     int width = (int)(g_width * g_scale);
     int height = (int)(g_height * g_scale);
     uint64_t commandEncoder = xxBeginRenderPass(commandBuffer, framebuffer, g_renderPass, width, height, g_clearColor, g_clearDepth, g_clearStencil);
+    xxSetViewport(commandEncoder, 0, 0, width, height, 0.0f, 1.0f);
+    xxSetScissor(commandEncoder, 0, 0, width, height);
 
     g_currentCommandBuffer = commandBuffer;
     g_currentCommandEncoder = commandEncoder;

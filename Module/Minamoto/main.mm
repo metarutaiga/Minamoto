@@ -469,10 +469,12 @@
     Renderer::Create((__bridge void*)self.window, size.width, size.height);
     DearImGui::Create((__bridge void*)view, 1.0f, scale);
     Module::Create("module", Renderer::g_device);
+    Module::Message({ "INIT" });
 }
 
 -(void)shutdown
 {
+    Module::Message({ "SHUTDOWN" });
     Module::Shutdown();
     DearImGui::Shutdown();
     Renderer::Shutdown();
