@@ -70,15 +70,6 @@ void DearImGui::Create(void* view, float scale, float font)
     io.FontGlobalScale = font;
     style.ScaleAllSizes(scale);
 
-    // Setup Platform/Renderer bindings
-#if defined(xxMACOS)
-    NSView* nsView = (__bridge NSView*)view;
-    ImGui_ImplOSX_Init(nsView);
-#elif defined(xxWINDOWS)
-    ImGui_ImplWin32_Init(view);
-#endif
-    ImGui_ImplXX_Init(Renderer::g_instance, Renderer::g_device, Renderer::g_renderPass);
-
     // Load Fonts
     // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
     // - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.
@@ -126,6 +117,16 @@ void DearImGui::Create(void* view, float scale, float font)
 #endif
     io.Fonts->Build();
     io.FontGlobalScale              = scale / font;
+
+    // Setup Platform/Renderer bindings
+#if defined(xxMACOS)
+    NSView* nsView = (__bridge NSView*)view;
+    ImGui_ImplOSX_Init(nsView);
+#elif defined(xxWINDOWS)
+    ImGui_ImplWin32_Init(view);
+#endif
+    ImGui_ImplXX_Init(Renderer::g_instance, Renderer::g_device, Renderer::g_renderPass);
+    ImGui_ImplXX_NewFrame();
 }
 //------------------------------------------------------------------------------
 void DearImGui::Shutdown()
@@ -401,6 +402,7 @@ void* DearImGui::PostUpdate(void* view, bool render)
         ImGui_ImplWin32_Init(view);
 #endif
         ImGui_ImplXX_Init(Renderer::g_instance, Renderer::g_device, Renderer::g_renderPass);
+        ImGui_ImplXX_NewFrame();
         Module::Message({ "INIT" });
     }
 

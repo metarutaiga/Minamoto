@@ -11,6 +11,7 @@
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
 #include <Runtime/Modifier/Modifier.h>
+#include "Utility/Tools.h"
 #include "ImGuiHelper.h"
 #include "Log.h"
 #include "Inspector.h"
@@ -111,6 +112,8 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
         ImGui::SliderFloat3("" Q, selected->WorldMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
         ImGui::SliderFloat3("" Q, selected->WorldMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
         ImGui::InputFloat3("" Q, selected->WorldMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+        ImGui::InputFloat3("Bound" Q, selected->WorldBound.Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+        ImGui::InputFloat("" Q, &selected->WorldBound.w, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
         if (node->Bones.empty() == false)
         {
             if (ImGui::CollapsingHeader("Bones" Q, nullptr, ImGuiTreeNodeFlags_None))
@@ -129,26 +132,34 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
                 if (hovered == UINT_MAX && ImGui::IsItemHovered())
                     hovered = (int)node->Bones.size() - 1;
 
-                xxNodePtr bone = (hovered < node->Bones.size()) ? node->Bones[hovered].bone.lock() : nullptr;
-                if (bone && ImGui::BeginTooltip())
+                if (hovered < node->Bones.size())
                 {
                     auto& boneData = node->Bones[hovered];
-                    ImGui::InputText("Name" Q, bone->Name.data(), 64, ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("World" Q, bone->WorldMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::InputFloat3("" Q, bone->WorldMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("Skin" Q, boneData.skinMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::InputFloat3("" Q, boneData.skinMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("Bone" Q, boneData.boneMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::InputFloat3("" Q, boneData.boneMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::SliderFloat3("Bound" Q, boneData.bound.Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::InputFloat("" Q, &boneData.bound.w, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                    ImGui::EndTooltip();
+                    if (boneData.bone.expired() == false)
+                    {
+                        auto const& bone = (xxNodePtr&)boneData.bone;
+                        if (ImGui::BeginTooltip())
+                        {
+                            ImGui::InputText("Name" Q, bone->Name.data(), 64, ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("World" Q, bone->WorldMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::InputFloat3("" Q, bone->WorldMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("Skin" Q, boneData.skinMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::InputFloat3("" Q, boneData.skinMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("Bone" Q, boneData.boneMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::InputFloat3("" Q, boneData.boneMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::InputFloat3("Bound" Q, boneData.bound.Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::InputFloat("" Q, &boneData.bound.w, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::EndTooltip();
+                        }
+                        xxVector4 bound = boneData.bound.BoundTransform(bone->WorldMatrix, bone->GetScale());
+                        Tools::Sphere(bound.xyz, bound.w);
+                    }
                 }
             }
         }
@@ -299,6 +310,8 @@ void Inspector::UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh)
         ImGui::InputInt("Stride" Q, (int*)&mesh->Stride, 0, 0, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Vertex" Q, (int*)&mesh->VertexCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputInt("Index" Q, (int*)&mesh->IndexCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
+        ImGui::InputFloat3("Bound" Q, (float*)mesh->Bound.Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
+        ImGui::InputFloat("" Q, (float*)&mesh->Bound.w, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
     }
 }
 //------------------------------------------------------------------------------

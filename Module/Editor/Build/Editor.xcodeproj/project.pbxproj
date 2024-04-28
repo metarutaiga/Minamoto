@@ -64,6 +64,10 @@
 		D6CB0B292BB95CEF009DCD26 /* Runtime.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B282BB95CEF009DCD26 /* Runtime.dll */; };
 		D6CB0B2B2BB95D00009DCD26 /* Runtime.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */; };
 		D6CB0B2D2BB95D0D009DCD26 /* libRuntime.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B2C2BB95D0D009DCD26 /* libRuntime.so */; };
+		D6D26F9E2BDE36B400D57772 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F9C2BDE36B400D57772 /* Tools.cpp */; };
+		D6D26F9F2BDE36B400D57772 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F9C2BDE36B400D57772 /* Tools.cpp */; };
+		D6D26FA02BDE36B400D57772 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F9C2BDE36B400D57772 /* Tools.cpp */; };
+		D6D26FA12BDE36B400D57772 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F9C2BDE36B400D57772 /* Tools.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -150,6 +154,8 @@
 		D6CB0B282BB95CEF009DCD26 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B2C2BB95D0D009DCD26 /* libRuntime.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libRuntime.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6D26F9C2BDE36B400D57772 /* Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Tools.cpp; path = ../Utility/Tools.cpp; sourceTree = "<group>"; };
+		D6D26F9D2BDE36B400D57772 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tools.h; path = ../Utility/Tools.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +256,8 @@
 				D63370952B399774001D4057 /* ImGuiFileDialog */,
 				D6012A1E2B1DE28F00C3875A /* Grid.cpp */,
 				D6012A1D2B1DE28F00C3875A /* Grid.h */,
+				D6D26F9C2BDE36B400D57772 /* Tools.cpp */,
+				D6D26F9D2BDE36B400D57772 /* Tools.h */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -453,6 +461,7 @@
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6012A102B1DE05A00C3875A /* Camera.cpp in Sources */,
 				D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */,
+				D6D26F9E2BDE36B400D57772 /* Tools.cpp in Sources */,
 				30A9A7C325ADC7C0000FA104 /* Editor.cpp in Sources */,
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
@@ -465,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6530A0B2BB7D26B0006AD64 /* ufbx.c in Sources */,
+				D6D26FA12BDE36B400D57772 /* Tools.cpp in Sources */,
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
 				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */,
@@ -488,6 +498,7 @@
 				D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
+				D6D26F9F2BDE36B400D57772 /* Tools.cpp in Sources */,
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6012A112B1DE05A00C3875A /* Camera.cpp in Sources */,
@@ -507,6 +518,7 @@
 				D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
+				D6D26FA02BDE36B400D57772 /* Tools.cpp in Sources */,
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6012A122B1DE05A00C3875A /* Camera.cpp in Sources */,

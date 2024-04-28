@@ -12,6 +12,7 @@
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include "Import/ImportFBX.h"
 #include "Import/ImportWavefront.h"
+#include "Utility/Tools.h"
 #include "Hierarchy.h"
 #include "Log.h"
 #include "Inspector.h"
@@ -232,34 +233,24 @@ void Hierarchy::Option(const UpdateData& updateData, float menuBarHeight, xxNode
     }
     if (drawNodeLine)
     {
-        ImDrawList* drawList = ImGui::GetBackgroundDrawList();
         xxNode::Traversal([&](xxNodePtr const& node)
         {
             xxNodePtr const& parent = node->GetParent();
             if (parent)
             {
-                xxVector2 from = camera->GetWorldPosToScreenPos(parent->WorldMatrix[3].xyz).xy;
-                xxVector2 to = camera->GetWorldPosToScreenPos(node->WorldMatrix[3].xyz).xy;
-                from = from * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
-                to = to * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
-                drawList->AddLine(ImVec2(from.x, from.y), ImVec2(to.x, to.y), 0xFFFFFFFF);
+                Tools::Line(parent->WorldMatrix[3].xyz, node->WorldMatrix[3].xyz);
             }
             return true;
         }, root);
     }
     if (drawNodeBound)
     {
-        ImDrawList* drawList = ImGui::GetBackgroundDrawList();
         xxNode::Traversal([&](xxNodePtr const& node)
         {
             xxVector4 const& bound = node->WorldBound;
             if (bound.w != 0.0f)
             {
-                xxVector2 center = camera->GetWorldPosToScreenPos(bound.xyz).xy;
-                float radius = (camera->GetWorldPosToScreenPos(bound.xyz + camera->Right * bound.w).xy - center).x;
-                center = center * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
-                radius = radius * std::max(viewport->Size.x, viewport->Size.y);
-                drawList->AddCircle(ImVec2(center.x, center.y), radius, 0xFFFFFFFF);
+                Tools::Sphere(bound.xyz, bound.w);
             }
             return true;
         }, root);
@@ -297,19 +288,25 @@ bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& 
             else
                 opened = ImGui::TreeNodeEx(node.get(), flags, "%s", node->Name.c_str());
 
-            // Left button
-            if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+            // Hovered
+            if (ImGui::IsItemHovered())
             {
-                selectedLeft = node;
-                Inspector::Select(node);
-                clickedLeft = true;
-            }
+                Tools::Sphere(node->WorldBound.xyz, node->WorldBound.w);
 
-            // Right button
-            if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
-            {
-                selectedRight = node;
-                clickedRight = true;
+                // Left button
+                if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+                {
+                    selectedLeft = node;
+                    Inspector::Select(node);
+                    clickedLeft = true;
+                }
+
+                // Right button
+                if (ImGui::IsMouseClicked(ImGuiMouseButton_Right))
+                {
+                    selectedRight = node;
+                    clickedRight = true;
+                }
             }
 
             // Traversal

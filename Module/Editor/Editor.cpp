@@ -14,6 +14,7 @@
 #include "Import/Import.h"
 #include "Object/Camera.h"
 #include "Utility/Grid.h"
+#include "Utility/Tools.h"
 #include "Window/Hierarchy.h"
 #include "Window/Inspector.h"
 #include "Window/Log.h"
@@ -211,6 +212,8 @@ moduleAPI bool Update(const UpdateData& updateData)
     updated |= Log::Update(updateData, showLog);
     updated |= ShaderDisassembly::Update(updateData, showShaderDisassembly);
     updated |= modifierCount != 0;
+
+    Tools::Draw(editorCamera->GetCamera());
 
     return updated;
 }

@@ -59,6 +59,18 @@
 		D645C4D62BD145E700A89E16 /* QuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */; };
 		D645C4D72BD145E700A89E16 /* QuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */; };
 		D645C4D82BD145E700A89E16 /* QuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */; };
+		D6D26F8C2BDDFAC400D57772 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */; };
+		D6D26F8D2BDDFAC400D57772 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */; };
+		D6D26F8E2BDDFAC400D57772 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */; };
+		D6D26F8F2BDDFAC400D57772 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */; };
+		D6D26F922BDE0AF500D57772 /* VertexAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F902BDE0AF400D57772 /* VertexAttribute.cpp */; };
+		D6D26F932BDE0AF500D57772 /* VertexAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F902BDE0AF400D57772 /* VertexAttribute.cpp */; };
+		D6D26F942BDE0AF500D57772 /* VertexAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F902BDE0AF400D57772 /* VertexAttribute.cpp */; };
+		D6D26F952BDE0AF500D57772 /* VertexAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F902BDE0AF400D57772 /* VertexAttribute.cpp */; };
+		D6D26F982BDE11D900D57772 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F972BDE11D900D57772 /* Pipeline.cpp */; };
+		D6D26F992BDE11D900D57772 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F972BDE11D900D57772 /* Pipeline.cpp */; };
+		D6D26F9A2BDE11D900D57772 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F972BDE11D900D57772 /* Pipeline.cpp */; };
+		D6D26F9B2BDE11D900D57772 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F972BDE11D900D57772 /* Pipeline.cpp */; };
 		D6F066812BC6EEF600C4DFE6 /* Runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */; };
 		D6F066822BC6EEF600C4DFE6 /* Runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */; };
 		D6F066832BC6EEF600C4DFE6 /* Runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */; };
@@ -135,6 +147,12 @@
 		D645C4D42BD145E700A89E16 /* QuaternionModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuaternionModifier.h; path = ../Modifier/QuaternionModifier.h; sourceTree = "<group>"; };
 		D6AA5DBE2BD7DB9400AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6CB0B2E2BB97061009DCD26 /* Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Runtime.h; path = ../Runtime.h; sourceTree = "<group>"; };
+		D6D26F8A2BDDFAC400D57772 /* RenderPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderPass.h; path = ../Graphic/RenderPass.h; sourceTree = "<group>"; };
+		D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderPass.cpp; path = ../Graphic/RenderPass.cpp; sourceTree = "<group>"; };
+		D6D26F902BDE0AF400D57772 /* VertexAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VertexAttribute.cpp; path = ../Graphic/VertexAttribute.cpp; sourceTree = "<group>"; };
+		D6D26F912BDE0AF400D57772 /* VertexAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexAttribute.h; path = ../Graphic/VertexAttribute.h; sourceTree = "<group>"; };
+		D6D26F962BDE11D900D57772 /* Pipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pipeline.h; path = ../Graphic/Pipeline.h; sourceTree = "<group>"; };
+		D6D26F972BDE11D900D57772 /* Pipeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Pipeline.cpp; path = ../Graphic/Pipeline.cpp; sourceTree = "<group>"; };
 		D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Runtime.cpp; path = ../Runtime.cpp; sourceTree = "<group>"; };
 		D6F066952BC6F3E200C4DFE6 /* libfreetype.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libfreetype.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F066972BC6F3E200C4DFE6 /* libimgui.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libimgui.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,8 +269,14 @@
 			children = (
 				D6386A702BDC09EA0008C9D1 /* Binary.cpp */,
 				D6386A712BDC09EA0008C9D1 /* Binary.h */,
+				D6D26F972BDE11D900D57772 /* Pipeline.cpp */,
+				D6D26F962BDE11D900D57772 /* Pipeline.h */,
+				D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */,
+				D6D26F8A2BDDFAC400D57772 /* RenderPass.h */,
 				D6386A632BDBE0AC0008C9D1 /* Shader.cpp */,
 				D6386A642BDBE0AC0008C9D1 /* Shader.h */,
+				D6D26F902BDE0AF400D57772 /* VertexAttribute.cpp */,
+				D6D26F912BDE0AF400D57772 /* VertexAttribute.h */,
 			);
 			name = Graphic;
 			sourceTree = "<group>";
@@ -429,13 +453,16 @@
 				D6386A652BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D62286C12BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D6F066812BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
+				D6D26F982BDE11D900D57772 /* Pipeline.cpp in Sources */,
 				D645C4C92BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B72BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6386A742BDC09EA0008C9D1 /* Binary.cpp in Sources */,
 				D62286DB2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D62286CF2BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C52BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D6D26F922BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D52BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
+				D6D26F8C2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286C92BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4CF2BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D52BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
@@ -455,8 +482,11 @@
 				D62286DE2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D6F066842BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D645C4D82BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
+				D6D26F9B2BDE11D900D57772 /* Pipeline.cpp in Sources */,
 				D62286C42BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D62286D82BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
+				D6D26F8F2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
+				D6D26F952BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286C82BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
 				D62286D22BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
@@ -472,13 +502,16 @@
 				D6386A662BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D62286C22BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D6F066822BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
+				D6D26F992BDE11D900D57772 /* Pipeline.cpp in Sources */,
 				D645C4CA2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B82BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6386A752BDC09EA0008C9D1 /* Binary.cpp in Sources */,
 				D62286DC2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D62286D02BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C62BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D6D26F932BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D62BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
+				D6D26F8D2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286CA2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4D02BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D62BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
@@ -492,13 +525,16 @@
 				D6386A672BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D62286C32BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D6F066832BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
+				D6D26F9A2BDE11D900D57772 /* Pipeline.cpp in Sources */,
 				D645C4CB2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B92BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6386A762BDC09EA0008C9D1 /* Binary.cpp in Sources */,
 				D62286DD2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D62286D12BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C72BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D6D26F942BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D72BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
+				D6D26F8E2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286CB2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4D12BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D72BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
