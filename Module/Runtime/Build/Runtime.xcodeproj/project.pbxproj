@@ -701,6 +701,7 @@
 					..,
 					../..,
 					../../../SDK,
+					../../../SDK/freetype/include,
 					../../../SDK/xxGraphic,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -784,6 +785,7 @@
 					..,
 					../..,
 					../../../SDK,
+					../../../SDK/freetype/include,
 					../../../SDK/xxGraphic,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
