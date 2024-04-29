@@ -60,6 +60,7 @@ static void ImGui_ImplXX_SetupRenderState(ImDrawData* draw_data, uint64_t comman
     int width = (int)(draw_data->DisplaySize.x * draw_data->FramebufferScale.x);
     int height = (int)(draw_data->DisplaySize.y * draw_data->FramebufferScale.y);
     xxSetViewport(commandEncoder, 0, 0, width, height, 0.0f, 1.0f);
+    xxSetScissor(commandEncoder, 0, 0, width, height);
 
     // Setup orthographic projection matrix
     // Our visible imgui space lies from draw_data->DisplayPos (top left) to draw_data->DisplayPos+data_data->DisplaySize (bottom right). DisplayPos is (0,0) for single viewport apps.

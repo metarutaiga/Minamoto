@@ -26,8 +26,8 @@ void Tools::Sphere(xxVector3 const& point, float scale)
 //------------------------------------------------------------------------------
 void Tools::Draw(xxCameraPtr const& camera)
 {
-    ImDrawList* drawList = ImGui::GetBackgroundDrawList();
-    ImGuiViewport* viewport = ImGui::GetMainViewport();
+    ImDrawList* drawList = ImGui::GetWindowDrawList();
+    ImGuiViewport* viewport = ImGui::GetWindowViewport();
 
     // Line
     for (auto const& line : lines)
@@ -54,5 +54,15 @@ void Tools::Draw(xxCameraPtr const& camera)
         drawList->AddCircle(ImVec2(center.x, center.y), radius, 0xFFFFFFFF);
     }
     spheres.clear();
+}
+//------------------------------------------------------------------------------
+void Tools::LookAtFromBound(xxCameraPtr const& camera, xxVector4 bound, xxVector3 const& up)
+{
+    bound.x = std::roundf(bound.x);
+
+    camera->Location.x = bound.x;
+    camera->Location.y = bound.w * -2.0f;
+    camera->Location.z = bound.z;
+    camera->LookAt(bound.xyz, up);
 }
 //==============================================================================

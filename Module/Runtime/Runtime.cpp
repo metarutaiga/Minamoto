@@ -28,6 +28,13 @@ void Runtime::Initialize()
     Shader::Initialize();
     VertexAttribute::Initialize();
 
+#if defined(__clang_version__)
+    xxLog("Runtime", "clang " __clang_version__);
+#elif defined(__GNUC__)
+    xxLog("Runtime", "gcc " xxStringify(__GNUC__) "." xxStringify(__GNUC_MINOR__) "." xxStringify(__GNUC_PATCHLEVEL__));
+#elif defined(_MSC_FULL_VER)
+    xxLog("Runtime", "Visual C++ %d.%d.%d", _MSC_FULL_VER / 10000000 % 100, _MSC_FULL_VER / 100000 % 100, _MSC_FULL_VER % 100000);
+#endif
     xxLog("Runtime", "FreeType " xxStringify(FREETYPE_MAJOR) "." xxStringify(FREETYPE_MINOR) "." xxStringify(FREETYPE_PATCH));
 }
 //------------------------------------------------------------------------------

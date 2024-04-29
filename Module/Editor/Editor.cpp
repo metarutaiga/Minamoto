@@ -5,6 +5,7 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
+#include <imgui/imgui_internal.h>
 #include <utility/xxImage.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
@@ -13,18 +14,17 @@
 #include "Graphic/ShaderDisassembly.h"
 #include "Import/Import.h"
 #include "Object/Camera.h"
-#include "Utility/Grid.h"
 #include "Utility/Tools.h"
 #include "Window/Hierarchy.h"
 #include "Window/Inspector.h"
 #include "Window/Log.h"
+#include "Window/Scene.h"
 
 #define MODULE_NAME     "Editor"
 #define MODULE_MAJOR    1
 #define MODULE_MINOR    0
 
 static Camera* editorCamera;
-static xxNodePtr grid;
 static xxNodePtr root;
 static size_t modifierCount;
 //------------------------------------------------------------------------------
@@ -42,13 +42,13 @@ moduleAPI const char* Create(const CreateData& createData)
     camera->LightColor = {1.0f, 0.5f, 0.5f};
     camera->LightDirection = -xxVector3::Y;
 
-    grid = Grid::Create(xxVector3::ZERO, {10000, 10000});
     root = xxNode::Create();
 
     Import::Initialize();
+    Log::Initialize();
     Hierarchy::Initialize();
     Inspector::Initialize();
-    Log::Initialize();
+    Scene::Initialize();
 
     return MODULE_NAME;
 }
@@ -56,13 +56,13 @@ moduleAPI const char* Create(const CreateData& createData)
 moduleAPI void Shutdown(const ShutdownData& shutdownData)
 {
     Import::Shutdown();
+    Log::Shutdown();
     Hierarchy::Shutdown();
     Inspector::Shutdown();
-    Log::Shutdown();
+    Scene::Shutdown();
 
     Camera::DestroyCamera(editorCamera);
     editorCamera = nullptr;
-    grid = nullptr;
     root = nullptr;
 
     ShaderDisassembly::Shutdown();
@@ -78,10 +78,9 @@ moduleAPI void Message(const MessageData& messageData)
         case xxHash("INIT"):
             Runtime::Initialize();
             ShaderDisassembly::Initialize();
-            grid = Grid::Create(xxVector3::ZERO, {10000, 10000});
+            Scene::Initialize();
             break;
         case xxHash("SHUTDOWN"):
-            grid = nullptr;
             xxNode::Traversal([](xxNodePtr const& node)
             {
                 node->Invalidate();
@@ -95,6 +94,7 @@ moduleAPI void Message(const MessageData& messageData)
                 }
                 return true;
             }, root);
+            Scene::Shutdown();
             ShaderDisassembly::Shutdown();
             Runtime::Shutdown();
             break;
@@ -107,9 +107,10 @@ moduleAPI void Message(const MessageData& messageData)
 moduleAPI bool Update(const UpdateData& updateData)
 {
     static bool showAbout = false;
+    static bool showLog = true;
     static bool showHierarchy = true;
     static bool showInspector = true;
-    static bool showLog = true;
+    static bool showSceneView = true;
     static bool showShaderDisassembly = false;
     float menuBarHeight = 0.0f;
     bool updated = false;
@@ -122,9 +123,10 @@ moduleAPI bool Update(const UpdateData& updateData)
         {
             ImGui::MenuItem("About " MODULE_NAME, nullptr, &showAbout);
             ImGui::Separator();
+            ImGui::MenuItem("Log", nullptr, &showLog);
             ImGui::MenuItem("Hierarchy", nullptr, &showHierarchy);
             ImGui::MenuItem("Inspector", nullptr, &showInspector);
-            ImGui::MenuItem("Log", nullptr, &showLog);
+            ImGui::MenuItem("Scene View", nullptr, &showSceneView);
             ImGui::Separator();
             ImGui::MenuItem("Shader Disassembly", nullptr, &showShaderDisassembly);
             ImGui::EndMenu();
@@ -144,57 +146,6 @@ moduleAPI bool Update(const UpdateData& updateData)
         }
     }
 
-    if (editorCamera)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-
-        float forward_backward = 0;
-        float left_right = 0;
-        float speed = 10;
-
-        if (io.WantCaptureMouse == false)
-        {
-            if (ImGui::IsKeyDown(ImGuiKey_LeftShift))
-            {
-                speed = 50;
-            }
-            if (ImGui::IsKeyDown(ImGuiKey_A))
-            {
-                left_right = -speed;
-            }
-            if (ImGui::IsKeyDown(ImGuiKey_D))
-            {
-                left_right = speed;
-            }
-            if (ImGui::IsKeyDown(ImGuiKey_S))
-            {
-                forward_backward = -speed;
-            }
-            if (ImGui::IsKeyDown(ImGuiKey_W))
-            {
-                forward_backward = speed;
-            }
-        }
-
-        static xxVector2 mouse = xxVector2::ZERO;
-        float x = 0.0f;
-        float y = 0.0f;
-        if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
-        {
-            x = (io.MousePos.x - mouse.x) / 1000.0f;
-            y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f);
-        }
-        mouse.x = io.MousePos.x;
-        mouse.y = io.MousePos.y;
-
-        editorCamera->SetFOV(updateData.width / (float)updateData.height, 60.0f, 10000.0f);
-        if (forward_backward || left_right || x || y)
-        {
-            editorCamera->Update(updateData.elapsed, forward_backward, left_right, x, y);
-            updated = true;
-        }
-    }
-
     if (root)
     {
         root->Update(updateData.time);
@@ -207,33 +158,34 @@ moduleAPI bool Update(const UpdateData& updateData)
         }, root);
     }
 
+    ImGuiID id = ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
+
+    static bool dockInitialized = false;
+    if (dockInitialized == false)
+    {
+        dockInitialized = true;
+
+        ImGuiID down = ImGui::DockBuilderSplitNode(id, ImGuiDir_Down, 1.0f / 8.0f, nullptr, &id);
+        ImGuiID left = ImGui::DockBuilderSplitNode(id, ImGuiDir_Left, 1.0f / 5.0f, nullptr, &id);
+        ImGuiID right = ImGui::DockBuilderSplitNode(id, ImGuiDir_Right, 1.0f / 4.0f, nullptr, &id);
+        ImGui::DockBuilderDockWindow("Log", down);
+        ImGui::DockBuilderDockWindow("Hierarchy", left);
+        ImGui::DockBuilderDockWindow("Inspector", right);
+        ImGui::DockBuilderDockWindow("Scene", id);
+        ImGui::DockBuilderFinish(id);
+    }
+
+    updated |= Log::Update(updateData, showLog);
     updated |= Hierarchy::Update(updateData, menuBarHeight, showHierarchy, root, editorCamera->GetCamera());
     updated |= Inspector::Update(updateData, menuBarHeight, showInspector, editorCamera->GetCamera());
-    updated |= Log::Update(updateData, showLog);
+    updated |= Scene::Update(updateData, showSceneView, root, editorCamera);
     updated |= ShaderDisassembly::Update(updateData, showShaderDisassembly);
     updated |= modifierCount != 0;
-
-    Tools::Draw(editorCamera->GetCamera());
 
     return updated;
 }
 //------------------------------------------------------------------------------
 moduleAPI void Render(const RenderData& renderData)
 {
-    xxDrawData data;
-    data.device = renderData.device;
-    data.commandEncoder = renderData.commandEncoder;
-    data.camera = editorCamera->GetCamera().get();
-
-    xxNode::Traversal([&](xxNodePtr const& node)
-    {
-        node->Draw(data);
-        return true;
-    }, root);
-
-    if (grid)
-    {
-        grid->Draw(data);
-    }
 }
 //---------------------------------------------------------------------------

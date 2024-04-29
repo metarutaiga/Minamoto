@@ -63,7 +63,7 @@ void Hierarchy::Shutdown()
     exportFileDialog = nullptr;
 }
 //------------------------------------------------------------------------------
-void Hierarchy::Import(const UpdateData& updateData)
+void Hierarchy::Import(const UpdateData& updateData, xxCameraPtr const& camera)
 {
     if (importNode == nullptr)
         return;
@@ -122,6 +122,14 @@ void Hierarchy::Import(const UpdateData& updateData)
                 else
                 {
                     importNode->AttachChild(node);
+                    if (importNode->WorldBound.w == 0.0f)
+                    {
+                        importNode->Update(updateData.time, true);
+                        if (importNode->WorldBound.w != 0.0f)
+                        {
+                            Tools::LookAtFromBound(camera, importNode->WorldBound, xxVector3::Z);
+                        }
+                    }
                 }
 
                 xxNode* root = importNode.get();
@@ -227,6 +235,7 @@ void Hierarchy::Option(const UpdateData& updateData, float menuBarHeight, xxNode
     ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x + windowWidth, viewport->Pos.y + menuBarHeight));
     if (ImGui::Begin("Options", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground))
     {
+        ImGui::NewLine();
         ImGui::Checkbox("Node Line", &drawNodeLine);
         ImGui::Checkbox("Node Bound", &drawNodeBound);
         ImGui::End();
@@ -263,10 +272,6 @@ bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& 
         return false;
 
     bool update = false;
-    ImGuiViewport* viewport = ImGui::GetMainViewport();
-    ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x, viewport->Pos.y + menuBarHeight));
-    ImGui::SetNextWindowSize(ImVec2(windowWidth, viewport->Size.y - menuBarHeight - Log::GetWindowHeight()));
-
     if (ImGui::Begin("Hierarchy", &show))
     {
         windowWidth = ImGui::GetWindowWidth();
@@ -418,7 +423,7 @@ bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& 
     }
     ImGui::End();
 
-    Import(updateData);
+    Import(updateData, camera);
     Export(updateData);
     Option(updateData, menuBarHeight, root, camera);
 

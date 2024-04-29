@@ -39,11 +39,6 @@ bool Inspector::Update(const UpdateData& updateData, float menuBarHeight, bool& 
     if (show == false)
         return false;
 
-    bool update = false;
-    ImGuiViewport* viewport = ImGui::GetMainViewport();
-    ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x + viewport->Size.x - windowWidth, viewport->Pos.y + menuBarHeight));
-    ImGui::SetNextWindowSize(ImVec2(windowWidth, viewport->Size.y - menuBarHeight - Log::GetWindowHeight()));
-
     if (ImGui::Begin("Inspector", &show))
     {
         ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.0f, 1.0f));
@@ -73,7 +68,7 @@ bool Inspector::Update(const UpdateData& updateData, float menuBarHeight, bool& 
     }
     ImGui::End();
 
-    return update;
+    return false;
 }
 //------------------------------------------------------------------------------
 #define Q "##" xxStringify(__LINE__)
