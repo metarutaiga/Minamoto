@@ -28,7 +28,7 @@ static const struct { std::string name; xxModifier::UpdateFunction function; siz
     [Modifier::SCALE]               = { "SCALE",                LOADER(ScaleModifier),              0,                                          sizeof(ScaleModifier::Key) },
     [Modifier::BAKED_QUATERNION]    = { "BAKED_QUATERNION",     LOADER(BakedQuaternionModifier),    sizeof(BakedQuaternionModifier::Baked),     sizeof(xxVector4) },
     [Modifier::QUATERNION16]        = { "QUATERNION16",         LOADER(Quaternion16Modifier),       0,                                          sizeof(Quaternion16Modifier::Key) },
-    [Modifier::BAKED_QUATERNION16]  = { "BAKED_QUATERNION16",   LOADER(BakedQuaternion16Modifier),  sizeof(BakedQuaternion16Modifier::Baked),   sizeof(Modifier::v4hi) },
+    [Modifier::BAKED_QUATERNION16]  = { "BAKED_QUATERNION16",   LOADER(BakedQuaternion16Modifier),  sizeof(BakedQuaternion16Modifier::Baked),   sizeof(v4hi) },
 };
 //==============================================================================
 void Modifier::Initialize()

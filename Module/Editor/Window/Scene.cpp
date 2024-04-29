@@ -15,7 +15,7 @@
 #include "Scene.h"
 
 //==============================================================================
-static xxNodePtr grid;
+static xxNodePtr sceneGrid;
 static xxNodePtr sceneRoot;
 static xxDrawData sceneDrawData;
 static ImVec2 viewPos;
@@ -24,12 +24,12 @@ static ImGuiViewport* viewViewport;
 //------------------------------------------------------------------------------
 void Scene::Initialize()
 {
-    grid = Grid::Create(xxVector3::ZERO, {10000, 10000});
+    sceneGrid = Grid::Create(xxVector3::ZERO, {10000, 10000});
 }
 //------------------------------------------------------------------------------
 void Scene::Shutdown()
 {
-    grid = nullptr;
+    sceneGrid = nullptr;
     sceneRoot = nullptr;
     sceneDrawData = xxDrawData{};
     viewViewport = nullptr;
@@ -69,7 +69,6 @@ bool Scene::Update(const UpdateData& updateData, bool& show, xxNodePtr const& ro
         float forward_backward = 0.0f;
         float left_right = 0.0f;
         float speed = 10.0f;
-
         if (ImGui::IsWindowHovered())
         {
             if (ImGui::IsKeyDown(ImGuiKey_LeftShift))
@@ -91,6 +90,10 @@ bool Scene::Update(const UpdateData& updateData, bool& show, xxNodePtr const& ro
             if (ImGui::IsKeyDown(ImGuiKey_W))
             {
                 forward_backward = speed;
+            }
+            if (ImGui::IsKeyPressed(ImGuiKey_Z) && camera && root)
+            {
+                Tools::LookAtFromBound(camera->GetCamera(), root->WorldBound, xxVector3::Z);
             }
         }
 
@@ -139,6 +142,9 @@ bool Scene::Update(const UpdateData& updateData, bool& show, xxNodePtr const& ro
 //------------------------------------------------------------------------------
 void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
 {
+    if (viewViewport == nullptr || viewViewport->RendererUserData == nullptr)
+        return;
+
     float x = 0.0f;
     float y = 0.0f;
     float width = 0.0f;
@@ -149,7 +155,7 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
     for (int i = 0; i < io.Viewports.size(); ++i)
     {
         ImGuiViewport* viewport = io.Viewports[i];
-        if (viewport == nullptr || viewport != viewViewport || viewport->RendererUserData == nullptr)
+        if (viewport != viewViewport)
             continue;
         x = viewport->Pos.x;
         y = viewport->Pos.y;
@@ -195,6 +201,6 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
     };
 
     xxNode::Traversal(callback, sceneRoot);
-    xxNode::Traversal(callback, grid);
+    xxNode::Traversal(callback, sceneGrid);
 }
 //------------------------------------------------------------------------------

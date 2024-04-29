@@ -58,6 +58,12 @@ void Tools::Draw(xxCameraPtr const& camera)
 //------------------------------------------------------------------------------
 void Tools::LookAtFromBound(xxCameraPtr const& camera, xxVector4 bound, xxVector3 const& up)
 {
+    if (bound.w == 0.0f)
+    {
+        camera->Location = (xxVector3::Y * -10 + xxVector3::Z * 10);
+        camera->LookAt(xxVector3::ZERO, up);
+        return;
+    }
     bound.x = std::roundf(bound.x);
 
     camera->Location.x = bound.x;

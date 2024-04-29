@@ -35,7 +35,7 @@ moduleAPI const char* Create(const CreateData& createData)
 
     editorCamera = Camera::CreateCamera();
     xxCameraPtr const& camera = editorCamera->GetCamera();
-    camera->Location = (xxVector3::Y * -100 + xxVector3::Z * 100);
+    camera->Location = (xxVector3::Y * -10 + xxVector3::Z * 10);
     camera->LookAt(xxVector3::ZERO, xxVector3::Z);
     camera->Update();
 
@@ -110,7 +110,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     static bool showLog = true;
     static bool showHierarchy = true;
     static bool showInspector = true;
-    static bool showSceneView = true;
+    static bool showScene = true;
     static bool showShaderDisassembly = false;
     float menuBarHeight = 0.0f;
     bool updated = false;
@@ -126,7 +126,7 @@ moduleAPI bool Update(const UpdateData& updateData)
             ImGui::MenuItem("Log", nullptr, &showLog);
             ImGui::MenuItem("Hierarchy", nullptr, &showHierarchy);
             ImGui::MenuItem("Inspector", nullptr, &showInspector);
-            ImGui::MenuItem("Scene View", nullptr, &showSceneView);
+            ImGui::MenuItem("Scene", nullptr, &showScene);
             ImGui::Separator();
             ImGui::MenuItem("Shader Disassembly", nullptr, &showShaderDisassembly);
             ImGui::EndMenu();
@@ -178,7 +178,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     updated |= Log::Update(updateData, showLog);
     updated |= Hierarchy::Update(updateData, menuBarHeight, showHierarchy, root, editorCamera->GetCamera());
     updated |= Inspector::Update(updateData, menuBarHeight, showInspector, editorCamera->GetCamera());
-    updated |= Scene::Update(updateData, showSceneView, root, editorCamera);
+    updated |= Scene::Update(updateData, showScene, root, editorCamera);
     updated |= ShaderDisassembly::Update(updateData, showShaderDisassembly);
     updated |= modifierCount != 0;
 

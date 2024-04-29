@@ -28,8 +28,6 @@ public:
         BAKED_QUATERNION16  = 51,
     };
 
-    typedef int16_t v4hi[4];
-
 public:
     template<class T> bool          UpdateKeyFactor(xxModifierData* data, float time, T*& A, T*& B, float& F);
     template<class T, class D> bool UpdateBakedFactor(xxModifierData* data, float time, D* baked, T*& A, T*& B, float& F);
