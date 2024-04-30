@@ -36,7 +36,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{2F85E386-DA52-436B-82BF-1D6E494F4408}</ProjectGuid>
+    <ProjectGuid>{66FAEF03-E0A2-42D3-A34B-004F7CDE4346}</ProjectGuid>
     <RootNamespace>Runtime</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -44,49 +44,49 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -120,111 +120,107 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\module\</OutDir>
-    <IntDir>$(SolutionDir)build\temp\$(Configuration).$(Platform)\$(ProjectName)\</IntDir>
-    <TargetName>$(ProjectName).$(Configuration).$(Platform)</TargetName>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)build\temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <TargetName>$(ProjectName).$(Configuration).$(Platform)</TargetName>
-    <IntDir>$(SolutionDir)build\temp\$(Configuration).$(Platform)\$(ProjectName)\</IntDir>
-    <OutDir>$(SolutionDir)bin\module\</OutDir>
+    <IntDir>$(SolutionDir)build\temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <TargetName>$(ProjectName).$(Configuration).$(Platform)</TargetName>
-    <IntDir>$(SolutionDir)build\temp\$(Configuration).$(Platform)\$(ProjectName)\</IntDir>
-    <OutDir>$(SolutionDir)bin\module\</OutDir>
+    <IntDir>$(SolutionDir)build\temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\module\</OutDir>
-    <IntDir>$(SolutionDir)build\temp\$(Configuration).$(Platform)\$(ProjectName)\</IntDir>
-    <TargetName>$(ProjectName).$(Configuration).$(Platform)</TargetName>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)build\temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\module\</OutDir>
-    <IntDir>$(SolutionDir)build\temp\$(Configuration).$(Platform)\$(ProjectName)\</IntDir>
-    <TargetName>$(ProjectName).$(Configuration).$(Platform)</TargetName>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)build\temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <TargetName>$(ProjectName).$(Configuration).$(Platform)</TargetName>
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)build\temp\$(Configuration).$(Platform)\$(ProjectName)\</IntDir>
-    <OutDir>$(SolutionDir)bin\module\</OutDir>
+    <IntDir>$(SolutionDir)build\temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <TargetName>$(ProjectName).$(Configuration).$(Platform)</TargetName>
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)build\temp\$(Configuration).$(Platform)\$(ProjectName)\</IntDir>
-    <OutDir>$(SolutionDir)bin\module\</OutDir>
+    <IntDir>$(SolutionDir)build\temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\module\</OutDir>
-    <IntDir>$(SolutionDir)build\temp\$(Configuration).$(Platform)\$(ProjectName)\</IntDir>
-    <TargetName>$(ProjectName).$(Configuration).$(Platform)</TargetName>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)build\temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../../SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;../..;../../../SDK;../../../SDK/freetype/include;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;RUNTIME_BUILD_LIBRARY;XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:imgui /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../../SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;../..;../../../SDK;../../../SDK/freetype/include;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;RUNTIME_BUILD_LIBRARY;XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:imgui /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../../SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;../..;../../../SDK;../../../SDK/freetype/include;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;RUNTIME_BUILD_LIBRARY;XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:imgui /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../../SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;../..;../../../SDK;../../../SDK/freetype/include;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;RUNTIME_BUILD_LIBRARY;XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:imgui /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../../SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;../..;../../../SDK;../../../SDK/freetype/include;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;RUNTIME_BUILD_LIBRARY;XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -238,14 +234,15 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:imgui /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../../SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;../..;../../../SDK;../../../SDK/freetype/include;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;RUNTIME_BUILD_LIBRARY;XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -259,14 +256,15 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:imgui /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../../SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;../..;../../../SDK;../../../SDK/freetype/include;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;RUNTIME_BUILD_LIBRARY;XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -280,14 +278,15 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:imgui /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../../SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;../..;../../../SDK;../../../SDK/freetype/include;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;RUNTIME_BUILD_LIBRARY;XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;IMGUI_USER_CONFIG="../../Minamoto/implement/imgui_user_config.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -301,15 +300,61 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:imgui /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Graphic\Binary.cpp" />
+    <ClCompile Include="..\Graphic\Pipeline.cpp" />
+    <ClCompile Include="..\Graphic\RenderPass.cpp" />
+    <ClCompile Include="..\Graphic\Shader.cpp" />
+    <ClCompile Include="..\Graphic\VertexAttribute.cpp" />
+    <ClCompile Include="..\Modifier\BakedQuaternion16Modifier.cpp" />
+    <ClCompile Include="..\Modifier\BakedQuaternionModifier.cpp" />
+    <ClCompile Include="..\Modifier\ConstantQuaternionModifier.cpp" />
+    <ClCompile Include="..\Modifier\ConstantScaleModifier.cpp" />
+    <ClCompile Include="..\Modifier\ConstantTranslateModifier.cpp" />
+    <ClCompile Include="..\Modifier\Modifier.cpp" />
+    <ClCompile Include="..\Modifier\Quaternion16Modifier.cpp" />
+    <ClCompile Include="..\Modifier\QuaternionModifier.cpp" />
+    <ClCompile Include="..\Modifier\ScaleModifier.cpp" />
+    <ClCompile Include="..\Modifier\TranslateModifier.cpp" />
     <ClCompile Include="..\Runtime.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Build\freetype.vcxproj">
+      <Project>{d98a83df-490d-46d9-809c-55c80ba9275f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\build\imgui.vcxproj">
       <Project>{9b49443b-7fae-479e-8cdf-29919a9f786f}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Build\xxGraphic.vcxproj">
+      <Project>{81c889fc-6908-4066-8c73-3215df6fffc9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Build\xxGraphicPlus.vcxproj">
+      <Project>{66d6899a-46d1-435e-8588-cbe7a264a628}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Graphic\Binary.h" />
+    <ClInclude Include="..\Graphic\Pipeline.h" />
+    <ClInclude Include="..\Graphic\RenderPass.h" />
+    <ClInclude Include="..\Graphic\Shader.h" />
+    <ClInclude Include="..\Graphic\VertexAttribute.h" />
+    <ClInclude Include="..\Modifier\BakedQuaternion16Modifier.h" />
+    <ClInclude Include="..\Modifier\BakedQuaternionModifier.h" />
+    <ClInclude Include="..\Modifier\ConstantQuaternionModifier.h" />
+    <ClInclude Include="..\Modifier\ConstantScaleModifier.h" />
+    <ClInclude Include="..\Modifier\ConstantTranslateModifier.h" />
+    <ClInclude Include="..\Modifier\Modifier.h" />
+    <ClInclude Include="..\Modifier\Quaternion16Modifier.h" />
+    <ClInclude Include="..\Modifier\QuaternionModifier.h" />
+    <ClInclude Include="..\Modifier\ScaleModifier.h" />
+    <ClInclude Include="..\Modifier\TranslateModifier.h" />
+    <ClInclude Include="..\Runtime.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Modifier\Modifier.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

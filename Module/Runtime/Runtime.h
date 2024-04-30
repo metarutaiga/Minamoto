@@ -16,6 +16,10 @@
 #   endif
 #endif
 
+#if defined(_MSC_VER)
+#   pragma warning(disable:4200)
+#endif
+
 struct RuntimeAPI Runtime
 {
     static void Initialize();

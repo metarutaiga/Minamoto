@@ -16,11 +16,13 @@ public:
         float duration;
         float frequency;
         float inverseFrequency;
+#if defined(_M_ARM) || defined(_M_ARM64) || defined(_M_IX86) || defined(_M_AMD64) 
+        float values[][4];
+#else
         xxVector4 values[];
-    };
-#if defined(__aarch64__)
-    static_assert(sizeof(Baked) == 12);
 #endif
+    };
+    static_assert(sizeof(Baked) == 12);
 
 public:
     void                    Update(void* target, xxModifierData* data, float time);

@@ -14,7 +14,11 @@ public:
     struct Key
     {
         float time;
+#if defined(_M_ARM) || defined(_M_ARM64)
+        int16_t quaternion[4];
+#else
         v4hi quaternion;
+#endif
     };
     static_assert(sizeof(Key) == 12);
 

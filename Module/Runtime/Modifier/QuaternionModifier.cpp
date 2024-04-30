@@ -20,7 +20,7 @@ void QuaternionModifier::Update(void* target, xxModifierData* data, float time)
         return;
 
     auto node = (xxNode*)target;
-    node->SetRotate(xxMatrix3::Quaternion(Lerp(A->quaternion, B->quaternion, F)));
+    node->SetRotate(xxMatrix3::Quaternion(Lerp((xxVector4&)A->quaternion, (xxVector4&)B->quaternion, F)));
 }
 //------------------------------------------------------------------------------
 xxModifierPtr QuaternionModifier::Create(size_t count, std::function<void(size_t index, float& time, xxVector4& quaternion)> fill)
@@ -35,7 +35,7 @@ xxModifierPtr QuaternionModifier::Create(size_t count, std::function<void(size_t
         auto* key = (Key*)modifier->Data.data();
         for (size_t i = 0; i < count; ++i)
         {
-            fill(i, key[i].time, key[i].quaternion);
+            fill(i, key[i].time, (xxVector4&)key[i].quaternion);
         }
     }
     return modifier;

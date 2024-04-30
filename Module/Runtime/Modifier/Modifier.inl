@@ -74,8 +74,8 @@ bool Modifier::UpdateBakedFactor(xxModifierData* data, float time, D* baked, T*&
     time = std::fmodf(time, baked->duration);
     size_t index = data->index = size_t(time * baked->inverseFrequency);
 
-    A = &baked->values[index];
-    B = &baked->values[index + 1];
+    A = (T*)&baked->values[index];
+    B = (T*)&baked->values[index + 1];
     F = time - index * baked->frequency;
     return true;
 }

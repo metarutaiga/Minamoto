@@ -2,5 +2,109 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\Editor.cpp" />
+    <ClCompile Include="..\Graphic\ShaderDisassembly.cpp">
+      <Filter>Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Import\Import.cpp">
+      <Filter>Import</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Import\ImportFBX.cpp">
+      <Filter>Import</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Import\ImportWavefront.cpp">
+      <Filter>Import</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Object\Camera.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\Hierarchy.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\Inspector.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\Log.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\Scene.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\Grid.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\Tools.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\SDK\ImGuiFileDialog\ImGuiFileDialog.cpp">
+      <Filter>Window\ImGuiFileDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\SDK\ufbx\ufbx.c">
+      <Filter>Import\ufbx</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ImGuiHelper.h" />
+    <ClInclude Include="..\Graphic\ShaderDisassembly.h">
+      <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Import\Import.h">
+      <Filter>Import</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Import\ImportFBX.h">
+      <Filter>Import</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Import\ImportWavefront.h">
+      <Filter>Import</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Object\Camera.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\Hierarchy.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\Inspector.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\Log.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\Scene.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\Grid.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\Tools.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\SDK\ImGuiFileDialog\ImGuiFileDialog.h">
+      <Filter>Window\ImGuiFileDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\SDK\ufbx\ufbx.h">
+      <Filter>Import\ufbx</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Graphic">
+      <UniqueIdentifier>{1e459d22-46ab-4ce2-a9ee-dd65b800d02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Import">
+      <UniqueIdentifier>{fbe4f660-3eb9-4a08-9c77-9c536f5e503e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{47dbcea1-6761-4ed4-aa26-9abb56430602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{f3583be6-aa75-4050-ac41-534f1e3a7b98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{72bf9284-bcb5-4605-b56c-f2dc11673473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\ImGuiFileDialog">
+      <UniqueIdentifier>{2166135c-14ba-4b35-9f11-1d97fbe2cafc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Import\ufbx">
+      <UniqueIdentifier>{6532551d-ae8d-40c2-b589-8b178b2162d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

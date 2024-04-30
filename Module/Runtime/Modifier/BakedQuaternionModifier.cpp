@@ -41,7 +41,7 @@ xxModifierPtr BakedQuaternionModifier::Create(size_t count, float duration, std:
         baked->inverseFrequency = 1.0f / baked->frequency;
         for (size_t i = 0; i < count; ++i)
         {
-            fill(i, baked->values[i]);
+            fill(i, (xxVector4&)baked->values[i]);
         }
     }
     return modifier;

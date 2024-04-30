@@ -14,11 +14,13 @@ public:
     struct Key
     {
         float time;
+#if defined(_M_ARM) || defined(_M_ARM64) || defined(_M_IX86) || defined(_M_AMD64) 
+        float quaternion[4];
+#else
         xxVector4 quaternion;
-    };
-#if defined(__aarch64__)
-    static_assert(sizeof(Key) == 20);
 #endif
+    };
+    static_assert(sizeof(Key) == 20);
 
 public:
     void                    Update(void* target, xxModifierData* data, float time);

@@ -237,7 +237,7 @@ bool ShaderDisassembly::Update(const UpdateData& updateData, bool& show)
             auto& data = *(it);
             snprintf(temp, 64, "%016llX", data.first);
             return temp;
-        }, nullptr, (int)allShaderDisassembly.size(), size.y / ImGui::GetTextLineHeightWithSpacing());
+        }, nullptr, int(allShaderDisassembly.size()), int(size.y / ImGui::GetTextLineHeightWithSpacing()));
 
         auto it = allShaderDisassembly.begin();
         for (int i = 0; i < shaderCurrent; ++i)

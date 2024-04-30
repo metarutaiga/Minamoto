@@ -46,7 +46,7 @@ xxModifierPtr BakedQuaternion16Modifier::Create(size_t count, float duration, st
             xxVector4 quaternion;
             fill(i, quaternion);
             quaternion *= 32767.0f;
-            baked->values[i] = __builtin_convertvector(quaternion.v, v4hi);
+            (v4hi&)baked->values[i] = __builtin_convertvector(quaternion.v, v4hi);
         }
     }
     return modifier;

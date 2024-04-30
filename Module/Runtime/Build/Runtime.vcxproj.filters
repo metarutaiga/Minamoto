@@ -2,5 +2,111 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\Runtime.cpp" />
+    <ClCompile Include="..\Graphic\Binary.cpp">
+      <Filter>Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphic\Pipeline.cpp">
+      <Filter>Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphic\RenderPass.cpp">
+      <Filter>Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphic\Shader.cpp">
+      <Filter>Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphic\VertexAttribute.cpp">
+      <Filter>Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\BakedQuaternion16Modifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\BakedQuaternionModifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\ConstantQuaternionModifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\ConstantScaleModifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\ConstantTranslateModifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\Modifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\Quaternion16Modifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\QuaternionModifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\ScaleModifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Modifier\TranslateModifier.cpp">
+      <Filter>Modifier</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Runtime.h" />
+    <ClInclude Include="..\Graphic\Binary.h">
+      <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphic\Pipeline.h">
+      <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphic\RenderPass.h">
+      <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphic\Shader.h">
+      <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphic\VertexAttribute.h">
+      <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\BakedQuaternion16Modifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\BakedQuaternionModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\ConstantQuaternionModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\ConstantScaleModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\ConstantTranslateModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\Modifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\Quaternion16Modifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\QuaternionModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\ScaleModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Modifier\TranslateModifier.h">
+      <Filter>Modifier</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Graphic">
+      <UniqueIdentifier>{615ce49b-cb21-4fef-98d6-1beac3e7f1ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modifier">
+      <UniqueIdentifier>{4bbf1bc4-4283-4c0e-900e-c24f4a694d30}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Modifier\Modifier.inl">
+      <Filter>Modifier</Filter>
+    </None>
   </ItemGroup>
 </Project>

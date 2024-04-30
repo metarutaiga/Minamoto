@@ -22,30 +22,8 @@ static ImVector<PFN_MODULE_RENDER>      g_moduleRenders;
 void Module::Create(const char* path, uint64_t device)
 {
     const char* app = xxGetExecutablePath();
-    const char* configuration = "";
-    const char* arch = "";
     const char* extension = "";
 #if defined(xxWINDOWS)
-#if defined(__llvm__)
-#elif defined(_DEBUG)
-    configuration = "Debug";
-#elif defined(NDEBUG)
-    configuration = "Release";
-#endif
-#if defined(__llvm__)
-#elif defined(_M_ARM64EC)
-    arch = ".arm64ec";
-#elif defined(_M_HYBRID_X86_ARM64)
-    arch = ".chpe";
-#elif defined(_M_AMD64)
-    arch = ".x64";
-#elif defined(_M_IX86)
-    arch = ".Win32";
-#elif defined(_M_ARM64)
-    arch = ".arm64";
-#elif defined(_M_ARM)
-    arch = ".arm";
-#endif
     extension = ".dll";
 #elif defined(xxMACOS)
     extension = ".dylib";
@@ -67,7 +45,7 @@ void Module::Create(const char* path, uint64_t device)
 #endif
 
     uint64_t handle = 0;
-    while (char* filename = xxOpenDirectory(&handle, temp, configuration, arch, extension, nullptr))
+    while (char* filename = xxOpenDirectory(&handle, temp, extension, nullptr))
     {
 #if defined(xxWINDOWS)
         snprintf(temp, 4096, "%s\\%s\\%s", app, path, filename);

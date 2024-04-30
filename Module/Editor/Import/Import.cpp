@@ -12,7 +12,9 @@
 #define STBI_ONLY_PNG
 #define STBI_NO_FAILURE_STRINGS
 #define STB_IMAGE_IMPLEMENTATION
-#pragma clang diagnostic ignored "-Wunused-function"
+#if defined(__clang__)
+#   pragma clang diagnostic ignored "-Wunused-function"
+#endif
 #include <stb/stb_image.h>
 
 #define TAG "Import"
