@@ -16,7 +16,7 @@ public:
         float duration;
         float frequency;
         float inverseFrequency;
-#if defined(_M_ARM) || defined(_M_ARM64)
+#if defined(_M_ARM) || defined(_M_ARM64) || defined(_M_IX86) || defined(_M_AMD64) 
         int16_t values[][4];
 #else
         v4hi values[];

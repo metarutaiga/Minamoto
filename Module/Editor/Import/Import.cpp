@@ -47,7 +47,7 @@ void Import::Initialize()
         if (uc)
         {
 #if defined(xxWINDOWS)
-            for (size_t i = 0; i < width * height * 4; i += 4)
+            for (int i = 0; i < width * height * 4; i += 4)
             {
                 std::swap(uc[i + 0], uc[i + 2]);
             }
@@ -230,11 +230,11 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
             container.pop_back();
         };
 
-        auto replace = [](auto& container, uint16_t from, uint16_t to)
+        auto replace = [](auto& container, size_t from, size_t to)
         {
             for (size_t i = std::min(from, to); i < container.size(); ++i)
                 if (container[i] == from)
-                    container[i] = to;
+                    container[i] = std::remove_reference<decltype(container)>::type::value_type(to);
         };
 
         for (size_t j = i + 1; j < vertices.size(); ++j)

@@ -128,14 +128,14 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
             {
                 modifier = Quaternion16Modifier::Create(reduction_node.rotation_keys.count, [&](size_t index, float& time, xxVector4& quaternion)
                 {
-                    time = reduction_node.rotation_keys.data[index].time - reduction->key_time_min;
+                    time = float(reduction_node.rotation_keys.data[index].time - reduction->key_time_min);
                     quaternion = quat(reduction_node.rotation_keys.data[index].value);
                 });
                 rotation = reduction_node.rotation_keys.count;
             }
             else
             {
-                modifier = BakedQuaternion16Modifier::Create(baked_node.rotation_keys.count, baked->playback_duration, [&](size_t index, xxVector4& quaternion)
+                modifier = BakedQuaternion16Modifier::Create(baked_node.rotation_keys.count, float(baked->playback_duration), [&](size_t index, xxVector4& quaternion)
                 {
                     quaternion = quat(baked_node.rotation_keys.data[index].value);
                 });
@@ -157,7 +157,7 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
             {
                 modifier = TranslateModifier::Create(reduction_node.translation_keys.count, [&](size_t index, float& time, xxVector3& translate)
                 {
-                    time = reduction_node.translation_keys.data[index].time - reduction->key_time_min;
+                    time = float(reduction_node.translation_keys.data[index].time - reduction->key_time_min);
                     translate = vec3(reduction_node.translation_keys.data[index].value);
                 });
                 translate = reduction_node.translation_keys.count;
@@ -178,8 +178,8 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
             {
                 modifier = ScaleModifier::Create(reduction_node.scale_keys.count, [&](size_t index, float& time, float& scale)
                 {
-                    time = reduction_node.scale_keys.data[index].time - reduction->key_time_min;
-                    scale = reduction_node.scale_keys.data[index].value.x;
+                    time = float(reduction_node.scale_keys.data[index].time - reduction->key_time_min);
+                    scale = float(reduction_node.scale_keys.data[index].value.x);
                 });
                 scale = reduction_node.scale_keys.count;
             }
@@ -294,9 +294,9 @@ static xxMeshPtr createMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
             (*tangents++) = vec3(ufbx_get_vertex_vec3(&mesh->vertex_tangent, i));
         if (normalCount >= 3)
             (*bitangents++) = vec3(ufbx_get_vertex_vec3(&mesh->vertex_bitangent, i));
-        for (size_t j = 0; j < colorCount; ++j)
+        for (int j = 0; j < colorCount; ++j)
             (*colors[j]++) = vec4(ufbx_get_vertex_vec4(&mesh->color_sets[j].vertex_color, i)).ToInteger();
-        for (size_t j = 0; j < textureCount; ++j)
+        for (int j = 0; j < textureCount; ++j)
         {
             xxVector2 uv = vec2(ufbx_get_vertex_vec2(&mesh->uv_sets[j].vertex_uv, i));
 

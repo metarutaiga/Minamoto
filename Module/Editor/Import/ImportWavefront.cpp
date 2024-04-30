@@ -26,7 +26,7 @@ static int ToInt(char const* text)
 //------------------------------------------------------------------------------
 static float ToFloat(char const* text)
 {
-    return text ? atof(text) : 0.0f;
+    return text ? float(atof(text)) : 0.0f;
 }
 //------------------------------------------------------------------------------
 static std::string GeneratePath(char const* path, char const* name)
@@ -252,18 +252,18 @@ xxNodePtr ImportWavefront::Create(char const* obj)
                 if (face == nullptr)
                     break;
                 char* parts = face;
-                int v = ToInt(strsep(&parts, "/")) - 1;
-                int t = ToInt(strsep(&parts, "/")) - 1;
-                int n = ToInt(strsep(&parts, "/")) - 1;
-                if (v >= 0 && v < vertices.size())
+                unsigned int v = ToInt(strsep(&parts, "/")) - 1;
+                unsigned int t = ToInt(strsep(&parts, "/")) - 1;
+                unsigned int n = ToInt(strsep(&parts, "/")) - 1;
+                if (v < vertices.size())
                 {
                     faceVertices.push_back(vertices[v]);
                 }
-                if (n >= 0 && n < normals.size())
+                if (n < normals.size())
                 {
                     faceNormals.push_back(normals[n]);
                 }
-                if (t >= 0 && t < textures.size())
+                if (t < textures.size())
                 {
                     faceTextures.push_back(textures[t]);
                 }

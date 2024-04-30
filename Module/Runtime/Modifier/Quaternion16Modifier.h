@@ -14,7 +14,7 @@ public:
     struct Key
     {
         float time;
-#if defined(_M_ARM) || defined(_M_ARM64)
+#if defined(_M_ARM) || defined(_M_ARM64) || defined(_M_IX86) || defined(_M_AMD64) 
         int16_t quaternion[4];
 #else
         v4hi quaternion;
