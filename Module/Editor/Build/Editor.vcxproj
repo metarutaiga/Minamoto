@@ -303,7 +303,6 @@
     <ClCompile Include="..\Import\Import.cpp" />
     <ClCompile Include="..\Import\ImportFBX.cpp" />
     <ClCompile Include="..\Import\ImportWavefront.cpp" />
-    <ClCompile Include="..\Object\Camera.cpp" />
     <ClCompile Include="..\Utility\Grid.cpp" />
     <ClCompile Include="..\Utility\Tools.cpp" />
     <ClCompile Include="..\Window\Hierarchy.cpp" />
@@ -319,7 +318,6 @@
     <ClInclude Include="..\Import\Import.h" />
     <ClInclude Include="..\Import\ImportFBX.h" />
     <ClInclude Include="..\Import\ImportWavefront.h" />
-    <ClInclude Include="..\Object\Camera.h" />
     <ClInclude Include="..\Utility\Grid.h" />
     <ClInclude Include="..\Utility\Tools.h" />
     <ClInclude Include="..\Window\Hierarchy.h" />

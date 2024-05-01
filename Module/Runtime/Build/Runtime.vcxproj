@@ -304,6 +304,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Camera\CameraTools.cpp" />
     <ClCompile Include="..\Graphic\Binary.cpp" />
     <ClCompile Include="..\Graphic\Pipeline.cpp" />
     <ClCompile Include="..\Graphic\RenderPass.cpp" />
@@ -336,6 +337,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Camera\CameraTools.h" />
     <ClInclude Include="..\Graphic\Binary.h" />
     <ClInclude Include="..\Graphic\Pipeline.h" />
     <ClInclude Include="..\Graphic\RenderPass.h" />

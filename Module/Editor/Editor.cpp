@@ -7,14 +7,9 @@
 #include <Interface.h>
 #include <imgui/imgui_internal.h>
 #include <IconFontCppHeaders/IconsFontAwesome4.h>
-#include <utility/xxImage.h>
-#include <utility/xxMaterial.h>
-#include <utility/xxMesh.h>
-#include <utility/xxNode.h>
 #include <Runtime/Runtime.h>
 #include "Graphic/ShaderDisassembly.h"
 #include "Import/Import.h"
-#include "Object/Camera.h"
 #include "Utility/Tools.h"
 #include "Window/Hierarchy.h"
 #include "Window/Inspector.h"
@@ -25,24 +20,11 @@
 #define MODULE_MAJOR    1
 #define MODULE_MINOR    0
 
-static Camera* editorCamera;
-static xxNodePtr root;
 //------------------------------------------------------------------------------
 moduleAPI const char* Create(const CreateData& createData)
 {
     Runtime::Initialize();
     ShaderDisassembly::Initialize();
-
-    editorCamera = Camera::CreateCamera();
-    xxCameraPtr const& camera = editorCamera->GetCamera();
-    camera->Location = (xxVector3::Y * -10 + xxVector3::Z * 10);
-    camera->LookAt(xxVector3::ZERO, xxVector3::Z);
-    camera->Update();
-
-    camera->LightColor = {1.0f, 0.5f, 0.5f};
-    camera->LightDirection = -xxVector3::Y;
-
-    root = xxNode::Create();
 
     Import::Initialize();
     Log::Initialize();
@@ -61,10 +43,6 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
     Inspector::Shutdown();
     Scene::Shutdown();
 
-    Camera::DestroyCamera(editorCamera);
-    editorCamera = nullptr;
-    root = nullptr;
-
     ShaderDisassembly::Shutdown();
     Runtime::Shutdown();
 }
@@ -81,20 +59,7 @@ moduleAPI void Message(const MessageData& messageData)
             Scene::Initialize();
             break;
         case xxHash("SHUTDOWN"):
-            xxNode::Traversal([](xxNodePtr const& node)
-            {
-                node->Invalidate();
-                if (node->Mesh)
-                    node->Mesh->Invalidate();
-                if (node->Material)
-                {
-                    node->Material->Invalidate();
-                    for (xxImagePtr const& image : node->Material->Images)
-                        image->Invalidate();
-                }
-                return true;
-            }, root);
-            Scene::Shutdown();
+            Scene::Shutdown(true);
             ShaderDisassembly::Shutdown();
             Runtime::Shutdown();
             break;
@@ -164,9 +129,9 @@ moduleAPI bool Update(const UpdateData& updateData)
     }
 
     updated |= Log::Update(updateData, showLog);
-    updated |= Hierarchy::Update(updateData, showHierarchy, root, editorCamera->GetCamera());
-    updated |= Inspector::Update(updateData, showInspector, editorCamera->GetCamera());
-    updated |= Scene::Update(updateData, showScene, root, editorCamera);
+    updated |= Hierarchy::Update(updateData, showHierarchy, Scene::sceneRoot);
+    updated |= Inspector::Update(updateData, showInspector, Scene::sceneCamera);
+    updated |= Scene::Update(updateData, showScene);
     updated |= ShaderDisassembly::Update(updateData, showShaderDisassembly);
 
     return updated;

@@ -112,7 +112,10 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
         ImGui::InputFloat("" Q, &selected->WorldBound.w, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
         if (node->Bones.empty() == false)
         {
-            if (ImGui::CollapsingHeader(ICON_FA_STREET_VIEW "Bones" Q, nullptr, ImGuiTreeNodeFlags_None))
+            ImGui::PushStyleColor(ImGuiCol_Header, 0);
+            bool open = ImGui::CollapsingHeader(ICON_FA_STREET_VIEW "Bones" Q, nullptr, ImGuiTreeNodeFlags_Framed);
+            ImGui::PopStyleColor();
+            if (open)
             {
                 static int current = 0;
                 static unsigned int hovered = 0; hovered = UINT_MAX;
@@ -249,7 +252,9 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
         {
             strcpy(name, ICON_FA_PICTURE_O);
             strcat(name, image->Name.c_str());
-            bool collapsing = ImGui::CollapsingHeader(name, nullptr, ImGuiTreeNodeFlags_None);
+            ImGui::PushStyleColor(ImGuiCol_Header, 0);
+            bool open = ImGui::CollapsingHeader(name, nullptr, ImGuiTreeNodeFlags_None);
+            ImGui::PopStyleColor();
             if (ImGui::IsItemHovered())
             {
                 uint64_t texture = image->GetTexture();
@@ -259,7 +264,7 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
                     ImGui::EndTooltip();
                 }
             }
-            if (collapsing)
+            if (open)
             {
                 ImGui::InputInt("Width" Q, (int*)&image->Width, 0, 0, ImGuiInputTextFlags_ReadOnly);
                 ImGui::InputInt("Height" Q, (int*)&image->Height, 0, 0, ImGuiInputTextFlags_ReadOnly);
@@ -326,7 +331,10 @@ void Inspector::UpdateModifier(const UpdateData& updateData, std::vector<xxModif
     {
         for (auto const& data : modifierData)
         {
-            if (ImGui::CollapsingHeader(Modifier::Name(*data.modifier).c_str(), nullptr, ImGuiTreeNodeFlags_None))
+            ImGui::PushStyleColor(ImGuiCol_Header, 0);
+            bool open = ImGui::CollapsingHeader(Modifier::Name(*data.modifier).c_str(), nullptr, ImGuiTreeNodeFlags_None);
+            ImGui::PopStyleColor();
+            if (open)
             {
                 size_t size = data.modifier->Data.size();
                 size_t count = Modifier::Count(*data.modifier);

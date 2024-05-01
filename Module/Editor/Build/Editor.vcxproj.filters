@@ -14,9 +14,6 @@
     <ClCompile Include="..\Import\ImportWavefront.cpp">
       <Filter>Import</Filter>
     </ClCompile>
-    <ClCompile Include="..\Object\Camera.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="..\Window\Hierarchy.cpp">
       <Filter>Window</Filter>
     </ClCompile>
@@ -55,9 +52,6 @@
     </ClInclude>
     <ClInclude Include="..\Import\ImportWavefront.h">
       <Filter>Import</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Object\Camera.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="..\Window\Hierarchy.h">
       <Filter>Window</Filter>

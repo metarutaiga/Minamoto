@@ -13,10 +13,6 @@
 		CE93601F25AC457A00CEF503 /* Editor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300264C4242690D0004559E0 /* Editor.cpp */; };
 		CE999D9525D275A900351116 /* Editor.dll in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE93601825AC454200CEF503 /* Editor.dll */; };
 		CEB0E87A2608197500D13FE3 /* Editor.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* Editor.dylib */; };
-		D6012A102B1DE05A00C3875A /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A0E2B1DE05A00C3875A /* Camera.cpp */; };
-		D6012A112B1DE05A00C3875A /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A0E2B1DE05A00C3875A /* Camera.cpp */; };
-		D6012A122B1DE05A00C3875A /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A0E2B1DE05A00C3875A /* Camera.cpp */; };
-		D6012A132B1DE05A00C3875A /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A0E2B1DE05A00C3875A /* Camera.cpp */; };
 		D6012A1F2B1DE28F00C3875A /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A1E2B1DE28F00C3875A /* Grid.cpp */; };
 		D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A1E2B1DE28F00C3875A /* Grid.cpp */; };
 		D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A1E2B1DE28F00C3875A /* Grid.cpp */; };
@@ -110,8 +106,6 @@
 		CEC0676F25CBDD9F003A5768 /* libimgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libimgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC067FF25CBEEC3003A5768 /* libimgui.windows */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libimgui.windows; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC0680125CBEECA003A5768 /* libimgui.android */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libimgui.android; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6012A0E2B1DE05A00C3875A /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = ../Object/Camera.cpp; sourceTree = "<group>"; };
-		D6012A0F2B1DE05A00C3875A /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = ../Object/Camera.h; sourceTree = "<group>"; };
 		D6012A142B1DE16C00C3875A /* libxxGraphicPlus.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libxxGraphicPlus.so; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6012A162B1DE17300C3875A /* xxGraphicPlus.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = xxGraphicPlus.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6012A182B1DE17C00C3875A /* xxGraphicPlus.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = xxGraphicPlus.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,15 +241,6 @@
 			name = Configs;
 			sourceTree = "<group>";
 		};
-		D6012A0D2B1DE04800C3875A /* Object */ = {
-			isa = PBXGroup;
-			children = (
-				D6012A0E2B1DE05A00C3875A /* Camera.cpp */,
-				D6012A0F2B1DE05A00C3875A /* Camera.h */,
-			);
-			name = Object;
-			sourceTree = "<group>";
-		};
 		D6012A1C2B1DE28200C3875A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,7 +307,6 @@
 				CE999BD625D21EC800351116 /* Configs */,
 				D6386A5A2BDAAB170008C9D1 /* Graphic */,
 				D633706C2B3729E8001D4057 /* Import */,
-				D6012A0D2B1DE04800C3875A /* Object */,
 				D6012A1C2B1DE28200C3875A /* Utility */,
 				D63370732B382141001D4057 /* Window */,
 				300264C4242690D0004559E0 /* Editor.cpp */,
@@ -476,7 +460,6 @@
 				D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370782B382156001D4057 /* Log.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
-				D6012A102B1DE05A00C3875A /* Camera.cpp in Sources */,
 				D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6D26F9E2BDE36B400D57772 /* Tools.cpp in Sources */,
 				30A9A7C325ADC7C0000FA104 /* Editor.cpp in Sources */,
@@ -500,7 +483,6 @@
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
 				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
-				D6012A132B1DE05A00C3875A /* Camera.cpp in Sources */,
 				D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D666E2EC2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				CE93601F25AC457A00CEF503 /* Editor.cpp in Sources */,
@@ -521,7 +503,6 @@
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
-				D6012A112B1DE05A00C3875A /* Camera.cpp in Sources */,
 				D6530A032BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				3039F9D92447499200E671A7 /* Editor.cpp in Sources */,
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
@@ -542,7 +523,6 @@
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
-				D6012A122B1DE05A00C3875A /* Camera.cpp in Sources */,
 				D6530A042BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				300264C5242690D0004559E0 /* Editor.cpp in Sources */,
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,

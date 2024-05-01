@@ -63,7 +63,7 @@ void Hierarchy::Shutdown()
     exportFileDialog = nullptr;
 }
 //------------------------------------------------------------------------------
-void Hierarchy::Import(const UpdateData& updateData, xxCameraPtr const& camera)
+void Hierarchy::Import(const UpdateData& updateData)
 {
     if (importNode == nullptr)
         return;
@@ -122,14 +122,6 @@ void Hierarchy::Import(const UpdateData& updateData, xxCameraPtr const& camera)
                 else
                 {
                     importNode->AttachChild(node);
-                    if (importNode->WorldBound.w == 0.0f)
-                    {
-                        importNode->Update(updateData.time, true);
-                        if (importNode->WorldBound.w != 0.0f)
-                        {
-                            Tools::LookAtFromBound(camera, importNode->WorldBound, xxVector3::Z);
-                        }
-                    }
                 }
 
                 xxNode* root = importNode.get();
@@ -229,7 +221,7 @@ void Hierarchy::Export(const UpdateData& updateData)
     }
 }
 //------------------------------------------------------------------------------
-bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const& root, xxCameraPtr const& camera)
+bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const& root)
 {
     if (show == false)
         return false;
@@ -387,7 +379,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
     }
     ImGui::End();
 
-    Import(updateData, camera);
+    Import(updateData);
     Export(updateData);
 
     return update;

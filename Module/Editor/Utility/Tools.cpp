@@ -8,6 +8,7 @@
 #include <vector>
 #include <utility/xxCamera.h>
 #include <utility/xxMath.h>
+#include <Camera/CameraTools.h>
 #include "Tools.h"
 
 //==============================================================================
@@ -32,8 +33,8 @@ void Tools::Draw(xxCameraPtr const& camera)
     // Line
     for (auto const& line : lines)
     {
-        xxVector4 from = camera->GetWorldPosToScreenPos(line.first);
-        xxVector4 to = camera->GetWorldPosToScreenPos(line.second);
+        xxVector4 from = CameraTools::GetWorldPosToScreenPos(camera, line.first);
+        xxVector4 to = CameraTools::GetWorldPosToScreenPos(camera, line.second);
         if (from.w < 0.0f || to.w < 0.0f)
             continue;
         from.xy = from.xy * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
@@ -45,13 +46,13 @@ void Tools::Draw(xxCameraPtr const& camera)
     // Sphere
     for (auto const& sphere : spheres)
     {
-        xxVector4 center = camera->GetWorldPosToScreenPos(sphere.first);
+        xxVector4 center = CameraTools::GetWorldPosToScreenPos(camera, sphere.first);
         if (center.w < 0.0f)
             continue;
         float radius = 1.0f;
         if (sphere.second != 0.0f)
         {
-            radius = (camera->GetWorldPosToScreenPos(sphere.first + camera->Right * sphere.second).xy - center.xy).x;
+            radius = (CameraTools::GetWorldPosToScreenPos(camera, sphere.first + camera->Right * sphere.second).xy - center.xy).x;
             radius = radius * std::max(viewport->Size.x, viewport->Size.y);
         }
         center.xy = center.xy * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};

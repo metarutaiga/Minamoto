@@ -8,16 +8,22 @@
 #include <xxGraphic.h>
 #include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include <utility/xxCamera.h>
+#include <utility/xxImage.h>
 #include <utility/xxMaterial.h>
+#include <utility/xxMesh.h>
 #include <utility/xxNode.h>
-#include "Object/Camera.h"
+#include <Camera/CameraTools.h>
 #include "Utility/Grid.h"
 #include "Utility/Tools.h"
 #include "Scene.h"
 
 //==============================================================================
+xxCameraPtr Scene::sceneCamera;
+xxNodePtr Scene::sceneRoot;
+//------------------------------------------------------------------------------
+static xxVector3 sceneArcball = {0.85f, -M_PI_2, 14.0f};
+static xxVector3 sceneCameraOffset = {1.0f, 0.0f, 0.0f};
 static xxNodePtr sceneGrid;
-static xxNodePtr sceneRoot;
 static xxDrawData sceneDrawData;
 static ImVec2 viewPos;
 static ImVec2 viewSize;
@@ -28,13 +34,49 @@ static bool drawNodeBound = false;
 //------------------------------------------------------------------------------
 void Scene::Initialize()
 {
-    sceneGrid = Grid::Create(xxVector3::ZERO, {10000, 10000});
+    if (sceneCamera == nullptr)
+    {
+        sceneCamera = xxCamera::Create();
+        CameraTools::MoveArcball(sceneCameraOffset, sceneArcball, 0, 0);
+        sceneCamera->Location = (xxVector3::Y * -10 + xxVector3::Z * 10);
+        sceneCamera->LookAt(xxVector3::ZERO, xxVector3::Z);
+        sceneCamera->Update();
+
+        sceneCamera->LightColor = {1.0f, 0.5f, 0.5f};
+        sceneCamera->LightDirection = -xxVector3::Y;
+    }
+
+    if (sceneRoot == nullptr)
+        sceneRoot = xxNode::Create();
+    if (sceneGrid == nullptr)
+        sceneGrid = Grid::Create(xxVector3::ZERO, {10000, 10000});
 }
 //------------------------------------------------------------------------------
-void Scene::Shutdown()
+void Scene::Shutdown(bool suspend)
 {
-    sceneGrid = nullptr;
+    auto invalidate = [](xxNodePtr const& node)
+    {
+        node->Invalidate();
+        if (node->Mesh)
+            node->Mesh->Invalidate();
+        if (node->Material)
+        {
+            node->Material->Invalidate();
+            for (xxImagePtr const& image : node->Material->Images)
+                image->Invalidate();
+        }
+        return true;
+    };
+
+    xxNode::Traversal(invalidate, sceneRoot);
+    xxNode::Traversal(invalidate, sceneGrid);
+
+    if (suspend)
+        return;
+
+    sceneCamera = nullptr;
     sceneRoot = nullptr;
+    sceneGrid = nullptr;
     sceneDrawData = xxDrawData{};
     viewViewport = nullptr;
 }
@@ -94,25 +136,25 @@ void Scene::DrawNodeBound(xxNodePtr const& root)
     }
 }
 //------------------------------------------------------------------------------
-bool Scene::Update(const UpdateData& updateData, bool& show, xxNodePtr const& root, Camera* camera)
+bool Scene::Update(const UpdateData& updateData, bool& show)
 {
     if (show == false)
         return false;
 
     bool updated = false;
-    if (root)
+    if (sceneRoot)
     {
-        root->Update(updateData.time);
+        sceneRoot->Update(updateData.time);
 
         xxNode::Traversal([&](xxNodePtr const& node)
         {
             if (node->Modifiers.empty())
                 updated = true;
             return updated == false;
-        }, root);
-        DrawBoneLine(root);
-        DrawNodeLine(root);
-        DrawNodeBound(root);
+        }, sceneRoot);
+        DrawBoneLine(sceneRoot);
+        DrawNodeLine(sceneRoot);
+        DrawNodeBound(sceneRoot);
     }
 
     if (ImGui::Begin(ICON_FA_GLOBE "Scene", &show))
@@ -135,18 +177,11 @@ bool Scene::Update(const UpdateData& updateData, bool& show, xxNodePtr const& ro
             ImGui::SetTooltip("%s", "Draw Node Bound");
         }
 
-        if (camera == nullptr)
-        {
-            ImGui::End();
-            return false;
-        }
-
         ImVec2 pos = ImGui::GetWindowPos();
         ImVec2 size = ImGui::GetWindowSize();
         ImVec2 cursor = ImGui::GetCursorPos();
         ImVec2 framePadding = ImGui::GetStyle().FramePadding;
-        sceneRoot = root;
-        sceneDrawData = xxDrawData{updateData.device, 0, camera->GetCamera().get()};
+        sceneDrawData = xxDrawData{updateData.device, 0, sceneCamera.get()};
         viewPos.x = pos.x + cursor.x;
         viewPos.y = pos.y + cursor.y;
         viewSize.x = size.x - cursor.x - framePadding.x * 2.0f;
@@ -183,9 +218,9 @@ bool Scene::Update(const UpdateData& updateData, bool& show, xxNodePtr const& ro
             {
                 forward_backward = speed;
             }
-            if (ImGui::IsKeyPressed(ImGuiKey_Z) && camera && root)
+            if (ImGui::IsKeyPressed(ImGuiKey_Z) && sceneCamera && sceneRoot)
             {
-                Tools::LookAtFromBound(camera->GetCamera(), root->WorldBound, xxVector3::Z);
+                Tools::LookAtFromBound(sceneCamera, sceneRoot->WorldBound, xxVector3::Z);
             }
         }
 
@@ -203,7 +238,7 @@ bool Scene::Update(const UpdateData& updateData, bool& show, xxNodePtr const& ro
 
         if (forward_backward || left_right || x || y)
         {
-            camera->Update(updateData.elapsed, forward_backward, left_right, x, y);
+            CameraTools::MoveCamera(sceneCamera, updateData.elapsed, forward_backward, left_right, x, y);
             updated = true;
         }
 
@@ -224,7 +259,7 @@ bool Scene::Update(const UpdateData& updateData, bool& show, xxNodePtr const& ro
         drawList->AddCallback(Callback, nullptr);
         drawList->AddCallback(ImDrawCallback_ResetRenderState, nullptr);
 
-        Tools::Draw(camera->GetCamera());
+        Tools::Draw(sceneCamera);
 
         ImGui::End();
     }
@@ -272,11 +307,12 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
     viewport_width = std::min(viewport_width, width - viewport_x) * dpiScale;
     viewport_height = std::min(viewport_height, height - viewport_y) * dpiScale;
 
+    sceneCamera->SetFOV(viewport_width / viewport_height, 60.0f, 10000.0f);
+    sceneCamera->Update();
+    CameraTools::SetViewport(sceneCamera, width * dpiScale, height * dpiScale, viewport_x, viewport_y, viewport_width, viewport_height);
+
     xxSetScissor(commandEncoder, viewport_x, viewport_y, viewport_width, viewport_height);
     sceneDrawData.commandEncoder = commandEncoder;
-    sceneDrawData.camera->SetFOV(viewport_width / viewport_height, 60.0f, 10000.0f);
-    sceneDrawData.camera->SetViewportMatrix(width * dpiScale, height * dpiScale, viewport_x, viewport_y, viewport_width, viewport_height);
-    sceneDrawData.camera->Update();
 
     auto callback = [](xxNodePtr const& node)
     {

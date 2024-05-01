@@ -2,6 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\Runtime.cpp" />
+    <ClCompile Include="..\Camera\CameraTools.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
     <ClCompile Include="..\Graphic\Binary.cpp">
       <Filter>Graphic</Filter>
     </ClCompile>
@@ -50,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Runtime.h" />
+    <ClInclude Include="..\Camera\CameraTools.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
     <ClInclude Include="..\Graphic\Binary.h">
       <Filter>Graphic</Filter>
     </ClInclude>

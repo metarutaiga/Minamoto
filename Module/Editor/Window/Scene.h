@@ -9,11 +9,14 @@
 class Scene
 {
 public:
+    static xxCameraPtr sceneCamera;
+    static xxNodePtr sceneRoot;
+public:
     static void Initialize();
-    static void Shutdown();
+    static void Shutdown(bool suspend = false);
     static void DrawBoneLine(xxNodePtr const& root);
     static void DrawNodeLine(xxNodePtr const& root);
     static void DrawNodeBound(xxNodePtr const& root);
-    static bool Update(const UpdateData& updateData, bool& show, xxNodePtr const& root, Camera* camera);
+    static bool Update(const UpdateData& updateData, bool& show);
     static void Callback(const ImDrawList* list, const ImDrawCmd* cmd);
 };

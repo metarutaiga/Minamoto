@@ -59,6 +59,10 @@
 		D645C4D62BD145E700A89E16 /* QuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */; };
 		D645C4D72BD145E700A89E16 /* QuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */; };
 		D645C4D82BD145E700A89E16 /* QuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */; };
+		D666E2FC2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */; };
+		D666E2FD2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */; };
+		D666E2FE2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */; };
+		D666E2FF2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */; };
 		D6D26F8C2BDDFAC400D57772 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */; };
 		D6D26F8D2BDDFAC400D57772 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */; };
 		D6D26F8E2BDDFAC400D57772 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */; };
@@ -145,6 +149,8 @@
 		D645C4CE2BD145C400A89E16 /* TranslateModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TranslateModifier.cpp; path = ../Modifier/TranslateModifier.cpp; sourceTree = "<group>"; };
 		D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuaternionModifier.cpp; path = ../Modifier/QuaternionModifier.cpp; sourceTree = "<group>"; };
 		D645C4D42BD145E700A89E16 /* QuaternionModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuaternionModifier.h; path = ../Modifier/QuaternionModifier.h; sourceTree = "<group>"; };
+		D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraTools.cpp; path = ../Camera/CameraTools.cpp; sourceTree = "<group>"; };
+		D666E2FB2BE29A0D00EFA1F2 /* CameraTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraTools.h; path = ../Camera/CameraTools.h; sourceTree = "<group>"; };
 		D6AA5DBE2BD7DB9400AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6CB0B2E2BB97061009DCD26 /* Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Runtime.h; path = ../Runtime.h; sourceTree = "<group>"; };
 		D6D26F8A2BDDFAC400D57772 /* RenderPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderPass.h; path = ../Graphic/RenderPass.h; sourceTree = "<group>"; };
@@ -285,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				CE999BD625D21EC800351116 /* Configs */,
+				D666E2F92BE299FA00EFA1F2 /* Camera */,
 				D6386A512BDA263D0008C9D1 /* Graphic */,
 				D645C4C32BD143BB00A89E16 /* Modifier */,
 				D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */,
@@ -331,6 +338,15 @@
 				D645C4CD2BD145C400A89E16 /* TranslateModifier.h */,
 			);
 			name = Modifier;
+			sourceTree = "<group>";
+		};
+		D666E2F92BE299FA00EFA1F2 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */,
+				D666E2FB2BE29A0D00EFA1F2 /* CameraTools.h */,
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -464,6 +480,7 @@
 				D62286D52BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D6D26F8C2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286C92BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
+				D666E2FC2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */,
 				D645C4CF2BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D52BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 			);
@@ -483,6 +500,7 @@
 				D6F066842BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D645C4D82BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 				D6D26F9B2BDE11D900D57772 /* Pipeline.cpp in Sources */,
+				D666E2FF2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */,
 				D62286C42BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D62286D82BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D6D26F8F2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
@@ -513,6 +531,7 @@
 				D62286D62BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D6D26F8D2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286CA2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
+				D666E2FD2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */,
 				D645C4D02BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D62BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 			);
@@ -536,6 +555,7 @@
 				D62286D72BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D6D26F8E2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286CB2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
+				D666E2FE2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */,
 				D645C4D12BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D72BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 			);
