@@ -21,6 +21,7 @@
 #   include <windows.h>
 #   include <imgui/backends/imgui_impl_win32.h>
 #endif
+#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include "implement/imgui_impl_xx.h"
 #include "Module.h"
 #include "Renderer.h"
@@ -90,6 +91,19 @@ void DearImGui::Create(void* view, float scale, float font)
     font_config.SizePixels          = 13.0f * io.FontGlobalScale;
     font_config.RasterizerMultiply  = 1.0f;
     io.Fonts->AddFontDefault(&font_config);
+
+    static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_16_FA, 0 };
+    font_config.MergeMode           = true;
+    font_config.PixelSnapH          = true;
+    font_config.GlyphOffset.y       = 2.0f * io.FontGlobalScale;
+    font_config.GlyphMinAdvanceX    = 13.0f * io.FontGlobalScale * 2.0f;
+#if defined(xxMACOS)
+    io.Fonts->AddFontFromFileTTF("../Resources/" FONT_ICON_FILE_NAME_FA, 13.0f * io.FontGlobalScale, &font_config, icons_ranges);
+#elif defined(xxWINDOWS)
+    io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FA, 13.0f * io.FontGlobalScale, &font_config, icons_ranges);
+#endif
+    font_config.GlyphOffset.y       = 0.0f;
+    font_config.GlyphMinAdvanceX    = 0.0f;
 
     font_config.OversampleH         = 1;
     font_config.OversampleV         = 1;

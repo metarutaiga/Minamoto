@@ -19,3 +19,6 @@
 [submodule "SDK/ufbx"]
 	path = SDK/ufbx
 	url = https://github.com/ufbx/ufbx
+[submodule "SDK/IconFontCppHeaders"]
+	path = SDK/IconFontCppHeaders
+	url = https://github.com/juliettef/IconFontCppHeaders

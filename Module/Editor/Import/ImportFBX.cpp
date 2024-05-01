@@ -65,7 +65,7 @@ static xxMatrix4x4 mat4(const ufbx_transform& values)
     return mat4(ufbx_transform_to_matrix(&values));
 }
 //------------------------------------------------------------------------------
-static xxImagePtr createImage(ufbx_texture* texture)
+static xxImagePtr CreateImage(ufbx_texture* texture)
 {
     if (texture == nullptr || texture->has_file == false)
         return xxImagePtr();
@@ -79,7 +79,7 @@ static xxImagePtr createImage(ufbx_texture* texture)
     return image;
 }
 //------------------------------------------------------------------------------
-static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
+static void CreateAnimation(ufbx_scene* scene, xxNodePtr const& root)
 {
     ufbx_bake_opts opts = {};
     ufbx_error error;
@@ -90,7 +90,7 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
     ufbx_baked_anim* reduction = ufbx_bake_anim(scene, nullptr, &opts, &error);
     if (reduction == nullptr)
     {
-        xxLog(TAG, "createAnimation : %s", error.info);
+        xxLog(TAG, "CreateAnimation : %s", error.info);
         return;
     }
 
@@ -102,13 +102,13 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
         ufbx_element* element = scene->elements[reduction_node.element_id];
         if (element->type != UFBX_ELEMENT_NODE)
         {
-            xxLog(TAG, "createAnimation : %s is not node", element->name.data);
+            xxLog(TAG, "CreateAnimation : %s is not node", element->name.data);
             continue;
         }
         xxNodePtr target = Import::GetNodeByName(root, element->name.data);
         if (target == nullptr)
         {
-            xxLog(TAG, "createAnimation : %s is not found", element->name.data);
+            xxLog(TAG, "CreateAnimation : %s is not found", element->name.data);
             continue;
         }
 
@@ -186,14 +186,14 @@ static void createAnimation(ufbx_scene* scene, xxNodePtr const& root)
             target->Modifiers.push_back({modifier});
         }
 
-        xxLog(TAG, "createAnimation : Rotation %zd, Translate %zd, Scale %zd - %s", rotation, translate, scale, element->name.data);
+        xxLog(TAG, "CreateAnimation : Rotation %zd, Translate %zd, Scale %zd - %s", rotation, translate, scale, element->name.data);
     }
 
     ufbx_free_baked_anim(baked);
     ufbx_free_baked_anim(reduction);
 }
 //------------------------------------------------------------------------------
-static xxMaterialPtr createMaterial(ufbx_material* material)
+static xxMaterialPtr CreateMaterial(ufbx_material* material)
 {
     if (material == nullptr)
         return xxMaterialPtr();
@@ -222,12 +222,12 @@ static xxMaterialPtr createMaterial(ufbx_material* material)
     output->Scissor = false;
     for (size_t i = 0; i < material->textures.count; ++i)
     {
-        output->SetImage(i, createImage(material->textures.data[i].texture));
+        output->SetImage(i, CreateImage(material->textures.data[i].texture));
     }
     return output;
 };
 //------------------------------------------------------------------------------
-static xxMeshPtr createMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr const& root)
+static xxMeshPtr CreateMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr const& root)
 {
     if (mesh == nullptr)
         return xxMeshPtr();
@@ -356,7 +356,7 @@ static xxMeshPtr createMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
     return output;
 }
 //------------------------------------------------------------------------------
-static xxNodePtr createNode(ufbx_node* node, xxNodePtr root)
+static xxNodePtr CreateNode(ufbx_node* node, xxNodePtr root)
 {
     if (node == nullptr)
         return xxNodePtr();
@@ -365,7 +365,7 @@ static xxNodePtr createNode(ufbx_node* node, xxNodePtr root)
         root = output;
     for (size_t i = 0; i < node->children.count; ++i)
     {
-        xxNodePtr child = createNode(node->children.data[i], root);
+        xxNodePtr child = CreateNode(node->children.data[i], root);
         if (child)
         {
             output->AttachChild(child);
@@ -395,9 +395,9 @@ static xxNodePtr createNode(ufbx_node* node, xxNodePtr root)
         if (node->mesh->materials.count)
         {
             ufbx_material* material = node->mesh->materials.data[0];
-            geometryNode->Material = createMaterial(material);
+            geometryNode->Material = CreateMaterial(material);
         }
-        geometryNode->Mesh = createMesh(node->mesh, geometryNode, root);
+        geometryNode->Mesh = CreateMesh(node->mesh, geometryNode, root);
         if (Import::EnableOptimizeMesh)
         {
             geometryNode->Mesh = Import::OptimizeMesh(geometryNode->Mesh);
@@ -417,7 +417,7 @@ xxNodePtr ImportFBX::Create(char const* fbx)
         return nullptr;
     }
 
-    xxNodePtr root = createNode(scene->root_node, nullptr);
+    xxNodePtr root = CreateNode(scene->root_node, nullptr);
     if (root)
     {
         if (root->Name.empty())
@@ -437,7 +437,7 @@ xxNodePtr ImportFBX::Create(char const* fbx)
             root->LocalMatrix = root->LocalMatrix * YtoZ;
         }
 
-        createAnimation(scene, root);
+        CreateAnimation(scene, root);
     }
 
     ufbx_free_scene(scene);

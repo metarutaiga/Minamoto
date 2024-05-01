@@ -52,10 +52,10 @@
 		D6530A032BB70A270006AD64 /* ImportFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6530A002BB70A270006AD64 /* ImportFBX.cpp */; };
 		D6530A042BB70A270006AD64 /* ImportFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6530A002BB70A270006AD64 /* ImportFBX.cpp */; };
 		D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6530A002BB70A270006AD64 /* ImportFBX.cpp */; };
-		D6530A082BB7D26B0006AD64 /* ufbx.c in Sources */ = {isa = PBXBuildFile; fileRef = D6530A062BB7D26B0006AD64 /* ufbx.c */; };
-		D6530A092BB7D26B0006AD64 /* ufbx.c in Sources */ = {isa = PBXBuildFile; fileRef = D6530A062BB7D26B0006AD64 /* ufbx.c */; };
-		D6530A0A2BB7D26B0006AD64 /* ufbx.c in Sources */ = {isa = PBXBuildFile; fileRef = D6530A062BB7D26B0006AD64 /* ufbx.c */; };
-		D6530A0B2BB7D26B0006AD64 /* ufbx.c in Sources */ = {isa = PBXBuildFile; fileRef = D6530A062BB7D26B0006AD64 /* ufbx.c */; };
+		D666E2E92BE1EBAB00EFA1F2 /* ufbx.c in Sources */ = {isa = PBXBuildFile; fileRef = D666E2E72BE1EBAB00EFA1F2 /* ufbx.c */; };
+		D666E2EA2BE1EBAB00EFA1F2 /* ufbx.c in Sources */ = {isa = PBXBuildFile; fileRef = D666E2E72BE1EBAB00EFA1F2 /* ufbx.c */; };
+		D666E2EB2BE1EBAB00EFA1F2 /* ufbx.c in Sources */ = {isa = PBXBuildFile; fileRef = D666E2E72BE1EBAB00EFA1F2 /* ufbx.c */; };
+		D666E2EC2BE1EBAB00EFA1F2 /* ufbx.c in Sources */ = {isa = PBXBuildFile; fileRef = D666E2E72BE1EBAB00EFA1F2 /* ufbx.c */; };
 		D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
 		D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
 		D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
@@ -146,8 +146,8 @@
 		D644A041231ED82900B75B77 /* Editor.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Editor.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6530A002BB70A270006AD64 /* ImportFBX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImportFBX.cpp; path = ../Import/ImportFBX.cpp; sourceTree = "<group>"; };
 		D6530A012BB70A270006AD64 /* ImportFBX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportFBX.h; path = ../Import/ImportFBX.h; sourceTree = "<group>"; };
-		D6530A062BB7D26B0006AD64 /* ufbx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ufbx.c; path = ../../../SDK/ufbx/ufbx.c; sourceTree = "<group>"; };
-		D6530A072BB7D26B0006AD64 /* ufbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ufbx.h; path = ../../../SDK/ufbx/ufbx.h; sourceTree = "<group>"; };
+		D666E2E72BE1EBAB00EFA1F2 /* ufbx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ufbx.c; path = ../../../SDK/ufbx/ufbx.c; sourceTree = "<group>"; };
+		D666E2E82BE1EBAB00EFA1F2 /* ufbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ufbx.h; path = ../../../SDK/ufbx/ufbx.h; sourceTree = "<group>"; };
 		D67F2EF82BCC279600B4AA86 /* ImGuiHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImGuiHelper.h; path = ../ImGuiHelper.h; sourceTree = "<group>"; };
 		D6A25B7A2B4644B600974946 /* Inspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Inspector.h; path = ../Window/Inspector.h; sourceTree = "<group>"; };
 		D6A25B7B2B4644B600974946 /* Inspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Inspector.cpp; path = ../Window/Inspector.cpp; sourceTree = "<group>"; };
@@ -259,7 +259,6 @@
 		D6012A1C2B1DE28200C3875A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				D63370952B399774001D4057 /* ImGuiFileDialog */,
 				D6012A1E2B1DE28F00C3875A /* Grid.cpp */,
 				D6012A1D2B1DE28F00C3875A /* Grid.h */,
 				D6D26F9C2BDE36B400D57772 /* Tools.cpp */,
@@ -271,8 +270,7 @@
 		D633706C2B3729E8001D4057 /* Import */ = {
 			isa = PBXGroup;
 			children = (
-				D6530A062BB7D26B0006AD64 /* ufbx.c */,
-				D6530A072BB7D26B0006AD64 /* ufbx.h */,
+				D666E2E42BE1EB7C00EFA1F2 /* ufbx */,
 				D63370812B3958F3001D4057 /* Import.cpp */,
 				D63370802B3958F3001D4057 /* Import.h */,
 				D6530A002BB70A270006AD64 /* ImportFBX.cpp */,
@@ -286,6 +284,7 @@
 		D63370732B382141001D4057 /* Window */ = {
 			isa = PBXGroup;
 			children = (
+				D63370952B399774001D4057 /* ImGuiFileDialog */,
 				D63370762B382155001D4057 /* Hierarchy.cpp */,
 				D63370772B382155001D4057 /* Hierarchy.h */,
 				D6A25B7B2B4644B600974946 /* Inspector.cpp */,
@@ -342,6 +341,15 @@
 				30A9A7BB25ADC792000FA104 /* libEditor.so */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D666E2E42BE1EB7C00EFA1F2 /* ufbx */ = {
+			isa = PBXGroup;
+			children = (
+				D666E2E72BE1EBAB00EFA1F2 /* ufbx.c */,
+				D666E2E82BE1EBAB00EFA1F2 /* ufbx.h */,
+			);
+			name = ufbx;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -462,6 +470,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D666E2E92BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6012A1F2B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D6386A5D2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */,
@@ -473,7 +482,6 @@
 				30A9A7C325ADC7C0000FA104 /* Editor.cpp in Sources */,
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
-				D6530A082BB7D26B0006AD64 /* ufbx.c in Sources */,
 				D6D26FA42BDEAF5400D57772 /* Scene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,7 +490,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6530A0B2BB7D26B0006AD64 /* ufbx.c in Sources */,
 				D6D26FA12BDE36B400D57772 /* Tools.cpp in Sources */,
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
 				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
@@ -495,6 +502,7 @@
 				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
 				D6012A132B1DE05A00C3875A /* Camera.cpp in Sources */,
 				D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */,
+				D666E2EC2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				CE93601F25AC457A00CEF503 /* Editor.cpp in Sources */,
 				D63370852B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707F2B382156001D4057 /* Hierarchy.cpp in Sources */,
@@ -505,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D666E2EA2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
@@ -517,7 +526,6 @@
 				3039F9D92447499200E671A7 /* Editor.cpp in Sources */,
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707D2B382156001D4057 /* Hierarchy.cpp in Sources */,
-				D6530A092BB7D26B0006AD64 /* ufbx.c in Sources */,
 				D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D666E2EB2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
@@ -538,7 +547,6 @@
 				300264C5242690D0004559E0 /* Editor.cpp in Sources */,
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707E2B382156001D4057 /* Hierarchy.cpp in Sources */,
-				D6530A0A2BB7D26B0006AD64 /* ufbx.c in Sources */,
 				D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

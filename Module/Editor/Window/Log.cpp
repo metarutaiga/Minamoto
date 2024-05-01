@@ -5,6 +5,7 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
+#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include <queue>
 #include "Log.h"
 
@@ -28,7 +29,7 @@ bool Log::Update(const UpdateData& updateData, bool& show)
     if (show == false)
         return false;
 
-    if (ImGui::Begin("Log", &show))
+    if (ImGui::Begin(ICON_FA_DESKTOP "Log", &show))
     {
         updateData.message({ "LOGGER_UPDATE", (char*)&systemLog });
 
@@ -40,7 +41,7 @@ bool Log::Update(const UpdateData& updateData, bool& show)
             auto end = systemLog.begin() + clipper.DisplayEnd;
             for (auto it = start; it != end; ++it)
             {
-                ImGui::TextUnformatted(*it);
+                ImGui::Selectable(*it, false);
             }
         }
         clipper.End();

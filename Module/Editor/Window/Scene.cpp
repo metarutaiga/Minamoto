@@ -6,6 +6,7 @@
 //==============================================================================
 #include <Interface.h>
 #include <xxGraphic.h>
+#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include <utility/xxCamera.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxNode.h>
@@ -21,6 +22,9 @@ static xxDrawData sceneDrawData;
 static ImVec2 viewPos;
 static ImVec2 viewSize;
 static ImGuiViewport* viewViewport;
+static bool drawBoneLine = false;
+static bool drawNodeLine = false;
+static bool drawNodeBound = false;
 //------------------------------------------------------------------------------
 void Scene::Initialize()
 {
@@ -35,14 +39,102 @@ void Scene::Shutdown()
     viewViewport = nullptr;
 }
 //------------------------------------------------------------------------------
+void Scene::DrawBoneLine(xxNodePtr const& root)
+{
+    if (drawBoneLine)
+    {
+        xxNode::Traversal([&](xxNodePtr const& node)
+        {
+            for (auto const& boneData : node->Bones)
+            {
+                if (boneData.bone.use_count())
+                {
+                    xxNodePtr const& bone = (xxNodePtr&)boneData.bone;
+                    xxNodePtr const& parent = bone->GetParent();
+                    if (parent)
+                    {
+                        Tools::Line(parent->WorldMatrix[3].xyz, bone->WorldMatrix[3].xyz);
+                    }
+                }
+            }
+            return true;
+        }, root);
+    }
+}
+//------------------------------------------------------------------------------
+void Scene::DrawNodeLine(xxNodePtr const& root)
+{
+    if (drawNodeLine)
+    {
+        xxNode::Traversal([&](xxNodePtr const& node)
+        {
+            xxNodePtr const& parent = node->GetParent();
+            if (parent)
+            {
+                Tools::Line(parent->WorldMatrix[3].xyz, node->WorldMatrix[3].xyz);
+            }
+            return true;
+        }, root);
+    }
+}
+//------------------------------------------------------------------------------
+void Scene::DrawNodeBound(xxNodePtr const& root)
+{
+    if (drawNodeBound)
+    {
+        xxNode::Traversal([&](xxNodePtr const& node)
+        {
+            xxVector4 const& bound = node->WorldBound;
+            if (bound.w != 0.0f)
+            {
+                Tools::Sphere(bound.xyz, bound.w);
+            }
+            return true;
+        }, root);
+    }
+}
+//------------------------------------------------------------------------------
 bool Scene::Update(const UpdateData& updateData, bool& show, xxNodePtr const& root, Camera* camera)
 {
     if (show == false)
         return false;
 
     bool updated = false;
-    if (ImGui::Begin("Scene", &show))
+    if (root)
     {
+        root->Update(updateData.time);
+
+        xxNode::Traversal([&](xxNodePtr const& node)
+        {
+            if (node->Modifiers.empty())
+                updated = true;
+            return updated == false;
+        }, root);
+        DrawBoneLine(root);
+        DrawNodeLine(root);
+        DrawNodeBound(root);
+    }
+
+    if (ImGui::Begin(ICON_FA_GLOBE "Scene", &show))
+    {
+        ImGui::Checkbox("##1", &drawBoneLine);
+        if (ImGui::IsItemHovered())
+        {
+            ImGui::SetTooltip("%s", "Draw Bone Line");
+        }
+        ImGui::SameLine();
+        ImGui::Checkbox("##2", &drawNodeLine);
+        if (ImGui::IsItemHovered())
+        {
+            ImGui::SetTooltip("%s", "Draw Node Line");
+        }
+        ImGui::SameLine();
+        ImGui::Checkbox("##3", &drawNodeBound);
+        if (ImGui::IsItemHovered())
+        {
+            ImGui::SetTooltip("%s", "Draw Node Bound");
+        }
+
         if (camera == nullptr)
         {
             ImGui::End();

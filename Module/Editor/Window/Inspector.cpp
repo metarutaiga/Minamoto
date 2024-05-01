@@ -5,6 +5,7 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
+#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include <utility/xxCamera.h>
 #include <utility/xxImage.h>
 #include <utility/xxMaterial.h>
@@ -34,12 +35,12 @@ void Inspector::Select(xxNodePtr const& node)
     selected = node;
 }
 //------------------------------------------------------------------------------
-bool Inspector::Update(const UpdateData& updateData, float menuBarHeight, bool& show, xxCameraPtr const& camera)
+bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr const& camera)
 {
     if (show == false)
         return false;
 
-    if (ImGui::Begin("Inspector", &show))
+    if (ImGui::Begin(ICON_FA_INFO_CIRCLE "Inspector", &show))
     {
         ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.0f, 1.0f));
         windowWidth = ImGui::GetWindowWidth();
@@ -75,14 +76,14 @@ bool Inspector::Update(const UpdateData& updateData, float menuBarHeight, bool& 
 //------------------------------------------------------------------------------
 void Inspector::UpdateCamera(const UpdateData& updateData, xxCameraPtr const& camera)
 {
-    if (ImGui::CollapsingHeader("Camera" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGui::CollapsingHeader(ICON_FA_CAMERA "Camera" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
     {
         ImGui::SliderFloat3("Right" Q, camera->Right.Array(), -1.0f, 1.0f);
         ImGui::SliderFloat3("Up" Q, camera->Up.Array(), -1.0f, 1.0f);
         ImGui::SliderFloat3("Direction" Q, camera->Direction.Array(), -1.0f, 1.0f);
         ImGui::InputFloat3("Location" Q, camera->Location.Array());
     }
-    if (ImGui::CollapsingHeader("Light" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGui::CollapsingHeader(ICON_FA_LIGHTBULB_O "Light" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
     {
         ImGui::ColorEdit3("Color" Q, camera->LightColor.Array());
         ImGui::SliderFloat3("Direction" Q, camera->LightDirection.Array(), -1.0f, 1.0f);
@@ -93,7 +94,7 @@ void Inspector::UpdateCamera(const UpdateData& updateData, xxCameraPtr const& ca
 //------------------------------------------------------------------------------
 void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
 {
-    if (ImGui::CollapsingHeader("Node" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGui::CollapsingHeader(ICON_FA_CUBE "Node" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
     {
         char name[64];
         strcpy(name, selected->Name.c_str());
@@ -103,15 +104,15 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
         ImGui::SliderFloat3("" Q, selected->LocalMatrix.v[1].Array(), -1.0f, 1.0f);
         ImGui::SliderFloat3("" Q, selected->LocalMatrix.v[2].Array(), -1.0f, 1.0f);
         ImGui::InputFloat3("" Q, selected->LocalMatrix.v[3].Array());
-        ImGui::SliderFloat3("World" Q, selected->WorldMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-        ImGui::SliderFloat3("" Q, selected->WorldMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-        ImGui::SliderFloat3("" Q, selected->WorldMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+        ImGui::SliderFloat3("World" Q, selected->WorldMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
+        ImGui::SliderFloat3("" Q, selected->WorldMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
+        ImGui::SliderFloat3("" Q, selected->WorldMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
         ImGui::InputFloat3("" Q, selected->WorldMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
         ImGui::InputFloat3("Bound" Q, selected->WorldBound.Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
         ImGui::InputFloat("" Q, &selected->WorldBound.w, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
         if (node->Bones.empty() == false)
         {
-            if (ImGui::CollapsingHeader("Bones" Q, nullptr, ImGuiTreeNodeFlags_None))
+            if (ImGui::CollapsingHeader(ICON_FA_STREET_VIEW "Bones" Q, nullptr, ImGuiTreeNodeFlags_None))
             {
                 static int current = 0;
                 static unsigned int hovered = 0; hovered = UINT_MAX;
@@ -136,24 +137,27 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
                         if (ImGui::BeginTooltip())
                         {
                             ImGui::InputText("Name" Q, bone->Name.data(), 64, ImGuiInputTextFlags_ReadOnly);
-                            ImGui::SliderFloat3("World" Q, bone->WorldMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                            ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                            ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("World" Q, bone->WorldMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
+                            ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
+                            ImGui::SliderFloat3("" Q, bone->WorldMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
                             ImGui::InputFloat3("" Q, bone->WorldMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
-                            ImGui::SliderFloat3("Skin" Q, boneData.skinMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                            ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                            ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("Skin" Q, boneData.skinMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
+                            ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
+                            ImGui::SliderFloat3("" Q, boneData.skinMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
                             ImGui::InputFloat3("" Q, boneData.skinMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
-                            ImGui::SliderFloat3("Bone" Q, boneData.boneMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                            ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
-                            ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiInputTextFlags_ReadOnly);
+                            ImGui::SliderFloat3("Bone" Q, boneData.boneMatrix.v[0].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
+                            ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[1].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
+                            ImGui::SliderFloat3("" Q, boneData.boneMatrix.v[2].Array(), -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_NoInput);
                             ImGui::InputFloat3("" Q, boneData.boneMatrix.v[3].Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
                             ImGui::InputFloat3("Bound" Q, boneData.bound.Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
                             ImGui::InputFloat("" Q, &boneData.bound.w, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
                             ImGui::EndTooltip();
                         }
-                        xxVector4 bound = boneData.bound.BoundTransform(bone->WorldMatrix, bone->GetScale());
-                        Tools::Sphere(bound.xyz, bound.w);
+                        xxNodePtr const& parent = bone->GetParent();
+                        if (parent)
+                        {
+                            Tools::Line(parent->WorldMatrix.v[3].xyz, bone->WorldMatrix.v[3].xyz);
+                        }
                     }
                 }
             }
@@ -165,7 +169,8 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
 {
     xxMaterialPtr invalidate;
 
-    if (ImGui::CollapsingHeader("Material" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
+    ImGui::Separator();
+    if (ImGui::CollapsingHeader(ICON_FA_ADJUST "Material" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
     {
         char name[64];
         strcpy(name, material->Name.c_str());
@@ -242,7 +247,9 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
         }
         for (auto& image : material->Images)
         {
-            bool collapsing = ImGui::CollapsingHeader(image->Name.c_str(), nullptr, ImGuiTreeNodeFlags_None);
+            strcpy(name, ICON_FA_PICTURE_O);
+            strcat(name, image->Name.c_str());
+            bool collapsing = ImGui::CollapsingHeader(name, nullptr, ImGuiTreeNodeFlags_None);
             if (ImGui::IsItemHovered())
             {
                 uint64_t texture = image->GetTexture();
@@ -293,7 +300,8 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
 //------------------------------------------------------------------------------
 void Inspector::UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh)
 {
-    if (ImGui::CollapsingHeader("Mesh" Q, nullptr, ImGuiTreeNodeFlags_None))
+    ImGui::Separator();
+    if (ImGui::CollapsingHeader(ICON_FA_CUBES "Mesh" Q, nullptr, ImGuiTreeNodeFlags_None))
     {
         char name[64];
         strcpy(name, mesh->Name.c_str());
@@ -314,7 +322,7 @@ void Inspector::UpdateModifier(const UpdateData& updateData, std::vector<xxModif
 {
     if (modifierData.empty())
         return;
-    if (ImGui::CollapsingHeader("Modifier" Q, nullptr, ImGuiTreeNodeFlags_None))
+    if (ImGui::CollapsingHeader(ICON_FA_FILM "Modifier" Q, nullptr, ImGuiTreeNodeFlags_None))
     {
         for (auto const& data : modifierData)
         {

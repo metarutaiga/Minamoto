@@ -234,7 +234,7 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
         {
             for (size_t i = std::min(from, to); i < container.size(); ++i)
                 if (container[i] == from)
-                    container[i] = std::remove_reference<decltype(container)>::type::value_type(to);
+                    container[i] = decltype(container[i])(to);
         };
 
         for (size_t j = i + 1; j < vertices.size(); ++j)

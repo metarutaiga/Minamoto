@@ -5,6 +5,7 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <Interface.h>
+#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include <utility/xxCamera.h>
 #include <utility/xxFile.h>
 #include <utility/xxNode.h>
@@ -25,6 +26,7 @@
 #define HAVE_FILEDIALOG 0
 #endif
 
+float Hierarchy::windowPosY = 0.0f;
 float Hierarchy::windowWidth = 256.0f;
 xxNodePtr Hierarchy::selectedLeft;
 xxNodePtr Hierarchy::selectedRight;
@@ -34,8 +36,6 @@ char Hierarchy::importName[1024];
 char Hierarchy::exportName[1024];
 ImGuiFileDialog* Hierarchy::importFileDialog;
 ImGuiFileDialog* Hierarchy::exportFileDialog;
-bool Hierarchy::drawNodeLine = false;
-bool Hierarchy::drawNodeBound = false;
 //==============================================================================
 void Hierarchy::Initialize()
 {
@@ -229,51 +229,15 @@ void Hierarchy::Export(const UpdateData& updateData)
     }
 }
 //------------------------------------------------------------------------------
-void Hierarchy::Option(const UpdateData& updateData, float menuBarHeight, xxNodePtr const& root, xxCameraPtr const& camera)
-{
-    ImGuiViewport* viewport = ImGui::GetMainViewport();
-    ImGui::SetNextWindowPos(ImVec2(viewport->Pos.x + windowWidth, viewport->Pos.y + menuBarHeight));
-    if (ImGui::Begin("Options", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground))
-    {
-        ImGui::NewLine();
-        ImGui::Checkbox("Node Line", &drawNodeLine);
-        ImGui::Checkbox("Node Bound", &drawNodeBound);
-        ImGui::End();
-    }
-    if (drawNodeLine)
-    {
-        xxNode::Traversal([&](xxNodePtr const& node)
-        {
-            xxNodePtr const& parent = node->GetParent();
-            if (parent)
-            {
-                Tools::Line(parent->WorldMatrix[3].xyz, node->WorldMatrix[3].xyz);
-            }
-            return true;
-        }, root);
-    }
-    if (drawNodeBound)
-    {
-        xxNode::Traversal([&](xxNodePtr const& node)
-        {
-            xxVector4 const& bound = node->WorldBound;
-            if (bound.w != 0.0f)
-            {
-                Tools::Sphere(bound.xyz, bound.w);
-            }
-            return true;
-        }, root);
-    }
-}
-//------------------------------------------------------------------------------
-bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& show, xxNodePtr const& root, xxCameraPtr const& camera)
+bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const& root, xxCameraPtr const& camera)
 {
     if (show == false)
         return false;
 
     bool update = false;
-    if (ImGui::Begin("Hierarchy", &show))
+    if (ImGui::Begin(ICON_FA_LIST "Hierarchy", &show))
     {
+        windowPosY = ImGui::GetCursorPosY();
         windowWidth = ImGui::GetWindowWidth();
 
         bool clickedLeft = false;
@@ -289,9 +253,9 @@ bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& 
 
             bool opened;
             if (node->Name.empty())
-                opened = ImGui::TreeNodeEx(node.get(), flags, "%p", node.get());
+                opened = ImGui::TreeNodeEx(node.get(), flags, "%s%p", node->Mesh ? ICON_FA_CUBES : ICON_FA_CUBE, node.get());
             else
-                opened = ImGui::TreeNodeEx(node.get(), flags, "%s", node->Name.c_str());
+                opened = ImGui::TreeNodeEx(node.get(), flags, "%s%s", node->Mesh ? ICON_FA_CUBES : ICON_FA_CUBE, node->Name.c_str());
 
             // Hovered
             if (ImGui::IsItemHovered())
@@ -425,7 +389,6 @@ bool Hierarchy::Update(const UpdateData& updateData, float menuBarHeight, bool& 
 
     Import(updateData, camera);
     Export(updateData);
-    Option(updateData, menuBarHeight, root, camera);
 
     return update;
 }

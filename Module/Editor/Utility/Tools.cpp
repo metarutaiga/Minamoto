@@ -32,10 +32,12 @@ void Tools::Draw(xxCameraPtr const& camera)
     // Line
     for (auto const& line : lines)
     {
-        xxVector2 from = camera->GetWorldPosToScreenPos(line.first).xy;
-        xxVector2 to = camera->GetWorldPosToScreenPos(line.second).xy;
-        from = from * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
-        to = to * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
+        xxVector4 from = camera->GetWorldPosToScreenPos(line.first);
+        xxVector4 to = camera->GetWorldPosToScreenPos(line.second);
+        if (from.w < 0.0f || to.w < 0.0f)
+            continue;
+        from.xy = from.xy * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
+        to.xy = to.xy * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
         drawList->AddLine(ImVec2(from.x, from.y), ImVec2(to.x, to.y), 0xFFFFFFFF);
     }
     lines.clear();
@@ -43,14 +45,16 @@ void Tools::Draw(xxCameraPtr const& camera)
     // Sphere
     for (auto const& sphere : spheres)
     {
-        xxVector2 center = camera->GetWorldPosToScreenPos(sphere.first).xy;
+        xxVector4 center = camera->GetWorldPosToScreenPos(sphere.first);
+        if (center.w < 0.0f)
+            continue;
         float radius = 1.0f;
         if (sphere.second != 0.0f)
         {
-            radius = (camera->GetWorldPosToScreenPos(sphere.first + camera->Right * sphere.second).xy - center).x;
+            radius = (camera->GetWorldPosToScreenPos(sphere.first + camera->Right * sphere.second).xy - center.xy).x;
             radius = radius * std::max(viewport->Size.x, viewport->Size.y);
         }
-        center = center * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
+        center.xy = center.xy * xxVector2{viewport->Size.x, viewport->Size.y} + xxVector2{viewport->Pos.x, viewport->Pos.y};
         drawList->AddCircle(ImVec2(center.x, center.y), radius, 0xFFFFFFFF);
     }
     spheres.clear();

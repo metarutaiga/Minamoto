@@ -30,6 +30,9 @@
 		D644A0EA231F109D00B75B77 /* imgui_impl_xx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0E7231F109C00B75B77 /* imgui_impl_xx.cpp */; };
 		D65309F02BB2E0B40006AD64 /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D65309EF2BB2E0B40006AD64 /* libcxx.lib */; };
 		D65309FF2BB2F3A50006AD64 /* except.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D65309FE2BB2F3A50006AD64 /* except.cpp */; };
+		D666E2F62BE22D9000EFA1F2 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D666E2F52BE22D9000EFA1F2 /* fontawesome-webfont.ttf */; };
+		D666E2F72BE22D9000EFA1F2 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D666E2F52BE22D9000EFA1F2 /* fontawesome-webfont.ttf */; };
+		D666E2F82BE22D9A00EFA1F2 /* fontawesome-webfont.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D666E2F52BE22D9000EFA1F2 /* fontawesome-webfont.ttf */; };
 		D690A3882333FE7B00A149EF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A3862333FE7B00A149EF /* Renderer.cpp */; };
 		D690A3892333FE7B00A149EF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A3862333FE7B00A149EF /* Renderer.cpp */; };
 		D690A38C23341A8400A149EF /* DearImGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A38A23341A8400A149EF /* DearImGui.cpp */; settings = {COMPILER_FLAGS = "-x objective-c++ -fobjc-arc -fobjc-weak -fmodules"; }; };
@@ -59,12 +62,13 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		302A32702448BE13000B2AE9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 7;
 			files = (
+				D666E2F82BE22D9A00EFA1F2 /* fontawesome-webfont.ttf in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 		3039F9692447314F00E671A7 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -103,6 +107,7 @@
 		D65309ED2BB2E0A50006AD64 /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65309EF2BB2E0B40006AD64 /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65309FE2BB2F3A50006AD64 /* except.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = except.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/except.cpp"; sourceTree = "<group>"; };
+		D666E2F52BE22D9000EFA1F2 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fontawesome-webfont.ttf"; path = "../resource/fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		D690A3802333F7FA00A149EF /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		D690A3862333FE7B00A149EF /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Renderer.cpp; path = ../Renderer.cpp; sourceTree = "<group>"; };
 		D690A3872333FE7B00A149EF /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Renderer.h; path = ../Renderer.h; sourceTree = "<group>"; };
@@ -229,6 +234,7 @@
 				CE999BD025D21E4B00351116 /* Configs */,
 				D63370652B2ED967001D4057 /* imgui */,
 				D690A3852333FDBC00A149EF /* main */,
+				D666E2F02BE225D800EFA1F2 /* resource */,
 				D644A0C7231F021F00B75B77 /* Products */,
 				D644A0EB231F116C00B75B77 /* Frameworks */,
 			);
@@ -286,6 +292,14 @@
 				D6BA701829E26F130056FE5F /* xxGraphic.dll */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D666E2F02BE225D800EFA1F2 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				D666E2F52BE22D9000EFA1F2 /* fontawesome-webfont.ttf */,
+			);
+			name = resource;
 			sourceTree = "<group>";
 		};
 		D690A3852333FDBC00A149EF /* main */ = {
@@ -427,6 +441,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D666E2F62BE22D9000EFA1F2 /* fontawesome-webfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D666E2F72BE22D9000EFA1F2 /* fontawesome-webfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

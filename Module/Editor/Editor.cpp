@@ -6,6 +6,7 @@
 //==============================================================================
 #include <Interface.h>
 #include <imgui/imgui_internal.h>
+#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include <utility/xxImage.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
@@ -26,7 +27,6 @@
 
 static Camera* editorCamera;
 static xxNodePtr root;
-static size_t modifierCount;
 //------------------------------------------------------------------------------
 moduleAPI const char* Create(const CreateData& createData)
 {
@@ -123,10 +123,10 @@ moduleAPI bool Update(const UpdateData& updateData)
         {
             ImGui::MenuItem("About " MODULE_NAME, nullptr, &showAbout);
             ImGui::Separator();
-            ImGui::MenuItem("Log", nullptr, &showLog);
-            ImGui::MenuItem("Hierarchy", nullptr, &showHierarchy);
-            ImGui::MenuItem("Inspector", nullptr, &showInspector);
-            ImGui::MenuItem("Scene", nullptr, &showScene);
+            ImGui::MenuItem(ICON_FA_DESKTOP     "Log", nullptr, &showLog);
+            ImGui::MenuItem(ICON_FA_LIST        "Hierarchy", nullptr, &showHierarchy);
+            ImGui::MenuItem(ICON_FA_INFO_CIRCLE "Inspector", nullptr, &showInspector);
+            ImGui::MenuItem(ICON_FA_GLOBE       "Scene", nullptr, &showScene);
             ImGui::Separator();
             ImGui::MenuItem("Shader Disassembly", nullptr, &showShaderDisassembly);
             ImGui::EndMenu();
@@ -146,18 +146,6 @@ moduleAPI bool Update(const UpdateData& updateData)
         }
     }
 
-    if (root)
-    {
-        root->Update(updateData.time);
-
-        modifierCount = 0;
-        xxNode::Traversal([&](xxNodePtr const& node)
-        {
-            modifierCount += node->Modifiers.size();
-            return true;
-        }, root);
-    }
-
     ImGuiID id = ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
 
     static bool dockInitialized = false;
@@ -165,22 +153,21 @@ moduleAPI bool Update(const UpdateData& updateData)
     {
         dockInitialized = true;
 
-        ImGuiID down = ImGui::DockBuilderSplitNode(id, ImGuiDir_Down, 1.0f / 8.0f, nullptr, &id);
-        ImGuiID left = ImGui::DockBuilderSplitNode(id, ImGuiDir_Left, 1.0f / 5.0f, nullptr, &id);
-        ImGuiID right = ImGui::DockBuilderSplitNode(id, ImGuiDir_Right, 1.0f / 4.0f, nullptr, &id);
-        ImGui::DockBuilderDockWindow("Log", down);
-        ImGui::DockBuilderDockWindow("Hierarchy", left);
-        ImGui::DockBuilderDockWindow("Inspector", right);
-        ImGui::DockBuilderDockWindow("Scene", id);
+        ImGuiID right = ImGui::DockBuilderSplitNode(id, ImGuiDir_Right, 1.0f / 5.0f, nullptr, &id);
+        ImGuiID down = ImGui::DockBuilderSplitNode(id, ImGuiDir_Down, 1.0f / 3.0f, nullptr, &id);
+        ImGuiID left = ImGui::DockBuilderSplitNode(id, ImGuiDir_Left, 1.0f / 4.0f, nullptr, &id);
+        ImGui::DockBuilderDockWindow(ICON_FA_DESKTOP    "Log", down);
+        ImGui::DockBuilderDockWindow(ICON_FA_LIST       "Hierarchy", left);
+        ImGui::DockBuilderDockWindow(ICON_FA_INFO_CIRCLE"Inspector", right);
+        ImGui::DockBuilderDockWindow(ICON_FA_GLOBE      "Scene", id);
         ImGui::DockBuilderFinish(id);
     }
 
     updated |= Log::Update(updateData, showLog);
-    updated |= Hierarchy::Update(updateData, menuBarHeight, showHierarchy, root, editorCamera->GetCamera());
-    updated |= Inspector::Update(updateData, menuBarHeight, showInspector, editorCamera->GetCamera());
+    updated |= Hierarchy::Update(updateData, showHierarchy, root, editorCamera->GetCamera());
+    updated |= Inspector::Update(updateData, showInspector, editorCamera->GetCamera());
     updated |= Scene::Update(updateData, showScene, root, editorCamera);
     updated |= ShaderDisassembly::Update(updateData, showShaderDisassembly);
-    updated |= modifierCount != 0;
 
     return updated;
 }
