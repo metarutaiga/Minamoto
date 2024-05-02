@@ -159,7 +159,7 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
                         xxNodePtr const& parent = bone->GetParent();
                         if (parent)
                         {
-                            Tools::Line(parent->WorldMatrix.v[3].xyz, bone->WorldMatrix.v[3].xyz);
+                            Tools::Line(parent->GetWorldTranslate(), bone->GetWorldTranslate());
                         }
                     }
                 }
@@ -257,7 +257,7 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
             ImGui::PopStyleColor();
             if (ImGui::IsItemHovered())
             {
-                uint64_t texture = image->GetTexture();
+                uint64_t texture = image->Texture;
                 if (texture && ImGui::BeginTooltip())
                 {
                     ImGui::Image(texture, ImVec2(256, 256));

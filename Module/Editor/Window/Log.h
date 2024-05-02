@@ -11,10 +11,8 @@
 class Log
 {
     static std::deque<char*> systemLog;
-    static float windowHeights[2];
 public:
     static void Initialize();
     static void Shutdown();
     static bool Update(const UpdateData& updateData, bool& show);
-    static float GetWindowHeight();
 };

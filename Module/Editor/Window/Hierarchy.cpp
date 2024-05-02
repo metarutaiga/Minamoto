@@ -273,16 +273,16 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             // Traversal
             if (opened)
             {
-                for (size_t i = 0; i < node->GetChildCount(); ++i)
-                    traversal(node->GetChild(i));
+                for (xxNodePtr const& child : *node)
+                    traversal(child);
                 ImGui::TreePop();
             }
         };
         if (root)
         {
             ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.0f, 1.0f));
-            for (size_t i = 0; i < root->GetChildCount(); ++i)
-                traversal(root->GetChild(i));
+            for (xxNodePtr const& child : *root)
+                traversal(child);
             ImGui::PopStyleVar();
         }
 

@@ -110,39 +110,35 @@ xxMeshPtr Import::CreateMesh(std::vector<xxVector3> const& vertices, std::vector
     mesh->SetVertexCount(int(vertices.size()));
 
     auto source = vertices.begin();
-    auto target = mesh->GetVertex();
-    while (source != vertices.end() && target.isEnd() == false)
+    for (auto& vertex : mesh->GetVertex())
     {
-        (*target++) = (*source++);
+        vertex = (*source++);
     }
 
     if (normals.size() == vertices.size())
     {
         auto source = normals.begin();
-        auto target = mesh->GetNormal(0);
-        while (source != normals.end() && target.isEnd() == false)
+        for (auto& normal : mesh->GetNormal(0))
         {
-            (*target++) = (*source++);
+            normal = (*source++);
         }
     }
 
     if (colors.size() == vertices.size())
     {
         auto source = colors.begin();
-        auto target = mesh->GetColor(0);
-        while (source != colors.end() && target.isEnd() == false)
+        for (auto& color : mesh->GetColor(0))
         {
-            (*target++) = (*source++).ToInteger();
+            color = (*source++).ToInteger();
         }
     }
 
     if (textures.size() == vertices.size())
     {
         auto source = textures.begin();
-        auto target = mesh->GetTexture(0);
-        while (source != textures.end() && target.isEnd() == false)
+        for (auto& texture : mesh->GetTexture(0))
         {
-            (*target++) = (*source++);
+            texture = (*source++);
         }
     }
 
@@ -321,14 +317,11 @@ void Import::MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodeP
     std::vector<std::pair<xxNodePtr, xxNodePtr>> merge;
     std::vector<xxNodePtr> append;
 
-    for (size_t i = 0; i < source->GetChildCount(); ++i)
+    for (xxNodePtr const& right : *source)
     {
-        xxNodePtr const& right = source->GetChild(i);
-
         bool found = false;
-        for (size_t j = 0; j < target->GetChildCount(); ++j)
+        for (xxNodePtr const& left : *target)
         {
-            xxNodePtr const& left = target->GetChild(j);
             if (left->Name == right->Name)
             {
                 merge.push_back({ left, right });

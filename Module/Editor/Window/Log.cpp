@@ -10,7 +10,6 @@
 #include "Log.h"
 
 std::deque<char*> Log::systemLog;
-float Log::windowHeights[2];
 //------------------------------------------------------------------------------
 void Log::Initialize()
 {
@@ -58,10 +57,5 @@ bool Log::Update(const UpdateData& updateData, bool& show)
     }
 
     return false;
-}
-//------------------------------------------------------------------------------
-float Log::GetWindowHeight()
-{
-    return windowHeights[1];
 }
 //------------------------------------------------------------------------------

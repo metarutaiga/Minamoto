@@ -72,31 +72,27 @@ namespace ImGui
 {
 inline void DumpBuildInformation()
 {
-#if defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
-    ImGui::Text("macOS : %d.%d.%d", __MAC_OS_X_VERSION_MAX_ALLOWED / 10000, __MAC_OS_X_VERSION_MAX_ALLOWED / 100 % 100, __MAC_OS_X_VERSION_MAX_ALLOWED % 100);
-#endif
-#if defined(__clang_version__)
-    ImGui::Text("clang : %s", __clang_version__);
-#endif
-#if defined(_LIBCPP_VERSION)
-    ImGui::Text("libc++ : %d.%d.%d", _LIBCPP_VERSION / 10000, _LIBCPP_VERSION / 100 % 100, _LIBCPP_VERSION % 100);
-#endif
-#if defined(__GNUC__)
-    ImGui::Text("gcc : %d.%d.%d", __GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__);
-#endif
-#if defined(__GLIBC__)
-    ImGui::Text("glibc : %d.%d", __GLIBC__, __GLIBC_MINOR__);
-#endif
-#if defined(__GLIBCXX__)
-    ImGui::Text("libstdc++ : %d.%d.%d", __GLIBCXX__ / 10000, __GLIBCXX__ / 100 % 100, __GLIBCXX__ % 100);
-#endif
 #if defined(_MSC_FULL_VER)
     ImGui::Text("msvc : %d.%d.%d", _MSC_FULL_VER / 10000000 % 100, _MSC_FULL_VER / 100000 % 100, _MSC_FULL_VER % 100000);
+#elif defined(__clang_version__)
+    ImGui::TextUnformatted("clang : " __clang_version__);
+#elif defined(__GNUC__)
+    ImGui::TextUnformatted("gcc : " xxStringify(__GNUC__) "." xxStringify(__GNUC_MINOR__) "." xxStringify(__GNUC_PATCHLEVEL__));
 #endif
-#if defined(_CPPLIB_VER)
+
+#if defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+    ImGui::Text("macOS : %d.%d.%d", __MAC_OS_X_VERSION_MAX_ALLOWED / 10000, __MAC_OS_X_VERSION_MAX_ALLOWED / 100 % 100, __MAC_OS_X_VERSION_MAX_ALLOWED % 100);
+#elif defined(__GLIBC__)
+    ImGui::TextUnformatted("glibc : " xxStringify(__GLIBC__) "." xxStringify(__GLIBC_MINOR__));
+#endif
+
+#if defined(_LIBCPP_VERSION)
+    ImGui::Text("libc++ : %d.%d.%d", _LIBCPP_VERSION / 10000, _LIBCPP_VERSION / 100 % 100, _LIBCPP_VERSION % 100);
+#elif defined(__GLIBCXX__)
+    ImGui::Text("libstdc++ : %d.%d.%d", __GLIBCXX__ / 10000, __GLIBCXX__ / 100 % 100, __GLIBCXX__ % 100);
+#elif defined(_CPPLIB_VER)
     ImGui::Text("Dinkumware : %d.%d", _CPPLIB_VER / 100, _CPPLIB_VER % 100);
-#endif
-#if defined(_MSVC_STL_VERSION)
+#elif defined(_MSVC_STL_VERSION)
     ImGui::Text("msstl : %d.%d.%ld", _MSVC_STL_VERSION / 10, _MSVC_STL_VERSION % 10, _MSVC_STL_UPDATE);
 #endif
 }
