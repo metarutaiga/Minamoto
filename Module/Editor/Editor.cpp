@@ -14,6 +14,7 @@
 #include "Window/Hierarchy.h"
 #include "Window/Inspector.h"
 #include "Window/Log.h"
+#include "Window/LuaConsole.h"
 #include "Window/Scene.h"
 
 #define MODULE_NAME     "Editor"
@@ -28,6 +29,7 @@ moduleAPI const char* Create(const CreateData& createData)
 
     Import::Initialize();
     Log::Initialize();
+    LuaConsole::Initialize();
     Hierarchy::Initialize();
     Inspector::Initialize();
     Scene::Initialize();
@@ -39,6 +41,7 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
 {
     Import::Shutdown();
     Log::Shutdown();
+    LuaConsole::Shutdown();
     Hierarchy::Shutdown();
     Inspector::Shutdown();
     Scene::Shutdown();
@@ -73,6 +76,7 @@ moduleAPI bool Update(const UpdateData& updateData)
 {
     static bool showAbout = false;
     static bool showLog = true;
+    static bool showLua = true;
     static bool showHierarchy = true;
     static bool showInspector = true;
     static bool showScene = true;
@@ -86,6 +90,7 @@ moduleAPI bool Update(const UpdateData& updateData)
             ImGui::MenuItem("About " MODULE_NAME, nullptr, &showAbout);
             ImGui::Separator();
             ImGui::MenuItem(ICON_FA_DESKTOP     "Log", nullptr, &showLog);
+            ImGui::MenuItem(ICON_FA_FILE_TEXT_O "Lua Console", nullptr, &showLua);
             ImGui::MenuItem(ICON_FA_LIST        "Hierarchy", nullptr, &showHierarchy);
             ImGui::MenuItem(ICON_FA_INFO_CIRCLE "Inspector", nullptr, &showInspector);
             ImGui::MenuItem(ICON_FA_GLOBE       "Scene", nullptr, &showScene);
@@ -119,6 +124,7 @@ moduleAPI bool Update(const UpdateData& updateData)
         ImGuiID down = ImGui::DockBuilderSplitNode(id, ImGuiDir_Down, 1.0f / 3.0f, nullptr, &id);
         ImGuiID left = ImGui::DockBuilderSplitNode(id, ImGuiDir_Left, 1.0f / 4.0f, nullptr, &id);
         ImGui::DockBuilderDockWindow(ICON_FA_DESKTOP    "Log", down);
+        ImGui::DockBuilderDockWindow(ICON_FA_FILE_TEXT_O"Lua Console", down);
         ImGui::DockBuilderDockWindow(ICON_FA_LIST       "Hierarchy", left);
         ImGui::DockBuilderDockWindow(ICON_FA_INFO_CIRCLE"Inspector", right);
         ImGui::DockBuilderDockWindow(ICON_FA_GLOBE      "Scene", id);
@@ -126,6 +132,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     }
 
     updated |= Log::Update(updateData, showLog);
+    updated |= LuaConsole::Update(updateData, showLua);
     updated |= Hierarchy::Update(updateData, showHierarchy, Scene::sceneRoot);
     updated |= Inspector::Update(updateData, showInspector, Scene::sceneCamera);
     updated |= Scene::Update(updateData, showScene);

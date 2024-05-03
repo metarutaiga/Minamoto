@@ -3,6 +3,22 @@
    version = "1.0">
    <Group
       location = "container:"
+      name = "Build">
+      <FileRef
+         location = "group:Build/include/ftmodule.h">
+      </FileRef>
+      <FileRef
+         location = "group:Build/include/ftoption.h">
+      </FileRef>
+      <FileRef
+         location = "group:Build/include/imgui_user_config.h">
+      </FileRef>
+      <FileRef
+         location = "group:Build/include/luauser.h">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
       name = "SDK">
       <FileRef
          location = "group:Build/freetype.xcodeproj">
@@ -12,6 +28,9 @@
       </FileRef>
       <FileRef
          location = "group:Build/libcxx.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Build/lua.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Build/xxGraphic.xcodeproj">

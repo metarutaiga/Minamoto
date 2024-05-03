@@ -22,3 +22,6 @@
 [submodule "SDK/IconFontCppHeaders"]
 	path = SDK/IconFontCppHeaders
 	url = https://github.com/juliettef/IconFontCppHeaders
+[submodule "SDK/lua"]
+	path = SDK/lua
+	url = https://github.com/lua/lua
