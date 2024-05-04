@@ -48,7 +48,12 @@
         {
             for (NSUInteger i = 0; i < event.charactersIgnoringModifiers.length; ++i)
             {
-                ImGui::GetIO().AddInputCharacter([event.charactersIgnoringModifiers characterAtIndex:i]);
+                unichar c = [event.charactersIgnoringModifiers characterAtIndex:i];
+                if (c <= 0x001F || c == 0x007F)
+                    continue;
+                if (c >= 0xF700 && c <= 0xF8FF)
+                    continue;
+                ImGui::GetIO().AddInputCharacter(c);
             }
         }
         return event;

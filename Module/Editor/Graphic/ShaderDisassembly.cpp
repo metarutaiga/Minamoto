@@ -265,6 +265,7 @@ bool ShaderDisassembly::Update(const UpdateData& updateData, bool& show)
 
         ImGui::Columns(1);
     }
+    ImGui::End();
 
     return false;
 }

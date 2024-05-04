@@ -34,8 +34,8 @@ bool About::Update(const UpdateData& updateData, bool& show)
         ImGui::Separator();
         ImGui::TextUnformatted("ImGuiFileDialog : " IGFD_VERSION);
         ImGui::TextUnformatted("ufbx : " UFBX_VERSION);
-        ImGui::End();
     }
+    ImGui::End();
 
     return false;
 }

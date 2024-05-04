@@ -772,7 +772,7 @@
 					FT2_BUILD_LIBRARY,
 					"FT_CONFIG_MODULES_H=\\\"../../../Build/include/ftmodule.h\\\"",
 					"FT_CONFIG_OPTIONS_H=\\\"../../../Build/include/ftoption.h\\\"",
-					"DEBUG=1",
+					"_DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;

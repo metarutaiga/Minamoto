@@ -5,12 +5,13 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <map>
+#include <string_view>
 #include <xxGraphic.h>
 #include "Shader.h"
 
 //==============================================================================
-static std::map<uint32_t, std::pair<uint64_t, uint64_t>> vertexShaders;
-static std::map<uint32_t, std::pair<uint64_t, uint64_t>> fragmentShaders;
+static std::map<size_t, std::pair<uint64_t, uint64_t>> vertexShaders;
+static std::map<size_t, std::pair<uint64_t, uint64_t>> fragmentShaders;
 //------------------------------------------------------------------------------
 static uint64_t (*xxCreateVertexShaderSystem)(uint64_t device, char const* shader, uint64_t vertexAttribute);
 static uint64_t (*xxCreateFragmentShaderSystem)(uint64_t device, char const* shader);
@@ -18,7 +19,7 @@ static void     (*xxDestroyShaderSystem)(uint64_t device, uint64_t shader);
 //------------------------------------------------------------------------------
 static uint64_t xxCreateVertexShaderRuntime(uint64_t device, char const* shader, uint64_t vertexAttribute)
 {
-    uint32_t hash = xxHash(shader);
+    size_t hash = std::hash<std::string_view>()(shader);
     auto it = vertexShaders.find(hash);
     if (it != vertexShaders.end())
     {
@@ -34,7 +35,7 @@ static uint64_t xxCreateVertexShaderRuntime(uint64_t device, char const* shader,
 //------------------------------------------------------------------------------
 static uint64_t xxCreateFragmentShaderRuntime(uint64_t device, char const* shader)
 {
-    uint32_t hash = xxHash(shader);
+    size_t hash = std::hash<std::string_view>()(shader);
     auto it = fragmentShaders.find(hash);
     if (it != fragmentShaders.end())
     {

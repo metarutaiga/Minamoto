@@ -32,18 +32,20 @@ bool Log::Update(const UpdateData& updateData, bool& show)
     {
         updateData.message({ "LOGGER_UPDATE", (char*)&systemLog });
 
-        ImGuiListClipper clipper;
-        clipper.Begin((int)systemLog.size(), ImGui::GetTextLineHeightWithSpacing());
-        while (clipper.Step())
+        if (systemLog.empty() == false)
         {
-            auto start = systemLog.begin() + clipper.DisplayStart;
-            auto end = systemLog.begin() + clipper.DisplayEnd;
-            for (auto it = start; it != end; ++it)
+            ImGuiListClipper clipper;
+            clipper.Begin((int)systemLog.size(), ImGui::GetTextLineHeightWithSpacing());
+            while (clipper.Step())
             {
-                ImGui::Selectable(*it, false);
+                auto start = systemLog.begin() + clipper.DisplayStart;
+                auto end = systemLog.begin() + clipper.DisplayEnd;
+                for (auto it = start; it != end; ++it)
+                {
+                    ImGui::Selectable(*it, false);
+                }
             }
         }
-        clipper.End();
 
         static size_t logCount = 0;
         if (logCount != systemLog.size())
@@ -52,9 +54,8 @@ bool Log::Update(const UpdateData& updateData, bool& show)
             ImGui::TextUnformatted("");
             ImGui::SetScrollHereY();
         }
-
-        ImGui::End();
     }
+    ImGui::End();
 
     return false;
 }

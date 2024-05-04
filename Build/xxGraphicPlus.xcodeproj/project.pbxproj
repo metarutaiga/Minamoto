@@ -497,7 +497,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					XX_BUILD_LIBRARY,
 					XXPLUS_BUILD_LIBRARY,
-					"DEBUG=1",
+					"_DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;

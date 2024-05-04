@@ -65,6 +65,7 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
             }
             UpdateModifier(updateData, selected->Modifiers);
         }
+
         ImGui::PopStyleVar();
     }
     ImGui::End();

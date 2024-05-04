@@ -16,6 +16,11 @@
 #define LUA_USE_POSIX
 #endif
 
+#undef LUA_PATH_DEFAULT
+#undef LUA_CPATH_DEFAULT
+#define LUA_PATH_DEFAULT ""
+#define LUA_CPATH_DEFAULT ""
+
 #define lua_writestring lua_writestring
 #define lua_writeline lua_writeline
 LUA_API void lua_writestring(const char* string, size_t length);

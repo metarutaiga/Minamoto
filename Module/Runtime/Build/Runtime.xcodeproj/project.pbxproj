@@ -748,7 +748,7 @@
 					RUNTIME_BUILD_LIBRARY,
 					XX_BUILD_LIBRARY,
 					XXPLUS_BUILD_LIBRARY,
-					"DEBUG=1",
+					"_DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;

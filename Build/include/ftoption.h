@@ -17,19 +17,22 @@
 
 #include <freetype/config/ftoption.h>
 
+#ifdef FT2_BUILD_LIBRARY
 #ifdef _WIN32
 #define _CRT_SECURE_NO_WARNINGS
-#ifdef FT2_BUILD_LIBRARY
 #define DLL_EXPORT
-#endif
-#endif
-
 #pragma warning(disable : 4101)
 #pragma warning(disable : 4189)
 #pragma warning(disable : 4267)
 #pragma warning(disable : 4701)
 #pragma warning(disable : 4706)
 #pragma warning(disable : 4819)
+#endif
+#ifdef __clang__
+#pragma clang diagnostic ignored "-Wunused-function"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+#endif
 
 #undef FT_CONFIG_OPTION_ENVIRONMENT_PROPERTIES
 #undef FT_CONFIG_OPTION_USE_LZW
@@ -64,9 +67,5 @@
 #undef TT_USE_BYTECODE_INTERPRETER
 #undef TT_SUPPORT_SUBPIXEL_HINTING_MINIMAL
 /* #undef TT_SUPPORT_COLRV1 */
-
-#if defined(__clang__)
-#pragma clang diagnostic ignored "-Wunused-function"
-#endif
 
 /* END */

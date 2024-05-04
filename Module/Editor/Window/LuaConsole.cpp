@@ -120,39 +120,40 @@ bool LuaConsole::Update(const UpdateData& updateData, bool& show)
         }
 
         auto const& lines = Lua::lines;
-
-        ImGuiListClipper clipper;
-        clipper.Begin((int)lines.size(), ImGui::GetTextLineHeightWithSpacing());
-        while (clipper.Step())
+        if (lines.empty() == false)
         {
-            auto start = lines.begin() + clipper.DisplayStart;
-            auto end = lines.begin() + clipper.DisplayEnd;
-            for (auto it = start; it != end; ++it)
+            ImGuiListClipper clipper;
+            clipper.Begin((int)lines.size(), ImGui::GetTextLineHeightWithSpacing());
+            while (clipper.Step())
             {
-                if (it == end - 1)
+                auto start = lines.begin() + clipper.DisplayStart;
+                auto end = lines.begin() + clipper.DisplayEnd;
+                for (auto it = start; it != end; ++it)
                 {
-                    static int blink = 0;
-                    if (blink != (int(updateData.time * 2.0f) & 1))
+                    if (it == end - 1)
                     {
-                        blink = (int(updateData.time * 2.0f) & 1);
-                        update = true;
-                    }
+                        static int blink = 0;
+                        if (blink != (int(updateData.time * 2.0f) & 1))
+                        {
+                            blink = (int(updateData.time * 2.0f) & 1);
+                            update = true;
+                        }
 
-                    auto& input = console.input;
-                    auto inputPos = console.inputPos;
-                    static std::string temp;
-                    temp = (*it);
-                    temp.append(input.c_str(), inputPos);
-                    temp.append(blink ? "|" : " ");
-                    if (input.size() > inputPos)
-                        temp.append(input.c_str() + inputPos, input.size() - inputPos);
-                    ImGui::Selectable(temp.c_str(), false);
-                    continue;
+                        auto& input = console.input;
+                        auto inputPos = console.inputPos;
+                        static std::string temp;
+                        temp = (*it);
+                        temp.append(input.c_str(), inputPos);
+                        temp.append(blink ? "|" : " ");
+                        if (input.size() > inputPos)
+                            temp.append(input.c_str() + inputPos, input.size() - inputPos);
+                        ImGui::Selectable(temp.c_str(), false);
+                        continue;
+                    }
+                    ImGui::Selectable((*it).c_str(), false);
                 }
-                ImGui::Selectable((*it).c_str(), false);
             }
         }
-        clipper.End();
 
         static size_t logCount = 0;
         if (logCount != lines.size())
@@ -161,9 +162,8 @@ bool LuaConsole::Update(const UpdateData& updateData, bool& show)
             ImGui::TextUnformatted("");
             ImGui::SetScrollHereY();
         }
-
-        ImGui::End();
     }
+    ImGui::End();
 
     return update;
 }

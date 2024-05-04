@@ -682,7 +682,7 @@
 					MODULE_BUILD_LIBRARY,
 					"IMGUI_USER_CONFIG=\\\"../../Build/include/imgui_user_config.h\\\"",
 					UFBX_REAL_IS_FLOAT,
-					"DEBUG=1",
+					"_DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;

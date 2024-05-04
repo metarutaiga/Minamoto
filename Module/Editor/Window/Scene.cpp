@@ -260,9 +260,8 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         drawList->AddCallback(ImDrawCallback_ResetRenderState, nullptr);
 
         Tools::Draw(sceneCamera);
-
-        ImGui::End();
     }
+    ImGui::End();
 
     return updated;
 }

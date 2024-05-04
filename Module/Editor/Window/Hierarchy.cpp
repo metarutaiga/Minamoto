@@ -133,8 +133,8 @@ void Hierarchy::Import(const UpdateData& updateData)
                 show = false;
             }
         }
-        ImGui::End();
     }
+    ImGui::End();
 
 #if HAVE_FILEDIALOG
     if (importFileDialog->Display("Import", 0, ImVec2(384 * updateData.scale, 256 * updateData.scale)))
@@ -198,8 +198,8 @@ void Hierarchy::Export(const UpdateData& updateData)
                 show = false;
             }
         }
-        ImGui::End();
     }
+    ImGui::End();
 
 #if HAVE_FILEDIALOG
     if (exportFileDialog->Display("Export", 0, ImVec2(384 * updateData.scale, 256 * updateData.scale)))
