@@ -9,8 +9,9 @@
 #include "Console.h"
 
 //------------------------------------------------------------------------------
-void Console::Update(const UpdateData& updateData)
+bool Console::Update(const UpdateData& updateData)
 {
+    bool update = false;
     ImGuiIO& io = ImGui::GetIO();
     for (int i = 0; i < io.InputQueueCharacters.size(); ++i)
     {
@@ -19,45 +20,48 @@ void Console::Update(const UpdateData& updateData)
         {
         case '\b':
         case 0x7F:
-            if (input.empty() == false && inputPos && input.size() >= inputPos)
+            if (input.empty() == false && input.size() >= inputPos && inputPos >= 1)
             {
                 input.erase(input.begin() + inputPos - 1, input.begin() + inputPos);
                 inputPos--;
             }
-            continue;
+            break;
         case 0xF700:
             if (historyPos)
                 historyPos--;
             input = history[historyPos];
             inputPos = input.size();
-            continue;
+            break;
         case 0xF701:
             if (historyPos < history.size())
                 historyPos++;
-            input = history.size() > historyPos ? history[historyPos] : "";
+            input = history.size() > historyPos ? history[historyPos] : std::string();
             inputPos = input.size();
-            continue;
+            break;
         case 0xF702:
             if (inputPos)
                 inputPos--;
-            continue;
+            break;
         case 0xF703:
             if (inputPos < input.size())
                 inputPos++;
-            continue;
+            break;
         case 0xF728:
             if (input.empty() == false && input.size() > inputPos)
                 input.erase(input.begin() + inputPos, input.begin() + inputPos + 1);
-            continue;
+            break;
         case 0xF729:
             inputPos = 0;
-            continue;
+            break;
         case 0xF72B:
             inputPos = input.size();
-            continue;
+            break;
+        default:
+            input.insert(inputPos, 1, char(c));
+            inputPos++;
+            break;
         }
-        input.insert(inputPos, 1, char(c));
-        inputPos++;
+        update = true;
     }
     io.InputQueueCharacters.clear();
     if (input.empty() == false && input[0] == 0)
@@ -65,13 +69,31 @@ void Console::Update(const UpdateData& updateData)
         input.clear();
         inputPos = 0;
     }
+    return update;
 }
 //------------------------------------------------------------------------------
 void Console::AddHistory(char const* line)
 {
-    if (line == nullptr || line[0] == 0 || line[0] == '\r' || line[0] == '\n')
+    std::string temp = line ? line : std::string();
+    while (temp.empty() == false)
+    {
+        char c = temp.back();
+        switch (c)
+        {
+        case 0:
+            return;
+        case '\r':
+        case '\n':
+            temp.pop_back();
+            continue;
+        }
+        break;
+    }
+    if (temp.empty())
         return;
-    history.push_back(line);
+    if (history.empty() == false && history.back() == temp)
+        return;
+    history.push_back(temp);
     historyPos = history.size();
 }
 //------------------------------------------------------------------------------

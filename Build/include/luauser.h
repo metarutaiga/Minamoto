@@ -8,10 +8,12 @@
 
 #undef LUA_API
 #if defined(_WIN32)
-#define WIN32_LEAN_AND_MEAN
 #define LUA_API __declspec(dllexport)
+#define WIN32_LEAN_AND_MEAN
 #else
 #define LUA_API __attribute__((visibility("default")))
+#define LUA_USE_DLOPEN
+#define LUA_USE_POSIX
 #endif
 
 #define lua_writestring lua_writestring

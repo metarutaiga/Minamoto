@@ -410,10 +410,6 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 				PRODUCT_NAME = xxGraphicPlus.Windows;
 			};
 			name = Debug;
@@ -426,10 +422,6 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 				PRODUCT_NAME = xxGraphicPlus.Windows;
 			};
 			name = Release;

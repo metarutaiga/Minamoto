@@ -15,6 +15,7 @@
 		CEB0E87C2608198500D13FE3 /* Validator.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* Validator.dylib */; };
 		D6169D0A2BB17E3100E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D092BB17E3100E5490C /* new.cpp */; };
 		D6169D0C2BB17E4900E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D0B2BB17E4900E5490C /* ucrt.cpp */; };
+		D62FEBF12BE50FF3004E9FDF /* dllmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBF02BE50FF3004E9FDF /* dllmain.cpp */; };
 		D6F066732BC6EB6A00C4DFE6 /* Runtime.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066722BC6EB6A00C4DFE6 /* Runtime.dll */; };
 		D6F066862BC6F14800C4DFE6 /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066852BC6F14800C4DFE6 /* libcxx.lib */; };
 		D6F066922BC6F25B00C4DFE6 /* Runtime.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066912BC6F25B00C4DFE6 /* Runtime.dylib */; };
@@ -81,6 +82,7 @@
 		D6169D052BB17DFA00E5490C /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6169D092BB17E3100E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
 		D6169D0B2BB17E4900E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
+		D62FEBF02BE50FF3004E9FDF /* dllmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dllmain.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/dllmain.cpp"; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* Validator.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Validator.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AA5DC02BD7DBC600AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6BA702C29E2703E0056FE5F /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +186,7 @@
 				D60EC62926A85B120051A948 /* ClangPlatform.Android.xcconfig */,
 				D6AA5DC02BD7DBC600AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC62826A85B120051A948 /* ClangPlatform.Windows.xcconfig */,
+				D62FEBF02BE50FF3004E9FDF /* dllmain.cpp */,
 				D6169D092BB17E3100E5490C /* new.cpp */,
 				D6169D0B2BB17E4900E5490C /* ucrt.cpp */,
 			);
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6169D0A2BB17E3100E5490C /* new.cpp in Sources */,
+				D62FEBF12BE50FF3004E9FDF /* dllmain.cpp in Sources */,
 				CE93604725AC476F00CEF503 /* Validator.cpp in Sources */,
 				D6169D0C2BB17E4900E5490C /* ucrt.cpp in Sources */,
 			);
@@ -385,10 +389,6 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 			};
 			name = Debug;
 		};
@@ -399,10 +399,6 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 			};
 			name = Release;
 		};

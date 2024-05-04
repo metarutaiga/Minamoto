@@ -5,6 +5,8 @@
 #include "Logger.h"
 #include "Module.h"
 #include "Renderer.h"
+
+#include <Runtime/Runtime.h>
 #include <imgui/backends/imgui_impl_win32.h>
 
 #define NOMINMAX
@@ -26,6 +28,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, in
     WNDCLASSEXW wc = { sizeof(WNDCLASSEX), CS_OWNDC, WndProc, 0, 0, instance, NULL, NULL, NULL, NULL, L"Minamoto", NULL };
     ::RegisterClassExW(&wc);
     HWND hWnd = ::CreateWindowW(wc.lpszClassName, L"Minamoto", WS_OVERLAPPEDWINDOW, 100, 100, (int)(1280 * scale), (int)(720 * scale), NULL, NULL, wc.hInstance, NULL);
+    SetWindowTextA(hWnd, Runtime::Version());
 
     Logger::Create();
     Renderer::Create(hWnd, (int)(1280 * scale), (int)(720 * scale));

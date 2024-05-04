@@ -21,8 +21,8 @@
 		CEC4337D25AD24A400936983 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A3862333FE7B00A149EF /* Renderer.cpp */; };
 		D6022C6A23258E9500B9BFB8 /* imgui_impl_xx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0E7231F109C00B75B77 /* imgui_impl_xx.cpp */; };
 		D6169D122BB17F3700E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D0F2BB17F3700E5490C /* ucrt.cpp */; };
-		D6169D132BB17F3700E5490C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D102BB17F3700E5490C /* main.cpp */; };
 		D6169D142BB17F3700E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D112BB17F3700E5490C /* new.cpp */; };
+		D62FEBEB2BE50FAE004E9FDF /* winmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBEA2BE50FAE004E9FDF /* winmain.cpp */; };
 		D63370682B3534FE001D4057 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370662B3534FE001D4057 /* Logger.cpp */; };
 		D63370692B3534FE001D4057 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370662B3534FE001D4057 /* Logger.cpp */; };
 		D633706A2B3534FE001D4057 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63370662B3534FE001D4057 /* Logger.cpp */; };
@@ -97,8 +97,8 @@
 		D60EC64026A85C000051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC64126A85C000051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D0F2BB17F3700E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
-		D6169D102BB17F3700E5490C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/main.cpp"; sourceTree = "<group>"; };
 		D6169D112BB17F3700E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
+		D62FEBEA2BE50FAE004E9FDF /* winmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = winmain.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/winmain.cpp"; sourceTree = "<group>"; };
 		D63370662B3534FE001D4057 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logger.cpp; path = ../Logger.cpp; sourceTree = "<group>"; };
 		D63370672B3534FE001D4057 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logger.h; path = ../Logger.h; sourceTree = "<group>"; };
 		D644A0C6231F021F00B75B77 /* Minamoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minamoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,9 +210,9 @@
 				D6AA5DBD2BD7DB6F00AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC64126A85C000051A948 /* ClangPlatform.Windows.xcconfig */,
 				D65309FE2BB2F3A50006AD64 /* except.cpp */,
-				D6169D102BB17F3700E5490C /* main.cpp */,
 				D6169D112BB17F3700E5490C /* new.cpp */,
 				D6169D0F2BB17F3700E5490C /* ucrt.cpp */,
+				D62FEBEA2BE50FAE004E9FDF /* winmain.cpp */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -475,6 +475,7 @@
 			files = (
 				CEC4337925AD24A400936983 /* imgui_impl_xx.cpp in Sources */,
 				D633706B2B3534FE001D4057 /* Logger.cpp in Sources */,
+				D62FEBEB2BE50FAE004E9FDF /* winmain.cpp in Sources */,
 				D6169D122BB17F3700E5490C /* ucrt.cpp in Sources */,
 				D65309FF2BB2F3A50006AD64 /* except.cpp in Sources */,
 				CEC4337A25AD24A400936983 /* DearImGui.cpp in Sources */,
@@ -482,7 +483,6 @@
 				CEC4337B25AD24A400936983 /* main.cpp in Sources */,
 				D6169D142BB17F3700E5490C /* new.cpp in Sources */,
 				CEC4337C25AD24A400936983 /* Module.cpp in Sources */,
-				D6169D132BB17F3700E5490C /* main.cpp in Sources */,
 				CEC4337D25AD24A400936983 /* Renderer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,10 +541,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				EXECUTABLE_EXTENSION = exe;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					_HAVE_WINMAIN_,
-					"$(inherited)",
-				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -559,10 +555,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				EXECUTABLE_EXTENSION = exe;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					_HAVE_WINMAIN_,
-					"$(inherited)",
-				);
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;

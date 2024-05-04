@@ -681,20 +681,9 @@
 			baseConfigurationReference = D60EC63226A85B920051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = lib;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DLL_EXPORT,
-					_INC_SETJMPEX,
-					__STDC__,
-					_CRT_SECURE_NO_WARNINGS,
-					"$(inherited)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 				PRODUCT_NAME = freetype.Windows;
 			};
 			name = Debug;
@@ -704,20 +693,9 @@
 			baseConfigurationReference = D60EC63226A85B920051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = lib;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DLL_EXPORT,
-					_INC_SETJMPEX,
-					__STDC__,
-					_CRT_SECURE_NO_WARNINGS,
-					"$(inherited)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 				PRODUCT_NAME = freetype.Windows;
 			};
 			name = Release;

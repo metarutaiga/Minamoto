@@ -207,7 +207,7 @@ bool ShaderDisassembly::Update(const UpdateData& updateData, bool& show)
         return false;
 
     ImGui::SetNextWindowSize(ImVec2(1280.0f, 720.0f), ImGuiCond_Appearing);
-    if (ImGui::Begin("Shader Disassembly", &show))
+    if (ImGui::Begin("Shader Disassembly", &show, ImGuiWindowFlags_NoDocking))
     {
         ImVec2 size = ImGui::GetWindowSize();
         size.x = size.x - ImGui::GetStyle().FramePadding.x * 8.0f;

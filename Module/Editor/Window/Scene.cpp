@@ -148,7 +148,7 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
 
         xxNode::Traversal([&](xxNodePtr const& node)
         {
-            if (node->Modifiers.empty())
+            if (node->Modifiers.empty() == false)
                 updated = true;
             return updated == false;
         }, sceneRoot);

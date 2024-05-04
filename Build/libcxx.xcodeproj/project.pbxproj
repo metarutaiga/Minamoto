@@ -446,10 +446,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"libcxx_API=__attribute__((visibility(\\\"default\\\")))",
-					"$(inherited)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Debug;
@@ -458,10 +454,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"libcxx_API=__attribute__((visibility(\\\"default\\\")))",
-					"$(inherited)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Release;
@@ -482,10 +474,6 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 				WARNING_CFLAGS = (
 					"-Wno-microsoft-include",
 					"$(inherited)",
@@ -509,10 +497,6 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 				WARNING_CFLAGS = (
 					"-Wno-microsoft-include",
 					"$(inherited)",
@@ -525,10 +509,6 @@
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"libcxx_API=__attribute__((visibility(\\\"default\\\")))",
-					"$(inherited)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				SDKROOT = iphoneos;
 			};
@@ -539,10 +519,6 @@
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"libcxx_API=__attribute__((visibility(\\\"default\\\")))",
-					"$(inherited)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -715,10 +691,6 @@
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"libcxx_API=__attribute__((visibility(\\\"default\\\")))",
-					"$(inherited)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Debug;
@@ -728,10 +700,6 @@
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"libcxx_API=__attribute__((visibility(\\\"default\\\")))",
-					"$(inherited)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Release;

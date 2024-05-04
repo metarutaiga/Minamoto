@@ -61,7 +61,7 @@ static int lua_readline(lua_State* L, char* buffer, char const* prompt)
     return 1;
 }
 //------------------------------------------------------------------------------
-int lua_saveline(lua_State* L, char const* line)
+static int lua_saveline(lua_State* L, char const* line)
 {
     console.AddHistory(line);
     return 0;
@@ -81,11 +81,12 @@ bool LuaConsole::Update(const UpdateData& updateData, bool& show)
     if (show == false)
         return false;
 
+    bool update = false;
     if (ImGui::Begin(ICON_FA_FILE_TEXT_O "Lua Console", &show))
     {
         if (ImGui::IsWindowHovered())
         {
-            console.Update(updateData);
+            update |= console.Update(updateData);
         }
 
         bool appearing = ImGui::IsWindowAppearing();
@@ -130,12 +131,19 @@ bool LuaConsole::Update(const UpdateData& updateData, bool& show)
             {
                 if (it == end - 1)
                 {
+                    static int blink = 0;
+                    if (blink != (int(updateData.time * 2.0f) & 1))
+                    {
+                        blink = (int(updateData.time * 2.0f) & 1);
+                        update = true;
+                    }
+
                     auto& input = console.input;
                     auto inputPos = console.inputPos;
                     static std::string temp;
                     temp = (*it);
                     temp.append(input.c_str(), inputPos);
-                    temp.append(int(updateData.time * 2.0f) & 1 ? "|" : " ");
+                    temp.append(blink ? "|" : " ");
                     if (input.size() > inputPos)
                         temp.append(input.c_str() + inputPos, input.size() - inputPos);
                     ImGui::Selectable(temp.c_str(), false);
@@ -157,6 +165,6 @@ bool LuaConsole::Update(const UpdateData& updateData, bool& show)
         ImGui::End();
     }
 
-    return false;
+    return update;
 }
 //------------------------------------------------------------------------------

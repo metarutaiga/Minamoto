@@ -24,4 +24,5 @@ struct RuntimeAPI Runtime
 {
     static void Initialize();
     static void Shutdown();
+    static char const* Version();
 };

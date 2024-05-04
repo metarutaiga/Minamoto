@@ -17,7 +17,13 @@
 
 #include <freetype/config/ftoption.h>
 
+#ifdef _WIN32
 #define _CRT_SECURE_NO_WARNINGS
+#ifdef FT2_BUILD_LIBRARY
+#define DLL_EXPORT
+#endif
+#endif
+
 #pragma warning(disable : 4101)
 #pragma warning(disable : 4189)
 #pragma warning(disable : 4267)

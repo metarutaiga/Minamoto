@@ -1,18 +1,14 @@
 //==============================================================================
-// Minamoto : Console Header
+// Minamoto : About Header
 //
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #pragma once
 
-struct Console
-{
-    bool Update(const UpdateData& updateData);
-    void AddHistory(const char* line);
+#define MODULE_NAME     "Editor"
 
-    std::string input;
-    std::vector<std::string> history;
-    size_t inputPos = 0;
-    size_t historyPos = 0;
+struct About
+{
+    static bool Update(const UpdateData& updateData, bool& show);
 };

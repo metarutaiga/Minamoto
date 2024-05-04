@@ -7,6 +7,7 @@
 #include "Renderer.h"
 
 #include <stdio.h>
+#include <Runtime/Runtime.h>
 
 #if defined(xxMACOS)
 #import <Cocoa/Cocoa.h>
@@ -359,8 +360,8 @@
     NSMenu* appMenu;
     NSMenuItem* menuItem;
 
-    appMenu = [[NSMenu alloc] initWithTitle:@"Minamoto"];
-    menuItem = [appMenu addItemWithTitle:@"Quit Minamoto"
+    appMenu = [[NSMenu alloc] initWithTitle:@(Runtime::Version())];
+    menuItem = [appMenu addItemWithTitle:@"Quit"
                                   action:@selector(terminate:)
                            keyEquivalent:@"q"];
     [menuItem setKeyEquivalentModifierMask:NSEventModifierFlagCommand];
@@ -387,7 +388,7 @@
                                               defer:YES];
     [_window setDelegate:self];
     [_window setOpaque:YES];
-    [_window setTitle:@"Minamoto"];
+    [_window setTitle:@(Runtime::Version())];
     [_window makeKeyAndOrderFront:NSApp];
 
     return (_window);

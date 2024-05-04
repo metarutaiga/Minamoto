@@ -14,6 +14,7 @@
 		CE999D9525D275A900351116 /* Sample.dll in CopyFiles */ = {isa = PBXBuildFile; fileRef = CE93601825AC454200CEF503 /* Sample.dll */; };
 		CEB0E87A2608197500D13FE3 /* Sample.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* Sample.dylib */; };
 		D6169D0E2BB17EE100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D0D2BB17EE100E5490C /* ucrt.cpp */; };
+		D62FEBEF2BE50FE6004E9FDF /* dllmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBEE2BE50FE6004E9FDF /* dllmain.cpp */; };
 		D6F066712BC6EB5800C4DFE6 /* Runtime.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066702BC6EB5800C4DFE6 /* Runtime.dll */; };
 		D6F066942BC6F26900C4DFE6 /* Runtime.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066932BC6F26900C4DFE6 /* Runtime.dylib */; };
 		D6F066CD2BC7920000C4DFE6 /* libRuntime.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066CC2BC7920000C4DFE6 /* libRuntime.so */; };
@@ -60,6 +61,7 @@
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D0D2BB17EE100E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
+		D62FEBEE2BE50FE6004E9FDF /* dllmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dllmain.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/dllmain.cpp"; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* Sample.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Sample.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6BA702829E2701C0056FE5F /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +136,7 @@
 				D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */,
 				D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */,
+				D62FEBEE2BE50FE6004E9FDF /* dllmain.cpp */,
 				D6169D0D2BB17EE100E5490C /* ucrt.cpp */,
 			);
 			name = Configs;
@@ -288,6 +291,7 @@
 			files = (
 				CE93601F25AC457A00CEF503 /* Sample.cpp in Sources */,
 				D6169D0E2BB17EE100E5490C /* ucrt.cpp in Sources */,
+				D62FEBEF2BE50FE6004E9FDF /* dllmain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,10 +337,6 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 			};
 			name = Debug;
 		};
@@ -347,10 +347,6 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-noentry",
-				);
 			};
 			name = Release;
 		};
