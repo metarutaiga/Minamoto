@@ -38,6 +38,15 @@
     <ClCompile Include="..\..\..\SDK\ufbx\ufbx.c">
       <Filter>Import\ufbx</Filter>
     </ClCompile>
+    <ClCompile Include="..\Window\About.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\Console.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\LuaConsole.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImGuiHelper.h" />
@@ -77,6 +86,15 @@
     <ClInclude Include="..\..\..\SDK\ufbx\ufbx.h">
       <Filter>Import\ufbx</Filter>
     </ClInclude>
+    <ClInclude Include="..\Window\About.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\Console.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\LuaConsole.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphic">
@@ -84,9 +102,6 @@
     </Filter>
     <Filter Include="Import">
       <UniqueIdentifier>{fbe4f660-3eb9-4a08-9c77-9c536f5e503e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{47dbcea1-6761-4ed4-aa26-9abb56430602}</UniqueIdentifier>
     </Filter>
     <Filter Include="Window">
       <UniqueIdentifier>{f3583be6-aa75-4050-ac41-534f1e3a7b98}</UniqueIdentifier>

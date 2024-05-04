@@ -321,6 +321,7 @@
     <ClCompile Include="..\Modifier\ScaleModifier.cpp" />
     <ClCompile Include="..\Modifier\TranslateModifier.cpp" />
     <ClCompile Include="..\Runtime.cpp" />
+    <ClCompile Include="..\Script\Lua.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Build\freetype.vcxproj">
@@ -328,6 +329,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\build\imgui.vcxproj">
       <Project>{9b49443b-7fae-479e-8cdf-29919a9f786f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Build\lua.vcxproj">
+      <Project>{d2b261bb-01e7-47a8-af4e-864056315c2c}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Build\xxGraphic.vcxproj">
       <Project>{81c889fc-6908-4066-8c73-3215df6fffc9}</Project>
@@ -354,6 +358,7 @@
     <ClInclude Include="..\Modifier\ScaleModifier.h" />
     <ClInclude Include="..\Modifier\TranslateModifier.h" />
     <ClInclude Include="..\Runtime.h" />
+    <ClInclude Include="..\Script\Lua.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Modifier\Modifier.inl" />

@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\Runtime.cpp" />
-    <ClCompile Include="..\Camera\CameraTools.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
     <ClCompile Include="..\Graphic\Binary.cpp">
       <Filter>Graphic</Filter>
     </ClCompile>
@@ -50,12 +47,15 @@
     <ClCompile Include="..\Modifier\TranslateModifier.cpp">
       <Filter>Modifier</Filter>
     </ClCompile>
+    <ClCompile Include="..\Script\Lua.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Camera\CameraTools.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Runtime.h" />
-    <ClInclude Include="..\Camera\CameraTools.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
     <ClInclude Include="..\Graphic\Binary.h">
       <Filter>Graphic</Filter>
     </ClInclude>
@@ -101,6 +101,12 @@
     <ClInclude Include="..\Modifier\TranslateModifier.h">
       <Filter>Modifier</Filter>
     </ClInclude>
+    <ClInclude Include="..\Script\Lua.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Camera\CameraTools.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphic">
@@ -108,6 +114,12 @@
     </Filter>
     <Filter Include="Modifier">
       <UniqueIdentifier>{4bbf1bc4-4283-4c0e-900e-c24f4a694d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{fa3f25aa-5157-4ebd-9839-c493bf203358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{1230e5fe-e5ff-49a7-9d18-d556630b6ea2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

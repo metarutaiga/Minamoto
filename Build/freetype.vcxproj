@@ -201,12 +201,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";FT2_BUILD_LIBRARY;DLL_EXPORT;__STDC__;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FT2_BUILD_LIBRARY;FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>../SDK/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4018;4244;4267;4312</DisableSpecificWarnings>
       <StringPooling>true</StringPooling>
-      <ForcedIncludeFiles>..\..\xxGraphic\xxSystem.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -219,12 +218,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";FT2_BUILD_LIBRARY;DLL_EXPORT;__STDC__;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FT2_BUILD_LIBRARY;FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>../SDK/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4018;4244;4267;4312</DisableSpecificWarnings>
       <StringPooling>true</StringPooling>
-      <ForcedIncludeFiles>..\..\xxGraphic\xxSystem.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -237,12 +235,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";FT2_BUILD_LIBRARY;DLL_EXPORT;__STDC__;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FT2_BUILD_LIBRARY;FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>../SDK/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4018;4244;4267;4312</DisableSpecificWarnings>
       <StringPooling>true</StringPooling>
-      <ForcedIncludeFiles>..\..\xxGraphic\xxSystem.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -255,12 +252,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";FT2_BUILD_LIBRARY;DLL_EXPORT;__STDC__;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FT2_BUILD_LIBRARY;FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>../SDK/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4018;4244;4267;4312</DisableSpecificWarnings>
       <StringPooling>true</StringPooling>
-      <ForcedIncludeFiles>..\..\xxGraphic\xxSystem.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -273,7 +269,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";FT2_BUILD_LIBRARY;DLL_EXPORT;__STDC__;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FT2_BUILD_LIBRARY;FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>../SDK/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4018;4244;4267;4312</DisableSpecificWarnings>
@@ -283,7 +279,6 @@
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <ForcedIncludeFiles>..\..\xxGraphic\xxSystem.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -298,7 +293,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";FT2_BUILD_LIBRARY;DLL_EXPORT;__STDC__;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FT2_BUILD_LIBRARY;FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>../SDK/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4018;4244;4267;4312</DisableSpecificWarnings>
@@ -308,7 +303,6 @@
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <ForcedIncludeFiles>..\..\xxGraphic\xxSystem.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -323,7 +317,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";FT2_BUILD_LIBRARY;DLL_EXPORT;__STDC__;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FT2_BUILD_LIBRARY;FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>../SDK/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4018;4244;4267;4312</DisableSpecificWarnings>
@@ -333,7 +327,6 @@
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <ForcedIncludeFiles>..\..\xxGraphic\xxSystem.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -348,7 +341,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";FT2_BUILD_LIBRARY;DLL_EXPORT;__STDC__;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FT2_BUILD_LIBRARY;FT_CONFIG_MODULES_H="../../../Build/include/ftmodule.h";FT_CONFIG_OPTIONS_H="../../../Build/include/ftoption.h";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>../SDK/freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4018;4244;4267;4312</DisableSpecificWarnings>
@@ -358,7 +351,6 @@
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <ForcedIncludeFiles>..\..\xxGraphic\xxSystem.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
