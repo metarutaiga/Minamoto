@@ -87,12 +87,12 @@ moduleAPI bool Update(const UpdateData& updateData)
             ImGui::MenuItem(ICON_FA_QUESTION_CIRCLE "About " MODULE_NAME, nullptr, &showAbout);
             ImGui::Separator();
             ImGui::MenuItem(ICON_FA_DESKTOP         "Log", nullptr, &showLog);
-            ImGui::MenuItem(ICON_FA_FILE_TEXT_O     "Lua Console", nullptr, &showLuaConsole);
+            ImGui::MenuItem(ICON_FA_LAPTOP          "Lua Console", nullptr, &showLuaConsole);
             ImGui::MenuItem(ICON_FA_LIST            "Hierarchy", nullptr, &showHierarchy);
             ImGui::MenuItem(ICON_FA_INFO_CIRCLE     "Inspector", nullptr, &showInspector);
             ImGui::MenuItem(ICON_FA_GLOBE           "Scene", nullptr, &showScene);
             ImGui::Separator();
-            ImGui::MenuItem("Shader Disassembly", nullptr, &showShaderDisassembly);
+            ImGui::MenuItem(ICON_FA_FILE_TEXT       "Shader Disassembly", nullptr, &showShaderDisassembly);
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
@@ -109,7 +109,7 @@ moduleAPI bool Update(const UpdateData& updateData)
         ImGuiID down = ImGui::DockBuilderSplitNode(id, ImGuiDir_Down, 1.0f / 3.0f, nullptr, &id);
         ImGuiID left = ImGui::DockBuilderSplitNode(id, ImGuiDir_Left, 1.0f / 4.0f, nullptr, &id);
         ImGui::DockBuilderDockWindow(ICON_FA_DESKTOP    "Log", down);
-        ImGui::DockBuilderDockWindow(ICON_FA_FILE_TEXT_O"Lua Console", down);
+        ImGui::DockBuilderDockWindow(ICON_FA_LAPTOP     "Lua Console", down);
         ImGui::DockBuilderDockWindow(ICON_FA_LIST       "Hierarchy", left);
         ImGui::DockBuilderDockWindow(ICON_FA_INFO_CIRCLE"Inspector", right);
         ImGui::DockBuilderDockWindow(ICON_FA_GLOBE      "Scene", id);

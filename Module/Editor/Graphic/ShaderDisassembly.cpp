@@ -10,6 +10,7 @@
 #include <xxGraphic.h>
 #include <utility/xxFile.h>
 #include <Interface.h>
+#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include "ShaderDisassembly.h"
 
 #if defined(__APPLE__)
@@ -207,7 +208,7 @@ bool ShaderDisassembly::Update(const UpdateData& updateData, bool& show)
         return false;
 
     ImGui::SetNextWindowSize(ImVec2(1280.0f, 720.0f), ImGuiCond_Appearing);
-    if (ImGui::Begin("Shader Disassembly", &show, ImGuiWindowFlags_NoDocking))
+    if (ImGui::Begin(ICON_FA_FILE_TEXT "Shader Disassembly", &show, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
     {
         ImVec2 size = ImGui::GetWindowSize();
         size.x = size.x - ImGui::GetStyle().FramePadding.x * 8.0f;

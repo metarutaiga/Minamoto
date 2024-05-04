@@ -82,7 +82,7 @@ bool LuaConsole::Update(const UpdateData& updateData, bool& show)
         return false;
 
     bool update = false;
-    if (ImGui::Begin(ICON_FA_FILE_TEXT_O "Lua Console", &show))
+    if (ImGui::Begin(ICON_FA_LAPTOP "Lua Console", &show))
     {
         if (ImGui::IsWindowHovered())
         {
