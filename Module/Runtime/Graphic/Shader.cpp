@@ -10,8 +10,9 @@
 #include "Shader.h"
 
 //==============================================================================
-static std::map<size_t, std::pair<uint64_t, uint64_t>> vertexShaders;
-static std::map<size_t, std::pair<uint64_t, uint64_t>> fragmentShaders;
+static uint64_t defaultDevice;
+static std::map<size_t, uint64_t> vertexShaders;
+static std::map<size_t, uint64_t> fragmentShaders;
 //------------------------------------------------------------------------------
 static uint64_t (*xxCreateVertexShaderSystem)(uint64_t device, char const* shader, uint64_t vertexAttribute);
 static uint64_t (*xxCreateFragmentShaderSystem)(uint64_t device, char const* shader);
@@ -23,12 +24,13 @@ static uint64_t xxCreateVertexShaderRuntime(uint64_t device, char const* shader,
     auto it = vertexShaders.find(hash);
     if (it != vertexShaders.end())
     {
-        return (*it).second.second;
+        return (*it).second;
     }
     uint64_t output = xxCreateVertexShaderSystem(device, shader, vertexAttribute);
     if (output != 0)
     {
-        vertexShaders.insert(it, {hash, {device, output}});
+        defaultDevice = device;
+        vertexShaders.insert(it, {hash, output});
     }
     return output;
 }
@@ -39,12 +41,13 @@ static uint64_t xxCreateFragmentShaderRuntime(uint64_t device, char const* shade
     auto it = fragmentShaders.find(hash);
     if (it != fragmentShaders.end())
     {
-        return (*it).second.second;
+        return (*it).second;
     }
     uint64_t output = xxCreateFragmentShaderSystem(device, shader);
     if (output != 0)
     {
-        fragmentShaders.insert(it, {hash, {device, output}});
+        defaultDevice = device;
+        fragmentShaders.insert(it, {hash, output});
     }
     return output;
 }
@@ -69,10 +72,11 @@ void Shader::Shutdown()
 {
     if (xxCreateVertexShaderSystem == nullptr)
         return;
-    for (auto const& [shader, pair] : vertexShaders)
-        xxDestroyShaderSystem(pair.first, pair.second);
-    for (auto const& [shader, pair] : fragmentShaders)
-        xxDestroyShaderSystem(pair.first, pair.second);
+    for (auto const& [hash, shader] : vertexShaders)
+        xxDestroyShaderSystem(defaultDevice, shader);
+    for (auto const& [hash, shader] : fragmentShaders)
+        xxDestroyShaderSystem(defaultDevice, shader);
+    defaultDevice = 0;
     vertexShaders.clear();
     fragmentShaders.clear();
     xxCreateVertexShader = xxCreateVertexShaderSystem;

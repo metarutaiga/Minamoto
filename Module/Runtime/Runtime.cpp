@@ -84,6 +84,8 @@ void Runtime::Shutdown()
     RenderPass::Shutdown();
     Pipeline::Shutdown();
     Modifier::Shutdown();
+
+    xxLog("Runtime", "Shutdown");
 }
 //------------------------------------------------------------------------------
 char const* Runtime::Version()
