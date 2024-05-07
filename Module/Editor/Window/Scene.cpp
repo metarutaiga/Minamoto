@@ -11,10 +11,13 @@
 #include <utility/xxImage.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
+#include <utility/xxModifier.h>
 #include <utility/xxNode.h>
-#include <Camera/CameraTools.h>
+#include <Tools/CameraTools.h>
+#include <Tools/NodeTools.h>
 #include "Utility/Grid.h"
 #include "Utility/Tools.h"
+#include "Profiler.h"
 #include "Scene.h"
 
 //==============================================================================
@@ -68,8 +71,8 @@ void Scene::Shutdown(bool suspend)
         return true;
     };
 
-    xxNode::Traversal(invalidate, sceneRoot);
-    xxNode::Traversal(invalidate, sceneGrid);
+    xxNode::Traversal(sceneRoot, invalidate);
+    xxNode::Traversal(sceneGrid, invalidate);
 
     if (suspend)
         return;
@@ -85,22 +88,22 @@ void Scene::DrawBoneLine(xxNodePtr const& root)
 {
     if (drawBoneLine)
     {
-        xxNode::Traversal([&](xxNodePtr const& node)
+        xxNode::Traversal(root, [&](xxNodePtr const& node)
         {
-            for (auto const& boneData : node->Bones)
+            for (auto const& data : node->Bones)
             {
-                if (boneData.bone.use_count())
+                if (data.bone.use_count())
                 {
-                    xxNodePtr const& bone = (xxNodePtr&)boneData.bone;
+                    xxNodePtr const& bone = (xxNodePtr&)data.bone;
                     xxNodePtr const& parent = bone->GetParent();
                     if (parent)
                     {
-                        Tools::Line(parent->WorldMatrix[3].xyz, bone->WorldMatrix[3].xyz);
+                        Tools::Line(parent->GetWorldTranslate(), bone->GetWorldTranslate());
                     }
                 }
             }
             return true;
-        }, root);
+        });
     }
 }
 //------------------------------------------------------------------------------
@@ -108,15 +111,15 @@ void Scene::DrawNodeLine(xxNodePtr const& root)
 {
     if (drawNodeLine)
     {
-        xxNode::Traversal([&](xxNodePtr const& node)
+        xxNode::Traversal(root, [&](xxNodePtr const& node)
         {
             xxNodePtr const& parent = node->GetParent();
             if (parent)
             {
-                Tools::Line(parent->WorldMatrix[3].xyz, node->WorldMatrix[3].xyz);
+                Tools::Line(parent->GetWorldTranslate(), node->GetWorldTranslate());
             }
             return true;
-        }, root);
+        });
     }
 }
 //------------------------------------------------------------------------------
@@ -124,7 +127,7 @@ void Scene::DrawNodeBound(xxNodePtr const& root)
 {
     if (drawNodeBound)
     {
-        xxNode::Traversal([&](xxNodePtr const& node)
+        xxNode::Traversal(root, [&](xxNodePtr const& node)
         {
             xxVector4 const& bound = node->WorldBound;
             if (bound.w != 0.0f)
@@ -132,7 +135,7 @@ void Scene::DrawNodeBound(xxNodePtr const& root)
                 Tools::Sphere(bound.xyz, bound.w);
             }
             return true;
-        }, root);
+        });
     }
 }
 //------------------------------------------------------------------------------
@@ -144,14 +147,57 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
     bool updated = false;
     if (sceneRoot)
     {
-        sceneRoot->Update(updateData.time);
+        NodeTools::UpdateNodeFlags(sceneRoot);
 
-        xxNode::Traversal([&](xxNodePtr const& node)
+        // Count
+        size_t boneCount = 0;
+        size_t nodeTotalCount = 0;
+        size_t nodeActiveCount = 0;
+        size_t modifierTotalCount = 0;
+        size_t modifierActiveCount = 0;
+        xxNode::Traversal(sceneRoot, [&](xxNodePtr const& node)
         {
-            if (node->Modifiers.empty() == false)
-                updated = true;
-            return updated == false;
-        }, sceneRoot);
+            size_t TEMP_FLAG = ~(SIZE_MAX >> 1);
+            node->Flags &= ~TEMP_FLAG;
+            for (auto const& data : node->Bones)
+            {
+                if (data.bone.use_count())
+                {
+                    xxNodePtr const& bone = (xxNodePtr&)data.bone;
+                    if ((bone->Flags & TEMP_FLAG) == 0)
+                    {
+                        bone->Flags |= TEMP_FLAG;
+                        boneCount++;
+                    }
+                }
+            }
+            nodeTotalCount++;
+            modifierTotalCount += node->Modifiers.size();
+            if ((node->Flags & xxNode::UPDATE_SKIP) == 0)
+            {
+                nodeActiveCount++;
+                modifierActiveCount += node->Modifiers.size();
+            }
+            return true;
+        });
+        xxNode::Traversal(sceneRoot, [&](xxNodePtr const& node)
+        {
+            size_t TEMP_FLAG = ~(SIZE_MAX >> 1);
+            node->Flags &= ~TEMP_FLAG;
+            return true;
+        });
+        Profiler::Count(xxHash("Bone Count"), boneCount);
+        Profiler::Count(xxHash("Node Total Count"), nodeTotalCount);
+        Profiler::Count(xxHash("Node Active Count"), nodeActiveCount);
+        Profiler::Count(xxHash("Modifier Total Count"), modifierTotalCount);
+        Profiler::Count(xxHash("Modifier Active Count"), modifierActiveCount);
+        updated |= modifierTotalCount != 0;
+
+        // Scene
+        Profiler::Begin(xxHash("Scene Update"));
+        sceneRoot->Update(updateData.time);
+        Profiler::End(xxHash("Scene Update"));
+
         DrawBoneLine(sceneRoot);
         DrawNodeLine(sceneRoot);
         DrawNodeBound(sceneRoot);
@@ -327,7 +373,10 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
         return true;
     };
 
-    xxNode::Traversal(callback, sceneRoot);
-    xxNode::Traversal(callback, sceneGrid);
+    Profiler::Begin(xxHash("Scene Render"));
+    xxNode::Traversal(sceneRoot, callback);
+    Profiler::End(xxHash("Scene Render"));
+
+    xxNode::Traversal(sceneGrid, callback);
 }
 //------------------------------------------------------------------------------

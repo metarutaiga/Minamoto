@@ -8,9 +8,12 @@
 #include <freetype/freetype.h>
 #include <lua/lua.h>
 #include "Modifier/Modifier.h"
+#include "Graphic/Binding.h"
 #include "Graphic/Pipeline.h"
 #include "Graphic/RenderPass.h"
+#include "Graphic/Sampler.h"
 #include "Graphic/Shader.h"
+#include "Graphic/Texture.h"
 #include "Graphic/VertexAttribute.h"
 #include "Script/Lua.h"
 #include "Runtime.h"
@@ -53,10 +56,13 @@ void Runtime::Initialize()
         return;
     initialized = true;
 
+    Binding::Initialize();
     Modifier::Initialize();
     Pipeline::Initialize();
     RenderPass::Initialize();
     Shader::Initialize();
+    Sampler::Initialize();
+    Texture::Initialize();
     VertexAttribute::Initialize();
     Lua::Initialize();
 
@@ -80,10 +86,13 @@ void Runtime::Shutdown()
 
     Lua::Shutdown();
     VertexAttribute::Shutdown();
+    Texture::Shutdown();
+    Sampler::Shutdown();
     Shader::Shutdown();
     RenderPass::Shutdown();
     Pipeline::Shutdown();
     Modifier::Shutdown();
+    Binding::Shutdown();
 
     xxLog("Runtime", "Shutdown");
 }

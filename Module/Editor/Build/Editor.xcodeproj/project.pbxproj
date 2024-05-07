@@ -81,6 +81,10 @@
 		D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26FA22BDEAF5400D57772 /* Scene.cpp */; };
 		D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26FA22BDEAF5400D57772 /* Scene.cpp */; };
 		D6D26FA72BDEAF5400D57772 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26FA22BDEAF5400D57772 /* Scene.cpp */; };
+		D6F563FE2BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
+		D6F563FF2BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
+		D6F564002BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
+		D6F564012BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -176,6 +180,8 @@
 		D6D26F9D2BDE36B400D57772 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tools.h; path = ../Utility/Tools.h; sourceTree = "<group>"; };
 		D6D26FA22BDEAF5400D57772 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scene.cpp; path = ../Window/Scene.cpp; sourceTree = "<group>"; };
 		D6D26FA32BDEAF5400D57772 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = ../Window/Scene.h; sourceTree = "<group>"; };
+		D6F563FC2BE9D568006D32D9 /* Profiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profiler.h; path = ../Window/Profiler.h; sourceTree = "<group>"; };
+		D6F563FD2BE9D568006D32D9 /* Profiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Profiler.cpp; path = ../Window/Profiler.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +309,8 @@
 				D63370752B382155001D4057 /* Log.h */,
 				D666E3CD2BE3BCEC00EFA1F2 /* LuaConsole.cpp */,
 				D666E3CE2BE3BCEC00EFA1F2 /* LuaConsole.h */,
+				D6F563FD2BE9D568006D32D9 /* Profiler.cpp */,
+				D6F563FC2BE9D568006D32D9 /* Profiler.h */,
 				D6D26FA22BDEAF5400D57772 /* Scene.cpp */,
 				D6D26FA32BDEAF5400D57772 /* Scene.h */,
 			);
@@ -481,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6F563FE2BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D62FEBF42BE53D41004E9FDF /* About.cpp in Sources */,
 				D666E2E92BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6012A1F2B1DE28F00C3875A /* Grid.cpp in Sources */,
@@ -507,6 +516,7 @@
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
 				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D62FEBF72BE53D41004E9FDF /* About.cpp in Sources */,
+				D6F564012BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -544,6 +554,7 @@
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
 				D62FEBDF2BE4F19B004E9FDF /* Console.cpp in Sources */,
 				D633707D2B382156001D4057 /* Hierarchy.cpp in Sources */,
+				D6F563FF2BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +578,7 @@
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,
 				D62FEBE02BE4F19B004E9FDF /* Console.cpp in Sources */,
 				D633707E2B382156001D4057 /* Hierarchy.cpp in Sources */,
+				D6F564002BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

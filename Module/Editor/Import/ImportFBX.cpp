@@ -321,12 +321,12 @@ static xxMeshPtr CreateMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
             if (from)
             {
                 const char* name = from->name.data;
-                xxNode::Traversal([&](xxNodePtr const& node)
+                xxNode::Traversal(root, [&](xxNodePtr const& node)
                 {
                     if (node->Name == name)
                         to = node;
                     return to == nullptr;
-                }, root);
+                });
             }
             if (to == nullptr)
             {
@@ -347,9 +347,9 @@ static xxMeshPtr CreateMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
             // Add to list
             node->Bones.push_back({ to, bound, mat4(cluster->geometry_to_bone) });
         }
-        for (auto& boneData : node->Bones)
+        for (auto& data : node->Bones)
         {
-            boneData.ResetPointer();
+            data.ResetPointer();
         }
     }
 

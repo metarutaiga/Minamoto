@@ -73,7 +73,7 @@ static const struct { const char* const shortName; const char* const fullName; u
     { "D3D12",          xxGetInstanceNameD3D12(),           xxCreateInstanceD3D12           },
 #endif
 #if defined(xxMACOS) || defined(xxWINDOWS)
-    { "Glide",          xxGetInstanceNameGlide(),            xxCreateInstanceGlide           },
+    { "Glide",          xxGetInstanceNameGlide(),           xxCreateInstanceGlide           },
 #endif
 #if defined(xxMACCATALYST)
 #else

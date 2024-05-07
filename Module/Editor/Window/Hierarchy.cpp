@@ -10,6 +10,7 @@
 #include <utility/xxFile.h>
 #include <utility/xxNode.h>
 #include <Graphic/Binary.h>
+#include <Runtime/Tools/NodeTools.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include "Import/ImportFBX.h"
 #include "Import/ImportWavefront.h"
@@ -99,6 +100,7 @@ void Hierarchy::Import(const UpdateData& updateData)
         }
         ImGui::Checkbox("Axis Up Y to Z", &Import::EnableAxisUpYToZ);
         ImGui::Checkbox("Merge Node", &Import::EnableMergeNode);
+        ImGui::Checkbox("Merge Texture", &Import::EnableMergeTexture);
         ImGui::Checkbox("Optimize Mesh", &Import::EnableOptimizeMesh);
         ImGui::Checkbox("Texture Flip V", &Import::EnableTextureFlipV);
         if (ImGui::Button("Import"))
@@ -123,10 +125,12 @@ void Hierarchy::Import(const UpdateData& updateData)
                 {
                     importNode->AttachChild(node);
                 }
+                if (Import::EnableMergeTexture)
+                {
+                    Import::MergeTexture(node);
+                }
 
-                xxNode* root = importNode.get();
-                while (xxNode* parent = root->GetParent().get())
-                    root = parent;
+                xxNodePtr const& root = NodeTools::GetRoot(importNode);
                 root->CreateLinearMatrix();
 
                 importNode = nullptr;

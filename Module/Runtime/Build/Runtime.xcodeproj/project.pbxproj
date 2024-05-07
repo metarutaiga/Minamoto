@@ -66,10 +66,6 @@
 		D645C4D62BD145E700A89E16 /* QuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */; };
 		D645C4D72BD145E700A89E16 /* QuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */; };
 		D645C4D82BD145E700A89E16 /* QuaternionModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */; };
-		D666E2FC2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */; };
-		D666E2FD2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */; };
-		D666E2FE2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */; };
-		D666E2FF2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */; };
 		D666E3C72BE3A6F600EFA1F2 /* liblua.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D666E3C62BE3A6F600EFA1F2 /* liblua.macOS.a */; };
 		D666E3C92BE3A83200EFA1F2 /* lua.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D666E3C82BE3A83200EFA1F2 /* lua.Windows.lib */; };
 		D6D26F8C2BDDFAC400D57772 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */; };
@@ -107,6 +103,26 @@
 		D6F066C92BC791D500C4DFE6 /* libxxGraphic.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066C82BC791D500C4DFE6 /* libxxGraphic.Android.a */; };
 		D6F066CB2BC791D500C4DFE6 /* libxxGraphicPlus.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066CA2BC791D500C4DFE6 /* libxxGraphicPlus.Android.a */; };
 		D6F066E12BC7B60100C4DFE6 /* Runtime.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* Runtime.dylib */; };
+		D6F564052BEA004F006D32D9 /* NodeTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564042BEA004F006D32D9 /* NodeTools.cpp */; };
+		D6F564062BEA004F006D32D9 /* NodeTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564042BEA004F006D32D9 /* NodeTools.cpp */; };
+		D6F564072BEA004F006D32D9 /* NodeTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564042BEA004F006D32D9 /* NodeTools.cpp */; };
+		D6F564082BEA004F006D32D9 /* NodeTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564042BEA004F006D32D9 /* NodeTools.cpp */; };
+		D6F5640B2BEA15C7006D32D9 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564092BEA15C7006D32D9 /* CameraTools.cpp */; };
+		D6F5640C2BEA15C7006D32D9 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564092BEA15C7006D32D9 /* CameraTools.cpp */; };
+		D6F5640D2BEA15C7006D32D9 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564092BEA15C7006D32D9 /* CameraTools.cpp */; };
+		D6F5640E2BEA15C7006D32D9 /* CameraTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564092BEA15C7006D32D9 /* CameraTools.cpp */; };
+		D6F564112BEA3FF9006D32D9 /* Binding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564102BEA3FF9006D32D9 /* Binding.cpp */; };
+		D6F564122BEA3FF9006D32D9 /* Binding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564102BEA3FF9006D32D9 /* Binding.cpp */; };
+		D6F564132BEA3FF9006D32D9 /* Binding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564102BEA3FF9006D32D9 /* Binding.cpp */; };
+		D6F564142BEA3FF9006D32D9 /* Binding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564102BEA3FF9006D32D9 /* Binding.cpp */; };
+		D6F564172BEA69A3006D32D9 /* Sampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564162BEA69A3006D32D9 /* Sampler.cpp */; };
+		D6F564182BEA69A3006D32D9 /* Sampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564162BEA69A3006D32D9 /* Sampler.cpp */; };
+		D6F564192BEA69A3006D32D9 /* Sampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564162BEA69A3006D32D9 /* Sampler.cpp */; };
+		D6F5641A2BEA69A3006D32D9 /* Sampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F564162BEA69A3006D32D9 /* Sampler.cpp */; };
+		D6F5641D2BEA785B006D32D9 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F5641B2BEA785B006D32D9 /* Texture.cpp */; };
+		D6F5641E2BEA785B006D32D9 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F5641B2BEA785B006D32D9 /* Texture.cpp */; };
+		D6F5641F2BEA785B006D32D9 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F5641B2BEA785B006D32D9 /* Texture.cpp */; };
+		D6F564202BEA785B006D32D9 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F5641B2BEA785B006D32D9 /* Texture.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -163,8 +179,6 @@
 		D645C4CE2BD145C400A89E16 /* TranslateModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TranslateModifier.cpp; path = ../Modifier/TranslateModifier.cpp; sourceTree = "<group>"; };
 		D645C4D32BD145E700A89E16 /* QuaternionModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuaternionModifier.cpp; path = ../Modifier/QuaternionModifier.cpp; sourceTree = "<group>"; };
 		D645C4D42BD145E700A89E16 /* QuaternionModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuaternionModifier.h; path = ../Modifier/QuaternionModifier.h; sourceTree = "<group>"; };
-		D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraTools.cpp; path = ../Camera/CameraTools.cpp; sourceTree = "<group>"; };
-		D666E2FB2BE29A0D00EFA1F2 /* CameraTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraTools.h; path = ../Camera/CameraTools.h; sourceTree = "<group>"; };
 		D666E3C62BE3A6F600EFA1F2 /* liblua.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblua.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D666E3C82BE3A83200EFA1F2 /* lua.Windows.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = lua.Windows.lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AA5DBE2BD7DB9400AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
@@ -194,6 +208,16 @@
 		D6F066C62BC791D400C4DFE6 /* libimgui.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libimgui.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F066C82BC791D500C4DFE6 /* libxxGraphic.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libxxGraphic.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F066CA2BC791D500C4DFE6 /* libxxGraphicPlus.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libxxGraphicPlus.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F564032BEA004F006D32D9 /* NodeTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeTools.h; path = ../Tools/NodeTools.h; sourceTree = "<group>"; };
+		D6F564042BEA004F006D32D9 /* NodeTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NodeTools.cpp; path = ../Tools/NodeTools.cpp; sourceTree = "<group>"; };
+		D6F564092BEA15C7006D32D9 /* CameraTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraTools.cpp; path = ../Tools/CameraTools.cpp; sourceTree = "<group>"; };
+		D6F5640A2BEA15C7006D32D9 /* CameraTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraTools.h; path = ../Tools/CameraTools.h; sourceTree = "<group>"; };
+		D6F5640F2BEA3FF9006D32D9 /* Binding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Binding.h; path = ../Graphic/Binding.h; sourceTree = "<group>"; };
+		D6F564102BEA3FF9006D32D9 /* Binding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Binding.cpp; path = ../Graphic/Binding.cpp; sourceTree = "<group>"; };
+		D6F564152BEA69A3006D32D9 /* Sampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sampler.h; path = ../Graphic/Sampler.h; sourceTree = "<group>"; };
+		D6F564162BEA69A3006D32D9 /* Sampler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sampler.cpp; path = ../Graphic/Sampler.cpp; sourceTree = "<group>"; };
+		D6F5641B2BEA785B006D32D9 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = ../Graphic/Texture.cpp; sourceTree = "<group>"; };
+		D6F5641C2BEA785B006D32D9 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = ../Graphic/Texture.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,12 +333,18 @@
 			children = (
 				D6386A702BDC09EA0008C9D1 /* Binary.cpp */,
 				D6386A712BDC09EA0008C9D1 /* Binary.h */,
+				D6F564102BEA3FF9006D32D9 /* Binding.cpp */,
+				D6F5640F2BEA3FF9006D32D9 /* Binding.h */,
 				D6D26F972BDE11D900D57772 /* Pipeline.cpp */,
 				D6D26F962BDE11D900D57772 /* Pipeline.h */,
 				D6D26F8B2BDDFAC400D57772 /* RenderPass.cpp */,
 				D6D26F8A2BDDFAC400D57772 /* RenderPass.h */,
+				D6F564162BEA69A3006D32D9 /* Sampler.cpp */,
+				D6F564152BEA69A3006D32D9 /* Sampler.h */,
 				D6386A632BDBE0AC0008C9D1 /* Shader.cpp */,
 				D6386A642BDBE0AC0008C9D1 /* Shader.h */,
+				D6F5641B2BEA785B006D32D9 /* Texture.cpp */,
+				D6F5641C2BEA785B006D32D9 /* Texture.h */,
 				D6D26F902BDE0AF400D57772 /* VertexAttribute.cpp */,
 				D6D26F912BDE0AF400D57772 /* VertexAttribute.h */,
 			);
@@ -325,10 +355,10 @@
 			isa = PBXGroup;
 			children = (
 				CE999BD625D21EC800351116 /* Configs */,
-				D666E2F92BE299FA00EFA1F2 /* Camera */,
 				D6386A512BDA263D0008C9D1 /* Graphic */,
 				D645C4C32BD143BB00A89E16 /* Modifier */,
 				D62FEBD12BE49393004E9FDF /* Script */,
+				D6F564022BEA003D006D32D9 /* Tools */,
 				D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */,
 				D6CB0B2E2BB97061009DCD26 /* Runtime.h */,
 				D644A042231ED82900B75B77 /* Products */,
@@ -375,13 +405,15 @@
 			name = Modifier;
 			sourceTree = "<group>";
 		};
-		D666E2F92BE299FA00EFA1F2 /* Camera */ = {
+		D6F564022BEA003D006D32D9 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				D666E2FA2BE29A0D00EFA1F2 /* CameraTools.cpp */,
-				D666E2FB2BE29A0D00EFA1F2 /* CameraTools.h */,
+				D6F564092BEA15C7006D32D9 /* CameraTools.cpp */,
+				D6F5640A2BEA15C7006D32D9 /* CameraTools.h */,
+				D6F564042BEA004F006D32D9 /* NodeTools.cpp */,
+				D6F564032BEA004F006D32D9 /* NodeTools.h */,
 			);
-			name = Camera;
+			name = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,7 +535,9 @@
 			files = (
 				D6386A652BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D62286C12BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
+				D6F564172BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066812BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
+				D6F564112BEA3FF9006D32D9 /* Binding.cpp in Sources */,
 				D6D26F982BDE11D900D57772 /* Pipeline.cpp in Sources */,
 				D645C4C92BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B72BD2AFC500440C24 /* Modifier.cpp in Sources */,
@@ -511,14 +545,16 @@
 				D62286DB2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D62286CF2BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C52BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D6F5640B2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
 				D6D26F922BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D52BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D62FEBD42BE493A3004E9FDF /* Lua.cpp in Sources */,
+				D6F564052BEA004F006D32D9 /* NodeTools.cpp in Sources */,
 				D6D26F8C2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286C92BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
-				D666E2FC2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */,
 				D645C4CF2BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D52BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
+				D6F5641D2BEA785B006D32D9 /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,12 +567,14 @@
 				D6386A682BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D62286BA2BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D62286CC2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
+				D6F564202BEA785B006D32D9 /* Texture.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
 				D62286DE2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
+				D6F564142BEA3FF9006D32D9 /* Binding.cpp in Sources */,
+				D6F5641A2BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066842BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D645C4D82BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 				D6D26F9B2BDE11D900D57772 /* Pipeline.cpp in Sources */,
-				D666E2FF2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */,
 				D62286C42BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D62286D82BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D6D26F8F2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
@@ -544,10 +582,12 @@
 				D62FEBD72BE493A3004E9FDF /* Lua.cpp in Sources */,
 				D62286C82BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
+				D6F5640E2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
 				D62286D22BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62FEBE52BE50F77004E9FDF /* dllmain.cpp in Sources */,
 				D645C4D22BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
+				D6F564082BEA004F006D32D9 /* NodeTools.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,7 +597,9 @@
 			files = (
 				D6386A662BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D62286C22BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
+				D6F564182BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066822BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
+				D6F564122BEA3FF9006D32D9 /* Binding.cpp in Sources */,
 				D6D26F992BDE11D900D57772 /* Pipeline.cpp in Sources */,
 				D645C4CA2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B82BD2AFC500440C24 /* Modifier.cpp in Sources */,
@@ -565,14 +607,16 @@
 				D62286DC2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D62286D02BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C62BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D6F5640C2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
 				D6D26F932BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D62BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D62FEBD52BE493A3004E9FDF /* Lua.cpp in Sources */,
+				D6F564062BEA004F006D32D9 /* NodeTools.cpp in Sources */,
 				D6D26F8D2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286CA2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
-				D666E2FD2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */,
 				D645C4D02BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D62BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
+				D6F5641E2BEA785B006D32D9 /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,7 +626,9 @@
 			files = (
 				D6386A672BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D62286C32BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
+				D6F564192BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066832BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
+				D6F564132BEA3FF9006D32D9 /* Binding.cpp in Sources */,
 				D6D26F9A2BDE11D900D57772 /* Pipeline.cpp in Sources */,
 				D645C4CB2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B92BD2AFC500440C24 /* Modifier.cpp in Sources */,
@@ -590,14 +636,16 @@
 				D62286DD2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D62286D12BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C72BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D6F5640D2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
 				D6D26F942BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D72BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D62FEBD62BE493A3004E9FDF /* Lua.cpp in Sources */,
+				D6F564072BEA004F006D32D9 /* NodeTools.cpp in Sources */,
 				D6D26F8E2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286CB2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
-				D666E2FE2BE29A0D00EFA1F2 /* CameraTools.cpp in Sources */,
 				D645C4D12BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
 				D645C4D72BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
+				D6F5641F2BEA785B006D32D9 /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

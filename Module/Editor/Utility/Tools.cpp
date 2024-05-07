@@ -8,7 +8,7 @@
 #include <vector>
 #include <utility/xxCamera.h>
 #include <utility/xxMath.h>
-#include <Camera/CameraTools.h>
+#include <Tools/CameraTools.h>
 #include "Tools.h"
 
 //==============================================================================

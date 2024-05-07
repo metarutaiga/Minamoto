@@ -4,7 +4,9 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
+#include <map>
 #include <utility/xxImage.h>
+#include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
 #include "Import.h"
@@ -21,47 +23,16 @@
 
 bool Import::EnableAxisUpYToZ = false;
 bool Import::EnableMergeNode = false;
+bool Import::EnableMergeTexture = true;
 bool Import::EnableOptimizeMesh = true;
 bool Import::EnableTextureFlipV = true;
 //==============================================================================
 void Import::Initialize()
 {
-    xxImage::Loader = [](xxImage& image, std::string const& path)
-    {
-        if (image() != nullptr)
-            return;
-        struct xxImageInternal : public xxImage { using xxImage::Initialize; };
-        xxImageInternal* internal = reinterpret_cast<xxImageInternal*>(&image);
-
-#if defined(xxWINDOWS)
-        uint64_t format = *(uint64_t*)"BGRA8888";
-#else
-        uint64_t format = *(uint64_t*)"RGBA8888";
-#endif
-        int width = 1;
-        int height = 1;
-        std::string filename = path + image.Name;
-        stbi_uc* uc = stbi_load(filename.c_str(), &width, &height, nullptr, 4);
-
-        internal->Initialize(format, width, height, 1, 1, 1);
-        if (uc)
-        {
-#if defined(xxWINDOWS)
-            for (int i = 0; i < width * height * 4; i += 4)
-            {
-                std::swap(uc[i + 0], uc[i + 2]);
-            }
-#endif
-            memcpy(image(), uc, width * height * 4);
-        }
-
-        stbi_image_free(uc);
-    };
 }
 //------------------------------------------------------------------------------
 void Import::Shutdown()
 {
-    
 }
 //------------------------------------------------------------------------------
 xxImagePtr Import::CreateImage(char const* img)
@@ -347,11 +318,11 @@ void Import::MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodeP
         target->AttachChild(node);
     }
 
-    xxNode::Traversal([&](xxNodePtr const& node)
+    xxNode::Traversal(target, [&](xxNodePtr const& node)
     {
-        for (auto& boneData : node->Bones)
+        for (auto& data : node->Bones)
         {
-            xxNodePtr from = boneData.bone.lock();
+            xxNodePtr from = data.bone.lock();
             xxNodePtr to;
             if (from)
             {
@@ -362,22 +333,47 @@ void Import::MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodeP
                 to = root;
                 xxLog(TAG, "Bone %s is not found", from ? from->Name.c_str() : "(nullptr)");
             }
-            boneData.bone = to;
+            data.bone = to;
         }
         return true;
-    }, target);
+    });
+}
+//------------------------------------------------------------------------------
+void Import::MergeTexture(xxNodePtr const& node)
+{
+    std::map<std::string, xxImagePtr> images;
+
+    xxNode::Traversal(node, [&](xxNodePtr const& node)
+    {
+        if (node->Material)
+        {
+            for (xxImagePtr& image : node->Material->Images)
+            {
+                xxImagePtr& ref = images[image->Name];
+                if (ref)
+                {
+                    image = ref;
+                }
+                else
+                {
+                    ref = image;
+                }
+            }
+        }
+        return true;
+    });
 }
 //------------------------------------------------------------------------------
 xxNodePtr Import::GetNodeByName(xxNodePtr const& root, std::string const& name)
 {
     xxNodePtr output;
 
-    xxNode::Traversal([&](xxNodePtr const& node)
+    xxNode::Traversal(root, [&](xxNodePtr const& node)
     {
         if (node->Name == name)
             output = node;
         return output == nullptr;
-    }, root);
+    });
 
     return output;
 }
