@@ -311,6 +311,7 @@
     <ClCompile Include="..\Window\Inspector.cpp" />
     <ClCompile Include="..\Window\Log.cpp" />
     <ClCompile Include="..\Window\LuaConsole.cpp" />
+    <ClCompile Include="..\Window\Profiler.cpp" />
     <ClCompile Include="..\Window\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -329,6 +330,7 @@
     <ClInclude Include="..\Window\Inspector.h" />
     <ClInclude Include="..\Window\Log.h" />
     <ClInclude Include="..\Window\LuaConsole.h" />
+    <ClInclude Include="..\Window\Profiler.h" />
     <ClInclude Include="..\Window\Scene.h" />
   </ItemGroup>
   <ItemGroup>

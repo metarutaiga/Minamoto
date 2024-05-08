@@ -47,6 +47,9 @@
     <ClCompile Include="..\Window\LuaConsole.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="..\Window\Profiler.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImGuiHelper.h" />
@@ -93,6 +96,9 @@
       <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="..\Window\LuaConsole.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\Profiler.h">
       <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
