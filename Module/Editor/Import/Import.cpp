@@ -9,6 +9,7 @@
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
+#include <Runtime/Graphic/Texture.h>
 #include "Import.h"
 
 #define STBI_ONLY_PNG
@@ -42,9 +43,9 @@ xxImagePtr Import::CreateImage(char const* img)
     stbi_uc* uc = stbi_load(img, &width, &height, nullptr, 4);
 
 #if defined(xxWINDOWS)
-    uint64_t format = *(uint64_t*)"BGRA8888";
+    uint64_t format = "BGRA8888"_FOURCC;
 #else
-    uint64_t format = *(uint64_t*)"RGBA8888";
+    uint64_t format = "RGBA8888"_FOURCC;
 #endif
     xxImagePtr image = xxImage::Create2D(format, width, height, 1);
     if (image)

@@ -78,7 +78,8 @@ xxImagePtr Grid::CreateTexture()
 {
     int level = 8;
 
-    xxImagePtr image = xxImage::Create2D(0, (1 << (level - 1)), (1 << (level - 1)), level);
+    uint64_t format = *(uint64_t*)"RGBA8888";
+    xxImagePtr image = xxImage::Create2D(format, (1 << (level - 1)), (1 << (level - 1)), level);
     if (image == nullptr)
         return nullptr;
 

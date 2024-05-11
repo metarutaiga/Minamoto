@@ -17,6 +17,10 @@
 		D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A1E2B1DE28F00C3875A /* Grid.cpp */; };
 		D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A1E2B1DE28F00C3875A /* Grid.cpp */; };
 		D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6012A1E2B1DE28F00C3875A /* Grid.cpp */; };
+		D60790BB2BEE6C5F008810BD /* Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790BA2BEE6C5F008810BD /* Project.cpp */; };
+		D60790BC2BEE6C5F008810BD /* Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790BA2BEE6C5F008810BD /* Project.cpp */; };
+		D60790BD2BEE6C5F008810BD /* Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790BA2BEE6C5F008810BD /* Project.cpp */; };
+		D60790BE2BEE6C5F008810BD /* Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790BA2BEE6C5F008810BD /* Project.cpp */; };
 		D6169D162BB17FE200E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D152BB17FE200E5490C /* new.cpp */; };
 		D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6169D172BB17FF400E5490C /* libcxx.lib */; };
 		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
@@ -130,6 +134,8 @@
 		D6012A1D2B1DE28F00C3875A /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Grid.h; path = ../Utility/Grid.h; sourceTree = "<group>"; };
 		D6012A1E2B1DE28F00C3875A /* Grid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Grid.cpp; path = ../Utility/Grid.cpp; sourceTree = "<group>"; };
 		D6022C3523258B5D00B9BFB8 /* Editor.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Editor.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60790B92BEE6C5F008810BD /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = ../Window/Project.h; sourceTree = "<group>"; };
+		D60790BA2BEE6C5F008810BD /* Project.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Project.cpp; path = ../Window/Project.cpp; sourceTree = "<group>"; };
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D152BB17FE200E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
@@ -311,6 +317,8 @@
 				D666E3CE2BE3BCEC00EFA1F2 /* LuaConsole.h */,
 				D6F563FD2BE9D568006D32D9 /* Profiler.cpp */,
 				D6F563FC2BE9D568006D32D9 /* Profiler.h */,
+				D60790BA2BEE6C5F008810BD /* Project.cpp */,
+				D60790B92BEE6C5F008810BD /* Project.h */,
 				D6D26FA22BDEAF5400D57772 /* Scene.cpp */,
 				D6D26FA32BDEAF5400D57772 /* Scene.h */,
 			);
@@ -501,6 +509,7 @@
 				D6D26F9E2BDE36B400D57772 /* Tools.cpp in Sources */,
 				30A9A7C325ADC7C0000FA104 /* Editor.cpp in Sources */,
 				D62FEBDE2BE4F19B004E9FDF /* Console.cpp in Sources */,
+				D60790BB2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
 				D666E3CF2BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
@@ -530,6 +539,7 @@
 				D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D666E2EC2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				CE93601F25AC457A00CEF503 /* Editor.cpp in Sources */,
+				D60790BE2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D63370852B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707F2B382156001D4057 /* Hierarchy.cpp in Sources */,
 			);
@@ -548,6 +558,7 @@
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
+				D60790BC2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D02BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D6530A032BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				3039F9D92447499200E671A7 /* Editor.cpp in Sources */,
@@ -572,6 +583,7 @@
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
+				D60790BD2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D12BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D6530A042BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				300264C5242690D0004559E0 /* Editor.cpp in Sources */,

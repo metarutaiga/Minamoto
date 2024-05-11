@@ -17,6 +17,7 @@
 #include "Window/Log.h"
 #include "Window/LuaConsole.h"
 #include "Window/Profiler.h"
+#include "Window/Project.h"
 #include "Window/Scene.h"
 
 //------------------------------------------------------------------------------
@@ -31,6 +32,7 @@ moduleAPI const char* Create(const CreateData& createData)
     Hierarchy::Initialize();
     Inspector::Initialize();
     Profiler::Initialize();
+    Project::Initialize();
     Scene::Initialize();
 
     return MODULE_NAME;
@@ -44,6 +46,7 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
     Hierarchy::Shutdown();
     Inspector::Shutdown();
     Profiler::Shutdown();
+    Project::Shutdown();
     Scene::Shutdown();
 
     ShaderDisassembly::Shutdown();
@@ -75,6 +78,7 @@ moduleAPI void Message(const MessageData& messageData)
 moduleAPI bool Update(const UpdateData& updateData)
 {
     static bool showAbout = false;
+    static bool showProject = true;
     static bool showLog = true;
     static bool showLuaConsole = true;
     static bool showProfiler = true;
@@ -90,6 +94,7 @@ moduleAPI bool Update(const UpdateData& updateData)
         {
             ImGui::MenuItem(ICON_FA_QUESTION_CIRCLE "About " MODULE_NAME, nullptr, &showAbout);
             ImGui::Separator();
+            ImGui::MenuItem(ICON_FA_BOOKMARK        "Project", nullptr, &showProject);
             ImGui::MenuItem(ICON_FA_DESKTOP         "Log", nullptr, &showLog);
             ImGui::MenuItem(ICON_FA_LAPTOP          "Lua Console", nullptr, &showLuaConsole);
             ImGui::MenuItem(ICON_FA_BAR_CHART       "Profiler", nullptr, &showProfiler);
@@ -113,6 +118,7 @@ moduleAPI bool Update(const UpdateData& updateData)
         ImGuiID right = ImGui::DockBuilderSplitNode(id, ImGuiDir_Right, 1.0f / 5.0f, nullptr, &id);
         ImGuiID down = ImGui::DockBuilderSplitNode(id, ImGuiDir_Down, 1.0f / 3.0f, nullptr, &id);
         ImGuiID left = ImGui::DockBuilderSplitNode(id, ImGuiDir_Left, 1.0f / 4.0f, nullptr, &id);
+        ImGui::DockBuilderDockWindow(ICON_FA_BOOKMARK   "Project", down);
         ImGui::DockBuilderDockWindow(ICON_FA_DESKTOP    "Log", down);
         ImGui::DockBuilderDockWindow(ICON_FA_LAPTOP     "Lua Console", down);
         ImGui::DockBuilderDockWindow(ICON_FA_BAR_CHART  "Profiler", down);
@@ -123,6 +129,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     }
 
     updated |= About::Update(updateData, showAbout);
+    updated |= Project::Update(updateData, showProject);
     updated |= Log::Update(updateData, showLog);
     updated |= LuaConsole::Update(updateData, showLuaConsole);
     updated |= Profiler::Update(updateData, showLuaConsole);
