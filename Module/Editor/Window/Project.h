@@ -12,6 +12,6 @@ struct Project
     static std::string Current;
 public:
     static void Initialize();
-    static void Shutdown();
+    static void Shutdown(bool suspend = false);
     static bool Update(const UpdateData& updateData, bool& show);
 };

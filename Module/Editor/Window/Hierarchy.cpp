@@ -27,6 +27,8 @@
 #define HAVE_FILEDIALOG 0
 #endif
 
+#define TAG "Hierarchy"
+
 float Hierarchy::windowPosY = 0.0f;
 float Hierarchy::windowWidth = 256.0f;
 xxNodePtr Hierarchy::selectedLeft;
@@ -62,6 +64,24 @@ void Hierarchy::Shutdown()
     exportNode = nullptr;
     importFileDialog = nullptr;
     exportFileDialog = nullptr;
+}
+//------------------------------------------------------------------------------
+static xxNodePtr ImportFile(char const* name)
+{
+    float begin = xxGetCurrentTime();
+    xxNodePtr node;
+    if (strcasestr(name, ".fbx"))
+        node = ImportFBX::Create(name);
+    if (strcasestr(name, ".obj"))
+        node = ImportWavefront::Create(name);
+    if (strcasestr(name, ".xxb"))
+        node = Binary::Load(name);
+    if (node)
+    {
+        float time = xxGetCurrentTime() - begin;
+        xxLog("Hierarchy", "Import : %s (%0.fus)", xxFile::GetName(name).c_str(), time * 1000000);
+    }
+    return node;
 }
 //------------------------------------------------------------------------------
 void Hierarchy::Import(const UpdateData& updateData)
@@ -105,18 +125,9 @@ void Hierarchy::Import(const UpdateData& updateData)
         ImGui::Checkbox("Texture Flip V", &Import::EnableTextureFlipV);
         if (ImGui::Button("Import"))
         {
-            float begin = xxGetCurrentTime();
-            xxNodePtr node;
-            if (strstr(importName, ".fbx"))
-                node = ImportFBX::Create(importName);
-            if (strstr(importName, ".obj"))
-                node = ImportWavefront::Create(importName);
-            if (strstr(importName, ".xxb"))
-                node = Binary::Load(importName);
+            xxNodePtr node = ImportFile(importName);
             if (node)
             {
-                float time = xxGetCurrentTime() - begin;
-                xxLog("Hierarchy", "Import : %s (%0.fus)", xxFile::GetName(importName).c_str(), time * 1000000);
                 if (Import::EnableMergeNode)
                 {
                     Import::MergeNode(importNode, node, importNode);
@@ -236,6 +247,34 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
         windowPosY = ImGui::GetCursorPosY();
         windowWidth = ImGui::GetWindowWidth();
 
+        auto dragFile = [](xxNodePtr const& node)
+        {
+            if (ImGui::BeginDragDropTarget())
+            {
+                const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DRAGFILE", ImGuiDragDropFlags_AcceptNoDrawDefaultRect);
+                if (payload)
+                {
+                    std::string name((char*)payload->Data, payload->DataSize);
+                    xxNodePtr object = ImportFile(name.c_str());
+                    if (object)
+                    {
+                        if (node->GetParent())
+                        {
+                            Import::MergeNode(node, object, node);
+                        }
+                        else
+                        {
+                            node->AttachChild(object);
+                        }
+
+                        xxNodePtr const& root = NodeTools::GetRoot(node);
+                        root->CreateLinearMatrix();
+                    }
+                }
+                ImGui::EndDragDropTarget();
+            }
+        };
+
         bool clickedLeft = false;
         bool clickedRight = false;
         std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
@@ -272,6 +311,9 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                     selectedRight = node;
                     clickedRight = true;
                 }
+
+                // Drag
+                dragFile(node);
             }
 
             // Traversal
@@ -288,6 +330,10 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             for (xxNodePtr const& child : *root)
                 traversal(child);
             ImGui::PopStyleVar();
+
+            // Drag
+            ImGui::InvisibleButton("", ImGui::GetContentRegionAvail());
+            dragFile(root);
         }
 
         // Left

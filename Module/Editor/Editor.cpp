@@ -62,9 +62,11 @@ moduleAPI void Message(const MessageData& messageData)
         case xxHash("INIT"):
             Runtime::Initialize();
             ShaderDisassembly::Initialize();
+            Project::Initialize();
             Scene::Initialize();
             break;
         case xxHash("SHUTDOWN"):
+            Project::Shutdown(true);
             Scene::Shutdown(true);
             ShaderDisassembly::Shutdown();
             Runtime::Shutdown();
