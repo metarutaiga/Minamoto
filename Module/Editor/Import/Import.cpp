@@ -114,6 +114,7 @@ xxMeshPtr Import::CreateMesh(std::vector<xxVector3> const& vertices, std::vector
         }
     }
 
+    mesh->CalculateBound();
     return mesh;
 }
 //------------------------------------------------------------------------------

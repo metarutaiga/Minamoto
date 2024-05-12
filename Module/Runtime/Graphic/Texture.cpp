@@ -56,7 +56,10 @@ size_t Texture::Calculate(uint64_t format, int width, int height, int depth)
     uint8_t bits = 0;
     for (int i = 0; i < 4; ++i)
     {
-        bits += uint8_t(format >> (i * 8 + 32)) - '0';
+        uint8_t bit = uint8_t(format >> (i * 8 + 32));
+        if (bit == 0)
+            bit = '8';
+        bits += bit - '0';
     }
     size_t bytes = (bits + 7) / 8;
     return width * height * depth * bytes;

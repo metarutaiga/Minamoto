@@ -251,7 +251,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
         {
             if (ImGui::BeginDragDropTarget())
             {
-                const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DRAGFILE", ImGuiDragDropFlags_AcceptNoDrawDefaultRect);
+                const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DRAGFILE");
                 if (payload)
                 {
                     std::string name((char*)payload->Data, payload->DataSize);
@@ -282,9 +282,24 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             if (node == nullptr)
                 return;
 
-            ImGuiTreeNodeFlags flags = node->GetChildCount() ? 0 : ImGuiTreeNodeFlags_Leaf;
+            ImGuiTreeNodeFlags flags = 0;
+            if (node->GetChildCount() == 0)
+                flags |= ImGuiTreeNodeFlags_Leaf;
             if (node == selectedLeft || node == selectedRight)
                 flags |= ImGuiTreeNodeFlags_Selected;
+
+            // TODO - 
+            if (ImGui::IsMouseDragging(ImGuiMouseButton_Left))
+            {
+                ImVec2 min = ImGui::GetCursorScreenPos();
+                ImVec2 max;
+                max.x = min.x + ImGui::GetContentRegionAvail().x;
+                max.y = min.y + ImGui::GetFrameHeight();
+                if (ImGui::IsMouseHoveringRect(min, max))
+                {
+                    ImGui::GetWindowDrawList()->AddRect(min, max, ImGui::GetColorU32(ImGuiCol_DragDropTarget), 0.0f, 0, 2.0f);
+                }
+            }
 
             bool opened;
             if (node->Name.empty())
@@ -332,8 +347,12 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             ImGui::PopStyleVar();
 
             // Drag
-            ImGui::InvisibleButton("", ImGui::GetContentRegionAvail());
-            dragFile(root);
+            ImVec2 avail = ImGui::GetContentRegionAvail();
+            if (avail.x && avail.y)
+            {
+                ImGui::InvisibleButton("", avail);
+                dragFile(root);
+            }
         }
 
         // Left

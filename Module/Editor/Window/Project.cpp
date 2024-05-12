@@ -167,7 +167,7 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
         }
         ImGui::BeginGroup();
         ImGui::ImageButton(attribute.name.c_str(), texture, ImVec2(width, width));
-        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceNoHoldToOpenOthers))
+        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceNoDisableHover | ImGuiDragDropFlags_SourceNoHoldToOpenOthers))
         {
             std::string file = root + current + '/' + attribute.name;
             ImGui::TextUnformatted(attribute.name.c_str());
