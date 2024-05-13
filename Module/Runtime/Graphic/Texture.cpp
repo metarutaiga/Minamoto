@@ -239,7 +239,7 @@ void Texture::DDSWriter(xxTexturePtr& texture, std::string const& filename)
     if (texture == nullptr || (*texture)() == nullptr)
         return;
 
-    xxFile* file = xxFile::Load(filename.c_str());
+    xxFile* file = xxFile::Save(filename.c_str());
     xxLocalBreak()
     {
         if (file == nullptr)
@@ -320,10 +320,10 @@ void Texture::DDSWriter(xxTexturePtr& texture, std::string const& filename)
             break;
         }
         file->Write(&header, sizeof(DDS_HEADER));
-        int width = 1;
-        int height = 1;
-        int depth = 1;
-        int mipmap = 1;
+        int width = texture->Width;
+        int height = texture->Height;
+        int depth = texture->Depth;
+        int mipmap = texture->Mipmap;
         for (int m = 0; m < mipmap; ++m)
         {
             if (width == 0)

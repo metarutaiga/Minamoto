@@ -16,6 +16,9 @@
 #include "Component/Folder.h"
 #include "Project.h"
 
+#define STB_DXT_IMPLEMENTATION
+#include <stb/stb_dxt.h>
+
 std::string Project::Root;
 std::string Project::SubFolder;
 //------------------------------------------------------------------------------
@@ -55,6 +58,105 @@ void Project::Shutdown(bool suspend)
     Root.clear();
     SubFolder.clear();
     Files.clear();
+}
+//------------------------------------------------------------------------------
+static void CompressTexture(xxTexturePtr const& texture, uint64_t format, std::string const& root, std::string const& subfolder)
+{
+    if (texture->Format != "RGBA8888"_FOURCC)
+        return;
+    switch (format)
+    {
+    case "BC1"_FOURCC:
+    case "BC2"_FOURCC:
+    case "BC3"_FOURCC:
+    case "DXT1"_FOURCC:
+    case "DXT3"_FOURCC:
+    case "DXT5"_FOURCC:
+        break;
+    default:
+        return;
+    }
+    xxTexturePtr compressed = xxTexture::Create(format, texture->Width, texture->Height, texture->Depth, texture->Mipmap, texture->Array);
+    for (int array = 0; array < texture->Array; ++array)
+    {
+        for (int mipmap = 0; mipmap < texture->Mipmap; ++mipmap)
+        {
+            int levelWidth = (texture->Width >> mipmap);
+            int levelHeight = (texture->Height >> mipmap);
+            int levelDepth = (texture->Depth >> mipmap);
+            if (levelWidth == 0)
+                levelWidth = 1;
+            if (levelHeight == 0)
+                levelHeight = 1;
+            if (levelDepth == 0)
+                levelDepth = 1;
+
+            void* line = (*compressed)(0, 0, 0, mipmap, array);
+            for (int depth = 0; depth < levelDepth; ++depth)
+            {
+                for (int height = 0; height < levelHeight; height += 4)
+                {
+                    for (int width = 0; width < levelWidth; width += 4)
+                    {
+                        unsigned char source[4 * 4 * 4];
+                        unsigned char target[16];
+                        for (int y = 0; y < 4; ++y)
+                        {
+                            for (int x = 0; x < 4; ++x)
+                            {
+                                int offsetX = std::min(width + x, levelWidth - 1);
+                                int offsetY = std::min(height + y, levelHeight - 1);
+                                memcpy(source + y * 4 * 4 + x * 4, (*texture)(offsetX, offsetY, depth, mipmap, array), 4);
+                            }
+                        }
+                        switch (format)
+                        {
+                        case "BC1"_FOURCC:
+                        case "DXT1"_FOURCC:
+                            stb_compress_dxt_block(target, source, 0, STB_DXT_HIGHQUAL);
+                            memcpy(line, target, 8);
+                            line = (char*)line + 8;
+                            break;
+                        case "BC2"_FOURCC:
+                        case "DXT3"_FOURCC:
+                            memset(target, 0, 8);
+                            for (int i = 0; i < 16; ++i)
+                            {
+                                target[i / 2] |= (source[i * 4 + 3] & 0xF0) >> (((i + 1) % 2) * 4);
+                            }
+                            memcpy(line, target, 8);
+                            line = (char*)line + 8;
+                            stb_compress_dxt_block(target, source, 0, STB_DXT_HIGHQUAL);
+                            memcpy(line, target, 8);
+                            line = (char*)line + 8;
+                            break;
+                        case "BC3"_FOURCC:
+                        case "DXT5"_FOURCC:
+                            stb_compress_dxt_block(target, source, 1, STB_DXT_HIGHQUAL);
+                            memcpy(line, target, 16);
+                            line = (char*)line + 16;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    switch (format)
+    {
+    case "BC1"_FOURCC:
+    case "DXT1"_FOURCC:
+        Texture::DDSWriter(compressed, root + subfolder + texture->Name + ".bc1");
+        break;
+    case "BC2"_FOURCC:
+    case "DXT3"_FOURCC:
+        Texture::DDSWriter(compressed, root + subfolder + texture->Name + ".bc2");
+        break;
+    case "BC3"_FOURCC:
+    case "DXT5"_FOURCC:
+        Texture::DDSWriter(compressed, root + subfolder + texture->Name + ".bc3");
+        break;
+    }
 }
 //------------------------------------------------------------------------------
 static void ShowFolders(std::string const& root, std::string& select)
@@ -120,10 +222,35 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
         }
         ImGui::BeginGroup();
         ImGui::ImageButton(attribute.name.c_str(), texture, ImVec2(width, width));
+        static void* selected = nullptr;
+        if (selected == &attribute && ImGui::BeginPopup("texture"))
+        {
+            if (ImGui::Button("Compress BC1"))
+            {
+                CompressTexture(attribute.texture, "BC1"_FOURCC, root, subfolder);
+                selected = nullptr;
+            }
+            if (ImGui::Button("Compress BC2"))
+            {
+                CompressTexture(attribute.texture, "BC2"_FOURCC, root, subfolder);
+                selected = nullptr;
+            }
+            if (ImGui::Button("Compress BC3"))
+            {
+                CompressTexture(attribute.texture, "BC3"_FOURCC, root, subfolder);
+                selected = nullptr;
+            }
+            ImGui::EndPopup();
+        }
         if (ImGui::IsItemHovered())
         {
             if (attribute.texture && attribute.texture->Format)
             {
+                if (attribute.texture->Format == "RGBA8888"_FOURCC && ImGui::IsItemClicked(ImGuiMouseButton_Right))
+                {
+                    ImGui::OpenPopup("texture");
+                    selected = &attribute;
+                }
                 if (ImGui::BeginTooltip())
                 {
                     if (attribute.texture->Width > 1)
