@@ -21,6 +21,7 @@
 #   include <windows.h>
 #   include <imgui/backends/imgui_impl_win32.h>
 #endif
+#include <imgui/misc/freetype/imgui_freetype.h>
 #include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include "implement/imgui_impl_xx.h"
 #include "Module.h"
@@ -129,6 +130,7 @@ void DearImGui::Create(void* view, float scale, float font)
             io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\msjh.ttc", 13.0f * io.FontGlobalScale, &font_config, io.Fonts->GetGlyphRangesJapanese());
     }
 #endif
+    io.Fonts->FontBuilderIO         = ImGuiFreeType::GetBuilderForFreeType();
     io.Fonts->Build();
     io.FontGlobalScale              = scale / font;
 

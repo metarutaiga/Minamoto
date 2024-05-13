@@ -85,21 +85,17 @@
 		D6F066832BC6EEF600C4DFE6 /* Runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */; };
 		D6F066842BC6EEF600C4DFE6 /* Runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */; };
 		D6F066962BC6F3E200C4DFE6 /* libfreetype.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066952BC6F3E200C4DFE6 /* libfreetype.macOS.a */; };
-		D6F066982BC6F3E200C4DFE6 /* libimgui.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066972BC6F3E200C4DFE6 /* libimgui.macOS.a */; };
 		D6F0669A2BC6F3E200C4DFE6 /* libxxGraphic.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066992BC6F3E200C4DFE6 /* libxxGraphic.macOS.a */; };
 		D6F0669C2BC6F3E200C4DFE6 /* libxxGraphicPlus.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F0669B2BC6F3E200C4DFE6 /* libxxGraphicPlus.macOS.a */; };
 		D6F066A62BC6F4DF00C4DFE6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066A52BC6F4DF00C4DFE6 /* Cocoa.framework */; };
 		D6F066A82BC6F4E500C4DFE6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066A72BC6F4E500C4DFE6 /* QuartzCore.framework */; };
 		D6F066AA2BC6F57800C4DFE6 /* freetype.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066A92BC6F57800C4DFE6 /* freetype.Windows.lib */; };
-		D6F066AC2BC6F57800C4DFE6 /* imgui.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066AB2BC6F57800C4DFE6 /* imgui.Windows.lib */; };
 		D6F066AE2BC6F57800C4DFE6 /* xxGraphic.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066AD2BC6F57800C4DFE6 /* xxGraphic.Windows.lib */; };
 		D6F066B02BC6F57800C4DFE6 /* xxGraphicPlus.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066AF2BC6F57800C4DFE6 /* xxGraphicPlus.Windows.lib */; };
 		D6F066BD2BC791BB00C4DFE6 /* libfreetype.iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066BC2BC791BB00C4DFE6 /* libfreetype.iOS.a */; };
-		D6F066BF2BC791BB00C4DFE6 /* libimgui.iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066BE2BC791BB00C4DFE6 /* libimgui.iOS.a */; };
 		D6F066C12BC791BB00C4DFE6 /* libxxGraphic.iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066C02BC791BB00C4DFE6 /* libxxGraphic.iOS.a */; };
 		D6F066C32BC791BB00C4DFE6 /* libxxGraphicPlus.iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066C22BC791BB00C4DFE6 /* libxxGraphicPlus.iOS.a */; };
 		D6F066C52BC791D400C4DFE6 /* libfreetype.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066C42BC791D400C4DFE6 /* libfreetype.Android.a */; };
-		D6F066C72BC791D400C4DFE6 /* libimgui.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066C62BC791D400C4DFE6 /* libimgui.Android.a */; };
 		D6F066C92BC791D500C4DFE6 /* libxxGraphic.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066C82BC791D500C4DFE6 /* libxxGraphic.Android.a */; };
 		D6F066CB2BC791D500C4DFE6 /* libxxGraphicPlus.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066CA2BC791D500C4DFE6 /* libxxGraphicPlus.Android.a */; };
 		D6F066E12BC7B60100C4DFE6 /* Runtime.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* Runtime.dylib */; };
@@ -226,7 +222,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F066C52BC791D400C4DFE6 /* libfreetype.Android.a in Frameworks */,
-				D6F066C72BC791D400C4DFE6 /* libimgui.Android.a in Frameworks */,
 				D62FEBDB2BE4B7EA004E9FDF /* liblua.Android.a in Frameworks */,
 				D6F066C92BC791D500C4DFE6 /* libxxGraphic.Android.a in Frameworks */,
 				D6F066CB2BC791D500C4DFE6 /* libxxGraphicPlus.Android.a in Frameworks */,
@@ -238,7 +233,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F066AA2BC6F57800C4DFE6 /* freetype.Windows.lib in Frameworks */,
-				D6F066AC2BC6F57800C4DFE6 /* imgui.Windows.lib in Frameworks */,
 				D666E3C92BE3A83200EFA1F2 /* lua.Windows.lib in Frameworks */,
 				D6F066AE2BC6F57800C4DFE6 /* xxGraphic.Windows.lib in Frameworks */,
 				D6F066B02BC6F57800C4DFE6 /* xxGraphicPlus.Windows.lib in Frameworks */,
@@ -251,7 +245,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F066BD2BC791BB00C4DFE6 /* libfreetype.iOS.a in Frameworks */,
-				D6F066BF2BC791BB00C4DFE6 /* libimgui.iOS.a in Frameworks */,
 				D62FEBD92BE4B7C9004E9FDF /* liblua.iOS.a in Frameworks */,
 				D6F066C12BC791BB00C4DFE6 /* libxxGraphic.iOS.a in Frameworks */,
 				D6F066C32BC791BB00C4DFE6 /* libxxGraphicPlus.iOS.a in Frameworks */,
@@ -263,7 +256,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F066962BC6F3E200C4DFE6 /* libfreetype.macOS.a in Frameworks */,
-				D6F066982BC6F3E200C4DFE6 /* libimgui.macOS.a in Frameworks */,
 				D666E3C72BE3A6F600EFA1F2 /* liblua.macOS.a in Frameworks */,
 				D6F0669A2BC6F3E200C4DFE6 /* libxxGraphic.macOS.a in Frameworks */,
 				D6F0669C2BC6F3E200C4DFE6 /* libxxGraphicPlus.macOS.a in Frameworks */,
@@ -686,7 +678,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-wholearchive:freetype.windows.lib",
-					"-Wl,-wholearchive:imgui.windows.lib",
 					"-Wl,-wholearchive:lua.windows.lib",
 					"-Wl,-wholearchive:xxGraphic.windows.lib",
 					"-Wl,-wholearchive:xxGraphicPlus.windows.lib",
@@ -704,7 +695,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-wholearchive:freetype.windows.lib",
-					"-Wl,-wholearchive:imgui.windows.lib",
 					"-Wl,-wholearchive:lua.windows.lib",
 					"-Wl,-wholearchive:xxGraphic.windows.lib",
 					"-Wl,-wholearchive:xxGraphicPlus.windows.lib",

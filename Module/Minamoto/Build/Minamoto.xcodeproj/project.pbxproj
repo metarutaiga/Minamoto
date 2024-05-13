@@ -20,6 +20,16 @@
 		CEC4337C25AD24A400936983 /* Module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300264C0242687B7004559E0 /* Module.cpp */; };
 		CEC4337D25AD24A400936983 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D690A3862333FE7B00A149EF /* Renderer.cpp */; };
 		D6022C6A23258E9500B9BFB8 /* imgui_impl_xx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0E7231F109C00B75B77 /* imgui_impl_xx.cpp */; };
+		D60790CB2BF24464008810BD /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790C92BF24464008810BD /* imgui_freetype.cpp */; };
+		D60790CC2BF24464008810BD /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790C92BF24464008810BD /* imgui_freetype.cpp */; };
+		D60790CD2BF24464008810BD /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790C92BF24464008810BD /* imgui_freetype.cpp */; };
+		D60790CE2BF24464008810BD /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790C92BF24464008810BD /* imgui_freetype.cpp */; };
+		D60790CF2BF24464008810BD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D60790CA2BF24464008810BD /* README.md */; };
+		D60790D02BF24464008810BD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D60790CA2BF24464008810BD /* README.md */; };
+		D60790D82BF245A8008810BD /* imgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D60790D72BF245A8008810BD /* imgui.dylib */; };
+		D60790E02BF24999008810BD /* libimgui.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D60790DF2BF24999008810BD /* libimgui.so */; };
+		D60790E22BF249A0008810BD /* imgui.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D60790E12BF249A0008810BD /* imgui.bundle */; };
+		D60790E42BF249F4008810BD /* imgui.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D60790E32BF249F4008810BD /* imgui.dll */; };
 		D6169D122BB17F3700E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D0F2BB17F3700E5490C /* ucrt.cpp */; };
 		D6169D142BB17F3700E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D112BB17F3700E5490C /* new.cpp */; };
 		D62FEBEB2BE50FAE004E9FDF /* winmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBEA2BE50FAE004E9FDF /* winmain.cpp */; };
@@ -49,13 +59,10 @@
 		D6F0667F2BC6ED7100C4DFE6 /* Runtime.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F0667E2BC6ED7100C4DFE6 /* Runtime.dll */; };
 		D6F066902BC6F25000C4DFE6 /* Runtime.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F0668F2BC6F25000C4DFE6 /* Runtime.dylib */; };
 		D6F066BB2BC7913000C4DFE6 /* libRuntime.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066BA2BC7913000C4DFE6 /* libRuntime.so */; };
-		D6F066D82BC7A2C600C4DFE6 /* Editor.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D42BC7A2C600C4DFE6 /* Editor.bundle */; };
 		D6F066D92BC7A2C600C4DFE6 /* Editor.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = D6F066D42BC7A2C600C4DFE6 /* Editor.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D6F066DA2BC7A2C600C4DFE6 /* Runtime.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D52BC7A2C600C4DFE6 /* Runtime.bundle */; };
 		D6F066DB2BC7A2C600C4DFE6 /* Runtime.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = D6F066D52BC7A2C600C4DFE6 /* Runtime.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		D6F066DC2BC7A2C600C4DFE6 /* Sample.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D62BC7A2C600C4DFE6 /* Sample.bundle */; };
 		D6F066DD2BC7A2C600C4DFE6 /* Sample.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = D6F066D62BC7A2C600C4DFE6 /* Sample.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		D6F066DE2BC7A2C600C4DFE6 /* Validator.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6F066D72BC7A2C600C4DFE6 /* Validator.bundle */; };
 		D6F066DF2BC7A2C600C4DFE6 /* Validator.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = D6F066D72BC7A2C600C4DFE6 /* Validator.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -94,6 +101,13 @@
 		CEC4337325AD244E00936983 /* Minamoto.exe */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Minamoto.exe; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE9E620257640C000C180FB /* Minamoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Minamoto.entitlements; sourceTree = "<group>"; };
 		D6022C4F23258C4E00B9BFB8 /* Minamoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minamoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60790C82BF24464008810BD /* imgui_freetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_freetype.h; path = ../../../SDK/imgui/misc/freetype/imgui_freetype.h; sourceTree = "<group>"; };
+		D60790C92BF24464008810BD /* imgui_freetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_freetype.cpp; path = ../../../SDK/imgui/misc/freetype/imgui_freetype.cpp; sourceTree = "<group>"; };
+		D60790CA2BF24464008810BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../SDK/imgui/misc/freetype/README.md; sourceTree = "<group>"; };
+		D60790D72BF245A8008810BD /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60790DF2BF24999008810BD /* libimgui.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libimgui.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60790E12BF249A0008810BD /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60790E32BF249F4008810BD /* imgui.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60EC64026A85C000051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC64126A85C000051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D0F2BB17F3700E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
@@ -152,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60790E02BF24999008810BD /* libimgui.so in Frameworks */,
 				D6F066BB2BC7913000C4DFE6 /* libRuntime.so in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,8 +175,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D65309F02BB2E0B40006AD64 /* libcxx.lib in Frameworks */,
+				D60790E42BF249F4008810BD /* imgui.dll in Frameworks */,
 				D6F0667F2BC6ED7100C4DFE6 /* Runtime.dll in Frameworks */,
+				D65309F02BB2E0B40006AD64 /* libcxx.lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,12 +185,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60790E22BF249A0008810BD /* imgui.bundle in Frameworks */,
+				D6F066DA2BC7A2C600C4DFE6 /* Runtime.bundle in Frameworks */,
 				D6BA704529E270ED0056FE5F /* QuartzCore.framework in Frameworks */,
 				D6BA704329E270D30056FE5F /* UIKit.framework in Frameworks */,
-				D6F066DE2BC7A2C600C4DFE6 /* Validator.bundle in Frameworks */,
-				D6F066DA2BC7A2C600C4DFE6 /* Runtime.bundle in Frameworks */,
-				D6F066D82BC7A2C600C4DFE6 /* Editor.bundle in Frameworks */,
-				D6F066DC2BC7A2C600C4DFE6 /* Sample.bundle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60790D82BF245A8008810BD /* imgui.dylib in Frameworks */,
 				D6F066902BC6F25000C4DFE6 /* Runtime.dylib in Frameworks */,
 				D6BA703929E270650056FE5F /* AppKit.framework in Frameworks */,
 				D6BA702329E26FC60056FE5F /* Metal.framework in Frameworks */,
@@ -217,9 +232,28 @@
 			name = Configs;
 			sourceTree = "<group>";
 		};
+		D60790C62BF24444008810BD /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				D60790C72BF24448008810BD /* freetype */,
+			);
+			name = misc;
+			sourceTree = "<group>";
+		};
+		D60790C72BF24448008810BD /* freetype */ = {
+			isa = PBXGroup;
+			children = (
+				D60790C92BF24464008810BD /* imgui_freetype.cpp */,
+				D60790C82BF24464008810BD /* imgui_freetype.h */,
+				D60790CA2BF24464008810BD /* README.md */,
+			);
+			name = freetype;
+			sourceTree = "<group>";
+		};
 		D63370652B2ED967001D4057 /* imgui */ = {
 			isa = PBXGroup;
 			children = (
+				D60790C62BF24444008810BD /* misc */,
 				3083107425F49FEB0095892D /* backends */,
 				D644A0DA231F107D00B75B77 /* implement */,
 			);
@@ -263,6 +297,10 @@
 		D644A0EB231F116C00B75B77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D60790E32BF249F4008810BD /* imgui.dll */,
+				D60790E12BF249A0008810BD /* imgui.bundle */,
+				D60790DF2BF24999008810BD /* libimgui.so */,
+				D60790D72BF245A8008810BD /* imgui.dylib */,
 				D6F066D42BC7A2C600C4DFE6 /* Editor.bundle */,
 				D6F066D52BC7A2C600C4DFE6 /* Runtime.bundle */,
 				D6F066D62BC7A2C600C4DFE6 /* Sample.bundle */,
@@ -441,6 +479,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60790CF2BF24464008810BD /* README.md in Resources */,
 				D666E2F62BE22D9000EFA1F2 /* fontawesome-webfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +488,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60790D02BF24464008810BD /* README.md in Resources */,
 				D666E2F72BE22D9000EFA1F2 /* fontawesome-webfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60790CB2BF24464008810BD /* imgui_freetype.cpp in Sources */,
 				CEAF9CB725AE756C008B7C57 /* imgui_impl_xx.cpp in Sources */,
 				D63370682B3534FE001D4057 /* Logger.cpp in Sources */,
 				CEAF9CB825AE756C008B7C57 /* DearImGui.cpp in Sources */,
@@ -474,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC4337925AD24A400936983 /* imgui_impl_xx.cpp in Sources */,
+				D60790CE2BF24464008810BD /* imgui_freetype.cpp in Sources */,
 				D633706B2B3534FE001D4057 /* Logger.cpp in Sources */,
 				D62FEBEB2BE50FAE004E9FDF /* winmain.cpp in Sources */,
 				D6169D122BB17F3700E5490C /* ucrt.cpp in Sources */,
@@ -491,6 +533,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60790CC2BF24464008810BD /* imgui_freetype.cpp in Sources */,
 				D6022C6A23258E9500B9BFB8 /* imgui_impl_xx.cpp in Sources */,
 				D63370692B3534FE001D4057 /* Logger.cpp in Sources */,
 				D690A38D23341A8400A149EF /* DearImGui.cpp in Sources */,
@@ -505,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6BA700529E266BC0056FE5F /* imgui_impl_osx.mm in Sources */,
+				D60790CD2BF24464008810BD /* imgui_freetype.cpp in Sources */,
 				D644A0EA231F109D00B75B77 /* imgui_impl_xx.cpp in Sources */,
 				D633706A2B3534FE001D4057 /* Logger.cpp in Sources */,
 				D690A38C23341A8400A149EF /* DearImGui.cpp in Sources */,

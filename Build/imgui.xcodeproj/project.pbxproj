@@ -17,17 +17,15 @@
 		CE9C2A2A25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C2A2825AFCB9000AB37F6 /* imgui_tables.cpp */; };
 		CE9C2A2B25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C2A2825AFCB9000AB37F6 /* imgui_tables.cpp */; };
 		CE9C2A2C25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C2A2825AFCB9000AB37F6 /* imgui_tables.cpp */; };
-		D63370A02B3B24C9001D4057 /* libimgui.macOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* libimgui.macOS.a */; };
+		D60790F22BF24AA7008810BD /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790F12BF24AA7008810BD /* ucrt.cpp */; };
+		D60790F42BF24AB3008810BD /* dllmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790F32BF24AB3008810BD /* dllmain.cpp */; };
+		D63370A02B3B24C9001D4057 /* imgui.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* imgui.dylib */; };
 		D644A077231ED90400B75B77 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A06D231ED90300B75B77 /* imgui_draw.cpp */; };
 		D644A078231ED90400B75B77 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A06E231ED90300B75B77 /* imgui_widgets.cpp */; };
 		D644A07F231ED90400B75B77 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A075231ED90400B75B77 /* imgui.cpp */; };
 		D6DA664823258F3000953C5B /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A06D231ED90300B75B77 /* imgui_draw.cpp */; };
 		D6DA664923258F3000953C5B /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A06E231ED90300B75B77 /* imgui_widgets.cpp */; };
 		D6DA664A23258F3000953C5B /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A075231ED90400B75B77 /* imgui.cpp */; };
-		D6F066B62BC7878900C4DFE6 /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066B32BC7878900C4DFE6 /* imgui_freetype.cpp */; };
-		D6F066B72BC7878A00C4DFE6 /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066B32BC7878900C4DFE6 /* imgui_freetype.cpp */; };
-		D6F066B82BC7878A00C4DFE6 /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066B32BC7878900C4DFE6 /* imgui_freetype.cpp */; };
-		D6F066B92BC7878A00C4DFE6 /* imgui_freetype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066B32BC7878900C4DFE6 /* imgui_freetype.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,20 +35,22 @@
 			dstPath = Minamoto.app/Contents/Frameworks;
 			dstSubfolderSpec = 16;
 			files = (
-				D63370A02B3B24C9001D4057 /* libimgui.macOS.a in CopyFiles */,
+				D63370A02B3B24C9001D4057 /* imgui.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		30A9A74A25ADC5C3000FA104 /* libimgui.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libimgui.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE935F5325AC2F4800CEF503 /* imgui.Windows.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = imgui.Windows.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		30A9A74A25ADC5C3000FA104 /* libimgui.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libimgui.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE935F5325AC2F4800CEF503 /* imgui.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = imgui.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9C2A2825AFCB9000AB37F6 /* imgui_tables.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_tables.cpp; path = ../SDK/imgui/imgui_tables.cpp; sourceTree = "<group>"; };
-		D6022C3523258B5D00B9BFB8 /* libimgui.iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libimgui.iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6022C3523258B5D00B9BFB8 /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60790F12BF24AA7008810BD /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
+		D60790F32BF24AB3008810BD /* dllmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dllmain.cpp; path = "../SDK/ClangPlatform/windows-msvc/dllmain.cpp"; sourceTree = "<group>"; };
 		D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
-		D644A041231ED82900B75B77 /* libimgui.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libimgui.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D644A041231ED82900B75B77 /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D644A06C231ED90300B75B77 /* imgui_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_internal.h; path = ../SDK/imgui/imgui_internal.h; sourceTree = "<group>"; };
 		D644A06D231ED90300B75B77 /* imgui_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_draw.cpp; path = ../SDK/imgui/imgui_draw.cpp; sourceTree = "<group>"; };
 		D644A06E231ED90300B75B77 /* imgui_widgets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_widgets.cpp; path = ../SDK/imgui/imgui_widgets.cpp; sourceTree = "<group>"; };
@@ -62,9 +62,6 @@
 		D644A074231ED90400B75B77 /* imstb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imstb_truetype.h; path = ../SDK/imgui/imstb_truetype.h; sourceTree = "<group>"; };
 		D644A075231ED90400B75B77 /* imgui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui.cpp; path = ../SDK/imgui/imgui.cpp; sourceTree = "<group>"; };
 		D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
-		D6F066B32BC7878900C4DFE6 /* imgui_freetype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = imgui_freetype.cpp; path = ../SDK/imgui/misc/freetype/imgui_freetype.cpp; sourceTree = "<group>"; };
-		D6F066B42BC7878900C4DFE6 /* imgui_freetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgui_freetype.h; path = ../SDK/imgui/misc/freetype/imgui_freetype.h; sourceTree = "<group>"; };
-		D6F066B52BC7878900C4DFE6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../SDK/imgui/misc/freetype/README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +102,8 @@
 				D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */,
 				D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */,
 				D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */,
+				D60790F32BF24AB3008810BD /* dllmain.cpp */,
+				D60790F12BF24AA7008810BD /* ucrt.cpp */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -113,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				CE999BC925D21D9F00351116 /* Configs */,
-				D6F066B12BC7875300C4DFE6 /* misc */,
 				D644A070231ED90300B75B77 /* imconfig.h */,
 				D644A06F231ED90300B75B77 /* imgui_demo.cpp */,
 				D644A06D231ED90300B75B77 /* imgui_draw.cpp */,
@@ -132,30 +130,12 @@
 		D644A042231ED82900B75B77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D644A041231ED82900B75B77 /* libimgui.macOS.a */,
-				D6022C3523258B5D00B9BFB8 /* libimgui.iOS.a */,
-				CE935F5325AC2F4800CEF503 /* imgui.Windows.lib */,
-				30A9A74A25ADC5C3000FA104 /* libimgui.Android.a */,
+				D644A041231ED82900B75B77 /* imgui.dylib */,
+				D6022C3523258B5D00B9BFB8 /* imgui.bundle */,
+				CE935F5325AC2F4800CEF503 /* imgui.dll */,
+				30A9A74A25ADC5C3000FA104 /* libimgui.so */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		D6F066B12BC7875300C4DFE6 /* misc */ = {
-			isa = PBXGroup;
-			children = (
-				D6F066B22BC7877700C4DFE6 /* freetype */,
-			);
-			name = misc;
-			sourceTree = "<group>";
-		};
-		D6F066B22BC7877700C4DFE6 /* freetype */ = {
-			isa = PBXGroup;
-			children = (
-				D6F066B32BC7878900C4DFE6 /* imgui_freetype.cpp */,
-				D6F066B42BC7878900C4DFE6 /* imgui_freetype.h */,
-				D6F066B52BC7878900C4DFE6 /* README.md */,
-			);
-			name = freetype;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,8 +154,8 @@
 			);
 			name = "imgui-Android";
 			productName = "imgui-Android";
-			productReference = 30A9A74A25ADC5C3000FA104 /* libimgui.Android.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = 30A9A74A25ADC5C3000FA104 /* libimgui.so */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 		CE935F5225AC2F4800CEF503 /* imgui-Windows */ = {
 			isa = PBXNativeTarget;
@@ -190,8 +170,8 @@
 			);
 			name = "imgui-Windows";
 			productName = "imgui-Windows";
-			productReference = CE935F5325AC2F4800CEF503 /* imgui.Windows.lib */;
-			productType = "com.apple.product-type.library.static";
+			productReference = CE935F5325AC2F4800CEF503 /* imgui.dll */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 		D6022C3423258B5D00B9BFB8 /* imgui-iOS */ = {
 			isa = PBXNativeTarget;
@@ -206,8 +186,8 @@
 			);
 			name = "imgui-iOS";
 			productName = "imgui-iOS";
-			productReference = D6022C3523258B5D00B9BFB8 /* libimgui.iOS.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = D6022C3523258B5D00B9BFB8 /* imgui.bundle */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 		D644A040231ED82900B75B77 /* imgui-macOS */ = {
 			isa = PBXNativeTarget;
@@ -223,8 +203,8 @@
 			);
 			name = "imgui-macOS";
 			productName = imgui;
-			productReference = D644A041231ED82900B75B77 /* libimgui.macOS.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = D644A041231ED82900B75B77 /* imgui.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
@@ -279,7 +259,6 @@
 				30A9A75325ADC5F8000FA104 /* imgui_draw.cpp in Sources */,
 				30A9A75425ADC5F8000FA104 /* imgui_widgets.cpp in Sources */,
 				CE9C2A2C25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */,
-				D6F066B62BC7878900C4DFE6 /* imgui_freetype.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,8 +269,9 @@
 				CE935F6025AC2F8800CEF503 /* imgui.cpp in Sources */,
 				CE935F5E25AC2F8800CEF503 /* imgui_draw.cpp in Sources */,
 				CE935F5F25AC2F8800CEF503 /* imgui_widgets.cpp in Sources */,
+				D60790F22BF24AA7008810BD /* ucrt.cpp in Sources */,
 				CE9C2A2B25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */,
-				D6F066B92BC7878A00C4DFE6 /* imgui_freetype.cpp in Sources */,
+				D60790F42BF24AB3008810BD /* dllmain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +283,6 @@
 				D6DA664823258F3000953C5B /* imgui_draw.cpp in Sources */,
 				D6DA664923258F3000953C5B /* imgui_widgets.cpp in Sources */,
 				CE9C2A2A25AFCB9000AB37F6 /* imgui_tables.cpp in Sources */,
-				D6F066B72BC7878A00C4DFE6 /* imgui_freetype.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +294,6 @@
 				D644A077231ED90400B75B77 /* imgui_draw.cpp in Sources */,
 				D644A078231ED90400B75B77 /* imgui_widgets.cpp in Sources */,
 				CE9C2A2925AFCB9000AB37F6 /* imgui_tables.cpp in Sources */,
-				D6F066B82BC7878A00C4DFE6 /* imgui_freetype.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +305,6 @@
 			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_NAME = imgui.Android;
 			};
 			name = Debug;
 		};
@@ -336,7 +313,6 @@
 			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_NAME = imgui.Android;
 			};
 			name = Release;
 		};
@@ -344,11 +320,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = lib;
+				EXECUTABLE_EXTENSION = dll;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = imgui.Windows;
 			};
 			name = Debug;
 		};
@@ -356,11 +331,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = lib;
+				EXECUTABLE_EXTENSION = dll;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = imgui.Windows;
 			};
 			name = Release;
 		};
@@ -368,8 +342,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = bundle;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_NAME = imgui.iOS;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -378,8 +352,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = bundle;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_NAME = imgui.iOS;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -452,7 +426,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = ../Build/temp;
 				ONLY_ACTIVE_ARCH = YES;
@@ -534,7 +508,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = ../Build/temp;
 				OTHER_CFLAGS = (
@@ -555,7 +529,6 @@
 			baseConfigurationReference = D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
-				PRODUCT_NAME = imgui.macOS;
 			};
 			name = Debug;
 		};
@@ -564,7 +537,6 @@
 			baseConfigurationReference = D6AA5DB82BD7DA6A00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
-				PRODUCT_NAME = imgui.macOS;
 			};
 			name = Release;
 		};
