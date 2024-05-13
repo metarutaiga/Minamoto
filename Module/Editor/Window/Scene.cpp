@@ -8,7 +8,7 @@
 #include <xxGraphic.h>
 #include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include <utility/xxCamera.h>
-#include <utility/xxImage.h>
+#include <utility/xxTexture.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxModifier.h>
@@ -65,8 +65,8 @@ void Scene::Shutdown(bool suspend)
         if (node->Material)
         {
             node->Material->Invalidate();
-            for (xxImagePtr const& image : node->Material->Images)
-                image->Invalidate();
+            for (xxTexturePtr const& texture : node->Material->Textures)
+                texture->Invalidate();
         }
         return true;
     };

@@ -4,7 +4,7 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <utility/xxImage.h>
+#include <utility/xxTexture.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
@@ -45,16 +45,16 @@ xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
     (*it_index++) = 1;
     (*it_index++) = 2;
 
-    xxImagePtr image = CreateTexture();
-    if (image == nullptr)
+    xxTexturePtr texture = CreateTexture();
+    if (texture == nullptr)
         return nullptr;
-    image->ClampU = false;
-    image->ClampV = false;
-    image->ClampW = false;
-    image->FilterMag = true;
-    image->FilterMin = true;
-    image->FilterMip = true;
-    image->Anisotropic = 16;
+    texture->ClampU = false;
+    texture->ClampV = false;
+    texture->ClampW = false;
+    texture->FilterMag = true;
+    texture->FilterMin = true;
+    texture->FilterMip = true;
+    texture->Anisotropic = 16;
 
     xxMaterialPtr material = xxMaterial::Create();
     if (material == nullptr)
@@ -62,7 +62,7 @@ xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
     material->Blending = true;
     material->DepthTest = "LessEqual";
     material->DepthWrite = false;
-    material->SetImage(0, image);
+    material->SetTexture(0, texture);
 
     xxNodePtr node = xxNode::Create();
     if (node == nullptr)
@@ -74,20 +74,20 @@ xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
     return node;
 }
 //------------------------------------------------------------------------------
-xxImagePtr Grid::CreateTexture()
+xxTexturePtr Grid::CreateTexture()
 {
     int level = 8;
 
     uint64_t format = *(uint64_t*)"RGBA8888";
-    xxImagePtr image = xxImage::Create2D(format, (1 << (level - 1)), (1 << (level - 1)), level);
-    if (image == nullptr)
+    xxTexturePtr texture = xxTexture::Create2D(format, (1 << (level - 1)), (1 << (level - 1)), level);
+    if (texture == nullptr)
         return nullptr;
 
     for (int mipmap = 0; mipmap < level; ++mipmap)
     {
         int width = 1 << (level - mipmap - 1);
         int height = 1 << (level - mipmap - 1);
-        uint32_t* pixel = (uint32_t*)(*image)(0, 0, 0, mipmap, 0);
+        uint32_t* pixel = (uint32_t*)(*texture)(0, 0, 0, mipmap, 0);
         for (int y = 0; y < height; ++y)
         {
             for (int x = 0; x < width; ++x)
@@ -108,6 +108,6 @@ xxImagePtr Grid::CreateTexture()
         }
     }
 
-    return image;
+    return texture;
 }
 //------------------------------------------------------------------------------

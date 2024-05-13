@@ -14,14 +14,14 @@ class ImportWavefront : public Import
     struct Material
     {
         xxMaterialPtr output;
-        xxImagePtr map_Ka;
-        xxImagePtr map_Kd;
-        xxImagePtr map_Ks;
-        xxImagePtr map_Ns;
-        xxImagePtr map_d;
-        xxImagePtr decal;
-        xxImagePtr disp;
-        xxImagePtr bump;
+        xxTexturePtr map_Ka;
+        xxTexturePtr map_Kd;
+        xxTexturePtr map_Ks;
+        xxTexturePtr map_Ns;
+        xxTexturePtr map_d;
+        xxTexturePtr decal;
+        xxTexturePtr disp;
+        xxTexturePtr bump;
     };
 
 public:

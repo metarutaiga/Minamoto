@@ -9,5 +9,5 @@
 struct Grid
 {
     static xxNodePtr Create(xxVector3 const& translate, xxVector2 const& size);
-    static xxImagePtr CreateTexture();
+    static xxTexturePtr CreateTexture();
 };

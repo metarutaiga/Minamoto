@@ -7,7 +7,7 @@
 #include <Interface.h>
 #include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include <utility/xxCamera.h>
-#include <utility/xxImage.h>
+#include <utility/xxTexture.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
@@ -251,38 +251,38 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
             Combo("Operation" Q, blendOps, material->BlendOperationAlpha);
             Combo("Destination" Q, blendTypes, material->BlendDestinationAlpha);
         }
-        for (auto& image : material->Images)
+        for (auto& texture : material->Textures)
         {
             strcpy(name, ICON_FA_PICTURE_O);
-            strcat(name, image->Name.c_str());
+            strcat(name, texture->Name.c_str());
             ImGui::PushStyleColor(ImGuiCol_Header, 0);
             bool open = ImGui::CollapsingHeader(name, nullptr, ImGuiTreeNodeFlags_None);
             ImGui::PopStyleColor();
             if (ImGui::IsItemHovered())
             {
-                uint64_t texture = image->Texture;
-                if (texture && ImGui::BeginTooltip())
+                uint64_t id = texture->Texture;
+                if (id && ImGui::BeginTooltip())
                 {
-                    ImGui::Image(texture, ImVec2(256, 256));
+                    ImGui::Image(id, ImVec2(256, 256));
                     ImGui::EndTooltip();
                 }
             }
             if (open)
             {
-                ImGui::InputInt("Width" Q, (int*)&image->Width, 0, 0, ImGuiInputTextFlags_ReadOnly);
-                ImGui::InputInt("Height" Q, (int*)&image->Height, 0, 0, ImGuiInputTextFlags_ReadOnly);
-                ImGui::InputInt("Depth" Q, (int*)&image->Depth, 0, 0, ImGuiInputTextFlags_ReadOnly);
-                ImGui::InputInt("Mipmap" Q, (int*)&image->Mipmap, 0, 0, ImGuiInputTextFlags_ReadOnly);
-                ImGui::InputInt("Array" Q, (int*)&image->Array, 0, 0, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Width" Q, (int*)&texture->Width, 0, 0, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Height" Q, (int*)&texture->Height, 0, 0, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Depth" Q, (int*)&texture->Depth, 0, 0, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Mipmap" Q, (int*)&texture->Mipmap, 0, 0, ImGuiInputTextFlags_ReadOnly);
+                ImGui::InputInt("Array" Q, (int*)&texture->Array, 0, 0, ImGuiInputTextFlags_ReadOnly);
                 ImGui::Separator();
-                ImGui::Checkbox("Clamp U" Q, &image->ClampU);
-                ImGui::Checkbox("Clamp V" Q, &image->ClampV);
-                ImGui::Checkbox("Clamp W" Q, &image->ClampW);
+                ImGui::Checkbox("Clamp U" Q, &texture->ClampU);
+                ImGui::Checkbox("Clamp V" Q, &texture->ClampV);
+                ImGui::Checkbox("Clamp W" Q, &texture->ClampW);
                 ImGui::Separator();
-                ImGui::Checkbox("Linear MAG" Q, &image->FilterMag);
-                ImGui::Checkbox("Linear MIN" Q, &image->FilterMin);
-                ImGui::Checkbox("Linear MIP" Q, &image->FilterMip);
-                ImGui::SliderChar("Anisotropic" Q, &image->Anisotropic, 1, 16);
+                ImGui::Checkbox("Linear MAG" Q, &texture->FilterMag);
+                ImGui::Checkbox("Linear MIN" Q, &texture->FilterMin);
+                ImGui::Checkbox("Linear MIP" Q, &texture->FilterMip);
+                ImGui::SliderChar("Anisotropic" Q, &texture->Anisotropic, 1, 16);
             }
         }
         UpdateModifier(updateData, material->Modifiers);

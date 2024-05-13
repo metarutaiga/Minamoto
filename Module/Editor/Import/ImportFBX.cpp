@@ -5,7 +5,7 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <utility/xxFile.h>
-#include <utility/xxImage.h>
+#include <utility/xxTexture.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
@@ -65,18 +65,18 @@ static xxMatrix4x4 mat4(const ufbx_transform& values)
     return mat4(ufbx_transform_to_matrix(&values));
 }
 //------------------------------------------------------------------------------
-static xxImagePtr CreateImage(ufbx_texture* texture)
+static xxTexturePtr CreateTexture(ufbx_texture* texture)
 {
     if (texture == nullptr || texture->has_file == false)
-        return xxImagePtr();
-    xxImagePtr image = Import::CreateImage(texture->filename.data);
-    if (image)
+        return xxTexturePtr();
+    xxTexturePtr output = Import::CreateTexture(texture->filename.data);
+    if (output)
     {
-        image->ClampU = (texture->wrap_u == UFBX_WRAP_CLAMP);
-        image->ClampV = (texture->wrap_v == UFBX_WRAP_CLAMP);
-        image->ClampW = (texture->wrap_u == UFBX_WRAP_CLAMP) && (texture->wrap_v == UFBX_WRAP_CLAMP);
+        output->ClampU = (texture->wrap_u == UFBX_WRAP_CLAMP);
+        output->ClampV = (texture->wrap_v == UFBX_WRAP_CLAMP);
+        output->ClampW = (texture->wrap_u == UFBX_WRAP_CLAMP) && (texture->wrap_v == UFBX_WRAP_CLAMP);
     }
-    return image;
+    return output;
 }
 //------------------------------------------------------------------------------
 static void CreateAnimation(ufbx_scene* scene, xxNodePtr const& root)
@@ -222,7 +222,7 @@ static xxMaterialPtr CreateMaterial(ufbx_material* material)
     output->Scissor = false;
     for (size_t i = 0; i < material->textures.count; ++i)
     {
-        output->SetImage(i, CreateImage(material->textures.data[i].texture));
+        output->SetTexture(i, CreateTexture(material->textures.data[i].texture));
     }
     return output;
 };

@@ -7,7 +7,7 @@
 #include <xxGraphic.h>
 #include <map>
 #include <utility/xxFile.h>
-#include <utility/xxImage.h>
+#include <utility/xxTexture.h>
 #include "Texture.h"
 
 #define STBI_ONLY_PNG
@@ -19,85 +19,93 @@
 #include <stb/stb_image.h>
 
 //==============================================================================
-static std::map<std::string, xxImagePtr> images;
+static std::map<std::string, xxTexturePtr> textures;
 //------------------------------------------------------------------------------
 void Texture::Initialize()
 {
-    xxImage::Calculate = Texture::Calculate;
-    xxImage::Loader = Texture::Loader;
+    xxTexture::Calculate = Texture::Calculate;
+    xxTexture::Loader = Texture::Loader;
 }
 //------------------------------------------------------------------------------
 void Texture::Shutdown()
 {
-    images.clear();
+    textures.clear();
 }
 //------------------------------------------------------------------------------
 size_t Texture::Calculate(uint64_t format, int width, int height, int depth)
 {
     switch (format)
     {
-    case "BC1 "_FOURCC:
-    case "BC4 "_FOURCC:
+    case "BC1"_FOURCC:
+    case "BC4S"_FOURCC:
+    case "BC4U"_FOURCC:
     case "DXT1"_FOURCC:
+    case "ATI1"_FOURCC:
         width = (width + 3) / 4;
         height = (height + 3) / 4;
         return width * height * depth * 8;
-    case "BC2 "_FOURCC:
-    case "BC3 "_FOURCC:
-    case "BC5 "_FOURCC:
+    case "BC2"_FOURCC:
+    case "BC3"_FOURCC:
+    case "BC5S"_FOURCC:
+    case "BC5U"_FOURCC:
     case "BC6H"_FOURCC:
-    case "BC7 "_FOURCC:
+    case "BC7"_FOURCC:
     case "DXT3"_FOURCC:
     case "DXT5"_FOURCC:
+    case "ATI2"_FOURCC:
         width = (width + 3) / 4;
         height = (height + 3) / 4;
         return width * height * depth * 16;
     }
-    uint8_t bits = 0;
-    for (int i = 0; i < 4; ++i)
+    size_t channels = 0;
+    size_t bits = 0;
+    for (int i = 0; i < 8; ++i)
     {
-        uint8_t bit = uint8_t(format >> (i * 8 + 32));
-        if (bit == 0)
-            bit = '8';
-        bits += bit - '0';
+        uint8_t bit = uint8_t(format >> (i * 8));
+        if (bit >= 'A' && bit <= 'Z')
+            channels++;
+        if (bit >= '0' && bit <= '9')
+            bits += bit - '0';
     }
+    if (bits == 0)
+        bits = channels * 8;
     size_t bytes = (bits + 7) / 8;
     return width * height * depth * bytes;
 }
 //------------------------------------------------------------------------------
-void Texture::Loader(xxImagePtr& image, std::string const& path)
+void Texture::Loader(xxTexturePtr& texture, std::string const& path)
 {
-    if (image == nullptr || (*image)() != nullptr)
+    if (texture == nullptr || (*texture)() != nullptr)
         return;
 
-    auto& ref = images[image->Name];
+    auto& ref = textures[texture->Name];
     if (ref != nullptr)
     {
-        image = ref;
+        texture = ref;
         return;
     }
-    ref = image;
+    ref = texture;
 
-    Reader(image, path);
+    Reader(texture, path);
 }
 //------------------------------------------------------------------------------
-void Texture::Reader(xxImagePtr& image, std::string const& path)
+void Texture::Reader(xxTexturePtr& texture, std::string const& path)
 {
-    if (image == nullptr || (*image)() != nullptr)
+    if (texture == nullptr || (*texture)() != nullptr)
         return;
 
-    std::string filename = path + image->Name;
-    if (strcasestr(image->Name.c_str(), ".dds"))
+    std::string filename = path + texture->Name;
+    if (strcasestr(texture->Name.c_str(), ".dds"))
     {
-        DDSReader(image, filename);
+        DDSReader(texture, filename);
     }
-    else if (strcasestr(image->Name.c_str(), ".png"))
+    else if (strcasestr(texture->Name.c_str(), ".png"))
     {
-        PNGReader(image, filename);
+        PNGReader(texture, filename);
     }
-    if ((*image)() == nullptr)
+    if ((*texture)() == nullptr)
     {
-        image->Initialize("RGBA8888"_FOURCC, 1, 1, 1, 1, 1);
+        texture->Initialize("RGBA8888"_FOURCC, 1, 1, 1, 1, 1);
     }
 }
 //------------------------------------------------------------------------------
@@ -145,9 +153,9 @@ struct DDS_HEADER
 };
 static_assert(sizeof(DDS_HEADER) == 128);
 //------------------------------------------------------------------------------
-void Texture::DDSReader(xxImagePtr& image, std::string const& filename)
+void Texture::DDSReader(xxTexturePtr& texture, std::string const& filename) __attribute__((optnone))
 {
-    if (image == nullptr || (*image)() != nullptr)
+    if (texture == nullptr || (*texture)() != nullptr)
         return;
 
     xxFile* file = xxFile::Load(filename.c_str());
@@ -179,40 +187,32 @@ void Texture::DDSReader(xxImagePtr& image, std::string const& filename)
             mipmap = header.dwMipMapCount;
         if (header.dwFlags & DDSD_PIXELFORMAT && header.ddspf.dwSize == sizeof(DDS_HEADER::DDS_PIXELFORMAT))
         {
-            char temp[8] = {};
             if (header.ddspf.dwFlags & DDPF_FOURCC)
             {
-                memcpy(temp, &header.ddspf.dwFourCC, 4);
+                memcpy(&format, &header.ddspf.dwFourCC, 4);
             }
             if (header.ddspf.dwFlags & DDPF_RGB)
             {
-                if (header.ddspf.dwRBitMask < header.ddspf.dwBBitMask)
+                uint64_t channels[4];
+                uint64_t* channelsEnd = channels;
+                if (header.ddspf.dwRBitMask) (*channelsEnd++) = 'R' | uint64_t(header.ddspf.dwRBitMask) << 32;
+                if (header.ddspf.dwGBitMask) (*channelsEnd++) = 'G' | uint64_t(header.ddspf.dwGBitMask) << 32;
+                if (header.ddspf.dwBBitMask) (*channelsEnd++) = 'B' | uint64_t(header.ddspf.dwBBitMask) << 32;
+                if (header.ddspf.dwABitMask) (*channelsEnd++) = 'A' | uint64_t(header.ddspf.dwABitMask) << 32;
+                std::sort(channels, channelsEnd);
+
+                char* component = (char*)&format;
+                for (uint64_t* channel = channels; channel != channelsEnd; ++channel)
                 {
-                    temp[0] = 'R';
-                    temp[1] = 'G';
-                    temp[2] = 'B';
-                    temp[4] = xxPopulationCount(header.ddspf.dwRBitMask);
-                    temp[5] = xxPopulationCount(header.ddspf.dwGBitMask);
-                    temp[6] = xxPopulationCount(header.ddspf.dwBBitMask);
+                    (*component++) = char(*channel);
                 }
-                else
+                for (uint64_t* channel = channels; channel != channelsEnd; ++channel)
                 {
-                    temp[0] = 'B';
-                    temp[1] = 'G';
-                    temp[2] = 'R';
-                    temp[4] = xxPopulationCount(header.ddspf.dwBBitMask);
-                    temp[5] = xxPopulationCount(header.ddspf.dwGBitMask);
-                    temp[6] = xxPopulationCount(header.ddspf.dwRBitMask);
-                }
-                if (header.ddspf.dwFlags & DDPF_ALPHAPIXELS)
-                {
-                    temp[3] = 'A';
-                    temp[7] = xxPopulationCount(header.ddspf.dwABitMask);
+                    (*component++) = '0' + xxPopulationCount(*channel >> 32);
                 }
             }
-            format = *(uint64_t*)temp;
         }
-        image->Initialize(format, width, height, depth, mipmap, 1);
+        texture->Initialize(format, width, height, depth, mipmap, 1);
         for (int m = 0; m < mipmap; ++m)
         {
             if (width == 0)
@@ -222,7 +222,7 @@ void Texture::DDSReader(xxImagePtr& image, std::string const& filename)
             if (depth == 0)
                 depth = 1;
 
-            void* data = (*image)(0, 0, 0, m);
+            void* data = (*texture)(0, 0, 0, m);
             size_t size = Calculate(format, width, height, depth);
             file->Read(data, size);
 
@@ -234,9 +234,9 @@ void Texture::DDSReader(xxImagePtr& image, std::string const& filename)
     delete file;
 }
 //------------------------------------------------------------------------------
-void Texture::DDSWriter(xxImagePtr& image, std::string const& filename)
+void Texture::DDSWriter(xxTexturePtr& texture, std::string const& filename)
 {
-    if (image == nullptr || (*image)() == nullptr)
+    if (texture == nullptr || (*texture)() == nullptr)
         return;
 
     xxFile* file = xxFile::Load(filename.c_str());
@@ -248,11 +248,11 @@ void Texture::DDSWriter(xxImagePtr& image, std::string const& filename)
         header.dwMagic = "DDS "_FOURCC;
         header.dwSize = sizeof(DDS_HEADER) - sizeof(uint32_t);
         header.dwFlags = DDSD_CAPS | DDSD_PIXELFORMAT;
-        header.dwHeight = image->Height;
-        header.dwWidth = image->Width;
+        header.dwHeight = texture->Height;
+        header.dwWidth = texture->Width;
         header.dwPitchOrLinearSize = 0;
-        header.dwDepth = image->Depth;
-        header.dwMipMapCount = image->Mipmap;
+        header.dwDepth = texture->Depth;
+        header.dwMipMapCount = texture->Mipmap;
         header.dwCaps = DDSCAPS_TEXTURE;
         if (header.dwHeight > 0)
             header.dwFlags |= DDSD_HEIGHT;
@@ -269,13 +269,13 @@ void Texture::DDSWriter(xxImagePtr& image, std::string const& filename)
             header.dwCaps |= (DDSCAPS_COMPLEX | DDSCAPS_MIPMAP);
         }
         header.ddspf.dwSize = sizeof(DDS_HEADER::DDS_PIXELFORMAT);
-        switch (image->Format)
+        switch (texture->Format)
         {
         default:
             for (int i = 0; i < 4; ++i)
             {
-                uint8_t channel = uint8_t(image->Format >> (i * 8));
-                uint8_t bits = uint8_t(image->Format >> (i * 8 + 32)) - '0';
+                uint8_t channel = uint8_t(texture->Format >> (i * 8));
+                uint8_t bits = uint8_t(texture->Format >> (i * 8 + 32)) - '0';
                 switch (channel)
                 {
                 case 'R':
@@ -301,18 +301,22 @@ void Texture::DDSWriter(xxImagePtr& image, std::string const& filename)
                 }
             }
             break;
-        case "BC1 "_FOURCC:
-        case "BC2 "_FOURCC:
-        case "BC3 "_FOURCC:
-        case "BC4 "_FOURCC:
-        case "BC5 "_FOURCC:
+        case "BC1"_FOURCC:
+        case "BC2"_FOURCC:
+        case "BC3"_FOURCC:
+        case "BC4S"_FOURCC:
+        case "BC4U"_FOURCC:
+        case "BC5S"_FOURCC:
+        case "BC5U"_FOURCC:
         case "BC6H"_FOURCC:
-        case "BC7 "_FOURCC:
+        case "BC7"_FOURCC:
         case "DXT1"_FOURCC:
         case "DXT3"_FOURCC:
         case "DXT5"_FOURCC:
+        case "ATI1"_FOURCC:
+        case "ATI2"_FOURCC:
             header.ddspf.dwFlags |= DDPF_FOURCC;
-            header.ddspf.dwFourCC = uint32_t(image->Format);
+            header.ddspf.dwFourCC = uint32_t(texture->Format);
             break;
         }
         file->Write(&header, sizeof(DDS_HEADER));
@@ -329,8 +333,8 @@ void Texture::DDSWriter(xxImagePtr& image, std::string const& filename)
             if (depth == 0)
                 depth = 1;
 
-            void* data = (*image)(0, 0, 0, m);
-            size_t size = Calculate(image->Format, width, height, depth);
+            void* data = (*texture)(0, 0, 0, m);
+            size_t size = Calculate(texture->Format, width, height, depth);
             file->Write(data, size);
 
             width >>= 1;
@@ -341,9 +345,9 @@ void Texture::DDSWriter(xxImagePtr& image, std::string const& filename)
     delete file;
 }
 //------------------------------------------------------------------------------
-void Texture::PNGReader(xxImagePtr& image, std::string const& filename)
+void Texture::PNGReader(xxTexturePtr& texture, std::string const& filename)
 {
-    if (image == nullptr || (*image)() != nullptr)
+    if (texture == nullptr || (*texture)() != nullptr)
         return;
 
 #if defined(xxWINDOWS)
@@ -355,7 +359,7 @@ void Texture::PNGReader(xxImagePtr& image, std::string const& filename)
     int height = 1;
     stbi_uc* uc = stbi_load(filename.c_str(), &width, &height, nullptr, 4);
 
-    image->Initialize(format, width, height, 1, 1, 1);
+    texture->Initialize(format, width, height, 1, 1, 1);
     if (uc)
     {
 #if defined(xxWINDOWS)
@@ -364,7 +368,7 @@ void Texture::PNGReader(xxImagePtr& image, std::string const& filename)
             std::swap(uc[i + 0], uc[i + 2]);
         }
 #endif
-        memcpy((*image)(), uc, width * height * 4);
+        memcpy((*texture)(), uc, width * height * 4);
     }
 
     stbi_image_free(uc);

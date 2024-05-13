@@ -138,13 +138,13 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
             }
             break;
         case xxHash("map_Ka"):
-            material.map_Ka = CreateImage(GeneratePath(mtl, lasts).c_str());
+            material.map_Ka = CreateTexture(GeneratePath(mtl, lasts).c_str());
             break;
         case xxHash("map_Kd"):
-            material.map_Kd = CreateImage(GeneratePath(mtl, lasts).c_str());
+            material.map_Kd = CreateTexture(GeneratePath(mtl, lasts).c_str());
             break;
         case xxHash("map_Ks"):
-            material.map_Ks = CreateImage(GeneratePath(mtl, lasts).c_str());
+            material.map_Ks = CreateTexture(GeneratePath(mtl, lasts).c_str());
             break;
         }
     }
@@ -241,7 +241,7 @@ xxNodePtr ImportWavefront::Create(char const* obj)
                 child->Material = material.output;
                 if (material.map_Kd)
                 {
-                    child->Material->SetImage(0, material.map_Kd);
+                    child->Material->SetTexture(0, material.map_Kd);
                 }
             }
             break;

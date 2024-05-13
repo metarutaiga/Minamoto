@@ -21,6 +21,10 @@
 		D60790BC2BEE6C5F008810BD /* Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790BA2BEE6C5F008810BD /* Project.cpp */; };
 		D60790BD2BEE6C5F008810BD /* Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790BA2BEE6C5F008810BD /* Project.cpp */; };
 		D60790BE2BEE6C5F008810BD /* Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790BA2BEE6C5F008810BD /* Project.cpp */; };
+		D60790C22BF1AF46008810BD /* Folder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790C02BF1AF46008810BD /* Folder.cpp */; };
+		D60790C32BF1AF46008810BD /* Folder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790C02BF1AF46008810BD /* Folder.cpp */; };
+		D60790C42BF1AF46008810BD /* Folder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790C02BF1AF46008810BD /* Folder.cpp */; };
+		D60790C52BF1AF46008810BD /* Folder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790C02BF1AF46008810BD /* Folder.cpp */; };
 		D6169D162BB17FE200E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D152BB17FE200E5490C /* new.cpp */; };
 		D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6169D172BB17FF400E5490C /* libcxx.lib */; };
 		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
@@ -136,6 +140,8 @@
 		D6022C3523258B5D00B9BFB8 /* Editor.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Editor.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60790B92BEE6C5F008810BD /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = ../Window/Project.h; sourceTree = "<group>"; };
 		D60790BA2BEE6C5F008810BD /* Project.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Project.cpp; path = ../Window/Project.cpp; sourceTree = "<group>"; };
+		D60790C02BF1AF46008810BD /* Folder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Folder.cpp; path = ../Window/Component/Folder.cpp; sourceTree = "<group>"; };
+		D60790C12BF1AF46008810BD /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Folder.h; path = ../Window/Component/Folder.h; sourceTree = "<group>"; };
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D152BB17FE200E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
@@ -285,6 +291,15 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
+		D60790BF2BF1AE29008810BD /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D60790C02BF1AF46008810BD /* Folder.cpp */,
+				D60790C12BF1AF46008810BD /* Folder.h */,
+			);
+			name = Component;
+			sourceTree = "<group>";
+		};
 		D633706C2B3729E8001D4057 /* Import */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +317,7 @@
 		D63370732B382141001D4057 /* Window */ = {
 			isa = PBXGroup;
 			children = (
+				D60790BF2BF1AE29008810BD /* Component */,
 				D63370952B399774001D4057 /* ImGuiFileDialog */,
 				D62FEBF22BE53D41004E9FDF /* About.cpp */,
 				D62FEBF32BE53D41004E9FDF /* About.h */,
@@ -504,6 +520,7 @@
 				D6386A5D2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370782B382156001D4057 /* Log.cpp in Sources */,
+				D60790C22BF1AF46008810BD /* Folder.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6D26F9E2BDE36B400D57772 /* Tools.cpp in Sources */,
@@ -526,6 +543,7 @@
 				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D62FEBF72BE53D41004E9FDF /* About.cpp in Sources */,
 				D6F564012BE9D568006D32D9 /* Profiler.cpp in Sources */,
+				D60790C52BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -552,6 +570,7 @@
 				D666E2EA2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */,
+				D60790C32BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26F9F2BDE36B400D57772 /* Tools.cpp in Sources */,
 				D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */,
@@ -577,6 +596,7 @@
 				D666E2EB2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */,
+				D60790C42BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26FA02BDE36B400D57772 /* Tools.cpp in Sources */,
 				D62FEBF62BE53D41004E9FDF /* About.cpp in Sources */,
@@ -728,7 +748,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = ../../../Build/temp;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
@@ -815,7 +835,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = ../../../Build/temp;
 				OTHER_CFLAGS = (
 					"-fdata-sections",
@@ -835,7 +855,6 @@
 			baseConfigurationReference = D6AA5DBC2BD7DB4400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Debug;
 		};
@@ -844,7 +863,6 @@
 			baseConfigurationReference = D6AA5DBC2BD7DB4400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Release;
 		};

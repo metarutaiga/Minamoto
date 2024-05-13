@@ -9,7 +9,7 @@
 struct Project
 {
     static std::string Root;
-    static std::string Current;
+    static std::string SubFolder;
 public:
     static void Initialize();
     static void Shutdown(bool suspend = false);

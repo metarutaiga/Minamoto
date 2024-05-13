@@ -294,7 +294,7 @@ static bool ImGui_ImplXX_CreateFontsTexture()
 
     // Upload texture to graphics system
     xxDestroyTexture(g_fontTexture);
-    g_fontTexture = xxCreateTexture(g_device, 0, width, height, 1, 1, 1, nullptr);
+    g_fontTexture = xxCreateTexture(g_device, *(uint64_t*)"RGBA8888", width, height, 1, 1, 1, nullptr);
     if (g_fontTexture == 0)
         return false;
     int stride = 0;

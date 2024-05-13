@@ -13,7 +13,7 @@ class Import
 public:
     static void Initialize();
     static void Shutdown();
-    static xxImagePtr CreateImage(char const* img);
+    static xxTexturePtr CreateTexture(char const* img);
     static xxMeshPtr CreateMesh(std::vector<xxVector3> const& vertices, std::vector<xxVector3> const& normals, std::vector<xxVector4> const& colors, std::vector<xxVector2> const& textures);
     static xxMeshPtr OptimizeMesh(xxMeshPtr const& mesh);
     static void MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodePtr const& root);

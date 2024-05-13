@@ -5,7 +5,7 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include <map>
-#include <utility/xxImage.h>
+#include <utility/xxTexture.h>
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
@@ -36,7 +36,7 @@ void Import::Shutdown()
 {
 }
 //------------------------------------------------------------------------------
-xxImagePtr Import::CreateImage(char const* img)
+xxTexturePtr Import::CreateTexture(char const* img)
 {
     int width = 1;
     int height = 1;
@@ -47,8 +47,8 @@ xxImagePtr Import::CreateImage(char const* img)
 #else
     uint64_t format = "RGBA8888"_FOURCC;
 #endif
-    xxImagePtr image = xxImage::Create2D(format, width, height, 1);
-    if (image)
+    xxTexturePtr texture = xxTexture::Create2D(format, width, height, 1);
+    if (texture)
     {
         char const* name = strrchr(img, '/');
         if (name == nullptr)
@@ -56,15 +56,15 @@ xxImagePtr Import::CreateImage(char const* img)
         if (name == nullptr)
             name = img - 1;
         name += 1;
-        image->Name = name;
+        texture->Name = name;
         if (uc)
         {
-            memcpy((*image)(), uc, width * height * 4);
+            memcpy((*texture)(), uc, width * height * 4);
         }
     }
 
     stbi_image_free(uc);
-    return image;
+    return texture;
 }
 //------------------------------------------------------------------------------
 xxMeshPtr Import::CreateMesh(std::vector<xxVector3> const& vertices, std::vector<xxVector3> const& normals, std::vector<xxVector4> const& colors, std::vector<xxVector2> const& textures)
@@ -343,22 +343,22 @@ void Import::MergeNode(xxNodePtr const& target, xxNodePtr const& source, xxNodeP
 //------------------------------------------------------------------------------
 void Import::MergeTexture(xxNodePtr const& node)
 {
-    std::map<std::string, xxImagePtr> images;
+    std::map<std::string, xxTexturePtr> textures;
 
     xxNode::Traversal(node, [&](xxNodePtr const& node)
     {
         if (node->Material)
         {
-            for (xxImagePtr& image : node->Material->Images)
+            for (xxTexturePtr& texture : node->Material->Textures)
             {
-                xxImagePtr& ref = images[image->Name];
+                xxTexturePtr& ref = textures[texture->Name];
                 if (ref)
                 {
-                    image = ref;
+                    texture = ref;
                 }
                 else
                 {
-                    ref = image;
+                    ref = texture;
                 }
             }
         }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30A9A79C25ADC711000FA104 /* xxImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDE24DDA2EA00C0F4EC /* xxImage.cpp */; };
+		30A9A79C25ADC711000FA104 /* xxTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDE24DDA2EA00C0F4EC /* xxTexture.cpp */; };
 		30A9A79D25ADC711000FA104 /* xxMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EE024DDA2EA00C0F4EC /* xxMaterial.cpp */; };
 		30A9A79E25ADC711000FA104 /* xxMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED824DDA2EA00C0F4EC /* xxMath.cpp */; settings = {COMPILER_FLAGS = "-Ofast"; }; };
 		30A9A79F25ADC711000FA104 /* xxMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDF24DDA2EA00C0F4EC /* xxMesh.cpp */; };
@@ -17,13 +17,13 @@
 		30F22EE324DDA2EA00C0F4EC /* xxMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED824DDA2EA00C0F4EC /* xxMath.cpp */; settings = {COMPILER_FLAGS = "-Ofast"; }; };
 		30F22EE424DDA2EA00C0F4EC /* xxNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED924DDA2EA00C0F4EC /* xxNode.cpp */; };
 		30F22EE524DDA2EA00C0F4EC /* xxNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED924DDA2EA00C0F4EC /* xxNode.cpp */; };
-		30F22EEA24DDA2EA00C0F4EC /* xxImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDE24DDA2EA00C0F4EC /* xxImage.cpp */; };
-		30F22EEB24DDA2EA00C0F4EC /* xxImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDE24DDA2EA00C0F4EC /* xxImage.cpp */; };
+		30F22EEA24DDA2EA00C0F4EC /* xxTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDE24DDA2EA00C0F4EC /* xxTexture.cpp */; };
+		30F22EEB24DDA2EA00C0F4EC /* xxTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDE24DDA2EA00C0F4EC /* xxTexture.cpp */; };
 		30F22EEC24DDA2EA00C0F4EC /* xxMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDF24DDA2EA00C0F4EC /* xxMesh.cpp */; };
 		30F22EED24DDA2EA00C0F4EC /* xxMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDF24DDA2EA00C0F4EC /* xxMesh.cpp */; };
 		30F22EEE24DDA2EA00C0F4EC /* xxMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EE024DDA2EA00C0F4EC /* xxMaterial.cpp */; };
 		30F22EEF24DDA2EA00C0F4EC /* xxMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EE024DDA2EA00C0F4EC /* xxMaterial.cpp */; };
-		CE93600925AC440100CEF503 /* xxImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDE24DDA2EA00C0F4EC /* xxImage.cpp */; };
+		CE93600925AC440100CEF503 /* xxTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDE24DDA2EA00C0F4EC /* xxTexture.cpp */; };
 		CE93600A25AC440100CEF503 /* xxMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EE024DDA2EA00C0F4EC /* xxMaterial.cpp */; };
 		CE93600B25AC440100CEF503 /* xxMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED824DDA2EA00C0F4EC /* xxMath.cpp */; settings = {COMPILER_FLAGS = "-Ofast"; }; };
 		CE93600C25AC440100CEF503 /* xxMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDF24DDA2EA00C0F4EC /* xxMesh.cpp */; };
@@ -69,8 +69,8 @@
 		30F22EDA24DDA2EA00C0F4EC /* xxMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxMath.h; path = ../SDK/xxGraphic/utility/xxMath.h; sourceTree = "<group>"; };
 		30F22EDB24DDA2EA00C0F4EC /* xxMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxMesh.h; path = ../SDK/xxGraphic/utility/xxMesh.h; sourceTree = "<group>"; };
 		30F22EDC24DDA2EA00C0F4EC /* xxNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxNode.h; path = ../SDK/xxGraphic/utility/xxNode.h; sourceTree = "<group>"; };
-		30F22EDD24DDA2EA00C0F4EC /* xxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxImage.h; path = ../SDK/xxGraphic/utility/xxImage.h; sourceTree = "<group>"; };
-		30F22EDE24DDA2EA00C0F4EC /* xxImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxImage.cpp; path = ../SDK/xxGraphic/utility/xxImage.cpp; sourceTree = "<group>"; };
+		30F22EDD24DDA2EA00C0F4EC /* xxTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxTexture.h; path = ../SDK/xxGraphic/utility/xxTexture.h; sourceTree = "<group>"; };
+		30F22EDE24DDA2EA00C0F4EC /* xxTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxTexture.cpp; path = ../SDK/xxGraphic/utility/xxTexture.cpp; sourceTree = "<group>"; };
 		30F22EDF24DDA2EA00C0F4EC /* xxMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxMesh.cpp; path = ../SDK/xxGraphic/utility/xxMesh.cpp; sourceTree = "<group>"; };
 		30F22EE024DDA2EA00C0F4EC /* xxMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxMaterial.cpp; path = ../SDK/xxGraphic/utility/xxMaterial.cpp; sourceTree = "<group>"; };
 		30F22EE124DDA2EA00C0F4EC /* xxMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxMaterial.h; path = ../SDK/xxGraphic/utility/xxMaterial.h; sourceTree = "<group>"; };
@@ -156,8 +156,6 @@
 				D6BA6FFC29E265080056FE5F /* xxCamera.h */,
 				D6366D3B2B4BB015000E6872 /* xxFile.cpp */,
 				D6366D3C2B4BB015000E6872 /* xxFile.h */,
-				30F22EDE24DDA2EA00C0F4EC /* xxImage.cpp */,
-				30F22EDD24DDA2EA00C0F4EC /* xxImage.h */,
 				30F22EE024DDA2EA00C0F4EC /* xxMaterial.cpp */,
 				30F22EE124DDA2EA00C0F4EC /* xxMaterial.h */,
 				30F22ED824DDA2EA00C0F4EC /* xxMath.cpp */,
@@ -168,6 +166,8 @@
 				D6F7F8D12B5D21150092A084 /* xxModifier.h */,
 				30F22ED924DDA2EA00C0F4EC /* xxNode.cpp */,
 				30F22EDC24DDA2EA00C0F4EC /* xxNode.h */,
+				30F22EDE24DDA2EA00C0F4EC /* xxTexture.cpp */,
+				30F22EDD24DDA2EA00C0F4EC /* xxTexture.h */,
 				D6BA6FFD29E265080056FE5F /* xxUtility.h */,
 				D644A093231EDDFA00B75B77 /* Products */,
 				D6B33859232043FD0096D02F /* Frameworks */,
@@ -322,7 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6BA700229E265080056FE5F /* xxCamera.cpp in Sources */,
-				30A9A79C25ADC711000FA104 /* xxImage.cpp in Sources */,
+				30A9A79C25ADC711000FA104 /* xxTexture.cpp in Sources */,
 				D69E7A8A2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				D6366D3D2B4BB015000E6872 /* xxFile.cpp in Sources */,
 				D6F7F8D22B5D21150092A084 /* xxModifier.cpp in Sources */,
@@ -338,7 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6BA700129E265080056FE5F /* xxCamera.cpp in Sources */,
-				CE93600925AC440100CEF503 /* xxImage.cpp in Sources */,
+				CE93600925AC440100CEF503 /* xxTexture.cpp in Sources */,
 				D69E7A8D2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				CE93600A25AC440100CEF503 /* xxMaterial.cpp in Sources */,
 				CE93600B25AC440100CEF503 /* xxMath.cpp in Sources */,
@@ -354,7 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6BA700029E265080056FE5F /* xxCamera.cpp in Sources */,
-				30F22EEB24DDA2EA00C0F4EC /* xxImage.cpp in Sources */,
+				30F22EEB24DDA2EA00C0F4EC /* xxTexture.cpp in Sources */,
 				D69E7A8B2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				D6366D3E2B4BB015000E6872 /* xxFile.cpp in Sources */,
 				D6F7F8D32B5D21150092A084 /* xxModifier.cpp in Sources */,
@@ -370,7 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6BA6FFF29E265080056FE5F /* xxCamera.cpp in Sources */,
-				30F22EEA24DDA2EA00C0F4EC /* xxImage.cpp in Sources */,
+				30F22EEA24DDA2EA00C0F4EC /* xxTexture.cpp in Sources */,
 				D69E7A8C2B4A57BB00C3E12D /* xxBinary.cpp in Sources */,
 				D6366D3F2B4BB015000E6872 /* xxFile.cpp in Sources */,
 				D6F7F8D42B5D21150092A084 /* xxModifier.cpp in Sources */,
@@ -388,7 +388,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63C26A85BE00051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = xxGraphicPlus.Android;
 			};
 			name = Debug;
@@ -397,7 +396,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63C26A85BE00051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = xxGraphicPlus.Android;
 			};
 			name = Release;
@@ -511,7 +509,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = ../Build/temp;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
@@ -590,7 +588,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OBJROOT = ../Build/temp;
 				OTHER_CFLAGS = (
 					"-fdata-sections",
