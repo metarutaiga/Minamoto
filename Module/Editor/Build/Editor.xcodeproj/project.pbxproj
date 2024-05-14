@@ -29,6 +29,10 @@
 		D60790DA2BF2497A008810BD /* imgui.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D60790D92BF2497A008810BD /* imgui.dll */; };
 		D60790DC2BF24986008810BD /* imgui.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D60790DB2BF24986008810BD /* imgui.bundle */; };
 		D60790DE2BF24990008810BD /* libimgui.so in Frameworks */ = {isa = PBXBuildFile; fileRef = D60790DD2BF24990008810BD /* libimgui.so */; };
+		D60790F72BF33502008810BD /* TextureTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790F52BF33502008810BD /* TextureTools.cpp */; };
+		D60790F82BF33502008810BD /* TextureTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790F52BF33502008810BD /* TextureTools.cpp */; };
+		D60790F92BF33502008810BD /* TextureTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790F52BF33502008810BD /* TextureTools.cpp */; };
+		D60790FA2BF33502008810BD /* TextureTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790F52BF33502008810BD /* TextureTools.cpp */; };
 		D6169D162BB17FE200E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D152BB17FE200E5490C /* new.cpp */; };
 		D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6169D172BB17FF400E5490C /* libcxx.lib */; };
 		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
@@ -150,6 +154,8 @@
 		D60790D92BF2497A008810BD /* imgui.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60790DB2BF24986008810BD /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60790DD2BF24990008810BD /* libimgui.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libimgui.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60790F52BF33502008810BD /* TextureTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureTools.cpp; path = ../Utility/TextureTools.cpp; sourceTree = "<group>"; };
+		D60790F62BF33502008810BD /* TextureTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureTools.h; path = ../Utility/TextureTools.h; sourceTree = "<group>"; };
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D152BB17FE200E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
@@ -301,6 +307,8 @@
 			children = (
 				D6012A1E2B1DE28F00C3875A /* Grid.cpp */,
 				D6012A1D2B1DE28F00C3875A /* Grid.h */,
+				D60790F52BF33502008810BD /* TextureTools.cpp */,
+				D60790F62BF33502008810BD /* TextureTools.h */,
 				D6D26F9C2BDE36B400D57772 /* Tools.cpp */,
 				D6D26F9D2BDE36B400D57772 /* Tools.h */,
 			);
@@ -546,6 +554,7 @@
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
 				D666E3CF2BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
+				D60790F72BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6D26FA42BDEAF5400D57772 /* Scene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +567,7 @@
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
 				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D62FEBF72BE53D41004E9FDF /* About.cpp in Sources */,
+				D60790FA2BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6F564012BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D60790C52BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */,
@@ -590,6 +600,7 @@
 				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26F9F2BDE36B400D57772 /* Tools.cpp in Sources */,
 				D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */,
+				D60790F82BF33502008810BD /* TextureTools.cpp in Sources */,
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -616,6 +627,7 @@
 				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26FA02BDE36B400D57772 /* Tools.cpp in Sources */,
 				D62FEBF62BE53D41004E9FDF /* About.cpp in Sources */,
+				D60790F92BF33502008810BD /* TextureTools.cpp in Sources */,
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,

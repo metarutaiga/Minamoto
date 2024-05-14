@@ -14,10 +14,10 @@ struct RuntimeAPI Texture
     static void Shutdown();
     static size_t Calculate(uint64_t format, int width, int height, int depth);
     static void Loader(xxTexturePtr& texture, std::string const& path);
-    static void Reader(xxTexturePtr& texture, std::string const& path);
-    static void DDSReader(xxTexturePtr& texture, std::string const& filename);
-    static void DDSWriter(xxTexturePtr& texture, std::string const& filename);
-    static void PNGReader(xxTexturePtr& texture, std::string const& filename);
+    static void Reader(xxTexturePtr const& texture);
+    static void DDSReader(xxTexturePtr const& texture, std::string const& filename);
+    static void DDSWriter(xxTexturePtr const& texture, std::string const& filename);
+    static void PNGReader(xxTexturePtr const& texture, std::string const& filename);
 };
 
 constexpr uint64_t operator""_FOURCC (char const* text, size_t length)

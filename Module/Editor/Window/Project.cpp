@@ -12,12 +12,10 @@
 #include <Runtime/Graphic/Texture.h>
 #include <imgui/imgui_internal.h>
 #include <IconFontCppHeaders/IconsFontAwesome4.h>
-#include "Hierarchy.h"
 #include "Component/Folder.h"
+#include "Utility/TextureTools.h"
+#include "Hierarchy.h"
 #include "Project.h"
-
-#define STB_DXT_IMPLEMENTATION
-#include <stb/stb_dxt.h>
 
 std::string Project::Root;
 std::string Project::SubFolder;
@@ -60,105 +58,6 @@ void Project::Shutdown(bool suspend)
     Files.clear();
 }
 //------------------------------------------------------------------------------
-static void CompressTexture(xxTexturePtr const& texture, uint64_t format, std::string const& root, std::string const& subfolder)
-{
-    if (texture->Format != "RGBA8888"_FOURCC)
-        return;
-    switch (format)
-    {
-    case "BC1"_FOURCC:
-    case "BC2"_FOURCC:
-    case "BC3"_FOURCC:
-    case "DXT1"_FOURCC:
-    case "DXT3"_FOURCC:
-    case "DXT5"_FOURCC:
-        break;
-    default:
-        return;
-    }
-    xxTexturePtr compressed = xxTexture::Create(format, texture->Width, texture->Height, texture->Depth, texture->Mipmap, texture->Array);
-    for (int array = 0; array < texture->Array; ++array)
-    {
-        for (int mipmap = 0; mipmap < texture->Mipmap; ++mipmap)
-        {
-            int levelWidth = (texture->Width >> mipmap);
-            int levelHeight = (texture->Height >> mipmap);
-            int levelDepth = (texture->Depth >> mipmap);
-            if (levelWidth == 0)
-                levelWidth = 1;
-            if (levelHeight == 0)
-                levelHeight = 1;
-            if (levelDepth == 0)
-                levelDepth = 1;
-
-            void* line = (*compressed)(0, 0, 0, mipmap, array);
-            for (int depth = 0; depth < levelDepth; ++depth)
-            {
-                for (int height = 0; height < levelHeight; height += 4)
-                {
-                    for (int width = 0; width < levelWidth; width += 4)
-                    {
-                        unsigned char source[4 * 4 * 4];
-                        unsigned char target[16];
-                        for (int y = 0; y < 4; ++y)
-                        {
-                            for (int x = 0; x < 4; ++x)
-                            {
-                                int offsetX = std::min(width + x, levelWidth - 1);
-                                int offsetY = std::min(height + y, levelHeight - 1);
-                                memcpy(source + y * 4 * 4 + x * 4, (*texture)(offsetX, offsetY, depth, mipmap, array), 4);
-                            }
-                        }
-                        switch (format)
-                        {
-                        case "BC1"_FOURCC:
-                        case "DXT1"_FOURCC:
-                            stb_compress_dxt_block(target, source, 0, STB_DXT_HIGHQUAL);
-                            memcpy(line, target, 8);
-                            line = (char*)line + 8;
-                            break;
-                        case "BC2"_FOURCC:
-                        case "DXT3"_FOURCC:
-                            memset(target, 0, 8);
-                            for (int i = 0; i < 16; ++i)
-                            {
-                                target[i / 2] |= (source[i * 4 + 3] & 0xF0) >> (((i + 1) % 2) * 4);
-                            }
-                            memcpy(line, target, 8);
-                            line = (char*)line + 8;
-                            stb_compress_dxt_block(target, source, 0, STB_DXT_HIGHQUAL);
-                            memcpy(line, target, 8);
-                            line = (char*)line + 8;
-                            break;
-                        case "BC3"_FOURCC:
-                        case "DXT5"_FOURCC:
-                            stb_compress_dxt_block(target, source, 1, STB_DXT_HIGHQUAL);
-                            memcpy(line, target, 16);
-                            line = (char*)line + 16;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    switch (format)
-    {
-    case "BC1"_FOURCC:
-    case "DXT1"_FOURCC:
-        Texture::DDSWriter(compressed, root + subfolder + texture->Name + ".bc1");
-        break;
-    case "BC2"_FOURCC:
-    case "DXT3"_FOURCC:
-        Texture::DDSWriter(compressed, root + subfolder + texture->Name + ".bc2");
-        break;
-    case "BC3"_FOURCC:
-    case "DXT5"_FOURCC:
-        Texture::DDSWriter(compressed, root + subfolder + texture->Name + ".bc3");
-        break;
-    }
-}
-//------------------------------------------------------------------------------
 static void ShowFolders(std::string const& root, std::string& select)
 {
     if (ImGui::IsWindowAppearing() && root.empty() == false)
@@ -179,8 +78,9 @@ static void ShowFolders(std::string const& root, std::string& select)
                 xxTexturePtr texture;
                 if (strcasestr(filename, ".dds") || strcasestr(filename, ".png"))
                 {
-                    texture = xxTexture::Create(0, 0, 0, 0, 0, 0);
+                    texture = xxTexture::Create();
                     texture->Name = filename;
+                    texture->Path = folder;
                 }
                 Files.push_back({filename, texture});
             }
@@ -195,7 +95,7 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
 {
     bool textureUpdate = false;
     float width = 96.0f;
-    int columns = int(ImGui::GetColumnWidth() / (width + ImGui::GetStyle().FramePadding.x * 2.0f));
+    int columns = int(ImGui::GetColumnWidth() / (width + ImGui::GetStyle().FramePadding.x * 4.0f));
     if (columns < 1)
         columns = 1;
 
@@ -206,11 +106,10 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
         uint64_t texture = 0;
         if (attribute.texture)
         {
-            if ((*attribute.texture)() == nullptr && textureUpdate == false)
+            if (attribute.texture->Texture == 0 && textureUpdate == false)
             {
-                Texture::Reader(attribute.texture, root + subfolder);
                 attribute.texture->Update(updateData.device);
-                textureUpdate = (*attribute.texture)() != nullptr;
+                textureUpdate = true;
             }
             texture = attribute.texture->Texture;
         }
@@ -225,19 +124,15 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
         static void* selected = nullptr;
         if (selected == &attribute && ImGui::BeginPopup("texture"))
         {
-            if (ImGui::Button("Compress BC1"))
+            uint64_t format = 0;
+            if (ImGui::Button("Compress BC1"))  format = "BC1"_FOURCC;
+            if (ImGui::Button("Compress BC2"))  format = "BC2"_FOURCC;
+            if (ImGui::Button("Compress BC3"))  format = "BC3"_FOURCC;
+            if (ImGui::Button("Compress BC4U")) format = "BC4U"_FOURCC;
+            if (ImGui::Button("Compress BC5U")) format = "BC5U"_FOURCC;
+            if (format)
             {
-                CompressTexture(attribute.texture, "BC1"_FOURCC, root, subfolder);
-                selected = nullptr;
-            }
-            if (ImGui::Button("Compress BC2"))
-            {
-                CompressTexture(attribute.texture, "BC2"_FOURCC, root, subfolder);
-                selected = nullptr;
-            }
-            if (ImGui::Button("Compress BC3"))
-            {
-                CompressTexture(attribute.texture, "BC3"_FOURCC, root, subfolder);
+                TextureTools::CompressTexture(attribute.texture, format, root, subfolder);
                 selected = nullptr;
             }
             ImGui::EndPopup();
@@ -253,17 +148,12 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
                 }
                 if (ImGui::BeginTooltip())
                 {
-                    if (attribute.texture->Width > 1)
-                        ImGui::Text("Width : %d", attribute.texture->Width);
-                    if (attribute.texture->Height > 1)
-                        ImGui::Text("Height : %d", attribute.texture->Height);
-                    if (attribute.texture->Depth > 1)
-                        ImGui::Text("Depth : %d", attribute.texture->Depth);
-                    if (attribute.texture->Mipmap > 1)
-                        ImGui::Text("Mipmap : %d", attribute.texture->Mipmap);
-                    if (attribute.texture->Array > 1)
-                        ImGui::Text("Array : %d", attribute.texture->Array);
                     ImGui::Text("Format : %.8s", (char*)&attribute.texture->Format);
+                    if (attribute.texture->Width > 1)   ImGui::Text("Width : %d", attribute.texture->Width);
+                    if (attribute.texture->Height > 1)  ImGui::Text("Height : %d", attribute.texture->Height);
+                    if (attribute.texture->Depth > 1)   ImGui::Text("Depth : %d", attribute.texture->Depth);
+                    if (attribute.texture->Mipmap > 1)  ImGui::Text("Mipmap : %d", attribute.texture->Mipmap);
+                    if (attribute.texture->Array > 1)   ImGui::Text("Array : %d", attribute.texture->Array);
                     ImGui::EndTooltip();
                 }
             }

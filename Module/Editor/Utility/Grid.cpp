@@ -8,6 +8,7 @@
 #include <utility/xxMaterial.h>
 #include <utility/xxMesh.h>
 #include <utility/xxNode.h>
+#include <Runtime/Graphic/Texture.h>
 #include "Grid.h"
 
 //------------------------------------------------------------------------------
@@ -78,8 +79,7 @@ xxTexturePtr Grid::CreateTexture()
 {
     int level = 8;
 
-    uint64_t format = *(uint64_t*)"RGBA8888";
-    xxTexturePtr texture = xxTexture::Create2D(format, (1 << (level - 1)), (1 << (level - 1)), level);
+    xxTexturePtr texture = xxTexture::Create2D("RGBA8888"_FOURCC, (1 << (level - 1)), (1 << (level - 1)), level);
     if (texture == nullptr)
         return nullptr;
 

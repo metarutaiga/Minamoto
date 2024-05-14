@@ -25,6 +25,7 @@ void Texture::Initialize()
 {
     xxTexture::Calculate = Texture::Calculate;
     xxTexture::Loader = Texture::Loader;
+    xxTexture::Reader = Texture::Reader;
 }
 //------------------------------------------------------------------------------
 void Texture::Shutdown()
@@ -86,15 +87,15 @@ void Texture::Loader(xxTexturePtr& texture, std::string const& path)
     }
     ref = texture;
 
-    Reader(texture, path);
+    texture->Path = path;
 }
 //------------------------------------------------------------------------------
-void Texture::Reader(xxTexturePtr& texture, std::string const& path)
+void Texture::Reader(xxTexturePtr const& texture)
 {
     if (texture == nullptr || (*texture)() != nullptr)
         return;
 
-    std::string filename = path + texture->Name;
+    std::string filename = texture->Path + texture->Name;
     if (strcasestr(texture->Name.c_str(), ".dds"))
     {
         DDSReader(texture, filename);
@@ -153,7 +154,7 @@ struct DDS_HEADER
 };
 static_assert(sizeof(DDS_HEADER) == 128);
 //------------------------------------------------------------------------------
-void Texture::DDSReader(xxTexturePtr& texture, std::string const& filename) __attribute__((optnone))
+void Texture::DDSReader(xxTexturePtr const& texture, std::string const& filename)
 {
     if (texture == nullptr || (*texture)() != nullptr)
         return;
@@ -234,7 +235,7 @@ void Texture::DDSReader(xxTexturePtr& texture, std::string const& filename) __at
     delete file;
 }
 //------------------------------------------------------------------------------
-void Texture::DDSWriter(xxTexturePtr& texture, std::string const& filename)
+void Texture::DDSWriter(xxTexturePtr const& texture, std::string const& filename)
 {
     if (texture == nullptr || (*texture)() == nullptr)
         return;
@@ -345,7 +346,7 @@ void Texture::DDSWriter(xxTexturePtr& texture, std::string const& filename)
     delete file;
 }
 //------------------------------------------------------------------------------
-void Texture::PNGReader(xxTexturePtr& texture, std::string const& filename)
+void Texture::PNGReader(xxTexturePtr const& texture, std::string const& filename)
 {
     if (texture == nullptr || (*texture)() != nullptr)
         return;
