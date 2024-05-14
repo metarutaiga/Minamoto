@@ -66,7 +66,11 @@ void Scene::Shutdown(bool suspend)
         {
             node->Material->Invalidate();
             for (xxTexturePtr const& texture : node->Material->Textures)
+            {
+                if (texture->Path.empty() == false)
+                    texture->Initialize(0, 0, 0, 0, 0, 0);
                 texture->Invalidate();
+            }
         }
         return true;
     };
