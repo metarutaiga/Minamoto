@@ -35,7 +35,7 @@ void Module::Create(const char* path, uint64_t device)
 
     char temp[4096];
 #if defined(xxWINDOWS)
-    snprintf(temp, 4096, "%s\\%s", app, path);
+    snprintf(temp, 4096, "%s/%s", app, path);
 #elif defined(xxMACOS) || defined(xxMACCATALYST)
     snprintf(temp, 4096, "%s/../Frameworks", app);
 #elif defined(xxIOS)
@@ -48,7 +48,7 @@ void Module::Create(const char* path, uint64_t device)
     while (char* filename = xxOpenDirectory(&handle, temp, extension, nullptr))
     {
 #if defined(xxWINDOWS)
-        snprintf(temp, 4096, "%s\\%s\\%s", app, path, filename);
+        snprintf(temp, 4096, "%s/%s/%s", app, path, filename);
 #elif defined(xxMACOS) || defined(xxMACCATALYST)
         snprintf(temp, 4096, "%s/../Frameworks/%s", app, filename);
 #elif defined(xxIOS)
@@ -61,7 +61,7 @@ void Module::Create(const char* path, uint64_t device)
         float end = xxGetCurrentTime();
         if (library == nullptr)
         {
-            free(filename);
+            xxFree(filename);
             continue;
         }
 
@@ -73,10 +73,10 @@ void Module::Create(const char* path, uint64_t device)
         if (create == nullptr || shutdown == nullptr || update == nullptr)
         {
             xxFreeLibrary(library);
-            free(filename);
+            xxFree(filename);
             continue;
         }
-        free(filename);
+        xxFree(filename);
 
         g_moduleLibraries.push_back(library);
         g_moduleCreates.push_back(create);

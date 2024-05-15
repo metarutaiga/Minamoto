@@ -25,6 +25,7 @@ struct FileAttribute
 {
     std::string name;
     xxTexturePtr texture;
+    bool textureLoaded = false;
 };
 static xxTexturePtr DummyTexture;
 static std::vector<FileAttribute> Files;
@@ -48,6 +49,7 @@ void Project::Shutdown(bool suspend)
         {
             attribute.texture->Initialize(0, 0, 0, 0, 0, 0);
             attribute.texture->Invalidate();
+            attribute.textureLoaded = false;
         }
     }
     if (suspend)
@@ -57,15 +59,11 @@ void Project::Shutdown(bool suspend)
     Files.clear();
 }
 //------------------------------------------------------------------------------
-static void ShowFolders(std::string const& root, std::string& select)
+static void ShowFolders(std::string const& root, std::string& selected)
 {
-    if (ImGui::IsWindowAppearing() && root.empty() == false)
+    auto select = [&](std::string const& root, std::string const& subfolder)
     {
-        Left.Finder(root);
-    }
-    Left.Window([&](std::string const& root, std::string const& subfolder)
-    {
-        select = subfolder;
+        selected = subfolder;
 
         Files.clear();
         uint64_t handle = 0;
@@ -81,13 +79,34 @@ static void ShowFolders(std::string const& root, std::string& select)
                     texture->Name = filename;
                     texture->Path = folder;
                 }
-                Files.push_back({filename, texture});
+                Files.push_back({ filename, texture });
             }
             xxFree(filename);
         }
         xxCloseDirectory(&handle);
         std::sort(Files.begin(), Files.end(), [](auto& a, auto& b) { return a.name < b.name; });
-    });
+    };
+
+    if (ImGui::IsWindowAppearing() && root.empty() == false)
+    {
+        Left.Finder(root);
+        if (Files.empty())
+        {
+            Left.Selected = nullptr;
+            select(root, "");
+        }
+    }
+    Left.Window(select);
+
+    ImVec2 avail = ImGui::GetContentRegionAvail();
+    if (avail.x && avail.y)
+    {
+        if (ImGui::InvisibleButton("", avail))
+        {
+            Left.Selected = nullptr;
+            select(root, "");
+        }
+    }
 }
 //------------------------------------------------------------------------------
 static void ShowFiles(const UpdateData& updateData, std::string const& root, std::string const& subfolder, std::vector<FileAttribute> const& files)
@@ -105,9 +124,10 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
         uint64_t texture = 0;
         if (attribute.texture)
         {
-            if (attribute.texture->Texture == 0 && textureUpdate == false)
+            if (attribute.texture->Texture == 0 && attribute.textureLoaded == false && textureUpdate == false)
             {
                 attribute.texture->Update(updateData.device);
+                attribute.textureLoaded = true;
                 textureUpdate = true;
             }
             texture = attribute.texture->Texture;
