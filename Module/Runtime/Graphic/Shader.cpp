@@ -4,9 +4,9 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
+#include "Runtime.h"
 #include <map>
 #include <string_view>
-#include <xxGraphic.h>
 #include "Shader.h"
 
 //==============================================================================

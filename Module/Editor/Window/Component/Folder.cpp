@@ -4,9 +4,9 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
+#include "Editor.h"
 #include <functional>
-#include <IconFontCppHeaders/IconsFontAwesome4.h>
+#include <string>
 #include "Folder.h"
 
 //------------------------------------------------------------------------------

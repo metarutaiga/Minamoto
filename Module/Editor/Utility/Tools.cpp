@@ -4,10 +4,10 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
+#include "Editor.h"
 #include <vector>
-#include <utility/xxCamera.h>
-#include <utility/xxMath.h>
+#include <xxGraphicPlus/xxCamera.h>
+#include <xxGraphicPlus/xxMath.h>
 #include <Tools/CameraTools.h>
 #include "Tools.h"
 

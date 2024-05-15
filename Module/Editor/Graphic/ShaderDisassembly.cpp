@@ -4,13 +4,11 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
+#include "Editor.h"
 #include <string>
 #include <vector>
 #include <map>
-#include <xxGraphic.h>
-#include <utility/xxFile.h>
-#include <Interface.h>
-#include <IconFontCppHeaders/IconsFontAwesome4.h>
+#include <xxGraphicPlus/xxFile.h>
 #include "ShaderDisassembly.h"
 
 #if defined(__APPLE__)

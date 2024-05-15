@@ -38,23 +38,23 @@
     <ClCompile Include="..\SDK\xxGraphic\utility\xxBinary.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\utility\xxCamera.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\utility\xxFile.cpp" />
-    <ClCompile Include="..\SDK\xxGraphic\utility\xxImage.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\utility\xxMaterial.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\utility\xxMath.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\utility\xxMesh.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\utility\xxModifier.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\utility\xxNode.cpp" />
+    <ClCompile Include="..\SDK\xxGraphic\utility\xxTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SDK\xxGraphic\utility\xxBinary.h" />
     <ClInclude Include="..\SDK\xxGraphic\utility\xxCamera.h" />
     <ClInclude Include="..\SDK\xxGraphic\utility\xxFile.h" />
-    <ClInclude Include="..\SDK\xxGraphic\utility\xxImage.h" />
     <ClInclude Include="..\SDK\xxGraphic\utility\xxMaterial.h" />
     <ClInclude Include="..\SDK\xxGraphic\utility\xxMath.h" />
     <ClInclude Include="..\SDK\xxGraphic\utility\xxMesh.h" />
     <ClInclude Include="..\SDK\xxGraphic\utility\xxModifier.h" />
     <ClInclude Include="..\SDK\xxGraphic\utility\xxNode.h" />
+    <ClInclude Include="..\SDK\xxGraphic\utility\xxTexture.h" />
     <ClInclude Include="..\SDK\xxGraphic\utility\xxUtility.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -255,7 +255,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
       <PreprocessorDefinitions>XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -278,7 +278,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
       <PreprocessorDefinitions>XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -301,7 +301,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
       <PreprocessorDefinitions>XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -324,7 +324,7 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
       <PreprocessorDefinitions>XX_BUILD_LIBRARY;XXPLUS_BUILD_LIBRARY;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>

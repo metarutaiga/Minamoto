@@ -4,11 +4,10 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
+#include "Editor.h"
 #include <queue>
-#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include "Script/Lua.h"
-#include "Console.h"
+#include "Component/Console.h"
 #include "LuaConsole.h"
 
 extern "C"

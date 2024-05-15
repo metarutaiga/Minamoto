@@ -4,11 +4,10 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
-#include <IconFontCppHeaders/IconsFontAwesome4.h>
-#include <utility/xxCamera.h>
-#include <utility/xxFile.h>
-#include <utility/xxNode.h>
+#include "Editor.h"
+#include <xxGraphicPlus/xxCamera.h>
+#include <xxGraphicPlus/xxFile.h>
+#include <xxGraphicPlus/xxNode.h>
 #include <Graphic/Binary.h>
 #include <Runtime/Tools/NodeTools.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>

@@ -7,7 +7,7 @@
 #pragma once
 
 #include "Runtime.h"
-#include <utility/xxBinary.h>
+#include <xxGraphicPlus/xxBinary.h>
 
 class RuntimeAPI Binary : public xxBinary
 {

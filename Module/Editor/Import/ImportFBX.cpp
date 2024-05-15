@@ -4,11 +4,12 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <utility/xxFile.h>
-#include <utility/xxTexture.h>
-#include <utility/xxMaterial.h>
-#include <utility/xxMesh.h>
-#include <utility/xxNode.h>
+#include "Editor.h"
+#include <xxGraphicPlus/xxFile.h>
+#include <xxGraphicPlus/xxMaterial.h>
+#include <xxGraphicPlus/xxMesh.h>
+#include <xxGraphicPlus/xxNode.h>
+#include <xxGraphicPlus/xxTexture.h>
 #include <Runtime/Modifier/ConstantQuaternionModifier.h>
 #include <Runtime/Modifier/ConstantScaleModifier.h>
 #include <Runtime/Modifier/ConstantTranslateModifier.h>

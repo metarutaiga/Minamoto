@@ -4,7 +4,8 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <utility/xxNode.h>
+#include "Runtime.h"
+#include <xxGraphicPlus/xxNode.h>
 #include "ConstantScaleModifier.h"
 
 //==============================================================================

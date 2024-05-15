@@ -4,8 +4,9 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
+#include "Runtime.h"
 #include <algorithm>
-#include <utility/xxCamera.h>
+#include <xxGraphicPlus/xxCamera.h>
 #include "CameraTools.h"
 
 //==============================================================================

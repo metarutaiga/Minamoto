@@ -4,6 +4,7 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
+#include "Runtime.h"
 #include <queue>
 #include <string>
 #include "Lua.h"

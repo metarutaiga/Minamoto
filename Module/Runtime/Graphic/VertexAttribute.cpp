@@ -4,9 +4,9 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
+#include "Runtime.h"
 #include <map>
 #include <vector>
-#include <xxGraphic.h>
 #include "VertexAttribute.h"
 
 //==============================================================================

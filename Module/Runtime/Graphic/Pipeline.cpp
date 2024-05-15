@@ -4,10 +4,10 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
+#include "Runtime.h"
 #include <array>
 #include <map>
-#include <xxGraphic.h>
-#include <internal/xxGraphicInternal.h>
+#include <xxGraphic/internal/xxGraphicInternal.h>
 #include "Pipeline.h"
 
 //==============================================================================

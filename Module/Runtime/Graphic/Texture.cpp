@@ -4,10 +4,11 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <xxGraphic.h>
+#include "Runtime.h"
+#include <algorithm>
 #include <map>
-#include <utility/xxFile.h>
-#include <utility/xxTexture.h>
+#include <xxGraphicPlus/xxFile.h>
+#include <xxGraphicPlus/xxTexture.h>
 #include "Texture.h"
 
 #define STBI_ONLY_PNG
@@ -123,7 +124,7 @@ void Texture::Reader(xxTexturePtr const& texture)
 #define PASCAL
 #define _Return_type_success_(...)
 #endif
-#include <xxGraphic/dxsdk/ddraw.h>
+#include <dxsdk/ddraw.h>
 struct DDS_HEADER
 {
     uint32_t        dwMagic;
@@ -246,8 +247,8 @@ void Texture::DDSWriter(xxTexturePtr const& texture, std::string const& filename
         if (file == nullptr)
             break;
         DDS_HEADER header = {};
-        header.dwMagic = "DDS "_FOURCC;
-        header.dwSize = sizeof(DDS_HEADER) - sizeof(uint32_t);
+        header.dwMagic = uint32_t("DDS "_FOURCC);
+        header.dwSize = sizeof(DDS_HEADER) - sizeof(header.dwMagic);
         header.dwFlags = DDSD_CAPS | DDSD_PIXELFORMAT;
         header.dwHeight = texture->Height;
         header.dwWidth = texture->Width;

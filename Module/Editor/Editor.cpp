@@ -4,10 +4,7 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
-#include <imgui/imgui_internal.h>
-#include <IconFontCppHeaders/IconsFontAwesome4.h>
-#include <Runtime/Runtime.h>
+#include "Editor.h"
 #include "Graphic/ShaderDisassembly.h"
 #include "Import/Import.h"
 #include "Utility/Tools.h"

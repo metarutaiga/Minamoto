@@ -4,13 +4,11 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
+#include "Editor.h"
 #include <freetype/freetype.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include <lua/lua.h>
 #include <ufbx/ufbx.h>
-#include <Runtime/Runtime.h>
-#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include "About.h"
 
 #undef ufbx_pack_version

@@ -4,8 +4,8 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
-#include <utility/xxTexture.h>
+#include "Editor.h"
+#include <xxGraphicPlus/xxTexture.h>
 #include <Runtime/Graphic/Texture.h>
 #include "TextureTools.h"
 

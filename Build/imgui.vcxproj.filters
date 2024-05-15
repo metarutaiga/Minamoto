@@ -6,12 +6,6 @@
     <ClCompile Include="..\SDK\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\SDK\imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\SDK\imgui\imgui_tables.cpp" />
-    <ClCompile Include="..\SDK\imgui\misc\freetype\imgui_freetype.cpp">
-      <Filter>misc\freetype</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SDK\imgui\backends\imgui_impl_win32.cpp">
-      <Filter>backends</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SDK\imgui\imconfig.h" />
@@ -20,27 +14,5 @@
     <ClInclude Include="..\SDK\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\SDK\imgui\imstb_textedit.h" />
     <ClInclude Include="..\SDK\imgui\imstb_truetype.h" />
-    <ClInclude Include="..\SDK\imgui\misc\freetype\imgui_freetype.h">
-      <Filter>misc\freetype</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SDK\imgui\backends\imgui_impl_win32.h">
-      <Filter>backends</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="misc">
-      <UniqueIdentifier>{7f6d19b0-ef47-4bea-a9cd-e38622efbe4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="misc\freetype">
-      <UniqueIdentifier>{7662996d-8582-4b67-95b1-4684900b8bb3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="backends">
-      <UniqueIdentifier>{69dc70f4-c05a-4923-94d5-67420bde84b8}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\SDK\imgui\misc\freetype\README.md">
-      <Filter>misc\freetype</Filter>
-    </None>
   </ItemGroup>
 </Project>

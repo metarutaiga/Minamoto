@@ -4,7 +4,7 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
+#include "Editor.h"
 #include <queue>
 #include "Console.h"
 

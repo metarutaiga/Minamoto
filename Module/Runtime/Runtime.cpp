@@ -4,7 +4,7 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <xxSystem.h>
+#include "Runtime.h"
 #include <freetype/freetype.h>
 #include <lua/lua.h>
 #include "Modifier/Modifier.h"

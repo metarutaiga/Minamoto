@@ -4,12 +4,12 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <xxGraphic.h>
-#include <internal/xxGraphicInternal.h>
+#include "Runtime.h"
+#include <xxGraphic/internal/xxGraphicInternal.h>
 #include "Binding.h"
 
 #if defined(xxMACOS) || defined(xxIOS)
-#include <xxGraphicMetal2.h>
+#include <xxGraphic/xxGraphicMetal2.h>
 #endif
 
 //==============================================================================

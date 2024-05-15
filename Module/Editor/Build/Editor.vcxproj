@@ -159,7 +159,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_API=__declspec(dllimport);IMGUI_USER_CONFIG="../../Build/include/imgui_user_config.h";UFBX_REAL_IS_FLOAT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -173,7 +173,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_API=__declspec(dllimport);IMGUI_USER_CONFIG="../../Build/include/imgui_user_config.h";UFBX_REAL_IS_FLOAT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -187,7 +187,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_API=__declspec(dllimport);IMGUI_USER_CONFIG="../../Build/include/imgui_user_config.h";UFBX_REAL_IS_FLOAT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -201,7 +201,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_API=__declspec(dllimport);IMGUI_USER_CONFIG="../../Build/include/imgui_user_config.h";UFBX_REAL_IS_FLOAT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -215,13 +215,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_API=__declspec(dllimport);IMGUI_USER_CONFIG="../../Build/include/imgui_user_config.h";UFBX_REAL_IS_FLOAT;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -236,13 +236,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_API=__declspec(dllimport);IMGUI_USER_CONFIG="../../Build/include/imgui_user_config.h";UFBX_REAL_IS_FLOAT;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -257,13 +257,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_API=__declspec(dllimport);IMGUI_USER_CONFIG="../../Build/include/imgui_user_config.h";UFBX_REAL_IS_FLOAT;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -278,11 +278,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;../../../SDK/xxGraphic;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;../..;../../Runtime;../../../SDK;../../../SDK/freetype/include;../../../SDK/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MODULE_BUILD_LIBRARY;IMGUI_API=__declspec(dllimport);IMGUI_USER_CONFIG="../../Build/include/imgui_user_config.h";UFBX_REAL_IS_FLOAT;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -304,36 +304,46 @@
     <ClCompile Include="..\Import\ImportFBX.cpp" />
     <ClCompile Include="..\Import\ImportWavefront.cpp" />
     <ClCompile Include="..\Utility\Grid.cpp" />
+    <ClCompile Include="..\Utility\TextureTools.cpp" />
     <ClCompile Include="..\Utility\Tools.cpp" />
     <ClCompile Include="..\Window\About.cpp" />
-    <ClCompile Include="..\Window\Console.cpp" />
+    <ClCompile Include="..\Window\Component\Console.cpp" />
+    <ClCompile Include="..\Window\Component\Folder.cpp" />
     <ClCompile Include="..\Window\Hierarchy.cpp" />
     <ClCompile Include="..\Window\Inspector.cpp" />
     <ClCompile Include="..\Window\Log.cpp" />
     <ClCompile Include="..\Window\LuaConsole.cpp" />
     <ClCompile Include="..\Window\Profiler.cpp" />
+    <ClCompile Include="..\Window\Project.cpp" />
     <ClCompile Include="..\Window\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\SDK\ImGuiFileDialog\ImGuiFileDialog.h" />
     <ClInclude Include="..\..\..\SDK\ufbx\ufbx.h" />
+    <ClInclude Include="..\Editor.h" />
     <ClInclude Include="..\Graphic\ShaderDisassembly.h" />
     <ClInclude Include="..\ImGuiHelper.h" />
     <ClInclude Include="..\Import\Import.h" />
     <ClInclude Include="..\Import\ImportFBX.h" />
     <ClInclude Include="..\Import\ImportWavefront.h" />
     <ClInclude Include="..\Utility\Grid.h" />
+    <ClInclude Include="..\Utility\TextureTools.h" />
     <ClInclude Include="..\Utility\Tools.h" />
     <ClInclude Include="..\Window\About.h" />
-    <ClInclude Include="..\Window\Console.h" />
+    <ClInclude Include="..\Window\Component\Console.h" />
+    <ClInclude Include="..\Window\Component\Folder.h" />
     <ClInclude Include="..\Window\Hierarchy.h" />
     <ClInclude Include="..\Window\Inspector.h" />
     <ClInclude Include="..\Window\Log.h" />
     <ClInclude Include="..\Window\LuaConsole.h" />
     <ClInclude Include="..\Window\Profiler.h" />
+    <ClInclude Include="..\Window\Project.h" />
     <ClInclude Include="..\Window\Scene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Build\imgui.vcxproj">
+      <Project>{9b49443b-7fae-479e-8cdf-29919a9f786f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Runtime\Build\Runtime.vcxproj">
       <Project>{66faef03-e0a2-42d3-a34b-004f7cde4346}</Project>
     </ProjectReference>

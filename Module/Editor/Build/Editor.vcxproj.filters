@@ -41,14 +41,23 @@
     <ClCompile Include="..\Window\About.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="..\Window\Console.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
     <ClCompile Include="..\Window\LuaConsole.cpp">
       <Filter>Window</Filter>
     </ClCompile>
     <ClCompile Include="..\Window\Profiler.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\Project.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\Component\Folder.cpp">
+      <Filter>Window\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\TextureTools.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\Component\Console.cpp">
+      <Filter>Window\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,15 +101,25 @@
     <ClInclude Include="..\Window\About.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="..\Window\Console.h">
-      <Filter>Window</Filter>
-    </ClInclude>
     <ClInclude Include="..\Window\LuaConsole.h">
       <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="..\Window\Profiler.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="..\Window\Project.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\Component\Folder.h">
+      <Filter>Window\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\TextureTools.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\Component\Console.h">
+      <Filter>Window\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Editor.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphic">
@@ -120,6 +139,9 @@
     </Filter>
     <Filter Include="Import\ufbx">
       <UniqueIdentifier>{6532551d-ae8d-40c2-b589-8b178b2162d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Component">
+      <UniqueIdentifier>{b2937d1c-4053-44c0-bd2d-1aaa76fa6262}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

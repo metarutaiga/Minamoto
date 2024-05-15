@@ -4,9 +4,8 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
+#include "Editor.h"
 #include <map>
-#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include "Profiler.h"
 
 static std::map<unsigned int, std::pair<const char*, double>> times;

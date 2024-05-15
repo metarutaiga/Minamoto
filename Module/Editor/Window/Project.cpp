@@ -4,14 +4,13 @@
 // Copyright (c) 2023-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <Interface.h>
+#include "Editor.h"
+#include <algorithm>
 #include <functional>
 #include <string>
 #include <vector>
-#include <xxGraphic/utility/xxTexture.h>
+#include <xxGraphicPlus/xxTexture.h>
 #include <Runtime/Graphic/Texture.h>
-#include <imgui/imgui_internal.h>
-#include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include "Component/Folder.h"
 #include "Utility/TextureTools.h"
 #include "Hierarchy.h"

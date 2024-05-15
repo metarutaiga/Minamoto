@@ -4,8 +4,9 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <utility/xxNode.h>
-#include <utility/xxFile.h>
+#include "Runtime.h"
+#include <xxGraphicPlus/xxNode.h>
+#include <xxGraphicPlus/xxFile.h>
 #include "Binary.h"
 
 //==============================================================================

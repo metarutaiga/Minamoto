@@ -6,7 +6,7 @@
 //==============================================================================
 #include <Interface.h>
 
-#include <utility/xxNode.h>
+#include <xxGraphicPlus/xxNode.h>
 
 #if DirectXMath
 #include "DirectXMath.h"

@@ -6,6 +6,8 @@
 //==============================================================================
 #pragma once
 
+#include <xxGraphic/xxGraphic.h>
+
 #ifndef RuntimeAPI
 #   if defined(_MSC_VER) && defined(RUNTIME_BUILD_LIBRARY)
 #       define RuntimeAPI           __declspec(dllexport)
@@ -18,6 +20,7 @@
 
 #if defined(_MSC_VER)
 #   pragma warning(disable:4200)
+#   pragma warning(disable:4251)
 #endif
 
 struct RuntimeAPI Runtime
