@@ -173,6 +173,14 @@ void ValidateNode(float time, char* text, size_t count)
     {
         step += snprintf(text + step, count - step, "Matrix Multiply (%u) : %f %f %f %f\n", i, c.v[i].x, c.v[i].y, c.v[i].z, c.v[i].w);
     }
+    c.v[0].v = __builtin_multiplyvector(&a.v->v, b.v[0].v);
+    c.v[1].v = __builtin_multiplyvector(&a.v->v, b.v[1].v);
+    c.v[2].v = __builtin_multiplyvector(&a.v->v, b.v[2].v);
+    c.v[3].v = __builtin_multiplyvector(&a.v->v, b.v[3].v);
+    for (int i = 0; i < 4; ++i)
+    {
+        step += snprintf(text + step, count - step, "Matrix Multiply (%u) : %f %f %f %f\n", i, c.v[i].x, c.v[i].y, c.v[i].z, c.v[i].w);
+    }
 #if DirectXMath
     XMMATRIX aa = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
     XMMATRIX bb = { 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 0, 4 };

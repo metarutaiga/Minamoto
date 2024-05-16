@@ -6,8 +6,6 @@
 //==============================================================================
 #pragma once
 
-#define MODULE_NAME     "Editor"
-
 struct About
 {
     static bool Update(const UpdateData& updateData, bool& show);

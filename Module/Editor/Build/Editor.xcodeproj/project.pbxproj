@@ -33,14 +33,14 @@
 		D60790F82BF33502008810BD /* TextureTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790F52BF33502008810BD /* TextureTools.cpp */; };
 		D60790F92BF33502008810BD /* TextureTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790F52BF33502008810BD /* TextureTools.cpp */; };
 		D60790FA2BF33502008810BD /* TextureTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790F52BF33502008810BD /* TextureTools.cpp */; };
+		D60790FD2BF501DC008810BD /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790FB2BF501DC008810BD /* Console.cpp */; };
+		D60790FE2BF501DC008810BD /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790FB2BF501DC008810BD /* Console.cpp */; };
+		D60790FF2BF501DC008810BD /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790FB2BF501DC008810BD /* Console.cpp */; };
+		D60791002BF501DC008810BD /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790FB2BF501DC008810BD /* Console.cpp */; };
 		D6169D162BB17FE200E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D152BB17FE200E5490C /* new.cpp */; };
 		D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6169D172BB17FF400E5490C /* libcxx.lib */; };
 		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
 		D6169D1C2BB1802100E5490C /* tls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D1B2BB1802100E5490C /* tls.cpp */; };
-		D62FEBDE2BE4F19B004E9FDF /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBDC2BE4F19B004E9FDF /* Console.cpp */; };
-		D62FEBDF2BE4F19B004E9FDF /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBDC2BE4F19B004E9FDF /* Console.cpp */; };
-		D62FEBE02BE4F19B004E9FDF /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBDC2BE4F19B004E9FDF /* Console.cpp */; };
-		D62FEBE12BE4F19B004E9FDF /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBDC2BE4F19B004E9FDF /* Console.cpp */; };
 		D62FEBED2BE50FD3004E9FDF /* dllmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBEC2BE50FD2004E9FDF /* dllmain.cpp */; };
 		D62FEBF42BE53D41004E9FDF /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBF22BE53D41004E9FDF /* About.cpp */; };
 		D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBF22BE53D41004E9FDF /* About.cpp */; };
@@ -156,14 +156,14 @@
 		D60790DD2BF24990008810BD /* libimgui.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libimgui.so; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60790F52BF33502008810BD /* TextureTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureTools.cpp; path = ../Utility/TextureTools.cpp; sourceTree = "<group>"; };
 		D60790F62BF33502008810BD /* TextureTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureTools.h; path = ../Utility/TextureTools.h; sourceTree = "<group>"; };
+		D60790FB2BF501DC008810BD /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Console.cpp; path = ../Window/Component/Console.cpp; sourceTree = "<group>"; };
+		D60790FC2BF501DC008810BD /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Console.h; path = ../Window/Component/Console.h; sourceTree = "<group>"; };
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D152BB17FE200E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
 		D6169D172BB17FF400E5490C /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6169D192BB1801100E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
 		D6169D1B2BB1802100E5490C /* tls.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tls.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/tls.cpp"; sourceTree = "<group>"; };
-		D62FEBDC2BE4F19B004E9FDF /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Console.cpp; path = ../Window/Console.cpp; sourceTree = "<group>"; };
-		D62FEBDD2BE4F19B004E9FDF /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Console.h; path = ../Window/Console.h; sourceTree = "<group>"; };
 		D62FEBEC2BE50FD2004E9FDF /* dllmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dllmain.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/dllmain.cpp"; sourceTree = "<group>"; };
 		D62FEBF22BE53D41004E9FDF /* About.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = About.cpp; path = ../Window/About.cpp; sourceTree = "<group>"; };
 		D62FEBF32BE53D41004E9FDF /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = About.h; path = ../Window/About.h; sourceTree = "<group>"; };
@@ -318,6 +318,8 @@
 		D60790BF2BF1AE29008810BD /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				D60790FB2BF501DC008810BD /* Console.cpp */,
+				D60790FC2BF501DC008810BD /* Console.h */,
 				D60790C02BF1AF46008810BD /* Folder.cpp */,
 				D60790C12BF1AF46008810BD /* Folder.h */,
 			);
@@ -345,8 +347,6 @@
 				D63370952B399774001D4057 /* ImGuiFileDialog */,
 				D62FEBF22BE53D41004E9FDF /* About.cpp */,
 				D62FEBF32BE53D41004E9FDF /* About.h */,
-				D62FEBDC2BE4F19B004E9FDF /* Console.cpp */,
-				D62FEBDD2BE4F19B004E9FDF /* Console.h */,
 				D63370762B382155001D4057 /* Hierarchy.cpp */,
 				D63370772B382155001D4057 /* Hierarchy.h */,
 				D6A25B7B2B4644B600974946 /* Inspector.cpp */,
@@ -545,11 +545,11 @@
 				D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370782B382156001D4057 /* Log.cpp in Sources */,
 				D60790C22BF1AF46008810BD /* Folder.cpp in Sources */,
+				D60790FD2BF501DC008810BD /* Console.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6D26F9E2BDE36B400D57772 /* Tools.cpp in Sources */,
 				30A9A7C325ADC7C0000FA104 /* Editor.cpp in Sources */,
-				D62FEBDE2BE4F19B004E9FDF /* Console.cpp in Sources */,
 				D60790BB2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
 				D666E3CF2BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
@@ -566,6 +566,7 @@
 				D6D26FA12BDE36B400D57772 /* Tools.cpp in Sources */,
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
 				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
+				D60791002BF501DC008810BD /* Console.cpp in Sources */,
 				D62FEBF72BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FA2BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6F564012BE9D568006D32D9 /* Profiler.cpp in Sources */,
@@ -573,7 +574,6 @@
 				D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
-				D62FEBE12BE4F19B004E9FDF /* Console.cpp in Sources */,
 				D6D26FA72BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
@@ -600,6 +600,7 @@
 				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26F9F2BDE36B400D57772 /* Tools.cpp in Sources */,
 				D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */,
+				D60790FE2BF501DC008810BD /* Console.cpp in Sources */,
 				D60790F82BF33502008810BD /* TextureTools.cpp in Sources */,
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
@@ -609,7 +610,6 @@
 				D6530A032BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				3039F9D92447499200E671A7 /* Editor.cpp in Sources */,
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
-				D62FEBDF2BE4F19B004E9FDF /* Console.cpp in Sources */,
 				D633707D2B382156001D4057 /* Hierarchy.cpp in Sources */,
 				D6F563FF2BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
@@ -627,6 +627,7 @@
 				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26FA02BDE36B400D57772 /* Tools.cpp in Sources */,
 				D62FEBF62BE53D41004E9FDF /* About.cpp in Sources */,
+				D60790FF2BF501DC008810BD /* Console.cpp in Sources */,
 				D60790F92BF33502008810BD /* TextureTools.cpp in Sources */,
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
@@ -636,7 +637,6 @@
 				D6530A042BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				300264C5242690D0004559E0 /* Editor.cpp in Sources */,
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,
-				D62FEBE02BE4F19B004E9FDF /* Console.cpp in Sources */,
 				D633707E2B382156001D4057 /* Hierarchy.cpp in Sources */,
 				D6F564002BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
@@ -771,7 +771,6 @@
 					../../../SDK,
 					../../../SDK/freetype/include,
 					../../../SDK/imgui,
-					../../../SDK/xxGraphic,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
@@ -858,7 +857,6 @@
 					../../../SDK,
 					../../../SDK/freetype/include,
 					../../../SDK/imgui,
-					../../../SDK/xxGraphic,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";

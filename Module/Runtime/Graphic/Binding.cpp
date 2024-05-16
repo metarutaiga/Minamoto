@@ -8,6 +8,9 @@
 #include <xxGraphic/internal/xxGraphicInternal.h>
 #include "Binding.h"
 
+#if defined(xxMACOS) || defined(xxWINDOWS)
+#include <xxGraphic/xxGraphicGlide.h>
+#endif
 #if defined(xxMACOS) || defined(xxIOS)
 #include <xxGraphic/xxGraphicMetal2.h>
 #endif
@@ -191,6 +194,10 @@ void Binding::Initialize()
     xxSetScissor = xxSetScissorRuntime;
     xxSetPipeline = xxSetPipelineRuntime;
     xxSetVertexBuffers = xxSetVertexBuffersRuntime;
+#if defined(xxMACOS) || defined(xxWINDOWS)
+    if (xxGetInstanceName == xxGetInstanceNameGlide)
+        return;
+#endif
 #if defined(xxMACOS) || defined(xxIOS)
     if (xxGetInstanceName == xxGetInstanceNameMetal2)
         return;

@@ -13,3 +13,5 @@
 #include <imgui/imgui_internal.h>
 #include "ImGuiHelper.h"
 #include <IconFontCppHeaders/IconsFontAwesome4.h>
+
+#define MODULE_NAME "Editor"
