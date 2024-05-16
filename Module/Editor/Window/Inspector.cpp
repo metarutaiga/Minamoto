@@ -41,7 +41,6 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
 
     if (ImGui::Begin(ICON_FA_INFO_CIRCLE "Inspector", &show))
     {
-        ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.0f, 1.0f));
         windowWidth = ImGui::GetWindowWidth();
 
         // Camera
@@ -64,8 +63,6 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
             }
             UpdateModifier(updateData, selected->Modifiers);
         }
-
-        ImGui::PopStyleVar();
     }
     ImGui::End();
 

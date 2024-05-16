@@ -340,10 +340,8 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
         };
         if (root)
         {
-            ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.0f, 1.0f));
             for (xxNodePtr const& child : *root)
                 traversal(child);
-            ImGui::PopStyleVar();
 
             // Drag
             ImVec2 avail = ImGui::GetContentRegionAvail();

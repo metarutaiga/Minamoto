@@ -166,7 +166,7 @@ void Texture::DDSReader(xxTexturePtr const& texture, std::string const& filename
         if (file == nullptr)
             break;
         DDS_HEADER header;
-        if (file->Read(&header, sizeof(DDS_HEADER)) == false)
+        if (file->Read(&header, sizeof(DDS_HEADER)) != sizeof(DDS_HEADER))
             break;
         if (header.dwMagic != "DDS "_FOURCC)
             break;

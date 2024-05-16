@@ -16,6 +16,7 @@
 #include "Window/Profiler.h"
 #include "Window/Project.h"
 #include "Window/Scene.h"
+#include "Window/Setup.h"
 
 //------------------------------------------------------------------------------
 moduleAPI const char* Create(const CreateData& createData)
@@ -31,6 +32,7 @@ moduleAPI const char* Create(const CreateData& createData)
     Profiler::Initialize();
     Project::Initialize();
     Scene::Initialize();
+    Setup::Initialize();
 
     return MODULE_NAME;
 }
@@ -45,6 +47,7 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
     Profiler::Shutdown();
     Project::Shutdown();
     Scene::Shutdown();
+    Setup::Shutdown();
 
     ShaderDisassembly::Shutdown();
     Runtime::Shutdown();
@@ -77,6 +80,7 @@ moduleAPI void Message(const MessageData& messageData)
 moduleAPI bool Update(const UpdateData& updateData)
 {
     static bool showAbout = false;
+    static bool showSetup = false;
     static bool showProject = true;
     static bool showLog = true;
     static bool showLuaConsole = true;
@@ -92,6 +96,8 @@ moduleAPI bool Update(const UpdateData& updateData)
         if (ImGui::BeginMenu(MODULE_NAME))
         {
             ImGui::MenuItem(ICON_FA_QUESTION_CIRCLE "About " MODULE_NAME, nullptr, &showAbout);
+            ImGui::Separator();
+            ImGui::MenuItem(ICON_FA_COG             "Setup", nullptr, &showSetup);
             ImGui::Separator();
             ImGui::MenuItem(ICON_FA_BOOKMARK        "Project", nullptr, &showProject);
             ImGui::MenuItem(ICON_FA_DESKTOP         "Log", nullptr, &showLog);
@@ -128,6 +134,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     }
 
     updated |= About::Update(updateData, showAbout);
+    updated |= Setup::Update(updateData, showSetup);
     updated |= Project::Update(updateData, showProject);
     updated |= Log::Update(updateData, showLog);
     updated |= LuaConsole::Update(updateData, showLuaConsole);

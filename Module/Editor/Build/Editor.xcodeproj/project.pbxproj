@@ -37,6 +37,10 @@
 		D60790FE2BF501DC008810BD /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790FB2BF501DC008810BD /* Console.cpp */; };
 		D60790FF2BF501DC008810BD /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790FB2BF501DC008810BD /* Console.cpp */; };
 		D60791002BF501DC008810BD /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60790FB2BF501DC008810BD /* Console.cpp */; };
+		D60791092BF61829008810BD /* Setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60791082BF61829008810BD /* Setup.cpp */; };
+		D607910A2BF61829008810BD /* Setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60791082BF61829008810BD /* Setup.cpp */; };
+		D607910B2BF61829008810BD /* Setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60791082BF61829008810BD /* Setup.cpp */; };
+		D607910C2BF61829008810BD /* Setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60791082BF61829008810BD /* Setup.cpp */; };
 		D6169D162BB17FE200E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D152BB17FE200E5490C /* new.cpp */; };
 		D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6169D172BB17FF400E5490C /* libcxx.lib */; };
 		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
@@ -158,6 +162,8 @@
 		D60790F62BF33502008810BD /* TextureTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureTools.h; path = ../Utility/TextureTools.h; sourceTree = "<group>"; };
 		D60790FB2BF501DC008810BD /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Console.cpp; path = ../Window/Component/Console.cpp; sourceTree = "<group>"; };
 		D60790FC2BF501DC008810BD /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Console.h; path = ../Window/Component/Console.h; sourceTree = "<group>"; };
+		D60791072BF61829008810BD /* Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setup.h; path = ../Window/Setup.h; sourceTree = "<group>"; };
+		D60791082BF61829008810BD /* Setup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Setup.cpp; path = ../Window/Setup.cpp; sourceTree = "<group>"; };
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D152BB17FE200E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
@@ -361,6 +367,8 @@
 				D60790B92BEE6C5F008810BD /* Project.h */,
 				D6D26FA22BDEAF5400D57772 /* Scene.cpp */,
 				D6D26FA32BDEAF5400D57772 /* Scene.h */,
+				D60791082BF61829008810BD /* Setup.cpp */,
+				D60791072BF61829008810BD /* Setup.h */,
 			);
 			name = Window;
 			sourceTree = "<group>";
@@ -552,6 +560,7 @@
 				30A9A7C325ADC7C0000FA104 /* Editor.cpp in Sources */,
 				D60790BB2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
+				D60791092BF61829008810BD /* Setup.cpp in Sources */,
 				D666E3CF2BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
 				D60790F72BF33502008810BD /* TextureTools.cpp in Sources */,
@@ -574,6 +583,7 @@
 				D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
+				D607910C2BF61829008810BD /* Setup.cpp in Sources */,
 				D6D26FA72BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
@@ -607,6 +617,7 @@
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D60790BC2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D02BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
+				D607910A2BF61829008810BD /* Setup.cpp in Sources */,
 				D6530A032BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				3039F9D92447499200E671A7 /* Editor.cpp in Sources */,
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
@@ -634,6 +645,7 @@
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D60790BD2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D12BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
+				D607910B2BF61829008810BD /* Setup.cpp in Sources */,
 				D6530A042BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				300264C5242690D0004559E0 /* Editor.cpp in Sources */,
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,

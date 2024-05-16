@@ -35,8 +35,8 @@ xxNodePtr Binary::Load(char const* name)
         binary.m_stringStream.resize(1);
 
         char signature[12];
-        if (file->Read(signature, 12) &&
-            file->Read(const_cast<int*>(&binary.Version), 4) &&
+        if (file->Read(signature, 12) == 12 &&
+            file->Read(const_cast<int*>(&binary.Version), 4) == 4 &&
             strcmp(signature, xxBINARY_SIGNATURE) == 0)
         {
             if (binary.Version == binary.xxBinary::Version)
@@ -83,8 +83,8 @@ bool Binary::Save(char const* name, xxNodePtr const& node)
         binary.m_stringStream.resize(1);
 
         char signature[12] = xxBINARY_SIGNATURE;
-        if (file->Write(signature, 12) &&
-            file->Write(&binary.Version, 4))
+        if (file->Write(signature, 12) == 12 &&
+            file->Write(&binary.Version, 4) == 4)
         {
             if (node)
             {
@@ -110,7 +110,7 @@ bool Binary::ReadStream()
     if (position >= size)
         return false;
     m_binaryStream.resize(size - position);
-    if (m_file->Read(m_binaryStream.data(), m_binaryStream.size()) == false)
+    if (m_file->Read(m_binaryStream.data(), m_binaryStream.size()) != m_binaryStream.size())
         return false;
     m_binaryStream.push_back(0);
 
@@ -142,9 +142,9 @@ bool Binary::WriteStream()
     }
     m_binaryStream.push_back(0);
 
-    if (m_file->Write(m_binaryStream.data(), m_binaryStream.size()) == false)
+    if (m_file->Write(m_binaryStream.data(), m_binaryStream.size()) != m_binaryStream.size())
         return false;
-    if (m_file->Write(binaryStream.data(), binaryStream.size()) == false)
+    if (m_file->Write(binaryStream.data(), binaryStream.size()) != binaryStream.size())
         return false;
     return true;
 }

@@ -15,6 +15,7 @@
 #include "Utility/TextureTools.h"
 #include "Hierarchy.h"
 #include "Project.h"
+#include "Setup.h"
 
 std::string Project::Root;
 std::string Project::SubFolder;
@@ -29,6 +30,10 @@ struct FileAttribute
 };
 static xxTexturePtr DummyTexture;
 static std::vector<FileAttribute> Files;
+//------------------------------------------------------------------------------
+static bool SetupWindow;
+static Folder SetupFolder;
+static std::string SetupCurrent;
 //------------------------------------------------------------------------------
 void Project::Initialize()
 {
@@ -57,6 +62,32 @@ void Project::Shutdown(bool suspend)
     Root.clear();
     SubFolder.clear();
     Files.clear();
+}
+//------------------------------------------------------------------------------
+static bool ShowSetup(bool& show)
+{
+    if (show == false)
+        return false;
+
+    bool select = false;
+    if (ImGui::Begin("Change project path", &show, ImGuiWindowFlags_AlwaysAutoResize))
+    {
+        SetupFolder.Window([&](std::string const& root, std::string const& subfolder)
+        {
+            SetupCurrent = root + subfolder;
+        });
+        if (SetupCurrent.empty() == false && ImGui::Button("OK"))
+        {
+            Project::Root = std::move(SetupCurrent);
+            show = false;
+            select = true;
+
+            Setup::Save();
+        }
+    }
+    ImGui::End();
+
+    return select;
 }
 //------------------------------------------------------------------------------
 static void ShowFolders(std::string const& root, std::string& selected)
@@ -106,6 +137,29 @@ static void ShowFolders(std::string const& root, std::string& selected)
             Left.Selected = nullptr;
             select(root, "");
         }
+        if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
+        {
+            ImGui::OpenPopup("PopupProjectSetup");
+        }
+    }
+
+    if (ImGui::BeginPopup("PopupProjectSetup"))
+    {
+        if (ImGui::Button("Change project path"))
+        {
+            std::string root = std::string(xxGetDocumentPath()) + '/';
+            SetupFolder.Finder(root);
+            SetupWindow = true;
+        }
+        ImGui::EndPopup();
+    }
+
+    if (ShowSetup(SetupWindow))
+    {
+        SetupFolder.Selected = nullptr;
+        Left.Selected = nullptr;
+        Left.Finder(root);
+        select(root, "");
     }
 }
 //------------------------------------------------------------------------------

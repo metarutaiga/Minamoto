@@ -23,6 +23,8 @@ void Folder::Finder(std::string const& folder, Node& node)
         xxFree(filename);
     }
     xxCloseDirectory(&handle);
+
+    std::sort(node.begin(), node.end(), [](auto& a, auto& b) { return a.first < b.first; });
 }
 //------------------------------------------------------------------------------
 void Folder::Window(Node& node, std::function<void(std::string const& root, std::string const& subfolder)> select)

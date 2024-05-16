@@ -8,7 +8,7 @@
 #include <queue>
 #include "Log.h"
 
-std::deque<char*> Log::systemLog;
+static std::deque<char*> systemLog;
 //------------------------------------------------------------------------------
 void Log::Initialize()
 {

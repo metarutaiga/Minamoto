@@ -276,10 +276,13 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         float x = 0.0f;
         float y = 0.0f;
         ImGuiIO& io = ImGui::GetIO();
-        if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
+        if (ImGui::IsWindowHovered())
         {
-            x = (io.MousePos.x - mouse.x) / 1000.0f;
-            y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f);
+            if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
+            {
+                x = (io.MousePos.x - mouse.x) / 1000.0f;
+                y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f);
+            }
         }
         mouse.x = io.MousePos.x;
         mouse.y = io.MousePos.y;
