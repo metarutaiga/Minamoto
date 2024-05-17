@@ -72,12 +72,12 @@ namespace ImGui
 {
 inline void DumpBuildInformation()
 {
-#if defined(_MSC_FULL_VER)
-    ImGui::Text("msvc : %d.%d.%d", _MSC_FULL_VER / 10000000 % 100, _MSC_FULL_VER / 100000 % 100, _MSC_FULL_VER % 100000);
-#elif defined(__clang_version__)
+#if defined(__clang_version__)
     ImGui::TextUnformatted("clang : " __clang_version__);
 #elif defined(__GNUC__)
     ImGui::TextUnformatted("gcc : " xxStringify(__GNUC__) "." xxStringify(__GNUC_MINOR__) "." xxStringify(__GNUC_PATCHLEVEL__));
+#elif defined(_MSC_FULL_VER)
+    ImGui::Text("msvc : %d.%d.%d", _MSC_FULL_VER / 10000000 % 100, _MSC_FULL_VER / 100000 % 100, _MSC_FULL_VER % 100000);
 #endif
 
 #if defined(__MAC_OS_X_VERSION_MAX_ALLOWED)

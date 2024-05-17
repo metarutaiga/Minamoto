@@ -20,10 +20,10 @@ bool About::Update(const UpdateData& updateData, bool& show)
     if (show == false)
         return false;
 
-    if (ImGui::Begin(ICON_FA_QUESTION_CIRCLE "About " MODULE_NAME, &show, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
+    if (ImGui::Begin(ICON_FA_QUESTION_CIRCLE "About " MODULE_NAME, &show, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
     {
         ImGui::Text("%s Module for %s", MODULE_NAME, Runtime::Version());
-        ImGui::Text("Build Date : %s %s", __DATE__, __TIME__);
+        ImGui::TextUnformatted("Build" " : " __DATE__ " " __TIME__);
         ImGui::Separator();
         ImGui::DumpBuildInformation();
         ImGui::Separator();

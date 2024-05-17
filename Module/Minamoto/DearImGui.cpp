@@ -22,6 +22,7 @@
 #   include <imgui/backends/imgui_impl_win32.h>
 #endif
 #include <imgui/misc/freetype/imgui_freetype.h>
+#include <Runtime/Runtime.h>
 #include <IconFontCppHeaders/IconsFontAwesome4.h>
 #include "implement/imgui_impl_xx.h"
 #include "Module.h"
@@ -198,9 +199,9 @@ void DearImGui::NewFrame(void* view)
     // Graphic API
     if (ImGui::BeginMainMenuBar())
     {
-        if (ImGui::BeginMenu("xxGraphic"))
+        if (ImGui::BeginMenu("Minamoto"))
         {
-            ImGui::MenuItem("About xxGraphic", nullptr, &showAbout);
+            ImGui::MenuItem("About Minamoto", nullptr, &showAbout);
             ImGui::Separator();
             ImGui::MenuItem("Power Saving", nullptr, &g_powerSaving);
             ImGui::Separator();
@@ -246,21 +247,12 @@ void DearImGui::NewFrame(void* view)
 
     if (showAbout)
     {
-        if (ImGui::Begin("About xxGraphic", &showAbout))
+        if (ImGui::Begin("About Minamoto", &showAbout, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
         {
-            ImGui::Text("%s", "xxGraphic");
-            ImGui::Text("%s", "Copyright (c) 2019-2024 TAiGA");
+            ImGui::Text("%s Based on xxGraphic", Runtime::Version());
+            ImGui::TextUnformatted("Build : " __DATE__ " " __TIME__);
             ImGui::Separator();
-            ImGui::Text("Build Date : %s %s", __DATE__, __TIME__);
-#if defined(__clang_version__)
-            ImGui::Text("Compiler Version : %s", __clang_version__);
-#endif
-#if defined(__GNUC__)
-            ImGui::Text("Compiler Version : %d.%d.%d", __GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__);
-#endif
-#if defined(_MSC_FULL_VER)
-            ImGui::Text("Compiler Version : %d.%d.%d", _MSC_FULL_VER / 10000000 % 100, _MSC_FULL_VER / 100000 % 100, _MSC_FULL_VER % 100000);
-#endif
+            ImGui::DumpBuildInformation();
             ImGui::End();
         }
     }

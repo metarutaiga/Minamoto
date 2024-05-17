@@ -50,7 +50,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     if (showNode)
     {
         ImGui::SetNextWindowSize(ImVec2(800, 600), ImGuiCond_FirstUseEver);
-        if (ImGui::Begin("Validate Node", &showNode))
+        if (ImGui::Begin("Validate Node", &showNode, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
         {
             static char text[4096];
             ImGui::InputTextMultiline("##source", text, IM_ARRAYSIZE(text), ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 16), ImGuiInputTextFlags_ReadOnly);
@@ -66,7 +66,7 @@ moduleAPI bool Update(const UpdateData& updateData)
 
     if (showAbout)
     {
-        if (ImGui::Begin("About " PLUGIN_NAME, &showAbout))
+        if (ImGui::Begin("About " PLUGIN_NAME, &showAbout, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
         {
             ImGui::Text("%s Plugin Version %d.%d", PLUGIN_NAME, PLUGIN_MAJOR, PLUGIN_MINOR);
             ImGui::Text("Build Date : %s %s", __DATE__, __TIME__);

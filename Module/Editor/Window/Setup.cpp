@@ -29,14 +29,14 @@ void Setup::Load()
     {
         if (rows.size() < 2)
             return;
-        if (rows[0].size() > 32)
-            return;
-        if (rows[0] == "ProjectPath")
+        switch (xxHash(rows[0].data(), rows[0].size()))
         {
+        case xxHash("ProjectPath"):
             Project::Root = rows[1];
             setups[std::string(rows[0])] = rows[1];
+            break;
         }
-    });
+    }, "=");
 }
 //------------------------------------------------------------------------------
 void Setup::Save()
@@ -45,14 +45,14 @@ void Setup::Save()
 
     auto it = setups.begin();
     std::string name = std::string(xxGetDocumentPath()) + "/.minamoto";
-    CSV::Save(name.c_str(), [&](std::vector<std::string>& rows)
+    CSV::Save(name.c_str(), [&](std::vector<std::string_view>& rows)
     {
         if (it == setups.end())
             return;
         auto const& pair = (*it++);
         rows.push_back(pair.first);
         rows.push_back(pair.second);
-    });
+    }, "=");
 }
 //------------------------------------------------------------------------------
 bool Setup::Update(const UpdateData& updateData, bool& show)
@@ -60,7 +60,7 @@ bool Setup::Update(const UpdateData& updateData, bool& show)
     if (show == false)
         return false;
 
-    if (ImGui::Begin(ICON_FA_COG "Setup", &show, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoDocking))
+    if (ImGui::Begin(ICON_FA_COG "Setup", &show, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
     {
         for (auto& [key, value] : setups)
         {

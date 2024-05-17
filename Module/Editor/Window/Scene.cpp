@@ -152,48 +152,44 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         NodeTools::UpdateNodeFlags(sceneRoot);
 
         // Count
-        size_t boneCount = 0;
-        size_t nodeTotalCount = 0;
-        size_t nodeActiveCount = 0;
-        size_t modifierTotalCount = 0;
-        size_t modifierActiveCount = 0;
+        struct
+        {
+            size_t bone;
+            size_t nodeTotal;
+            size_t nodeActive;
+            size_t modifierTotal;
+            size_t modifierActive;
+        } Count;
         xxNode::Traversal(sceneRoot, [&](xxNodePtr const& node)
         {
-            size_t TEMP_FLAG = ~(SIZE_MAX >> 1);
-            node->Flags &= ~TEMP_FLAG;
+            node->Flags &= ~NodeTools::TEST_CHECK_FLAG;
             for (auto const& data : node->Bones)
             {
                 if (data.bone.use_count())
                 {
                     xxNodePtr const& bone = (xxNodePtr&)data.bone;
-                    if ((bone->Flags & TEMP_FLAG) == 0)
+                    if ((bone->Flags & NodeTools::TEST_CHECK_FLAG) == 0)
                     {
-                        bone->Flags |= TEMP_FLAG;
-                        boneCount++;
+                        bone->Flags |= NodeTools::TEST_CHECK_FLAG;
+                        Count.bone++;
                     }
                 }
             }
-            nodeTotalCount++;
-            modifierTotalCount += node->Modifiers.size();
+            Count.nodeTotal++;
+            Count.modifierTotal += node->Modifiers.size();
             if ((node->Flags & xxNode::UPDATE_SKIP) == 0)
             {
-                nodeActiveCount++;
-                modifierActiveCount += node->Modifiers.size();
+                Count.nodeActive++;
+                Count.modifierActive += node->Modifiers.size();
             }
             return true;
         });
-        xxNode::Traversal(sceneRoot, [&](xxNodePtr const& node)
-        {
-            size_t TEMP_FLAG = ~(SIZE_MAX >> 1);
-            node->Flags &= ~TEMP_FLAG;
-            return true;
-        });
-        Profiler::Count(xxHash("Bone Count"), boneCount);
-        Profiler::Count(xxHash("Node Total Count"), nodeTotalCount);
-        Profiler::Count(xxHash("Node Active Count"), nodeActiveCount);
-        Profiler::Count(xxHash("Modifier Total Count"), modifierTotalCount);
-        Profiler::Count(xxHash("Modifier Active Count"), modifierActiveCount);
-        updated |= modifierTotalCount != 0;
+        Profiler::Count(xxHash("Bone Count"), Count.bone);
+        Profiler::Count(xxHash("Node Total Count"), Count.nodeTotal);
+        Profiler::Count(xxHash("Node Active Count"), Count.nodeActive);
+        Profiler::Count(xxHash("Modifier Total Count"), Count.modifierTotal);
+        Profiler::Count(xxHash("Modifier Active Count"), Count.modifierActive);
+        updated |= Count.modifierTotal != 0;
 
         // Scene
         Profiler::Begin(xxHash("Scene Update"));

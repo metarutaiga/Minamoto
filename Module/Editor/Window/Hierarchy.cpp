@@ -274,6 +274,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             }
         };
 
+        char name[256];
         bool clickedLeft = false;
         bool clickedRight = false;
         std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
@@ -281,13 +282,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             if (node == nullptr)
                 return;
 
-            ImGuiTreeNodeFlags flags = 0;
-            if (node->GetChildCount() == 0)
-                flags |= ImGuiTreeNodeFlags_Leaf;
-            if (node == selectedLeft || node == selectedRight)
-                flags |= ImGuiTreeNodeFlags_Selected;
-
-            // TODO - 
+            // TODO -
             if (ImGui::IsMouseDragging(ImGuiMouseButton_Left))
             {
                 ImVec2 min = ImGui::GetCursorScreenPos();
@@ -300,11 +295,12 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                 }
             }
 
-            bool opened;
+            bool opened = (node->Flags & NodeTools::TEST_OPEN_FLAG) != 0;
             if (node->Name.empty())
-                opened = ImGui::TreeNodeEx(node.get(), flags, "%s%p", node->Mesh ? ICON_FA_CUBES : ICON_FA_CUBE, node.get());
+                snprintf(name, sizeof(name), "%s%p", node->Mesh ? ICON_FA_CUBE : opened ? ICON_FA_CIRCLE_O : ICON_FA_CIRCLE, node.get());
             else
-                opened = ImGui::TreeNodeEx(node.get(), flags, "%s%s", node->Mesh ? ICON_FA_CUBES : ICON_FA_CUBE, node->Name.c_str());
+                snprintf(name, sizeof(name), "%s%s", node->Mesh ? ICON_FA_CUBE : opened ? ICON_FA_CIRCLE_O : ICON_FA_CIRCLE, node->Name.c_str());
+            ImGui::Selectable(name, selectedLeft == node);
 
             // Hovered
             if (ImGui::IsItemHovered())
@@ -317,6 +313,12 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                     selectedLeft = node;
                     Inspector::Select(node);
                     clickedLeft = true;
+                }
+                if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+                {
+                    node->Flags &= ~NodeTools::TEST_OPEN_FLAG;
+                    if (opened == false && node->GetChildCount() != 0)
+                        node->Flags |= NodeTools::TEST_OPEN_FLAG;
                 }
 
                 // Right button
@@ -333,9 +335,10 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             // Traversal
             if (opened)
             {
+                ImGui::Indent();
                 for (xxNodePtr const& child : *node)
                     traversal(child);
-                ImGui::TreePop();
+                ImGui::Unindent();
             }
         };
         if (root)

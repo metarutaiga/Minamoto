@@ -60,13 +60,13 @@ bool CSV::Load(char const* name, std::function<void(std::vector<std::string_view
     return true;
 }
 //------------------------------------------------------------------------------
-bool CSV::Save(char const* name, std::function<void(std::vector<std::string>&)> serialize, std::string_view separate)
+bool CSV::Save(char const* name, std::function<void(std::vector<std::string_view>&)> serialize, std::string_view separate)
 {
     xxFile* file = xxFile::Save(name);
     if (file == nullptr)
         return false;
 
-    std::vector<std::string> rows;
+    std::vector<std::string_view> rows;
     for (;;)
     {
         serialize(rows);
@@ -79,7 +79,7 @@ bool CSV::Save(char const* name, std::function<void(std::vector<std::string>&)> 
             {
                 file->Write(separate.data(), separate.size());
             }
-            std::string const& string = rows[i];
+            std::string_view const& string = rows[i];
             file->Write(string.data(), string.size());
         }
         rows.clear();

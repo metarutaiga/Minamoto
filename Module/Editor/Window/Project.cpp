@@ -70,20 +70,27 @@ static bool ShowSetup(bool& show)
         return false;
 
     bool select = false;
-    if (ImGui::Begin("Change project path", &show, ImGuiWindowFlags_AlwaysAutoResize))
+    if (ImGui::Begin("Project Path", &show, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoDocking))
     {
+        ImGui::SetNextItemWidth(512.0f);
+        ImGui::InputText("Path", SetupCurrent.data(), SetupCurrent.size(), ImGuiInputTextFlags_ReadOnly);
+        if (SetupCurrent.empty() == false)
+        {
+            ImGui::SameLine();
+            if (ImGui::Button("OK"))
+            {
+                Project::Root = std::move(SetupCurrent);
+                show = false;
+                select = true;
+
+                Setup::Save();
+            }
+        }
+
         SetupFolder.Window([&](std::string const& root, std::string const& subfolder)
         {
             SetupCurrent = root + subfolder;
         });
-        if (SetupCurrent.empty() == false && ImGui::Button("OK"))
-        {
-            Project::Root = std::move(SetupCurrent);
-            show = false;
-            select = true;
-
-            Setup::Save();
-        }
     }
     ImGui::End();
 
@@ -145,7 +152,7 @@ static void ShowFolders(std::string const& root, std::string& selected)
 
     if (ImGui::BeginPopup("PopupProjectSetup"))
     {
-        if (ImGui::Button("Change project path"))
+        if (ImGui::Button("Project Path"))
         {
             std::string root = std::string(xxGetDocumentPath()) + '/';
             SetupFolder.Finder(root);

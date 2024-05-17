@@ -14,5 +14,5 @@
 struct RuntimeAPI CSV
 {
     static bool Load(char const* name, std::function<void(std::vector<std::string_view> const&)> deserialize, std::string_view separate = ",");
-    static bool Save(char const* name, std::function<void(std::vector<std::string>&)> serialize, std::string_view separate = ",");
+    static bool Save(char const* name, std::function<void(std::vector<std::string_view>&)> serialize, std::string_view separate = ",");
 };

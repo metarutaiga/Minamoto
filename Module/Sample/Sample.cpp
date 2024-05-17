@@ -48,7 +48,7 @@ moduleAPI bool Update(const UpdateData& updateData)
 
     if (showAbout)
     {
-        if (ImGui::Begin("About " MODULE_NAME, &showAbout))
+        if (ImGui::Begin("About " MODULE_NAME, &showAbout, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
         {
             ImGui::Text("%s Module Version %d.%d", MODULE_NAME, MODULE_MAJOR, MODULE_MINOR);
             ImGui::Text("Build Date : %s %s", __DATE__, __TIME__);
@@ -60,7 +60,7 @@ moduleAPI bool Update(const UpdateData& updateData)
 
     if (showClock)
     {
-        if (ImGui::Begin("Clock", &showClock))
+        if (ImGui::Begin("Clock", &showClock, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
         {
             static char textPrevious[64];
             static char textCurrent[64];
@@ -78,7 +78,7 @@ moduleAPI bool Update(const UpdateData& updateData)
 
     if (showTimer)
     {
-        if (ImGui::Begin("Timer", &showTimer))
+        if (ImGui::Begin("Timer", &showTimer, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
         {
             ImGui::Text("Current Time : %f", ImGui::GetTime());
             ImGui::Text("Delta Time : %f", ImGuiIO().DeltaTime);
