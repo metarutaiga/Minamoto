@@ -38,23 +38,23 @@ size_t Texture::Calculate(uint64_t format, int width, int height, int depth)
 {
     switch (format)
     {
-    case "BC1"_FOURCC:
-    case "BC4S"_FOURCC:
-    case "BC4U"_FOURCC:
-    case "DXT1"_FOURCC:
-    case "ATI1"_FOURCC:
+    case "BC1"_cc:
+    case "BC4S"_cc:
+    case "BC4U"_cc:
+    case "DXT1"_cc:
+    case "ATI1"_cc:
         width = (width + 3) / 4;
         height = (height + 3) / 4;
         return width * height * depth * 8;
-    case "BC2"_FOURCC:
-    case "BC3"_FOURCC:
-    case "BC5S"_FOURCC:
-    case "BC5U"_FOURCC:
-    case "BC6H"_FOURCC:
-    case "BC7"_FOURCC:
-    case "DXT3"_FOURCC:
-    case "DXT5"_FOURCC:
-    case "ATI2"_FOURCC:
+    case "BC2"_cc:
+    case "BC3"_cc:
+    case "BC5S"_cc:
+    case "BC5U"_cc:
+    case "BC6H"_cc:
+    case "BC7"_cc:
+    case "DXT3"_cc:
+    case "DXT5"_cc:
+    case "ATI2"_cc:
         width = (width + 3) / 4;
         height = (height + 3) / 4;
         return width * height * depth * 16;
@@ -107,7 +107,7 @@ void Texture::Reader(xxTexturePtr const& texture)
     }
     if ((*texture)() == nullptr)
     {
-        texture->Initialize("RGBA8888"_FOURCC, 1, 1, 1, 1, 1);
+        texture->Initialize("RGBA8888"_CC, 1, 1, 1, 1, 1);
     }
 }
 //------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ void Texture::DDSReader(xxTexturePtr const& texture, std::string const& filename
         DDS_HEADER header;
         if (file->Read(&header, sizeof(DDS_HEADER)) != sizeof(DDS_HEADER))
             break;
-        if (header.dwMagic != "DDS "_FOURCC)
+        if (header.dwMagic != "DDS "_cc)
             break;
         if ((header.dwFlags & (DDSD_CAPS | DDSD_PIXELFORMAT)) == 0)
             break;
@@ -247,7 +247,7 @@ void Texture::DDSWriter(xxTexturePtr const& texture, std::string const& filename
         if (file == nullptr)
             break;
         DDS_HEADER header = {};
-        header.dwMagic = uint32_t("DDS "_FOURCC);
+        header.dwMagic = uint32_t("DDS "_cc);
         header.dwSize = sizeof(DDS_HEADER) - sizeof(header.dwMagic);
         header.dwFlags = DDSD_CAPS | DDSD_PIXELFORMAT;
         header.dwHeight = texture->Height;
@@ -303,20 +303,20 @@ void Texture::DDSWriter(xxTexturePtr const& texture, std::string const& filename
                 }
             }
             break;
-        case "BC1"_FOURCC:
-        case "BC2"_FOURCC:
-        case "BC3"_FOURCC:
-        case "BC4S"_FOURCC:
-        case "BC4U"_FOURCC:
-        case "BC5S"_FOURCC:
-        case "BC5U"_FOURCC:
-        case "BC6H"_FOURCC:
-        case "BC7"_FOURCC:
-        case "DXT1"_FOURCC:
-        case "DXT3"_FOURCC:
-        case "DXT5"_FOURCC:
-        case "ATI1"_FOURCC:
-        case "ATI2"_FOURCC:
+        case "BC1"_cc:
+        case "BC2"_cc:
+        case "BC3"_cc:
+        case "BC4S"_cc:
+        case "BC4U"_cc:
+        case "BC5S"_cc:
+        case "BC5U"_cc:
+        case "BC6H"_cc:
+        case "BC7"_cc:
+        case "DXT1"_cc:
+        case "DXT3"_cc:
+        case "DXT5"_cc:
+        case "ATI1"_cc:
+        case "ATI2"_cc:
             header.ddspf.dwFlags |= DDPF_FOURCC;
             header.ddspf.dwFourCC = uint32_t(texture->Format);
             break;
@@ -353,9 +353,9 @@ void Texture::PNGReader(xxTexturePtr const& texture, std::string const& filename
         return;
 
 #if defined(xxWINDOWS)
-    uint64_t format = *(uint64_t*)"BGRA8888";
+    uint64_t format = "BGRA8888"_CC;
 #else
-    uint64_t format = *(uint64_t*)"RGBA8888";
+    uint64_t format = "RGBA8888"_CC;
 #endif
     int width = 1;
     int height = 1;

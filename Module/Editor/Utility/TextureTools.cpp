@@ -45,15 +45,15 @@ static void stb__CompressAlphaBlockEx(unsigned char* dest, unsigned char* src, i
 //==============================================================================
 void TextureTools::CompressTexture(xxTexturePtr const& texture, uint64_t format, std::string const& root, std::string const& subfolder)
 {
-    if (texture->Format != "RGBA8888"_FOURCC)
+    if (texture->Format != "RGBA8888"_CC)
         return;
     switch (format)
     {
-    case "BC1"_FOURCC:  case "DXT1"_FOURCC:
-    case "BC2"_FOURCC:  case "DXT3"_FOURCC:
-    case "BC3"_FOURCC:  case "DXT5"_FOURCC:
-    case "BC4U"_FOURCC: case "ATI1"_FOURCC:
-    case "BC5U"_FOURCC: case "ATI2"_FOURCC:
+    case "BC1"_cc:  case "DXT1"_cc:
+    case "BC2"_cc:  case "DXT3"_cc:
+    case "BC3"_cc:  case "DXT5"_cc:
+    case "BC4U"_cc: case "ATI1"_cc:
+    case "BC5U"_cc: case "ATI2"_cc:
         break;
     default:
         return;
@@ -98,30 +98,30 @@ void TextureTools::CompressTexture(xxTexturePtr const& texture, uint64_t format,
                         }
                         switch (format)
                         {
-                        case "BC1"_FOURCC:
-                        case "DXT1"_FOURCC:
+                        case "BC1"_cc:
+                        case "DXT1"_cc:
                             stb__CompressColorBlockEx((unsigned char*)line, source, STB_DXT_HIGHQUAL);
                             line = (char*)line + 8;
                             break;
-                        case "BC2"_FOURCC:
-                        case "DXT3"_FOURCC:
+                        case "BC2"_cc:
+                        case "DXT3"_cc:
                             stb__ReduceAlphaBlock((unsigned char*)line, source + 3, 4);
                             stb__CompressColorBlockEx((unsigned char*)line + 8, source, STB_DXT_HIGHQUAL);
                             line = (char*)line + 16;
                             break;
-                        case "BC3"_FOURCC:
-                        case "DXT5"_FOURCC:
+                        case "BC3"_cc:
+                        case "DXT5"_cc:
                             stb__CompressAlphaBlockEx((unsigned char*)line, source + 3, 4);
                             stb__CompressColorBlockEx((unsigned char*)line + 8, source, STB_DXT_HIGHQUAL);
                             line = (char*)line + 16;
                             break;
-                        case "BC4U"_FOURCC:
-                        case "ATI1"_FOURCC:
+                        case "BC4U"_cc:
+                        case "ATI1"_cc:
                             stb__CompressAlphaBlockEx((unsigned char*)line, source, 4);
                             line = (char*)line + 8;
                             break;
-                        case "BC5U"_FOURCC:
-                        case "ATI2"_FOURCC:
+                        case "BC5U"_cc:
+                        case "ATI2"_cc:
                             stb__CompressAlphaBlockEx((unsigned char*)line, source, 4);
                             stb__CompressAlphaBlockEx((unsigned char*)line + 8, source + 1, 4);
                             line = (char*)line + 16;
@@ -135,11 +135,11 @@ void TextureTools::CompressTexture(xxTexturePtr const& texture, uint64_t format,
     std::string ext = ".unknown";
     switch (format)
     {
-    case "BC1"_FOURCC:  case "DXT1"_FOURCC: ext = ".bc1";   break;
-    case "BC2"_FOURCC:  case "DXT3"_FOURCC: ext = ".bc2";   break;
-    case "BC3"_FOURCC:  case "DXT5"_FOURCC: ext = ".bc3";   break;
-    case "BC4U"_FOURCC: case "ATI1"_FOURCC: ext = ".bc4u";  break;
-    case "BC5U"_FOURCC: case "ATI2"_FOURCC: ext = ".bc5u";  break;
+    case "BC1"_cc:  case "DXT1"_cc: ext = ".bc1";   break;
+    case "BC2"_cc:  case "DXT3"_cc: ext = ".bc2";   break;
+    case "BC3"_cc:  case "DXT5"_cc: ext = ".bc3";   break;
+    case "BC4U"_cc: case "ATI1"_cc: ext = ".bc4u";  break;
+    case "BC5U"_cc: case "ATI2"_cc: ext = ".bc5u";  break;
     }
     Texture::DDSWriter(compressed, root + subfolder + uncompressed->Name + ext);
 }

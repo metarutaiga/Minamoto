@@ -80,7 +80,7 @@ xxTexturePtr Grid::CreateTexture()
 {
     int level = 8;
 
-    xxTexturePtr texture = xxTexture::Create2D("RGBA8888"_FOURCC, (1 << (level - 1)), (1 << (level - 1)), level);
+    xxTexturePtr texture = xxTexture::Create2D("RGBA8888"_CC, (1 << (level - 1)), (1 << (level - 1)), level);
     if (texture == nullptr)
         return nullptr;
 

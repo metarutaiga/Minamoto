@@ -44,9 +44,9 @@ xxTexturePtr Import::CreateTexture(char const* img)
     stbi_uc* uc = stbi_load(img, &width, &height, nullptr, 4);
 
 #if defined(xxWINDOWS)
-    uint64_t format = "BGRA8888"_FOURCC;
+    uint64_t format = "BGRA8888"_CC;
 #else
-    uint64_t format = "RGBA8888"_FOURCC;
+    uint64_t format = "RGBA8888"_CC;
 #endif
     xxTexturePtr texture = xxTexture::Create2D(format, width, height, 1);
     if (texture)
@@ -60,6 +60,12 @@ xxTexturePtr Import::CreateTexture(char const* img)
         texture->Name = name;
         if (uc)
         {
+#if defined(xxWINDOWS)
+            for (int i = 0; i < width * height * 4; i += 4)
+            {
+                std::swap(uc[i + 0], uc[i + 2]);
+            }
+#endif
             memcpy((*texture)(), uc, width * height * 4);
         }
     }

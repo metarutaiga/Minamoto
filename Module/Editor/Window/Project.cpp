@@ -42,7 +42,7 @@ void Project::Initialize()
         Root = xxGetDocumentPath();
         Root += "/Project/";
     }
-    DummyTexture = xxTexture::Create("RGBA8888"_FOURCC, 1, 1, 1, 1, 1);
+    DummyTexture = xxTexture::Create("RGBA8888"_CC, 1, 1, 1, 1, 1);
 }
 //------------------------------------------------------------------------------
 void Project::Shutdown(bool suspend)
@@ -205,11 +205,11 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
         if (selected == &attribute && ImGui::BeginPopup("texture"))
         {
             uint64_t format = 0;
-            if (ImGui::Button("Compress BC1"))  format = "BC1"_FOURCC;
-            if (ImGui::Button("Compress BC2"))  format = "BC2"_FOURCC;
-            if (ImGui::Button("Compress BC3"))  format = "BC3"_FOURCC;
-            if (ImGui::Button("Compress BC4U")) format = "BC4U"_FOURCC;
-            if (ImGui::Button("Compress BC5U")) format = "BC5U"_FOURCC;
+            if (ImGui::Button("Compress BC1"))  format = "BC1"_cc;
+            if (ImGui::Button("Compress BC2"))  format = "BC2"_cc;
+            if (ImGui::Button("Compress BC3"))  format = "BC3"_cc;
+            if (ImGui::Button("Compress BC4U")) format = "BC4U"_cc;
+            if (ImGui::Button("Compress BC5U")) format = "BC5U"_cc;
             if (format)
             {
                 TextureTools::CompressTexture(attribute.texture, format, root, subfolder);
@@ -221,7 +221,7 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
         {
             if (attribute.texture && attribute.texture->Format)
             {
-                if (attribute.texture->Format == "RGBA8888"_FOURCC && ImGui::IsItemClicked(ImGuiMouseButton_Right))
+                if (attribute.texture->Format == "RGBA8888"_CC && ImGui::IsItemClicked(ImGuiMouseButton_Right))
                 {
                     ImGui::OpenPopup("texture");
                     selected = &attribute;
