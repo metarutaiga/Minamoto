@@ -1,3 +1,4 @@
 CLANG_PLATFORM_DIR = $PROJECT_DIR/../../../SDK/ClangPlatform
 #include "../../../SDK/ClangPlatform/ClangPlatform.Windows.xcconfig"
 GCC_OPTIMIZATION_LEVEL[config=Release] = fast
+EXCLUDED_ARCHS = arm arm64 x86 x86_64_v5
