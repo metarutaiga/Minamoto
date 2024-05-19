@@ -52,6 +52,9 @@
          location = "group:Build/lua.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Build/quickjs.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Build/xxGraphic.xcodeproj">
       </FileRef>
       <FileRef

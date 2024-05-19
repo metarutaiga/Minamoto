@@ -22,17 +22,19 @@ std::deque<std::string> Lua::lines;
 //==============================================================================
 void Lua::Initialize()
 {
+    lines.push_back(std::string());
+
     L = luaL_newstate();  /* create state */
     lua_gc(L, LUA_GCSTOP);  /* stop GC while building state */
     luaL_openlibs(L);  /* open standard libraries */
     lua_gc(L, LUA_GCRESTART);  /* start GC... */
     lua_gc(L, LUA_GCGEN, 0, 0);  /* ...in generational mode */
-    lines.push_back(std::string());
 }
 //------------------------------------------------------------------------------
 void Lua::Shutdown()
 {
     lua_close(L);
+
     lines = std::deque<std::string>();
 }
 //------------------------------------------------------------------------------

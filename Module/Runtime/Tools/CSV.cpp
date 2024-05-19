@@ -69,10 +69,12 @@ bool CSV::Save(char const* name, std::function<void(std::vector<std::string_view
     std::vector<std::string_view> rows;
     for (;;)
     {
+        rows.clear();
         serialize(rows);
         if (rows.empty())
             break;
 
+        // Write
         for (size_t i = 0; i < rows.size(); ++i)
         {
             if (i != 0)
@@ -82,8 +84,6 @@ bool CSV::Save(char const* name, std::function<void(std::vector<std::string_view
             std::string_view const& string = rows[i];
             file->Write(string.data(), string.size());
         }
-        rows.clear();
-
         file->Write("\n", 1);
     }
 

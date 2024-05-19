@@ -25,3 +25,6 @@
 [submodule "SDK/lua"]
 	path = SDK/lua
 	url = https://github.com/lua/lua
+[submodule "SDK/quickjs"]
+	path = SDK/quickjs
+	url = https://github.com/bellard/quickjs

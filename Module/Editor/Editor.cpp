@@ -15,6 +15,7 @@
 #include "Window/LuaConsole.h"
 #include "Window/Profiler.h"
 #include "Window/Project.h"
+#include "Window/QuickJSConsole.h"
 #include "Window/Scene.h"
 #include "Window/Setup.h"
 
@@ -27,6 +28,7 @@ moduleAPI const char* Create(const CreateData& createData)
     Import::Initialize();
     Log::Initialize();
     LuaConsole::Initialize();
+    QuickJSConsole::Initialize();
     Hierarchy::Initialize();
     Inspector::Initialize();
     Profiler::Initialize();
@@ -42,6 +44,7 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
     Import::Shutdown();
     Log::Shutdown();
     LuaConsole::Shutdown();
+    QuickJSConsole::Shutdown();
     Hierarchy::Shutdown();
     Inspector::Shutdown();
     Profiler::Shutdown();
@@ -84,6 +87,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     static bool showProject = true;
     static bool showLog = true;
     static bool showLuaConsole = true;
+    static bool showQuickJSConsole = true;
     static bool showProfiler = true;
     static bool showHierarchy = true;
     static bool showInspector = true;
@@ -102,6 +106,7 @@ moduleAPI bool Update(const UpdateData& updateData)
             ImGui::MenuItem(ICON_FA_BOOKMARK        "Project", nullptr, &showProject);
             ImGui::MenuItem(ICON_FA_DESKTOP         "Log", nullptr, &showLog);
             ImGui::MenuItem(ICON_FA_LAPTOP          "Lua Console", nullptr, &showLuaConsole);
+            ImGui::MenuItem(ICON_FA_TABLET          "QuickJS Console", nullptr, &showQuickJSConsole);
             ImGui::MenuItem(ICON_FA_BAR_CHART       "Profiler", nullptr, &showProfiler);
             ImGui::MenuItem(ICON_FA_LIST            "Hierarchy", nullptr, &showHierarchy);
             ImGui::MenuItem(ICON_FA_INFO_CIRCLE     "Inspector", nullptr, &showInspector);
@@ -126,6 +131,7 @@ moduleAPI bool Update(const UpdateData& updateData)
         ImGui::DockBuilderDockWindow(ICON_FA_BOOKMARK   "Project", down);
         ImGui::DockBuilderDockWindow(ICON_FA_DESKTOP    "Log", down);
         ImGui::DockBuilderDockWindow(ICON_FA_LAPTOP     "Lua Console", down);
+        ImGui::DockBuilderDockWindow(ICON_FA_TABLET     "QuickJS Console", down);
         ImGui::DockBuilderDockWindow(ICON_FA_BAR_CHART  "Profiler", down);
         ImGui::DockBuilderDockWindow(ICON_FA_LIST       "Hierarchy", left);
         ImGui::DockBuilderDockWindow(ICON_FA_INFO_CIRCLE"Inspector", right);
@@ -138,6 +144,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     updated |= Project::Update(updateData, showProject);
     updated |= Log::Update(updateData, showLog);
     updated |= LuaConsole::Update(updateData, showLuaConsole);
+    updated |= QuickJSConsole::Update(updateData, showQuickJSConsole);
     updated |= Profiler::Update(updateData, showLuaConsole);
     updated |= Hierarchy::Update(updateData, showHierarchy, Scene::sceneRoot);
     updated |= Inspector::Update(updateData, showInspector, Scene::sceneCamera);

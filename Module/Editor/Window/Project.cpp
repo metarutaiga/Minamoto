@@ -180,7 +180,7 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
 
     ImGui::BeginChild("###", ImVec2(0, 0), 0, Files.empty() ? 0 : ImGuiWindowFlags_AlwaysVerticalScrollbar);
     ImGui::Columns(columns, nullptr, false);
-    for (auto& attribute : Files)
+    for (FileAttribute& attribute : Files)
     {
         uint64_t texture = 0;
         if (attribute.texture)
@@ -202,7 +202,7 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
         ImGui::BeginGroup();
         ImGui::ImageButton(attribute.name.c_str(), texture, ImVec2(width, width));
         static void* selected = nullptr;
-        if (selected == &attribute && ImGui::BeginPopup("texture"))
+        if (selected == &attribute && ImGui::BeginPopup("RightProjectTexture"))
         {
             uint64_t format = 0;
             if (ImGui::Button("Compress BC1"))  format = "BC1"_cc;
@@ -223,7 +223,7 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
             {
                 if (attribute.texture->Format == "RGBA8888"_CC && ImGui::IsItemClicked(ImGuiMouseButton_Right))
                 {
-                    ImGui::OpenPopup("texture");
+                    ImGui::OpenPopup("RightProjectTexture");
                     selected = &attribute;
                 }
                 if (ImGui::BeginTooltip())
