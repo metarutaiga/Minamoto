@@ -19,7 +19,7 @@ static Console console;
 //------------------------------------------------------------------------------
 void QuickJSConsole::Initialize()
 {
-    QuickJS::Eval(qjsc_repl, qjsc_repl_size);
+    QuickJS::Eval(qjsc_repl, qjsc_repl_size, true);
 }
 //------------------------------------------------------------------------------
 void QuickJSConsole::Shutdown()
@@ -56,6 +56,7 @@ bool QuickJSConsole::Update(const UpdateData& updateData, bool& show)
                     QuickJS::Input(c);
                 }
                 QuickJS::Input('\n');
+                console.AddHistory(input.c_str());
                 input.clear();
                 inputPos = 0;
             }

@@ -1,5 +1,5 @@
 //==============================================================================
-// Minamoto : QuickJS_STD Source
+// Minamoto : QuickJSModule Source
 //
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
@@ -8,6 +8,7 @@
 
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
+#pragma clang diagnostic ignored "-Wsometimes-uninitialized"
 #endif
 
 void    quickjs_exit(int);
@@ -25,12 +26,14 @@ size_t  quickjs_fwrite(void const*, size_t, size_t, FILE*);
 #define fgetc quickjs_fgetc
 #define fread quickjs_fread
 #define fwrite quickjs_fwrite
+#define select(a,b,c,d,e) select(a,b,c,d,&(struct timeval){0})
 #include <quickjs/quickjs-libc.c>
 
 bool quickjs_stdin = false;
 int quickjs_poll(JSContext *ctx)
 {
     if (quickjs_stdin) {
+        quickjs_stdin = false;
         JSRuntime *rt = JS_GetRuntime(ctx);
         JSThreadState *ts = JS_GetRuntimeOpaque(rt);
         JSOSRWHandler *rh;
@@ -45,5 +48,5 @@ int quickjs_poll(JSContext *ctx)
         }
     }
     done:
-    return 0;
+    return js_os_poll(ctx);
 }

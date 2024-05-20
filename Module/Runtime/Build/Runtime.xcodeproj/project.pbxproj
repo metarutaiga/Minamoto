@@ -58,10 +58,10 @@
 		D6346EE92BFA07190075D7F1 /* libquickjs.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6346EE82BFA07190075D7F1 /* libquickjs.macOS.a */; };
 		D6346EEB2BFA07210075D7F1 /* libquickjs.iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6346EEA2BFA07210075D7F1 /* libquickjs.iOS.a */; };
 		D6346EED2BFA072E0075D7F1 /* libquickjs.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6346EEC2BFA072E0075D7F1 /* libquickjs.Android.a */; };
-		D6346EF52BFA1A540075D7F1 /* QuickJS_STD.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJS_STD.c */; };
-		D6346EF62BFA1A540075D7F1 /* QuickJS_STD.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJS_STD.c */; };
-		D6346EF72BFA1A540075D7F1 /* QuickJS_STD.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJS_STD.c */; };
-		D6346EF82BFA1A540075D7F1 /* QuickJS_STD.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJS_STD.c */; };
+		D6346EF52BFA1A540075D7F1 /* QuickJSModule.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */; };
+		D6346EF62BFA1A540075D7F1 /* QuickJSModule.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */; };
+		D6346EF72BFA1A540075D7F1 /* QuickJSModule.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */; };
+		D6346EF82BFA1A540075D7F1 /* QuickJSModule.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */; };
 		D6386A652BDBE0AC0008C9D1 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A632BDBE0AC0008C9D1 /* Shader.cpp */; };
 		D6386A662BDBE0AC0008C9D1 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A632BDBE0AC0008C9D1 /* Shader.cpp */; };
 		D6386A672BDBE0AC0008C9D1 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A632BDBE0AC0008C9D1 /* Shader.cpp */; };
@@ -188,7 +188,7 @@
 		D6346EE82BFA07190075D7F1 /* libquickjs.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libquickjs.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6346EEA2BFA07210075D7F1 /* libquickjs.iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libquickjs.iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6346EEC2BFA072E0075D7F1 /* libquickjs.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libquickjs.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6346EF42BFA1A540075D7F1 /* QuickJS_STD.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = QuickJS_STD.c; path = ../Script/QuickJS_STD.c; sourceTree = "<group>"; };
+		D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = QuickJSModule.c; path = ../Script/QuickJSModule.c; sourceTree = "<group>"; };
 		D6386A632BDBE0AC0008C9D1 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = ../Graphic/Shader.cpp; sourceTree = "<group>"; };
 		D6386A642BDBE0AC0008C9D1 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = ../Graphic/Shader.h; sourceTree = "<group>"; };
 		D6386A702BDC09EA0008C9D1 /* Binary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Binary.cpp; path = ../Graphic/Binary.cpp; sourceTree = "<group>"; };
@@ -351,7 +351,7 @@
 				D62FEBD32BE493A3004E9FDF /* Lua.h */,
 				D6346EE02BFA06520075D7F1 /* QuickJS.cpp */,
 				D6346EE12BFA06520075D7F1 /* QuickJS.h */,
-				D6346EF42BFA1A540075D7F1 /* QuickJS_STD.c */,
+				D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */,
 			);
 			name = Script;
 			sourceTree = "<group>";
@@ -576,7 +576,7 @@
 				D62286CF2BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C52BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
 				D6F5640B2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
-				D6346EF52BFA1A540075D7F1 /* QuickJS_STD.c in Sources */,
+				D6346EF52BFA1A540075D7F1 /* QuickJSModule.c in Sources */,
 				D6D26F922BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D52BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D60791032BF5F1B8008810BD /* CSV.cpp in Sources */,
@@ -603,7 +603,7 @@
 				D6F564202BEA785B006D32D9 /* Texture.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
 				D62286DE2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
-				D6346EF82BFA1A540075D7F1 /* QuickJS_STD.c in Sources */,
+				D6346EF82BFA1A540075D7F1 /* QuickJSModule.c in Sources */,
 				D6F564142BEA3FF9006D32D9 /* Binding.cpp in Sources */,
 				D6F5641A2BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066842BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
@@ -644,7 +644,7 @@
 				D62286D02BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C62BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
 				D6F5640C2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
-				D6346EF62BFA1A540075D7F1 /* QuickJS_STD.c in Sources */,
+				D6346EF62BFA1A540075D7F1 /* QuickJSModule.c in Sources */,
 				D6D26F932BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D62BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D60791042BF5F1B8008810BD /* CSV.cpp in Sources */,
@@ -676,7 +676,7 @@
 				D62286D12BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C72BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
 				D6F5640D2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
-				D6346EF72BFA1A540075D7F1 /* QuickJS_STD.c in Sources */,
+				D6346EF72BFA1A540075D7F1 /* QuickJSModule.c in Sources */,
 				D6D26F942BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D72BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D60791052BF5F1B8008810BD /* CSV.cpp in Sources */,

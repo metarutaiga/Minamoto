@@ -75,8 +75,9 @@ extern "C" ssize_t quickjs_write(int fd, void const* ptr, size_t nbytes)
                         count = 1;
                     for (size_t i = 0; i < count; ++i)
                     {
-                        if (QuickJS::Outputs.back().empty() == false)
-                            QuickJS::Outputs.back().pop_back();
+                        if (QuickJS::Outputs.back().empty())
+                            break;
+                        QuickJS::Outputs.back().pop_back();
                     }
                 }
                 if (c >= 'A' && c <= 'Z')
@@ -147,13 +148,6 @@ void QuickJS::Initialize()
     js_std_init_handlers(rt);
     ctx = JS_NewContext(rt);
 
-    /* system modules */
-    js_init_module_std(ctx, "std");
-    js_init_module_os(ctx, "os");
-
-    /* console modules */
-    js_std_add_helpers(ctx, 0, nullptr);
-
     /* loader for ES6 modules */
     JS_SetModuleLoaderFunc(rt, nullptr, js_module_loader, nullptr);
 }
@@ -174,23 +168,30 @@ void QuickJS::Input(char c)
     quickjs_stdin = true;
 }
 //------------------------------------------------------------------------------
-void QuickJS::Eval(uint8_t const* buf, size_t len)
+void QuickJS::Eval(uint8_t const* buf, size_t len, bool std)
 {
+    if (std)
+    {
+        /* system modules */
+        js_init_module_std(ctx, "std");
+        js_init_module_os(ctx, "os");
+
+        /* console modules */
+        js_std_add_helpers(ctx, 0, nullptr);
+    }
     js_std_eval_binary(ctx, buf, len, 0);
 }
 //------------------------------------------------------------------------------
 void QuickJS::Update()
 {
-    for (int i = 0; i < 2; ++i)
+    quickjs_poll(ctx);
+
+    JSContext* ctx1;
+    int err = JS_ExecutePendingJob(rt, &ctx1);
+    if (err < 0)
     {
-        JSContext* ctx1;
-        int err = JS_ExecutePendingJob(rt, &ctx1);
-        if (err < 0)
-        {
-            js_std_dump_error(ctx1);
-            return;
-        }
-        quickjs_poll(ctx);
+        js_std_dump_error(ctx1);
+        return;
     }
 }
 //==============================================================================

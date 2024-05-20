@@ -15,7 +15,7 @@ struct RuntimeAPI QuickJS
     static void Initialize();
     static void Shutdown();
     static void Input(char c);
-    static void Eval(uint8_t const* buf, size_t len);
+    static void Eval(uint8_t const* buf, size_t len, bool std);
     static void Update();
 
     static struct JSRuntime* rt;
