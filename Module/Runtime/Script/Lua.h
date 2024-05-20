@@ -13,6 +13,7 @@
 struct RuntimeAPI Lua
 {
     static void Initialize();
+    static void StandardLibrary();
     static void Shutdown();
 
     static struct lua_State* L;

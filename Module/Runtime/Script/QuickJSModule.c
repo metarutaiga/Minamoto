@@ -4,11 +4,28 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <stdio.h>
-
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #pragma clang diagnostic ignored "-Wsometimes-uninitialized"
+#endif
+
+#if defined(_WIN32)
+#define _CRT_NONSTDC_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define WIN32_LEAN_AND_MEAN
+#ifndef PATH_MAX
+#define PATH_MAX MAX_PATH
+#endif
+#define USE_WORKER
+#endif
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <sys/time.h>
+#include <unistd.h>
+#if defined(_WIN32)
+typedef intptr_t ssize_t;
 #endif
 
 void    quickjs_exit(int);
@@ -26,6 +43,7 @@ size_t  quickjs_fwrite(void const*, size_t, size_t, FILE*);
 #define fgetc quickjs_fgetc
 #define fread quickjs_fread
 #define fwrite quickjs_fwrite
+#define isatty(a) false
 #define select(a,b,c,d,e) select(a,b,c,d,&(struct timeval){0})
 #include <quickjs/quickjs-libc.c>
 

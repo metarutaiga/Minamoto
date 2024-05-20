@@ -8,10 +8,14 @@
 
 struct Console
 {
-    bool Update(const UpdateData& updateData);
+    bool UpdateInput(const UpdateData& updateData);
+    bool UpdateConsole(const UpdateData& updateData, std::deque<std::string> const& lines);
     void AddHistory(const char* line);
 
     std::string input;
+
+    size_t lineCount = 0;
+
     std::vector<std::string> history;
     size_t inputPos = 0;
     size_t historyPos = 0;

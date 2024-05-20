@@ -23,7 +23,9 @@
 
 #define lua_writestring lua_writestring
 #define lua_writeline lua_writeline
+#define lua_writestringerror lua_writestringerror
 LUA_API void lua_writestring(const char* string, size_t length);
 LUA_API void lua_writeline(void);
+LUA_API void lua_writestringerror(const char* string, const char* parameter);
 
 #endif

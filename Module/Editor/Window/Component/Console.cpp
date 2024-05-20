@@ -9,7 +9,7 @@
 #include "Console.h"
 
 //------------------------------------------------------------------------------
-bool Console::Update(const UpdateData& updateData)
+bool Console::UpdateInput(const UpdateData& updateData)
 {
     bool update = false;
 
@@ -100,6 +100,51 @@ bool Console::Update(const UpdateData& updateData)
     return update;
 }
 //------------------------------------------------------------------------------
+bool Console::UpdateConsole(const UpdateData& updateData, std::deque<std::string> const& lines)
+{
+    bool update = false;
+    if (lines.empty() == false)
+    {
+        ImGuiListClipper clipper;
+        clipper.Begin((int)lines.size(), ImGui::GetTextLineHeightWithSpacing());
+        while (clipper.Step())
+        {
+            auto start = lines.begin() + clipper.DisplayStart;
+            auto end = lines.begin() + clipper.DisplayEnd;
+            for (auto it = start; it != end; ++it)
+            {
+                if (it == end - 1)
+                {
+                    static int blink = 0;
+                    if (blink != (int(updateData.time * 2.0f) & 1))
+                    {
+                        blink = (int(updateData.time * 2.0f) & 1);
+                        update = true;
+                    }
+
+                    static std::string temp;
+                    temp = (*it);
+                    temp.append(input.c_str(), inputPos);
+                    temp.append(blink ? "|" : " ");
+                    if (input.size() > inputPos)
+                        temp.append(input.c_str() + inputPos, input.size() - inputPos);
+                    ImGui::Selectable(temp.c_str(), false);
+                    continue;
+                }
+                ImGui::Selectable((*it).c_str(), false);
+            }
+        }
+    }
+    if (lineCount != lines.size())
+    {
+        lineCount = lines.size();
+        ImGui::TextUnformatted("");
+        ImGui::SetScrollHereY();
+        update = true;
+    }
+    return update;
+}
+//------------------------------------------------------------------------------
 void Console::AddHistory(char const* line)
 {
     std::string temp = line ? line : std::string();
@@ -119,9 +164,8 @@ void Console::AddHistory(char const* line)
     }
     if (temp.empty())
         return;
-    if (history.empty() == false && history.back() == temp)
-        return;
-    history.push_back(temp);
+    if (history.empty() || history.back() != temp)
+        history.push_back(temp);
     historyPos = history.size();
 }
 //------------------------------------------------------------------------------

@@ -53,7 +53,7 @@
 		D6346EE22BFA06520075D7F1 /* QuickJS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EE02BFA06520075D7F1 /* QuickJS.cpp */; };
 		D6346EE32BFA06520075D7F1 /* QuickJS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EE02BFA06520075D7F1 /* QuickJS.cpp */; };
 		D6346EE42BFA06520075D7F1 /* QuickJS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EE02BFA06520075D7F1 /* QuickJS.cpp */; };
-		D6346EE52BFA06520075D7F1 /* QuickJS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EE02BFA06520075D7F1 /* QuickJS.cpp */; };
+		D6346EE52BFA06520075D7F1 /* QuickJS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EE02BFA06520075D7F1 /* QuickJS.cpp */; settings = {COMPILER_FLAGS = "-I../../../Build/include/quickjs-win32"; }; };
 		D6346EE72BFA07000075D7F1 /* quickjs.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6346EE62BFA07000075D7F1 /* quickjs.Windows.lib */; };
 		D6346EE92BFA07190075D7F1 /* libquickjs.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6346EE82BFA07190075D7F1 /* libquickjs.macOS.a */; };
 		D6346EEB2BFA07210075D7F1 /* libquickjs.iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6346EEA2BFA07210075D7F1 /* libquickjs.iOS.a */; };
@@ -61,7 +61,7 @@
 		D6346EF52BFA1A540075D7F1 /* QuickJSModule.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */; };
 		D6346EF62BFA1A540075D7F1 /* QuickJSModule.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */; };
 		D6346EF72BFA1A540075D7F1 /* QuickJSModule.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */; };
-		D6346EF82BFA1A540075D7F1 /* QuickJSModule.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */; };
+		D6346EF82BFA1A540075D7F1 /* QuickJSModule.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EF42BFA1A540075D7F1 /* QuickJSModule.c */; settings = {COMPILER_FLAGS = "-I../../../Build/include/quickjs-win32"; }; };
 		D6386A652BDBE0AC0008C9D1 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A632BDBE0AC0008C9D1 /* Shader.cpp */; };
 		D6386A662BDBE0AC0008C9D1 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A632BDBE0AC0008C9D1 /* Shader.cpp */; };
 		D6386A672BDBE0AC0008C9D1 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A632BDBE0AC0008C9D1 /* Shader.cpp */; };

@@ -240,7 +240,7 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         float forward_backward = 0.0f;
         float left_right = 0.0f;
         float speed = 10.0f;
-        if (ImGui::IsWindowHovered())
+        if (ImGui::IsWindowFocused())
         {
             if (ImGui::IsKeyDown(ImGuiKey_LeftShift))
             {

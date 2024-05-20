@@ -53,6 +53,14 @@
 		D6169CFB2BB17A7B00E5490C /* locale_win32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CF82BB17A7B00E5490C /* locale_win32.cpp */; };
 		D6169CFC2BB17A7B00E5490C /* support.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CF92BB17A7B00E5490C /* support.cpp */; };
 		D63370A02B3B24C9001D4057 /* liblibcxx.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* liblibcxx.a */; };
+		D6346EFC2BFB55560075D7F1 /* udivmodti4.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFA2BFB55550075D7F1 /* udivmodti4.c */; };
+		D6346EFD2BFB55560075D7F1 /* udivmodti4.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFA2BFB55550075D7F1 /* udivmodti4.c */; };
+		D6346EFE2BFB55560075D7F1 /* udivmodti4.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFA2BFB55550075D7F1 /* udivmodti4.c */; };
+		D6346EFF2BFB55560075D7F1 /* udivmodti4.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFA2BFB55550075D7F1 /* udivmodti4.c */; };
+		D6346F002BFB55560075D7F1 /* udivti3.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFB2BFB55550075D7F1 /* udivti3.c */; };
+		D6346F012BFB55560075D7F1 /* udivti3.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFB2BFB55550075D7F1 /* udivti3.c */; };
+		D6346F022BFB55560075D7F1 /* udivti3.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFB2BFB55550075D7F1 /* udivti3.c */; };
+		D6346F032BFB55560075D7F1 /* udivti3.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFB2BFB55550075D7F1 /* udivti3.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,6 +131,8 @@
 		D6169CF72BB17A7B00E5490C /* thread_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread_win32.cpp; path = ../SDK/ClangPlatform/libcxx/src/support/win32/thread_win32.cpp; sourceTree = "<group>"; };
 		D6169CF82BB17A7B00E5490C /* locale_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = locale_win32.cpp; path = ../SDK/ClangPlatform/libcxx/src/support/win32/locale_win32.cpp; sourceTree = "<group>"; };
 		D6169CF92BB17A7B00E5490C /* support.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = support.cpp; path = ../SDK/ClangPlatform/libcxx/src/support/win32/support.cpp; sourceTree = "<group>"; };
+		D6346EFA2BFB55550075D7F1 /* udivmodti4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udivmodti4.c; path = "../SDK/ClangPlatform/compiler-rt/udivmodti4.c"; sourceTree = "<group>"; };
+		D6346EFB2BFB55550075D7F1 /* udivti3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udivti3.c; path = "../SDK/ClangPlatform/compiler-rt/udivti3.c"; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* liblibcxx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibcxx.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,10 +197,20 @@
 			name = win32;
 			sourceTree = "<group>";
 		};
+		D6346EF92BFB553B0075D7F1 /* compiler-rt */ = {
+			isa = PBXGroup;
+			children = (
+				D6346EFA2BFB55550075D7F1 /* udivmodti4.c */,
+				D6346EFB2BFB55550075D7F1 /* udivti3.c */,
+			);
+			name = "compiler-rt";
+			sourceTree = "<group>";
+		};
 		D644A038231ED82900B75B77 = {
 			isa = PBXGroup;
 			children = (
 				CE999BC925D21D9F00351116 /* Configs */,
+				D6346EF92BFB553B0075D7F1 /* compiler-rt */,
 				D6169CF52BB17A5500E5490C /* support */,
 				D6169CA12BB1742600E5490C /* algorithm.cpp */,
 				D6169C992BB1742600E5490C /* any.cpp */,
@@ -370,6 +390,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6346F002BFB55560075D7F1 /* udivti3.c in Sources */,
+				D6346EFC2BFB55560075D7F1 /* udivmodti4.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,10 +431,12 @@
 				D6169CCC2BB1742700E5490C /* random_shuffle.cpp in Sources */,
 				D6169CCB2BB1742700E5490C /* random.cpp in Sources */,
 				D6169CE82BB1742700E5490C /* barrier.cpp in Sources */,
+				D6346EFF2BFB55560075D7F1 /* udivmodti4.c in Sources */,
 				D6169CDB2BB1742700E5490C /* shared_mutex.cpp in Sources */,
 				D6169CDA2BB1742700E5490C /* typeinfo.cpp in Sources */,
 				D6169CED2BB1742700E5490C /* chrono.cpp in Sources */,
 				D6169CEA2BB1742700E5490C /* hash.cpp in Sources */,
+				D6346F032BFB55560075D7F1 /* udivti3.c in Sources */,
 				D6169CE22BB1742700E5490C /* ios.cpp in Sources */,
 				D6169CE72BB1742700E5490C /* mutex_destructor.cpp in Sources */,
 				D6169CCD2BB1742700E5490C /* vector.cpp in Sources */,
@@ -429,6 +453,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6346F012BFB55560075D7F1 /* udivti3.c in Sources */,
+				D6346EFD2BFB55560075D7F1 /* udivmodti4.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +462,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6346F022BFB55560075D7F1 /* udivti3.c in Sources */,
+				D6346EFE2BFB55560075D7F1 /* udivmodti4.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

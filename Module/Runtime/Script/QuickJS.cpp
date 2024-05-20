@@ -10,6 +10,10 @@
 #include <string>
 #include "QuickJS.h"
 
+#if defined(_WIN32)
+typedef intptr_t ssize_t;
+#endif
+
 extern "C"
 {
 #ifdef __clang__
@@ -152,6 +156,16 @@ void QuickJS::Initialize()
     JS_SetModuleLoaderFunc(rt, nullptr, js_module_loader, nullptr);
 }
 //------------------------------------------------------------------------------
+void QuickJS::StandardLibrary()
+{
+    /* system modules */
+    js_init_module_std(ctx, "std");
+    js_init_module_os(ctx, "os");
+
+    /* console modules */
+    js_std_add_helpers(ctx, 0, nullptr);
+}
+//------------------------------------------------------------------------------
 void QuickJS::Shutdown()
 {
     js_std_free_handlers(rt);
@@ -168,17 +182,8 @@ void QuickJS::Input(char c)
     quickjs_stdin = true;
 }
 //------------------------------------------------------------------------------
-void QuickJS::Eval(uint8_t const* buf, size_t len, bool std)
+void QuickJS::Eval(uint8_t const* buf, size_t len)
 {
-    if (std)
-    {
-        /* system modules */
-        js_init_module_std(ctx, "std");
-        js_init_module_os(ctx, "os");
-
-        /* console modules */
-        js_std_add_helpers(ctx, 0, nullptr);
-    }
     js_std_eval_binary(ctx, buf, len, 0);
 }
 //------------------------------------------------------------------------------

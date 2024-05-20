@@ -25,6 +25,10 @@ void Lua::Initialize()
     lines.push_back(std::string());
 
     L = luaL_newstate();  /* create state */
+}
+//------------------------------------------------------------------------------
+void Lua::StandardLibrary()
+{
     lua_gc(L, LUA_GCSTOP);  /* stop GC while building state */
     luaL_openlibs(L);  /* open standard libraries */
     lua_gc(L, LUA_GCRESTART);  /* start GC... */
@@ -46,6 +50,8 @@ void lua_writestring(char const* string, size_t length)
         char c = string[i];
         switch (c)
         {
+        case 0:
+            return;
         case '\b':
         case 0x7F:
             if (line.empty() == false)
@@ -71,5 +77,14 @@ void lua_writestring(char const* string, size_t length)
 void lua_writeline()
 {
     Lua::lines.push_back(std::string());
+}
+//------------------------------------------------------------------------------
+void lua_writestringerror(char const* string, char const* parameter)
+{
+    size_t count = snprintf(nullptr, 0, string, parameter);
+    char* temp = xxAlloc(char, count + 1);
+    snprintf(temp, count + 1, string, parameter);
+    lua_writestring(temp, count);
+    xxFree(temp);
 }
 //==============================================================================

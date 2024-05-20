@@ -19,7 +19,8 @@ static Console console;
 //------------------------------------------------------------------------------
 void QuickJSConsole::Initialize()
 {
-    QuickJS::Eval(qjsc_repl, qjsc_repl_size, true);
+    QuickJS::StandardLibrary();
+    QuickJS::Eval(qjsc_repl, qjsc_repl_size);
 }
 //------------------------------------------------------------------------------
 void QuickJSConsole::Shutdown()
@@ -34,9 +35,9 @@ bool QuickJSConsole::Update(const UpdateData& updateData, bool& show)
     bool update = false;
     if (ImGui::Begin(ICON_FA_TABLET "QuickJS Console", &show))
     {
-        if (ImGui::IsWindowHovered())
+        if (ImGui::IsWindowFocused())
         {
-            update |= console.Update(updateData);
+            update |= console.UpdateInput(updateData);
         }
 
         bool appearing = ImGui::IsWindowAppearing();
@@ -61,54 +62,14 @@ bool QuickJSConsole::Update(const UpdateData& updateData, bool& show)
                 inputPos = 0;
             }
             QuickJS::Update();
+            update = true;
 
             if (appearing && input.empty() == false)
                 std::swap(input[0], c);
         }
 
         auto const& lines = QuickJS::Outputs;
-        if (lines.empty() == false)
-        {
-            ImGuiListClipper clipper;
-            clipper.Begin((int)lines.size(), ImGui::GetTextLineHeightWithSpacing());
-            while (clipper.Step())
-            {
-                auto start = lines.begin() + clipper.DisplayStart;
-                auto end = lines.begin() + clipper.DisplayEnd;
-                for (auto it = start; it != end; ++it)
-                {
-                    if (it == end - 1)
-                    {
-                        static int blink = 0;
-                        if (blink != (int(updateData.time * 2.0f) & 1))
-                        {
-                            blink = (int(updateData.time * 2.0f) & 1);
-                            update = true;
-                        }
-
-                        auto& input = console.input;
-                        auto inputPos = console.inputPos;
-                        static std::string temp;
-                        temp = (*it);
-                        temp.append(input.c_str(), inputPos);
-                        temp.append(blink ? "|" : " ");
-                        if (input.size() > inputPos)
-                            temp.append(input.c_str() + inputPos, input.size() - inputPos);
-                        ImGui::Selectable(temp.c_str(), false);
-                        continue;
-                    }
-                    ImGui::Selectable((*it).c_str(), false);
-                }
-            }
-        }
-
-        static size_t logCount = 0;
-        if (logCount != lines.size())
-        {
-            logCount = lines.size();
-            ImGui::TextUnformatted("");
-            ImGui::SetScrollHereY();
-        }
+        update |= console.UpdateConsole(updateData, lines);
     }
     ImGui::End();
 

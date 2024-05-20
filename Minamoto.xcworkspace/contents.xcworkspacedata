@@ -4,6 +4,29 @@
    <Group
       location = "container:"
       name = "Build">
+      <Group
+         location = "container:"
+         name = "quickjs-win32">
+         <Group
+            location = "group:Build/include/quickjs-win32/sys"
+            name = "sys">
+            <FileRef
+               location = "group:time.h">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:Build/include/quickjs-win32/dirent.h">
+         </FileRef>
+         <FileRef
+            location = "group:Build/include/quickjs-win32/pthread.h">
+         </FileRef>
+         <FileRef
+            location = "group:Build/include/quickjs-win32/unistd.h">
+         </FileRef>
+         <FileRef
+            location = "group:Build/include/quickjs-win32/utime.h">
+         </FileRef>
+      </Group>
       <FileRef
          location = "group:Build/include/ftmodule.h">
       </FileRef>
