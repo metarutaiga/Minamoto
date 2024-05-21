@@ -1,5 +1,5 @@
 //==============================================================================
-// Minamoto : quickjsio Source
+// Minamoto : quickjs-io Source
 //
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto

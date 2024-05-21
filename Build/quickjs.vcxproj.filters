@@ -9,7 +9,7 @@
     <ClCompile Include="..\SDK\quickjs\qjsc.c" />
     <ClCompile Include="..\SDK\quickjs\quickjs-libc.c" />
     <ClCompile Include="..\SDK\quickjs\quickjs.c" />
-    <ClCompile Include="include\quickjs\quickjsio.c">
+    <ClCompile Include="include\quickjs\quickjs-io.c">
       <Filter>quickjs</Filter>
     </ClCompile>
     <ClCompile Include="..\SDK\ClangPlatform\compiler-rt\udivmodti4.c">

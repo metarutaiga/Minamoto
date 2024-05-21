@@ -7,11 +7,17 @@
 #define luauser_h
 
 #undef LUA_API
+#undef LUALIB_API
+#undef LUAMOD_API
 #if defined(_WIN32)
-#define LUA_API __declspec(dllexport)
+#define LUA_API     __declspec(dllexport)
+#define LUALIB_API  LUA_API
+#define LUAMOD_API
 #define WIN32_LEAN_AND_MEAN
 #else
-#define LUA_API __attribute__((visibility("default")))
+#define LUA_API     __attribute__((visibility("default")))
+#define LUALIB_API  LUA_API
+#define LUAMOD_API
 #define LUA_USE_DLOPEN
 #define LUA_USE_POSIX
 #endif

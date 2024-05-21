@@ -72,7 +72,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\SDK\quickjs\quickjs.c" />
-    <ClCompile Include="include\quickjs\quickjsio.c" />
+    <ClCompile Include="include\quickjs\quickjs-io.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SDK\quickjs\cutils.h" />
