@@ -128,7 +128,6 @@
 		D6022C9523258EFB00B9BFB8 /* type1cid.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A036231ED5CB00B75B77 /* type1cid.c */; };
 		D6022C9623258EFB00B9BFB8 /* type42.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A032231ED13200B75B77 /* type42.c */; };
 		D6022C9723258EFB00B9BFB8 /* winfnt.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A034231ED27D00B75B77 /* winfnt.c */; };
-		D63370A62B3B2533001D4057 /* libfreetype.macOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = D6449FDA231EC3D800B75B77 /* libfreetype.macOS.a */; };
 		D6449FFB231EC9B900B75B77 /* ftpatent.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FEA231EC9B800B75B77 /* ftpatent.c */; };
 		D6449FFC231EC9B900B75B77 /* ftsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FEB231EC9B800B75B77 /* ftsystem.c */; };
 		D6449FFD231EC9B900B75B77 /* fttype1.c in Sources */ = {isa = PBXBuildFile; fileRef = D6449FEC231EC9B800B75B77 /* fttype1.c */; };
@@ -169,19 +168,6 @@
 		D644A035231ED27D00B75B77 /* winfnt.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A034231ED27D00B75B77 /* winfnt.c */; };
 		D644A037231ED5CB00B75B77 /* type1cid.c in Sources */ = {isa = PBXBuildFile; fileRef = D644A036231ED5CB00B75B77 /* type1cid.c */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D63370A52B3B252B001D4057 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Minamoto.app/Contents/Frameworks;
-			dstSubfolderSpec = 16;
-			files = (
-				D63370A62B3B2533001D4057 /* libfreetype.macOS.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		30A9A70B25ADC4B1000FA104 /* libfreetype.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfreetype.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -411,7 +397,6 @@
 			buildPhases = (
 				D6449FD7231EC3D800B75B77 /* Sources */,
 				D6449FD8231EC3D800B75B77 /* Frameworks */,
-				D63370A52B3B252B001D4057 /* CopyFiles */,
 			);
 			buildRules = (
 			);

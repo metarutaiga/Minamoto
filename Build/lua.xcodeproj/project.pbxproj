@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D63370A02B3B24C9001D4057 /* liblua.macOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A041231ED82900B75B77 /* liblua.macOS.a */; };
 		D666E33E2BE3A5E100EFA1F2 /* lctype.c in Sources */ = {isa = PBXBuildFile; fileRef = D666E3002BE3A5DF00EFA1F2 /* lctype.c */; };
 		D666E33F2BE3A5E100EFA1F2 /* lctype.c in Sources */ = {isa = PBXBuildFile; fileRef = D666E3002BE3A5DF00EFA1F2 /* lctype.c */; };
 		D666E3402BE3A5E100EFA1F2 /* lctype.c in Sources */ = {isa = PBXBuildFile; fileRef = D666E3002BE3A5DF00EFA1F2 /* lctype.c */; };
@@ -137,19 +136,6 @@
 		D666E3C42BE3A5E100EFA1F2 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D666E33D2BE3A5E100EFA1F2 /* lapi.c */; };
 		D666E3C52BE3A5E100EFA1F2 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D666E33D2BE3A5E100EFA1F2 /* lapi.c */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D633709F2B3B24C1001D4057 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Minamoto.app/Contents/Frameworks;
-			dstSubfolderSpec = 16;
-			files = (
-				D63370A02B3B24C9001D4057 /* liblua.macOS.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		30A9A74A25ADC5C3000FA104 /* liblua.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblua.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -399,7 +385,6 @@
 			buildPhases = (
 				D644A03E231ED82900B75B77 /* Sources */,
 				D644A03F231ED82900B75B77 /* Frameworks */,
-				D633709F2B3B24C1001D4057 /* CopyFiles */,
 			);
 			buildRules = (
 			);

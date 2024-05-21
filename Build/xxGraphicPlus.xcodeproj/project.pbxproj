@@ -12,7 +12,6 @@
 		30A9A79E25ADC711000FA104 /* xxMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED824DDA2EA00C0F4EC /* xxMath.cpp */; settings = {COMPILER_FLAGS = "-Ofast"; }; };
 		30A9A79F25ADC711000FA104 /* xxMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDF24DDA2EA00C0F4EC /* xxMesh.cpp */; };
 		30A9A7A025ADC711000FA104 /* xxNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED924DDA2EA00C0F4EC /* xxNode.cpp */; };
-		30ED316E26355DED00AA60B2 /* libxxGraphic.so in Frameworks */ = {isa = PBXBuildFile; fileRef = 30ED316D26355DED00AA60B2 /* libxxGraphic.so */; };
 		30F22EE224DDA2EA00C0F4EC /* xxMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED824DDA2EA00C0F4EC /* xxMath.cpp */; settings = {COMPILER_FLAGS = "-Ofast"; }; };
 		30F22EE324DDA2EA00C0F4EC /* xxMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED824DDA2EA00C0F4EC /* xxMath.cpp */; settings = {COMPILER_FLAGS = "-Ofast"; }; };
 		30F22EE424DDA2EA00C0F4EC /* xxNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED924DDA2EA00C0F4EC /* xxNode.cpp */; };
@@ -28,7 +27,6 @@
 		CE93600B25AC440100CEF503 /* xxMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED824DDA2EA00C0F4EC /* xxMath.cpp */; settings = {COMPILER_FLAGS = "-Ofast"; }; };
 		CE93600C25AC440100CEF503 /* xxMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22EDF24DDA2EA00C0F4EC /* xxMesh.cpp */; };
 		CE93600D25AC440100CEF503 /* xxNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F22ED924DDA2EA00C0F4EC /* xxNode.cpp */; };
-		D63370A42B3B24ED001D4057 /* libxxGraphicPlus.macOS.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = D644A092231EDDFA00B75B77 /* libxxGraphicPlus.macOS.a */; };
 		D6366D3D2B4BB015000E6872 /* xxFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6366D3B2B4BB015000E6872 /* xxFile.cpp */; };
 		D6366D3E2B4BB015000E6872 /* xxFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6366D3B2B4BB015000E6872 /* xxFile.cpp */; };
 		D6366D3F2B4BB015000E6872 /* xxFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6366D3B2B4BB015000E6872 /* xxFile.cpp */; };
@@ -41,25 +39,11 @@
 		D6BA700029E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
 		D6BA700129E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
 		D6BA700229E265080056FE5F /* xxCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BA6FFE29E265080056FE5F /* xxCamera.cpp */; };
-		D6BA702729E270000056FE5F /* xxGraphic.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA702629E270000056FE5F /* xxGraphic.bundle */; };
 		D6F7F8D22B5D21150092A084 /* xxModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F7F8D02B5D21140092A084 /* xxModifier.cpp */; };
 		D6F7F8D32B5D21150092A084 /* xxModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F7F8D02B5D21140092A084 /* xxModifier.cpp */; };
 		D6F7F8D42B5D21150092A084 /* xxModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F7F8D02B5D21140092A084 /* xxModifier.cpp */; };
 		D6F7F8D52B5D21150092A084 /* xxModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F7F8D02B5D21140092A084 /* xxModifier.cpp */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D63370A32B3B24DF001D4057 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Minamoto.app/Contents/Frameworks;
-			dstSubfolderSpec = 16;
-			files = (
-				D63370A42B3B24ED001D4057 /* libxxGraphicPlus.macOS.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		30A9A78125ADC6D9000FA104 /* libxxGraphicPlus.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxxGraphicPlus.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30ED316E26355DED00AA60B2 /* libxxGraphic.so in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +105,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6BA702729E270000056FE5F /* xxGraphic.bundle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +243,6 @@
 			buildPhases = (
 				D644A08F231EDDFA00B75B77 /* Sources */,
 				D644A090231EDDFA00B75B77 /* Frameworks */,
-				D63370A32B3B24DF001D4057 /* CopyFiles */,
 			);
 			buildRules = (
 			);
