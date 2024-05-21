@@ -59,6 +59,12 @@
     <ClCompile Include="..\Window\Component\Console.cpp">
       <Filter>Window\Component</Filter>
     </ClCompile>
+    <ClCompile Include="..\Window\Setup.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\QuickJSConsole.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImGuiHelper.h" />
@@ -120,6 +126,12 @@
       <Filter>Window\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\Editor.h" />
+    <ClInclude Include="..\Window\Setup.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\QuickJSConsole.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphic">

@@ -5,6 +5,7 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include "Editor.h"
+#include <algorithm>
 #include <functional>
 #include <string>
 #include "Folder.h"

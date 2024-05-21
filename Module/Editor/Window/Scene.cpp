@@ -322,7 +322,7 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
     float y = 0.0f;
     float width = 0.0f;
     float height = 0.0f;
-    float dpiScale = 0.0f;
+    float dpiScale = 1.0f;
     uint64_t commandEncoder = 0;
     ImGuiPlatformIO& io = ImGui::GetPlatformIO();
     for (int i = 0; i < io.Viewports.size(); ++i)
@@ -334,7 +334,9 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
         y = viewport->Pos.y;
         width = viewport->Size.x;
         height = viewport->Size.y;
+#if defined(xxMACOS) || defined(xxIOS)
         dpiScale = viewport->DpiScale;
+#endif
         commandEncoder = *(uint64_t*)viewport->RendererUserData;
         break;
     }

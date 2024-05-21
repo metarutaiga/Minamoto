@@ -1,5 +1,5 @@
 //==============================================================================
-// Minamoto : QuickJSModule Source
+// Minamoto : quickjsio Source
 //
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
@@ -20,8 +20,9 @@
 #define USE_WORKER
 #endif
 
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <sys/time.h>
 #include <unistd.h>
 #if defined(_WIN32)
@@ -45,7 +46,7 @@ size_t  quickjs_fwrite(void const*, size_t, size_t, FILE*);
 #define fwrite quickjs_fwrite
 #define isatty(a) false
 #define select(a,b,c,d,e) select(a,b,c,d,&(struct timeval){0})
-#include <quickjs/quickjs-libc.c>
+#include "quickjs-libc.c"
 
 bool quickjs_stdin = false;
 int quickjs_poll(JSContext *ctx)

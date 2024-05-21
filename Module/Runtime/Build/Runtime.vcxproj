@@ -168,6 +168,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -183,6 +184,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -198,6 +200,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -213,6 +216,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -235,6 +239,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -257,6 +262,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -279,6 +285,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -301,6 +308,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -324,7 +332,18 @@
     <ClCompile Include="..\Modifier\TranslateModifier.cpp" />
     <ClCompile Include="..\Runtime.cpp" />
     <ClCompile Include="..\Script\Lua.cpp" />
+    <ClCompile Include="..\Script\QuickJS.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../../Build/include/quickjs-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../../../Build/include/quickjs-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">../../../Build/include/quickjs-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">../../../Build/include/quickjs-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">../../../Build/include/quickjs-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">../../../Build/include/quickjs-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../../../Build/include/quickjs-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../../../Build/include/quickjs-win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\Tools\CameraTools.cpp" />
+    <ClCompile Include="..\Tools\CSV.cpp" />
     <ClCompile Include="..\Tools\NodeTools.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -362,7 +381,9 @@
     <ClInclude Include="..\Modifier\TranslateModifier.h" />
     <ClInclude Include="..\Runtime.h" />
     <ClInclude Include="..\Script\Lua.h" />
+    <ClInclude Include="..\Script\QuickJS.h" />
     <ClInclude Include="..\Tools\CameraTools.h" />
+    <ClInclude Include="..\Tools\CSV.h" />
     <ClInclude Include="..\Tools\NodeTools.h" />
   </ItemGroup>
   <ItemGroup>

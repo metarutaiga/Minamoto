@@ -65,6 +65,12 @@
     <ClCompile Include="..\Graphic\Texture.cpp">
       <Filter>Graphic</Filter>
     </ClCompile>
+    <ClCompile Include="..\Script\QuickJS.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Tools\CSV.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Runtime.h" />
@@ -130,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="..\Graphic\Texture.h">
       <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Script\QuickJS.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Tools\CSV.h">
+      <Filter>Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

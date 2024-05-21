@@ -16,11 +16,31 @@ typedef intptr_t ssize_t;
 
 extern "C"
 {
-#ifdef __clang__
+#if defined(__clang__)
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
-#endif
 #include <quickjs/quickjs.h>
 #include <quickjs/quickjs-libc.h>
+#elif defined(_MSC_VER)
+struct JSRuntime;
+struct JSContext;
+struct JSModuleDef;
+JSRuntime* JS_NewRuntime(void);
+JSContext* JS_NewContext(JSRuntime* rt);
+void JS_FreeContext(JSContext* ctx);
+void JS_FreeRuntime(JSRuntime* rt);
+void JS_SetModuleLoaderFunc(JSRuntime* rt, void* module_normalize, void* module_loader, void* opaque);
+JSModuleDef* js_module_loader(JSContext* ctx, const char* module_name, void* opaque);
+int JS_ExecutePendingJob(JSRuntime* rt, JSContext** pctx);
+void js_std_set_worker_new_context_func(JSContext* (*func)(JSRuntime* rt));
+void js_std_init_handlers(JSRuntime* rt);
+JSModuleDef* js_init_module_std(JSContext* ctx, const char* module_name);
+JSModuleDef* js_init_module_os(JSContext* ctx, const char* module_name);
+void js_std_add_helpers(JSContext* ctx, int argc, char** argv);
+void js_std_free_handlers(JSRuntime* rt);
+void js_std_eval_binary(JSContext* ctx, const uint8_t* buf, size_t buf_len, int load_only);
+void js_std_dump_error(JSContext* ctx);
+#pragma comment(lib, "quickjs")
+#endif
 }
 
 JSRuntime* QuickJS::rt;
