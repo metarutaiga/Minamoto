@@ -24,25 +24,20 @@ static const char* optarg = "";
 static int optind = 1;
 static int getopt(int argc, char** argv, const char* optstring)
 {
-	if (optind < argc)
-	{
-		char* arg = argv[optind];
-		if (arg[0] == '-')
-		{
-			optind++;
-			for (char c; (c = *optstring); ++optstring)
-			{
-				if (c == arg[1])
-				{
-					if (optstring[1] == ':')
-					{
-						optarg = argv[optind++];
-					}
-					return c;
-				}
-			}
-			return '?';
-		}
-	}
-	return -1;
+    if (optind < argc) {
+        char* arg = argv[optind];
+        if (arg[0] == '-') {
+            optind++;
+            for (char c; (c = *optstring); ++optstring) {
+                if (arg[1] == c) {
+                    if (optstring[1] == ':') {
+                        optarg = argv[optind++];
+                    }
+                    return c;
+                }
+            }
+            return '?';
+        }
+    }
+    return -1;
 }

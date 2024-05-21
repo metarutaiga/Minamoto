@@ -1,7 +1,11 @@
 #pragma once
+#undef _CRT_INSECURE_DEPRECATE
+#define _CRT_INSECURE_DEPRECATE(_Replacement)
+#define _CRT_SECURE_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #define WIN32_LEAN_AND_MEAN
 #include <winsock2.h>
+#include <time.h>
 
 struct timezone;
 static int gettimeofday(struct timeval* __tv, struct timezone* __tz)
@@ -25,4 +29,13 @@ static int gettimeofday(struct timeval* __tv, struct timezone* __tz)
     return 0;
 }
 
-#define clock_gettime(a,b) { (b)->tv_sec = 0; (b)->tv_nsec = 0; }
+#define CLOCK_REALTIME 0
+static int clock_gettime(int __clock, struct timespec* __ts)
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+
+    __ts->tv_sec = tv.tv_sec;
+    __ts->tv_nsec = tv.tv_usec / 1000;
+    return 0;
+}
