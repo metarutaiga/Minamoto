@@ -217,6 +217,7 @@
 			buildPhases = (
 				30A9A74725ADC5C3000FA104 /* Sources */,
 				30A9A74825ADC5C3000FA104 /* Frameworks */,
+				D6F49BA12BFC8AB500A442C2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -233,6 +234,7 @@
 			buildPhases = (
 				CE935F5025AC2F4800CEF503 /* Sources */,
 				CE935F5125AC2F4800CEF503 /* Frameworks */,
+				D6F49B9F2BFC8AAA00A442C2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -249,6 +251,7 @@
 			buildPhases = (
 				D6022C3123258B5D00B9BFB8 /* Sources */,
 				D6022C3223258B5D00B9BFB8 /* Frameworks */,
+				D6F49BA02BFC8AB000A442C2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -266,6 +269,7 @@
 				D644A03E231ED82900B75B77 /* Sources */,
 				D644A03F231ED82900B75B77 /* Frameworks */,
 				D633709F2B3B24C1001D4057 /* CopyFiles */,
+				D6F49B9E2BFC8A3C00A442C2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -319,6 +323,85 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D6F49B9E2BFC8A3C00A442C2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${SRCROOT}/../SDK/quickjs/qjscalc.c",
+				"${SRCROOT}/../SDK/quickjs/repl.c",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ${SRCROOT}/../SDK/quickjs\nif [ ! -f qjsc ]; then\n  clang -DCONFIG_VERSION=\\\"$(cat VERSION)\\\" -Ofast cutils.c libbf.c libregexp.c libunicode.c qjsc.c quickjs.c quickjs-libc.c -o qjsc\nfi\nif [ ! -f qjscalc.c ]; then\n  ./qjsc -c -o qjscalc.c -m qjscalc.js\nfi\nif [ ! -f repl.c ]; then\n  ./qjsc -c -o repl.c -m repl.js\nfi\n";
+		};
+		D6F49B9F2BFC8AAA00A442C2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${SRCROOT}/../SDK/quickjs/qjscalc.c",
+				"${SRCROOT}/../SDK/quickjs/repl.c",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ${SRCROOT}/../SDK/quickjs\nif [ ! -f qjsc ]; then\n  clang -DCONFIG_VERSION=\\\"$(cat VERSION)\\\" -Ofast cutils.c libbf.c libregexp.c libunicode.c qjsc.c quickjs.c quickjs-libc.c -o qjsc\nfi\nif [ ! -f qjscalc.c ]; then\n  ./qjsc -c -o qjscalc.c -m qjscalc.js\nfi\nif [ ! -f repl.c ]; then\n  ./qjsc -c -o repl.c -m repl.js\nfi\n";
+		};
+		D6F49BA02BFC8AB000A442C2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${SRCROOT}/../SDK/quickjs/qjscalc.c",
+				"${SRCROOT}/../SDK/quickjs/repl.c",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ${SRCROOT}/../SDK/quickjs\nif [ ! -f qjsc ]; then\n  clang -DCONFIG_VERSION=\\\"$(cat VERSION)\\\" -Ofast cutils.c libbf.c libregexp.c libunicode.c qjsc.c quickjs.c quickjs-libc.c -o qjsc\nfi\nif [ ! -f qjscalc.c ]; then\n  ./qjsc -c -o qjscalc.c -m qjscalc.js\nfi\nif [ ! -f repl.c ]; then\n  ./qjsc -c -o repl.c -m repl.js\nfi\n";
+		};
+		D6F49BA12BFC8AB500A442C2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${SRCROOT}/../SDK/quickjs/qjscalc.c",
+				"${SRCROOT}/../SDK/quickjs/repl.c",
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ${SRCROOT}/../SDK/quickjs\nif [ ! -f qjsc ]; then\n  clang -DCONFIG_VERSION=\\\"$(cat VERSION)\\\" -Ofast cutils.c libbf.c libregexp.c libunicode.c qjsc.c quickjs.c quickjs-libc.c -o qjsc\nfi\nif [ ! -f qjscalc.c ]; then\n  ./qjsc -c -o qjscalc.c -m qjscalc.js\nfi\nif [ ! -f repl.c ]; then\n  ./qjsc -c -o repl.c -m repl.js\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		30A9A74725ADC5C3000FA104 /* Sources */ = {
