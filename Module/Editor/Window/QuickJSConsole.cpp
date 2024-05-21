@@ -12,9 +12,7 @@
 
 extern "C"
 {
-#if defined(__clang__)
 #include <quickjs/repl.c>
-#endif
 }
 
 static Console console;
@@ -22,9 +20,7 @@ static Console console;
 void QuickJSConsole::Initialize()
 {
     QuickJS::StandardLibrary();
-#if defined(__clang__)
     QuickJS::Eval(qjsc_repl, qjsc_repl_size);
-#endif
 }
 //------------------------------------------------------------------------------
 void QuickJSConsole::Shutdown()

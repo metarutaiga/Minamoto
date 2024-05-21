@@ -1,6 +1,10 @@
 #pragma once
 #include <direct.h>
 
+#ifndef PATH_MAX
+#define PATH_MAX MAX_PATH
+#endif
+
 typedef int DIR;
 struct dirent { const char* d_name; };
 

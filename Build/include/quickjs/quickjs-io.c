@@ -14,9 +14,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #define WIN32_LEAN_AND_MEAN
-#ifndef PATH_MAX
-#define PATH_MAX MAX_PATH
-#endif
 #define USE_WORKER
 #endif
 
@@ -33,6 +30,7 @@ void    quickjs_exit(int);
 ssize_t quickjs_read(int, void*, size_t);
 ssize_t quickjs_write(int, void const*, size_t);
 int     quickjs_putchar(int);
+int     quickjs_fileno(FILE*);
 int     quickjs_fgetc(FILE*);
 size_t  quickjs_fread(void*, size_t, size_t, FILE*);
 size_t  quickjs_fwrite(void const*, size_t, size_t, FILE*);
@@ -41,6 +39,7 @@ size_t  quickjs_fwrite(void const*, size_t, size_t, FILE*);
 #define read quickjs_read
 #define write quickjs_write
 #define putchar quickjs_putchar
+#define fileno quickjs_fileno
 #define fgetc quickjs_fgetc
 #define fread quickjs_fread
 #define fwrite quickjs_fwrite
@@ -67,5 +66,9 @@ int quickjs_poll(JSContext *ctx)
         }
     }
     done:
+#if defined(_WIN32)
+    return 0;
+#else
     return js_os_poll(ctx);
+#endif
 }

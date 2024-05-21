@@ -17,6 +17,8 @@ bool Console::UpdateInput(const UpdateData& updateData)
     for (int i = 0; i < io.InputQueueCharacters.size(); ++i)
     {
         ImWchar c = io.InputQueueCharacters[i];
+        if (c == '\r')
+            continue;
         input.insert(inputPos++, 1, char(c));
         update = true;
     }

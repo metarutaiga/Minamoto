@@ -1,4 +1,6 @@
 #pragma once
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 #include <corecrt_io.h>
 
 #define popen _popen
@@ -13,3 +15,34 @@
 #define S_IFBLK 0
 
 #define S_ISDIR(a) (a & S_IFDIR)
+
+#define getpid (int)GetCurrentProcessId
+
+typedef intptr_t ssize_t;
+
+static const char* optarg = "";
+static int optind = 1;
+static int getopt(int argc, char** argv, const char* optstring)
+{
+	if (optind < argc)
+	{
+		char* arg = argv[optind];
+		if (arg[0] == '-')
+		{
+			optind++;
+			for (char c; (c = *optstring); ++optstring)
+			{
+				if (c == arg[1])
+				{
+					if (optstring[1] == ':')
+					{
+						optarg = argv[optind++];
+					}
+					return c;
+				}
+			}
+			return '?';
+		}
+	}
+	return -1;
+}

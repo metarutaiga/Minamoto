@@ -133,6 +133,17 @@ extern "C" int quickjs_putchar(int c)
     return 0;
 }
 //------------------------------------------------------------------------------
+extern "C" int quickjs_fileno(FILE* stream)
+{
+    if (stream == stdin)
+        return STDIN_FILENO;
+    if (stream == stdout)
+        return STDOUT_FILENO;
+    if (stream == stderr)
+        return STDERR_FILENO;
+    return fileno(stream);
+}
+//------------------------------------------------------------------------------
 extern "C" int quickjs_fgetc(FILE* stream)
 {
     if (stream == stdin)
@@ -155,8 +166,10 @@ extern "C" size_t quickjs_fread(void* ptr, size_t size, size_t nitems, FILE* str
 //------------------------------------------------------------------------------
 extern "C" size_t quickjs_fwrite(void const* ptr, size_t size, size_t nitems, FILE* stream)
 {
-    if (stream == stdout || stream == stderr)
+    if (stream == stdout)
         return quickjs_write(STDOUT_FILENO, ptr, size * nitems);
+    if (stream == stderr)
+        return quickjs_write(STDERR_FILENO, ptr, size * nitems);
     return fwrite(ptr, size, nitems, stream);
 }
 //------------------------------------------------------------------------------
@@ -216,7 +229,6 @@ void QuickJS::Update()
     if (err < 0)
     {
         js_std_dump_error(ctx1);
-        return;
     }
 }
 //==============================================================================
