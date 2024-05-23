@@ -1,7 +1,4 @@
 #pragma once
-#undef _CRT_INSECURE_DEPRECATE
-#define _CRT_INSECURE_DEPRECATE(_Replacement)
-#define _CRT_SECURE_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #define WIN32_LEAN_AND_MEAN
 #include <winsock2.h>

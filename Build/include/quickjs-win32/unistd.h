@@ -3,6 +3,9 @@
 #include <windows.h>
 #include <corecrt_io.h>
 
+typedef intptr_t ssize_t;
+
+#define getpid GetCurrentProcessId
 #define popen _popen
 #define pclose _pclose
 #define pipe(a) _pipe(a, sizeof(a) / sizeof(a[0]), 0)
@@ -15,10 +18,6 @@
 #define S_IFBLK 0
 
 #define S_ISDIR(a) (a & S_IFDIR)
-
-#define getpid (int)GetCurrentProcessId
-
-typedef intptr_t ssize_t;
 
 static const char* optarg = "";
 static int optind = 1;

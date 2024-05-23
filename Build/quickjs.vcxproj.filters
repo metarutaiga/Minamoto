@@ -12,12 +12,6 @@
     <ClCompile Include="include\quickjs\quickjs-io.c">
       <Filter>quickjs</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\ClangPlatform\compiler-rt\udivmodti4.c">
-      <Filter>compiler-rt</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SDK\ClangPlatform\compiler-rt\udivti3.c">
-      <Filter>compiler-rt</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SDK\quickjs\cutils.h" />
@@ -46,6 +40,9 @@
     <ClInclude Include="include\quickjs-win32\sys\time.h">
       <Filter>quickjs-win32\sys</Filter>
     </ClInclude>
+    <ClInclude Include="include\quickjs-win32\stdlib.h">
+      <Filter>quickjs-win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\SDK\quickjs\LICENSE" />
@@ -61,9 +58,6 @@
     </Filter>
     <Filter Include="quickjs">
       <UniqueIdentifier>{65eba63b-d142-4a74-973d-99c646083454}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="compiler-rt">
-      <UniqueIdentifier>{a56a6f48-4181-46cf-a8a2-8867e68b1039}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
