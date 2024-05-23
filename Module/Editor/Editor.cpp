@@ -118,7 +118,7 @@ moduleAPI bool Update(const UpdateData& updateData)
         ImGui::EndMainMenuBar();
     }
 
-    ImGuiID id = ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
+    ImGuiID id = ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
 
     static bool dockInitialized = false;
     if (dockInitialized == false)
