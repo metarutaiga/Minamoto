@@ -10,17 +10,15 @@
 #include <string>
 #include "QuickJS.h"
 
-#if defined(_WIN32)
-typedef intptr_t ssize_t;
-#endif
-
 extern "C"
 {
+#include <quickjs/quickjs-ver.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #include <quickjs/quickjs.h>
 #include <quickjs/quickjs-libc.h>
 #elif defined(_MSC_VER)
+typedef intptr_t ssize_t;
 struct JSRuntime;
 struct JSContext;
 struct JSModuleDef;
@@ -47,6 +45,72 @@ JSRuntime* QuickJS::rt;
 JSContext* QuickJS::ctx;
 std::deque<char> QuickJS::Inputs;
 std::deque<std::string> QuickJS::Outputs;
+//==============================================================================
+extern "C" bool quickjs_stdin;
+extern "C" int quickjs_poll(JSContext* ctx);
+//------------------------------------------------------------------------------
+void QuickJS::Initialize()
+{
+    Outputs.push_back(std::string());
+
+    rt = JS_NewRuntime();
+    js_std_set_worker_new_context_func(JS_NewContext);
+    js_std_init_handlers(rt);
+    ctx = JS_NewContext(rt);
+
+    /* loader for ES6 modules */
+    JS_SetModuleLoaderFunc(rt, nullptr, js_module_loader, nullptr);
+}
+//------------------------------------------------------------------------------
+void QuickJS::Shutdown()
+{
+    js_std_free_handlers(rt);
+    JS_FreeContext(ctx);
+    JS_FreeRuntime(rt);
+
+    Inputs = std::deque<char>();
+    Outputs = std::deque<std::string>();
+}
+//------------------------------------------------------------------------------
+void QuickJS::StandardLibrary()
+{
+    /* system modules */
+    js_init_module_std(ctx, "std");
+    js_init_module_os(ctx, "os");
+
+    /* console modules */
+    js_std_add_helpers(ctx, 0, nullptr);
+}
+//------------------------------------------------------------------------------
+char const* QuickJS::Version()
+{
+    return "QuickJS " CONFIG_VERSION;
+}
+//------------------------------------------------------------------------------
+void QuickJS::Input(char c)
+{
+    Inputs.push_back(c);
+    quickjs_stdin = true;
+}
+//------------------------------------------------------------------------------
+void QuickJS::Eval(uint8_t const* buf, size_t len)
+{
+    js_std_eval_binary(ctx, buf, len, 0);
+}
+//------------------------------------------------------------------------------
+void QuickJS::Update()
+{
+    quickjs_poll(ctx);
+
+    JSContext* ctx1;
+    int err = JS_ExecutePendingJob(rt, &ctx1);
+    if (err < 0)
+    {
+        js_std_dump_error(ctx1);
+    }
+}
+//==============================================================================
+//  Standard I/O
 //==============================================================================
 extern "C" void quickjs_exit(int num)
 {
@@ -171,64 +235,5 @@ extern "C" size_t quickjs_fwrite(void const* ptr, size_t size, size_t nitems, FI
     if (stream == stderr)
         return quickjs_write(STDERR_FILENO, ptr, size * nitems);
     return fwrite(ptr, size, nitems, stream);
-}
-//------------------------------------------------------------------------------
-extern "C" bool quickjs_stdin;
-extern "C" int quickjs_poll(JSContext* ctx);
-//------------------------------------------------------------------------------
-void QuickJS::Initialize()
-{
-    Outputs.push_back(std::string());
-
-    rt = JS_NewRuntime();
-    js_std_set_worker_new_context_func(JS_NewContext);
-    js_std_init_handlers(rt);
-    ctx = JS_NewContext(rt);
-
-    /* loader for ES6 modules */
-    JS_SetModuleLoaderFunc(rt, nullptr, js_module_loader, nullptr);
-}
-//------------------------------------------------------------------------------
-void QuickJS::StandardLibrary()
-{
-    /* system modules */
-    js_init_module_std(ctx, "std");
-    js_init_module_os(ctx, "os");
-
-    /* console modules */
-    js_std_add_helpers(ctx, 0, nullptr);
-}
-//------------------------------------------------------------------------------
-void QuickJS::Shutdown()
-{
-    js_std_free_handlers(rt);
-    JS_FreeContext(ctx);
-    JS_FreeRuntime(rt);
-
-    Inputs = std::deque<char>();
-    Outputs = std::deque<std::string>();
-}
-//------------------------------------------------------------------------------
-void QuickJS::Input(char c)
-{
-    Inputs.push_back(c);
-    quickjs_stdin = true;
-}
-//------------------------------------------------------------------------------
-void QuickJS::Eval(uint8_t const* buf, size_t len)
-{
-    js_std_eval_binary(ctx, buf, len, 0);
-}
-//------------------------------------------------------------------------------
-void QuickJS::Update()
-{
-    quickjs_poll(ctx);
-
-    JSContext* ctx1;
-    int err = JS_ExecutePendingJob(rt, &ctx1);
-    if (err < 0)
-    {
-        js_std_dump_error(ctx1);
-    }
 }
 //==============================================================================

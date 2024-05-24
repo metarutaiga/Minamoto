@@ -13,8 +13,9 @@
 struct RuntimeAPI Lua
 {
     static void Initialize();
-    static void StandardLibrary();
     static void Shutdown();
+    static void StandardLibrary();
+    static char const* Version();
 
     static struct lua_State* L;
     static std::deque<std::string> lines;

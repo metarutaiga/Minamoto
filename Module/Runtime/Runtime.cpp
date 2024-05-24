@@ -6,7 +6,6 @@
 //==============================================================================
 #include "Runtime.h"
 #include <freetype/freetype.h>
-#include <lua/lua.h>
 #include "Modifier/Modifier.h"
 #include "Graphic/Binding.h"
 #include "Graphic/Pipeline.h"
@@ -148,7 +147,8 @@ void Runtime::Initialize()
 #endif
 
     xxLog("Runtime", "FreeType " xxStringify(FREETYPE_MAJOR) "." xxStringify(FREETYPE_MINOR) "." xxStringify(FREETYPE_PATCH));
-    xxLog("Runtime", "Lua " LUA_VERSION_MAJOR "." LUA_VERSION_MINOR "." LUA_VERSION_RELEASE);
+    xxLog("Runtime", Lua::Version());
+    xxLog("Runtime", QuickJS::Version());
 }
 //------------------------------------------------------------------------------
 void Runtime::Shutdown()

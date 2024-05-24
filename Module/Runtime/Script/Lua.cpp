@@ -27,6 +27,13 @@ void Lua::Initialize()
     L = luaL_newstate();  /* create state */
 }
 //------------------------------------------------------------------------------
+void Lua::Shutdown()
+{
+    lua_close(L);
+
+    lines = std::deque<std::string>();
+}
+//------------------------------------------------------------------------------
 void Lua::StandardLibrary()
 {
     lua_gc(L, LUA_GCSTOP);  /* stop GC while building state */
@@ -35,13 +42,13 @@ void Lua::StandardLibrary()
     lua_gc(L, LUA_GCGEN, 0, 0);  /* ...in generational mode */
 }
 //------------------------------------------------------------------------------
-void Lua::Shutdown()
+char const* Lua::Version()
 {
-    lua_close(L);
-
-    lines = std::deque<std::string>();
+    return "Lua " LUA_VERSION_MAJOR "." LUA_VERSION_MINOR "." LUA_VERSION_RELEASE;
 }
-//------------------------------------------------------------------------------
+//==============================================================================
+//  Standard I/O
+//==============================================================================
 void lua_writestring(char const* string, size_t length)
 {
     for (size_t i = 0; i < length; ++i)

@@ -73,6 +73,7 @@
 		D6F49B892BFC444D00A442C2 /* unistd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unistd.h; sourceTree = "<group>"; };
 		D6F49B8A2BFC444D00A442C2 /* utime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utime.h; sourceTree = "<group>"; };
 		D6F49B8C2BFC444D00A442C2 /* quickjs-io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "quickjs-io.c"; sourceTree = "<group>"; };
+		D6F49BA22C00832A00A442C2 /* stdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdlib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +179,7 @@
 				D6F49B862BFC444D00A442C2 /* sys */,
 				D6F49B872BFC444D00A442C2 /* dirent.h */,
 				D6F49B882BFC444D00A442C2 /* pthread.h */,
+				D6F49BA22C00832A00A442C2 /* stdlib.h */,
 				D6F49B892BFC444D00A442C2 /* unistd.h */,
 				D6F49B8A2BFC444D00A442C2 /* utime.h */,
 			);
@@ -323,6 +325,7 @@
 			);
 			outputPaths = (
 				"${SRCROOT}/../SDK/quickjs/qjscalc.c",
+				"${SRCROOT}/../SDK/quickjs/quickjs-ver.h",
 				"${SRCROOT}/../SDK/quickjs/repl.c",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +345,7 @@
 			);
 			outputPaths = (
 				"${SRCROOT}/../SDK/quickjs/qjscalc.c",
+				"${SRCROOT}/../SDK/quickjs/quickjs-ver.h",
 				"${SRCROOT}/../SDK/quickjs/repl.c",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +365,7 @@
 			);
 			outputPaths = (
 				"${SRCROOT}/../SDK/quickjs/qjscalc.c",
+				"${SRCROOT}/../SDK/quickjs/quickjs-ver.h",
 				"${SRCROOT}/../SDK/quickjs/repl.c",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,14 +378,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${SRCROOT}/../SDK/quickjs/qjscalc.c",
-				"${SRCROOT}/../SDK/quickjs/repl.c",
 			);
 			inputPaths = (
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${SRCROOT}/../SDK/quickjs/qjscalc.c",
+				"${SRCROOT}/../SDK/quickjs/quickjs-ver.h",
+				"${SRCROOT}/../SDK/quickjs/repl.c",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

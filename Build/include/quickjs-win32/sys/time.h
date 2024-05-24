@@ -4,35 +4,34 @@
 #include <winsock2.h>
 #include <time.h>
 
-struct timezone;
-static int gettimeofday(struct timeval* __tv, struct timezone* __tz)
+#define CLOCK_REALTIME 0
+static int clock_gettime(int __clock, struct timespec* __ts)
 {
     // Note: some broken versions only have 8 trailing zero's, the correct epoch has 9 trailing zero's
     // This magic number is the number of 100 nanosecond intervals since January 1, 1601 (UTC)
     // until 00:00:00 January 1, 1970
     static const ULONGLONG EPOCH = 116444736000000000ULL;
 
-    SYSTEMTIME system_time;
-    FILETIME file_time;
-    ULONGLONG time;
+    FILETIME ft;
+    ULARGE_INTEGER time;
 
-    GetSystemTime(&system_time);
-    SystemTimeToFileTime(&system_time, &file_time);
-    time = ((ULONGLONG)file_time.dwLowDateTime);
-    time += ((ULONGLONG)file_time.dwHighDateTime) << 32;
+    GetSystemTimePreciseAsFileTime(&ft);
+    time.LowPart = ft.dwLowDateTime;
+    time.HighPart = ft.dwHighDateTime;
+    time.QuadPart -= EPOCH;
 
-    __tv->tv_sec = (long)((time - EPOCH) / 10000000L);
-    __tv->tv_usec = (long)(system_time.wMilliseconds * 1000);
+    __ts->tv_sec = time.QuadPart / 10000000;
+    __ts->tv_nsec = time.QuadPart % 10000000 * 100;
     return 0;
 }
 
-#define CLOCK_REALTIME 0
-static int clock_gettime(int __clock, struct timespec* __ts)
+struct timezone;
+static int gettimeofday(struct timeval* __tv, struct timezone* __tz)
 {
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
+    struct timespec ts;
+    clock_gettime(CLOCK_REALTIME, &ts);
 
-    __ts->tv_sec = tv.tv_sec;
-    __ts->tv_nsec = tv.tv_usec / 1000;
+    __tv->tv_sec = ts.tv_sec;
+    __tv->tv_usec = ts.tv_nsec / 1000;
     return 0;
 }

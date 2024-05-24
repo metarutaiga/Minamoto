@@ -6,6 +6,9 @@
 # https://github.com/metarutaiga/minamoto
 # ==============================================================================
 
+if [ ! -f quickjs-ver.h ] || [ VERSION -nt quickjs-ver.h ]; then
+  echo \#define CONFIG_VERSION \"$(cat VERSION)\" > quickjs-ver.h
+fi
 if [ ! -f qjsc ]; then
   clang -DCONFIG_VERSION=\"$(cat VERSION)\" -Ofast cutils.c libbf.c libregexp.c libunicode.c qjsc.c quickjs.c quickjs-libc.c -o qjsc
 fi

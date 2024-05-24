@@ -21,18 +21,19 @@ static DWORD WINAPI pthread_start_routine(LPVOID lpThreadParameter)
 static int pthread_create(pthread_t* __pthread_ptr, pthread_attr_t const* __attr, void* (*__start_routine)(void*), void* __parameter)
 {
     struct pthread_start_routine_parameter* routine = malloc(sizeof(struct pthread_start_routine_parameter));
-    if (routine == NULL)
+    if (routine == NULL) {
         return -1;
+    }
     routine->__start_routine = __start_routine;
     routine->__parameter = __parameter;
     HANDLE handle = CreateThread(NULL, 0, pthread_start_routine, routine, 0, __pthread_ptr);
-    if (handle == NULL || handle == INVALID_HANDLE_VALUE)
-    {
+    if (handle == NULL || handle == INVALID_HANDLE_VALUE) {
         free(routine);
         return -1;
     }
-    if (__attr && ((*__attr) & PTHREAD_CREATE_DETACHED))
+    if (__attr && ((*__attr) & PTHREAD_CREATE_DETACHED)) {
         CloseHandle(handle);
+    }
     return 0;
 }
 

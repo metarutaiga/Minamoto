@@ -19,6 +19,7 @@
 #define __builtin_ctzll _tzcnt_u64
 #define __builtin_frame_address(...) _ReturnAddress()
 
+// It maybe some definitions in the Visual C++
 #include <math.h>
 inline double ceild(double x) { return ceil(x); }
 inline double floord(double x) { return floor(x); }

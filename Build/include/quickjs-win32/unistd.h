@@ -16,7 +16,6 @@ typedef intptr_t ssize_t;
 
 #define S_IFIFO 0
 #define S_IFBLK 0
-
 #define S_ISDIR(a) (a & S_IFDIR)
 
 static const char* optarg = "";

@@ -4,26 +4,19 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <sys/time.h>
+#include <unistd.h>
+
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #pragma clang diagnostic ignored "-Wsometimes-uninitialized"
 #endif
 
 #if defined(_WIN32)
-#define _CRT_NONSTDC_NO_WARNINGS
-#define _CRT_SECURE_NO_WARNINGS
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-#define WIN32_LEAN_AND_MEAN
 #define USE_WORKER
-#endif
-
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/time.h>
-#include <unistd.h>
-#if defined(_WIN32)
-typedef intptr_t ssize_t;
 #endif
 
 void    quickjs_exit(int);
