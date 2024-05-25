@@ -9,9 +9,6 @@
     <ClCompile Include="..\SDK\quickjs\qjsc.c" />
     <ClCompile Include="..\SDK\quickjs\quickjs-libc.c" />
     <ClCompile Include="..\SDK\quickjs\quickjs.c" />
-    <ClCompile Include="include\quickjs\quickjs-io.c">
-      <Filter>quickjs</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SDK\quickjs\cutils.h" />
@@ -25,39 +22,10 @@
     <ClInclude Include="..\SDK\quickjs\quickjs-libc.h" />
     <ClInclude Include="..\SDK\quickjs\quickjs-opcode.h" />
     <ClInclude Include="..\SDK\quickjs\quickjs.h" />
-    <ClInclude Include="include\quickjs-win32\dirent.h">
-      <Filter>quickjs-win32</Filter>
-    </ClInclude>
-    <ClInclude Include="include\quickjs-win32\pthread.h">
-      <Filter>quickjs-win32</Filter>
-    </ClInclude>
-    <ClInclude Include="include\quickjs-win32\unistd.h">
-      <Filter>quickjs-win32</Filter>
-    </ClInclude>
-    <ClInclude Include="include\quickjs-win32\utime.h">
-      <Filter>quickjs-win32</Filter>
-    </ClInclude>
-    <ClInclude Include="include\quickjs-win32\sys\time.h">
-      <Filter>quickjs-win32\sys</Filter>
-    </ClInclude>
-    <ClInclude Include="include\quickjs-win32\stdlib.h">
-      <Filter>quickjs-win32</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\SDK\quickjs\LICENSE" />
     <None Include="..\SDK\quickjs\Makefile" />
     <None Include="..\SDK\quickjs\qjscalc.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="quickjs-win32">
-      <UniqueIdentifier>{8c60dd68-126f-43ea-93f8-d289e8970839}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="quickjs-win32\sys">
-      <UniqueIdentifier>{0e07a7b6-50b9-4e47-a007-9dc677117f39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="quickjs">
-      <UniqueIdentifier>{65eba63b-d142-4a74-973d-99c646083454}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

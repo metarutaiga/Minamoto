@@ -17,6 +17,19 @@ extern "C"
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #include <quickjs/quickjs.h>
 #elif defined(_MSC_VER)
+#define JS_BOOL int
+#define JS_EVAL_TYPE_MODULE   (1 << 0) /* module code */
+#define JS_TAG_FIRST -11
+#define JS_TAG_INT 0
+#define JS_TAG_EXCEPTION 6
+#define JS_TAG_FLOAT64 7
+#define JS_VALUE_GET_PTR(v) ((v).u.ptr)
+#define JS_VALUE_GET_TAG(v) ((int32_t)(v).tag)
+#define JS_VALUE_HAS_REF_COUNT(v) ((unsigned)JS_VALUE_GET_TAG(v) >= (unsigned)JS_TAG_FIRST)
+#define JSValueConst JSValue
+typedef union JSValueUnion { int32_t int32; double float64; void* ptr; } JSValueUnion;
+typedef struct JSValue { JSValueUnion u; int64_t tag; } JSValue;
+typedef struct JSRefCountHeader { int ref_count; } JSRefCountHeader;
 struct JSRuntime;
 struct JSContext;
 struct JSModuleDef;
@@ -24,9 +37,23 @@ JSRuntime* JS_NewRuntime(void);
 JSContext* JS_NewContext(JSRuntime* rt);
 void JS_FreeContext(JSContext* ctx);
 void JS_FreeRuntime(JSRuntime* rt);
-void JS_SetModuleLoaderFunc(JSRuntime* rt, void* module_normalize, void* module_loader, void* opaque);
-JSModuleDef* js_module_loader(JSContext* ctx, const char* module_name, void* opaque);
+JSValue JS_Eval(JSContext* ctx, const char* input, size_t input_len, const char* filename, int eval_flags);
 int JS_ExecutePendingJob(JSRuntime* rt, JSContext** pctx);
+static inline JS_BOOL JS_IsException(JSValueConst v)
+{
+    return JS_VALUE_GET_TAG(v) == JS_TAG_EXCEPTION;
+}
+void JS_ResetUncatchableError(JSContext* ctx);
+void __JS_FreeValue(JSContext* ctx, JSValue v);
+static inline void JS_FreeValue(JSContext* ctx, JSValue v)
+{
+    if (JS_VALUE_HAS_REF_COUNT(v)) {
+        JSRefCountHeader* p = (JSRefCountHeader*)JS_VALUE_GET_PTR(v);
+        if (--p->ref_count <= 0) {
+            __JS_FreeValue(ctx, v);
+        }
+    }
+}
 #endif
 }
 
@@ -94,6 +121,82 @@ void QuickJS::Update()
 //==============================================================================
 //  Engine I/O
 //==============================================================================
+#if defined(_WIN32) && !defined(__clang__)
+extern "C"
+{
+    #define JS_MKVAL(tag, val) { { .int32 = val }, tag }
+    #define JS_EXCEPTION JS_MKVAL(JS_TAG_EXCEPTION, 0)
+    typedef uint32_t JSClassID;
+    typedef struct JSGCObjectHeader JSGCObjectHeader;
+    typedef struct JSClassExoticMethods JSClassExoticMethods;
+    typedef void JSClassFinalizer(JSRuntime* rt, JSValue val);
+    typedef void JS_MarkFunc(JSRuntime* rt, JSGCObjectHeader* gp);
+    typedef void JSClassGCMark(JSRuntime* rt, JSValueConst val, JS_MarkFunc* mark_func);
+    typedef JSValue JSClassCall(JSContext* ctx, JSValueConst func_obj, JSValueConst this_val, int argc, JSValueConst* argv, int flags);
+    typedef struct JSClassDef {
+        const char* class_name;
+        JSClassFinalizer* finalizer;
+        JSClassGCMark* gc_mark;
+        JSClassCall* call;
+        JSClassExoticMethods* exotic;
+    } JSClassDef;
+    typedef JSValue JSCFunction(JSContext* ctx, JSValueConst this_val, int argc, JSValueConst* argv);
+    typedef union JSCFunctionType {
+        JSValue(*generic_magic)(JSContext* ctx, JSValueConst this_val, int argc, JSValueConst* argv, int magic);
+    } JSCFunctionType;
+    typedef struct JSCFunctionListEntry {
+        const char* name;
+        uint8_t prop_flags;
+        uint8_t def_type;
+        int16_t magic;
+        struct {
+            uint8_t length; /* XXX: should move outside union */
+            uint8_t cproto; /* XXX: should move outside union */
+            JSCFunctionType cfunc;
+        } func;
+    } JSCFunctionListEntry;
+#define JS_CFUNC_generic_magic 1
+#define JS_DEF_CFUNC 0
+#define JS_PROP_CONFIGURABLE (1 << 0)
+#define JS_PROP_WRITABLE (1 << 1)
+#define JS_CFUNC_MAGIC_DEF(name, length, func1, magic) { name, JS_PROP_WRITABLE | JS_PROP_CONFIGURABLE, JS_DEF_CFUNC, magic, { length, JS_CFUNC_generic_magic, { .generic_magic = func1 } } }
+    JSRuntime* JS_GetRuntime(JSContext* ctx);
+    void JS_SetOpaque(JSValue obj, void* opaque);
+    void* JS_GetOpaque(JSValueConst obj, JSClassID class_id);
+    const char* JS_ToCStringLen2(JSContext* ctx, size_t* plen, JSValueConst val1, JS_BOOL cesu8);
+    static inline const char* JS_ToCString(JSContext* ctx, JSValueConst val1)
+    {
+        return JS_ToCStringLen2(ctx, NULL, val1, 0);
+    }
+    void JS_FreeCString(JSContext* ctx, const char* ptr);
+    JSClassID JS_NewClassID(JSClassID* pclass_id);
+    int JS_NewClass(JSRuntime* rt, JSClassID class_id, const JSClassDef* class_def);
+    JSValue JS_NewObjectClass(JSContext* ctx, int class_id);
+    JSValue JS_NewObject(JSContext* ctx);
+    int JS_ToInt64(JSContext* ctx, int64_t* pres, JSValueConst val);
+    static inline JSValue JS_NewInt64(JSContext* ctx, int64_t val)
+    {
+        JSValue v;
+        if (val == (int32_t)val) {
+            v = JS_MKVAL(JS_TAG_INT, (int32_t)val);
+        }
+        else {
+            v = { { .float64 = (double)val }, JS_TAG_FLOAT64 };
+        }
+        return v;
+    }
+    typedef void JSFreeArrayBufferDataFunc(JSRuntime* rt, void* opaque, void* ptr);
+    JSValue JS_NewArrayBuffer(JSContext* ctx, uint8_t* buf, size_t len, JSFreeArrayBufferDataFunc* free_func, void* opaque, JS_BOOL is_shared);
+    uint8_t* JS_GetArrayBuffer(JSContext* ctx, size_t* psize, JSValueConst obj);
+    typedef int JSModuleInitFunc(JSContext* ctx, JSModuleDef* m);
+    JSModuleDef* JS_NewCModule(JSContext* ctx, const char* name_str, JSModuleInitFunc* func);
+    void JS_SetPropertyFunctionList(JSContext* ctx, JSValueConst obj, const JSCFunctionListEntry* tab, int len);
+    void JS_SetClassProto(JSContext* ctx, JSClassID class_id, JSValue obj);
+    int JS_SetModuleExportList(JSContext* ctx, JSModuleDef* m, const JSCFunctionListEntry* tab, int len);
+    int JS_AddModuleExportList(JSContext* ctx, JSModuleDef* m, const JSCFunctionListEntry* tab, int len);
+}
+#endif
+//------------------------------------------------------------------------------
 static JSClassID js_engine_file_class_id;
 static JSClassDef js_engine_file_class =
 {

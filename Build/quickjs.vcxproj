@@ -70,7 +70,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\SDK\quickjs\quickjs.c" />
-    <ClCompile Include="include\quickjs\quickjs-io.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SDK\quickjs\cutils.h" />
@@ -84,12 +83,6 @@
     <ClInclude Include="..\SDK\quickjs\quickjs-libc.h" />
     <ClInclude Include="..\SDK\quickjs\quickjs-opcode.h" />
     <ClInclude Include="..\SDK\quickjs\quickjs.h" />
-    <ClInclude Include="include\quickjs-win32\dirent.h" />
-    <ClInclude Include="include\quickjs-win32\pthread.h" />
-    <ClInclude Include="include\quickjs-win32\stdlib.h" />
-    <ClInclude Include="include\quickjs-win32\sys\time.h" />
-    <ClInclude Include="include\quickjs-win32\unistd.h" />
-    <ClInclude Include="include\quickjs-win32\utime.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\SDK\quickjs\LICENSE" />

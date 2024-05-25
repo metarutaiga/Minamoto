@@ -65,6 +65,12 @@
     <ClCompile Include="..\Window\QuickJSConsole.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Build\include\quickjs\quickjs-io.c">
+      <Filter>Window\Component\quickjs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Window\Document.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImGuiHelper.h" />
@@ -132,6 +138,27 @@
     <ClInclude Include="..\Window\QuickJSConsole.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Build\include\quickjs-win32\sys\time.h">
+      <Filter>Window\Component\quickjs-win32\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Build\include\quickjs-win32\dirent.h">
+      <Filter>Window\Component\quickjs-win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Build\include\quickjs-win32\pthread.h">
+      <Filter>Window\Component\quickjs-win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Build\include\quickjs-win32\stdlib.h">
+      <Filter>Window\Component\quickjs-win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Build\include\quickjs-win32\unistd.h">
+      <Filter>Window\Component\quickjs-win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Build\include\quickjs-win32\utime.h">
+      <Filter>Window\Component\quickjs-win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Window\Document.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphic">
@@ -155,5 +182,22 @@
     <Filter Include="Window\Component">
       <UniqueIdentifier>{b2937d1c-4053-44c0-bd2d-1aaa76fa6262}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Window\Component\quickjs">
+      <UniqueIdentifier>{d8c9ab2e-7153-4cac-b381-0974cf9217c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Component\quickjs-win32">
+      <UniqueIdentifier>{4e1b1fa9-cca7-4ee1-a96a-6583435f5a49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Component\quickjs-win32\sys">
+      <UniqueIdentifier>{19cee9c7-7151-4353-acaa-159c27918cf5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Build\include\quickjs\quickjs.bat">
+      <Filter>Window\Component\quickjs</Filter>
+    </None>
+    <None Include="..\..\..\Build\include\quickjs\quickjs.sh">
+      <Filter>Window\Component\quickjs</Filter>
+    </None>
   </ItemGroup>
 </Project>

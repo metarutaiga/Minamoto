@@ -167,7 +167,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:lua /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -183,7 +183,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:lua /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -199,7 +199,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:lua /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -215,7 +215,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:lua /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -238,7 +238,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
-      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:lua /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -261,7 +261,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
-      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:lua /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -284,7 +284,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
-      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:lua /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -307,7 +307,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
-      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/WHOLEARCHIVE:freetype /WHOLEARCHIVE:lua /WHOLEARCHIVE:xxGraphic /WHOLEARCHIVE:xxGraphicPlus %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
