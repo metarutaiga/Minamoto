@@ -9,6 +9,7 @@
 #include "Import/Import.h"
 #include "Utility/Tools.h"
 #include "Window/About.h"
+#include "Window/Document.h"
 #include "Window/Hierarchy.h"
 #include "Window/Inspector.h"
 #include "Window/Log.h"
@@ -25,6 +26,7 @@ moduleAPI const char* Create(const CreateData& createData)
     Runtime::Initialize();
     ShaderDisassembly::Initialize();
 
+    Document::Initialize();
     Import::Initialize();
     Log::Initialize();
     LuaConsole::Initialize();
@@ -41,6 +43,7 @@ moduleAPI const char* Create(const CreateData& createData)
 //------------------------------------------------------------------------------
 moduleAPI void Shutdown(const ShutdownData& shutdownData)
 {
+    Document::Shutdown();
     Import::Shutdown();
     Log::Shutdown();
     LuaConsole::Shutdown();
@@ -72,7 +75,7 @@ moduleAPI void Message(const MessageData& messageData)
             Project::Shutdown(true);
             Scene::Shutdown(true);
             ShaderDisassembly::Shutdown();
-            Runtime::Shutdown();
+            Runtime::Shutdown(true);
             break;
         default:
             break;
@@ -140,6 +143,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     }
 
     updated |= About::Update(updateData, showAbout);
+    updated |= Document::Update(updateData);
     updated |= Setup::Update(updateData, showSetup);
     updated |= Project::Update(updateData, showProject);
     updated |= Log::Update(updateData, showLog);

@@ -4,20 +4,22 @@
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
-#include <stdlib.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <sys/time.h>
-#include <unistd.h>
-
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #pragma clang diagnostic ignored "-Wsometimes-uninitialized"
 #endif
 
 #if defined(_WIN32)
+#define _CRT_NONSTDC_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #define USE_WORKER
 #endif
+
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <sys/time.h>
+#include <unistd.h>
 
 void    quickjs_exit(int);
 ssize_t quickjs_read(int, void*, size_t);
@@ -27,6 +29,7 @@ int     quickjs_fileno(FILE*);
 int     quickjs_fgetc(FILE*);
 size_t  quickjs_fread(void*, size_t, size_t, FILE*);
 size_t  quickjs_fwrite(void const*, size_t, size_t, FILE*);
+int     quickjs_fprintf(FILE*, char const*, ...);
 
 #define exit quickjs_exit
 #define read quickjs_read
@@ -36,9 +39,10 @@ size_t  quickjs_fwrite(void const*, size_t, size_t, FILE*);
 #define fgetc quickjs_fgetc
 #define fread quickjs_fread
 #define fwrite quickjs_fwrite
+#define fprintf quickjs_fprintf
 #define isatty(a) false
 #define select(a,b,c,d,e) select(a,b,c,d,&(struct timeval){0})
-#include "quickjs-libc.c"
+#include <quickjs/quickjs-libc.c>
 
 bool quickjs_stdin = false;
 int quickjs_poll(JSContext *ctx)

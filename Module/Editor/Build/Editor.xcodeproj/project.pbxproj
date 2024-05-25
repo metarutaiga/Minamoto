@@ -71,7 +71,7 @@
 		D6346EF02BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EEF2BFA10210075D7F1 /* QuickJSConsole.cpp */; };
 		D6346EF12BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EEF2BFA10210075D7F1 /* QuickJSConsole.cpp */; };
 		D6346EF22BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EEF2BFA10210075D7F1 /* QuickJSConsole.cpp */; };
-		D6346EF32BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EEF2BFA10210075D7F1 /* QuickJSConsole.cpp */; };
+		D6346EF32BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EEF2BFA10210075D7F1 /* QuickJSConsole.cpp */; settings = {COMPILER_FLAGS = "-I../../../Build/include/quickjs-win32"; }; };
 		D6386A5D2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; };
 		D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; };
 		D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; settings = {COMPILER_FLAGS = "-x objective-c++ -fobjc-arc -fobjc-weak"; }; };
@@ -105,6 +105,14 @@
 		D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26FA22BDEAF5400D57772 /* Scene.cpp */; };
 		D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26FA22BDEAF5400D57772 /* Scene.cpp */; };
 		D6D26FA72BDEAF5400D57772 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26FA22BDEAF5400D57772 /* Scene.cpp */; };
+		D6E6B5582C01CB70003F6D85 /* Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B5562C01CB6F003F6D85 /* Document.cpp */; };
+		D6E6B5592C01CB70003F6D85 /* Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B5562C01CB6F003F6D85 /* Document.cpp */; };
+		D6E6B55A2C01CB70003F6D85 /* Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B5562C01CB6F003F6D85 /* Document.cpp */; };
+		D6E6B55B2C01CB70003F6D85 /* Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B5562C01CB6F003F6D85 /* Document.cpp */; };
+		D6E6B5682C0234EE003F6D85 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */; };
+		D6E6B5692C0234EE003F6D85 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */; };
+		D6E6B56A2C0234EE003F6D85 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */; };
+		D6E6B56B2C0234EE003F6D85 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */; settings = {COMPILER_FLAGS = "-I../../../Build/include/quickjs-win32"; }; };
 		D6F563FE2BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
 		D6F563FF2BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
 		D6F564002BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
@@ -218,6 +226,17 @@
 		D6D26F9D2BDE36B400D57772 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tools.h; path = ../Utility/Tools.h; sourceTree = "<group>"; };
 		D6D26FA22BDEAF5400D57772 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scene.cpp; path = ../Window/Scene.cpp; sourceTree = "<group>"; };
 		D6D26FA32BDEAF5400D57772 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = ../Window/Scene.h; sourceTree = "<group>"; };
+		D6E6B5562C01CB6F003F6D85 /* Document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Document.cpp; path = ../Window/Document.cpp; sourceTree = "<group>"; };
+		D6E6B5572C01CB70003F6D85 /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Document.h; path = ../Window/Document.h; sourceTree = "<group>"; };
+		D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "quickjs-io.c"; sourceTree = "<group>"; };
+		D6E6B55D2C0234EE003F6D85 /* quickjs.bat */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = quickjs.bat; sourceTree = "<group>"; };
+		D6E6B55E2C0234EE003F6D85 /* quickjs.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = quickjs.sh; sourceTree = "<group>"; };
+		D6E6B5602C0234EE003F6D85 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		D6E6B5622C0234EE003F6D85 /* dirent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dirent.h; sourceTree = "<group>"; };
+		D6E6B5632C0234EE003F6D85 /* pthread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pthread.h; sourceTree = "<group>"; };
+		D6E6B5642C0234EE003F6D85 /* stdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdlib.h; sourceTree = "<group>"; };
+		D6E6B5652C0234EE003F6D85 /* unistd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unistd.h; sourceTree = "<group>"; };
+		D6E6B5662C0234EE003F6D85 /* utime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utime.h; sourceTree = "<group>"; };
 		D6F563FC2BE9D568006D32D9 /* Profiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profiler.h; path = ../Window/Profiler.h; sourceTree = "<group>"; };
 		D6F563FD2BE9D568006D32D9 /* Profiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Profiler.cpp; path = ../Window/Profiler.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -330,6 +349,8 @@
 		D60790BF2BF1AE29008810BD /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				D6E6B55F2C0234EE003F6D85 /* quickjs */,
+				D6E6B5672C0234EE003F6D85 /* quickjs-win32 */,
 				D60790FB2BF501DC008810BD /* Console.cpp */,
 				D60790FC2BF501DC008810BD /* Console.h */,
 				D60790C02BF1AF46008810BD /* Folder.cpp */,
@@ -359,6 +380,8 @@
 				D63370952B399774001D4057 /* ImGuiFileDialog */,
 				D62FEBF22BE53D41004E9FDF /* About.cpp */,
 				D62FEBF32BE53D41004E9FDF /* About.h */,
+				D6E6B5562C01CB6F003F6D85 /* Document.cpp */,
+				D6E6B5572C01CB70003F6D85 /* Document.h */,
 				D63370762B382155001D4057 /* Hierarchy.cpp */,
 				D63370772B382155001D4057 /* Hierarchy.h */,
 				D6A25B7B2B4644B600974946 /* Inspector.cpp */,
@@ -433,6 +456,39 @@
 				D666E2E82BE1EBAB00EFA1F2 /* ufbx.h */,
 			);
 			name = ufbx;
+			sourceTree = "<group>";
+		};
+		D6E6B55F2C0234EE003F6D85 /* quickjs */ = {
+			isa = PBXGroup;
+			children = (
+				D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */,
+				D6E6B55D2C0234EE003F6D85 /* quickjs.bat */,
+				D6E6B55E2C0234EE003F6D85 /* quickjs.sh */,
+			);
+			name = quickjs;
+			path = ../../../Build/include/quickjs;
+			sourceTree = "<group>";
+		};
+		D6E6B5612C0234EE003F6D85 /* sys */ = {
+			isa = PBXGroup;
+			children = (
+				D6E6B5602C0234EE003F6D85 /* time.h */,
+			);
+			path = sys;
+			sourceTree = "<group>";
+		};
+		D6E6B5672C0234EE003F6D85 /* quickjs-win32 */ = {
+			isa = PBXGroup;
+			children = (
+				D6E6B5612C0234EE003F6D85 /* sys */,
+				D6E6B5622C0234EE003F6D85 /* dirent.h */,
+				D6E6B5632C0234EE003F6D85 /* pthread.h */,
+				D6E6B5642C0234EE003F6D85 /* stdlib.h */,
+				D6E6B5652C0234EE003F6D85 /* unistd.h */,
+				D6E6B5662C0234EE003F6D85 /* utime.h */,
+			);
+			name = "quickjs-win32";
+			path = "../../../Build/include/quickjs-win32";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -553,6 +609,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6E6B5582C01CB70003F6D85 /* Document.cpp in Sources */,
 				D6F563FE2BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D62FEBF42BE53D41004E9FDF /* About.cpp in Sources */,
 				D666E2E92BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
@@ -562,6 +619,7 @@
 				D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370782B382156001D4057 /* Log.cpp in Sources */,
 				D60790C22BF1AF46008810BD /* Folder.cpp in Sources */,
+				D6E6B5682C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D60790FD2BF501DC008810BD /* Console.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */,
@@ -593,12 +651,14 @@
 				D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
+				D6E6B56B2C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D607910C2BF61829008810BD /* Setup.cpp in Sources */,
 				D6D26FA72BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
 				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
 				D62FEBED2BE50FD3004E9FDF /* dllmain.cpp in Sources */,
+				D6E6B55B2C01CB70003F6D85 /* Document.cpp in Sources */,
 				D666E3D22BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D666E2EC2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
@@ -625,9 +685,11 @@
 				D60790F82BF33502008810BD /* TextureTools.cpp in Sources */,
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
+				D6E6B5692C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D60790BC2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D02BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
+				D6E6B5592C01CB70003F6D85 /* Document.cpp in Sources */,
 				D607910A2BF61829008810BD /* Setup.cpp in Sources */,
 				D6530A032BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				3039F9D92447499200E671A7 /* Editor.cpp in Sources */,
@@ -654,9 +716,11 @@
 				D60790F92BF33502008810BD /* TextureTools.cpp in Sources */,
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
+				D6E6B56A2C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D60790BD2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D12BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
+				D6E6B55A2C01CB70003F6D85 /* Document.cpp in Sources */,
 				D607910B2BF61829008810BD /* Setup.cpp in Sources */,
 				D6530A042BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				300264C5242690D0004559E0 /* Editor.cpp in Sources */,

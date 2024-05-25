@@ -12,7 +12,9 @@
 #include <xxGraphicPlus/xxTexture.h>
 #include <Runtime/Graphic/Texture.h>
 #include "Component/Folder.h"
+#include "Script/QuickJS.h"
 #include "Utility/TextureTools.h"
+#include "Document.h"
 #include "Hierarchy.h"
 #include "Project.h"
 #include "Setup.h"
@@ -235,6 +237,40 @@ static void ShowFiles(const UpdateData& updateData, std::string const& root, std
                     if (attribute.texture->Mipmap > 1)  ImGui::Text("Mipmap : %d", attribute.texture->Mipmap);
                     if (attribute.texture->Array > 1)   ImGui::Text("Array : %d", attribute.texture->Array);
                     ImGui::EndTooltip();
+                }
+            }
+            if (ImGui::IsItemClicked())
+            {
+                if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+                {
+                    std::function<bool(UpdateData const&, std::string const&)> callback;
+                    callback = [](UpdateData const&, std::string const&) { return false; };
+
+                    switch (xxHash(attribute.name.c_str() + attribute.name.rfind('.') + 1))
+                    {
+                    case xxHash("js"):
+                        callback = [](UpdateData const& updateData, std::string const& text)
+                        {
+                            if (ImGui::Button("Eval"))
+                            {
+                                QuickJS::Eval(text.c_str(), text.length());
+                                QuickJS::Update();
+                            }
+                            return false;
+                        };
+                        break;
+                    case xxHash("lua"):
+                    case xxHash("txt"):
+                        break;
+                    default:
+                        callback = nullptr;
+                        break;
+                    }
+
+                    if (callback)
+                    {
+                        Document::OpenFile((root + subfolder + attribute.name).c_str(), callback);
+                    }
                 }
             }
         }

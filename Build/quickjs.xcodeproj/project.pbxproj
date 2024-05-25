@@ -27,10 +27,6 @@
 		D6346EDD2BFA00000075D7F1 /* cutils.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346ED82BFA00000075D7F1 /* cutils.c */; };
 		D6346EDE2BFA00000075D7F1 /* cutils.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346ED82BFA00000075D7F1 /* cutils.c */; };
 		D6346EDF2BFA00000075D7F1 /* cutils.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346ED82BFA00000075D7F1 /* cutils.c */; };
-		D6F49B8E2BFC444D00A442C2 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F49B8C2BFC444D00A442C2 /* quickjs-io.c */; };
-		D6F49B8F2BFC444D00A442C2 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F49B8C2BFC444D00A442C2 /* quickjs-io.c */; };
-		D6F49B902BFC444D00A442C2 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F49B8C2BFC444D00A442C2 /* quickjs-io.c */; };
-		D6F49B912BFC444D00A442C2 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F49B8C2BFC444D00A442C2 /* quickjs-io.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,13 +63,6 @@
 		D6346EDB2BFA00000075D7F1 /* Changelog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Changelog; path = ../SDK/quickjs/Changelog; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* libquickjs.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libquickjs.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
-		D6F49B852BFC444D00A442C2 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
-		D6F49B872BFC444D00A442C2 /* dirent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dirent.h; sourceTree = "<group>"; };
-		D6F49B882BFC444D00A442C2 /* pthread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pthread.h; sourceTree = "<group>"; };
-		D6F49B892BFC444D00A442C2 /* unistd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unistd.h; sourceTree = "<group>"; };
-		D6F49B8A2BFC444D00A442C2 /* utime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utime.h; sourceTree = "<group>"; };
-		D6F49B8C2BFC444D00A442C2 /* quickjs-io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "quickjs-io.c"; sourceTree = "<group>"; };
-		D6F49BA22C00832A00A442C2 /* stdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdlib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				CE999BC925D21D9F00351116 /* Configs */,
-				D6F49B8D2BFC444D00A442C2 /* quickjs */,
-				D6F49B8B2BFC444D00A442C2 /* quickjs-win32 */,
 				D6346EDB2BFA00000075D7F1 /* Changelog */,
 				D6346ED82BFA00000075D7F1 /* cutils.c */,
 				D6346ED62BFA00000075D7F1 /* cutils.h */,
@@ -165,37 +152,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D6F49B862BFC444D00A442C2 /* sys */ = {
-			isa = PBXGroup;
-			children = (
-				D6F49B852BFC444D00A442C2 /* time.h */,
-			);
-			path = sys;
-			sourceTree = "<group>";
-		};
-		D6F49B8B2BFC444D00A442C2 /* quickjs-win32 */ = {
-			isa = PBXGroup;
-			children = (
-				D6F49B862BFC444D00A442C2 /* sys */,
-				D6F49B872BFC444D00A442C2 /* dirent.h */,
-				D6F49B882BFC444D00A442C2 /* pthread.h */,
-				D6F49BA22C00832A00A442C2 /* stdlib.h */,
-				D6F49B892BFC444D00A442C2 /* unistd.h */,
-				D6F49B8A2BFC444D00A442C2 /* utime.h */,
-			);
-			name = "quickjs-win32";
-			path = "include/quickjs-win32";
-			sourceTree = "<group>";
-		};
-		D6F49B8D2BFC444D00A442C2 /* quickjs */ = {
-			isa = PBXGroup;
-			children = (
-				D6F49B8C2BFC444D00A442C2 /* quickjs-io.c */,
-			);
-			name = quickjs;
-			path = include/quickjs;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -205,7 +161,7 @@
 			buildPhases = (
 				30A9A74725ADC5C3000FA104 /* Sources */,
 				30A9A74825ADC5C3000FA104 /* Frameworks */,
-				D6F49BA12BFC8AB500A442C2 /* ShellScript */,
+				D6F49BA12BFC8AB500A442C2 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -372,7 +328,7 @@
 			shellPath = /bin/sh;
 			shellScript = "cd ${SRCROOT}/../SDK/quickjs\nsh ${SRCROOT}/include/quickjs/quickjs.sh\n";
 		};
-		D6F49BA12BFC8AB500A442C2 /* ShellScript */ = {
+		D6F49BA12BFC8AB500A442C2 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -381,6 +337,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -401,7 +358,6 @@
 			files = (
 				D6346EDC2BFA00000075D7F1 /* cutils.c in Sources */,
 				D6346EBA2BF9FFB00075D7F1 /* libbf.c in Sources */,
-				D6F49B8E2BFC444D00A442C2 /* quickjs-io.c in Sources */,
 				D6346EB62BF9FFB00075D7F1 /* libregexp.c in Sources */,
 				D6346EBE2BF9FFB00075D7F1 /* libunicode.c in Sources */,
 				D6346ECA2BF9FFB00075D7F1 /* quickjs.c in Sources */,
@@ -414,7 +370,6 @@
 			files = (
 				D6346EDF2BFA00000075D7F1 /* cutils.c in Sources */,
 				D6346EBD2BF9FFB00075D7F1 /* libbf.c in Sources */,
-				D6F49B912BFC444D00A442C2 /* quickjs-io.c in Sources */,
 				D6346EB92BF9FFB00075D7F1 /* libregexp.c in Sources */,
 				D6346EC12BF9FFB00075D7F1 /* libunicode.c in Sources */,
 				D6346ECD2BF9FFB00075D7F1 /* quickjs.c in Sources */,
@@ -427,7 +382,6 @@
 			files = (
 				D6346EDD2BFA00000075D7F1 /* cutils.c in Sources */,
 				D6346EBB2BF9FFB00075D7F1 /* libbf.c in Sources */,
-				D6F49B8F2BFC444D00A442C2 /* quickjs-io.c in Sources */,
 				D6346EB72BF9FFB00075D7F1 /* libregexp.c in Sources */,
 				D6346EBF2BF9FFB00075D7F1 /* libunicode.c in Sources */,
 				D6346ECB2BF9FFB00075D7F1 /* quickjs.c in Sources */,
@@ -440,7 +394,6 @@
 			files = (
 				D6346EDE2BFA00000075D7F1 /* cutils.c in Sources */,
 				D6346EBC2BF9FFB00075D7F1 /* libbf.c in Sources */,
-				D6F49B902BFC444D00A442C2 /* quickjs-io.c in Sources */,
 				D6346EB82BF9FFB00075D7F1 /* libregexp.c in Sources */,
 				D6346EC02BF9FFB00075D7F1 /* libunicode.c in Sources */,
 				D6346ECC2BF9FFB00075D7F1 /* quickjs.c in Sources */,
@@ -585,11 +538,9 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"CONFIG_VERSION=\\\"2024-02-14\\\"",
 					"_DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -609,6 +560,8 @@
 				OTHER_CFLAGS = (
 					"-fdata-sections",
 					"-ffunction-sections",
+					"-include",
+					"include/quickjs-user.h",
 					"$(inherited)",
 				);
 				PRODUCT_NAME = quickjs;
@@ -665,11 +618,9 @@
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"CONFIG_VERSION=\\\"2024-02-14\\\"",
 					"NDEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -688,6 +639,8 @@
 				OTHER_CFLAGS = (
 					"-fdata-sections",
 					"-ffunction-sections",
+					"-include",
+					"include/quickjs-user.h",
 					"$(inherited)",
 				);
 				PRODUCT_NAME = quickjs;

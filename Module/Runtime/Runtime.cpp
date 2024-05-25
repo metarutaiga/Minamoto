@@ -132,6 +132,7 @@ void Runtime::Initialize()
     Sampler::Initialize();
     Texture::Initialize();
     VertexAttribute::Initialize();
+
     Lua::Initialize();
     QuickJS::Initialize();
 
@@ -151,14 +152,12 @@ void Runtime::Initialize()
     xxLog("Runtime", QuickJS::Version());
 }
 //------------------------------------------------------------------------------
-void Runtime::Shutdown()
+void Runtime::Shutdown(bool suspend)
 {
     if (initialized == false)
         return;
     initialized = false;
 
-    QuickJS::Shutdown();
-    Lua::Shutdown();
     VertexAttribute::Shutdown();
     Texture::Shutdown();
     Sampler::Shutdown();
@@ -167,6 +166,12 @@ void Runtime::Shutdown()
     Pipeline::Shutdown();
     Modifier::Shutdown();
     Binding::Shutdown();
+
+    if (suspend == false)
+    {
+        QuickJS::Shutdown();
+        Lua::Shutdown();
+    }
 
     xxLog("Runtime", "Shutdown");
 }

@@ -16,6 +16,9 @@
       <FileRef
          location = "group:Build/include/luauser.h">
       </FileRef>
+      <FileRef
+         location = "group:Build/include/quickjs-user.h">
+      </FileRef>
    </Group>
    <Group
       location = "container:"

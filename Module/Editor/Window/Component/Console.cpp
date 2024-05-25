@@ -115,25 +115,30 @@ bool Console::UpdateConsole(const UpdateData& updateData, std::deque<std::string
             auto end = lines.begin() + clipper.DisplayEnd;
             for (auto it = start; it != end; ++it)
             {
-                if (it == end - 1)
+                if (it != end - 1)
                 {
-                    static int blink = 0;
-                    if (blink != (int(updateData.time * 2.0f) & 1))
-                    {
-                        blink = (int(updateData.time * 2.0f) & 1);
-                        update = true;
-                    }
-
-                    static std::string temp;
-                    temp = (*it);
-                    temp.append(input.c_str(), inputPos);
-                    temp.append(blink ? "|" : " ");
-                    if (input.size() > inputPos)
-                        temp.append(input.c_str() + inputPos, input.size() - inputPos);
-                    ImGui::Selectable(temp.c_str(), false);
+                    ImGui::Selectable((*it).c_str(), false);
                     continue;
                 }
-                ImGui::Selectable((*it).c_str(), false);
+                static int blink = 0;
+                if (blink != (int(updateData.time * 2.0f) & 1))
+                {
+                    blink = (int(updateData.time * 2.0f) & 1);
+                    update = true;
+                }
+                static std::string temp;
+                temp = (*it);
+                temp += input;
+                if (blink)
+                {
+                    float width = ImGui::CalcTextSize(temp.c_str(), temp.c_str() + (*it).size() + inputPos).x;
+                    ImVec2 cursorPos = ImGui::GetCursorPos();
+                    ImVec2 blinkPos = { cursorPos.x + width, cursorPos.y };
+                    ImGui::SetCursorPos(blinkPos);
+                    ImGui::TextUnformatted("_");
+                    ImGui::SetCursorPos(cursorPos);
+                }
+                ImGui::Selectable(temp.c_str(), false);
             }
         }
     }
