@@ -25,6 +25,6 @@ if not exist repl.c (
 for /f %%s in ('dir /b /o:d quickjs.h quickjs.hpp') do set newer=%%s
 if not %newer%==quickjs.hpp (
   powershell -Command "(Get-Content quickjs.h) -replace '\(JSValue\){ \(JSValueUnion\){', '{ {' | Set-Content quickjs.1"
-  powershell -Command "(Get-Content quickjs.1) -replace '.u = { .func = {', '{ {' | Set-Content quickjs.hpp"
+  powershell -Command "(Get-Content quickjs.1) -replace '.u = {', '{' | Set-Content quickjs.hpp"
   del quickjs.1
 )
