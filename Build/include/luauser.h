@@ -10,10 +10,12 @@
 #undef LUALIB_API
 #undef LUAMOD_API
 #if defined(_WIN32)
+#define WIN32_LEAN_AND_MEAN
 #define LUA_API     __declspec(dllexport)
 #define LUALIB_API
 #define LUAMOD_API
-#define WIN32_LEAN_AND_MEAN
+#define LUA_DL_DLL
+#define LUA_USE_C89
 #else
 #define LUA_API     __attribute__((visibility("default")))
 #define LUALIB_API

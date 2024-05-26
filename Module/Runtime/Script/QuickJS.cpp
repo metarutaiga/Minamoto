@@ -153,6 +153,9 @@ JSModuleDef* js_init_module_engine(JSContext* ctx)
 {
     static JSCFunctionListEntry const js_engine_funcs[] =
     {
+        JS_PROP_STRING_DEF("Compiler", Runtime::Compiler, 0 ),
+        JS_PROP_STRING_DEF("Target", Runtime::Target, 0 ),
+        JS_PROP_STRING_DEF("Version", Runtime::Version, 0 ),
         JS_CFUNC_MAGIC_DEF("FileLoad", 1, js_engine_file, 0),
         JS_CFUNC_MAGIC_DEF("FileSave", 1, js_engine_file, 1),
     };

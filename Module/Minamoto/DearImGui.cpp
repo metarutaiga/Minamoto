@@ -249,7 +249,7 @@ void DearImGui::NewFrame(void* view)
     {
         if (ImGui::Begin("About Minamoto", &showAbout, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
         {
-            ImGui::Text("%s Based on xxGraphic", Runtime::Version());
+            ImGui::Text("%s Based on xxGraphic", Runtime::Version);
             ImGui::TextUnformatted("Build : " __DATE__ " " __TIME__);
             ImGui::Separator();
             ImGui::DumpBuildInformation();

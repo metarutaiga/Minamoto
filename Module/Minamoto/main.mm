@@ -365,7 +365,7 @@
     NSMenu* appMenu;
     NSMenuItem* menuItem;
 
-    appMenu = [[NSMenu alloc] initWithTitle:@(Runtime::Version())];
+    appMenu = [[NSMenu alloc] initWithTitle:@(Runtime::Version)];
     menuItem = [appMenu addItemWithTitle:@"Quit"
                                   action:@selector(terminate:)
                            keyEquivalent:@"q"];
@@ -393,7 +393,7 @@
                                               defer:YES];
     [_window setDelegate:self];
     [_window setOpaque:YES];
-    [_window setTitle:@(Runtime::Version())];
+    [_window setTitle:@(Runtime::Version)];
     [_window makeKeyAndOrderFront:NSApp];
 
     return (_window);

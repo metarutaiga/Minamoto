@@ -13,6 +13,7 @@
 
 extern "C"
 {
+#define LUA_LIB
 #define LUA_USER_H "../../Build/include/luauser.h"
 #include <lua/lua.h>
 }
@@ -22,8 +23,10 @@ static std::deque<std::string> Outputs;
 //------------------------------------------------------------------------------
 extern "C"
 {
-#define l_likely(x) luai_likely(x)
-#define l_unlikely(x) luai_unlikely(x)
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconditional-uninitialized"
+#endif
+#include <lua/luaconf.h>
 #include <lua/lauxlib.c>
 #include <lua/lbaselib.c>
 #include <lua/lcorolib.c>
