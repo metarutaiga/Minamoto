@@ -19,23 +19,10 @@ extern "C"
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #include <quickjs/quickjs.h>
-#include <quickjs/quickjs-libc.h>
 #elif defined(_MSC_VER)
-struct JSRuntime;
-struct JSContext;
-struct JSModuleDef;
-JSContext* JS_NewContext(JSRuntime* rt);
-void JS_SetModuleLoaderFunc(JSRuntime* rt, void* module_normalize, void* module_loader, void* opaque);
-void js_std_set_worker_new_context_func(JSContext* (*func)(JSRuntime* rt));
-void js_std_init_handlers(JSRuntime* rt);
-JSModuleDef* js_init_module_std(JSContext* ctx, const char* module_name);
-JSModuleDef* js_init_module_os(JSContext* ctx, const char* module_name);
-JSModuleDef* js_module_loader(JSContext* ctx, const char* module_name, void* opaque);
-void js_std_add_helpers(JSContext* ctx, int argc, char** argv);
-void js_std_free_handlers(JSRuntime* rt);
-void js_std_eval_binary(JSContext* ctx, const uint8_t* buf, size_t buf_len, int load_only);
-void js_std_dump_error(JSContext* ctx);
+#include <quickjs/quickjs.hpp>
 #endif
+#include <quickjs/quickjs-libc.h>
 #include <quickjs/repl.c>
 }
 
