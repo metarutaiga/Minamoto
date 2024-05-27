@@ -16,46 +16,57 @@ extern "C"
 #define LUA_LIB
 #define LUA_USER_H "../../Build/include/luauser.h"
 #include <lua/lua.h>
+#include <lua/lauxlib.c>
+#include <lua/liolib.c>
+#include <lua/loadlib.c>
+#include <lua/loslib.c>
+#define luaL_openlibs(...)
+#define main lua_main
+#include <lua/lua.c>
+#undef main
+#undef lua_initreadline
+#undef lua_readline
+#undef lua_saveline
+#undef lua_freeline
+#undef lua_writeline
+#undef lua_writestring
+#undef lua_writestringerror
+static int  lua_readline(lua_State* L, char* buffer, char const* prompt);
+static void lua_saveline(lua_State* L, char const* line);
+static void lua_writeline();
+static void lua_writestring(char const* string, size_t length);
+static void lua_writestringerror(char const* string, char const* parameter);
 }
 
 static Console console;
 static std::deque<std::string> Outputs;
 //------------------------------------------------------------------------------
-extern "C"
-{
-#if defined(__clang__)
-#pragma clang diagnostic ignored "-Wconditional-uninitialized"
-#endif
-#include <lua/luaconf.h>
-#include <lua/lauxlib.c>
-#include <lua/lbaselib.c>
-#include <lua/lcorolib.c>
-#include <lua/ldblib.c>
-#include <lua/liolib.c>
-#include <lua/lmathlib.c>
-#include <lua/loadlib.c>
-#include <lua/loslib.c>
-#include <lua/lstrlib.c>
-#include <lua/ltablib.c>
-#include <lua/lutf8lib.c>
-#include <lua/linit.c>
-#define lua_initreadline(L)
-#define lua_readline lua_readline
-#define lua_saveline(L, line) lua_saveline(L, line)
-#define lua_freeline(L, b)
-static int lua_readline(lua_State* L, char* buffer, char const* prompt);
-static int lua_saveline(lua_State* L, char const* line);
-#define main lua_main
-#include <lua/lua.c>
-#undef main
-}
-//------------------------------------------------------------------------------
 void LuaConsole::Initialize()
 {
     Outputs.push_back(std::string());
 
+    lua_pinitreadline = [](lua_State*){};
+    lua_preadline = lua_readline;
+    lua_psaveline = lua_saveline;
+    lua_pfreeline = [](lua_State*, char*){};
+    lua_pwriteline = lua_writeline;
+    lua_pwritestring = lua_writestring;
+    lua_pwritestringerror = lua_writestringerror;
+
+    static const luaL_Reg loadedlibs[] =
+    {
+        { LUA_LOADLIBNAME, luaopen_package },
+        { LUA_IOLIBNAME, luaopen_io },
+        { LUA_OSLIBNAME, luaopen_os },
+        { NULL, NULL }
+    };
+
     lua_gc(Lua::L, LUA_GCSTOP);  /* stop GC while building state */
-    luaL_openlibs(Lua::L);  /* open standard libraries */
+    for (luaL_Reg const* lib = loadedlibs; lib->func; lib++)
+    {
+        luaL_requiref(Lua::L, lib->name, lib->func, 1);
+        lua_pop(Lua::L, 1);  /* remove lib */
+    }
     lua_gc(Lua::L, LUA_GCRESTART);  /* start GC... */
     lua_gc(Lua::L, LUA_GCGEN, 0, 0);  /* ...in generational mode */
 
@@ -90,7 +101,6 @@ bool LuaConsole::Update(const UpdateData& updateData, bool& show)
                 std::swap(input[0], c);
 
             auto L = Lua::L;
-            lua_initreadline(L);
             for (size_t i = 0; i < 2; ++i)
             {
                 int status;
@@ -121,7 +131,7 @@ bool LuaConsole::Update(const UpdateData& updateData, bool& show)
 //==============================================================================
 //  Standard I/O
 //==============================================================================
-int lua_readline(lua_State* L, char* buffer, char const* prompt)
+static int lua_readline(lua_State* L, char* buffer, char const* prompt)
 {
     auto& line = Outputs.back();
     if (line != prompt)
@@ -150,13 +160,17 @@ int lua_readline(lua_State* L, char* buffer, char const* prompt)
     return 1;
 }
 //------------------------------------------------------------------------------
-int lua_saveline(lua_State* L, char const* line)
+static void lua_saveline(lua_State* L, char const* line)
 {
     console.AddHistory(line);
-    return 0;
 }
 //------------------------------------------------------------------------------
-void lua_writestring(char const* string, size_t length)
+static void lua_writeline()
+{
+    Outputs.push_back(std::string());
+}
+//------------------------------------------------------------------------------
+static void lua_writestring(char const* string, size_t length)
 {
     for (size_t i = 0; i < length; ++i)
     {
@@ -188,12 +202,7 @@ void lua_writestring(char const* string, size_t length)
     }
 }
 //------------------------------------------------------------------------------
-void lua_writeline()
-{
-    Outputs.push_back(std::string());
-}
-//------------------------------------------------------------------------------
-void lua_writestringerror(char const* string, char const* parameter)
+static void lua_writestringerror(char const* string, char const* parameter)
 {
     size_t count = snprintf(nullptr, 0, string, parameter);
     char* temp = xxAlloc(char, count + 1);

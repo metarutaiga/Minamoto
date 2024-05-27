@@ -43,8 +43,8 @@ void Runtime::Initialize()
     xxLog("Runtime", "%s for %s", Runtime::Compiler, Runtime::Target);
 
     xxLog("Runtime", "FreeType " xxStringify(FREETYPE_MAJOR) "." xxStringify(FREETYPE_MINOR) "." xxStringify(FREETYPE_PATCH));
-    xxLog("Runtime", Lua::Version());
-    xxLog("Runtime", QuickJS::Version());
+    xxLog("Runtime", Lua::Version);
+    xxLog("Runtime", QuickJS::Version);
 }
 //------------------------------------------------------------------------------
 void Runtime::Shutdown(bool suspend)
@@ -126,7 +126,7 @@ char const Runtime::Target[] = "Armv8.1";
 char const Runtime::Target[] = "Armv8.0";
 #endif
 //------------------------------------------------------------------------------
-#if defined(__clang_version__)
+#if defined(__clang_version__) && defined(__x86_64__)
 #if __AVX512VL__
 char const Runtime::Target[] = "x86-64-v4";
 #elif __AVX2__
@@ -136,22 +136,35 @@ char const Runtime::Target[] = "x86-64-v2";
 #elif __SSE2__
 char const Runtime::Target[] = "x86-64";
 #endif
-#elif __AVX512VL__
-char const Runtime::Target[] = "AVX512";
-#elif __AVX2__
-char const Runtime::Target[] = "AVX2";
-#elif __AVX__
-char const Runtime::Target[] = "AVX";
-#elif __SSE4_2__
-char const Runtime::Target[] = "SSE4.2";
-#elif __SSE4_1__
-char const Runtime::Target[] = "SSE4.1";
-#elif __SSSE3__
-char const Runtime::Target[] = "SSSE3";
-#elif __SSE3__
-char const Runtime::Target[] = "SSE3";
-#elif __SSE2__
-char const Runtime::Target[] = "SSE2";
+#elif defined(_MSC_VER)
+char const Runtime::Target[] = ""
+#if __SSE__
+"SSE"
+#if __SSE2__
+"/SSE2";
+#if __SSE3__
+"/SSE3"
+#if __SSSE3__
+"/SSSE3"
+#if __SSE4_1__
+"/SSE4.1"
+#if __SSE4_2__
+"/SSE4.2"
+#if __AVX__
+"/AVX"
+#if __AVX2__
+"/AVX2"
+#if __AVX512VL__
+"/AVX512"
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
 #endif
 //------------------------------------------------------------------------------
 char const Runtime::Version[] =

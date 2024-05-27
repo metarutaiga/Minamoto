@@ -15,11 +15,11 @@ struct RuntimeAPI QuickJS
     static void Initialize();
     static void Shutdown();
     static void RuntimeLibrary();
-    static char const* Version();
     static void Eval(char const* buf, size_t len);
     static void Update();
 
     static struct JSRuntime* rt;
     static struct JSContext* ctx;
     static void (*dump_error)(struct JSContext*);
+    static char const Version[];
 };

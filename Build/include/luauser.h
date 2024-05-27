@@ -6,6 +6,11 @@
 #ifndef luauser_h
 #define luauser_h
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconditional-uninitialized"
+#pragma clang diagnostic ignored "-Wunused-function"
+#endif
+
 #undef LUA_API
 #undef LUALIB_API
 #undef LUAMOD_API
@@ -29,11 +34,20 @@
 #define LUA_PATH_DEFAULT ""
 #define LUA_CPATH_DEFAULT ""
 
-#define lua_writestring lua_writestring
-#define lua_writeline lua_writeline
-#define lua_writestringerror lua_writestringerror
-LUA_API void lua_writestring(const char* string, size_t length);
-LUA_API void lua_writeline(void);
-LUA_API void lua_writestringerror(const char* string, const char* parameter);
+#define lua_initreadline lua_pinitreadline
+#define lua_readline lua_preadline
+#define lua_saveline lua_psaveline
+#define lua_freeline lua_pfreeline
+LUA_API extern void (*lua_pinitreadline)(lua_State* L);
+LUA_API extern int  (*lua_preadline)(lua_State* L, char* buffer, char const* prompt);
+LUA_API extern void (*lua_psaveline)(lua_State* L, char const* line);
+LUA_API extern void (*lua_pfreeline)(lua_State* L, char* buffer);
+
+#define lua_writeline lua_pwriteline
+#define lua_writestring lua_pwritestring
+#define lua_writestringerror lua_pwritestringerror
+LUA_API extern void (*lua_pwriteline)(void);
+LUA_API extern void (*lua_pwritestring)(const char* string, size_t length);
+LUA_API extern void (*lua_pwritestringerror)(const char* string, const char* parameter);
 
 #endif

@@ -14,7 +14,10 @@ struct RuntimeAPI Lua
 {
     static void Initialize();
     static void Shutdown();
-    static char const* Version();
+    static void RuntimeLibrary();
+    static void Eval(char const* buf, size_t len);
+    static void Update();
 
     static struct lua_State* L;
+    static char const Version[];
 };

@@ -24,6 +24,7 @@ extern "C"
 JSRuntime* QuickJS::rt;
 JSContext* QuickJS::ctx;
 void (*QuickJS::dump_error)(struct JSContext*);
+char const QuickJS::Version[] = "QuickJS " CONFIG_VERSION;
 //==============================================================================
 void QuickJS::Initialize()
 {
@@ -50,17 +51,13 @@ void QuickJS::Shutdown()
     JS_FreeRuntime(rt);
 
     rt = nullptr;
+    ctx = nullptr;
 }
 //------------------------------------------------------------------------------
 void QuickJS::RuntimeLibrary()
 {
     extern JSModuleDef* js_init_module_engine(JSContext*);
     js_init_module_engine(ctx);
-}
-//------------------------------------------------------------------------------
-char const* QuickJS::Version()
-{
-    return "QuickJS " CONFIG_VERSION;
 }
 //------------------------------------------------------------------------------
 void QuickJS::Eval(char const* buf, size_t len)
@@ -93,6 +90,24 @@ void QuickJS::Update()
 //==============================================================================
 //  Engine I/O
 //==============================================================================
+static JSValue js_engine_log(JSContext* ctx, JSValueConst this_val, int argc, JSValueConst* argv)
+{
+    std::string temp;
+    for (int i = 0; i < argc; i++)
+    {
+        if (i != 0)
+            temp.push_back(' ');
+        size_t len = 0;
+        char const* str = JS_ToCStringLen(ctx, &len, argv[i]);
+        if (!str)
+            return JS_EXCEPTION;
+        temp.append(str, len);
+        JS_FreeCString(ctx, str);
+    }
+    xxLog("QuickJS", "%s", temp.c_str());
+    return JS_UNDEFINED;
+}
+//------------------------------------------------------------------------------
 static JSClassID js_engine_file_class_id;
 static JSClassDef js_engine_file_class =
 {
@@ -164,6 +179,7 @@ JSModuleDef* js_init_module_engine(JSContext* ctx)
         JS_PROP_STRING_DEF("Compiler", Runtime::Compiler, 0 ),
         JS_PROP_STRING_DEF("Target", Runtime::Target, 0 ),
         JS_PROP_STRING_DEF("Version", Runtime::Version, 0 ),
+        JS_CFUNC_DEF("Log", 0, js_engine_log),
         JS_CFUNC_MAGIC_DEF("FileLoad", 1, js_engine_file, 0),
         JS_CFUNC_MAGIC_DEF("FileSave", 1, js_engine_file, 1),
     };
@@ -205,6 +221,104 @@ JSModuleDef* js_init_module_engine(JSContext* ctx)
 //==============================================================================
 #if defined(_WIN32)
 #pragma comment(lib, "quickjs")
+#if defined(_M_IX86)
+#pragma comment(linker, "/export:___JS_FreeValue")
+#pragma comment(linker, "/export:___JS_FreeValueRT")
+#pragma comment(linker, "/export:_dbuf_free")
+#pragma comment(linker, "/export:_dbuf_init2")
+#pragma comment(linker, "/export:_dbuf_printf")
+#pragma comment(linker, "/export:_dbuf_put")
+#pragma comment(linker, "/export:_dbuf_putc")
+#pragma comment(linker, "/export:_dbuf_putstr")
+#pragma comment(linker, "/export:_has_suffix")
+#pragma comment(linker, "/export:_JS_AddModuleExport")
+#pragma comment(linker, "/export:_JS_AddModuleExportList")
+#pragma comment(linker, "/export:_JS_AtomToCString")
+#pragma comment(linker, "/export:_JS_Call")
+#pragma comment(linker, "/export:_JS_DefinePropertyValue")
+#pragma comment(linker, "/export:_JS_DefinePropertyValueStr")
+#pragma comment(linker, "/export:_JS_DefinePropertyValueUint32")
+#pragma comment(linker, "/export:_JS_Eval")
+#pragma comment(linker, "/export:_JS_EvalFunction")
+#pragma comment(linker, "/export:_JS_ExecutePendingJob")
+#pragma comment(linker, "/export:_js_free_rt")
+#pragma comment(linker, "/export:_js_free")
+#pragma comment(linker, "/export:_JS_FreeAtom")
+#pragma comment(linker, "/export:_JS_FreeContext")
+#pragma comment(linker, "/export:_JS_FreeCString")
+#pragma comment(linker, "/export:_JS_FreeRuntime")
+#pragma comment(linker, "/export:_JS_GetArrayBuffer")
+#pragma comment(linker, "/export:_JS_GetClassProto")
+#pragma comment(linker, "/export:_JS_GetException")
+#pragma comment(linker, "/export:_JS_GetGlobalObject")
+#pragma comment(linker, "/export:_JS_GetImportMeta")
+#pragma comment(linker, "/export:_JS_GetModuleName")
+#pragma comment(linker, "/export:_JS_GetOpaque")
+#pragma comment(linker, "/export:_JS_GetOpaque2")
+#pragma comment(linker, "/export:_JS_GetPropertyStr")
+#pragma comment(linker, "/export:_JS_GetRuntime")
+#pragma comment(linker, "/export:_JS_GetRuntimeOpaque")
+#pragma comment(linker, "/export:_JS_GetScriptOrModuleName")
+#pragma comment(linker, "/export:_JS_IsError")
+#pragma comment(linker, "/export:_JS_IsFunction")
+#pragma comment(linker, "/export:_JS_LoadModule")
+#pragma comment(linker, "/export:_js_malloc")
+#pragma comment(linker, "/export:_js_mallocz")
+#pragma comment(linker, "/export:_JS_NewArray")
+#pragma comment(linker, "/export:_JS_NewArrayBufferCopy")
+#pragma comment(linker, "/export:_JS_NewAtomLen")
+#pragma comment(linker, "/export:_JS_NewBigInt64")
+#pragma comment(linker, "/export:_JS_NewCFunction2")
+#pragma comment(linker, "/export:_JS_NewClass")
+#pragma comment(linker, "/export:_JS_NewClassID")
+#pragma comment(linker, "/export:_JS_NewCModule")
+#pragma comment(linker, "/export:_JS_NewContext")
+#pragma comment(linker, "/export:_JS_NewObject")
+#pragma comment(linker, "/export:_JS_NewObjectClass")
+#pragma comment(linker, "/export:_JS_NewObjectProtoClass")
+#pragma comment(linker, "/export:_JS_NewPromiseCapability")
+#pragma comment(linker, "/export:_JS_NewRuntime")
+#pragma comment(linker, "/export:_JS_NewString")
+#pragma comment(linker, "/export:_JS_NewStringLen")
+#pragma comment(linker, "/export:_JS_ParseJSON2")
+#pragma comment(linker, "/export:_JS_PromiseResult")
+#pragma comment(linker, "/export:_JS_PromiseState")
+#pragma comment(linker, "/export:_JS_ReadObject")
+#pragma comment(linker, "/export:_js_realloc_rt")
+#pragma comment(linker, "/export:_JS_ResetUncatchableError")
+#pragma comment(linker, "/export:_JS_ResolveModule")
+#pragma comment(linker, "/export:_JS_RunGC")
+#pragma comment(linker, "/export:_JS_SetCanBlock")
+#pragma comment(linker, "/export:_JS_SetClassProto")
+#pragma comment(linker, "/export:_JS_SetConstructor")
+#pragma comment(linker, "/export:_JS_SetInterruptHandler")
+#pragma comment(linker, "/export:_JS_SetModuleExport")
+#pragma comment(linker, "/export:_JS_SetModuleExportList")
+#pragma comment(linker, "/export:_JS_SetModuleLoaderFunc")
+#pragma comment(linker, "/export:_JS_SetOpaque")
+#pragma comment(linker, "/export:_JS_SetPropertyFunctionList")
+#pragma comment(linker, "/export:_JS_SetPropertyStr")
+#pragma comment(linker, "/export:_JS_SetPropertyUint32")
+#pragma comment(linker, "/export:_JS_SetRuntimeOpaque")
+#pragma comment(linker, "/export:_JS_SetSharedArrayBufferFunctions")
+#pragma comment(linker, "/export:_JS_Throw")
+#pragma comment(linker, "/export:_JS_ThrowOutOfMemory")
+#pragma comment(linker, "/export:_JS_ThrowRangeError")
+#pragma comment(linker, "/export:_JS_ThrowReferenceError")
+#pragma comment(linker, "/export:_JS_ThrowTypeError")
+#pragma comment(linker, "/export:_JS_ToBool")
+#pragma comment(linker, "/export:_JS_ToCStringLen2")
+#pragma comment(linker, "/export:_JS_ToFloat64")
+#pragma comment(linker, "/export:_JS_ToIndex")
+#pragma comment(linker, "/export:_JS_ToInt32")
+#pragma comment(linker, "/export:_JS_ToInt64")
+#pragma comment(linker, "/export:_JS_ToInt64Ext")
+#pragma comment(linker, "/export:_JS_WriteObject2")
+#pragma comment(linker, "/export:_pstrcat")
+#pragma comment(linker, "/export:_pstrcpy")
+#pragma comment(linker, "/export:_unicode_from_utf8")
+#pragma comment(linker, "/export:_unicode_to_utf8")
+#else
 #pragma comment(linker, "/export:__JS_FreeValue")
 #pragma comment(linker, "/export:__JS_FreeValueRT")
 #pragma comment(linker, "/export:dbuf_free")
@@ -301,5 +415,6 @@ JSModuleDef* js_init_module_engine(JSContext* ctx)
 #pragma comment(linker, "/export:pstrcpy")
 #pragma comment(linker, "/export:unicode_from_utf8")
 #pragma comment(linker, "/export:unicode_to_utf8")
+#endif
 #endif
 //==============================================================================
