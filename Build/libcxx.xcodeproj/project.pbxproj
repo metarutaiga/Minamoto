@@ -54,12 +54,58 @@
 		D6169CFC2BB17A7B00E5490C /* support.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CF92BB17A7B00E5490C /* support.cpp */; };
 		D6346EFF2BFB55560075D7F1 /* udivmodti4.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFA2BFB55550075D7F1 /* udivmodti4.c */; };
 		D6346F032BFB55560075D7F1 /* udivti3.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFB2BFB55550075D7F1 /* udivti3.c */; };
+		D6E6B5782C0446C0003F6D85 /* algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA12BB1742600E5490C /* algorithm.cpp */; };
+		D6E6B5792C0446C0003F6D85 /* any.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169C992BB1742600E5490C /* any.cpp */; };
+		D6E6B57A2C0446C0003F6D85 /* atomic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169C982BB1742600E5490C /* atomic.cpp */; };
+		D6E6B57B2C0446C0003F6D85 /* barrier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CBE2BB1742700E5490C /* barrier.cpp */; };
+		D6E6B57C2C0446C0003F6D85 /* bind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CBB2BB1742700E5490C /* bind.cpp */; };
+		D6E6B57D2C0446C0003F6D85 /* charconv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAB2BB1742600E5490C /* charconv.cpp */; };
+		D6E6B57E2C0446C0003F6D85 /* chrono.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CC32BB1742700E5490C /* chrono.cpp */; };
+		D6E6B57F2C0446C0003F6D85 /* condition_variable_destructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA52BB1742600E5490C /* condition_variable_destructor.cpp */; };
+		D6E6B5802C0446C0003F6D85 /* condition_variable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB22BB1742700E5490C /* condition_variable.cpp */; };
+		D6E6B5812C0446C0003F6D85 /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB62BB1742700E5490C /* exception.cpp */; };
+		D6E6B5822C0446C0003F6D85 /* functional.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA62BB1742600E5490C /* functional.cpp */; };
+		D6E6B5832C0446C0003F6D85 /* future.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169C9A2BB1742600E5490C /* future.cpp */; };
+		D6E6B5842C0446C0003F6D85 /* hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CC02BB1742700E5490C /* hash.cpp */; };
+		D6E6B5852C0446C0003F6D85 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB72BB1742700E5490C /* ios.cpp */; };
+		D6E6B5862C0446C0003F6D85 /* ios.instantiations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CC42BB1742700E5490C /* ios.instantiations.cpp */; };
+		D6E6B5872C0446C0003F6D85 /* iostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA92BB1742600E5490C /* iostream.cpp */; };
+		D6E6B5882C0446C0003F6D85 /* legacy_debug_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAA2BB1742600E5490C /* legacy_debug_handler.cpp */; };
+		D6E6B5892C0446C0003F6D85 /* legacy_pointer_safety.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA32BB1742600E5490C /* legacy_pointer_safety.cpp */; };
+		D6E6B58A2C0446C0003F6D85 /* locale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB82BB1742700E5490C /* locale.cpp */; };
+		D6E6B58B2C0446C0003F6D85 /* memory_resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CBA2BB1742700E5490C /* memory_resource.cpp */; };
+		D6E6B58C2C0446C0003F6D85 /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CBC2BB1742700E5490C /* memory.cpp */; };
+		D6E6B58D2C0446C0003F6D85 /* mutex_destructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CBD2BB1742700E5490C /* mutex_destructor.cpp */; };
+		D6E6B58E2C0446C0003F6D85 /* mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB12BB1742700E5490C /* mutex.cpp */; };
+		D6E6B58F2C0446C0003F6D85 /* new_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169C9B2BB1742600E5490C /* new_handler.cpp */; };
+		D6E6B5902C0446C0003F6D85 /* new_helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB42BB1742700E5490C /* new_helpers.cpp */; };
+		D6E6B5912C0446C0003F6D85 /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAC2BB1742600E5490C /* new.cpp */; };
+		D6E6B5922C0446C0003F6D85 /* optional.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CC52BB1742700E5490C /* optional.cpp */; };
+		D6E6B5932C0446C0003F6D85 /* print.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA22BB1742600E5490C /* print.cpp */; };
+		D6E6B5942C0446C0003F6D85 /* random_shuffle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169C9D2BB1742600E5490C /* random_shuffle.cpp */; };
+		D6E6B5952C0446C0003F6D85 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169C9C2BB1742600E5490C /* random.cpp */; };
+		D6E6B5962C0446C0003F6D85 /* regex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CBF2BB1742700E5490C /* regex.cpp */; };
+		D6E6B5972C0446C0003F6D85 /* shared_mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAF2BB1742600E5490C /* shared_mutex.cpp */; };
+		D6E6B5982C0446C0003F6D85 /* stdexcept.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA42BB1742600E5490C /* stdexcept.cpp */; };
+		D6E6B5992C0446C0003F6D85 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CC12BB1742700E5490C /* string.cpp */; };
+		D6E6B59A2C0446C0003F6D85 /* strstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA02BB1742600E5490C /* strstream.cpp */; };
+		D6E6B59B2C0446C0003F6D85 /* system_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB32BB1742700E5490C /* system_error.cpp */; };
+		D6E6B59C2C0446C0003F6D85 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CC22BB1742700E5490C /* thread.cpp */; };
+		D6E6B59D2C0446C0003F6D85 /* typeinfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAE2BB1742600E5490C /* typeinfo.cpp */; };
+		D6E6B59E2C0446C0003F6D85 /* valarray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAD2BB1742600E5490C /* valarray.cpp */; };
+		D6E6B59F2C0446C0003F6D85 /* variant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CC62BB1742700E5490C /* variant.cpp */; };
+		D6E6B5A02C0446C0003F6D85 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169C9E2BB1742600E5490C /* vector.cpp */; };
+		D6E6B5A12C0446C0003F6D85 /* verbose_abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB52BB1742700E5490C /* verbose_abort.cpp */; };
+		D6E6B5A22C0453A5003F6D85 /* udivmodti4.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFA2BFB55550075D7F1 /* udivmodti4.c */; };
+		D6E6B5A32C0453A5003F6D85 /* udivti3.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFB2BFB55550075D7F1 /* udivti3.c */; };
+		D6E6B5A52C0453F3003F6D85 /* powidf2.c in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B5A42C0453F3003F6D85 /* powidf2.c */; };
+		D6E6B5A62C0453F3003F6D85 /* powidf2.c in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B5A42C0453F3003F6D85 /* powidf2.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		30A9A74A25ADC5C3000FA104 /* liblibcxx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibcxx.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE935F5325AC2F4800CEF503 /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6022C3523258B5D00B9BFB8 /* liblibcxx.bundle */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibcxx.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		30A9A74A25ADC5C3000FA104 /* libcxx.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcxx.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE935F5325AC2F4800CEF503 /* libcxx.Windows.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcxx.Windows.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6022C3523258B5D00B9BFB8 /* libcxx.iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcxx.iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC63526A85BA70051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169C982BB1742600E5490C /* atomic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = atomic.cpp; path = ../SDK/ClangPlatform/libcxx/src/atomic.cpp; sourceTree = "<group>"; };
@@ -113,8 +159,9 @@
 		D6169CF92BB17A7B00E5490C /* support.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = support.cpp; path = ../SDK/ClangPlatform/libcxx/src/support/win32/support.cpp; sourceTree = "<group>"; };
 		D6346EFA2BFB55550075D7F1 /* udivmodti4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udivmodti4.c; path = "../SDK/ClangPlatform/compiler-rt/udivmodti4.c"; sourceTree = "<group>"; };
 		D6346EFB2BFB55550075D7F1 /* udivti3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udivti3.c; path = "../SDK/ClangPlatform/compiler-rt/udivti3.c"; sourceTree = "<group>"; };
-		D644A041231ED82900B75B77 /* liblibcxx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibcxx.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D644A041231ED82900B75B77 /* libcxx.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcxx.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
+		D6E6B5A42C0453F3003F6D85 /* powidf2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = powidf2.c; path = "../SDK/ClangPlatform/compiler-rt/powidf2.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +227,7 @@
 		D6346EF92BFB553B0075D7F1 /* compiler-rt */ = {
 			isa = PBXGroup;
 			children = (
+				D6E6B5A42C0453F3003F6D85 /* powidf2.c */,
 				D6346EFA2BFB55550075D7F1 /* udivmodti4.c */,
 				D6346EFB2BFB55550075D7F1 /* udivti3.c */,
 			);
@@ -245,10 +293,10 @@
 		D644A042231ED82900B75B77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D644A041231ED82900B75B77 /* liblibcxx.a */,
-				D6022C3523258B5D00B9BFB8 /* liblibcxx.bundle */,
-				CE935F5325AC2F4800CEF503 /* libcxx.lib */,
-				30A9A74A25ADC5C3000FA104 /* liblibcxx.a */,
+				D644A041231ED82900B75B77 /* libcxx.macOS.a */,
+				D6022C3523258B5D00B9BFB8 /* libcxx.iOS.a */,
+				CE935F5325AC2F4800CEF503 /* libcxx.Windows.lib */,
+				30A9A74A25ADC5C3000FA104 /* libcxx.Android.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,7 +317,7 @@
 			);
 			name = "libcxx-Android";
 			productName = "libcxx-Android";
-			productReference = 30A9A74A25ADC5C3000FA104 /* liblibcxx.a */;
+			productReference = 30A9A74A25ADC5C3000FA104 /* libcxx.Android.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		CE935F5225AC2F4800CEF503 /* libcxx-Windows */ = {
@@ -285,7 +333,7 @@
 			);
 			name = "libcxx-Windows";
 			productName = "libcxx-Windows";
-			productReference = CE935F5325AC2F4800CEF503 /* libcxx.lib */;
+			productReference = CE935F5325AC2F4800CEF503 /* libcxx.Windows.lib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		D6022C3423258B5D00B9BFB8 /* libcxx-iOS */ = {
@@ -301,7 +349,7 @@
 			);
 			name = "libcxx-iOS";
 			productName = "libcxx-iOS";
-			productReference = D6022C3523258B5D00B9BFB8 /* liblibcxx.bundle */;
+			productReference = D6022C3523258B5D00B9BFB8 /* libcxx.iOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		D644A040231ED82900B75B77 /* libcxx-macOS */ = {
@@ -317,7 +365,7 @@
 			);
 			name = "libcxx-macOS";
 			productName = libcxx;
-			productReference = D644A041231ED82900B75B77 /* liblibcxx.a */;
+			productReference = D644A041231ED82900B75B77 /* libcxx.macOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -369,6 +417,51 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6E6B5A22C0453A5003F6D85 /* udivmodti4.c in Sources */,
+				D6E6B5A32C0453A5003F6D85 /* udivti3.c in Sources */,
+				D6E6B5782C0446C0003F6D85 /* algorithm.cpp in Sources */,
+				D6E6B5792C0446C0003F6D85 /* any.cpp in Sources */,
+				D6E6B57A2C0446C0003F6D85 /* atomic.cpp in Sources */,
+				D6E6B57B2C0446C0003F6D85 /* barrier.cpp in Sources */,
+				D6E6B57C2C0446C0003F6D85 /* bind.cpp in Sources */,
+				D6E6B57D2C0446C0003F6D85 /* charconv.cpp in Sources */,
+				D6E6B57E2C0446C0003F6D85 /* chrono.cpp in Sources */,
+				D6E6B57F2C0446C0003F6D85 /* condition_variable_destructor.cpp in Sources */,
+				D6E6B5802C0446C0003F6D85 /* condition_variable.cpp in Sources */,
+				D6E6B5812C0446C0003F6D85 /* exception.cpp in Sources */,
+				D6E6B5822C0446C0003F6D85 /* functional.cpp in Sources */,
+				D6E6B5832C0446C0003F6D85 /* future.cpp in Sources */,
+				D6E6B5842C0446C0003F6D85 /* hash.cpp in Sources */,
+				D6E6B5852C0446C0003F6D85 /* ios.cpp in Sources */,
+				D6E6B5862C0446C0003F6D85 /* ios.instantiations.cpp in Sources */,
+				D6E6B5872C0446C0003F6D85 /* iostream.cpp in Sources */,
+				D6E6B5882C0446C0003F6D85 /* legacy_debug_handler.cpp in Sources */,
+				D6E6B5892C0446C0003F6D85 /* legacy_pointer_safety.cpp in Sources */,
+				D6E6B58A2C0446C0003F6D85 /* locale.cpp in Sources */,
+				D6E6B58B2C0446C0003F6D85 /* memory_resource.cpp in Sources */,
+				D6E6B58C2C0446C0003F6D85 /* memory.cpp in Sources */,
+				D6E6B5A52C0453F3003F6D85 /* powidf2.c in Sources */,
+				D6E6B58D2C0446C0003F6D85 /* mutex_destructor.cpp in Sources */,
+				D6E6B58E2C0446C0003F6D85 /* mutex.cpp in Sources */,
+				D6E6B58F2C0446C0003F6D85 /* new_handler.cpp in Sources */,
+				D6E6B5902C0446C0003F6D85 /* new_helpers.cpp in Sources */,
+				D6E6B5912C0446C0003F6D85 /* new.cpp in Sources */,
+				D6E6B5922C0446C0003F6D85 /* optional.cpp in Sources */,
+				D6E6B5932C0446C0003F6D85 /* print.cpp in Sources */,
+				D6E6B5942C0446C0003F6D85 /* random_shuffle.cpp in Sources */,
+				D6E6B5952C0446C0003F6D85 /* random.cpp in Sources */,
+				D6E6B5962C0446C0003F6D85 /* regex.cpp in Sources */,
+				D6E6B5972C0446C0003F6D85 /* shared_mutex.cpp in Sources */,
+				D6E6B5982C0446C0003F6D85 /* stdexcept.cpp in Sources */,
+				D6E6B5992C0446C0003F6D85 /* string.cpp in Sources */,
+				D6E6B59A2C0446C0003F6D85 /* strstream.cpp in Sources */,
+				D6E6B59B2C0446C0003F6D85 /* system_error.cpp in Sources */,
+				D6E6B59C2C0446C0003F6D85 /* thread.cpp in Sources */,
+				D6E6B59D2C0446C0003F6D85 /* typeinfo.cpp in Sources */,
+				D6E6B59E2C0446C0003F6D85 /* valarray.cpp in Sources */,
+				D6E6B59F2C0446C0003F6D85 /* variant.cpp in Sources */,
+				D6E6B5A02C0446C0003F6D85 /* vector.cpp in Sources */,
+				D6E6B5A12C0446C0003F6D85 /* verbose_abort.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +474,7 @@
 				D6169CEB2BB1742700E5490C /* string.cpp in Sources */,
 				D6169CE02BB1742700E5490C /* verbose_abort.cpp in Sources */,
 				D6169CE42BB1742700E5490C /* memory_resource.cpp in Sources */,
+				D6E6B5A62C0453F3003F6D85 /* powidf2.c in Sources */,
 				D6169CD62BB1742700E5490C /* legacy_debug_handler.cpp in Sources */,
 				D6169CDD2BB1742700E5490C /* condition_variable.cpp in Sources */,
 				D6169CFA2BB17A7B00E5490C /* thread_win32.cpp in Sources */,
@@ -447,7 +541,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
+				EXECUTABLE_PREFIX = "";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = libcxx.Android;
 			};
 			name = Debug;
 		};
@@ -455,7 +551,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
+				EXECUTABLE_PREFIX = "";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = libcxx.Android;
 			};
 			name = Release;
 		};
@@ -475,6 +573,7 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = libcxx.Windows;
 				WARNING_CFLAGS = (
 					"-Wno-microsoft-include",
 					"$(inherited)",
@@ -498,6 +597,7 @@
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = libcxx.Windows;
 				WARNING_CFLAGS = (
 					"-Wno-microsoft-include",
 					"$(inherited)",
@@ -509,8 +609,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = bundle;
+				EXECUTABLE_PREFIX = "";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = libcxx.iOS;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -519,8 +620,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = bundle;
+				EXECUTABLE_PREFIX = "";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_NAME = libcxx.iOS;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -585,10 +687,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../SDK,
-					../SDK/libcxx,
-				);
+				HEADER_SEARCH_PATHS = ../SDK/ClangPlatform/libcxx/src;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = staticlib;
@@ -665,10 +764,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../SDK,
-					../SDK/libcxx,
-				);
+				HEADER_SEARCH_PATHS = ../SDK/ClangPlatform/libcxx/src;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = staticlib;
@@ -692,6 +788,8 @@
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
+				EXECUTABLE_PREFIX = "";
+				PRODUCT_NAME = libcxx.macOS;
 			};
 			name = Debug;
 		};
@@ -700,6 +798,8 @@
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXCLUDED_ARCHS = x86_64;
+				EXECUTABLE_PREFIX = "";
+				PRODUCT_NAME = libcxx.macOS;
 			};
 			name = Release;
 		};

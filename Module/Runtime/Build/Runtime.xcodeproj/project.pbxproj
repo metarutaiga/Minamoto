@@ -12,7 +12,6 @@
 		D60791052BF5F1B8008810BD /* CSV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60791012BF5F1B8008810BD /* CSV.cpp */; };
 		D60791062BF5F1B8008810BD /* CSV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60791012BF5F1B8008810BD /* CSV.cpp */; };
 		D6169D162BB17FE200E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D152BB17FE200E5490C /* new.cpp */; };
-		D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6169D172BB17FF400E5490C /* libcxx.lib */; };
 		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
 		D6169D1C2BB1802100E5490C /* tls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D1B2BB1802100E5490C /* tls.cpp */; };
 		D62286B72BD2AFC500440C24 /* Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62286B52BD2AFC500440C24 /* Modifier.cpp */; };
@@ -92,6 +91,8 @@
 		D6D26F992BDE11D900D57772 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F972BDE11D900D57772 /* Pipeline.cpp */; };
 		D6D26F9A2BDE11D900D57772 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F972BDE11D900D57772 /* Pipeline.cpp */; };
 		D6D26F9B2BDE11D900D57772 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6D26F972BDE11D900D57772 /* Pipeline.cpp */; };
+		D6E6B5712C04460E003F6D85 /* libcxx.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6E6B5702C04460E003F6D85 /* libcxx.Windows.lib */; };
+		D6E6B5772C044683003F6D85 /* libcxx.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6E6B5762C044683003F6D85 /* libcxx.Android.a */; };
 		D6F066812BC6EEF600C4DFE6 /* Runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */; };
 		D6F066822BC6EEF600C4DFE6 /* Runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */; };
 		D6F066832BC6EEF600C4DFE6 /* Runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */; };
@@ -205,6 +206,8 @@
 		D6D26F912BDE0AF400D57772 /* VertexAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexAttribute.h; path = ../Graphic/VertexAttribute.h; sourceTree = "<group>"; };
 		D6D26F962BDE11D900D57772 /* Pipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pipeline.h; path = ../Graphic/Pipeline.h; sourceTree = "<group>"; };
 		D6D26F972BDE11D900D57772 /* Pipeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Pipeline.cpp; path = ../Graphic/Pipeline.cpp; sourceTree = "<group>"; };
+		D6E6B5702C04460E003F6D85 /* libcxx.Windows.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.Windows.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6E6B5762C044683003F6D85 /* libcxx.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F066802BC6EEF600C4DFE6 /* Runtime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Runtime.cpp; path = ../Runtime.cpp; sourceTree = "<group>"; };
 		D6F066952BC6F3E200C4DFE6 /* libfreetype.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libfreetype.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F066972BC6F3E200C4DFE6 /* libimgui.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libimgui.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +249,7 @@
 				D6346EED2BFA072E0075D7F1 /* libquickjs.Android.a in Frameworks */,
 				D6F066C92BC791D500C4DFE6 /* libxxGraphic.Android.a in Frameworks */,
 				D6F066CB2BC791D500C4DFE6 /* libxxGraphicPlus.Android.a in Frameworks */,
+				D6E6B5772C044683003F6D85 /* libcxx.Android.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +262,7 @@
 				D6346EE72BFA07000075D7F1 /* quickjs.Windows.lib in Frameworks */,
 				D6F066AE2BC6F57800C4DFE6 /* xxGraphic.Windows.lib in Frameworks */,
 				D6F066B02BC6F57800C4DFE6 /* xxGraphicPlus.Windows.lib in Frameworks */,
-				D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */,
+				D6E6B5712C04460E003F6D85 /* libcxx.Windows.lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +298,8 @@
 		300264BD24266097004559E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6E6B5762C044683003F6D85 /* libcxx.Android.a */,
+				D6E6B5702C04460E003F6D85 /* libcxx.Windows.lib */,
 				D6346EEC2BFA072E0075D7F1 /* libquickjs.Android.a */,
 				D6346EEA2BFA07210075D7F1 /* libquickjs.iOS.a */,
 				D6346EE82BFA07190075D7F1 /* libquickjs.macOS.a */,

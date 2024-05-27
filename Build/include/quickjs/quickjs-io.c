@@ -41,6 +41,7 @@ int     quickjs_fprintf(FILE*, char const*, ...);
 #define fwrite quickjs_fwrite
 #define fprintf quickjs_fprintf
 #define isatty(a) false
+#define atexit(a) ((void)a)
 #define select(a,b,c,d,e) select(a,b,c,d,&(struct timeval){0})
 #include <quickjs/quickjs-libc.c>
 

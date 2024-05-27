@@ -19,20 +19,25 @@ lua_State* Lua::L;
 //==============================================================================
 void Lua::Initialize()
 {
-     L = lua_newstate([](void *ud, void *ptr, size_t osize, size_t nsize) -> void*
+    if (L == nullptr)
     {
-        if (nsize == 0)
+        L = lua_newstate([](void*, void* ptr, size_t osize, size_t nsize) -> void*
         {
-            xxFree(ptr);
-            return NULL;
-        }
-        return xxRealloc(ptr, char, nsize);
-    }, nullptr);  /* create state */
+            if (nsize == 0)
+            {
+                xxFree(ptr);
+                return NULL;
+            }
+            return xxRealloc(ptr, char, nsize);
+        }, nullptr);  /* create state */
+    }
 }
 //------------------------------------------------------------------------------
 void Lua::Shutdown()
 {
     lua_close(L);
+
+    L = nullptr;
 }
 //------------------------------------------------------------------------------
 char const* Lua::Version()

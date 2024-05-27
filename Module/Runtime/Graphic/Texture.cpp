@@ -13,6 +13,7 @@
 
 #define STBI_ONLY_PNG
 #define STBI_NO_FAILURE_STRINGS
+#define STBI_NO_THREAD_LOCALS
 #define STB_IMAGE_IMPLEMENTATION
 #if defined(__clang__)
 #   pragma clang diagnostic ignored "-Wunused-function"

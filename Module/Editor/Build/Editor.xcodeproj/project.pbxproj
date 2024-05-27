@@ -42,7 +42,6 @@
 		D607910B2BF61829008810BD /* Setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60791082BF61829008810BD /* Setup.cpp */; };
 		D607910C2BF61829008810BD /* Setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60791082BF61829008810BD /* Setup.cpp */; };
 		D6169D162BB17FE200E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D152BB17FE200E5490C /* new.cpp */; };
-		D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6169D172BB17FF400E5490C /* libcxx.lib */; };
 		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
 		D6169D1C2BB1802100E5490C /* tls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D1B2BB1802100E5490C /* tls.cpp */; };
 		D62FEBED2BE50FD3004E9FDF /* dllmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBEC2BE50FD2004E9FDF /* dllmain.cpp */; };
@@ -113,6 +112,8 @@
 		D6E6B5692C0234EE003F6D85 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */; };
 		D6E6B56A2C0234EE003F6D85 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */; };
 		D6E6B56B2C0234EE003F6D85 /* quickjs-io.c in Sources */ = {isa = PBXBuildFile; fileRef = D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */; settings = {COMPILER_FLAGS = "-I../../../Build/include/quickjs-win32"; }; };
+		D6E6B56D2C0445F1003F6D85 /* libcxx.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6E6B56C2C0445F1003F6D85 /* libcxx.Windows.lib */; };
+		D6E6B5752C044673003F6D85 /* libcxx.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6E6B5742C044673003F6D85 /* libcxx.Android.a */; };
 		D6F563FE2BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
 		D6F563FF2BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
 		D6F564002BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
@@ -237,6 +238,8 @@
 		D6E6B5642C0234EE003F6D85 /* stdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdlib.h; sourceTree = "<group>"; };
 		D6E6B5652C0234EE003F6D85 /* unistd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unistd.h; sourceTree = "<group>"; };
 		D6E6B5662C0234EE003F6D85 /* utime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utime.h; sourceTree = "<group>"; };
+		D6E6B56C2C0445F1003F6D85 /* libcxx.Windows.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.Windows.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6E6B5742C044673003F6D85 /* libcxx.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F563FC2BE9D568006D32D9 /* Profiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profiler.h; path = ../Window/Profiler.h; sourceTree = "<group>"; };
 		D6F563FD2BE9D568006D32D9 /* Profiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Profiler.cpp; path = ../Window/Profiler.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,6 +251,7 @@
 			files = (
 				D60790DE2BF24990008810BD /* libimgui.so in Frameworks */,
 				D6CB0B2D2BB95D0D009DCD26 /* libRuntime.so in Frameworks */,
+				D6E6B5752C044673003F6D85 /* libcxx.Android.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +261,7 @@
 			files = (
 				D60790DA2BF2497A008810BD /* imgui.dll in Frameworks */,
 				D6CB0B292BB95CEF009DCD26 /* Runtime.dll in Frameworks */,
-				D6169D182BB17FF400E5490C /* libcxx.lib in Frameworks */,
+				D6E6B56D2C0445F1003F6D85 /* libcxx.Windows.lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +290,8 @@
 		300264BD24266097004559E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6E6B5742C044673003F6D85 /* libcxx.Android.a */,
+				D6E6B56C2C0445F1003F6D85 /* libcxx.Windows.lib */,
 				D60790DD2BF24990008810BD /* libimgui.so */,
 				D60790DB2BF24986008810BD /* imgui.bundle */,
 				D60790D92BF2497A008810BD /* imgui.dll */,

@@ -29,7 +29,15 @@ void QuickJS::Initialize()
 {
     if (rt == nullptr)
     {
-        rt = JS_NewRuntime();
+        static const JSMallocFunctions funcs =
+        {
+            [](JSMallocState* s, size_t size) -> void*              { return xxAlloc(char, size); },
+            [](JSMallocState* s, void* ptr)                         { xxFree(ptr); },
+            [](JSMallocState* s, void* ptr, size_t size) -> void*   { return xxRealloc(ptr, char, size); },
+            [](const void* ptr) -> size_t                           { return xxAllocSize(ptr); },
+        };
+
+        rt = JS_NewRuntime2(&funcs, nullptr);
         ctx = JS_NewContext(rt);
 
         RuntimeLibrary();

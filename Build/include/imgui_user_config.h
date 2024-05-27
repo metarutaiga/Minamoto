@@ -14,6 +14,8 @@
 
 #pragma once
 
+#define IMGUI_DISABLE_TTY_FUNCTIONS
+
 //---- Using 64-bits texture ID (default is 32-bits)
 #define ImTextureID ImU64
 
@@ -75,6 +77,7 @@
 
 //---- Include imgui_user.h at the end of imgui.h as a convenience
 //#define IMGUI_INCLUDE_IMGUI_USER_H
+//#define IMGUI_USER_H_FILENAME         "my_folder/my_imgui_user.h"
 
 //---- Pack colors to BGRA8 instead of RGBA8 (to avoid converting from one to another)
 //#define IMGUI_USE_BGRA_PACKED_COLOR
