@@ -104,11 +104,11 @@ void Lua::Update()
 //==============================================================================
 //  Standard I/O
 //==============================================================================
-LUA_API void (*lua_pinitreadline)(lua_State* L);
-LUA_API int  (*lua_preadline)(lua_State* L, char* buffer, char const* prompt);
-LUA_API void (*lua_psaveline)(lua_State* L, char const* line);
-LUA_API void (*lua_pfreeline)(lua_State* L, char* buffer);
-LUA_API void (*lua_pwriteline)(void);
-LUA_API void (*lua_pwritestring)(const char* string, size_t length);
-LUA_API void (*lua_pwritestringerror)(const char* string, const char* parameter);
+LUAEX_API void (*lua_pinitreadline)(lua_State* L);
+LUAEX_API int  (*lua_preadline)(lua_State* L, char* buffer, char const* prompt);
+LUAEX_API void (*lua_psaveline)(lua_State* L, char const* line);
+LUAEX_API void (*lua_pfreeline)(lua_State* L, char* buffer);
+LUAEX_API void (*lua_pwriteline)(void);
+LUAEX_API void (*lua_pwritestring)(const char* string, size_t length);
+LUAEX_API void (*lua_pwritestringerror)(const char* string, const char* parameter);
 //==============================================================================

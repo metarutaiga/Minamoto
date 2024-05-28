@@ -124,9 +124,7 @@ char const Runtime::Target[] = "Armv8.3";
 char const Runtime::Target[] = "Armv8.1";
 #elif __ARM_ARCH_8__ || __ARM_ARCH_8A__ || __ARM_ARCH == 8
 char const Runtime::Target[] = "Armv8.0";
-#endif
-//------------------------------------------------------------------------------
-#if defined(__clang_version__) && defined(__x86_64__)
+#elif defined(__clang_version__) && defined(__x86_64__)
 #if __AVX512VL__
 char const Runtime::Target[] = "x86-64-v4";
 #elif __AVX2__
@@ -137,18 +135,18 @@ char const Runtime::Target[] = "x86-64-v2";
 char const Runtime::Target[] = "x86-64";
 #endif
 #elif defined(_MSC_VER)
-char const Runtime::Target[] = ""
-#if __SSE__
+char const Runtime::Target[] =
+#if __SSE__ || _M_IX86_FP >= 1
 "SSE"
-#if __SSE2__
-"/SSE2";
-#if __SSE3__
+#if __SSE2__ || _M_IX86_FP >= 2
+"/SSE2"
+#if __SSE3__ || __AVX__
 "/SSE3"
-#if __SSSE3__
+#if __SSSE3__ || __AVX__
 "/SSSE3"
-#if __SSE4_1__
+#if __SSE4_1__ || __AVX__
 "/SSE4.1"
-#if __SSE4_2__
+#if __SSE4_2__ || __AVX__
 "/SSE4.2"
 #if __AVX__
 "/AVX"
@@ -164,7 +162,12 @@ char const Runtime::Target[] = ""
 #endif
 #endif
 #endif
+#elif _M_IX86
+"x86"
+#elif _M_AMD64
+"x86_64"
 #endif
+;
 #endif
 //------------------------------------------------------------------------------
 char const Runtime::Version[] =

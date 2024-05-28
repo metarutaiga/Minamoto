@@ -13,10 +13,22 @@
 #define __builtin_expect(a, b) a
 #define __attribute(...)
 #define __attribute__(...)
+#if defined(_M_IX86)
 #define __builtin_clz _lzcnt_u32
-#define __builtin_clzll _lzcnt_u64
 #define __builtin_ctz _tzcnt_u32
+#define __builtin_clzll(x) ((int)(x >> 32)) ? _lzcnt_u32((int)(x >> 32)) : _lzcnt_u32((int)(x      )) + 32
+#define __builtin_ctzll(x) ((int)(x      )) ? _tzcnt_u32((int)(x      )) : _tzcnt_u32((int)(x >> 32)) + 32
+#elif defined(_M_AMD64)
+#define __builtin_clz _lzcnt_u32
+#define __builtin_ctz _tzcnt_u32
+#define __builtin_clzll _lzcnt_u64
 #define __builtin_ctzll _tzcnt_u64
+#else
+#define __builtin_clz _CountLeadingZeros
+#define __builtin_ctz _CountTrailingZeros
+#define __builtin_clzll _CountLeadingZeros64
+#define __builtin_ctzll _CountTrailingZeros64
+#endif
 #define __builtin_frame_address(...) _ReturnAddress()
 
 // It maybe some definitions in the Visual C++

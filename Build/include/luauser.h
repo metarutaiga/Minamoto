@@ -34,20 +34,31 @@
 #define LUA_PATH_DEFAULT ""
 #define LUA_CPATH_DEFAULT ""
 
+#ifndef LUAEX_API
+#if defined(_WIN32)
+#define LUAEX_API   __declspec(dllexport)
+#else
+#define LUAEX_API   __attribute__((visibility("default")))
+#endif
+#elif defined(_WIN32)
+#undef LUAEX_API
+#define LUAEX_API   __declspec(dllimport)
+#endif
+
 #define lua_initreadline lua_pinitreadline
 #define lua_readline lua_preadline
 #define lua_saveline lua_psaveline
 #define lua_freeline lua_pfreeline
-LUA_API extern void (*lua_pinitreadline)(lua_State* L);
-LUA_API extern int  (*lua_preadline)(lua_State* L, char* buffer, char const* prompt);
-LUA_API extern void (*lua_psaveline)(lua_State* L, char const* line);
-LUA_API extern void (*lua_pfreeline)(lua_State* L, char* buffer);
+LUAEX_API extern void (*lua_pinitreadline)(lua_State* L);
+LUAEX_API extern int  (*lua_preadline)(lua_State* L, char* buffer, char const* prompt);
+LUAEX_API extern void (*lua_psaveline)(lua_State* L, char const* line);
+LUAEX_API extern void (*lua_pfreeline)(lua_State* L, char* buffer);
 
 #define lua_writeline lua_pwriteline
 #define lua_writestring lua_pwritestring
 #define lua_writestringerror lua_pwritestringerror
-LUA_API extern void (*lua_pwriteline)(void);
-LUA_API extern void (*lua_pwritestring)(const char* string, size_t length);
-LUA_API extern void (*lua_pwritestringerror)(const char* string, const char* parameter);
+LUAEX_API extern void (*lua_pwriteline)(void);
+LUAEX_API extern void (*lua_pwritestring)(const char* string, size_t length);
+LUAEX_API extern void (*lua_pwritestringerror)(const char* string, const char* parameter);
 
 #endif

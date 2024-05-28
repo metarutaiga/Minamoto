@@ -14,6 +14,7 @@
 extern "C"
 {
 #define LUA_LIB
+#define LUAEX_API
 #define LUA_USER_H "../../Build/include/luauser.h"
 #include <lua/lua.h>
 #include <lua/lauxlib.c>
