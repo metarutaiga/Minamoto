@@ -84,6 +84,7 @@
 		D6DA664E23258F6F00953C5B /* xxGraphic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A3231EDE9A00B75B77 /* xxGraphic.cpp */; };
 		D6DA664F23258F7A00953C5B /* xxGraphicNULL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A6231EDE9B00B75B77 /* xxGraphicNULL.cpp */; };
 		D6DA665023258F8E00953C5B /* xxSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D644A0A2231EDE9A00B75B77 /* xxSystem.cpp */; };
+		D6E815272C076530003D43E8 /* xxGraphicInternalD3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6E815262C076530003D43E8 /* xxGraphicInternalD3D.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -241,6 +242,7 @@
 		D6B3385C232044100096D02F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D6D0AA6323283A3D0044D0CF /* xxGraphicEAGL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = xxGraphicEAGL.mm; path = ../SDK/xxGraphic/xxGraphicEAGL.mm; sourceTree = "<group>"; };
 		D6D0AA6423283A3E0044D0CF /* xxGraphicEAGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicEAGL.h; path = ../SDK/xxGraphic/xxGraphicEAGL.h; sourceTree = "<group>"; };
+		D6E815262C076530003D43E8 /* xxGraphicInternalD3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxGraphicInternalD3D.cpp; path = ../SDK/xxGraphic/internal/xxGraphicInternalD3D.cpp; sourceTree = "<group>"; };
 		D6F761BE233C8E9F006BE7E1 /* xxGraphicD3D6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xxGraphicD3D6.cpp; path = ../SDK/xxGraphic/xxGraphicD3D6.cpp; sourceTree = "<group>"; };
 		D6F761BF233C8E9F006BE7E1 /* xxGraphicD3D7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicD3D7.h; path = ../SDK/xxGraphic/xxGraphicD3D7.h; sourceTree = "<group>"; };
 		D6F761C0233C8E9F006BE7E1 /* xxGraphicD3D6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxGraphicD3D6.h; path = ../SDK/xxGraphic/xxGraphicD3D6.h; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 		D6A86A4A25EA325D00074B9C /* internal */ = {
 			isa = PBXGroup;
 			children = (
+				D6E815262C076530003D43E8 /* xxGraphicInternalD3D.cpp */,
 				D6A86A9425EA33C700074B9C /* xxGraphicInternalD3D.h */,
 			);
 			name = internal;
@@ -763,6 +766,7 @@
 				CE935F8325AC35DB00CEF503 /* xxGraphicD3D10_1.cpp in Sources */,
 				CE935F8425AC35DB00CEF503 /* xxGraphicD3D10.cpp in Sources */,
 				CE935F8525AC35DB00CEF503 /* xxGraphicD3D11.cpp in Sources */,
+				D6E815272C076530003D43E8 /* xxGraphicInternalD3D.cpp in Sources */,
 				CE935F8625AC35DB00CEF503 /* xxGraphicD3D11On12.cpp in Sources */,
 				CE935F8725AC35DB00CEF503 /* xxGraphicD3D12.cpp in Sources */,
 				CE935F8825AC35DB00CEF503 /* xxGraphicD3DAsm.cpp in Sources */,

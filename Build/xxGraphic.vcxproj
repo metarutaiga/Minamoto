@@ -35,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\SDK\xxGraphic\internal\xxGraphicInternalD3D.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\internal\xxGraphicInternalGL.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\internal\xxGraphicInternalGlide.cpp" />
     <ClCompile Include="..\SDK\xxGraphic\internal\xxGraphicInternalMantle.cpp" />

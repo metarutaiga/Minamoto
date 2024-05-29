@@ -78,6 +78,9 @@
       <Filter>OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="..\SDK\xxGraphic\xxSystem.cpp" />
+    <ClCompile Include="..\SDK\xxGraphic\internal\xxGraphicInternalD3D.cpp">
+      <Filter>Direct3D\internal</Filter>
+    </ClCompile>
     <ClCompile Include="..\SDK\xxGraphic\internal\xxGraphicInternalMantle.cpp">
       <Filter>Mantle\internal</Filter>
     </ClCompile>
