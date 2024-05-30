@@ -357,9 +357,9 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
 
     sceneCamera->SetFOV(viewport_width / viewport_height, 60.0f, 10000.0f);
     sceneCamera->Update();
-    CameraTools::SetViewport(sceneCamera, width * dpiScale, height * dpiScale, viewport_x, viewport_y, viewport_width, viewport_height);
 
-    xxSetScissor(commandEncoder, viewport_x, viewport_y, viewport_width, viewport_height);
+    xxSetViewport(commandEncoder, int(viewport_x), int(viewport_y), int(viewport_width), int(viewport_height), 0.0f, 1.0f);
+    xxSetScissor(commandEncoder, int(viewport_x), int(viewport_y), int(viewport_width), int(viewport_height));
     sceneDrawData.commandEncoder = commandEncoder;
 
     auto callback = [](xxNodePtr const& node)
