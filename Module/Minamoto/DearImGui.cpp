@@ -33,7 +33,7 @@
 static void* MallocWrapper(size_t size, void* user_data)    { IM_UNUSED(user_data); return calloc(size, 1); }
 static void  FreeWrapper(void* ptr, void* user_data)        { IM_UNUSED(user_data); free(ptr);              }
 
-const char* DearImGui::g_graphicShortName = nullptr;
+char const* DearImGui::g_graphicShortName = nullptr;
 bool        DearImGui::g_recreateWindow = false;
 #if defined(xxIOS)
 bool        DearImGui::g_powerSaving = false;
@@ -206,8 +206,8 @@ void DearImGui::NewFrame(void* view)
             ImGui::MenuItem("Power Saving", nullptr, &g_powerSaving);
             ImGui::Separator();
 
-            const char* deviceStringCurrent = Renderer::GetCurrentFullName();
-            const char* deviceStringTarget = "";
+            char const* deviceStringCurrent = Renderer::GetCurrentFullName();
+            char const* deviceStringTarget = "";
 
             for (int i = 0; i < 32; ++i)
             {
@@ -360,7 +360,7 @@ void* DearImGui::PostUpdate(void* view, bool render)
     // Recreate Graphic API
     if (g_graphicShortName != nullptr)
     {
-        const char* graphicShortName = g_graphicShortName;
+        char const* graphicShortName = g_graphicShortName;
         g_graphicShortName = nullptr;
 
         Module::Message({ "SHUTDOWN" });

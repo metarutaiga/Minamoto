@@ -499,7 +499,7 @@ int main(int argc, char* argv[])
         [[NSApplication sharedApplication] setDelegate:delegate];
         [NSApp activateIgnoringOtherApps:YES];
         [NSApp run];
-        return NSApplicationMain(argc, (const char**)argv);
+        return NSApplicationMain(argc, (char const**)argv);
     }
 #elif defined(xxIOS)
     @autoreleasepool

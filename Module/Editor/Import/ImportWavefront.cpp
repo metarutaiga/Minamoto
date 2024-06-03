@@ -35,7 +35,7 @@ static std::string GeneratePath(char const* path, char const* name)
     return xxFile::GetPath(path) + (name ? name : "");
 }
 //------------------------------------------------------------------------------
-std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial(const char* mtl)
+std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial(char const* mtl)
 {
     std::map<std::string, Material> materials;
     Material material;
@@ -77,7 +77,7 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
         RemoveBreakline(line);
 
         char* lasts = line;
-        const char* statement = strsep(&lasts, " ");
+        char const* statement = strsep(&lasts, " ");
         if (statement == nullptr || lasts == nullptr)
             continue;
 
@@ -201,7 +201,7 @@ xxNodePtr ImportWavefront::Create(char const* obj)
         RemoveBreakline(line);
 
         char* lasts = line;
-        const char* statement = strsep(&lasts, " ");
+        char const* statement = strsep(&lasts, " ");
         if (statement == nullptr || lasts == nullptr)
             continue;
 

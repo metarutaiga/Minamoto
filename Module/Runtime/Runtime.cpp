@@ -14,6 +14,9 @@
 #include "Graphic/Shader.h"
 #include "Graphic/Texture.h"
 #include "Graphic/VertexAttribute.h"
+#if HAVE_MINIGUI
+#include "MiniGUI/Font.h"
+#endif
 #include "Script/Lua.h"
 #include "Script/QuickJS.h"
 #include "Runtime.h"
@@ -39,6 +42,10 @@ void Runtime::Initialize()
     Lua::Initialize();
     QuickJS::Initialize();
 
+#if HAVE_MINIGUI
+    MiniGUI::Font::Initialize();
+#endif
+
     xxLog("Runtime", Runtime::Version);
     xxLog("Runtime", "%s for %s", Runtime::Compiler, Runtime::Target);
 
@@ -51,7 +58,7 @@ void Runtime::Shutdown(bool suspend)
 {
     if (initialized == false)
         return;
-    initialized = false;
+    initialized = suspend;
 
     VertexAttribute::Shutdown();
     Texture::Shutdown();
@@ -67,6 +74,10 @@ void Runtime::Shutdown(bool suspend)
         QuickJS::Shutdown();
         Lua::Shutdown();
     }
+
+#if HAVE_MINIGUI
+    MiniGUI::Font::Shutdown(suspend);
+#endif
 
     xxLog("Runtime", "Shutdown");
 }

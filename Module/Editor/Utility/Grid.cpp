@@ -21,11 +21,11 @@ xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
 
     int vertex_count = 4;
     mesh->SetVertexCount(vertex_count);
-    xxStrideIterator<xxVector3> it_vertex = mesh->GetVertex();
-    (*it_vertex++) = {-size.x,  size.y, 0};
-    (*it_vertex++) = {-size.x, -size.y, 0};
-    (*it_vertex++) = { size.x,  size.y, 0};
-    (*it_vertex++) = { size.x, -size.y, 0};
+    xxStrideIterator<xxVector3> it_position = mesh->GetPosition();
+    (*it_position++) = {-size.x,  size.y, 0};
+    (*it_position++) = {-size.x, -size.y, 0};
+    (*it_position++) = { size.x,  size.y, 0};
+    (*it_position++) = { size.x, -size.y, 0};
     xxStrideIterator<uint32_t> it_color = mesh->GetColor(0);
     (*it_color++) = 0xFFFFFFFF;
     (*it_color++) = 0xFFFFFFFF;

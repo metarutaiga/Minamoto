@@ -6,9 +6,31 @@
 //==============================================================================
 #include "Runtime.h"
 #include <xxGraphicPlus/xxNode.h>
+#if HAVE_MINIGUI
+#include "MiniGUI/Window.h"
+#endif
 #include "NodeTools.h"
 
 //==============================================================================
+#if HAVE_MINIGUI
+MiniGUI::WindowPtr const& NodeTools::GetRoot(MiniGUI::WindowPtr const& window)
+{
+    if (window == nullptr)
+    {
+        static MiniGUI::WindowPtr empty;
+        return empty;
+    }
+    MiniGUI::WindowPtr const* root = nullptr;
+    MiniGUI::WindowPtr const* trunk = &window;
+    do
+    {
+        root = trunk;
+        trunk = &(*trunk)->GetParent();
+    } while (trunk->get() && (trunk->get()->Flags & MiniGUI::Window::WINDOW_CLASS));
+    return (*root);
+}
+#endif
+//------------------------------------------------------------------------------
 xxNodePtr const& NodeTools::GetRoot(xxNodePtr const& node)
 {
     if (node == nullptr)
@@ -16,13 +38,14 @@ xxNodePtr const& NodeTools::GetRoot(xxNodePtr const& node)
         static xxNodePtr empty;
         return empty;
     }
-    xxNodePtr const* trunk = &node;
     xxNodePtr const* root = nullptr;
-    while ((root = &(*trunk)->GetParent()) && root->get())
+    xxNodePtr const* trunk = &node;
+    do
     {
-        trunk = root;
-    }
-    return (*trunk);
+        root = trunk;
+        trunk = &(*trunk)->GetParent();
+    } while (trunk->get());
+    return (*root);
 }
 //------------------------------------------------------------------------------
 xxNodePtr const& NodeTools::GetObject(xxNodePtr const& node, std::string const& name)
@@ -59,6 +82,12 @@ void NodeTools::UpdateNodeFlags(xxNodePtr const& node)
         {
             node->Flags |= xxNode::UPDATE_NEED;
         }
+#if HAVE_MINIGUI
+        if (node->Flags & MiniGUI::Window::WINDOW_CLASS)
+        {
+            node->Flags |= xxNode::UPDATE_NEED;
+        }
+#endif
         return true;
     });
 

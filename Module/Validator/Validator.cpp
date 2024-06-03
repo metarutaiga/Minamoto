@@ -6,6 +6,7 @@
 //==============================================================================
 #include <Interface.h>
 
+#include <xxGraphicPlus/xxFile.h>
 #include <xxGraphicPlus/xxNode.h>
 
 #if DirectXMath
@@ -17,6 +18,7 @@ using namespace DirectX;
 #define PLUGIN_MAJOR    1
 #define PLUGIN_MINOR    0
 
+static void ValidateFile(float time, char* text, size_t count);
 static void ValidateNode(float time, char* text, size_t count);
 
 //------------------------------------------------------------------------------
@@ -32,14 +34,14 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
 //------------------------------------------------------------------------------
 moduleAPI bool Update(const UpdateData& updateData)
 {
-    static bool showNode = false;
+    static bool showValidate = false;
     static bool showAbout = false;
 
     if (ImGui::BeginMainMenuBar())
     {
         if (ImGui::BeginMenu(PLUGIN_NAME))
         {
-            ImGui::MenuItem("Validate Node", nullptr, &showNode);
+            ImGui::MenuItem("Validate", nullptr, &showValidate);
             ImGui::Separator();
             ImGui::MenuItem("About " PLUGIN_NAME, nullptr, &showAbout);
             ImGui::EndMenu();
@@ -47,15 +49,20 @@ moduleAPI bool Update(const UpdateData& updateData)
         ImGui::EndMainMenuBar();
     }
 
-    if (showNode)
+    if (showValidate)
     {
         ImGui::SetNextWindowSize(ImVec2(800, 600), ImGuiCond_FirstUseEver);
-        if (ImGui::Begin("Validate Node", &showNode, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
+        if (ImGui::Begin("Validate", &showValidate, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
         {
             static char text[4096];
             ImGui::InputTextMultiline("##source", text, IM_ARRAYSIZE(text), ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 16), ImGuiInputTextFlags_ReadOnly);
 
-            if (ImGui::Button("Validate"))
+            if (ImGui::Button("File"))
+            {
+                ValidateFile(updateData.time, text, sizeof(text));
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Node"))
             {
                 ValidateNode(updateData.time, text, sizeof(text));
             }
@@ -82,6 +89,31 @@ moduleAPI bool Update(const UpdateData& updateData)
 moduleAPI void Render(const RenderData& renderData)
 {
 
+}
+//------------------------------------------------------------------------------
+void ValidateFile(float time, char* text, size_t count)
+{
+    int step = 0;
+
+    static char const* const names[] =
+    {
+        "foo",
+        "foo/",
+        "foo/bar",
+        "foo/bar.123",
+        "foo.123/bar",
+        "foo.123/bar.123",
+        "foo.123/bar.123/abc",
+        "foo.123/bar.123/abc.123",
+    };
+    for (char const* name : names)
+    {
+        step += snprintf(text + step, count - step, "%s -> %s\n", name, xxFile::GetName(name).c_str());
+    }
+    for (char const* name : names)
+    {
+        step += snprintf(text + step, count - step, "%s -> %s\n", name, xxFile::GetPath(name).c_str());
+    }
 }
 //------------------------------------------------------------------------------
 void ValidateNode(float time, char* text, size_t count)

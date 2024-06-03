@@ -21,7 +21,7 @@
 #include "Window/Setup.h"
 
 //------------------------------------------------------------------------------
-moduleAPI const char* Create(const CreateData& createData)
+moduleAPI char const* Create(const CreateData& createData)
 {
     Runtime::Initialize();
     ShaderDisassembly::Initialize();

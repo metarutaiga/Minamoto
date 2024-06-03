@@ -132,6 +132,38 @@
 		D6F5641E2BEA785B006D32D9 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F5641B2BEA785B006D32D9 /* Texture.cpp */; };
 		D6F5641F2BEA785B006D32D9 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F5641B2BEA785B006D32D9 /* Texture.cpp */; };
 		D6F564202BEA785B006D32D9 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F5641B2BEA785B006D32D9 /* Texture.cpp */; };
+		D6FEF3F92C09B011003272C2 /* StringModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF3F82C09B011003272C2 /* StringModifier.cpp */; };
+		D6FEF3FA2C09B011003272C2 /* StringModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF3F82C09B011003272C2 /* StringModifier.cpp */; };
+		D6FEF3FB2C09B011003272C2 /* StringModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF3F82C09B011003272C2 /* StringModifier.cpp */; };
+		D6FEF3FC2C09B011003272C2 /* StringModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF3F82C09B011003272C2 /* StringModifier.cpp */; };
+		D6FEF3FF2C09BFBF003272C2 /* FloatModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF3FD2C09BFBF003272C2 /* FloatModifier.cpp */; };
+		D6FEF4002C09BFBF003272C2 /* FloatModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF3FD2C09BFBF003272C2 /* FloatModifier.cpp */; };
+		D6FEF4012C09BFBF003272C2 /* FloatModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF3FD2C09BFBF003272C2 /* FloatModifier.cpp */; };
+		D6FEF4022C09BFBF003272C2 /* FloatModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF3FD2C09BFBF003272C2 /* FloatModifier.cpp */; };
+		D6FEF4092C09C56E003272C2 /* Float2Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4032C09C56E003272C2 /* Float2Modifier.cpp */; };
+		D6FEF40A2C09C56E003272C2 /* Float2Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4032C09C56E003272C2 /* Float2Modifier.cpp */; };
+		D6FEF40B2C09C56E003272C2 /* Float2Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4032C09C56E003272C2 /* Float2Modifier.cpp */; };
+		D6FEF40C2C09C56E003272C2 /* Float2Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4032C09C56E003272C2 /* Float2Modifier.cpp */; };
+		D6FEF40D2C09C56E003272C2 /* Float3Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4042C09C56E003272C2 /* Float3Modifier.cpp */; };
+		D6FEF40E2C09C56E003272C2 /* Float3Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4042C09C56E003272C2 /* Float3Modifier.cpp */; };
+		D6FEF40F2C09C56E003272C2 /* Float3Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4042C09C56E003272C2 /* Float3Modifier.cpp */; };
+		D6FEF4102C09C56E003272C2 /* Float3Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4042C09C56E003272C2 /* Float3Modifier.cpp */; };
+		D6FEF4112C09C56E003272C2 /* Float4Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4062C09C56E003272C2 /* Float4Modifier.cpp */; };
+		D6FEF4122C09C56E003272C2 /* Float4Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4062C09C56E003272C2 /* Float4Modifier.cpp */; };
+		D6FEF4132C09C56E003272C2 /* Float4Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4062C09C56E003272C2 /* Float4Modifier.cpp */; };
+		D6FEF4142C09C56E003272C2 /* Float4Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4062C09C56E003272C2 /* Float4Modifier.cpp */; };
+		D6FEF4182C09DCE3003272C2 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4162C09DCE3003272C2 /* Window.cpp */; };
+		D6FEF4192C09DCE3003272C2 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4162C09DCE3003272C2 /* Window.cpp */; };
+		D6FEF41A2C09DCE3003272C2 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4162C09DCE3003272C2 /* Window.cpp */; };
+		D6FEF41B2C09DCE3003272C2 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4162C09DCE3003272C2 /* Window.cpp */; };
+		D6FEF41E2C0B4B0E003272C2 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF41D2C0B4B0E003272C2 /* Font.cpp */; };
+		D6FEF41F2C0B4B0E003272C2 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF41D2C0B4B0E003272C2 /* Font.cpp */; };
+		D6FEF4202C0B4B0E003272C2 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF41D2C0B4B0E003272C2 /* Font.cpp */; };
+		D6FEF4212C0B4B0E003272C2 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF41D2C0B4B0E003272C2 /* Font.cpp */; };
+		D6FEF4242C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
+		D6FEF4252C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
+		D6FEF4262C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
+		D6FEF4272C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -237,6 +269,22 @@
 		D6F564162BEA69A3006D32D9 /* Sampler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sampler.cpp; path = ../Graphic/Sampler.cpp; sourceTree = "<group>"; };
 		D6F5641B2BEA785B006D32D9 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = ../Graphic/Texture.cpp; sourceTree = "<group>"; };
 		D6F5641C2BEA785B006D32D9 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = ../Graphic/Texture.h; sourceTree = "<group>"; };
+		D6FEF3F72C09B011003272C2 /* StringModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringModifier.h; path = ../Modifier/StringModifier.h; sourceTree = "<group>"; };
+		D6FEF3F82C09B011003272C2 /* StringModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringModifier.cpp; path = ../Modifier/StringModifier.cpp; sourceTree = "<group>"; };
+		D6FEF3FD2C09BFBF003272C2 /* FloatModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FloatModifier.cpp; path = ../Modifier/FloatModifier.cpp; sourceTree = "<group>"; };
+		D6FEF3FE2C09BFBF003272C2 /* FloatModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FloatModifier.h; path = ../Modifier/FloatModifier.h; sourceTree = "<group>"; };
+		D6FEF4032C09C56E003272C2 /* Float2Modifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Float2Modifier.cpp; path = ../Modifier/Float2Modifier.cpp; sourceTree = "<group>"; };
+		D6FEF4042C09C56E003272C2 /* Float3Modifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Float3Modifier.cpp; path = ../Modifier/Float3Modifier.cpp; sourceTree = "<group>"; };
+		D6FEF4052C09C56E003272C2 /* Float2Modifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Float2Modifier.h; path = ../Modifier/Float2Modifier.h; sourceTree = "<group>"; };
+		D6FEF4062C09C56E003272C2 /* Float4Modifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Float4Modifier.cpp; path = ../Modifier/Float4Modifier.cpp; sourceTree = "<group>"; };
+		D6FEF4072C09C56E003272C2 /* Float4Modifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Float4Modifier.h; path = ../Modifier/Float4Modifier.h; sourceTree = "<group>"; };
+		D6FEF4082C09C56E003272C2 /* Float3Modifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Float3Modifier.h; path = ../Modifier/Float3Modifier.h; sourceTree = "<group>"; };
+		D6FEF4162C09DCE3003272C2 /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Window.cpp; path = ../MiniGUI/Window.cpp; sourceTree = "<group>"; };
+		D6FEF4172C09DCE3003272C2 /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Window.h; path = ../MiniGUI/Window.h; sourceTree = "<group>"; };
+		D6FEF41C2C0B4B0E003272C2 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = ../MiniGUI/Font.h; sourceTree = "<group>"; };
+		D6FEF41D2C0B4B0E003272C2 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../MiniGUI/Font.cpp; sourceTree = "<group>"; };
+		D6FEF4222C0D9315003272C2 /* ArrayModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrayModifier.h; path = ../Modifier/ArrayModifier.h; sourceTree = "<group>"; };
+		D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ArrayModifier.cpp; path = ../Modifier/ArrayModifier.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,6 +432,7 @@
 			children = (
 				CE999BD625D21EC800351116 /* Configs */,
 				D6386A512BDA263D0008C9D1 /* Graphic */,
+				D6FEF4152C09DCD3003272C2 /* MiniGUI */,
 				D645C4C32BD143BB00A89E16 /* Modifier */,
 				D62FEBD12BE49393004E9FDF /* Script */,
 				D6F564022BEA003D006D32D9 /* Tools */,
@@ -408,6 +457,8 @@
 		D645C4C32BD143BB00A89E16 /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
+				D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */,
+				D6FEF4222C0D9315003272C2 /* ArrayModifier.h */,
 				D62286D92BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp */,
 				D62286DA2BD7A2C200440C24 /* BakedQuaternion16Modifier.h */,
 				D62286D42BD7936300440C24 /* BakedQuaternionModifier.cpp */,
@@ -418,6 +469,14 @@
 				D62286BD2BD559B000440C24 /* ConstantScaleModifier.h */,
 				D62286BC2BD559B000440C24 /* ConstantTranslateModifier.cpp */,
 				D62286BE2BD559B000440C24 /* ConstantTranslateModifier.h */,
+				D6FEF4032C09C56E003272C2 /* Float2Modifier.cpp */,
+				D6FEF4052C09C56E003272C2 /* Float2Modifier.h */,
+				D6FEF4042C09C56E003272C2 /* Float3Modifier.cpp */,
+				D6FEF4082C09C56E003272C2 /* Float3Modifier.h */,
+				D6FEF4062C09C56E003272C2 /* Float4Modifier.cpp */,
+				D6FEF4072C09C56E003272C2 /* Float4Modifier.h */,
+				D6FEF3FD2C09BFBF003272C2 /* FloatModifier.cpp */,
+				D6FEF3FE2C09BFBF003272C2 /* FloatModifier.h */,
 				D62286B52BD2AFC500440C24 /* Modifier.cpp */,
 				D62286B42BD28DE400440C24 /* Modifier.h */,
 				D62286B62BD2AFC500440C24 /* Modifier.inl */,
@@ -427,6 +486,8 @@
 				D645C4D42BD145E700A89E16 /* QuaternionModifier.h */,
 				D645C4C72BD145AF00A89E16 /* ScaleModifier.cpp */,
 				D645C4C82BD145AF00A89E16 /* ScaleModifier.h */,
+				D6FEF3F82C09B011003272C2 /* StringModifier.cpp */,
+				D6FEF3F72C09B011003272C2 /* StringModifier.h */,
 				D645C4CE2BD145C400A89E16 /* TranslateModifier.cpp */,
 				D645C4CD2BD145C400A89E16 /* TranslateModifier.h */,
 			);
@@ -444,6 +505,17 @@
 				D6F564032BEA004F006D32D9 /* NodeTools.h */,
 			);
 			name = Tools;
+			sourceTree = "<group>";
+		};
+		D6FEF4152C09DCD3003272C2 /* MiniGUI */ = {
+			isa = PBXGroup;
+			children = (
+				D6FEF41D2C0B4B0E003272C2 /* Font.cpp */,
+				D6FEF41C2C0B4B0E003272C2 /* Font.h */,
+				D6FEF4162C09DCE3003272C2 /* Window.cpp */,
+				D6FEF4172C09DCE3003272C2 /* Window.h */,
+			);
+			name = MiniGUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -564,6 +636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6386A652BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
+				D6FEF4182C09DCE3003272C2 /* Window.cpp in Sources */,
 				D62286C12BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D6F564172BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066812BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
@@ -575,7 +648,10 @@
 				D62286DB2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D62286CF2BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C52BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D6FEF40D2C09C56E003272C2 /* Float3Modifier.cpp in Sources */,
 				D6F5640B2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
+				D6FEF4112C09C56E003272C2 /* Float4Modifier.cpp in Sources */,
+				D6FEF4242C0D9315003272C2 /* ArrayModifier.cpp in Sources */,
 				D6D26F922BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D52BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D60791032BF5F1B8008810BD /* CSV.cpp in Sources */,
@@ -584,9 +660,13 @@
 				D6D26F8C2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286C92BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4CF2BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
+				D6FEF41E2C0B4B0E003272C2 /* Font.cpp in Sources */,
+				D6FEF4092C09C56E003272C2 /* Float2Modifier.cpp in Sources */,
+				D6FEF3FF2C09BFBF003272C2 /* FloatModifier.cpp in Sources */,
 				D645C4D52BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 				D6346EE22BFA06520075D7F1 /* QuickJS.cpp in Sources */,
 				D6F5641D2BEA785B006D32D9 /* Texture.cpp in Sources */,
+				D6FEF3F92C09B011003272C2 /* StringModifier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,10 +674,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6FEF4142C09C56E003272C2 /* Float4Modifier.cpp in Sources */,
 				D6386A772BDC09EA0008C9D1 /* Binary.cpp in Sources */,
 				D645C4CC2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D6386A682BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D62286BA2BD2AFC500440C24 /* Modifier.cpp in Sources */,
+				D6FEF4102C09C56E003272C2 /* Float3Modifier.cpp in Sources */,
 				D62286CC2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D6F564202BEA785B006D32D9 /* Texture.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
@@ -609,8 +691,10 @@
 				D6D26F9B2BDE11D900D57772 /* Pipeline.cpp in Sources */,
 				D62286C42BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D62286D82BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
+				D6FEF4022C09BFBF003272C2 /* FloatModifier.cpp in Sources */,
 				D6D26F8F2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D6D26F952BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
+				D6FEF4272C0D9315003272C2 /* ArrayModifier.cpp in Sources */,
 				D62FEBD72BE493A3004E9FDF /* Lua.cpp in Sources */,
 				D6346EE52BFA06520075D7F1 /* QuickJS.cpp in Sources */,
 				D60791062BF5F1B8008810BD /* CSV.cpp in Sources */,
@@ -618,10 +702,14 @@
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
 				D6F5640E2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
 				D62286D22BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
+				D6FEF40C2C09C56E003272C2 /* Float2Modifier.cpp in Sources */,
+				D6FEF3FC2C09B011003272C2 /* StringModifier.cpp in Sources */,
 				D62FEBE52BE50F77004E9FDF /* dllmain.cpp in Sources */,
 				D645C4D22BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
+				D6FEF41B2C09DCE3003272C2 /* Window.cpp in Sources */,
 				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
 				D6F564082BEA004F006D32D9 /* NodeTools.cpp in Sources */,
+				D6FEF4212C0B4B0E003272C2 /* Font.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +718,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6386A662BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
+				D6FEF4192C09DCE3003272C2 /* Window.cpp in Sources */,
 				D62286C22BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D6F564182BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066822BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
@@ -641,7 +730,10 @@
 				D62286DC2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D62286D02BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C62BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D6FEF40E2C09C56E003272C2 /* Float3Modifier.cpp in Sources */,
 				D6F5640C2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
+				D6FEF4122C09C56E003272C2 /* Float4Modifier.cpp in Sources */,
+				D6FEF4252C0D9315003272C2 /* ArrayModifier.cpp in Sources */,
 				D6D26F932BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D62BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D60791042BF5F1B8008810BD /* CSV.cpp in Sources */,
@@ -650,9 +742,13 @@
 				D6D26F8D2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286CA2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4D02BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
+				D6FEF41F2C0B4B0E003272C2 /* Font.cpp in Sources */,
+				D6FEF40A2C09C56E003272C2 /* Float2Modifier.cpp in Sources */,
+				D6FEF4002C09BFBF003272C2 /* FloatModifier.cpp in Sources */,
 				D645C4D62BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 				D6346EE32BFA06520075D7F1 /* QuickJS.cpp in Sources */,
 				D6F5641E2BEA785B006D32D9 /* Texture.cpp in Sources */,
+				D6FEF3FA2C09B011003272C2 /* StringModifier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6386A672BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
+				D6FEF41A2C09DCE3003272C2 /* Window.cpp in Sources */,
 				D62286C32BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D6F564192BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066832BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
@@ -672,7 +769,10 @@
 				D62286DD2BD7A2C200440C24 /* BakedQuaternion16Modifier.cpp in Sources */,
 				D62286D12BD6C18900440C24 /* Quaternion16Modifier.cpp in Sources */,
 				D62286C72BD559B000440C24 /* ConstantTranslateModifier.cpp in Sources */,
+				D6FEF40F2C09C56E003272C2 /* Float3Modifier.cpp in Sources */,
 				D6F5640D2BEA15C7006D32D9 /* CameraTools.cpp in Sources */,
+				D6FEF4132C09C56E003272C2 /* Float4Modifier.cpp in Sources */,
+				D6FEF4262C0D9315003272C2 /* ArrayModifier.cpp in Sources */,
 				D6D26F942BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D62286D72BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
 				D60791052BF5F1B8008810BD /* CSV.cpp in Sources */,
@@ -681,9 +781,13 @@
 				D6D26F8E2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D62286CB2BD559B000440C24 /* ConstantScaleModifier.cpp in Sources */,
 				D645C4D12BD145C400A89E16 /* TranslateModifier.cpp in Sources */,
+				D6FEF4202C0B4B0E003272C2 /* Font.cpp in Sources */,
+				D6FEF40B2C09C56E003272C2 /* Float2Modifier.cpp in Sources */,
+				D6FEF4012C09BFBF003272C2 /* FloatModifier.cpp in Sources */,
 				D645C4D72BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
 				D6346EE42BFA06520075D7F1 /* QuickJS.cpp in Sources */,
 				D6F5641F2BEA785B006D32D9 /* Texture.cpp in Sources */,
+				D6FEF3FB2C09B011003272C2 /* StringModifier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

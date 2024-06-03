@@ -109,6 +109,6 @@ LUAEX_API int  (*lua_preadline)(lua_State* L, char* buffer, char const* prompt);
 LUAEX_API void (*lua_psaveline)(lua_State* L, char const* line);
 LUAEX_API void (*lua_pfreeline)(lua_State* L, char* buffer);
 LUAEX_API void (*lua_pwriteline)(void);
-LUAEX_API void (*lua_pwritestring)(const char* string, size_t length);
-LUAEX_API void (*lua_pwritestringerror)(const char* string, const char* parameter);
+LUAEX_API void (*lua_pwritestring)(char const* string, size_t length);
+LUAEX_API void (*lua_pwritestringerror)(char const* string, char const* parameter);
 //==============================================================================

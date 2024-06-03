@@ -217,7 +217,7 @@ bool ShaderDisassembly::Update(const UpdateData& updateData, bool& show)
 
         // Architecture
         static int archCurrent = 0;
-        static const char* const archList[] =
+        static char const* const archList[] =
         {
             "Apple G13G",
         };
@@ -227,7 +227,7 @@ bool ShaderDisassembly::Update(const UpdateData& updateData, bool& show)
         // Shader
         static int shaderCurrent = 0;
         ImGui::SetNextItemWidth(128.0f);
-        ImGui::ListBox("Shader", &shaderCurrent, [](void*, int index) -> const char*
+        ImGui::ListBox("Shader", &shaderCurrent, [](void*, int index) -> char const*
         {
             static char temp[64];
             auto it = allShaderDisassembly.begin();

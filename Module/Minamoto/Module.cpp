@@ -11,7 +11,7 @@
 #include "Module.h"
 
 static ImVector<void*>                  g_moduleLibraries;
-static ImVector<const char*>            g_moduleTitles;
+static ImVector<char const*>            g_moduleTitles;
 static ImVector<float>                  g_moduleTimers;
 static ImVector<PFN_MODULE_CREATE>      g_moduleCreates;
 static ImVector<PFN_MODULE_SHUTDOWN>    g_moduleShutdowns;
@@ -19,10 +19,10 @@ static ImVector<PFN_MODULE_MESSAGE>     g_moduleMessages;
 static ImVector<PFN_MODULE_UPDATE>      g_moduleUpdates;
 static ImVector<PFN_MODULE_RENDER>      g_moduleRenders;
 //------------------------------------------------------------------------------
-void Module::Create(const char* path, uint64_t device)
+void Module::Create(char const* path, uint64_t device)
 {
-    const char* app = xxGetExecutablePath();
-    const char* extension = "";
+    char const* app = xxGetExecutablePath();
+    char const* extension = "";
 #if defined(xxWINDOWS)
     extension = ".dll";
 #elif defined(xxMACOS)
@@ -95,7 +95,7 @@ void Module::Create(const char* path, uint64_t device)
     {
         PFN_MODULE_CREATE create = g_moduleCreates[i];
         float begin = xxGetCurrentTime();
-        const char* title = create(createData);
+        char const* title = create(createData);
         float end = xxGetCurrentTime();
         g_moduleTitles.push_back(title);
 
@@ -133,7 +133,7 @@ int Module::Count()
     return (int)g_moduleUpdates.size();
 }
 //------------------------------------------------------------------------------
-void Module::Message(std::initializer_list<const char*> list)
+void Module::Message(std::initializer_list<char const*> list)
 {
     MessageData messageData;
     messageData.data = &(*list.begin());

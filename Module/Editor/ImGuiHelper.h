@@ -20,5 +20,18 @@ inline bool SliderChar(const char* label, char* v, char v_min, char v_max, const
     return SliderScalar(label, ImGuiDataType_S8, v, &v_min, &v_max, format, flags);
 }
 //---------------------------------------------------------------------------
+inline bool InputText(const char* label, std::string& text, ImGuiInputTextFlags flags = 0, ImGuiInputTextCallback callback = NULL, void* user_data = NULL)
+{
+    size_t length = text.length();
+    text.resize(length + 1024, 0);
+    if (InputText(label, text.data(), text.size(), flags, callback, user_data))
+    {
+        text.resize(strlen(text.c_str()));
+        return true;
+    }
+    text.resize(length);
+    return false;
+}
+//---------------------------------------------------------------------------
 } // namespace ImGui
 //---------------------------------------------------------------------------

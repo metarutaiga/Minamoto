@@ -9,6 +9,7 @@
 #include <xxGraphicPlus/xxFile.h>
 #include <xxGraphicPlus/xxNode.h>
 #include <Graphic/Binary.h>
+#include <MiniGUI/Window.h>
 #include <Runtime/Tools/NodeTools.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include "Import/ImportFBX.h"
@@ -108,7 +109,7 @@ void Hierarchy::Import(const UpdateData& updateData)
             if (config.path.size() && config.path.back() != '/')
                 config.path.resize(config.path.rfind('/') + 1);
 #endif
-            const char* filters =
+            char const* filters =
                 "Supported Files(*.fbx,*.obj,*.xxb){.fbx,.obj,.xxb},"
                 "Double Cross Binary(*.xxb){.xxb},"
                 "Kaydara Flimbox(*.fbx){.fbx},"
@@ -195,7 +196,7 @@ void Hierarchy::Export(const UpdateData& updateData)
             if (config.path.size() && config.path.back() != '/')
                 config.path.resize(config.path.rfind('/') + 1);
 #endif
-            const char* filters =
+            char const* filters =
                 "Double Cross Binary(*.xxb){.xxb},"
                 "All Files(*.*){.*},";
             exportFileDialog->OpenDialog("Export", "Choose File", filters, config);
@@ -203,6 +204,11 @@ void Hierarchy::Export(const UpdateData& updateData)
         }
         if (ImGui::Button("Export"))
         {
+            xxNode::Traversal(exportNode, [&](xxNodePtr const& node)
+            {
+                node->Flags &= ~NodeTools::TEST_CHECK_FLAG;
+                return true;
+            });
             float begin = xxGetCurrentTime();
             if (Binary::Save(exportName, exportNode))
             {
@@ -241,6 +247,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
         return false;
 
     bool update = false;
+    xxNodePtr hovered;
     if (ImGui::Begin(ICON_FA_LIST "Hierarchy", &show))
     {
         windowPosY = ImGui::GetCursorPosY();
@@ -277,6 +284,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
         char name[256];
         bool clickedLeft = false;
         bool clickedRight = false;
+        size_t TEST_OPEN_FLAG = xxNode::RESERVED0;
         std::function<void(xxNodePtr const&)> traversal = [&](xxNodePtr const& node)
         {
             if (node == nullptr)
@@ -295,7 +303,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                 }
             }
 
-            bool opened = (node->Flags & NodeTools::TEST_OPEN_FLAG) != 0;
+            bool opened = (node->Flags & TEST_OPEN_FLAG) != 0;
             if (node->Name.empty())
                 snprintf(name, sizeof(name), "%s%p", node->Mesh ? ICON_FA_CUBE : opened ? ICON_FA_CIRCLE_O : ICON_FA_CIRCLE, node.get());
             else
@@ -305,7 +313,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             // Hovered
             if (ImGui::IsItemHovered())
             {
-                Tools::Sphere(node->WorldBound.xyz, node->WorldBound.w);
+                hovered = node;
 
                 // Left button
                 if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
@@ -316,9 +324,9 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                 }
                 if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
                 {
-                    node->Flags &= ~NodeTools::TEST_OPEN_FLAG;
+                    node->Flags &= ~TEST_OPEN_FLAG;
                     if (opened == false && node->GetChildCount() != 0)
-                        node->Flags |= NodeTools::TEST_OPEN_FLAG;
+                        node->Flags |= TEST_OPEN_FLAG;
                 }
 
                 // Right button
@@ -412,12 +420,26 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             else
                 ImGui::Text("%s", selectedRight->Name.c_str());
             ImGui::Separator();
-            if (ImGui::Button("Add Node"))
+#if HAVE_MINIGUI
+            if (selectedRight && (selectedRight == root || MiniGUI::Window::Cast(selectedRight) == nullptr) && ImGui::Button("Add Node"))
+#else
+            if (selectedRight && ImGui::Button("Add Node"))
+#endif
             {
                 update = true;
                 selectedRight->AttachChild(xxNode::Create());
+                selectedRight->Flags |= TEST_OPEN_FLAG;
                 selectedRight = nullptr;
             }
+#if HAVE_MINIGUI
+            if (selectedRight && (selectedRight == root || MiniGUI::Window::Cast(selectedRight) != nullptr) && ImGui::Button("Add Window"))
+            {
+                update = true;
+                selectedRight->AttachChild(MiniGUI::Window::Create());
+                selectedRight->Flags |= TEST_OPEN_FLAG;
+                selectedRight = nullptr;
+            }
+#endif
             if (selectedRight && selectedRight->GetParent() && ImGui::Button("Remove Node"))
             {
                 update = true;
@@ -436,7 +458,6 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                 importNode = selectedRight;
                 selectedRight = nullptr;
             }
-            ImGui::Separator();
             if (ImGui::Button("Export Object"))
             {
                 update = true;
@@ -447,6 +468,35 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
         }
     }
     ImGui::End();
+
+#if HAVE_MINIGUI
+    auto& window = MiniGUI::Window::Cast(selectedLeft);
+    if (window)
+    {
+        MiniGUI::WindowPtr const& parent = NodeTools::GetRoot(window);
+        MiniGUI::Window::Traversal(parent, [&](MiniGUI::WindowPtr const& window)
+        {
+            if (window != selectedLeft)
+                Tools::Rect(window->GetWorldOffset(), window->GetWorldOffset() + window->GetWorldScale(), 0xFF3F3F3F);
+            return true;
+        });
+        Tools::Rect(window->GetWorldOffset(), window->GetWorldOffset() + window->GetWorldScale());
+    }
+#endif
+    if (hovered)
+    {
+#if HAVE_MINIGUI
+        auto& window = MiniGUI::Window::Cast(hovered);
+        if (window)
+        {
+            Tools::Rect(window->GetWorldOffset(), window->GetWorldOffset() + window->GetWorldScale());
+        }
+        else
+#endif
+        {
+            Tools::Sphere(hovered->WorldBound.xyz, hovered->WorldBound.w);
+        }
+    }
 
     Import(updateData);
     Export(updateData);

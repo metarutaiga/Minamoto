@@ -13,12 +13,16 @@
 #include <xxGraphicPlus/xxTexture.h>
 #include <Tools/CameraTools.h>
 #include <Tools/NodeTools.h>
+#if HAVE_MINIGUI
+#include <MiniGUI/Window.h>
+#endif
 #include "Utility/Grid.h"
 #include "Utility/Tools.h"
 #include "Profiler.h"
 #include "Scene.h"
 
 //==============================================================================
+xxCameraPtr Scene::screenCamera;
 xxCameraPtr Scene::sceneCamera;
 xxNodePtr Scene::sceneRoot;
 //------------------------------------------------------------------------------
@@ -45,6 +49,15 @@ void Scene::Initialize()
 
         sceneCamera->LightColor = {1.0f, 0.5f, 0.5f};
         sceneCamera->LightDirection = -xxVector3::Y;
+    }
+    if (screenCamera == nullptr)
+    {
+        screenCamera = xxCamera::Create();
+        screenCamera->Right = xxVector3::X;
+        screenCamera->Up = xxVector3::Y;
+        screenCamera->Direction = xxVector3::Z;
+        screenCamera->Location = xxVector3::ZERO;
+        screenCamera->Update();
     }
 
     if (sceneRoot == nullptr)
@@ -79,6 +92,7 @@ void Scene::Shutdown(bool suspend)
     if (suspend)
         return;
 
+    screenCamera = nullptr;
     sceneCamera = nullptr;
     sceneRoot = nullptr;
     sceneGrid = nullptr;
@@ -159,8 +173,8 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
             size_t nodeActive;
             size_t modifierTotal;
             size_t modifierActive;
-        } Count;
-        xxNode::Traversal(sceneRoot, [&](xxNodePtr const& node)
+        } Count = {};
+        auto callback = [&](xxNodePtr const& node)
         {
             node->Flags &= ~NodeTools::TEST_CHECK_FLAG;
             for (auto const& data : node->Bones)
@@ -183,7 +197,15 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
                 Count.modifierActive += node->Modifiers.size();
             }
             return true;
-        });
+        };
+        for (xxNodePtr const& node : (*sceneRoot))
+        {
+#if HAVE_MINIGUI
+            if (MiniGUI::Window::Cast(node))
+                continue;
+#endif
+            xxNode::Traversal(node, callback);
+        }
         Profiler::Count(xxHash("Bone Count"), Count.bone);
         Profiler::Count(xxHash("Node Total Count"), Count.nodeTotal);
         Profiler::Count(xxHash("Node Active Count"), Count.nodeActive);
@@ -193,8 +215,29 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
 
         // Scene
         Profiler::Begin(xxHash("Scene Update"));
-        sceneRoot->Update(updateData.time);
+        for (xxNodePtr const& node : (*sceneRoot))
+        {
+#if HAVE_MINIGUI
+            if (MiniGUI::Window::Cast(node))
+                continue;
+#endif
+            node->Update(updateData.time);
+        }
         Profiler::End(xxHash("Scene Update"));
+
+        // MiniGUI
+        Profiler::Begin(xxHash("MiniGUI Update"));
+        for (xxNodePtr const& node : (*sceneRoot))
+        {
+#if HAVE_MINIGUI
+            auto& window = MiniGUI::Window::Cast(node);
+            if (window)
+            {
+                MiniGUI::Window::Update(window, updateData.time, viewSize.x, viewSize.y);
+            }
+#endif
+        }
+        Profiler::End(xxHash("MiniGUI Update"));
 
         DrawBoneLine(sceneRoot);
         DrawNodeLine(sceneRoot);
@@ -276,6 +319,7 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         {
             if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
             {
+                ImGui::FocusWindow(ImGui::GetCurrentWindow());
                 x = (io.MousePos.x - mouse.x) / 1000.0f;
                 y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f);
             }
@@ -306,7 +350,7 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         drawList->AddCallback(Callback, nullptr);
         drawList->AddCallback(ImDrawCallback_ResetRenderState, nullptr);
 
-        Tools::Draw(sceneCamera);
+        Tools::Draw(sceneCamera, { viewSize.x, viewSize.y }, { viewPos.x, viewPos.y });
     }
     ImGui::End();
 
@@ -355,6 +399,14 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
     viewport_width = std::min(viewport_width, width - viewport_x) * dpiScale;
     viewport_height = std::min(viewport_height, height - viewport_y) * dpiScale;
 
+    screenCamera->FrustumLeft = 0;
+    screenCamera->FrustumRight = 1;
+    screenCamera->FrustumTop = 0;
+    screenCamera->FrustumBottom = 1;
+    screenCamera->Update();
+    screenCamera->ProjectionMatrix[3].x = -1.0f;
+    screenCamera->ProjectionMatrix[3].y = 1.0f;
+
     sceneCamera->SetFOV(viewport_width / viewport_height, 60.0f, 10000.0f);
     sceneCamera->Update();
 
@@ -376,10 +428,23 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
         return true;
     };
 
-    Profiler::Begin(xxHash("Scene Render"));
-    xxNode::Traversal(sceneRoot, callback);
-    Profiler::End(xxHash("Scene Render"));
-
     xxNode::Traversal(sceneGrid, callback);
+
+    Profiler::Begin(xxHash("Scene Render"));
+    for (xxNodePtr const& node : (*sceneRoot))
+    {
+#if HAVE_MINIGUI
+        auto& window = MiniGUI::Window::Cast(node);
+        if (window)
+        {
+            sceneDrawData.camera = screenCamera.get();
+            xxNode::Traversal(node, callback);
+            sceneDrawData.camera = sceneCamera.get();
+            continue;
+        }
+#endif
+        xxNode::Traversal(node, callback);
+    }
+    Profiler::End(xxHash("Scene Render"));
 }
 //------------------------------------------------------------------------------

@@ -20,4 +20,5 @@ public:
     static void UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const& material);
     static void UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh);
     static void UpdateModifier(const UpdateData& updateData, std::vector<xxModifierData> const& modifierData);
+    static void UpdateWindow(const UpdateData& updateData, MiniGUI::WindowPtr const& window);
 };

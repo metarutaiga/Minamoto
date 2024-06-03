@@ -11,7 +11,7 @@
 class Renderer
 {
 public:
-    static bool Create(void* view, int width, int height, const char* shortName = nullptr);
+    static bool Create(void* view, int width, int height, char const* shortName = nullptr);
     static void Reset(void* view, int width, int height);
     static void Shutdown();
 
@@ -19,9 +19,9 @@ public:
     static void End();
     static bool Present();
 
-    static const char* GetCurrentFullName();
-    static const char* GetGraphicFullName(int index);
-    static const char* GetGraphicShortName(int index);
+    static char const* GetCurrentFullName();
+    static char const* GetGraphicFullName(int index);
+    static char const* GetGraphicShortName(int index);
 
 public:
     static uint64_t g_instance;

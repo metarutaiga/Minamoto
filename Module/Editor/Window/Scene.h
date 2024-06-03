@@ -9,6 +9,7 @@
 class Scene
 {
 public:
+    static xxCameraPtr screenCamera;
     static xxCameraPtr sceneCamera;
     static xxNodePtr sceneRoot;
 public:

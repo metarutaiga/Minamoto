@@ -29,7 +29,7 @@ public:
     static void HandleEventAndroid(int type, float x, float y);
 
 protected:
-    static const char*  g_graphicShortName;
+    static char const*  g_graphicShortName;
     static bool         g_recreateWindow;
     static bool         g_powerSaving;
     static bool         g_demoWindow;

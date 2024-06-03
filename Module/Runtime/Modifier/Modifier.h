@@ -14,18 +14,24 @@ class RuntimeAPI Modifier : public xxModifier
 public:
     enum Type
     {
-        UNKNOWN             =  0,
-        CONSTANT_QUATERNION = 10,
-        CONSTANT_TRANSLATE  = 11,
-        CONSTANT_SCALE      = 12,
-        QUATERNION          = 20,
-        TRANSLATE           = 21,
-        SCALE               = 22,
-        BAKED_QUATERNION    = 30,
-        BAKED_TRANSLATE     = 31,
-        BAKED_SCALE         = 32,
-        QUATERNION16        = 50,
-        BAKED_QUATERNION16  = 51,
+        UNKNOWN             =   0,
+        FLOAT               =   1,
+        FLOAT2              =   2,
+        FLOAT3              =   3,
+        FLOAT4              =   4,
+        ARRAY               =   5,
+        STRING              =   6,
+        CONSTANT_QUATERNION =  10,
+        CONSTANT_TRANSLATE  =  11,
+        CONSTANT_SCALE      =  12,
+        QUATERNION          =  20,
+        TRANSLATE           =  21,
+        SCALE               =  22,
+        BAKED_QUATERNION    =  30,
+        BAKED_TRANSLATE     =  31,
+        BAKED_SCALE         =  32,
+        QUATERNION16        =  50,
+        BAKED_QUATERNION16  =  51,
     };
 
 public:

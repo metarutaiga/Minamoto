@@ -254,7 +254,7 @@ static xxMeshPtr CreateMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
     output->Name = str(mesh->name);
     output->SetVertexCount((int)mesh->num_indices);
 
-    xxStrideIterator<xxVector3> vertices = output->GetVertex();
+    xxStrideIterator<xxVector3> positions = output->GetPosition();
     xxStrideIterator<xxVector3> boneWeight = output->GetBoneWeight();
     xxStrideIterator<uint32_t> boneIndices = output->GetBoneIndices();
     xxStrideIterator<xxVector3> normals = output->GetNormal(0);
@@ -273,7 +273,7 @@ static xxMeshPtr CreateMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
 
     for (size_t i = 0; i < mesh->num_indices; ++i)
     {
-        (*vertices++) = vec3(ufbx_get_vertex_vec3(&mesh->vertex_position, i));
+        (*positions++) = vec3(ufbx_get_vertex_vec3(&mesh->vertex_position, i));
         if (skin_deformer)
         {
             uint32_t index = mesh->vertex_position.indices.data[i];
@@ -321,7 +321,7 @@ static xxMeshPtr CreateMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
             xxNodePtr to;
             if (from)
             {
-                const char* name = from->name.data;
+                char const* name = from->name.data;
                 xxNode::Traversal(root, [&](xxNodePtr const& node)
                 {
                     if (node->Name == name)

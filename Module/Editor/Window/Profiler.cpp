@@ -8,8 +8,8 @@
 #include <map>
 #include "Profiler.h"
 
-static std::map<unsigned int, std::pair<const char*, double>> times;
-static std::map<unsigned int, std::pair<const char*, size_t>> counters;
+static std::map<unsigned int, std::pair<char const*, double>> times;
+static std::map<unsigned int, std::pair<char const*, size_t>> counters;
 //------------------------------------------------------------------------------
 void Profiler::Initialize()
 {
@@ -58,6 +58,14 @@ void Profiler::Begin(unsigned int hashName)
     case xxHash("Scene Render"):
         time = &(times[hashName] = {"Scene Render", 0.0}).second;
         break;
+#if HAVE_MINIGUI
+    case xxHash("MiniGUI Update"):
+        time = &(times[hashName] = {"MiniGUI Update", 0.0}).second;
+        break;
+    case xxHash("MiniGUI Render"):
+        time = &(times[hashName] = {"MiniGUI Render", 0.0}).second;
+        break;
+#endif
     }
     if (time)
     {
@@ -75,6 +83,10 @@ void Profiler::End(unsigned int hashName)
     {
     case xxHash("Scene Update"):
     case xxHash("Scene Render"):
+#if HAVE_MINIGUI
+    case xxHash("MiniGUI Update"):
+    case xxHash("MiniGUI Render"):
+#endif
         times[hashName].second += fp64;
         break;
     }

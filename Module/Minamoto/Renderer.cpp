@@ -48,7 +48,7 @@ char        Renderer::g_clearStencil = 0;
 //==============================================================================
 //  List
 //==============================================================================
-static const struct { const char* const shortName; const char* const fullName; uint64_t (*createInstance)(); } g_graphicList[] =
+static const struct { char const* const shortName; char const* const fullName; uint64_t (*createInstance)(); } g_graphicList[] =
 {
 #if defined(xxWINDOWS)
 #if defined(_M_IX86)
@@ -92,7 +92,7 @@ static const struct { const char* const shortName; const char* const fullName; u
 //==============================================================================
 //  Renderer
 //==============================================================================
-bool Renderer::Create(void* view, int width, int height, const char* shortName)
+bool Renderer::Create(void* view, int width, int height, char const* shortName)
 {
     if (g_instance != 0)
         return false;
@@ -197,12 +197,12 @@ bool Renderer::Present()
     return xxTestDevice(g_device);
 }
 //------------------------------------------------------------------------------
-const char* Renderer::GetCurrentFullName()
+char const* Renderer::GetCurrentFullName()
 {
     return xxGetInstanceName();
 }
 //------------------------------------------------------------------------------
-const char* Renderer::GetGraphicFullName(int index)
+char const* Renderer::GetGraphicFullName(int index)
 {
     if (index >= xxCountOf(g_graphicList))
         return nullptr;
@@ -210,7 +210,7 @@ const char* Renderer::GetGraphicFullName(int index)
     return g_graphicList[index].fullName;
 }
 //------------------------------------------------------------------------------
-const char* Renderer::GetGraphicShortName(int index)
+char const* Renderer::GetGraphicShortName(int index)
 {
     if (index >= xxCountOf(g_graphicList))
         return nullptr;

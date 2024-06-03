@@ -5,6 +5,11 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include "Runtime.h"
+#include "FloatModifier.h"
+#include "Float2Modifier.h"
+#include "Float3Modifier.h"
+#include "Float4Modifier.h"
+#include "StringModifier.h"
 #include "ConstantQuaternionModifier.h"
 #include "ConstantScaleModifier.h"
 #include "ConstantTranslateModifier.h"
@@ -20,58 +25,27 @@
 
 static const struct { std::string name; xxModifier::UpdateFunction function; size_t header; size_t size; } loaders[] =
 {
-    { "UNKNOWN",              [](xxModifier*, void* target, xxModifierData* data, float time){}, 0, 1 },
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    { "CONSTANT_QUATERNION",  LOADER(ConstantQuaternionModifier), 0,                                          sizeof(ConstantQuaternionModifier::Constant) },
-    { "CONSTANT_TRANSLATE",   LOADER(ConstantTranslateModifier),  0,                                          sizeof(ConstantTranslateModifier::Constant) },
-    { "CONSTANT_SCALE",       LOADER(ConstantScaleModifier),      0,                                          sizeof(ConstantScaleModifier::Constant) },
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    { "QUATERNION",           LOADER(QuaternionModifier),         0,                                          sizeof(QuaternionModifier::Key) },
-    { "TRANSLATE",            LOADER(TranslateModifier),          0,                                          sizeof(TranslateModifier::Key) },
-    { "SCALE",                LOADER(ScaleModifier),              0,                                          sizeof(ScaleModifier::Key) },
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    { "BAKED_QUATERNION",     LOADER(BakedQuaternionModifier),    sizeof(BakedQuaternionModifier::Baked),     sizeof(xxVector4) },
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    { "QUATERNION16",         LOADER(Quaternion16Modifier),       0,                                          sizeof(Quaternion16Modifier::Key) },
-    { "BAKED_QUATERNION16",   LOADER(BakedQuaternion16Modifier),  sizeof(BakedQuaternion16Modifier::Baked),   sizeof(v4hi) },
+    { "UNKNOWN",              [](xxModifier*, void*, xxModifierData*, float) {}, 0,                         1 },
+    { "FLOAT",                [](xxModifier*, void*, xxModifierData*, float) {}, 0,                         sizeof(float) },
+    { "FLOAT2",               [](xxModifier*, void*, xxModifierData*, float) {}, 0,                         sizeof(xxVector2) },
+    { "FLOAT3",               [](xxModifier*, void*, xxModifierData*, float) {}, 0,                         sizeof(xxVector3) },
+    { "FLOAT4",               [](xxModifier*, void*, xxModifierData*, float) {}, 0,                         sizeof(xxVector4) },
+    { "ARRAY",                [](xxModifier*, void*, xxModifierData*, float) {}, 0,                         sizeof(char) },
+    { "STRING",               [](xxModifier*, void*, xxModifierData*, float) {}, 0,                         sizeof(char) },
+                                {}, {}, {},
+    { "CONSTANT_QUATERNION",  LOADER(ConstantQuaternionModifier), 0,                                        sizeof(ConstantQuaternionModifier::Constant) },
+    { "CONSTANT_TRANSLATE",   LOADER(ConstantTranslateModifier),  0,                                        sizeof(ConstantTranslateModifier::Constant) },
+    { "CONSTANT_SCALE",       LOADER(ConstantScaleModifier),      0,                                        sizeof(ConstantScaleModifier::Constant) },
+                {}, {}, {}, {}, {}, {}, {},
+    { "QUATERNION",           LOADER(QuaternionModifier),         0,                                        sizeof(QuaternionModifier::Key) },
+    { "TRANSLATE",            LOADER(TranslateModifier),          0,                                        sizeof(TranslateModifier::Key) },
+    { "SCALE",                LOADER(ScaleModifier),              0,                                        sizeof(ScaleModifier::Key) },
+                {}, {}, {}, {}, {}, {}, {},
+    { "BAKED_QUATERNION",     LOADER(BakedQuaternionModifier),    sizeof(BakedQuaternionModifier::Baked),   sizeof(xxVector4) },
+        {}, {}, {}, {}, {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+    { "QUATERNION16",         LOADER(Quaternion16Modifier),       0,                                        sizeof(Quaternion16Modifier::Key) },
+    { "BAKED_QUATERNION16",   LOADER(BakedQuaternion16Modifier),  sizeof(BakedQuaternion16Modifier::Baked), sizeof(v4hi) },
 };
 static_assert(xxCountOf(loaders) == Modifier::BAKED_QUATERNION16 + 1);
 //==============================================================================

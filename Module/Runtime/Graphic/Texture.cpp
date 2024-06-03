@@ -97,7 +97,7 @@ void Texture::Reader(xxTexturePtr const& texture)
     if (texture == nullptr || (*texture)() != nullptr)
         return;
 
-    std::string filename = texture->Path + texture->Name;
+    std::string filename = texture->Path + '/' + texture->Name;
     if (strcasestr(texture->Name.c_str(), ".dds"))
     {
         DDSReader(texture, filename);

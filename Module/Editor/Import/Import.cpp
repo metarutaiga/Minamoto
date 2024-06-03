@@ -90,9 +90,9 @@ xxMeshPtr Import::CreateMesh(std::vector<xxVector3> const& vertices, std::vector
     mesh->SetVertexCount(int(vertices.size()));
 
     auto source = vertices.begin();
-    for (auto& vertex : mesh->GetVertex())
+    for (auto& position : mesh->GetPosition())
     {
-        vertex = (*source++);
+        position = (*source++);
     }
 
     if (normals.size() == vertices.size())
@@ -146,7 +146,7 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
 
     float begin = xxGetCurrentTime();
 
-    xxStrideIterator<xxVector3> inputVertices = mesh->GetVertex();
+    xxStrideIterator<xxVector3> inputPositions = mesh->GetPosition();
     xxStrideIterator<xxVector3> inputBoneWeight = mesh->GetBoneWeight();
     xxStrideIterator<uint32_t> inputBoneIndices = mesh->GetBoneIndices();
     xxStrideIterator<xxVector3> inputNormals[8] =
@@ -165,7 +165,7 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
         mesh->GetTexture(4), mesh->GetTexture(5), mesh->GetTexture(6), mesh->GetTexture(7),
     };
 
-    std::vector<xxVector3> vertices;
+    std::vector<xxVector3> positions;
     std::vector<xxVector3> boneWeights;
     std::vector<uint32_t> boneIndices;
     std::vector<xxVector3> normals;
@@ -175,7 +175,7 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
 
     for (int i = 0; i < vertexCount; ++i)
     {
-        vertices.push_back(*inputVertices++);
+        positions.push_back(*inputPositions++);
         if (skinning)
         {
             boneWeights.push_back(*inputBoneWeight++);
@@ -190,7 +190,7 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
         indices.push_back(i);
     }
 
-    for (size_t i = 0; i < vertices.size(); ++i)
+    for (size_t i = 0; i < positions.size(); ++i)
     {
         auto compare = [](auto& container, size_t a, size_t b, int c)
         {
@@ -214,9 +214,9 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
                     container[i] = decltype(container[i])(to);
         };
 
-        for (size_t j = i + 1; j < vertices.size(); ++j)
+        for (size_t j = i + 1; j < positions.size(); ++j)
         {
-            if (compare(vertices, i, j, 1) == false)
+            if (compare(positions, i, j, 1) == false)
                 continue;
             if (compare(boneWeights, i, j, skinning ? 1 : 0) == false)
                 continue;
@@ -228,24 +228,24 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
                 continue;
             if (compare(textures, i, j, textureCount) == false)
                 continue;
-            remove(vertices, j, 1);
+            remove(positions, j, 1);
             remove(boneWeights, j, skinning ? 1 : 0);
             remove(boneIndices, j, skinning ? 1 : 0);
             remove(normals, j, normalCount);
             remove(colors, j, colorCount);
             remove(textures, j, textureCount);
             replace(indices, j, i);
-            replace(indices, vertices.size(), j);
+            replace(indices, positions.size(), j);
             --j;
         }
     }
 
     xxMeshPtr output = xxMesh::Create(skinning, normalCount, colorCount, textureCount);
     output->Name = mesh->Name;
-    output->SetVertexCount((int)vertices.size());
+    output->SetVertexCount((int)positions.size());
     output->SetIndexCount((int)indices.size());
 
-    xxStrideIterator<xxVector3> outputVertices = output->GetVertex();
+    xxStrideIterator<xxVector3> outputPositions = output->GetPosition();
     xxStrideIterator<xxVector3> outputBoneWeight = output->GetBoneWeight();
     xxStrideIterator<uint32_t> outputBoneIndices = output->GetBoneIndices();
     xxStrideIterator<xxVector3> outputNormals[8] =
@@ -264,9 +264,9 @@ xxMeshPtr Import::OptimizeMesh(xxMeshPtr const& mesh)
         output->GetTexture(4), output->GetTexture(5), output->GetTexture(6), output->GetTexture(7),
     };
 
-    for (size_t i = 0; i < vertices.size(); ++i)
+    for (size_t i = 0; i < positions.size(); ++i)
     {
-        (*outputVertices++) = vertices[i];
+        (*outputPositions++) = positions[i];
         if (skinning)
         {
             (*outputBoneWeight++) = boneWeights[i];

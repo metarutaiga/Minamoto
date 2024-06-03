@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xxGraphic/xxGraphic.h>
+#include <xxGraphicPlus/xxUtility.h>
 
 #ifndef RuntimeAPI
 #   if defined(_MSC_VER) && defined(RUNTIME_BUILD_LIBRARY)
@@ -31,3 +32,11 @@ struct RuntimeAPI Runtime
     static char const Target[];
     static char const Version[];
 };
+
+#define HAVE_MINIGUI 1
+#if HAVE_MINIGUI
+namespace MiniGUI
+{
+typedef std::shared_ptr<class Window> WindowPtr;
+}
+#endif
