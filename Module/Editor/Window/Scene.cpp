@@ -18,6 +18,8 @@
 #endif
 #include "Utility/Grid.h"
 #include "Utility/Tools.h"
+#include "Hierarchy.h"
+#include "Inspector.h"
 #include "Profiler.h"
 #include "Scene.h"
 
@@ -31,8 +33,8 @@ static xxVector3 sceneArcball = {0.85f, -M_PI_2, 14.0f};
 static xxVector3 sceneCameraOffset = {1.0f, 0.0f, 0.0f};
 static xxNodePtr sceneGrid;
 static xxDrawData sceneDrawData;
-static ImVec2 viewPos;
-static ImVec2 viewSize;
+static xxVector2 viewPos;
+static xxVector2 viewSize;
 static ImGuiViewport* viewViewport;
 static bool drawBoneLine = false;
 static bool drawNodeLine = false;
@@ -171,31 +173,47 @@ void Scene::DrawNodeBound(xxNodePtr const& root)
 #if HAVE_MINIGUI
 static void MiniGUIEditor(MiniGUI::WindowPtr const& window)
 {
-    ImGuiIO& io = ImGui::GetIO();
+    if (window == nullptr)
+        return;
+
     static int dragType = 0;
     static bool dragging = false;
+    constexpr int LT = 0;
+    constexpr int RT = 1;
+    constexpr int LB = 2;
+    constexpr int RB = 3;
+
+    xxVector2 mousePos;
+    mousePos.x = ImGui::GetIO().MousePos.x;
+    mousePos.y = ImGui::GetIO().MousePos.y;
+
+    // Drag
     if (dragging)
     {
         xxVector2 lt = window->GetOffset();
         xxVector2 rb = window->GetOffset() + window->GetScale();
-        float x = (io.MousePos.x - viewPos.x) / viewSize.x;
-        float y = (io.MousePos.y - viewPos.y) / viewSize.y;
+        xxVector2 pt = (mousePos - viewPos) / viewSize;
+        MiniGUI::WindowPtr parent = window->GetParent();
+        if (parent)
+        {
+            pt = (pt - parent->GetWorldOffset()) / parent->GetWorldScale();
+        }
         switch (dragType)
         {
-        case 0:
-            window->SetScale({ rb.x - x, rb.y - y});
-            window->SetOffset({ x, y });
+        case LT:
+            window->SetScale({ rb.x - pt.x, rb.y - pt.y});
+            window->SetOffset({ pt.x, pt.y });
             break;
-        case 1:
-            window->SetScale({ x - lt.x, rb.y - y});
-            window->SetOffset({ lt.x, y });
+        case RT:
+            window->SetScale({ pt.x - lt.x, rb.y - pt.y});
+            window->SetOffset({ lt.x, pt.y });
             break;
-        case 2:
-            window->SetScale({ rb.x - x, y - lt.y});
-            window->SetOffset({ x, lt.y });
+        case LB:
+            window->SetScale({ rb.x - pt.x, pt.y - lt.y});
+            window->SetOffset({ pt.x, lt.y });
             break;
-        case 3:
-            window->SetScale({ x - lt.x, y - lt.y});
+        case RB:
+            window->SetScale({ pt.x - lt.x, pt.y - lt.y});
             window->SetOffset({ lt.x, lt.y });
             break;
         default:
@@ -205,56 +223,73 @@ static void MiniGUIEditor(MiniGUI::WindowPtr const& window)
         {
             dragging = false;
         }
+        return;
     }
-    else
+
+    // Edge
+    ImDrawList* drawList = ImGui::GetWindowDrawList();
+    xxVector2 lt = window->GetWorldOffset();
+    xxVector2 rb = window->GetWorldOffset() + window->GetWorldScale();
+    lt = lt * viewSize + viewPos;
+    rb = rb * viewSize + viewPos;
+    bool hitX0 = std::fabs(mousePos.x - lt.x) < 8.0f;
+    bool hitY0 = std::fabs(mousePos.y - lt.y) < 8.0f;
+    bool hitX1 = std::fabs(mousePos.x - rb.x) < 8.0f;
+    bool hitY1 = std::fabs(mousePos.y - rb.y) < 8.0f;
+    if (hitX0 || hitX1 || hitY0 || hitY1)
     {
-        ImDrawList* drawList = ImGui::GetWindowDrawList();
-        xxVector2 lt = window->GetWorldOffset();
-        xxVector2 rb = window->GetWorldOffset() + window->GetWorldScale();
-        float x0 = lt.x * viewSize.x + viewPos.x;
-        float y0 = lt.y * viewSize.y + viewPos.y;
-        float x1 = rb.x * viewSize.x + viewPos.x;
-        float y1 = rb.y * viewSize.y + viewPos.y;
-        bool hitX0 = std::fabs(io.MousePos.x - x0) < 8.0f;
-        bool hitY0 = std::fabs(io.MousePos.y - y0) < 8.0f;
-        bool hitX1 = std::fabs(io.MousePos.x - x1) < 8.0f;
-        bool hitY1 = std::fabs(io.MousePos.y - y1) < 8.0f;
+        int type = -1;
         if (hitX0 && hitY0)
         {
-            drawList->AddCircle({ x0, y0 }, 8.0f, 0xFFFFFFFF);
-            if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
-            {
-                dragType = 0;
-                dragging = true;
-            }
+            type = LT;
+            drawList->AddCircle({ lt.x, lt.y }, 8.0f, 0xFFFFFFFF);
         }
-        if (hitX1 && hitY0)
+        else if (hitX1 && hitY0)
         {
-            drawList->AddCircle({ x1, y0 }, 8.0f, 0xFFFFFFFF);
-            if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
-            {
-                dragType = 1;
-                dragging = true;
-            }
+            type = RT;
+            drawList->AddCircle({ rb.x, lt.y }, 8.0f, 0xFFFFFFFF);
         }
-        if (hitX0 && hitY1)
+        else if (hitX0 && hitY1)
         {
-            drawList->AddCircle({ x0, y1 }, 8.0f, 0xFFFFFFFF);
-            if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
-            {
-                dragType = 2;
-                dragging = true;
-            }
+            type = LB;
+            drawList->AddCircle({ lt.x, rb.y }, 8.0f, 0xFFFFFFFF);
         }
-        if (hitX1 && hitY1)
+        else if (hitX1 && hitY1)
         {
-            drawList->AddCircle({ x1, y1 }, 8.0f, 0xFFFFFFFF);
+            type = RB;
+            drawList->AddCircle({ rb.x, rb.y }, 8.0f, 0xFFFFFFFF);
+        }
+        if (type >= LT && type <= RB)
+        {
             if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
             {
-                dragType = 3;
+                dragType = type;
                 dragging = true;
+                return;
             }
         }
+    }
+
+    // Hit
+    if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
+    {
+        MiniGUI::WindowPtr root = NodeTools::GetRoot(window);
+        MiniGUI::WindowPtr selected = window;
+        auto callback = [&](MiniGUI::WindowPtr const& window)
+        {
+            xxVector2 lt = window->GetWorldOffset();
+            xxVector2 rb = window->GetWorldOffset() + window->GetWorldScale();
+            lt = lt * viewSize + viewPos;
+            rb = rb * viewSize + viewPos;
+            if (mousePos.x >= lt.x && mousePos.x <= rb.x && mousePos.y >= lt.y && mousePos.y <= rb.y)
+            {
+                Hierarchy::Select(window);
+                Inspector::Select(window);
+                Scene::Select(window);
+            }
+            return true;
+        };
+        MiniGUI::Window::Traversal(root, callback);
     }
 }
 #endif
@@ -450,21 +485,17 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         flags |= ImGuiColorEditFlags_NoSidePreview;
         flags |= ImGuiColorEditFlags_NoDragDrop;
         flags |= ImGuiColorEditFlags_NoBorder;
-        ImGui::ColorButton("", ImVec4(0.45f, 0.55f, 0.60f, 1.00f), flags, viewSize);
+        ImGui::ColorButton("", ImVec4(0.45f, 0.55f, 0.60f, 1.00f), flags, { viewSize.x, viewSize.y });
 
         ImDrawList* drawList = ImGui::GetWindowDrawList();
         drawList->AddCallback(Callback, nullptr);
         drawList->AddCallback(ImDrawCallback_ResetRenderState, nullptr);
 
 #if HAVE_MINIGUI
-        auto& window = MiniGUI::Window::Cast(selected);
-        if (window)
-        {
-            MiniGUIEditor(window);
-        }
+        MiniGUIEditor(MiniGUI::Window::Cast(selected));
 #endif
 
-        Tools::Draw(sceneCamera, { viewSize.x, viewSize.y }, { viewPos.x, viewPos.y });
+        Tools::Draw(sceneCamera, viewSize, viewPos);
     }
     ImGui::End();
 

@@ -23,6 +23,7 @@ class Hierarchy
 public:
     static void Initialize();
     static void Shutdown();
+    static void Select(xxNodePtr const& node);
     static void Import(const UpdateData& updateData);
     static void Export(const UpdateData& updateData);
     static bool Update(const UpdateData& updateData, bool& show, xxNodePtr const& root);

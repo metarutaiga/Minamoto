@@ -85,6 +85,11 @@ static xxNodePtr ImportFile(char const* name)
     return node;
 }
 //------------------------------------------------------------------------------
+void Hierarchy::Select(xxNodePtr const& node)
+{
+    selectedLeft = node;
+}
+//------------------------------------------------------------------------------
 void Hierarchy::Import(const UpdateData& updateData)
 {
     if (importNode == nullptr)
