@@ -12,9 +12,11 @@ public:
     static xxCameraPtr screenCamera;
     static xxCameraPtr sceneCamera;
     static xxNodePtr sceneRoot;
+    static xxNodePtr selected;
 public:
     static void Initialize();
     static void Shutdown(bool suspend = false);
+    static void Select(xxNodePtr const& node);
     static void DrawBoneLine(xxNodePtr const& root);
     static void DrawNodeLine(xxNodePtr const& root);
     static void DrawNodeBound(xxNodePtr const& root);

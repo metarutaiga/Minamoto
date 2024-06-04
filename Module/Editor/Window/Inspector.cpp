@@ -104,7 +104,7 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
 {
     if (ImGui::CollapsingHeader(ICON_FA_CUBE "Node" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
     {
-        ImGui::InputText("Name" Q, node->Name);
+        ImGui::InputTextEx("Name" Q, nullptr, node->Name);
         ImGui::SliderFloat3("Local" Q, node->LocalMatrix.v[0].Array(), -1.0f, 1.0f);
         ImGui::SliderFloat3("" Q, node->LocalMatrix.v[1].Array(), -1.0f, 1.0f);
         ImGui::SliderFloat3("" Q, node->LocalMatrix.v[2].Array(), -1.0f, 1.0f);
@@ -181,7 +181,7 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
     ImGui::Separator();
     if (ImGui::CollapsingHeader(ICON_FA_ADJUST "Material" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
     {
-        ImGui::InputText("Name" Q, material->Name);
+        ImGui::InputTextEx("Name" Q, nullptr, material->Name);
         ImGui::SliderFloat("Opacity" Q, &material->Opacity, 0.0f, 1.0f);
         if (ImGui::Checkbox("Lighting" Q, &material->Lighting))
             invalidate = material;
@@ -309,7 +309,7 @@ void Inspector::UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh)
     ImGui::Separator();
     if (ImGui::CollapsingHeader(ICON_FA_CUBES "Mesh" Q, nullptr, ImGuiTreeNodeFlags_None))
     {
-        ImGui::InputText("Name" Q, mesh->Name);
+        ImGui::InputTextEx("Name" Q, nullptr, mesh->Name);
         ImGui::InputChar("Color" Q, (char*)&mesh->ColorCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputChar("Normal" Q, (char*)&mesh->NormalCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
         ImGui::InputChar("Texture" Q, (char*)&mesh->TextureCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
@@ -351,14 +351,14 @@ void Inspector::UpdateWindow(const UpdateData& updateData, MiniGUI::WindowPtr co
     static std::string temp;
     float point;
     xxVector2 point2;
-    std::array<xxVector3, 4> colors;
+    xxMatrix3x4 colors;
 
     if (ImGui::CollapsingHeader(ICON_FA_WINDOW_MAXIMIZE "Window" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
     {
-        ImGui::InputText("Name" Q, window->Name);
+        ImGui::InputTextEx("Name" Q, nullptr, window->Name);
 
         ImGui::Separator();
-        if (ImGui::InputText("Text" Q, temp = window->GetText()))
+        if (ImGui::InputTextMultiline("Text" Q, temp = window->GetText()))
             window->SetText(temp);
 
         static int colorMode = 0;

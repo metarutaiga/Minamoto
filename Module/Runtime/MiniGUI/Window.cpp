@@ -43,25 +43,25 @@ T Window::GetType(Type type, T const& fallback) const
     return ptr->Get();
 }
 //------------------------------------------------------------------------------
-static inline std::span<char> FromColor4(std::array<xxVector3, 4> const& color)
+static inline std::span<char> FromColor4(xxMatrix3x4 const& color)
 {
     if (color[0] == color[1] && color[2] == color[3])
     {
         if (color[1] == color[2])
         {
-            return { (char*)color.data(), (char*)(color.data() + 1) };
+            return { (char*)color.v, (char*)(color.v + 1) };
         }
-        return { (char*)color.data(), (char*)(color.data() + 2) };
+        return { (char*)color.v, (char*)(color.v + 2) };
     }
-    return { (char*)color.data(), (char*)(color.data() + 4) };
+    return { (char*)color.v, (char*)(color.v + 4) };
 }
 //------------------------------------------------------------------------------
-static inline std::array<xxVector3, 4> ToColor4(std::span<char> span)
+static inline xxMatrix3x4 ToColor4(std::span<char> span)
 {
     auto* color = (xxVector3*)span.data();
     if (span.size() < sizeof(xxVector3) * 1)
     {
-        static std::array<xxVector3, 4> const white = { xxVector3::WHITE, xxVector3::WHITE, xxVector3::WHITE, xxVector3::WHITE };
+        static xxMatrix3x4 const white = { xxVector3::WHITE, xxVector3::WHITE, xxVector3::WHITE, xxVector3::WHITE };
         return white;
     }
     if (span.size() < sizeof(xxVector3) * 2)
@@ -82,7 +82,7 @@ std::string_view Window::GetText() const
     return GetType<StringModifier, std::string_view>(TEXT, "");
 }
 //------------------------------------------------------------------------------
-std::array<xxVector3, 4> Window::GetTextColor() const
+xxMatrix3x4 Window::GetTextColor() const
 {
     return ToColor4(GetType<ArrayModifier, std::span<char>>(TEXT_COLOR, {}));
 }
@@ -105,12 +105,12 @@ void Window::SetText(std::string_view const& text)
     Flags |= UPDATE_TEXT;
 }
 //------------------------------------------------------------------------------
-void Window::SetTextColor(std::array<xxVector3, 4> const& color)
+void Window::SetTextColor(xxMatrix3x4 const& color)
 {
     if (GetTextColor() == color)
         return;
     SetType<ArrayModifier>(TEXT_COLOR, FromColor4(color));
-    Flags |= UPDATE_TEXT;
+    Flags |= UPDATE_TEXT_COLOR;
 }
 //------------------------------------------------------------------------------
 void Window::SetTextScale(float scale)
@@ -118,7 +118,7 @@ void Window::SetTextScale(float scale)
     if (GetTextScale() == scale)
         return;
     SetType<FloatModifier>(TEXT_SCALE, scale);
-    Flags |= UPDATE_TEXT;
+    Flags |= UPDATE_TEXT_SCALE;
 }
 //------------------------------------------------------------------------------
 void Window::SetTextShadow(float shadow)
@@ -126,16 +126,35 @@ void Window::SetTextShadow(float shadow)
     if (GetTextShadow() == shadow)
         return;
     SetType<FloatModifier>(TEXT_SHADOW, shadow);
-    Flags |= UPDATE_TEXT;
+    Flags |= UPDATE_TEXT_SHADOW;
 }
 //------------------------------------------------------------------------------
 void Window::UpdateText()
 {
-    float scale = GetTextScale();
-    float scaleX = scale * ScreenInvSize.x / LocalMatrix[0].x;
-    float scaleY = scale * ScreenInvSize.y / LocalMatrix[1].y;
-    Material = Font::Material();
-    Mesh = Font::Mesh(Mesh, GetText(), GetTextColor().data(), scaleX, scaleY, GetTextShadow());
+    if (Flags & UPDATE_TEXT)
+    {
+        Flags &= ~UPDATE_TEXT_FLAGS;
+        xxVector2 scale = ScreenInvSize / GetScale() * GetTextScale();
+        Material = Font::Material();
+        Mesh = Font::Mesh(Mesh, GetText(), GetTextColor(), scale, GetTextShadow());
+        return;
+    }
+    if (Flags & UPDATE_TEXT_COLOR)
+    {
+        Flags &= ~UPDATE_TEXT_COLOR;
+        Mesh = Font::MeshColor(Mesh, GetTextColor());
+    }
+    if (Flags & UPDATE_TEXT_SCALE)
+    {
+        Flags &= ~UPDATE_TEXT_SCALE;
+        xxVector2 scale = ScreenInvSize / GetScale() * GetTextScale();
+        Mesh = Font::MeshScale(Mesh, scale);
+    }
+    if (Flags & UPDATE_TEXT_SHADOW)
+    {
+        Flags &= ~UPDATE_TEXT_SHADOW;
+        Mesh = Font::MeshShadow(Mesh, GetTextShadow());
+    }
 }
 //------------------------------------------------------------------------------
 void Window::SetScale(xxVector2 const& scale)
@@ -143,6 +162,29 @@ void Window::SetScale(xxVector2 const& scale)
     LocalMatrix[0].x = scale.x;
     LocalMatrix[1].y = scale.y;
     Flags |= UPDATE_TEXT;
+
+    // Update flag
+    Flags |= UPDATE_NEED;
+    WindowPtr parent = GetParent();
+    while (parent)
+    {
+        parent->Flags |= UPDATE_NEED;
+        parent = parent->GetParent();
+    }
+}
+//------------------------------------------------------------------------------
+void Window::SetOffset(xxVector2 const& offset)
+{
+    LocalMatrix[3].xy = offset;
+
+    // Update flag
+    Flags |= UPDATE_NEED;
+    WindowPtr parent = GetParent();
+    while (parent)
+    {
+        parent->Flags |= UPDATE_NEED;
+        parent = parent->GetParent();
+    }
 }
 //==============================================================================
 //  Node
@@ -173,22 +215,27 @@ WindowPtr const& Window::GetChild(size_t index) const
     return (WindowPtr&)m_children[index];
 }
 //------------------------------------------------------------------------------
+std::vector<WindowPtr>& Window::GetChildren() const
+{
+    return (std::vector<WindowPtr>&)m_children;
+}
+//------------------------------------------------------------------------------
 bool Window::Traversal(WindowPtr const& window, std::function<bool(WindowPtr const&)> callback)
 {
     return xxNode::Traversal(window, (std::function<bool(xxNodePtr const&)>&)callback);
 }
 //------------------------------------------------------------------------------
-xxNodePtr Window::Create()
+WindowPtr Window::Create()
 {
     xxNodePtr node = xxNode::Create();
     if (node == nullptr)
         return nullptr;
-    Window* window = (Window*)node.get();
+    node->Flags = WINDOW_CLASS;
 
-    window->Flags = WINDOW_CLASS;
+    WindowPtr window = Cast(node);
     window->SetScale(xxVector2::ONE);
     window->SetOffset(xxVector2::ZERO);
-    return node;
+    return window;
 }
 //------------------------------------------------------------------------------
 WindowPtr const& Window::Cast(xxNodePtr const& node)
@@ -225,12 +272,15 @@ void Window::Update(WindowPtr const& window, float time, float width, float heig
 
     auto callback = [](WindowPtr const& window)
     {
-        if (window->Flags & UPDATE_TEXT)
+        if (window->Flags & UPDATE_TEXT_FLAGS)
         {
-            window->Flags &= ~UPDATE_TEXT;
             window->UpdateText();
         }
-        window->UpdateMatrix();
+        if (window->Flags & UPDATE_NEED)
+        {
+            window->Flags &= ~UPDATE_NEED;
+            window->UpdateMatrix();
+        }
         return true;
     };
     Traversal(window, callback);

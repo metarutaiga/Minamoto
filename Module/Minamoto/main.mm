@@ -44,18 +44,6 @@
     self.localMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskAny handler:^NSEvent * _Nullable(NSEvent *event)
     {
         self.imguiUpdate = YES;
-        if (event.type == NSEventTypeKeyDown)
-        {
-            for (NSUInteger i = 0; i < event.charactersIgnoringModifiers.length; ++i)
-            {
-                unichar c = [event.charactersIgnoringModifiers characterAtIndex:i];
-                if (c <= 0x001F || c == 0x007F)
-                    continue;
-                if (c >= 0xF700 && c <= 0xF8FF)
-                    continue;
-                ImGui::GetIO().AddInputCharacter(c);
-            }
-        }
         return event;
     }];
 
@@ -136,22 +124,6 @@
 
     Renderer::Reset((__bridge void*)[self window], size.width, size.height);
 }
-
--(BOOL)acceptsFirstResponder
-{
-    return (YES);
-}
-
--(BOOL)becomeFirstResponder
-{
-    return (YES);
-}
-
--(BOOL)resignFirstResponder
-{
-    return (YES);
-}
-
 @end
 
 //-----------------------------------------------------------------------------------
@@ -170,12 +142,21 @@
 
 #if TARGET_OS_OSX
 
--(void)loadView
+-(instancetype)initWithView:(NSView*)view
 {
-    self.view = [NSView new];
+    self.view = view;
+    self = [super init];
+    return self;
 }
 
 #elif TARGET_OS_IOS
+
+-(instancetype)initWithView:(UIView*)view
+{
+    self.view = view;
+    self = [super init];
+    return self;
+}
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
 {
@@ -460,13 +441,11 @@
 
     ImGuiExampleView* view = [[ImGuiExampleView alloc] initWithFrame:self.window.frame];
 #if defined(xxMACOS)
-    self.window.contentViewController = [ImGuiExampleViewController new];
-    self.window.contentViewController.view = view;
+    self.window.contentViewController = [[ImGuiExampleViewController alloc] initWithView:view];
     [self.window makeKeyAndOrderFront:NSApp];
     NSSize size = [view frame].size;
 #elif defined(xxIOS)
-    self.window.rootViewController = [ImGuiExampleViewController new];
-    self.window.rootViewController.view = view;
+    self.window.rootViewController = [[ImGuiExampleViewController alloc] initWithView:view];
     [self.window makeKeyAndVisible];
     CGSize size = [view bounds].size;
 #endif

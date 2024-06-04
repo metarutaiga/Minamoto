@@ -17,6 +17,7 @@
 #include "Utility/Tools.h"
 #include "Hierarchy.h"
 #include "Log.h"
+#include "Scene.h"
 #include "Inspector.h"
 
 #if defined(__APPLE__)
@@ -320,6 +321,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                 {
                     selectedLeft = node;
                     Inspector::Select(node);
+                    Scene::Select(node);
                     clickedLeft = true;
                 }
                 if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
@@ -390,6 +392,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                         update = true;
                         selectedLeft = parent->GetChild(index);
                         Inspector::Select(selectedLeft);
+                        Scene::Select(selectedLeft);
                     }
                 }
             }
@@ -398,6 +401,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             {
                 selectedLeft = nullptr;
                 Inspector::Select(nullptr);
+                Scene::Select(nullptr);
             }
         }
 
@@ -447,6 +451,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                 {
                     selectedLeft = nullptr;
                     Inspector::Select(selectedRight);
+                    Scene::Select(selectedRight);
                 }
                 selectedRight->GetParent()->DetachChild(selectedRight);
                 selectedRight = nullptr;

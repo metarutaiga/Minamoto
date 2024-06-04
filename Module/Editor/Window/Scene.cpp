@@ -25,6 +25,7 @@
 xxCameraPtr Scene::screenCamera;
 xxCameraPtr Scene::sceneCamera;
 xxNodePtr Scene::sceneRoot;
+xxNodePtr Scene::selected;
 //------------------------------------------------------------------------------
 static xxVector3 sceneArcball = {0.85f, -M_PI_2, 14.0f};
 static xxVector3 sceneCameraOffset = {1.0f, 0.0f, 0.0f};
@@ -53,11 +54,17 @@ void Scene::Initialize()
     if (screenCamera == nullptr)
     {
         screenCamera = xxCamera::Create();
+        screenCamera->FrustumLeft = 0;
+        screenCamera->FrustumRight = 1;
+        screenCamera->FrustumTop = 0;
+        screenCamera->FrustumBottom = 1;
         screenCamera->Right = xxVector3::X;
         screenCamera->Up = xxVector3::Y;
         screenCamera->Direction = xxVector3::Z;
         screenCamera->Location = xxVector3::ZERO;
         screenCamera->Update();
+        screenCamera->ProjectionMatrix[3].x = -1.0f;
+        screenCamera->ProjectionMatrix[3].y = 1.0f;
     }
 
     if (sceneRoot == nullptr)
@@ -97,7 +104,13 @@ void Scene::Shutdown(bool suspend)
     sceneRoot = nullptr;
     sceneGrid = nullptr;
     sceneDrawData = xxDrawData{};
+    selected = nullptr;
     viewViewport = nullptr;
+}
+//------------------------------------------------------------------------------
+void Scene::Select(xxNodePtr const& node)
+{
+    selected = node;
 }
 //------------------------------------------------------------------------------
 void Scene::DrawBoneLine(xxNodePtr const& root)
@@ -154,6 +167,97 @@ void Scene::DrawNodeBound(xxNodePtr const& root)
         });
     }
 }
+//------------------------------------------------------------------------------
+#if HAVE_MINIGUI
+static void MiniGUIEditor(MiniGUI::WindowPtr const& window)
+{
+    ImGuiIO& io = ImGui::GetIO();
+    static int dragType = 0;
+    static bool dragging = false;
+    if (dragging)
+    {
+        xxVector2 lt = window->GetOffset();
+        xxVector2 rb = window->GetOffset() + window->GetScale();
+        float x = (io.MousePos.x - viewPos.x) / viewSize.x;
+        float y = (io.MousePos.y - viewPos.y) / viewSize.y;
+        switch (dragType)
+        {
+        case 0:
+            window->SetScale({ rb.x - x, rb.y - y});
+            window->SetOffset({ x, y });
+            break;
+        case 1:
+            window->SetScale({ x - lt.x, rb.y - y});
+            window->SetOffset({ lt.x, y });
+            break;
+        case 2:
+            window->SetScale({ rb.x - x, y - lt.y});
+            window->SetOffset({ x, lt.y });
+            break;
+        case 3:
+            window->SetScale({ x - lt.x, y - lt.y});
+            window->SetOffset({ lt.x, lt.y });
+            break;
+        default:
+            break;
+        }
+        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
+        {
+            dragging = false;
+        }
+    }
+    else
+    {
+        ImDrawList* drawList = ImGui::GetWindowDrawList();
+        xxVector2 lt = window->GetWorldOffset();
+        xxVector2 rb = window->GetWorldOffset() + window->GetWorldScale();
+        float x0 = lt.x * viewSize.x + viewPos.x;
+        float y0 = lt.y * viewSize.y + viewPos.y;
+        float x1 = rb.x * viewSize.x + viewPos.x;
+        float y1 = rb.y * viewSize.y + viewPos.y;
+        bool hitX0 = std::fabs(io.MousePos.x - x0) < 8.0f;
+        bool hitY0 = std::fabs(io.MousePos.y - y0) < 8.0f;
+        bool hitX1 = std::fabs(io.MousePos.x - x1) < 8.0f;
+        bool hitY1 = std::fabs(io.MousePos.y - y1) < 8.0f;
+        if (hitX0 && hitY0)
+        {
+            drawList->AddCircle({ x0, y0 }, 8.0f, 0xFFFFFFFF);
+            if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
+            {
+                dragType = 0;
+                dragging = true;
+            }
+        }
+        if (hitX1 && hitY0)
+        {
+            drawList->AddCircle({ x1, y0 }, 8.0f, 0xFFFFFFFF);
+            if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
+            {
+                dragType = 1;
+                dragging = true;
+            }
+        }
+        if (hitX0 && hitY1)
+        {
+            drawList->AddCircle({ x0, y1 }, 8.0f, 0xFFFFFFFF);
+            if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
+            {
+                dragType = 2;
+                dragging = true;
+            }
+        }
+        if (hitX1 && hitY1)
+        {
+            drawList->AddCircle({ x1, y1 }, 8.0f, 0xFFFFFFFF);
+            if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
+            {
+                dragType = 3;
+                dragging = true;
+            }
+        }
+    }
+}
+#endif
 //------------------------------------------------------------------------------
 bool Scene::Update(const UpdateData& updateData, bool& show)
 {
@@ -319,7 +423,9 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         {
             if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
             {
-                ImGui::FocusWindow(ImGui::GetCurrentWindow());
+                // ImGui::GetCurrentWindow() failed on MSVC
+                ImGuiContext* context = ImGui::GetCurrentContext();
+                ImGui::FocusWindow(context->CurrentWindow);
                 x = (io.MousePos.x - mouse.x) / 1000.0f;
                 y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f);
             }
@@ -349,6 +455,14 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         ImDrawList* drawList = ImGui::GetWindowDrawList();
         drawList->AddCallback(Callback, nullptr);
         drawList->AddCallback(ImDrawCallback_ResetRenderState, nullptr);
+
+#if HAVE_MINIGUI
+        auto& window = MiniGUI::Window::Cast(selected);
+        if (window)
+        {
+            MiniGUIEditor(window);
+        }
+#endif
 
         Tools::Draw(sceneCamera, { viewSize.x, viewSize.y }, { viewPos.x, viewPos.y });
     }
@@ -398,14 +512,6 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
     viewport_y = std::max(viewport_y, 0.0f) * dpiScale;
     viewport_width = std::min(viewport_width, width - viewport_x) * dpiScale;
     viewport_height = std::min(viewport_height, height - viewport_y) * dpiScale;
-
-    screenCamera->FrustumLeft = 0;
-    screenCamera->FrustumRight = 1;
-    screenCamera->FrustumTop = 0;
-    screenCamera->FrustumBottom = 1;
-    screenCamera->Update();
-    screenCamera->ProjectionMatrix[3].x = -1.0f;
-    screenCamera->ProjectionMatrix[3].y = 1.0f;
 
     sceneCamera->SetFOV(viewport_width / viewport_height, 60.0f, 10000.0f);
     sceneCamera->Update();

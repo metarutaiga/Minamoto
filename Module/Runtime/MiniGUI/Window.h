@@ -29,24 +29,28 @@ public:
     template<typename C, typename T>
     T                       GetType(Type type, T const& fallback) const;
 
-    auto                    begin() { return ((std::vector<WindowPtr>&)m_children).begin(); }
-    auto                    begin() const { return ((std::vector<WindowPtr>&)m_children).begin(); }
-    auto                    end() { return ((std::vector<WindowPtr>&)m_children).end(); }
-    auto                    end() const { return ((std::vector<WindowPtr>&)m_children).end(); }
+    auto                    begin() { return GetChildren().begin(); }
+    auto                    begin() const { return GetChildren().begin(); }
+    auto                    end() { return GetChildren().end(); }
+    auto                    end() const { return GetChildren().end(); }
 
     enum
     {
         WINDOW_CLASS            = 0x00000010,
         UPDATE_TEXT             = 0x00000020,
+        UPDATE_TEXT_COLOR       = 0x00000040,
+        UPDATE_TEXT_SCALE       = 0x00000080,
+        UPDATE_TEXT_SHADOW      = 0x00000100,
+        UPDATE_TEXT_FLAGS       = 0x000001E0,
     };
 
 public:
     std::string_view        GetText() const;
-    std::array<xxVector3, 4>GetTextColor() const;
+    xxMatrix3x4             GetTextColor() const;
     float                   GetTextScale() const;
     float                   GetTextShadow() const;
     void                    SetText(std::string_view const& text);
-    void                    SetTextColor(std::array<xxVector3, 4> const& color);
+    void                    SetTextColor(xxMatrix3x4 const& color);
     void                    SetTextScale(float size);
     void                    SetTextShadow(float size);
     void                    UpdateText();
@@ -54,17 +58,18 @@ public:
     xxVector2               GetScale() const { return { LocalMatrix[0].x, LocalMatrix[1].y }; }
     xxVector2 const&        GetOffset() const { return LocalMatrix[3].xy; }
     void                    SetScale(xxVector2 const& scale);
-    void                    SetOffset(xxVector2 const& offset) { LocalMatrix[3].xy = offset; }
+    void                    SetOffset(xxVector2 const& offset);
 
     xxVector2               GetWorldScale() const { return { WorldMatrix[0].x, WorldMatrix[1].y }; }
     xxVector2 const&        GetWorldOffset() const { return WorldMatrix[3].xy; }
 
     WindowPtr const&        GetParent() const;
     WindowPtr const&        GetChild(size_t index) const;
+    std::vector<WindowPtr>& GetChildren() const;
 
     static bool             Traversal(WindowPtr const& window, std::function<bool(WindowPtr const&)> callback);
 
-    static xxNodePtr        Create();
+    static WindowPtr        Create();
 
     virtual void            BinaryRead(xxBinary& binary);
     virtual void            BinaryWrite(xxBinary& binary) const;

@@ -158,13 +158,15 @@ xxMaterialPtr Font::Material()
     return material;
 }
 //------------------------------------------------------------------------------
-xxMeshPtr Font::Mesh(xxMeshPtr const& mesh, std::string_view text, xxVector3 const color[4], float scaleX, float scaleY, float shadow)
+xxMeshPtr Font::Mesh(xxMeshPtr const& mesh, std::string_view text, xxMatrix3x4 const color, xxVector2 const& scale, float shadow)
 {
     // Calculate text counts
     int textCount = 0;
     std::string_view preText = text;
     while (char32_t w = ToCodePoint(preText))
     {
+        if (w < 0x20)
+            continue;
         CharGlyph const* glyph = Glyph(w);
         if (glyph == nullptr)
             continue;
@@ -180,16 +182,16 @@ xxMeshPtr Font::Mesh(xxMeshPtr const& mesh, std::string_view text, xxVector3 con
         return nullptr;
 
     // Shadow
-    int count = textCount;
+    int meshCount = textCount;
     if (shadow > 0.0f)
-        count *= 2;
+        meshCount *= 2;
 
     // Create indices
-    if (output->IndexCount != count * 6)
+    if (output->IndexCount != meshCount * 6)
     {
-        output->SetIndexCount(count * 6);
+        output->SetIndexCount(meshCount * 6);
         auto indices = output->Index;
-        for (size_t i = 0, x = 0; i < count; ++i)
+        for (size_t i = 0, x = 1; i < meshCount; ++i)
         {
             (*indices++) = x + 0;
             (*indices++) = x + 1;
@@ -201,28 +203,41 @@ xxMeshPtr Font::Mesh(xxMeshPtr const& mesh, std::string_view text, xxVector3 con
         }
     }
 
-    // Create Colors
+    // Create Vertices
+    output->SetVertexCount(1 + meshCount * 4);
+    auto positions = output->GetPosition();
+    auto colors = output->GetColor(0);
+    auto textures = output->GetTexture(0);
+    (*positions++) = { scale.x, scale.y, shadow };
+    (*colors++) = 0;
+    (*textures++) = xxVector2::ZERO;
+
+    // Color
     uint32_t textColors[4];
     for (int i = 0; i < 4; ++i)
     {
         textColors[i] = xxVector4{ color[i].x, color[i].y, color[i].z, 0.5f }.ToInteger();
     }
 
-    // Create Vertices
-    output->SetVertexCount(count * 4);
-    auto positions = output->GetPosition();
-    auto colors = output->GetColor(0);
-    auto textures = output->GetTexture(0);
+    // Glyph
+    xxVector2 rescale = scale / SIZE;
     float advanced = 0.0f;
-    float height = SIZE * (scaleY / SIZE);
-    xxVector2 scale = xxVector2{ scaleX, scaleY } / SIZE;
+    float height = scale.y;
     while (char32_t w = ToCodePoint(text))
     {
+        if (w == '\n')
+        {
+            advanced = 0.0f;
+            height += scale.y;
+            continue;
+        }
+        if (w < 0x20)
+            continue;
         CharGlyph const* glyph = Glyph(w);
         if (glyph == nullptr)
             continue;
-        xxVector2 rectLT = xxVector2{ float(glyph->rectLT.x), float(glyph->rectLT.y) } * scale;
-        xxVector2 rectRB = xxVector2{ float(glyph->rectRB.x), float(glyph->rectRB.y) } * scale;
+        xxVector2 rectLT = xxVector2{ float(glyph->rectLT.x), float(glyph->rectLT.y) } * rescale;
+        xxVector2 rectRB = xxVector2{ float(glyph->rectRB.x), float(glyph->rectRB.y) } * rescale;
         (*positions++) = { advanced + rectLT.x, height + rectLT.y, 1.0f };
         (*positions++) = { advanced + rectRB.x, height + rectLT.y, 1.0f };
         (*positions++) = { advanced + rectRB.x, height + rectRB.y, 1.0f };
@@ -235,31 +250,163 @@ xxMeshPtr Font::Mesh(xxMeshPtr const& mesh, std::string_view text, xxVector3 con
         (*textures++) = { glyph->uvRB.x, glyph->uvLT.y };
         (*textures++) = { glyph->uvRB.x, glyph->uvRB.y };
         (*textures++) = { glyph->uvLT.x, glyph->uvRB.y };
-        advanced += glyph->advance * (scaleX / SIZE);
+        advanced += glyph->advance * rescale.x;
     }
     if (shadow > 0.0f)
     {
+        auto firstPositions = output->GetPosition() + 1;
+        auto firstColors = output->GetColor(0) + 1;
+        auto firstTextures = output->GetTexture(0) + 1;
         uint32_t colorBack = xxVector4{ 0.0f, 0.0f, 0.0f, shadow * 0.5f + 0.5f }.ToInteger();
-        auto firstPositions = output->GetPosition();
-        auto firstColors = output->GetColor(0);
-        auto firstTextures = output->GetTexture(0);
-        for (int i = 0; i < textCount; ++i)
+        for (int i = 0, count = textCount * 4; i < count; ++i)
         {
             (*positions++) = (*firstPositions++);
-            (*positions++) = (*firstPositions++);
-            (*positions++) = (*firstPositions++);
-            (*positions++) = (*firstPositions++);
-            (*colors++) = textColors[0]; (*firstColors++) = colorBack;
-            (*colors++) = textColors[2]; (*firstColors++) = colorBack;
-            (*colors++) = textColors[3]; (*firstColors++) = colorBack;
-            (*colors++) = textColors[1]; (*firstColors++) = colorBack;
-            (*textures++) = (*firstTextures++);
-            (*textures++) = (*firstTextures++);
-            (*textures++) = (*firstTextures++);
+            std::swap((*colors++) = colorBack, (*firstColors++));
             (*textures++) = (*firstTextures++);
         }
     }
+
     return output;
+}
+//------------------------------------------------------------------------------
+xxMeshPtr Font::MeshColor(xxMeshPtr const& mesh, xxMatrix3x4 const color)
+{
+    if (mesh == nullptr)
+        return nullptr;
+
+    uint32_t textColors[4];
+    for (int i = 0; i < 4; ++i)
+    {
+        textColors[i] = xxVector4{ color[i].x, color[i].y, color[i].z, 0.5f }.ToInteger();
+    }
+
+    mesh->SetVertexCount(mesh->VertexCount);
+    int textCount = (mesh->VertexCount - 1) / 4;
+    auto positions = mesh->GetPosition();
+    auto colors = mesh->GetColor(0);
+    xxVector3& payload = (*positions++);
+    (*colors++);
+
+    float shadow = payload.z;
+    if (shadow > 0.0f)
+    {
+        textCount /= 2;
+        uint32_t colorBack = xxVector4{ 0.0f, 0.0f, 0.0f, shadow * 0.5f + 0.5f }.ToInteger();
+        for (int i = 0; i < textCount; ++i)
+        {
+            (*colors++) = colorBack;
+            (*colors++) = colorBack;
+            (*colors++) = colorBack;
+            (*colors++) = colorBack;
+        }
+    }
+    for (int i = 0; i < textCount; ++i)
+    {
+        (*colors++) = textColors[0];
+        (*colors++) = textColors[2];
+        (*colors++) = textColors[3];
+        (*colors++) = textColors[1];
+    }
+
+    return mesh;
+}
+//------------------------------------------------------------------------------
+xxMeshPtr Font::MeshScale(xxMeshPtr const& mesh, xxVector2 const& scale)
+{
+    if (mesh == nullptr)
+        return nullptr;
+
+    auto positions = mesh->GetPosition();
+    xxVector3& payload = (*positions++);
+    if (payload.xy == scale || scale.x <= 0.0f || scale.y <= 0.0f)
+        return mesh;
+
+    int vertexCount = (mesh->VertexCount - 1);
+    xxVector2 rescale = scale / payload.xy;
+    payload.xy = scale;
+    for (int i = 0; i < vertexCount; ++i)
+    {
+        xxVector3& position = (*positions++);
+        position.xy *= rescale;
+    }
+    mesh->SetVertexCount(mesh->VertexCount);
+
+    return mesh;
+}
+//------------------------------------------------------------------------------
+xxMeshPtr Font::MeshShadow(xxMeshPtr const& mesh, float shadow)
+{
+    if (mesh == nullptr)
+        return nullptr;
+
+    auto positions = mesh->GetPosition();
+    xxVector3& payload = (*positions++);
+    if (payload.z == shadow)
+        return mesh;
+
+    int vertexCount = (mesh->VertexCount - 1);
+    float oldShadow = payload.z;
+    payload.z = shadow;
+    if (oldShadow > 0.0f && shadow == 0.0f)
+    {
+        vertexCount /= 2;
+
+        auto firstColors = mesh->GetColor(0) + 1;
+        auto secondColors = firstColors + vertexCount;
+        for (int i = 0; i < vertexCount; ++i)
+        {
+            (*firstColors++) = (*secondColors++);
+        }
+
+        mesh->SetIndexCount(vertexCount * 6 / 4);
+        mesh->SetVertexCount(1 + vertexCount);
+    }
+    else if (oldShadow == 0.0f && shadow > 0.0f)
+    {
+        mesh->SetIndexCount(vertexCount * 2 * 6 / 4);
+        mesh->SetVertexCount(1 + vertexCount * 2);
+
+        int meshCount = vertexCount / 4 * 2;
+        auto indices = mesh->Index;
+        for (size_t i = 0, x = 1; i < meshCount; ++i)
+        {
+            (*indices++) = x + 0;
+            (*indices++) = x + 1;
+            (*indices++) = x + 2;
+            (*indices++) = x + 0;
+            (*indices++) = x + 2;
+            (*indices++) = x + 3;
+            x += 4;
+        }
+
+        auto positions = mesh->GetPosition() + 1 + vertexCount;
+        auto colors = mesh->GetColor(0) + 1 + vertexCount;
+        auto textures = mesh->GetTexture(0) + 1 + vertexCount;
+        auto firstPositions = mesh->GetPosition() + 1;
+        auto firstColors = mesh->GetColor(0) + 1;
+        auto firstTextures = mesh->GetTexture(0) + 1;
+        uint32_t colorBack = xxVector4{ 0.0f, 0.0f, 0.0f, shadow * 0.5f + 0.5f }.ToInteger();
+        for (int i = 0; i < vertexCount; ++i)
+        {
+            (*positions++) = (*firstPositions++);
+            std::swap((*colors++) = colorBack, (*firstColors++));
+            (*textures++) = (*firstTextures++);
+        }
+    }
+    else if (oldShadow > 0.0f && shadow > 0.0f)
+    {
+        mesh->SetVertexCount(1 + vertexCount);
+
+        int count = vertexCount / 2;
+        uint32_t colorBack = xxVector4{ 0.0f, 0.0f, 0.0f, shadow * 0.5f + 0.5f }.ToInteger();
+        auto colors = mesh->GetColor(0) + 1;
+        for (int i = 0; i < count; ++i)
+        {
+            (*colors++) = colorBack;
+        }
+    }
+
+    return mesh;
 }
 //------------------------------------------------------------------------------
 uint32_t Font::ToCodePoint(std::string_view& text)
@@ -271,22 +418,22 @@ uint32_t Font::ToCodePoint(std::string_view& text)
         if (c >= 0b11110000)
         {
             if (w) break;
-            w = c & 0b00000111;
+            w = (c & 0b00000111);
         }
         else if (c >= 0b11100000)
         {
             if (w) break;
-            w = c & 0b00001111;
+            w = (c & 0b00001111);
         }
         else if (c >= 0b11000000)
         {
             if (w) break;
-            w = c & 0b00011111;
+            w = (c & 0b00011111);
         }
         else if (c >= 0b10000000)
         {
             w = w << 6;
-            w = c & 0b00111111;
+            w = (c & 0b00111111) | w;
         }
         else
         {

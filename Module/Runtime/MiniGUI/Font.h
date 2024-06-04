@@ -35,7 +35,10 @@ public:
     static xxVector2        Extent(std::string_view text, float scale);
     static CharGlyph const* Glyph(char32_t codepoint);
     static xxMaterialPtr    Material();
-    static xxMeshPtr        Mesh(xxMeshPtr const& mesh, std::string_view text, xxVector3 const color[4], float scaleX, float scaleY, float shadow);
+    static xxMeshPtr        Mesh(xxMeshPtr const& mesh, std::string_view text, xxMatrix3x4 const color, xxVector2 const& scale, float shadow);
+    static xxMeshPtr        MeshColor(xxMeshPtr const& mesh, xxMatrix3x4 const color);
+    static xxMeshPtr        MeshScale(xxMeshPtr const& mesh, xxVector2 const& scale);
+    static xxMeshPtr        MeshShadow(xxMeshPtr const& mesh, float shadow);
     static uint32_t         ToCodePoint(std::string_view& text);
     static std::string      ToUTF8(std::u32string const& text);
     static std::u32string   ToUTF32(std::string_view text);
