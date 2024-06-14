@@ -92,6 +92,34 @@
 		D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
 		D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
 		D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
+		D6B4C8312C1BFE03006123EF /* pshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8262C1BFE03006123EF /* pshdrval.cpp */; };
+		D6B4C8322C1BFE03006123EF /* pshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8262C1BFE03006123EF /* pshdrval.cpp */; };
+		D6B4C8332C1BFE03006123EF /* pshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8262C1BFE03006123EF /* pshdrval.cpp */; };
+		D6B4C8342C1BFE03006123EF /* pshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8262C1BFE03006123EF /* pshdrval.cpp */; };
+		D6B4C8352C1BFE03006123EF /* errlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8272C1BFE03006123EF /* errlog.cpp */; };
+		D6B4C8362C1BFE03006123EF /* errlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8272C1BFE03006123EF /* errlog.cpp */; };
+		D6B4C8372C1BFE03006123EF /* errlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8272C1BFE03006123EF /* errlog.cpp */; };
+		D6B4C8382C1BFE03006123EF /* errlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8272C1BFE03006123EF /* errlog.cpp */; };
+		D6B4C8392C1BFE03006123EF /* vshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8292C1BFE03006123EF /* vshdrval.cpp */; };
+		D6B4C83A2C1BFE03006123EF /* vshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8292C1BFE03006123EF /* vshdrval.cpp */; };
+		D6B4C83B2C1BFE03006123EF /* vshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8292C1BFE03006123EF /* vshdrval.cpp */; };
+		D6B4C83C2C1BFE03006123EF /* vshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8292C1BFE03006123EF /* vshdrval.cpp */; };
+		D6B4C83D2C1BFE03006123EF /* valbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8302C1BFE03006123EF /* valbase.cpp */; };
+		D6B4C83E2C1BFE03006123EF /* valbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8302C1BFE03006123EF /* valbase.cpp */; };
+		D6B4C83F2C1BFE03006123EF /* valbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8302C1BFE03006123EF /* valbase.cpp */; };
+		D6B4C8402C1BFE03006123EF /* valbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8302C1BFE03006123EF /* valbase.cpp */; };
+		D6B4C8432C1BFEEF006123EF /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8422C1BFEEF006123EF /* pch.cpp */; };
+		D6B4C8442C1BFEEF006123EF /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8422C1BFEEF006123EF /* pch.cpp */; };
+		D6B4C8452C1BFEEF006123EF /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8422C1BFEEF006123EF /* pch.cpp */; };
+		D6B4C8462C1BFEEF006123EF /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8422C1BFEEF006123EF /* pch.cpp */; };
+		D6B4C8492C1C01DD006123EF /* psval14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8472C1C01DD006123EF /* psval14.cpp */; };
+		D6B4C84A2C1C01DD006123EF /* psval14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8472C1C01DD006123EF /* psval14.cpp */; };
+		D6B4C84B2C1C01DD006123EF /* psval14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8472C1C01DD006123EF /* psval14.cpp */; };
+		D6B4C84C2C1C01DD006123EF /* psval14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8472C1C01DD006123EF /* psval14.cpp */; };
+		D6B4C84D2C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
+		D6B4C84E2C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
+		D6B4C84F2C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
+		D6B4C8502C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
 		D6CB0B272BB95CE5009DCD26 /* Runtime.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B262BB95CE5009DCD26 /* Runtime.dylib */; };
 		D6CB0B292BB95CEF009DCD26 /* Runtime.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B282BB95CEF009DCD26 /* Runtime.dll */; };
 		D6CB0B2B2BB95D00009DCD26 /* Runtime.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */; };
@@ -217,6 +245,20 @@
 		D6A25B7A2B4644B600974946 /* Inspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Inspector.h; path = ../Window/Inspector.h; sourceTree = "<group>"; };
 		D6A25B7B2B4644B600974946 /* Inspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Inspector.cpp; path = ../Window/Inspector.cpp; sourceTree = "<group>"; };
 		D6AA5DBC2BD7DB4400AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
+		D6B4C8252C1BFE03006123EF /* valbase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = valbase.hpp; path = ../../../SDK/shval/valbase.hpp; sourceTree = "<group>"; };
+		D6B4C8262C1BFE03006123EF /* pshdrval.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pshdrval.cpp; path = ../../../SDK/shval/pshdrval.cpp; sourceTree = "<group>"; };
+		D6B4C8272C1BFE03006123EF /* errlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = errlog.cpp; path = ../../../SDK/shval/errlog.cpp; sourceTree = "<group>"; };
+		D6B4C8282C1BFE03006123EF /* d3d8caps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = d3d8caps.h; path = ../../../SDK/shval/d3d8caps.h; sourceTree = "<group>"; };
+		D6B4C8292C1BFE03006123EF /* vshdrval.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vshdrval.cpp; path = ../../../SDK/shval/vshdrval.cpp; sourceTree = "<group>"; };
+		D6B4C82A2C1BFE03006123EF /* d3d8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = d3d8.h; path = ../../../SDK/shval/d3d8.h; sourceTree = "<group>"; };
+		D6B4C82B2C1BFE03006123EF /* d3d8types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = d3d8types.h; path = ../../../SDK/shval/d3d8types.h; sourceTree = "<group>"; };
+		D6B4C82C2C1BFE03006123EF /* vshdrval.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = vshdrval.hpp; path = ../../../SDK/shval/vshdrval.hpp; sourceTree = "<group>"; };
+		D6B4C82D2C1BFE03006123EF /* pshdrval.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = pshdrval.hpp; path = ../../../SDK/shval/pshdrval.hpp; sourceTree = "<group>"; };
+		D6B4C82E2C1BFE03006123EF /* errlog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = errlog.hpp; path = ../../../SDK/shval/errlog.hpp; sourceTree = "<group>"; };
+		D6B4C8302C1BFE03006123EF /* valbase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = valbase.cpp; path = ../../../SDK/shval/valbase.cpp; sourceTree = "<group>"; };
+		D6B4C8422C1BFEEF006123EF /* pch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pch.cpp; path = ../../../SDK/shval/pch.cpp; sourceTree = "<group>"; };
+		D6B4C8472C1C01DD006123EF /* psval14.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = psval14.cpp; path = ../../../SDK/shval/psval14.cpp; sourceTree = "<group>"; };
+		D6B4C8482C1C01DD006123EF /* psval10.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = psval10.cpp; path = ../../../SDK/shval/psval10.cpp; sourceTree = "<group>"; };
 		D6BA702829E2701C0056FE5F /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA702A29E270210056FE5F /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B262BB95CE5009DCD26 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -423,6 +465,7 @@
 		D6386A5A2BDAAB170008C9D1 /* Graphic */ = {
 			isa = PBXGroup;
 			children = (
+				D6B4C7F82C1BE121006123EF /* shval */,
 				D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */,
 				D6386A5B2BDAAB2C0008C9D1 /* ShaderDisassembly.h */,
 			);
@@ -462,6 +505,27 @@
 				D666E2E82BE1EBAB00EFA1F2 /* ufbx.h */,
 			);
 			name = ufbx;
+			sourceTree = "<group>";
+		};
+		D6B4C7F82C1BE121006123EF /* shval */ = {
+			isa = PBXGroup;
+			children = (
+				D6B4C82A2C1BFE03006123EF /* d3d8.h */,
+				D6B4C8282C1BFE03006123EF /* d3d8caps.h */,
+				D6B4C82B2C1BFE03006123EF /* d3d8types.h */,
+				D6B4C8272C1BFE03006123EF /* errlog.cpp */,
+				D6B4C82E2C1BFE03006123EF /* errlog.hpp */,
+				D6B4C8422C1BFEEF006123EF /* pch.cpp */,
+				D6B4C8262C1BFE03006123EF /* pshdrval.cpp */,
+				D6B4C82D2C1BFE03006123EF /* pshdrval.hpp */,
+				D6B4C8482C1C01DD006123EF /* psval10.cpp */,
+				D6B4C8472C1C01DD006123EF /* psval14.cpp */,
+				D6B4C8302C1BFE03006123EF /* valbase.cpp */,
+				D6B4C8252C1BFE03006123EF /* valbase.hpp */,
+				D6B4C8292C1BFE03006123EF /* vshdrval.cpp */,
+				D6B4C82C2C1BFE03006123EF /* vshdrval.hpp */,
+			);
+			name = shval;
 			sourceTree = "<group>";
 		};
 		D6E6B55F2C0234EE003F6D85 /* quickjs */ = {
@@ -616,7 +680,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6E6B5582C01CB70003F6D85 /* Document.cpp in Sources */,
+				D6B4C8312C1BFE03006123EF /* pshdrval.cpp in Sources */,
 				D6F563FE2BE9D568006D32D9 /* Profiler.cpp in Sources */,
+				D6B4C8432C1BFEEF006123EF /* pch.cpp in Sources */,
 				D62FEBF42BE53D41004E9FDF /* About.cpp in Sources */,
 				D666E2E92BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6346EF02BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
@@ -625,17 +691,22 @@
 				D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370782B382156001D4057 /* Log.cpp in Sources */,
 				D60790C22BF1AF46008810BD /* Folder.cpp in Sources */,
+				D6B4C83D2C1BFE03006123EF /* valbase.cpp in Sources */,
 				D6E6B5682C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D60790FD2BF501DC008810BD /* Console.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */,
+				D6B4C8352C1BFE03006123EF /* errlog.cpp in Sources */,
 				D6D26F9E2BDE36B400D57772 /* Tools.cpp in Sources */,
 				30A9A7C325ADC7C0000FA104 /* Editor.cpp in Sources */,
 				D60790BB2BEE6C5F008810BD /* Project.cpp in Sources */,
+				D6B4C84D2C1C01DD006123EF /* psval10.cpp in Sources */,
+				D6B4C8492C1C01DD006123EF /* psval14.cpp in Sources */,
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
 				D60791092BF61829008810BD /* Setup.cpp in Sources */,
 				D666E3CF2BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
+				D6B4C8392C1BFE03006123EF /* vshdrval.cpp in Sources */,
 				D60790F72BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6D26FA42BDEAF5400D57772 /* Scene.cpp in Sources */,
 			);
@@ -645,10 +716,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6B4C84C2C1C01DD006123EF /* psval14.cpp in Sources */,
+				D6B4C8502C1C01DD006123EF /* psval10.cpp in Sources */,
 				D6D26FA12BDE36B400D57772 /* Tools.cpp in Sources */,
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
 				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D60791002BF501DC008810BD /* Console.cpp in Sources */,
+				D6B4C8402C1BFE03006123EF /* valbase.cpp in Sources */,
 				D62FEBF72BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FA2BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6F564012BE9D568006D32D9 /* Profiler.cpp in Sources */,
@@ -658,14 +732,18 @@
 				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6E6B56B2C0234EE003F6D85 /* quickjs-io.c in Sources */,
+				D6B4C8342C1BFE03006123EF /* pshdrval.cpp in Sources */,
+				D6B4C8382C1BFE03006123EF /* errlog.cpp in Sources */,
 				D607910C2BF61829008810BD /* Setup.cpp in Sources */,
 				D6D26FA72BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
+				D6B4C8462C1BFEEF006123EF /* pch.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
 				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
 				D62FEBED2BE50FD3004E9FDF /* dllmain.cpp in Sources */,
 				D6E6B55B2C01CB70003F6D85 /* Document.cpp in Sources */,
 				D666E3D22BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
+				D6B4C83C2C1BFE03006123EF /* vshdrval.cpp in Sources */,
 				D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D666E2EC2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				CE93601F25AC457A00CEF503 /* Editor.cpp in Sources */,
@@ -680,16 +758,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				D666E2EA2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
+				D6B4C8442C1BFEEF006123EF /* pch.cpp in Sources */,
+				D6B4C8322C1BFE03006123EF /* pshdrval.cpp in Sources */,
+				D6B4C83E2C1BFE03006123EF /* valbase.cpp in Sources */,
 				D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6346EF12BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
 				D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D60790C32BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26F9F2BDE36B400D57772 /* Tools.cpp in Sources */,
+				D6B4C83A2C1BFE03006123EF /* vshdrval.cpp in Sources */,
 				D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FE2BF501DC008810BD /* Console.cpp in Sources */,
 				D60790F82BF33502008810BD /* TextureTools.cpp in Sources */,
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
+				D6B4C8362C1BFE03006123EF /* errlog.cpp in Sources */,
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6E6B5692C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -701,7 +784,9 @@
 				3039F9D92447499200E671A7 /* Editor.cpp in Sources */,
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707D2B382156001D4057 /* Hierarchy.cpp in Sources */,
+				D6B4C84A2C1C01DD006123EF /* psval14.cpp in Sources */,
 				D6F563FF2BE9D568006D32D9 /* Profiler.cpp in Sources */,
+				D6B4C84E2C1C01DD006123EF /* psval10.cpp in Sources */,
 				D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,16 +796,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				D666E2EB2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
+				D6B4C8452C1BFEEF006123EF /* pch.cpp in Sources */,
+				D6B4C8332C1BFE03006123EF /* pshdrval.cpp in Sources */,
+				D6B4C83F2C1BFE03006123EF /* valbase.cpp in Sources */,
 				D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
 				D6346EF22BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
 				D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D60790C42BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26FA02BDE36B400D57772 /* Tools.cpp in Sources */,
+				D6B4C83B2C1BFE03006123EF /* vshdrval.cpp in Sources */,
 				D62FEBF62BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FF2BF501DC008810BD /* Console.cpp in Sources */,
 				D60790F92BF33502008810BD /* TextureTools.cpp in Sources */,
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
+				D6B4C8372C1BFE03006123EF /* errlog.cpp in Sources */,
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6E6B56A2C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -732,7 +822,9 @@
 				300264C5242690D0004559E0 /* Editor.cpp in Sources */,
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707E2B382156001D4057 /* Hierarchy.cpp in Sources */,
+				D6B4C84B2C1C01DD006123EF /* psval14.cpp in Sources */,
 				D6F564002BE9D568006D32D9 /* Profiler.cpp in Sources */,
+				D6B4C84F2C1C01DD006123EF /* psval10.cpp in Sources */,
 				D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

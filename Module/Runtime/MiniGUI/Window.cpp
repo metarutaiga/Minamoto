@@ -258,20 +258,22 @@ WindowPtr const& Window::Cast(xxNodePtr const& node)
 //==============================================================================
 //  Update
 //==============================================================================
-void Window::Update(WindowPtr const& window, float time, float width, float height)
+void Window::Update(WindowPtr const& window, float time, xxVector2 const& screenSize)
 {
     bool resize = false;
-    if (ScreenSize.x != width || ScreenSize.y != height)
+    if (ScreenSize != screenSize)
     {
-        ScreenSize.x = width;
-        ScreenSize.y = height;
-        ScreenInvSize.x = 1.0f / width;
-        ScreenInvSize.y = 1.0f / height;
+        ScreenSize = screenSize;
+        ScreenInvSize = { 1.0f / screenSize.x, 1.0f / screenSize.y };
         resize = true;
     }
 
-    auto callback = [](WindowPtr const& window)
+    auto callback = [&](WindowPtr const& window)
     {
+        if (resize)
+        {
+            window->Flags |= UPDATE_TEXT_SCALE;
+        }
         if (window->Flags & UPDATE_TEXT_FLAGS)
         {
             window->UpdateText();

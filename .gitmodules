@@ -28,3 +28,6 @@
 [submodule "SDK/quickjs"]
 	path = SDK/quickjs
 	url = https://github.com/metarutaiga/quickjs
+[submodule "SDK/shval"]
+	path = SDK/shval
+	url = https://github.com/metarutaiga/shval

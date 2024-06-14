@@ -227,7 +227,6 @@ static void MiniGUIEditor(MiniGUI::WindowPtr const& window)
     }
 
     // Edge
-    ImDrawList* drawList = ImGui::GetWindowDrawList();
     xxVector2 lt = window->GetWorldOffset();
     xxVector2 rb = window->GetWorldOffset() + window->GetWorldScale();
     lt = lt * viewSize + viewPos;
@@ -239,6 +238,7 @@ static void MiniGUIEditor(MiniGUI::WindowPtr const& window)
     if (hitX0 || hitX1 || hitY0 || hitY1)
     {
         int type = -1;
+        ImDrawList* drawList = ImGui::GetWindowDrawList();
         if (hitX0 && hitY0)
         {
             type = LT;
@@ -372,7 +372,7 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
             auto& window = MiniGUI::Window::Cast(node);
             if (window)
             {
-                MiniGUI::Window::Update(window, updateData.time, viewSize.x, viewSize.y);
+                MiniGUI::Window::Update(window, updateData.time, viewSize);
             }
 #endif
         }

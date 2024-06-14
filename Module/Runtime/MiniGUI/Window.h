@@ -59,7 +59,6 @@ public:
     xxVector2 const&        GetOffset() const { return LocalMatrix[3].xy; }
     void                    SetScale(xxVector2 const& scale);
     void                    SetOffset(xxVector2 const& offset);
-
     xxVector2               GetWorldScale() const { return { WorldMatrix[0].x, WorldMatrix[1].y }; }
     xxVector2 const&        GetWorldOffset() const { return WorldMatrix[3].xy; }
 
@@ -76,7 +75,7 @@ public:
 
     static WindowPtr const& Cast(xxNodePtr const& node);
 
-    static void             Update(WindowPtr const& window, float time, float width, float height);
+    static void             Update(WindowPtr const& window, float time, xxVector2 const& screenSize);
 
 public:
     static xxVector2        ScreenSize;
