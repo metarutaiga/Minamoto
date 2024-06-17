@@ -19,19 +19,3 @@ struct RuntimeAPI Texture
     static void DDSWriter(xxTexturePtr const& texture, std::string const& filename);
     static void PNGReader(xxTexturePtr const& texture, std::string const& filename);
 };
-
-constexpr uint32_t operator ""_cc(char const* text, size_t length)
-{
-    uint32_t value = 0;
-    for (size_t i = 0; i < length; ++i)
-        value += uint32_t(uint8_t(text[i])) << (i * 8);
-    return value;
-};
-
-constexpr uint64_t operator ""_CC(char const* text, size_t length)
-{
-    uint64_t value = 0;
-    for (size_t i = 0; i < length; ++i)
-        value += uint64_t(uint8_t(text[i])) << (i * 8);
-    return value;
-};

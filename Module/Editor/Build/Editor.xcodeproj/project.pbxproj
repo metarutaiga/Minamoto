@@ -71,10 +71,10 @@
 		D6346EF12BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EEF2BFA10210075D7F1 /* QuickJSConsole.cpp */; };
 		D6346EF22BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EEF2BFA10210075D7F1 /* QuickJSConsole.cpp */; };
 		D6346EF32BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6346EEF2BFA10210075D7F1 /* QuickJSConsole.cpp */; settings = {COMPILER_FLAGS = "-I../../../Build/include/quickjs-win32"; }; };
-		D6386A5D2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; };
-		D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; };
-		D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; settings = {COMPILER_FLAGS = "-x objective-c++ -fobjc-arc -fobjc-weak"; }; };
-		D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */; };
+		D6386A5D2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp */; };
+		D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp */; };
+		D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp */; settings = {COMPILER_FLAGS = "-x objective-c++ -fobjc-arc -fobjc-weak"; }; };
+		D6386A602BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp */; };
 		D6386A622BDAAE500008C9D1 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6386A612BDAAE500008C9D1 /* Metal.framework */; };
 		D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6530A002BB70A270006AD64 /* ImportFBX.cpp */; };
 		D6530A032BB70A270006AD64 /* ImportFBX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6530A002BB70A270006AD64 /* ImportFBX.cpp */; };
@@ -120,6 +120,18 @@
 		D6B4C84E2C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
 		D6B4C84F2C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
 		D6B4C8502C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
+		D6B4C8532C1C4056006123EF /* ShaderAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */; };
+		D6B4C8542C1C4056006123EF /* ShaderAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */; };
+		D6B4C8552C1C4056006123EF /* ShaderAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */; };
+		D6B4C8562C1C4056006123EF /* ShaderAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */; };
+		D6B4C8592C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8582C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp */; };
+		D6B4C85A2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8582C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp */; };
+		D6B4C85B2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8582C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp */; };
+		D6B4C85C2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8582C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp */; };
+		D6B4C85F2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */; };
+		D6B4C8602C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */; };
+		D6B4C8612C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */; };
+		D6B4C8622C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */; };
 		D6CB0B272BB95CE5009DCD26 /* Runtime.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B262BB95CE5009DCD26 /* Runtime.dylib */; };
 		D6CB0B292BB95CEF009DCD26 /* Runtime.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B282BB95CEF009DCD26 /* Runtime.dll */; };
 		D6CB0B2B2BB95D00009DCD26 /* Runtime.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */; };
@@ -231,8 +243,8 @@
 		D63370982B399792001D4057 /* ImGuiFileDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImGuiFileDialog.h; path = ../../../SDK/ImGuiFileDialog/ImGuiFileDialog.h; sourceTree = "<group>"; };
 		D6346EEE2BFA10210075D7F1 /* QuickJSConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuickJSConsole.h; path = ../Window/QuickJSConsole.h; sourceTree = "<group>"; };
 		D6346EEF2BFA10210075D7F1 /* QuickJSConsole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuickJSConsole.cpp; path = ../Window/QuickJSConsole.cpp; sourceTree = "<group>"; };
-		D6386A5B2BDAAB2C0008C9D1 /* ShaderDisassembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderDisassembly.h; path = ../Graphic/ShaderDisassembly.h; sourceTree = "<group>"; };
-		D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderDisassembly.cpp; path = ../Graphic/ShaderDisassembly.cpp; sourceTree = "<group>"; };
+		D6386A5B2BDAAB2C0008C9D1 /* ShaderDisassembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderDisassembler.h; path = ../Graphic/ShaderDisassembler.h; sourceTree = "<group>"; };
+		D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderDisassembler.cpp; path = ../Graphic/ShaderDisassembler.cpp; sourceTree = "<group>"; };
 		D6386A612BDAAE500008C9D1 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		D644A041231ED82900B75B77 /* Editor.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Editor.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6530A002BB70A270006AD64 /* ImportFBX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImportFBX.cpp; path = ../Import/ImportFBX.cpp; sourceTree = "<group>"; };
@@ -259,6 +271,12 @@
 		D6B4C8422C1BFEEF006123EF /* pch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pch.cpp; path = ../../../SDK/shval/pch.cpp; sourceTree = "<group>"; };
 		D6B4C8472C1C01DD006123EF /* psval14.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = psval14.cpp; path = ../../../SDK/shval/psval14.cpp; sourceTree = "<group>"; };
 		D6B4C8482C1C01DD006123EF /* psval10.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = psval10.cpp; path = ../../../SDK/shval/psval10.cpp; sourceTree = "<group>"; };
+		D6B4C8512C1C4056006123EF /* ShaderAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssembler.h; path = ../Graphic/ShaderAssembler.h; sourceTree = "<group>"; };
+		D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderAssembler.cpp; path = ../Graphic/ShaderAssembler.cpp; sourceTree = "<group>"; };
+		D6B4C8572C1C9BB9006123EF /* ShaderAssemblerD3D8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssemblerD3D8.h; path = ../Graphic/ShaderAssemblerD3D8.h; sourceTree = "<group>"; };
+		D6B4C8582C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderAssemblerD3D8.cpp; path = ../Graphic/ShaderAssemblerD3D8.cpp; sourceTree = "<group>"; };
+		D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderAssemblerNV20.cpp; path = ../Graphic/ShaderAssemblerNV20.cpp; sourceTree = "<group>"; };
+		D6B4C85E2C1DBBE1006123EF /* ShaderAssemblerNV20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssemblerNV20.h; path = ../Graphic/ShaderAssemblerNV20.h; sourceTree = "<group>"; };
 		D6BA702829E2701C0056FE5F /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA702A29E270210056FE5F /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B262BB95CE5009DCD26 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -466,8 +484,14 @@
 			isa = PBXGroup;
 			children = (
 				D6B4C7F82C1BE121006123EF /* shval */,
-				D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp */,
-				D6386A5B2BDAAB2C0008C9D1 /* ShaderDisassembly.h */,
+				D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */,
+				D6B4C8512C1C4056006123EF /* ShaderAssembler.h */,
+				D6B4C8582C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp */,
+				D6B4C8572C1C9BB9006123EF /* ShaderAssemblerD3D8.h */,
+				D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */,
+				D6B4C85E2C1DBBE1006123EF /* ShaderAssemblerNV20.h */,
+				D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp */,
+				D6386A5B2BDAAB2C0008C9D1 /* ShaderDisassembler.h */,
 			);
 			name = Graphic;
 			sourceTree = "<group>";
@@ -687,13 +711,16 @@
 				D666E2E92BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6346EF02BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
 				D6012A1F2B1DE28F00C3875A /* Grid.cpp in Sources */,
-				D6386A5D2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
+				D6B4C8532C1C4056006123EF /* ShaderAssembler.cpp in Sources */,
+				D6386A5D2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */,
 				D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370782B382156001D4057 /* Log.cpp in Sources */,
 				D60790C22BF1AF46008810BD /* Folder.cpp in Sources */,
+				D6B4C85F2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
 				D6B4C83D2C1BFE03006123EF /* valbase.cpp in Sources */,
 				D6E6B5682C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D60790FD2BF501DC008810BD /* Console.cpp in Sources */,
+				D6B4C8592C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				D6B4C8352C1BFE03006123EF /* errlog.cpp in Sources */,
@@ -720,12 +747,13 @@
 				D6B4C8502C1C01DD006123EF /* psval10.cpp in Sources */,
 				D6D26FA12BDE36B400D57772 /* Tools.cpp in Sources */,
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
-				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
+				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */,
 				D60791002BF501DC008810BD /* Console.cpp in Sources */,
 				D6B4C8402C1BFE03006123EF /* valbase.cpp in Sources */,
 				D62FEBF72BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FA2BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6F564012BE9D568006D32D9 /* Profiler.cpp in Sources */,
+				D6B4C8562C1C4056006123EF /* ShaderAssembler.cpp in Sources */,
 				D6346EF32BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
 				D60790C52BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6530A052BB70A270006AD64 /* ImportFBX.cpp in Sources */,
@@ -735,6 +763,7 @@
 				D6B4C8342C1BFE03006123EF /* pshdrval.cpp in Sources */,
 				D6B4C8382C1BFE03006123EF /* errlog.cpp in Sources */,
 				D607910C2BF61829008810BD /* Setup.cpp in Sources */,
+				D6B4C85C2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D6D26FA72BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
 				D6B4C8462C1BFEEF006123EF /* pch.cpp in Sources */,
@@ -747,6 +776,7 @@
 				D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D666E2EC2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				CE93601F25AC457A00CEF503 /* Editor.cpp in Sources */,
+				D6B4C8622C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
 				D60790BE2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D63370852B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707F2B382156001D4057 /* Hierarchy.cpp in Sources */,
@@ -761,7 +791,7 @@
 				D6B4C8442C1BFEEF006123EF /* pch.cpp in Sources */,
 				D6B4C8322C1BFE03006123EF /* pshdrval.cpp in Sources */,
 				D6B4C83E2C1BFE03006123EF /* valbase.cpp in Sources */,
-				D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
+				D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */,
 				D6346EF12BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
 				D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D60790C32BF1AF46008810BD /* Folder.cpp in Sources */,
@@ -771,6 +801,7 @@
 				D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FE2BF501DC008810BD /* Console.cpp in Sources */,
 				D60790F82BF33502008810BD /* TextureTools.cpp in Sources */,
+				D6B4C85A2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
 				D6B4C8362C1BFE03006123EF /* errlog.cpp in Sources */,
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
@@ -779,9 +810,11 @@
 				D60790BC2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D02BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D6E6B5592C01CB70003F6D85 /* Document.cpp in Sources */,
+				D6B4C8602C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
 				D607910A2BF61829008810BD /* Setup.cpp in Sources */,
 				D6530A032BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				3039F9D92447499200E671A7 /* Editor.cpp in Sources */,
+				D6B4C8542C1C4056006123EF /* ShaderAssembler.cpp in Sources */,
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707D2B382156001D4057 /* Hierarchy.cpp in Sources */,
 				D6B4C84A2C1C01DD006123EF /* psval14.cpp in Sources */,
@@ -799,7 +832,7 @@
 				D6B4C8452C1BFEEF006123EF /* pch.cpp in Sources */,
 				D6B4C8332C1BFE03006123EF /* pshdrval.cpp in Sources */,
 				D6B4C83F2C1BFE03006123EF /* valbase.cpp in Sources */,
-				D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembly.cpp in Sources */,
+				D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */,
 				D6346EF22BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
 				D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D60790C42BF1AF46008810BD /* Folder.cpp in Sources */,
@@ -809,6 +842,7 @@
 				D62FEBF62BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FF2BF501DC008810BD /* Console.cpp in Sources */,
 				D60790F92BF33502008810BD /* TextureTools.cpp in Sources */,
+				D6B4C85B2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
 				D6B4C8372C1BFE03006123EF /* errlog.cpp in Sources */,
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
@@ -817,9 +851,11 @@
 				D60790BD2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D12BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D6E6B55A2C01CB70003F6D85 /* Document.cpp in Sources */,
+				D6B4C8612C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
 				D607910B2BF61829008810BD /* Setup.cpp in Sources */,
 				D6530A042BB70A270006AD64 /* ImportFBX.cpp in Sources */,
 				300264C5242690D0004559E0 /* Editor.cpp in Sources */,
+				D6B4C8552C1C4056006123EF /* ShaderAssembler.cpp in Sources */,
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707E2B382156001D4057 /* Hierarchy.cpp in Sources */,
 				D6B4C84B2C1C01DD006123EF /* psval14.cpp in Sources */,

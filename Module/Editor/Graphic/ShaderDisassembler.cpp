@@ -1,5 +1,5 @@
 //==============================================================================
-// Minamoto : PipelineDisassembly Source
+// Minamoto : PipelineDisassembler Source
 //
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
@@ -9,7 +9,7 @@
 #include <vector>
 #include <map>
 #include <xxGraphicPlus/xxFile.h>
-#include "ShaderDisassembly.h"
+#include "ShaderDisassembler.h"
 
 #if defined(__APPLE__)
 #include <Metal/Metal.h>
@@ -183,7 +183,7 @@ static void Disassemble(ShaderDisassemblyData& data)
 #endif
 }
 //==============================================================================
-void ShaderDisassembly::Initialize()
+void ShaderDisassembler::Initialize()
 {
     if (xxCreatePipelineSystem)
         return;
@@ -191,7 +191,7 @@ void ShaderDisassembly::Initialize()
     xxCreatePipeline = xxCreatePipelineRuntime;
 }
 //------------------------------------------------------------------------------
-void ShaderDisassembly::Shutdown()
+void ShaderDisassembler::Shutdown()
 {
     if (xxCreatePipelineSystem == nullptr)
         return;
@@ -200,13 +200,13 @@ void ShaderDisassembly::Shutdown()
     xxCreatePipelineSystem = nullptr;
 }
 //------------------------------------------------------------------------------
-bool ShaderDisassembly::Update(const UpdateData& updateData, bool& show)
+bool ShaderDisassembler::Update(const UpdateData& updateData, bool& show)
 {
     if (show == false)
         return false;
 
     ImGui::SetNextWindowSize(ImVec2(1280.0f, 720.0f), ImGuiCond_Appearing);
-    if (ImGui::Begin(ICON_FA_FILE_TEXT "Shader Disassembly", &show, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
+    if (ImGui::Begin(ICON_FA_FILE_TEXT "Shader Disassembler", &show, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
     {
         ImVec2 size = ImGui::GetWindowSize();
         size.x = size.x - ImGui::GetStyle().FramePadding.x * 8.0f;

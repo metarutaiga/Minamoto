@@ -22,9 +22,9 @@ inline bool SliderChar(const char* label, char* v, char v_min, char v_max, const
 //---------------------------------------------------------------------------
 inline bool InputTextEx(const char* label, const char* hint, std::string& text, const ImVec2& size = ImVec2(0, 0), ImGuiInputTextFlags flags = 0, ImGuiInputTextCallback callback = NULL, void* user_data = NULL)
 {
-    size_t length = text.length();
-    text.resize(length + 1024, 0);
-    if (InputTextEx(label, hint, text.data(), (int)text.size(), size, flags, callback, user_data))
+    int length = (int)text.length();
+    text.resize(length + 1024);
+    if (InputTextEx(label, hint, text.data(), length + 1024, size, flags, callback, user_data))
     {
         text.resize(strlen(text.c_str()));
         return true;

@@ -9,7 +9,6 @@
 #include <xxGraphicPlus/xxMesh.h>
 #include <xxGraphicPlus/xxNode.h>
 #include <xxGraphicPlus/xxTexture.h>
-#include <Runtime/Graphic/Texture.h>
 #include "Grid.h"
 
 //------------------------------------------------------------------------------

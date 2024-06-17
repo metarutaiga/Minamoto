@@ -5,7 +5,8 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include "Editor.h"
-#include "Graphic/ShaderDisassembly.h"
+#include "Graphic/ShaderAssembler.h"
+#include "Graphic/ShaderDisassembler.h"
 #include "Import/Import.h"
 #include "Utility/Tools.h"
 #include "Window/About.h"
@@ -24,7 +25,8 @@
 moduleAPI char const* Create(const CreateData& createData)
 {
     Runtime::Initialize();
-    ShaderDisassembly::Initialize();
+    ShaderAssembler::Initialize();
+    ShaderDisassembler::Initialize();
 
     Document::Initialize();
     Import::Initialize();
@@ -55,7 +57,8 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
     Scene::Shutdown();
     Setup::Shutdown();
 
-    ShaderDisassembly::Shutdown();
+    ShaderAssembler::Shutdown();
+    ShaderDisassembler::Shutdown();
     Runtime::Shutdown();
 }
 //------------------------------------------------------------------------------
@@ -67,14 +70,14 @@ moduleAPI void Message(const MessageData& messageData)
         {
         case xxHash("INIT"):
             Runtime::Initialize();
-            ShaderDisassembly::Initialize();
+            ShaderDisassembler::Initialize();
             Project::Initialize();
             Scene::Initialize();
             break;
         case xxHash("SHUTDOWN"):
             Project::Shutdown(true);
             Scene::Shutdown(true);
-            ShaderDisassembly::Shutdown();
+            ShaderDisassembler::Shutdown();
             Runtime::Shutdown(true);
             break;
         default:
@@ -95,7 +98,8 @@ moduleAPI bool Update(const UpdateData& updateData)
     static bool showHierarchy = true;
     static bool showInspector = true;
     static bool showScene = true;
-    static bool showShaderDisassembly = false;
+    static bool showShaderAssembler = false;
+    static bool showShaderDisassembler = false;
     bool updated = false;
 
     if (ImGui::BeginMainMenuBar())
@@ -115,7 +119,8 @@ moduleAPI bool Update(const UpdateData& updateData)
             ImGui::MenuItem(ICON_FA_INFO_CIRCLE     "Inspector", nullptr, &showInspector);
             ImGui::MenuItem(ICON_FA_GLOBE           "Scene", nullptr, &showScene);
             ImGui::Separator();
-            ImGui::MenuItem(ICON_FA_FILE_TEXT       "Shader Disassembly", nullptr, &showShaderDisassembly);
+            ImGui::MenuItem(ICON_FA_PENCIL          "Shader Assembler", nullptr, &showShaderAssembler);
+            ImGui::MenuItem(ICON_FA_FILE_TEXT       "Shader Disassembler", nullptr, &showShaderDisassembler);
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
@@ -153,7 +158,8 @@ moduleAPI bool Update(const UpdateData& updateData)
     updated |= Hierarchy::Update(updateData, showHierarchy, Scene::sceneRoot);
     updated |= Inspector::Update(updateData, showInspector, Scene::sceneCamera);
     updated |= Scene::Update(updateData, showScene);
-    updated |= ShaderDisassembly::Update(updateData, showShaderDisassembly);
+    updated |= ShaderAssembler::Update(updateData, showShaderAssembler);
+    updated |= ShaderDisassembler::Update(updateData, showShaderDisassembler);
 
     return updated;
 }

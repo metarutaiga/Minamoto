@@ -10,7 +10,6 @@
 #include <string>
 #include <vector>
 #include <xxGraphicPlus/xxTexture.h>
-#include <Runtime/Graphic/Texture.h>
 #include "Component/Folder.h"
 #include "Script/QuickJS.h"
 #include "Utility/TextureTools.h"

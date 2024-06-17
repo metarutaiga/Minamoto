@@ -10,7 +10,6 @@
 #include <xxGraphicPlus/xxMesh.h>
 #include <xxGraphicPlus/xxNode.h>
 #include <xxGraphicPlus/xxTexture.h>
-#include <Runtime/Graphic/Texture.h>
 #include "Import.h"
 
 #define STBI_ONLY_PNG

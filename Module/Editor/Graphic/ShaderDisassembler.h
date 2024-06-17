@@ -1,12 +1,12 @@
 //==============================================================================
-// Minamoto : ShaderDisassembly Header
+// Minamoto : ShaderDisassembler Header
 //
 // Copyright (c) 2019-2024 TAiGA
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #pragma once
 
-struct ShaderDisassembly
+struct ShaderDisassembler
 {
     static void Initialize();
     static void Shutdown();

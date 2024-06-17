@@ -10,7 +10,6 @@
 #include <xxGraphicPlus/xxMaterial.h>
 #include <xxGraphicPlus/xxMesh.h>
 #include <xxGraphicPlus/xxTexture.h>
-#include "Graphic/Texture.h"
 #include "Font.h"
 
 #if HAVE_MINIGUI
