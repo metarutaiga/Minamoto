@@ -63,6 +63,8 @@ union RegisterCombinerOutput
         uint32_t reg:4;
         uint32_t __:8;
         uint32_t dp:1;
+        uint32_t ___:5;
+        uint32_t a:1;
     } cd;
     struct
     {
@@ -70,6 +72,8 @@ union RegisterCombinerOutput
         uint32_t reg:4;
         uint32_t __:5;
         uint32_t dp:1;
+        uint32_t ___:5;
+        uint32_t a:1;
     } ab;
     struct
     {
@@ -113,9 +117,9 @@ static void dumpTextureShaders(uint32_t* cw, uint32_t stage)
 //------------------------------------------------------------------------------
 static void dumpRegisterCombinersCode(uint32_t* cw, uint32_t stage)
 {
-    DPF("%*s                             A C   A C                                 A C", 4 + 9 + 9 + 9 + 9, "");
-    DPF("%*sA     B     C     D          B D   B D  A     B     C     D            B D", 4 + 9 + 9 + 9 + 9, "");
-    DPF("%*sM A R M A R M A R M A R  S M D D R R R  M A R M A R M A R M A R  S M R R R", 4 + 9 + 9 + 9 + 9, "");
+    DPF("%*s                         A C   A C   A C                                 A C", 4 + 9 + 9 + 9 + 9, "");
+    DPF("%*sA     B     C     D      B D   B D   B D  A     B     C     D            B D", 4 + 9 + 9 + 9 + 9, "");
+    DPF("%*sM A R M A R M A R M A R  A A S M D D R R R  M A R M A R M A R M A R  S M R R R", 4 + 9 + 9 + 9 + 9, "");
 
     for (size_t i = 0; i < stage; ++i)
     {
@@ -138,8 +142,8 @@ static void dumpRegisterCombinersCode(uint32_t* cw, uint32_t stage)
 
         DPF_PLAIN(" ");
 
-        DPF_PLAIN("%x %x %x %x %x %x %x ",
-                  colorOCW.shift,
+        DPF_PLAIN("%x %x %x %x %x %x %x %x %x ",
+                  colorOCW.ab.a, colorOCW.cd.a, colorOCW.shift,
                   colorOCW.abcd.mux, colorOCW.ab.dp, colorOCW.cd.dp,
                   colorOCW.abcd.reg, colorOCW.ab.reg, colorOCW.cd.reg);
 
@@ -203,8 +207,8 @@ static void dumpRegisterCombiners(uint32_t* cw, uint32_t stage)
             "TEXTURE3",
             "SPARE0",
             "SPARE1",
-            "TEXTURE6",
-            "TEXTURE7",
+            "SPARE0_PLUS_CONSTANT1",
+            "E_TIMES_F",
         };
 
         DPF_PLAIN("%18s|", colorICW.a.alpha ? "ALPHA" : "RGB");
@@ -250,10 +254,10 @@ static void dumpRegisterCombiners(uint32_t* cw, uint32_t stage)
         DPF("%18s|", mapping[alphaICW.d.mapping]);
 
         char temp[256];
-        auto op = [&temp](char const* a, char const* op, char const* b, int c, int d) -> char const*
+        auto op = [&temp](char const* x, char const* op, char const* y, int s, int o, int a) -> char const*
         {
             char const* format = "";
-            switch (c)
+            switch (s)
             {
             case 0: format = "(%s %s %s)";                  break;
             case 1: format = "((%s %s %s - 0.5)";           break;
@@ -264,19 +268,24 @@ static void dumpRegisterCombiners(uint32_t* cw, uint32_t stage)
             case 6: format = "((%s %s %s) / 2.0)";          break;
             case 7: format = "((%s %s %s - 0.5) / 2.0)";    break;
             }
-            snprintf(temp, 256, format, a, op, b);
-            if (d != NV_REG_ZERO)
+            snprintf(temp, 256, format, x, op, y);
+            if (o != NV_REG_ZERO)
             {
                 strcat(temp, " = ");
-                strcat(temp, reg[d]);
+                strcat(temp, reg[o]);
+                if (a)
+                {
+                    strcat(temp, " ");
+                    strcat(temp, "AND ALPHA");
+                }
             }
             return temp;
         };
 
-        std::string cab = op("A", colorOCW.ab.dp ? "DOT" : "MUL", "B", colorOCW.shift, colorOCW.ab.reg);
-        std::string ccd = op("C", colorOCW.cd.dp ? "DOT" : "MUL", "D", colorOCW.shift, colorOCW.cd.reg);
-        std::string aab = op("A", alphaOCW.ab.dp ? "DOT" : "MUL", "B", alphaOCW.shift, alphaOCW.ab.reg);
-        std::string acd = op("C", alphaOCW.cd.dp ? "DOT" : "MUL", "D", alphaOCW.shift, alphaOCW.cd.reg);
+        std::string cab = op("A", colorOCW.ab.dp ? "DOT" : "MUL", "B", colorOCW.shift, colorOCW.ab.reg, colorOCW.ab.a);
+        std::string ccd = op("C", colorOCW.cd.dp ? "DOT" : "MUL", "D", colorOCW.shift, colorOCW.cd.reg, colorOCW.cd.a);
+        std::string aab = op("A", alphaOCW.ab.dp ? "DOT" : "MUL", "B", alphaOCW.shift, alphaOCW.ab.reg, 0);
+        std::string acd = op("C", alphaOCW.cd.dp ? "DOT" : "MUL", "D", alphaOCW.shift, alphaOCW.cd.reg, 0);
 
         DPF_PLAIN("%37s|", colorOCW.ab.reg ? cab.c_str() : "NOP");
         DPF_PLAIN("%37s|", colorOCW.cd.reg ? ccd.c_str() : "NOP");
@@ -289,8 +298,8 @@ static void dumpRegisterCombiners(uint32_t* cw, uint32_t stage)
         aab = aab.substr(0, aab.find(" = "));
         acd = acd.substr(0, acd.find(" = "));
 
-        std::string cabcd = op(cab.c_str(), colorOCW.abcd.mux ? "MUX" : "ADD", ccd.c_str(), colorOCW.shift, colorOCW.abcd.reg);
-        std::string aabcd = op(aab.c_str(), alphaOCW.abcd.mux ? "MUX" : "ADD", acd.c_str(), alphaOCW.shift, alphaOCW.abcd.reg);
+        std::string cabcd = op(cab.c_str(), colorOCW.abcd.mux ? "MUX" : "ADD", ccd.c_str(), colorOCW.shift, colorOCW.abcd.reg, 0);
+        std::string aabcd = op(aab.c_str(), alphaOCW.abcd.mux ? "MUX" : "ADD", acd.c_str(), alphaOCW.shift, alphaOCW.abcd.reg, 0);
 
         DPF_PLAIN("%75s|", colorOCW.abcd.reg ? cabcd.c_str() : "NOP");
         DPF_PLAIN("%1s|", "");
@@ -364,7 +373,13 @@ std::vector<uint32_t> ShaderAssemblerNV20::CompileKelvin(std::vector<uint32_t> c
             CPixelShaderPublic pixelShader;
             pixelShader.create(nullptr, 0, (DWORD)shader.size(), (DWORD*)shader.data());
 
-            DWORD shaderPrograms[4] = {};
+            uint32_t combinerControl = 0;
+            combinerControl |= DRF_NUM(097, _SET_COMBINER_CONTROL, _ITERATION_COUNT, pixelShader.m_dwStage);
+            combinerControl |= DRF_DEF(097, _SET_COMBINER_CONTROL, _FACTOR0, _EACH_STAGE);
+            combinerControl |= DRF_DEF(097, _SET_COMBINER_CONTROL, _FACTOR1, _EACH_STAGE);
+            combinerControl |= DRF_DEF(097, _SET_COMBINER_CONTROL, _MUX_SELECT, _MSB);
+
+            uint32_t shaderPrograms[4] = {};
             for (DWORD i = 1; i < 4; ++i)
             {
                 shaderPrograms[i] |= DRF_NUM(097, _SET_SHADER_STAGE_PROGRAM, _STAGE0, pixelShader.GetShaderProgram(nullptr, 0, i));
@@ -373,7 +388,7 @@ std::vector<uint32_t> ShaderAssemblerNV20::CompileKelvin(std::vector<uint32_t> c
                 shaderPrograms[i] |= DRF_NUM(097, _SET_SHADER_STAGE_PROGRAM, _STAGE3, pixelShader.GetShaderProgram(nullptr, 3, i));
             }
 
-            code.push_back(pixelShader.m_dwStage);
+            code.push_back(combinerControl);
             code.push_back(shaderPrograms[1]);
             code.push_back(shaderPrograms[2]);
             code.push_back(shaderPrograms[3]);
@@ -446,7 +461,7 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
         return text;
 
     // Stage
-    size_t stage = code.front();
+    size_t stage = uint8_t(code.front());
     if (code.size() < (4 + stage * 4))
         return text;
 
@@ -480,7 +495,7 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
         switch (i)
         {
         case 0: 
-            snprintf(temp, 256, "%-9s ", "stage");
+            snprintf(temp, 256, "%-9s ", "control");
             break;
         case 1:
             snprintf(temp, 256, "%-9s ", "2d");
@@ -495,13 +510,24 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
         text += temp;
 
         uint32_t program = code[i];
-        for (size_t j = 0; j < 6; ++j)
+        for (size_t j = 0; j < 8; ++j)
         {
             if (program == 0)
                 break;
             if (j) text += ", ";
-            snprintf(temp, 256, "%d", program & 0x1F);
-            program >>= 5;
+            if (i == 0)
+            {
+                if (j == 1)
+                    snprintf(temp, 256, "%s", program & 0x1 ? "msb" : "lsb");
+                else
+                    snprintf(temp, 256, "%d", program & 0xF);
+                program >>= (j == 0) ? 8 : 4;
+            }
+            else
+            {
+                snprintf(temp, 256, "%d", program & 0x1F);
+                program >>= 5;
+            }
             text += temp;
         }
 
@@ -558,7 +584,12 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
             return temp;
         };
 
-        static char const* const swizzleText[3] = { nullptr, "rgb", "a" };
+        static char const* const swizzleText[4] =
+        {
+            nullptr,
+            "rgb",
+            "a",
+        };
         static char const* const shiftText[8] =
         {
             "",
@@ -682,21 +713,27 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
         // DP3 / MUL
         if (true)
         {
-            auto muldp3 = [&](int cd, int co, int cs, int ca, int cb, int cx, int cy,
-                              int ad, int ao, int as, int aa, int ab, int ax, int ay)
+            auto muldp3 = [&](int cd, int co, int cs, int cba, int ca, int cb, int cx, int cy,
+                              int ad, int ao, int as, int ___, int aa, int ab, int ax, int ay)
             {
                 int args[3] = {};
                 char const* opcode[3] = {};
                 char const* shift[3] = {};
+                char const* swizzle[3] = {};
                 if (co != NV_REG_ZERO)
                 {
                     args[1] = 0b11;
                     opcode[1] = cd ? "dp3" : "mul";
                     shift[1] = shiftText[cs];
+                    swizzle[1] = swizzleText[1];
                     if (cb == NV_REG_ZERO && cy == NV_MAPPING_UNSIGNED_INVERT)
                     {
                         args[1] = cd ? 0b11 : 0b10;
                         opcode[1] = cd ? "dp3" : "mov";
+                    }
+                    if (cd && cba)
+                    {
+                        swizzle[1] = "rgba";
                     }
                 }
                 if (ao != NV_REG_ZERO)
@@ -704,6 +741,7 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
                     args[2] = 0b11;
                     opcode[2] = "mul";
                     shift[2] = shiftText[as];
+                    swizzle[2] = swizzleText[2];
                     if (ab == NV_REG_ZERO && ay == NV_MAPPING_UNSIGNED_INVERT)
                     {
                         args[2] = 0b10;
@@ -728,15 +766,15 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
                     int x = (i != 2) ? cx : ax;
                     int y = (i != 2) ? cy : ay;
                     snprintf(temp, 256, "%-9s ", (std::string(opcode[i]) + shift[i]).c_str());
-                    if (temp[0])        { text += temp;              text += reg(o, swizzleText[i], 0); }
+                    if (temp[0])        { text += temp;              text += reg(o, swizzle[i], 0); }
                     if (args[i] & 0b10) { text += ',';  text += ' '; text += reg(a, swizzleText[i], x); }
                     if (args[i] & 0b01) { text += ',';  text += ' '; text += reg(b, swizzleText[i], y); }
                 }
             };
-            muldp3(colorOCW.ab.dp, colorOCW.ab.reg, colorOCW.shift, colorICW.a.reg, colorICW.b.reg, colorICW.a.mapping, colorICW.b.mapping,
-                   alphaOCW.ab.dp, alphaOCW.ab.reg, alphaOCW.shift, alphaICW.a.reg, alphaICW.b.reg, alphaICW.a.mapping, alphaICW.b.mapping);
-            muldp3(colorOCW.cd.dp, colorOCW.cd.reg, colorOCW.shift, colorICW.c.reg, colorICW.d.reg, colorICW.c.mapping, colorICW.d.mapping,
-                   alphaOCW.cd.dp, alphaOCW.cd.reg, alphaOCW.shift, alphaICW.c.reg, alphaICW.d.reg, alphaICW.c.mapping, alphaICW.d.mapping);
+            muldp3(colorOCW.ab.dp, colorOCW.ab.reg, colorOCW.shift, colorOCW.ab.a, colorICW.a.reg, colorICW.b.reg, colorICW.a.mapping, colorICW.b.mapping,
+                   alphaOCW.ab.dp, alphaOCW.ab.reg, alphaOCW.shift, alphaOCW.ab.a, alphaICW.a.reg, alphaICW.b.reg, alphaICW.a.mapping, alphaICW.b.mapping);
+            muldp3(colorOCW.cd.dp, colorOCW.cd.reg, colorOCW.shift, colorOCW.cd.a, colorICW.c.reg, colorICW.d.reg, colorICW.c.mapping, colorICW.d.mapping,
+                   alphaOCW.cd.dp, alphaOCW.cd.reg, alphaOCW.shift, alphaOCW.cd.a, alphaICW.c.reg, alphaICW.d.reg, alphaICW.c.mapping, alphaICW.d.mapping);
         }
 
         text += '\n';
