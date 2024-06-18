@@ -5,42 +5,19 @@
 // https://github.com/metarutaiga/minamoto
 //==============================================================================
 #include "Editor.h"
+#include <Tools/WindowsHeader.h>
 #include "ShaderAssemblerD3D8.h"
-
-#ifdef __clang__
-#pragma clang diagnostic ignored "-Wextra-tokens"
-#pragma clang diagnostic ignored "-Wmultichar"
-#endif
-
-#ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#else
-typedef float FLOAT;
-typedef uint8_t BYTE;
-typedef uint16_t WORD;
-typedef uint32_t DWORD;
-typedef int16_t SHORT;
-typedef int32_t INT;
-typedef int32_t LONG;
-typedef uint16_t USHORT;
-typedef uint32_t UINT;
-typedef uint64_t UINT64;
-typedef int32_t HRESULT;
-typedef uint64_t LARGE_INTEGER;
-typedef void* HANDLE;
-typedef void* HWND;
-typedef struct { char x[16]; } GUID;
-#define TRUE true
-#define FALSE false
-#define DEFINE_GUID(...)
-#endif
 
 #include <dxsdk/d3d8types.h>
 #include <dxsdk/d3d8caps.h>
 #if (DIRECT3D_VERSION >= 0x0900)
 #define D3DSIO_TEXM3x3DIFF  (D3DSIO_TEXM3x3TEX + 1)
 typedef int D3DSHADER_PARAM_DSTMOD_TYPE;
+#endif
+
+#ifdef __clang__
+#pragma clang diagnostic ignored "-Wextra-tokens"
+#pragma clang diagnostic ignored "-Wmultichar"
 #endif
 
 #include <shval/errlog.hpp>

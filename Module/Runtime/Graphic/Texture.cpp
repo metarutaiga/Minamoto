@@ -11,6 +11,9 @@
 #include <xxGraphicPlus/xxTexture.h>
 #include "Texture.h"
 
+#include <Tools/WindowsHeader.h>
+#include <dxsdk/ddraw.h>
+
 #define STBI_ONLY_PNG
 #define STBI_NO_FAILURE_STRINGS
 #define STBI_NO_THREAD_LOCALS
@@ -112,20 +115,6 @@ void Texture::Reader(xxTexturePtr const& texture)
     }
 }
 //------------------------------------------------------------------------------
-#if defined(xxANDROID) || defined(xxMACOS) || defined(xxIOS)
-#define BYTE uint8_t
-#define WORD uint16_t
-#define DWORD uint32_t
-#define LONG uint32_t
-#define GUID struct { uint32_t a; uint16_t b; uint16_t c; uint8_t d[8]; }
-#define HWND void*
-#define LPRECT void*
-#define LPVOID void*
-#define FAR
-#define PASCAL
-#define _Return_type_success_(...)
-#endif
-#include <dxsdk/ddraw.h>
 struct DDS_HEADER
 {
     uint32_t        dwMagic;

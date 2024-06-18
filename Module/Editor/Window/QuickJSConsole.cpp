@@ -143,7 +143,7 @@ extern "C" ssize_t quickjs_read(int fd, void* ptr, size_t nbytes)
     return read(fd, ptr, nbytes);
 }
 //------------------------------------------------------------------------------
-extern "C" ssize_t quickjs_write(int fd, void const* ptr, size_t nbytes) __attribute__((optnone))
+extern "C" ssize_t quickjs_write(int fd, void const* ptr, size_t nbytes)
 {
     if (fd == STDOUT_FILENO || fd == STDERR_FILENO)
     {
