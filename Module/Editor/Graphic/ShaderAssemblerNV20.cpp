@@ -216,10 +216,10 @@ static void dumpRegisterCombiners(uint32_t* cw, uint32_t stage)
         DPF_PLAIN("%18s|", colorICW.c.alpha ? "ALPHA" : "RGB");
         DPF_PLAIN("%18s|", colorICW.d.alpha ? "ALPHA" : "RGB");
         DPF_PLAIN("%1zd|", i);
-        DPF_PLAIN("%18s|", alphaICW.a.alpha ? "ALPHA" : "RGB");
-        DPF_PLAIN("%18s|", alphaICW.b.alpha ? "ALPHA" : "RGB");
-        DPF_PLAIN("%18s|", alphaICW.c.alpha ? "ALPHA" : "RGB");
-        DPF("%18s|", alphaICW.d.alpha ? "ALPHA" : "RGB");
+        DPF_PLAIN("%18s|", alphaICW.a.alpha ? "ALPHA" : "BLUE");
+        DPF_PLAIN("%18s|", alphaICW.b.alpha ? "ALPHA" : "BLUE");
+        DPF_PLAIN("%18s|", alphaICW.c.alpha ? "ALPHA" : "BLUE");
+        DPF("%18s|", alphaICW.d.alpha ? "ALPHA" : "BLUE");
 
         DPF_PLAIN("%18s|", reg[colorICW.a.reg]);
         DPF_PLAIN("%18s|", reg[colorICW.b.reg]);
@@ -584,10 +584,16 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
             return temp;
         };
 
-        static char const* const swizzleText[4] =
+        static char const* const colorSwizzleText[4] =
         {
             nullptr,
             "rgb",
+            "a",
+        };
+        static char const* const alphaSwizzleText[4] =
+        {
+            nullptr,
+            "b",
             "a",
         };
         static char const* const shiftText[8] =
@@ -701,37 +707,46 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
                 int y = (i != 2) ? colorICW.b.mapping : alphaICW.b.mapping;
                 int z = (i != 2) ? colorICW.c.mapping : alphaICW.c.mapping;
                 int w = (i != 2) ? colorICW.d.mapping : alphaICW.d.mapping;
+                char const* swizzle = (i != 2) ? colorSwizzleText[i] : alphaSwizzleText[i];
+                char const* swizzleX = (i != 2) ? colorSwizzleText[colorICW.a.alpha ? 2 : 1] : alphaSwizzleText[alphaICW.a.alpha ? 2 : 1];
+                char const* swizzleY = (i != 2) ? colorSwizzleText[colorICW.b.alpha ? 2 : 1] : alphaSwizzleText[alphaICW.b.alpha ? 2 : 1];
+                char const* swizzleZ = (i != 2) ? colorSwizzleText[colorICW.c.alpha ? 2 : 1] : alphaSwizzleText[alphaICW.c.alpha ? 2 : 1];
+                char const* swizzleW = (i != 2) ? colorSwizzleText[colorICW.d.alpha ? 2 : 1] : alphaSwizzleText[alphaICW.d.alpha ? 2 : 1];
                 snprintf(temp, 256, "%-9s ", (std::string(opcode[i]) + shiftText[s]).c_str());
-                if (temp[0])          { text += temp;              text += reg(o, swizzleText[i], 0); }
-                if (args[i] & 0b1000) { text += ',';  text += ' '; text += reg(a, swizzleText[i], x); }
-                if (args[i] & 0b0100) { text += ',';  text += ' '; text += reg(b, swizzleText[i], y); }
-                if (args[i] & 0b0010) { text += ',';  text += ' '; text += reg(c, swizzleText[i], z); }
-                if (args[i] & 0b0001) { text += ',';  text += ' '; text += reg(d, swizzleText[i], w); }
+                if (temp[0])          { text += temp;              text += reg(o, swizzle, 0); }
+                if (args[i] & 0b1000) { text += ',';  text += ' '; text += reg(a, swizzleX, x); }
+                if (args[i] & 0b0100) { text += ',';  text += ' '; text += reg(b, swizzleY, y); }
+                if (args[i] & 0b0010) { text += ',';  text += ' '; text += reg(c, swizzleZ, z); }
+                if (args[i] & 0b0001) { text += ',';  text += ' '; text += reg(d, swizzleW, w); }
             }
         }
 
         // DP3 / MUL
         if (true)
         {
-            auto muldp3 = [&](int cd, int co, int cs, int cba, int ca, int cb, int cx, int cy,
-                              int ad, int ao, int as, int ___, int aa, int ab, int ax, int ay)
+            auto muldp3 = [&](int cd, int co, int cs, int c_, int ca, int cb, int cx, int cy, int caa, int cba,
+                              int ad, int ao, int as, int __, int aa, int ab, int ax, int ay, int aaa, int aba)
             {
                 int args[3] = {};
                 char const* opcode[3] = {};
                 char const* shift[3] = {};
                 char const* swizzle[3] = {};
+                char const* swizzleX[3] = {};
+                char const* swizzleY[3] = {};
                 if (co != NV_REG_ZERO)
                 {
                     args[1] = 0b11;
                     opcode[1] = cd ? "dp3" : "mul";
                     shift[1] = shiftText[cs];
-                    swizzle[1] = swizzleText[1];
+                    swizzle[1] = colorSwizzleText[1];
+                    swizzleX[1] = colorSwizzleText[caa ? 2 : 1];
+                    swizzleY[1] = colorSwizzleText[cba ? 2 : 1];
                     if (cb == NV_REG_ZERO && cy == NV_MAPPING_UNSIGNED_INVERT)
                     {
                         args[1] = cd ? 0b11 : 0b10;
                         opcode[1] = cd ? "dp3" : "mov";
                     }
-                    if (cd && cba)
+                    if (cd && c_)
                     {
                         swizzle[1] = "rgba";
                     }
@@ -741,14 +756,16 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
                     args[2] = 0b11;
                     opcode[2] = "mul";
                     shift[2] = shiftText[as];
-                    swizzle[2] = swizzleText[2];
+                    swizzle[2] = alphaSwizzleText[2];
+                    swizzleX[2] = alphaSwizzleText[aaa ? 2 : 1];
+                    swizzleY[2] = alphaSwizzleText[aba ? 2 : 1];
                     if (ab == NV_REG_ZERO && ay == NV_MAPPING_UNSIGNED_INVERT)
                     {
                         args[2] = 0b10;
                         opcode[2] = "mov";
                     }
                 }
-                if (cd == ad && co == ao && cs == as)
+                if (cd == ad && co == ao && cs == as && ca == aa && cb == ab && cx == ax && cy == ay)
                 {
                     args[0] = args[1];
                     opcode[0] = opcode[1];
@@ -767,14 +784,18 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
                     int y = (i != 2) ? cy : ay;
                     snprintf(temp, 256, "%-9s ", (std::string(opcode[i]) + shift[i]).c_str());
                     if (temp[0])        { text += temp;              text += reg(o, swizzle[i], 0); }
-                    if (args[i] & 0b10) { text += ',';  text += ' '; text += reg(a, swizzleText[i], x); }
-                    if (args[i] & 0b01) { text += ',';  text += ' '; text += reg(b, swizzleText[i], y); }
+                    if (args[i] & 0b10) { text += ',';  text += ' '; text += reg(a, swizzleX[i], x); }
+                    if (args[i] & 0b01) { text += ',';  text += ' '; text += reg(b, swizzleY[i], y); }
                 }
             };
-            muldp3(colorOCW.ab.dp, colorOCW.ab.reg, colorOCW.shift, colorOCW.ab.a, colorICW.a.reg, colorICW.b.reg, colorICW.a.mapping, colorICW.b.mapping,
-                   alphaOCW.ab.dp, alphaOCW.ab.reg, alphaOCW.shift, alphaOCW.ab.a, alphaICW.a.reg, alphaICW.b.reg, alphaICW.a.mapping, alphaICW.b.mapping);
-            muldp3(colorOCW.cd.dp, colorOCW.cd.reg, colorOCW.shift, colorOCW.cd.a, colorICW.c.reg, colorICW.d.reg, colorICW.c.mapping, colorICW.d.mapping,
-                   alphaOCW.cd.dp, alphaOCW.cd.reg, alphaOCW.shift, alphaOCW.cd.a, alphaICW.c.reg, alphaICW.d.reg, alphaICW.c.mapping, alphaICW.d.mapping);
+            muldp3(colorOCW.ab.dp, colorOCW.ab.reg, colorOCW.shift, colorOCW.ab.a,
+                   colorICW.a.reg, colorICW.b.reg, colorICW.a.mapping, colorICW.b.mapping, colorICW.a.alpha, colorICW.b.alpha,
+                   alphaOCW.ab.dp, alphaOCW.ab.reg, alphaOCW.shift, alphaOCW.ab.a,
+                   alphaICW.a.reg, alphaICW.b.reg, alphaICW.a.mapping, alphaICW.b.mapping, alphaICW.a.alpha, alphaICW.b.alpha);
+            muldp3(colorOCW.cd.dp, colorOCW.cd.reg, colorOCW.shift, colorOCW.cd.a,
+                   colorICW.c.reg, colorICW.d.reg, colorICW.c.mapping, colorICW.d.mapping, colorICW.c.alpha, colorICW.d.alpha,
+                   alphaOCW.cd.dp, alphaOCW.cd.reg, alphaOCW.shift, alphaOCW.cd.a,
+                   alphaICW.c.reg, alphaICW.d.reg, alphaICW.c.mapping, alphaICW.d.mapping, alphaICW.c.alpha, alphaICW.d.alpha);
         }
 
         text += '\n';
