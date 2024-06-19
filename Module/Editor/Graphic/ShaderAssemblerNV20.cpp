@@ -619,66 +619,59 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
         // MMA
         if (true)
         {
-            auto mma = [](char const*& opcode, int& args, int o, int m,
-                          int a, int b, int c, int d,
-                          int x, int y, int z, int w)
+            auto mma = [](RegisterCombinerOutput output, RegisterCombinerInput input, int& args) -> char const*
             {
-                if (o == NV_REG_ZERO)
-                    return;
+                if (output.abcd.reg == NV_REG_ZERO)
+                    return nullptr;
 
                 // Signed type
-                if (x == NV_MAPPING_UNSIGNED_IDENTITY)
-                    x = NV_MAPPING_SIGNED_IDENTITY;
-                if (y == NV_MAPPING_UNSIGNED_IDENTITY)
-                    y = NV_MAPPING_SIGNED_IDENTITY;
-                if (z == NV_MAPPING_UNSIGNED_IDENTITY)
-                    z = NV_MAPPING_SIGNED_IDENTITY;
-                if (w == NV_MAPPING_UNSIGNED_IDENTITY)
-                    w = NV_MAPPING_SIGNED_IDENTITY;
+                if (input.a.reg == NV_MAPPING_UNSIGNED_IDENTITY)
+                    input.a.reg = NV_MAPPING_SIGNED_IDENTITY;
+                if (input.b.reg == NV_MAPPING_UNSIGNED_IDENTITY)
+                    input.b.reg = NV_MAPPING_SIGNED_IDENTITY;
+                if (input.c.reg == NV_MAPPING_UNSIGNED_IDENTITY)
+                    input.c.reg = NV_MAPPING_SIGNED_IDENTITY;
+                if (input.d.reg == NV_MAPPING_UNSIGNED_IDENTITY)
+                    input.d.reg = NV_MAPPING_SIGNED_IDENTITY;
 
-                // Specific instruction
-                if (b == NV_REG_ZERO && y == NV_MAPPING_UNSIGNED_INVERT && d == NV_REG_ZERO && w == NV_MAPPING_UNSIGNED_INVERT)
+                // Instruction
+                if (input.b.reg == NV_REG_ZERO && input.b.mapping == NV_MAPPING_UNSIGNED_INVERT &&
+                    input.d.reg == NV_REG_ZERO && input.d.mapping == NV_MAPPING_UNSIGNED_INVERT)
                 {
-                    opcode = m ? "crn" : "add";
                     args = 0b1010;
+                    return output.abcd.mux ? "crn" : "add";
                 }
-                else if (m)
+                if (output.abcd.mux)
                 {
-                    opcode = "mux";
                     args = 0b1111;
+                    return "mux";
                 }
-                else if (b == NV_REG_ZERO && y == NV_MAPPING_UNSIGNED_INVERT && d == NV_REG_ZERO && w == NV_MAPPING_EXPAND_NORMAL)
+                if (input.b.reg == NV_REG_ZERO && input.b.mapping == NV_MAPPING_UNSIGNED_INVERT &&
+                    input.d.reg == NV_REG_ZERO && input.d.mapping == NV_MAPPING_EXPAND_NORMAL)
                 {
-                    opcode = "sub";
                     args = 0b1010;
+                    return "sub";
                 }
-                else if (d == NV_REG_ZERO && w == NV_MAPPING_UNSIGNED_INVERT)
+                if (input.d.reg == NV_REG_ZERO && input.d.mapping == NV_MAPPING_UNSIGNED_INVERT)
                 {
-                    opcode = "mad";
                     args = 0b1110;
+                    return "mad";
                 }
-                else if (a == c && x == NV_MAPPING_SIGNED_IDENTITY && y == NV_MAPPING_SIGNED_IDENTITY && z == NV_MAPPING_UNSIGNED_INVERT && w == NV_MAPPING_SIGNED_IDENTITY)
+                if (input.a.reg == input.c.reg &&
+                    input.a.mapping == NV_MAPPING_SIGNED_IDENTITY && input.b.mapping == NV_MAPPING_SIGNED_IDENTITY &&
+                    input.c.mapping == NV_MAPPING_UNSIGNED_INVERT && input.d.mapping == NV_MAPPING_SIGNED_IDENTITY)
                 {
-                    opcode = "lrp";
                     args = 0b1101;
+                    return "lrp";
                 }
-                else
-                {
-                    opcode = "mma";
-                    args = 0b1111;
-                }
+                args = 0b1111;
+                return "mma";
             };
 
             int args[3] = {};
             char const* opcode[3] = {};
-            mma(opcode[1], args[1],
-                colorOCW.abcd.reg, colorOCW.abcd.mux,
-                colorICW.a.reg, colorICW.b.reg, colorICW.c.reg, colorICW.d.reg,
-                colorICW.a.mapping, colorICW.b.mapping, colorICW.c.mapping, colorICW.d.mapping);
-            mma(opcode[2], args[2],
-                alphaOCW.abcd.reg, alphaOCW.abcd.mux,
-                alphaICW.a.reg, alphaICW.b.reg, alphaICW.c.reg, alphaICW.d.reg,
-                alphaICW.a.mapping, alphaICW.b.mapping, alphaICW.c.mapping, alphaICW.d.mapping);
+            opcode[1] = mma(colorOCW, colorICW, args[1]);
+            opcode[2] = mma(alphaOCW, alphaICW, args[2]);
             if (colorOCW.shift == alphaOCW.shift &&
                 colorOCW.abcd.reg == alphaOCW.abcd.reg &&
                 colorOCW.abcd.mux == alphaOCW.abcd.mux &&
@@ -724,8 +717,8 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
         // DP3 / MUL
         if (true)
         {
-            auto muldp3 = [&](int cd, int co, int cs, int c_, int ca, int cb, int cx, int cy, int caa, int cba,
-                              int ad, int ao, int as, int __, int aa, int ab, int ax, int ay, int aaa, int aba)
+            auto muldp3 = [&](int cd, int co, int cs, int c_, RegisterCombinerInput::Input ca, RegisterCombinerInput::Input cb,
+                              int ad, int ao, int as, int __, RegisterCombinerInput::Input aa, RegisterCombinerInput::Input ab)
             {
                 int args[3] = {};
                 char const* opcode[3] = {};
@@ -739,9 +732,9 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
                     opcode[1] = cd ? "dp3" : "mul";
                     shift[1] = shiftText[cs];
                     swizzle[1] = colorSwizzleText[1];
-                    swizzleX[1] = colorSwizzleText[caa ? 2 : 1];
-                    swizzleY[1] = colorSwizzleText[cba ? 2 : 1];
-                    if (cb == NV_REG_ZERO && cy == NV_MAPPING_UNSIGNED_INVERT)
+                    swizzleX[1] = colorSwizzleText[ca.alpha ? 2 : 1];
+                    swizzleY[1] = colorSwizzleText[cb.alpha ? 2 : 1];
+                    if (cb.reg == NV_REG_ZERO && cb.mapping == NV_MAPPING_UNSIGNED_INVERT)
                     {
                         args[1] = cd ? 0b11 : 0b10;
                         opcode[1] = cd ? "dp3" : "mov";
@@ -757,15 +750,17 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
                     opcode[2] = "mul";
                     shift[2] = shiftText[as];
                     swizzle[2] = alphaSwizzleText[2];
-                    swizzleX[2] = alphaSwizzleText[aaa ? 2 : 1];
-                    swizzleY[2] = alphaSwizzleText[aba ? 2 : 1];
-                    if (ab == NV_REG_ZERO && ay == NV_MAPPING_UNSIGNED_INVERT)
+                    swizzleX[2] = alphaSwizzleText[aa.alpha ? 2 : 1];
+                    swizzleY[2] = alphaSwizzleText[ab.alpha ? 2 : 1];
+                    if (ab.reg == NV_REG_ZERO && ab.mapping == NV_MAPPING_UNSIGNED_INVERT)
                     {
                         args[2] = 0b10;
                         opcode[2] = "mov";
                     }
                 }
-                if (cd == ad && co == ao && cs == as && ca == aa && cb == ab && cx == ax && cy == ay)
+                if (cd == ad && co == ao && cs == as &&
+                    ca.reg == aa.reg && cb.reg == ab.reg &&
+                    ca.mapping == aa.mapping && cb.mapping == ab.mapping)
                 {
                     args[0] = args[1];
                     opcode[0] = opcode[1];
@@ -778,24 +773,20 @@ std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& 
                         continue;
                     next();
                     int o = (i != 2) ? co : ao;
-                    int a = (i != 2) ? ca : aa;
-                    int b = (i != 2) ? cb : ab;
-                    int x = (i != 2) ? cx : ax;
-                    int y = (i != 2) ? cy : ay;
+                    int a = (i != 2) ? ca.reg : aa.reg;
+                    int b = (i != 2) ? cb.reg : ab.reg;
+                    int x = (i != 2) ? ca.mapping : aa.mapping;
+                    int y = (i != 2) ? cb.mapping : ab.mapping;
                     snprintf(temp, 256, "%-9s ", (std::string(opcode[i]) + shift[i]).c_str());
                     if (temp[0])        { text += temp;              text += reg(o, swizzle[i], 0); }
                     if (args[i] & 0b10) { text += ',';  text += ' '; text += reg(a, swizzleX[i], x); }
                     if (args[i] & 0b01) { text += ',';  text += ' '; text += reg(b, swizzleY[i], y); }
                 }
             };
-            muldp3(colorOCW.ab.dp, colorOCW.ab.reg, colorOCW.shift, colorOCW.ab.a,
-                   colorICW.a.reg, colorICW.b.reg, colorICW.a.mapping, colorICW.b.mapping, colorICW.a.alpha, colorICW.b.alpha,
-                   alphaOCW.ab.dp, alphaOCW.ab.reg, alphaOCW.shift, alphaOCW.ab.a,
-                   alphaICW.a.reg, alphaICW.b.reg, alphaICW.a.mapping, alphaICW.b.mapping, alphaICW.a.alpha, alphaICW.b.alpha);
-            muldp3(colorOCW.cd.dp, colorOCW.cd.reg, colorOCW.shift, colorOCW.cd.a,
-                   colorICW.c.reg, colorICW.d.reg, colorICW.c.mapping, colorICW.d.mapping, colorICW.c.alpha, colorICW.d.alpha,
-                   alphaOCW.cd.dp, alphaOCW.cd.reg, alphaOCW.shift, alphaOCW.cd.a,
-                   alphaICW.c.reg, alphaICW.d.reg, alphaICW.c.mapping, alphaICW.d.mapping, alphaICW.c.alpha, alphaICW.d.alpha);
+            muldp3(colorOCW.ab.dp, colorOCW.ab.reg, colorOCW.shift, colorOCW.ab.a, colorICW.a, colorICW.b,
+                   alphaOCW.ab.dp, alphaOCW.ab.reg, alphaOCW.shift,             0, alphaICW.a, alphaICW.b);
+            muldp3(colorOCW.cd.dp, colorOCW.cd.reg, colorOCW.shift, colorOCW.cd.a, colorICW.c, colorICW.d,
+                   alphaOCW.cd.dp, alphaOCW.cd.reg, alphaOCW.shift,             0, alphaICW.c, alphaICW.d);
         }
 
         text += '\n';
