@@ -217,6 +217,17 @@
 		D60790FC2BF501DC008810BD /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Console.h; path = ../Window/Component/Console.h; sourceTree = "<group>"; };
 		D60791072BF61829008810BD /* Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setup.h; path = ../Window/Setup.h; sourceTree = "<group>"; };
 		D60791082BF61829008810BD /* Setup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Setup.cpp; path = ../Window/Setup.cpp; sourceTree = "<group>"; };
+		D60B62C32C26A61500D6ED53 /* nvprecomp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nvprecomp.h; path = ../../../SDK/kelvin/nvprecomp.h; sourceTree = "<group>"; };
+		D60B62C42C26A61500D6ED53 /* nvtypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nvtypes.h; path = ../../../SDK/kelvin/nvtypes.h; sourceTree = "<group>"; };
+		D60B62C52C26A61500D6ED53 /* vtxpgmcomp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vtxpgmcomp.h; path = ../../../SDK/kelvin/vtxpgmcomp.h; sourceTree = "<group>"; };
+		D60B62C62C26A61500D6ED53 /* nvKelvinProgram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nvKelvinProgram.h; path = ../../../SDK/kelvin/nvKelvinProgram.h; sourceTree = "<group>"; };
+		D60B62C72C26A61500D6ED53 /* nvKelvinProgram.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = nvKelvinProgram.cpp; path = ../../../SDK/kelvin/nvKelvinProgram.cpp; sourceTree = "<group>"; };
+		D60B62C82C26A61500D6ED53 /* nvPShad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nvPShad.h; path = ../../../SDK/kelvin/nvPShad.h; sourceTree = "<group>"; };
+		D60B62C92C26A61500D6ED53 /* vpoptimize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = vpoptimize.c; path = ../../../SDK/kelvin/vpoptimize.c; sourceTree = "<group>"; };
+		D60B62CA2C26A61500D6ED53 /* vpcompilekelvin.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = vpcompilekelvin.c; path = ../../../SDK/kelvin/vpcompilekelvin.c; sourceTree = "<group>"; };
+		D60B62CB2C26A61500D6ED53 /* vtxpgmconsts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vtxpgmconsts.h; path = ../../../SDK/kelvin/vtxpgmconsts.h; sourceTree = "<group>"; };
+		D60B62CC2C26A61500D6ED53 /* nv32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nv32.h; path = ../../../SDK/kelvin/nv32.h; sourceTree = "<group>"; };
+		D60B62CD2C26A61500D6ED53 /* nvPShad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = nvPShad.cpp; path = ../../../SDK/kelvin/nvPShad.cpp; sourceTree = "<group>"; };
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D152BB17FE200E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
@@ -425,6 +436,24 @@
 			name = Component;
 			sourceTree = "<group>";
 		};
+		D60B62C22C26A60100D6ED53 /* kelvin */ = {
+			isa = PBXGroup;
+			children = (
+				D60B62CC2C26A61500D6ED53 /* nv32.h */,
+				D60B62C72C26A61500D6ED53 /* nvKelvinProgram.cpp */,
+				D60B62C62C26A61500D6ED53 /* nvKelvinProgram.h */,
+				D60B62C32C26A61500D6ED53 /* nvprecomp.h */,
+				D60B62CD2C26A61500D6ED53 /* nvPShad.cpp */,
+				D60B62C82C26A61500D6ED53 /* nvPShad.h */,
+				D60B62C42C26A61500D6ED53 /* nvtypes.h */,
+				D60B62CA2C26A61500D6ED53 /* vpcompilekelvin.c */,
+				D60B62C92C26A61500D6ED53 /* vpoptimize.c */,
+				D60B62C52C26A61500D6ED53 /* vtxpgmcomp.h */,
+				D60B62CB2C26A61500D6ED53 /* vtxpgmconsts.h */,
+			);
+			name = kelvin;
+			sourceTree = "<group>";
+		};
 		D633706C2B3729E8001D4057 /* Import */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,6 +512,7 @@
 		D6386A5A2BDAAB170008C9D1 /* Graphic */ = {
 			isa = PBXGroup;
 			children = (
+				D60B62C22C26A60100D6ED53 /* kelvin */,
 				D6B4C7F82C1BE121006123EF /* shval */,
 				D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */,
 				D6B4C8512C1C4056006123EF /* ShaderAssembler.h */,
