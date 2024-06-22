@@ -31,3 +31,6 @@
 [submodule "SDK/shval"]
 	path = SDK/shval
 	url = https://github.com/metarutaiga/shval
+[submodule "SDK/kelvin"]
+	path = SDK/kelvin
+	url = https://github.com/metarutaiga/kelvin
