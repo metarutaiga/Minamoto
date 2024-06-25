@@ -7,6 +7,7 @@
 #include "Editor.h"
 #include "ShaderAssemblerD3D8.h"
 #include "ShaderAssemblerNV20.h"
+#include "ShaderAssemblerR200.h"
 #include "ShaderAssembler.h"
 
 static std::string input;
@@ -86,6 +87,8 @@ bool ShaderAssembler::Update(const UpdateData& updateData, bool& show)
         compile |= ImGui::RadioButton("D3D8", &mode, "D3D8"_cc);
         ImGui::SameLine();
         compile |= ImGui::RadioButton("NV20", &mode, "NV20"_cc);
+        ImGui::SameLine();
+        compile |= ImGui::RadioButton("R200", &mode, "R200"_cc);
         ImGui::InputTextMultiline("OUTPUT", output, ImVec2((avail.x - avail.x / 3.0f) - labelWidth, avail.y / 2.0f), ImGuiInputTextFlags_ReadOnly);
 
         ImGui::Columns(1);
@@ -113,6 +116,20 @@ bool ShaderAssembler::Update(const UpdateData& updateData, bool& show)
                         break;
                     case 0xFFFF0000:
                         output = ShaderAssemblerNV20::DisassembleKelvin(ShaderAssemblerNV20::CompileKelvin(shader, message));
+                        break;
+                    }
+                }
+                break;
+            }
+            case "R200"_cc:
+            {
+                auto shader = ShaderAssemblerD3D8::Assemble(input, message);
+                if (shader.empty() == false)
+                {
+                    switch (shader.front() & 0xFFFF0000)
+                    {
+                    case 0xFFFF0000:
+                        output = ShaderAssemblerR200::DisassembleChaplin(ShaderAssemblerR200::CompileChaplin(shader, message));
                         break;
                     }
                 }

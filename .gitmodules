@@ -34,3 +34,6 @@
 [submodule "SDK/kelvin"]
 	path = SDK/kelvin
 	url = https://github.com/metarutaiga/kelvin
+[submodule "SDK/chaplin"]
+	path = SDK/chaplin
+	url = https://github.com/metarutaiga/chaplin

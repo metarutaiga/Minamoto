@@ -132,6 +132,10 @@
 		D6B4C8602C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */; };
 		D6B4C8612C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */; };
 		D6B4C8622C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */; };
+		D6C74DD82C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */; };
+		D6C74DD92C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */; };
+		D6C74DDA2C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */; };
+		D6C74DDB2C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */; };
 		D6CB0B272BB95CE5009DCD26 /* Runtime.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B262BB95CE5009DCD26 /* Runtime.dylib */; };
 		D6CB0B292BB95CEF009DCD26 /* Runtime.dll in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B282BB95CEF009DCD26 /* Runtime.dll */; };
 		D6CB0B2B2BB95D00009DCD26 /* Runtime.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */; };
@@ -290,6 +294,20 @@
 		D6B4C85E2C1DBBE1006123EF /* ShaderAssemblerNV20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssemblerNV20.h; path = ../Graphic/ShaderAssemblerNV20.h; sourceTree = "<group>"; };
 		D6BA702829E2701C0056FE5F /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA702A29E270210056FE5F /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6C74DD02C2987DD0078F7D1 /* pixelshader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pixelshader.h; path = ../../../SDK/chaplin/pixelshader.h; sourceTree = "<group>"; };
+		D6C74DD62C298AE40078F7D1 /* ShaderAssemblerR200.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssemblerR200.h; path = ../Graphic/ShaderAssemblerR200.h; sourceTree = "<group>"; };
+		D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderAssemblerR200.cpp; path = ../Graphic/ShaderAssemblerR200.cpp; sourceTree = "<group>"; };
+		D6C74DDC2C298B110078F7D1 /* r200pixelshader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = r200pixelshader.c; path = ../../../SDK/chaplin/r200pixelshader.c; sourceTree = "<group>"; };
+		D6C74DDD2C29A5110078F7D1 /* chaplin_registers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_registers.h; path = ../../../SDK/chaplin/chaplin_registers.h; sourceTree = "<group>"; };
+		D6C74DDE2C29A5110078F7D1 /* chaplin_bf_dump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_bf_dump.h; path = ../../../SDK/chaplin/chaplin_bf_dump.h; sourceTree = "<group>"; };
+		D6C74DDF2C29A5110078F7D1 /* chaplin_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_enum.h; path = ../../../SDK/chaplin/chaplin_enum.h; sourceTree = "<group>"; };
+		D6C74DE02C29A5110078F7D1 /* chaplin_shift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_shift.h; path = ../../../SDK/chaplin/chaplin_shift.h; sourceTree = "<group>"; };
+		D6C74DE12C29A5110078F7D1 /* atiddhsl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = atiddhsl.h; path = ../../../SDK/chaplin/atiddhsl.h; sourceTree = "<group>"; };
+		D6C74DE22C29A5110078F7D1 /* chaplin_bf_func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_bf_func.h; path = ../../../SDK/chaplin/chaplin_bf_func.h; sourceTree = "<group>"; };
+		D6C74DE32C29A5110078F7D1 /* atid3ddefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = atid3ddefs.h; path = ../../../SDK/chaplin/atid3ddefs.h; sourceTree = "<group>"; };
+		D6C74DE42C29A5110078F7D1 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = features.h; path = ../../../SDK/chaplin/features.h; sourceTree = "<group>"; };
+		D6C74DE52C29A5110078F7D1 /* d3d_hw_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = d3d_hw_enum.h; path = ../../../SDK/chaplin/d3d_hw_enum.h; sourceTree = "<group>"; };
+		D6C74DE62C2B18FF0078F7D1 /* Editor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Editor.h; path = ../Editor.h; sourceTree = "<group>"; };
 		D6CB0B262BB95CE5009DCD26 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B282BB95CEF009DCD26 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -512,12 +530,15 @@
 		D6386A5A2BDAAB170008C9D1 /* Graphic */ = {
 			isa = PBXGroup;
 			children = (
+				D6C74DCF2C2987C80078F7D1 /* chaplin */,
 				D60B62C22C26A60100D6ED53 /* kelvin */,
 				D6B4C7F82C1BE121006123EF /* shval */,
 				D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */,
 				D6B4C8512C1C4056006123EF /* ShaderAssembler.h */,
 				D6B4C8582C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp */,
 				D6B4C8572C1C9BB9006123EF /* ShaderAssemblerD3D8.h */,
+				D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */,
+				D6C74DD62C298AE40078F7D1 /* ShaderAssemblerR200.h */,
 				D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */,
 				D6B4C85E2C1DBBE1006123EF /* ShaderAssemblerNV20.h */,
 				D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp */,
@@ -535,6 +556,7 @@
 				D6012A1C2B1DE28200C3875A /* Utility */,
 				D63370732B382141001D4057 /* Window */,
 				300264C4242690D0004559E0 /* Editor.cpp */,
+				D6C74DE62C2B18FF0078F7D1 /* Editor.h */,
 				D67F2EF82BCC279600B4AA86 /* ImGuiHelper.h */,
 				D644A042231ED82900B75B77 /* Products */,
 				300264BD24266097004559E0 /* Frameworks */,
@@ -580,6 +602,24 @@
 				D6B4C82C2C1BFE03006123EF /* vshdrval.hpp */,
 			);
 			name = shval;
+			sourceTree = "<group>";
+		};
+		D6C74DCF2C2987C80078F7D1 /* chaplin */ = {
+			isa = PBXGroup;
+			children = (
+				D6C74DE32C29A5110078F7D1 /* atid3ddefs.h */,
+				D6C74DE12C29A5110078F7D1 /* atiddhsl.h */,
+				D6C74DDE2C29A5110078F7D1 /* chaplin_bf_dump.h */,
+				D6C74DE22C29A5110078F7D1 /* chaplin_bf_func.h */,
+				D6C74DDF2C29A5110078F7D1 /* chaplin_enum.h */,
+				D6C74DDD2C29A5110078F7D1 /* chaplin_registers.h */,
+				D6C74DE02C29A5110078F7D1 /* chaplin_shift.h */,
+				D6C74DE52C29A5110078F7D1 /* d3d_hw_enum.h */,
+				D6C74DE42C29A5110078F7D1 /* features.h */,
+				D6C74DD02C2987DD0078F7D1 /* pixelshader.h */,
+				D6C74DDC2C298B110078F7D1 /* r200pixelshader.c */,
+			);
+			name = chaplin;
 			sourceTree = "<group>";
 		};
 		D6E6B55F2C0234EE003F6D85 /* quickjs */ = {
@@ -763,6 +803,7 @@
 				D60791092BF61829008810BD /* Setup.cpp in Sources */,
 				D666E3CF2BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
+				D6C74DD82C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
 				D6B4C8392C1BFE03006123EF /* vshdrval.cpp in Sources */,
 				D60790F72BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6D26FA42BDEAF5400D57772 /* Scene.cpp in Sources */,
@@ -793,6 +834,7 @@
 				D6B4C8342C1BFE03006123EF /* pshdrval.cpp in Sources */,
 				D6B4C8382C1BFE03006123EF /* errlog.cpp in Sources */,
 				D607910C2BF61829008810BD /* Setup.cpp in Sources */,
+				D6C74DDB2C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
 				D6B4C85C2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D6D26FA72BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
@@ -837,6 +879,7 @@
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6E6B5692C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
+				D6C74DD92C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
 				D60790BC2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D02BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D6E6B5592C01CB70003F6D85 /* Document.cpp in Sources */,
@@ -878,6 +921,7 @@
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6E6B56A2C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
+				D6C74DDA2C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
 				D60790BD2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D666E3D12BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D6E6B55A2C01CB70003F6D85 /* Document.cpp in Sources */,
