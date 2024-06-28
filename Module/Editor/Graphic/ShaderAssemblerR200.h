@@ -8,7 +8,6 @@
 
 struct ShaderAssemblerR200
 {
-    static void DebugPrintf(bool breakline, char const* format, ...);
     static std::vector<uint32_t> CompileChaplin(std::vector<uint32_t> const& shader, std::string& message);
     static std::string DisassembleChaplin(std::vector<uint32_t> const& code);
 };

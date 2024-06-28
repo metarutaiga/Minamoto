@@ -142,6 +142,6 @@ bool ShaderAssembler::Update(const UpdateData& updateData, bool& show)
     }
     ImGui::End();
 
-    return true;
+    return false;
 }
 //==============================================================================

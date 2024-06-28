@@ -294,20 +294,28 @@
 		D6B4C85E2C1DBBE1006123EF /* ShaderAssemblerNV20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssemblerNV20.h; path = ../Graphic/ShaderAssemblerNV20.h; sourceTree = "<group>"; };
 		D6BA702829E2701C0056FE5F /* imgui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BA702A29E270210056FE5F /* imgui.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = imgui.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6C74DD02C2987DD0078F7D1 /* pixelshader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pixelshader.h; path = ../../../SDK/chaplin/pixelshader.h; sourceTree = "<group>"; };
 		D6C74DD62C298AE40078F7D1 /* ShaderAssemblerR200.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssemblerR200.h; path = ../Graphic/ShaderAssemblerR200.h; sourceTree = "<group>"; };
 		D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderAssemblerR200.cpp; path = ../Graphic/ShaderAssemblerR200.cpp; sourceTree = "<group>"; };
-		D6C74DDC2C298B110078F7D1 /* r200pixelshader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = r200pixelshader.c; path = ../../../SDK/chaplin/r200pixelshader.c; sourceTree = "<group>"; };
-		D6C74DDD2C29A5110078F7D1 /* chaplin_registers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_registers.h; path = ../../../SDK/chaplin/chaplin_registers.h; sourceTree = "<group>"; };
-		D6C74DDE2C29A5110078F7D1 /* chaplin_bf_dump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_bf_dump.h; path = ../../../SDK/chaplin/chaplin_bf_dump.h; sourceTree = "<group>"; };
-		D6C74DDF2C29A5110078F7D1 /* chaplin_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_enum.h; path = ../../../SDK/chaplin/chaplin_enum.h; sourceTree = "<group>"; };
-		D6C74DE02C29A5110078F7D1 /* chaplin_shift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_shift.h; path = ../../../SDK/chaplin/chaplin_shift.h; sourceTree = "<group>"; };
-		D6C74DE12C29A5110078F7D1 /* atiddhsl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = atiddhsl.h; path = ../../../SDK/chaplin/atiddhsl.h; sourceTree = "<group>"; };
-		D6C74DE22C29A5110078F7D1 /* chaplin_bf_func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chaplin_bf_func.h; path = ../../../SDK/chaplin/chaplin_bf_func.h; sourceTree = "<group>"; };
-		D6C74DE32C29A5110078F7D1 /* atid3ddefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = atid3ddefs.h; path = ../../../SDK/chaplin/atid3ddefs.h; sourceTree = "<group>"; };
-		D6C74DE42C29A5110078F7D1 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = features.h; path = ../../../SDK/chaplin/features.h; sourceTree = "<group>"; };
-		D6C74DE52C29A5110078F7D1 /* d3d_hw_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = d3d_hw_enum.h; path = ../../../SDK/chaplin/d3d_hw_enum.h; sourceTree = "<group>"; };
 		D6C74DE62C2B18FF0078F7D1 /* Editor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Editor.h; path = ../Editor.h; sourceTree = "<group>"; };
+		D6C74DE72C2D38990078F7D1 /* atiddhsl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = atiddhsl.h; sourceTree = "<group>"; };
+		D6C74DE82C2D38990078F7D1 /* atidxhsl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = atidxhsl.h; sourceTree = "<group>"; };
+		D6C74DE92C2D38990078F7D1 /* features.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
+		D6C74DEB2C2D38990078F7D1 /* chaplin_bf_dump.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_bf_dump.h; sourceTree = "<group>"; };
+		D6C74DEC2C2D38990078F7D1 /* chaplin_bf_func.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_bf_func.h; sourceTree = "<group>"; };
+		D6C74DED2C2D38990078F7D1 /* chaplin_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_enum.h; sourceTree = "<group>"; };
+		D6C74DEE2C2D38990078F7D1 /* chaplin_mask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_mask.h; sourceTree = "<group>"; };
+		D6C74DEF2C2D38990078F7D1 /* chaplin_offset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_offset.h; sourceTree = "<group>"; };
+		D6C74DF02C2D38990078F7D1 /* chaplin_pm4debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_pm4debug.h; sourceTree = "<group>"; };
+		D6C74DF12C2D38990078F7D1 /* chaplin_registers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_registers.h; sourceTree = "<group>"; };
+		D6C74DF22C2D38990078F7D1 /* chaplin_shift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_shift.h; sourceTree = "<group>"; };
+		D6C74DF42C2D38990078F7D1 /* radeon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = radeon.h; sourceTree = "<group>"; };
+		D6C74DF52C2D38990078F7D1 /* radeonBFFunc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = radeonBFFunc.h; sourceTree = "<group>"; };
+		D6C74DF62C2D38990078F7D1 /* radeonLegacyDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = radeonLegacyDefs.h; sourceTree = "<group>"; };
+		D6C74DF72C2D38990078F7D1 /* radeonpm4debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = radeonpm4debug.h; sourceTree = "<group>"; };
+		D6C74DFA2C2D38990078F7D1 /* atid3ddefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = atid3ddefs.h; sourceTree = "<group>"; };
+		D6C74DFB2C2D38990078F7D1 /* d3d_hw_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d3d_hw_enum.h; sourceTree = "<group>"; };
+		D6C74DFC2C2D38990078F7D1 /* pixelshader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pixelshader.h; sourceTree = "<group>"; };
+		D6C74DFE2C2D38990078F7D1 /* r200pixelshader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = r200pixelshader.c; sourceTree = "<group>"; };
 		D6CB0B262BB95CE5009DCD26 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B282BB95CEF009DCD26 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -607,19 +615,77 @@
 		D6C74DCF2C2987C80078F7D1 /* chaplin */ = {
 			isa = PBXGroup;
 			children = (
-				D6C74DE32C29A5110078F7D1 /* atid3ddefs.h */,
-				D6C74DE12C29A5110078F7D1 /* atiddhsl.h */,
-				D6C74DDE2C29A5110078F7D1 /* chaplin_bf_dump.h */,
-				D6C74DE22C29A5110078F7D1 /* chaplin_bf_func.h */,
-				D6C74DDF2C29A5110078F7D1 /* chaplin_enum.h */,
-				D6C74DDD2C29A5110078F7D1 /* chaplin_registers.h */,
-				D6C74DE02C29A5110078F7D1 /* chaplin_shift.h */,
-				D6C74DE52C29A5110078F7D1 /* d3d_hw_enum.h */,
-				D6C74DE42C29A5110078F7D1 /* features.h */,
-				D6C74DD02C2987DD0078F7D1 /* pixelshader.h */,
-				D6C74DDC2C298B110078F7D1 /* r200pixelshader.c */,
+				D6C74DFF2C2D38990078F7D1 /* direct3d */,
+				D6C74DF92C2D38990078F7D1 /* inc */,
 			);
 			name = chaplin;
+			sourceTree = "<group>";
+		};
+		D6C74DEA2C2D38990078F7D1 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				D6C74DE72C2D38990078F7D1 /* atiddhsl.h */,
+				D6C74DE82C2D38990078F7D1 /* atidxhsl.h */,
+				D6C74DE92C2D38990078F7D1 /* features.h */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		D6C74DF32C2D38990078F7D1 /* radeon2 */ = {
+			isa = PBXGroup;
+			children = (
+				D6C74DEB2C2D38990078F7D1 /* chaplin_bf_dump.h */,
+				D6C74DEC2C2D38990078F7D1 /* chaplin_bf_func.h */,
+				D6C74DED2C2D38990078F7D1 /* chaplin_enum.h */,
+				D6C74DEE2C2D38990078F7D1 /* chaplin_mask.h */,
+				D6C74DEF2C2D38990078F7D1 /* chaplin_offset.h */,
+				D6C74DF02C2D38990078F7D1 /* chaplin_pm4debug.h */,
+				D6C74DF12C2D38990078F7D1 /* chaplin_registers.h */,
+				D6C74DF22C2D38990078F7D1 /* chaplin_shift.h */,
+			);
+			path = radeon2;
+			sourceTree = "<group>";
+		};
+		D6C74DF82C2D38990078F7D1 /* radeon */ = {
+			isa = PBXGroup;
+			children = (
+				D6C74DF32C2D38990078F7D1 /* radeon2 */,
+				D6C74DF42C2D38990078F7D1 /* radeon.h */,
+				D6C74DF52C2D38990078F7D1 /* radeonBFFunc.h */,
+				D6C74DF62C2D38990078F7D1 /* radeonLegacyDefs.h */,
+				D6C74DF72C2D38990078F7D1 /* radeonpm4debug.h */,
+			);
+			path = radeon;
+			sourceTree = "<group>";
+		};
+		D6C74DF92C2D38990078F7D1 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				D6C74DEA2C2D38990078F7D1 /* common */,
+				D6C74DF82C2D38990078F7D1 /* radeon */,
+			);
+			name = inc;
+			path = ../../../SDK/chaplin/inc;
+			sourceTree = "<group>";
+		};
+		D6C74DFD2C2D38990078F7D1 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				D6C74DFA2C2D38990078F7D1 /* atid3ddefs.h */,
+				D6C74DFB2C2D38990078F7D1 /* d3d_hw_enum.h */,
+				D6C74DFC2C2D38990078F7D1 /* pixelshader.h */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
+		D6C74DFF2C2D38990078F7D1 /* direct3d */ = {
+			isa = PBXGroup;
+			children = (
+				D6C74DFD2C2D38990078F7D1 /* inc */,
+				D6C74DFE2C2D38990078F7D1 /* r200pixelshader.c */,
+			);
+			name = direct3d;
+			path = ../../../SDK/chaplin/direct3d;
 			sourceTree = "<group>";
 		};
 		D6E6B55F2C0234EE003F6D85 /* quickjs */ = {

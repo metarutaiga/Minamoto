@@ -19,17 +19,13 @@ typedef float D3DVALUE;
 #pragma clang diagnostic ignored "-Wwritable-strings"
 #endif
 
-#include <chaplin/atiddhsl.h>
-#undef HSLDPF
-#undef HSLASSERT
-#define HSLDPF( level, ... ) ShaderAssemblerR200::DebugPrintf(true, __VA_ARGS__)
-#define HSLASSERT( exp ) ( exp ? (void)0 : ShaderAssemblerR200::DebugPrintf(true, #exp) )
-#include <chaplin/r200pixelshader.c>
+#define DEBUG 0
+#include <chaplin/direct3d/r200pixelshader.c>
 
 //==============================================================================
 static std::string* debugMessage = nullptr;
 //------------------------------------------------------------------------------
-void ShaderAssemblerR200::DebugPrintf(bool breakline, char const* format, ...)
+VOID APIENTRY vDdHslDebugPrint(EDDHSLDEBUGLEVEL eDbgLevel, char* pDbgMsg, ...)
 {
     if (debugMessage == nullptr)
         return;
@@ -37,15 +33,32 @@ void ShaderAssemblerR200::DebugPrintf(bool breakline, char const* format, ...)
     char temp[256];
 
     va_list arg;
-    va_start(arg, format);
-    vsnprintf(temp, 256, format, arg);
+    va_start(arg, pDbgMsg);
+    vsnprintf(temp, 256, pDbgMsg, arg);
     va_end(arg);
 
-    debugMessage->append(temp);
-    if (breakline)
+    switch (eDbgLevel)
     {
-        debugMessage->append("\n");
+    case E_GENERAL_ENTRY_EXIT:
+#if 1
+        return;
+#else
+        debugMessage->append("[ENTRY]");
+        break;
+#endif
+    case E_ERROR_MESSAGE:
+        debugMessage->append("[ERROR]");
+        break;
+    case E_PIXELSHADER_DATA:
+        debugMessage->append("[PIXEL]");
+        break;
+    default:
+        debugMessage->append("[?????]");
+        break;
     }
+    debugMessage->append(" ");
+    debugMessage->append(temp);
+    debugMessage->append("\n");
 }
 //------------------------------------------------------------------------------
 std::vector<uint32_t> ShaderAssemblerR200::CompileChaplin(std::vector<uint32_t> const& shader, std::string& message)
@@ -57,17 +70,29 @@ std::vector<uint32_t> ShaderAssemblerR200::CompileChaplin(std::vector<uint32_t> 
     {
         if (message.empty())
         {
-            RAD2PIXELSHADER PS = {};
+            PS_RESULT result = PS_RESULT_NONE;
+            RAD2PIXELSHADER PS;
             D3DPSREGISTERS D3DPSRegs = {};
 
-            for (size_t i = 1; i < shader.size(); ++i)
+            Rad2InitPixelShader(&PS);
+            PS.dwPixelShaderVersion = shader.front();
+
+            for (uint32_t const& opcode : shader)
             {
-                uint32_t const& opcode = shader[i];
                 if (opcode & 0x80000000)
                     continue;
                 if (opcode == D3DSIO_END)
                     break;
-                Rad2CompilePixShaderInst(nullptr, (DWORD*)&opcode, &PS, PS_OK, &D3DPSRegs);
+                result = Rad2CompilePixShaderInst(nullptr, (DWORD*)&opcode, &PS, result, &D3DPSRegs);
+            }
+
+            for (DWORD i = 0; i < PS_MAX_NUM_PHASES; ++i)
+            {
+                for (DWORD j = 0; j < PS_MAX_TEXSEQ; ++j)
+                {
+                    code.push_back(PS.TxModes[i][j].modes);
+                    code.push_back(PS.TxModes[i][j].dwTexCoordSet);
+                }
             }
 
             for (DWORD i = 0; i < PS_MAX_NUM_PHASES; ++i)
@@ -90,7 +115,25 @@ std::vector<uint32_t> ShaderAssemblerR200::CompileChaplin(std::vector<uint32_t> 
 std::string ShaderAssemblerR200::DisassembleChaplin(std::vector<uint32_t> const& code)
 {
     std::string text;
-    for (size_t i = 0; i < code.size(); i += 4)
+
+    // TxMode
+    for (size_t i = 0; i < code.size() && i < 12; i += 6)
+    {
+        char temp[256];
+        snprintf(temp, 256, "%3zd: ", i);
+        text += temp;
+
+        for (size_t j = 0; j < 6; ++j)
+        {
+            snprintf(temp, 256, "%08X ", code[i + j]);
+            text += temp;
+        }
+
+        text += '\n';
+    }
+
+    // psInstructions
+    for (size_t i = 12; i < code.size(); i += 4)
     {
         char temp[256];
         snprintf(temp, 256, "%3zd: ", i);

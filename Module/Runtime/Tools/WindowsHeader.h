@@ -32,6 +32,7 @@ typedef struct RECT { LONG left; LONG top; LONG right; LONG bottom; } RECT, *LPR
 #define FAR
 #define PASCAL
 #define APIENTRY
+#define BOOL int
 #define TRUE true
 #define FALSE false
 #define DEFINE_GUID(...)
