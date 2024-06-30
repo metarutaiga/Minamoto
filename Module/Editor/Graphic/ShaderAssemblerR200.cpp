@@ -20,6 +20,7 @@ typedef float D3DVALUE;
 #endif
 
 #define DEBUG 0
+#include <chaplin/direct3d/hwvertexshader.c>
 #include <chaplin/direct3d/r200pixelshader.c>
 
 //==============================================================================
@@ -59,6 +60,37 @@ VOID APIENTRY vDdHslDebugPrint(EDDHSLDEBUGLEVEL eDbgLevel, char* pDbgMsg, ...)
     debugMessage->append(" ");
     debugMessage->append(temp);
     debugMessage->append("\n");
+}
+//------------------------------------------------------------------------------
+std::vector<uint32_t> ShaderAssemblerR200::CompileChaplinPVS(std::vector<uint32_t> const& shader, std::string& message)
+{
+    debugMessage = &message;
+
+    std::vector<uint32_t> code;
+    if (shader.empty() == false && (shader.front() & 0xFFFF0000) == D3DVS_VERSION(0, 0))
+    {
+        if (message.empty())
+        {
+            for (uint32_t const& opcode : shader)
+            {
+                if (opcode & 0x80000000)
+                    continue;
+                if (opcode == D3DSIO_END)
+                    break;
+
+                DWORD pvsCode[4] = {};
+                VS_HwAssemble(pvsCode, (DWORD*)&opcode);
+
+                code.push_back(pvsCode[0]);
+                code.push_back(pvsCode[1]);
+                code.push_back(pvsCode[2]);
+                code.push_back(pvsCode[3]);
+            }
+        }
+    }
+
+    debugMessage = nullptr;
+    return code;
 }
 //------------------------------------------------------------------------------
 std::vector<uint32_t> ShaderAssemblerR200::CompileChaplin(std::vector<uint32_t> const& shader, std::string& message)
@@ -110,6 +142,27 @@ std::vector<uint32_t> ShaderAssemblerR200::CompileChaplin(std::vector<uint32_t> 
 
     debugMessage = nullptr;
     return code;
+}
+//------------------------------------------------------------------------------
+std::string ShaderAssemblerR200::DisassembleChaplinPVS(std::vector<uint32_t> const& code)
+{
+    std::string text;
+
+    for (size_t i = 0; i < code.size(); i += 4)
+    {
+        char temp[256];
+        snprintf(temp, 256, "%3zd: ", i);
+        text += temp;
+
+        for (size_t j = 0; j < 4; ++j)
+        {
+            snprintf(temp, 256, "%08X ", code[i + j]);
+            text += temp;
+        }
+
+        text += '\n';
+    }
+    return text;
 }
 //------------------------------------------------------------------------------
 std::string ShaderAssemblerR200::DisassembleChaplin(std::vector<uint32_t> const& code)

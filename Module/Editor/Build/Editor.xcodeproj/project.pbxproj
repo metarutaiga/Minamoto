@@ -316,6 +316,8 @@
 		D6C74DFB2C2D38990078F7D1 /* d3d_hw_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d3d_hw_enum.h; sourceTree = "<group>"; };
 		D6C74DFC2C2D38990078F7D1 /* pixelshader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pixelshader.h; sourceTree = "<group>"; };
 		D6C74DFE2C2D38990078F7D1 /* r200pixelshader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = r200pixelshader.c; sourceTree = "<group>"; };
+		D6C74E052C3114150078F7D1 /* hwvertexshader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hwvertexshader.c; sourceTree = "<group>"; };
+		D6C74E072C311A940078F7D1 /* hwvertexshader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hwvertexshader.h; sourceTree = "<group>"; };
 		D6CB0B262BB95CE5009DCD26 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B282BB95CEF009DCD26 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -673,6 +675,7 @@
 			children = (
 				D6C74DFA2C2D38990078F7D1 /* atid3ddefs.h */,
 				D6C74DFB2C2D38990078F7D1 /* d3d_hw_enum.h */,
+				D6C74E072C311A940078F7D1 /* hwvertexshader.h */,
 				D6C74DFC2C2D38990078F7D1 /* pixelshader.h */,
 			);
 			path = inc;
@@ -682,6 +685,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C74DFD2C2D38990078F7D1 /* inc */,
+				D6C74E052C3114150078F7D1 /* hwvertexshader.c */,
 				D6C74DFE2C2D38990078F7D1 /* r200pixelshader.c */,
 			);
 			name = direct3d;

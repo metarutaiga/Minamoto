@@ -128,6 +128,9 @@ bool ShaderAssembler::Update(const UpdateData& updateData, bool& show)
                 {
                     switch (shader.front() & 0xFFFF0000)
                     {
+                    case 0xFFFE0000:
+                        output = ShaderAssemblerR200::DisassembleChaplinPVS(ShaderAssemblerR200::CompileChaplinPVS(shader, message));
+                        break;
                     case 0xFFFF0000:
                         output = ShaderAssemblerR200::DisassembleChaplin(ShaderAssemblerR200::CompileChaplin(shader, message));
                         break;
