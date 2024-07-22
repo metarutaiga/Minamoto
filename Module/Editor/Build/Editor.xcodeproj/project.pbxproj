@@ -45,6 +45,9 @@
 		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
 		D6169D1C2BB1802100E5490C /* tls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D1B2BB1802100E5490C /* tls.cpp */; };
 		D62CAC082C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D62CAC072C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a */; };
+		D62CAC8D2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D62CAC8C2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib */; };
+		D62CAC8F2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D62CAC8E2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a */; };
+		D62CAC912C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D62CAC902C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a */; };
 		D62FEBED2BE50FD3004E9FDF /* dllmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBEC2BE50FD2004E9FDF /* dllmain.cpp */; };
 		D62FEBF42BE53D41004E9FDF /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBF22BE53D41004E9FDF /* About.cpp */; };
 		D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBF22BE53D41004E9FDF /* About.cpp */; };
@@ -201,6 +204,9 @@
 		D6169D192BB1801100E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
 		D6169D1B2BB1802100E5490C /* tls.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tls.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/tls.cpp"; sourceTree = "<group>"; };
 		D62CAC072C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libxxShaderAssembler.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62CAC8C2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = xxShaderAssembler.Windows.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62CAC8E2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libxxShaderAssembler.iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62CAC902C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libxxShaderAssembler.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62FEBEC2BE50FD2004E9FDF /* dllmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dllmain.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/dllmain.cpp"; sourceTree = "<group>"; };
 		D62FEBF22BE53D41004E9FDF /* About.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = About.cpp; path = ../Window/About.cpp; sourceTree = "<group>"; };
 		D62FEBF32BE53D41004E9FDF /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = About.h; path = ../Window/About.h; sourceTree = "<group>"; };
@@ -278,6 +284,7 @@
 			files = (
 				D60790DE2BF24990008810BD /* libimgui.so in Frameworks */,
 				D6CB0B2D2BB95D0D009DCD26 /* libRuntime.so in Frameworks */,
+				D62CAC912C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a in Frameworks */,
 				D6E6B5752C044673003F6D85 /* libcxx.Android.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +295,7 @@
 			files = (
 				D60790DA2BF2497A008810BD /* imgui.dll in Frameworks */,
 				D6CB0B292BB95CEF009DCD26 /* Runtime.dll in Frameworks */,
+				D62CAC8D2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib in Frameworks */,
 				D6E6B56D2C0445F1003F6D85 /* libcxx.Windows.lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +306,7 @@
 			files = (
 				D60790DC2BF24986008810BD /* imgui.bundle in Frameworks */,
 				D6CB0B2B2BB95D00009DCD26 /* Runtime.bundle in Frameworks */,
+				D62CAC8F2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +327,9 @@
 		300264BD24266097004559E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D62CAC902C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a */,
+				D62CAC8E2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a */,
+				D62CAC8C2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib */,
 				D62CAC072C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a */,
 				D6E6B5742C044673003F6D85 /* libcxx.Android.a */,
 				D6E6B56C2C0445F1003F6D85 /* libcxx.Windows.lib */,

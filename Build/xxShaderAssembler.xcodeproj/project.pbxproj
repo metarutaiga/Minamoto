@@ -47,6 +47,10 @@
 		D62CAC832C4E16B20035DBE9 /* valbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CABE52C4CBC290035DBE9 /* valbase.cpp */; };
 		D62CAC842C4E16B20035DBE9 /* vshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CABDA2C4CBC280035DBE9 /* vshdrval.cpp */; };
 		D62CAC852C4E16B20035DBE9 /* vsutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC092C4CC28C0035DBE9 /* vsutil.cpp */; };
+		D62CAC882C4E3D3B0035DBE9 /* asm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC872C4E3D3B0035DBE9 /* asm.cpp */; };
+		D62CAC892C4E3D3B0035DBE9 /* asm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC872C4E3D3B0035DBE9 /* asm.cpp */; };
+		D62CAC8A2C4E3D3B0035DBE9 /* asm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC872C4E3D3B0035DBE9 /* asm.cpp */; };
+		D62CAC8B2C4E3D3B0035DBE9 /* asm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC872C4E3D3B0035DBE9 /* asm.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +112,8 @@
 		D62CAC4E2C4E16400035DBE9 /* radeonBFFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radeonBFFunc.h; sourceTree = "<group>"; };
 		D62CAC4F2C4E16400035DBE9 /* radeonLegacyDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radeonLegacyDefs.h; sourceTree = "<group>"; };
 		D62CAC502C4E16400035DBE9 /* radeonpm4debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radeonpm4debug.h; sourceTree = "<group>"; };
+		D62CAC862C4E3D3B0035DBE9 /* asm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asm.h; path = ../SDK/xxShaderAssembler/asm.h; sourceTree = "<group>"; };
+		D62CAC872C4E3D3B0035DBE9 /* asm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = asm.cpp; path = ../SDK/xxShaderAssembler/asm.cpp; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* libxxShaderAssembler.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxxShaderAssembler.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -295,6 +301,8 @@
 				D62CAC1A2C4E16190035DBE9 /* ati */,
 				D62CABD72C4CBC0C0035DBE9 /* microsoft */,
 				D62CAC1B2C4E161E0035DBE9 /* nvidia */,
+				D62CAC872C4E3D3B0035DBE9 /* asm.cpp */,
+				D62CAC862C4E3D3B0035DBE9 /* asm.h */,
 				D62CAC152C4D14380035DBE9 /* d3d8.h */,
 				D62CAC162C4D14380035DBE9 /* d3d8caps.h */,
 				D62CAC172C4D14380035DBE9 /* d3d8types.h */,
@@ -434,6 +442,7 @@
 			files = (
 				D62CAC7D2C4E16B20035DBE9 /* errlog.cpp in Sources */,
 				D62CAC7E2C4E16B20035DBE9 /* pch.cpp in Sources */,
+				D62CAC882C4E3D3B0035DBE9 /* asm.cpp in Sources */,
 				D62CAC7F2C4E16B20035DBE9 /* pshdrval.cpp in Sources */,
 				D62CAC802C4E16B20035DBE9 /* psutil.cpp in Sources */,
 				D62CAC812C4E16B20035DBE9 /* psval10.cpp in Sources */,
@@ -451,6 +460,7 @@
 			files = (
 				D62CAC5C2C4E167B0035DBE9 /* errlog.cpp in Sources */,
 				D62CAC5E2C4E167B0035DBE9 /* pch.cpp in Sources */,
+				D62CAC8B2C4E3D3B0035DBE9 /* asm.cpp in Sources */,
 				D62CAC602C4E167B0035DBE9 /* pshdrval.cpp in Sources */,
 				D62CAC622C4E167B0035DBE9 /* psutil.cpp in Sources */,
 				D62CAC632C4E167B0035DBE9 /* psval10.cpp in Sources */,
@@ -468,6 +478,7 @@
 			files = (
 				D62CAC742C4E16A30035DBE9 /* errlog.cpp in Sources */,
 				D62CAC752C4E16A30035DBE9 /* pch.cpp in Sources */,
+				D62CAC892C4E3D3B0035DBE9 /* asm.cpp in Sources */,
 				D62CAC762C4E16A30035DBE9 /* pshdrval.cpp in Sources */,
 				D62CAC772C4E16A30035DBE9 /* psutil.cpp in Sources */,
 				D62CAC782C4E16A30035DBE9 /* psval10.cpp in Sources */,
@@ -485,6 +496,7 @@
 			files = (
 				D62CAC6B2C4E16920035DBE9 /* errlog.cpp in Sources */,
 				D62CAC6C2C4E16920035DBE9 /* pch.cpp in Sources */,
+				D62CAC8A2C4E3D3B0035DBE9 /* asm.cpp in Sources */,
 				D62CAC6D2C4E16920035DBE9 /* pshdrval.cpp in Sources */,
 				D62CAC6E2C4E16920035DBE9 /* psutil.cpp in Sources */,
 				D62CAC6F2C4E16920035DBE9 /* psval10.cpp in Sources */,
