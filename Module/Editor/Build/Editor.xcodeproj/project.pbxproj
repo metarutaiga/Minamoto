@@ -44,6 +44,7 @@
 		D6169D162BB17FE200E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D152BB17FE200E5490C /* new.cpp */; };
 		D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D192BB1801100E5490C /* ucrt.cpp */; };
 		D6169D1C2BB1802100E5490C /* tls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169D1B2BB1802100E5490C /* tls.cpp */; };
+		D62CAC082C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D62CAC072C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a */; };
 		D62FEBED2BE50FD3004E9FDF /* dllmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBEC2BE50FD2004E9FDF /* dllmain.cpp */; };
 		D62FEBF42BE53D41004E9FDF /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBF22BE53D41004E9FDF /* About.cpp */; };
 		D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBF22BE53D41004E9FDF /* About.cpp */; };
@@ -92,34 +93,6 @@
 		D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
 		D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
 		D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
-		D6B4C8312C1BFE03006123EF /* pshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8262C1BFE03006123EF /* pshdrval.cpp */; };
-		D6B4C8322C1BFE03006123EF /* pshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8262C1BFE03006123EF /* pshdrval.cpp */; };
-		D6B4C8332C1BFE03006123EF /* pshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8262C1BFE03006123EF /* pshdrval.cpp */; };
-		D6B4C8342C1BFE03006123EF /* pshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8262C1BFE03006123EF /* pshdrval.cpp */; };
-		D6B4C8352C1BFE03006123EF /* errlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8272C1BFE03006123EF /* errlog.cpp */; };
-		D6B4C8362C1BFE03006123EF /* errlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8272C1BFE03006123EF /* errlog.cpp */; };
-		D6B4C8372C1BFE03006123EF /* errlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8272C1BFE03006123EF /* errlog.cpp */; };
-		D6B4C8382C1BFE03006123EF /* errlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8272C1BFE03006123EF /* errlog.cpp */; };
-		D6B4C8392C1BFE03006123EF /* vshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8292C1BFE03006123EF /* vshdrval.cpp */; };
-		D6B4C83A2C1BFE03006123EF /* vshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8292C1BFE03006123EF /* vshdrval.cpp */; };
-		D6B4C83B2C1BFE03006123EF /* vshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8292C1BFE03006123EF /* vshdrval.cpp */; };
-		D6B4C83C2C1BFE03006123EF /* vshdrval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8292C1BFE03006123EF /* vshdrval.cpp */; };
-		D6B4C83D2C1BFE03006123EF /* valbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8302C1BFE03006123EF /* valbase.cpp */; };
-		D6B4C83E2C1BFE03006123EF /* valbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8302C1BFE03006123EF /* valbase.cpp */; };
-		D6B4C83F2C1BFE03006123EF /* valbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8302C1BFE03006123EF /* valbase.cpp */; };
-		D6B4C8402C1BFE03006123EF /* valbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8302C1BFE03006123EF /* valbase.cpp */; };
-		D6B4C8432C1BFEEF006123EF /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8422C1BFEEF006123EF /* pch.cpp */; };
-		D6B4C8442C1BFEEF006123EF /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8422C1BFEEF006123EF /* pch.cpp */; };
-		D6B4C8452C1BFEEF006123EF /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8422C1BFEEF006123EF /* pch.cpp */; };
-		D6B4C8462C1BFEEF006123EF /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8422C1BFEEF006123EF /* pch.cpp */; };
-		D6B4C8492C1C01DD006123EF /* psval14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8472C1C01DD006123EF /* psval14.cpp */; };
-		D6B4C84A2C1C01DD006123EF /* psval14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8472C1C01DD006123EF /* psval14.cpp */; };
-		D6B4C84B2C1C01DD006123EF /* psval14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8472C1C01DD006123EF /* psval14.cpp */; };
-		D6B4C84C2C1C01DD006123EF /* psval14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8472C1C01DD006123EF /* psval14.cpp */; };
-		D6B4C84D2C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
-		D6B4C84E2C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
-		D6B4C84F2C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
-		D6B4C8502C1C01DD006123EF /* psval10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8482C1C01DD006123EF /* psval10.cpp */; };
 		D6B4C8532C1C4056006123EF /* ShaderAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */; };
 		D6B4C8542C1C4056006123EF /* ShaderAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */; };
 		D6B4C8552C1C4056006123EF /* ShaderAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */; };
@@ -221,23 +194,13 @@
 		D60790FC2BF501DC008810BD /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Console.h; path = ../Window/Component/Console.h; sourceTree = "<group>"; };
 		D60791072BF61829008810BD /* Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setup.h; path = ../Window/Setup.h; sourceTree = "<group>"; };
 		D60791082BF61829008810BD /* Setup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Setup.cpp; path = ../Window/Setup.cpp; sourceTree = "<group>"; };
-		D60B62C32C26A61500D6ED53 /* nvprecomp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nvprecomp.h; path = ../../../SDK/kelvin/nvprecomp.h; sourceTree = "<group>"; };
-		D60B62C42C26A61500D6ED53 /* nvtypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nvtypes.h; path = ../../../SDK/kelvin/nvtypes.h; sourceTree = "<group>"; };
-		D60B62C52C26A61500D6ED53 /* vtxpgmcomp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vtxpgmcomp.h; path = ../../../SDK/kelvin/vtxpgmcomp.h; sourceTree = "<group>"; };
-		D60B62C62C26A61500D6ED53 /* nvKelvinProgram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nvKelvinProgram.h; path = ../../../SDK/kelvin/nvKelvinProgram.h; sourceTree = "<group>"; };
-		D60B62C72C26A61500D6ED53 /* nvKelvinProgram.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = nvKelvinProgram.cpp; path = ../../../SDK/kelvin/nvKelvinProgram.cpp; sourceTree = "<group>"; };
-		D60B62C82C26A61500D6ED53 /* nvPShad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nvPShad.h; path = ../../../SDK/kelvin/nvPShad.h; sourceTree = "<group>"; };
-		D60B62C92C26A61500D6ED53 /* vpoptimize.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = vpoptimize.c; path = ../../../SDK/kelvin/vpoptimize.c; sourceTree = "<group>"; };
-		D60B62CA2C26A61500D6ED53 /* vpcompilekelvin.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = vpcompilekelvin.c; path = ../../../SDK/kelvin/vpcompilekelvin.c; sourceTree = "<group>"; };
-		D60B62CB2C26A61500D6ED53 /* vtxpgmconsts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vtxpgmconsts.h; path = ../../../SDK/kelvin/vtxpgmconsts.h; sourceTree = "<group>"; };
-		D60B62CC2C26A61500D6ED53 /* nv32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = nv32.h; path = ../../../SDK/kelvin/nv32.h; sourceTree = "<group>"; };
-		D60B62CD2C26A61500D6ED53 /* nvPShad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = nvPShad.cpp; path = ../../../SDK/kelvin/nvPShad.cpp; sourceTree = "<group>"; };
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D152BB17FE200E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
 		D6169D172BB17FF400E5490C /* libcxx.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcxx.lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6169D192BB1801100E5490C /* ucrt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ucrt.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/ucrt.cpp"; sourceTree = "<group>"; };
 		D6169D1B2BB1802100E5490C /* tls.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tls.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/tls.cpp"; sourceTree = "<group>"; };
+		D62CAC072C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libxxShaderAssembler.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62FEBEC2BE50FD2004E9FDF /* dllmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dllmain.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/dllmain.cpp"; sourceTree = "<group>"; };
 		D62FEBF22BE53D41004E9FDF /* About.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = About.cpp; path = ../Window/About.cpp; sourceTree = "<group>"; };
 		D62FEBF32BE53D41004E9FDF /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = About.h; path = ../Window/About.h; sourceTree = "<group>"; };
@@ -272,20 +235,6 @@
 		D6A25B7A2B4644B600974946 /* Inspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Inspector.h; path = ../Window/Inspector.h; sourceTree = "<group>"; };
 		D6A25B7B2B4644B600974946 /* Inspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Inspector.cpp; path = ../Window/Inspector.cpp; sourceTree = "<group>"; };
 		D6AA5DBC2BD7DB4400AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
-		D6B4C8252C1BFE03006123EF /* valbase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = valbase.hpp; path = ../../../SDK/shval/valbase.hpp; sourceTree = "<group>"; };
-		D6B4C8262C1BFE03006123EF /* pshdrval.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pshdrval.cpp; path = ../../../SDK/shval/pshdrval.cpp; sourceTree = "<group>"; };
-		D6B4C8272C1BFE03006123EF /* errlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = errlog.cpp; path = ../../../SDK/shval/errlog.cpp; sourceTree = "<group>"; };
-		D6B4C8282C1BFE03006123EF /* d3d8caps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = d3d8caps.h; path = ../../../SDK/shval/d3d8caps.h; sourceTree = "<group>"; };
-		D6B4C8292C1BFE03006123EF /* vshdrval.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vshdrval.cpp; path = ../../../SDK/shval/vshdrval.cpp; sourceTree = "<group>"; };
-		D6B4C82A2C1BFE03006123EF /* d3d8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = d3d8.h; path = ../../../SDK/shval/d3d8.h; sourceTree = "<group>"; };
-		D6B4C82B2C1BFE03006123EF /* d3d8types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = d3d8types.h; path = ../../../SDK/shval/d3d8types.h; sourceTree = "<group>"; };
-		D6B4C82C2C1BFE03006123EF /* vshdrval.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = vshdrval.hpp; path = ../../../SDK/shval/vshdrval.hpp; sourceTree = "<group>"; };
-		D6B4C82D2C1BFE03006123EF /* pshdrval.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = pshdrval.hpp; path = ../../../SDK/shval/pshdrval.hpp; sourceTree = "<group>"; };
-		D6B4C82E2C1BFE03006123EF /* errlog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = errlog.hpp; path = ../../../SDK/shval/errlog.hpp; sourceTree = "<group>"; };
-		D6B4C8302C1BFE03006123EF /* valbase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = valbase.cpp; path = ../../../SDK/shval/valbase.cpp; sourceTree = "<group>"; };
-		D6B4C8422C1BFEEF006123EF /* pch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pch.cpp; path = ../../../SDK/shval/pch.cpp; sourceTree = "<group>"; };
-		D6B4C8472C1C01DD006123EF /* psval14.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = psval14.cpp; path = ../../../SDK/shval/psval14.cpp; sourceTree = "<group>"; };
-		D6B4C8482C1C01DD006123EF /* psval10.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = psval10.cpp; path = ../../../SDK/shval/psval10.cpp; sourceTree = "<group>"; };
 		D6B4C8512C1C4056006123EF /* ShaderAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssembler.h; path = ../Graphic/ShaderAssembler.h; sourceTree = "<group>"; };
 		D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderAssembler.cpp; path = ../Graphic/ShaderAssembler.cpp; sourceTree = "<group>"; };
 		D6B4C8572C1C9BB9006123EF /* ShaderAssemblerD3D8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssemblerD3D8.h; path = ../Graphic/ShaderAssemblerD3D8.h; sourceTree = "<group>"; };
@@ -297,27 +246,6 @@
 		D6C74DD62C298AE40078F7D1 /* ShaderAssemblerR200.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssemblerR200.h; path = ../Graphic/ShaderAssemblerR200.h; sourceTree = "<group>"; };
 		D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderAssemblerR200.cpp; path = ../Graphic/ShaderAssemblerR200.cpp; sourceTree = "<group>"; };
 		D6C74DE62C2B18FF0078F7D1 /* Editor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Editor.h; path = ../Editor.h; sourceTree = "<group>"; };
-		D6C74DE72C2D38990078F7D1 /* atiddhsl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = atiddhsl.h; sourceTree = "<group>"; };
-		D6C74DE82C2D38990078F7D1 /* atidxhsl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = atidxhsl.h; sourceTree = "<group>"; };
-		D6C74DE92C2D38990078F7D1 /* features.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
-		D6C74DEB2C2D38990078F7D1 /* chaplin_bf_dump.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_bf_dump.h; sourceTree = "<group>"; };
-		D6C74DEC2C2D38990078F7D1 /* chaplin_bf_func.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_bf_func.h; sourceTree = "<group>"; };
-		D6C74DED2C2D38990078F7D1 /* chaplin_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_enum.h; sourceTree = "<group>"; };
-		D6C74DEE2C2D38990078F7D1 /* chaplin_mask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_mask.h; sourceTree = "<group>"; };
-		D6C74DEF2C2D38990078F7D1 /* chaplin_offset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_offset.h; sourceTree = "<group>"; };
-		D6C74DF02C2D38990078F7D1 /* chaplin_pm4debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_pm4debug.h; sourceTree = "<group>"; };
-		D6C74DF12C2D38990078F7D1 /* chaplin_registers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_registers.h; sourceTree = "<group>"; };
-		D6C74DF22C2D38990078F7D1 /* chaplin_shift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chaplin_shift.h; sourceTree = "<group>"; };
-		D6C74DF42C2D38990078F7D1 /* radeon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = radeon.h; sourceTree = "<group>"; };
-		D6C74DF52C2D38990078F7D1 /* radeonBFFunc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = radeonBFFunc.h; sourceTree = "<group>"; };
-		D6C74DF62C2D38990078F7D1 /* radeonLegacyDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = radeonLegacyDefs.h; sourceTree = "<group>"; };
-		D6C74DF72C2D38990078F7D1 /* radeonpm4debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = radeonpm4debug.h; sourceTree = "<group>"; };
-		D6C74DFA2C2D38990078F7D1 /* atid3ddefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = atid3ddefs.h; sourceTree = "<group>"; };
-		D6C74DFB2C2D38990078F7D1 /* d3d_hw_enum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = d3d_hw_enum.h; sourceTree = "<group>"; };
-		D6C74DFC2C2D38990078F7D1 /* pixelshader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pixelshader.h; sourceTree = "<group>"; };
-		D6C74DFE2C2D38990078F7D1 /* r200pixelshader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = r200pixelshader.c; sourceTree = "<group>"; };
-		D6C74E052C3114150078F7D1 /* hwvertexshader.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hwvertexshader.c; sourceTree = "<group>"; };
-		D6C74E072C311A940078F7D1 /* hwvertexshader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hwvertexshader.h; sourceTree = "<group>"; };
 		D6CB0B262BB95CE5009DCD26 /* Runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B282BB95CEF009DCD26 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CB0B2A2BB95D00009DCD26 /* Runtime.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = Runtime.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,6 +307,7 @@
 			files = (
 				D60790D62BF24543008810BD /* imgui.dylib in Frameworks */,
 				D6CB0B272BB95CE5009DCD26 /* Runtime.dylib in Frameworks */,
+				D62CAC082C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a in Frameworks */,
 				D6386A622BDAAE500008C9D1 /* Metal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +318,7 @@
 		300264BD24266097004559E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D62CAC072C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a */,
 				D6E6B5742C044673003F6D85 /* libcxx.Android.a */,
 				D6E6B56C2C0445F1003F6D85 /* libcxx.Windows.lib */,
 				D60790DD2BF24990008810BD /* libimgui.so */,
@@ -464,24 +394,6 @@
 			name = Component;
 			sourceTree = "<group>";
 		};
-		D60B62C22C26A60100D6ED53 /* kelvin */ = {
-			isa = PBXGroup;
-			children = (
-				D60B62CC2C26A61500D6ED53 /* nv32.h */,
-				D60B62C72C26A61500D6ED53 /* nvKelvinProgram.cpp */,
-				D60B62C62C26A61500D6ED53 /* nvKelvinProgram.h */,
-				D60B62C32C26A61500D6ED53 /* nvprecomp.h */,
-				D60B62CD2C26A61500D6ED53 /* nvPShad.cpp */,
-				D60B62C82C26A61500D6ED53 /* nvPShad.h */,
-				D60B62C42C26A61500D6ED53 /* nvtypes.h */,
-				D60B62CA2C26A61500D6ED53 /* vpcompilekelvin.c */,
-				D60B62C92C26A61500D6ED53 /* vpoptimize.c */,
-				D60B62C52C26A61500D6ED53 /* vtxpgmcomp.h */,
-				D60B62CB2C26A61500D6ED53 /* vtxpgmconsts.h */,
-			);
-			name = kelvin;
-			sourceTree = "<group>";
-		};
 		D633706C2B3729E8001D4057 /* Import */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,9 +452,6 @@
 		D6386A5A2BDAAB170008C9D1 /* Graphic */ = {
 			isa = PBXGroup;
 			children = (
-				D6C74DCF2C2987C80078F7D1 /* chaplin */,
-				D60B62C22C26A60100D6ED53 /* kelvin */,
-				D6B4C7F82C1BE121006123EF /* shval */,
 				D6B4C8522C1C4056006123EF /* ShaderAssembler.cpp */,
 				D6B4C8512C1C4056006123EF /* ShaderAssembler.h */,
 				D6B4C8582C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp */,
@@ -591,105 +500,6 @@
 				D666E2E82BE1EBAB00EFA1F2 /* ufbx.h */,
 			);
 			name = ufbx;
-			sourceTree = "<group>";
-		};
-		D6B4C7F82C1BE121006123EF /* shval */ = {
-			isa = PBXGroup;
-			children = (
-				D6B4C82A2C1BFE03006123EF /* d3d8.h */,
-				D6B4C8282C1BFE03006123EF /* d3d8caps.h */,
-				D6B4C82B2C1BFE03006123EF /* d3d8types.h */,
-				D6B4C8272C1BFE03006123EF /* errlog.cpp */,
-				D6B4C82E2C1BFE03006123EF /* errlog.hpp */,
-				D6B4C8422C1BFEEF006123EF /* pch.cpp */,
-				D6B4C8262C1BFE03006123EF /* pshdrval.cpp */,
-				D6B4C82D2C1BFE03006123EF /* pshdrval.hpp */,
-				D6B4C8482C1C01DD006123EF /* psval10.cpp */,
-				D6B4C8472C1C01DD006123EF /* psval14.cpp */,
-				D6B4C8302C1BFE03006123EF /* valbase.cpp */,
-				D6B4C8252C1BFE03006123EF /* valbase.hpp */,
-				D6B4C8292C1BFE03006123EF /* vshdrval.cpp */,
-				D6B4C82C2C1BFE03006123EF /* vshdrval.hpp */,
-			);
-			name = shval;
-			sourceTree = "<group>";
-		};
-		D6C74DCF2C2987C80078F7D1 /* chaplin */ = {
-			isa = PBXGroup;
-			children = (
-				D6C74DFF2C2D38990078F7D1 /* direct3d */,
-				D6C74DF92C2D38990078F7D1 /* inc */,
-			);
-			name = chaplin;
-			sourceTree = "<group>";
-		};
-		D6C74DEA2C2D38990078F7D1 /* common */ = {
-			isa = PBXGroup;
-			children = (
-				D6C74DE72C2D38990078F7D1 /* atiddhsl.h */,
-				D6C74DE82C2D38990078F7D1 /* atidxhsl.h */,
-				D6C74DE92C2D38990078F7D1 /* features.h */,
-			);
-			path = common;
-			sourceTree = "<group>";
-		};
-		D6C74DF32C2D38990078F7D1 /* radeon2 */ = {
-			isa = PBXGroup;
-			children = (
-				D6C74DEB2C2D38990078F7D1 /* chaplin_bf_dump.h */,
-				D6C74DEC2C2D38990078F7D1 /* chaplin_bf_func.h */,
-				D6C74DED2C2D38990078F7D1 /* chaplin_enum.h */,
-				D6C74DEE2C2D38990078F7D1 /* chaplin_mask.h */,
-				D6C74DEF2C2D38990078F7D1 /* chaplin_offset.h */,
-				D6C74DF02C2D38990078F7D1 /* chaplin_pm4debug.h */,
-				D6C74DF12C2D38990078F7D1 /* chaplin_registers.h */,
-				D6C74DF22C2D38990078F7D1 /* chaplin_shift.h */,
-			);
-			path = radeon2;
-			sourceTree = "<group>";
-		};
-		D6C74DF82C2D38990078F7D1 /* radeon */ = {
-			isa = PBXGroup;
-			children = (
-				D6C74DF32C2D38990078F7D1 /* radeon2 */,
-				D6C74DF42C2D38990078F7D1 /* radeon.h */,
-				D6C74DF52C2D38990078F7D1 /* radeonBFFunc.h */,
-				D6C74DF62C2D38990078F7D1 /* radeonLegacyDefs.h */,
-				D6C74DF72C2D38990078F7D1 /* radeonpm4debug.h */,
-			);
-			path = radeon;
-			sourceTree = "<group>";
-		};
-		D6C74DF92C2D38990078F7D1 /* inc */ = {
-			isa = PBXGroup;
-			children = (
-				D6C74DEA2C2D38990078F7D1 /* common */,
-				D6C74DF82C2D38990078F7D1 /* radeon */,
-			);
-			name = inc;
-			path = ../../../SDK/chaplin/inc;
-			sourceTree = "<group>";
-		};
-		D6C74DFD2C2D38990078F7D1 /* inc */ = {
-			isa = PBXGroup;
-			children = (
-				D6C74DFA2C2D38990078F7D1 /* atid3ddefs.h */,
-				D6C74DFB2C2D38990078F7D1 /* d3d_hw_enum.h */,
-				D6C74E072C311A940078F7D1 /* hwvertexshader.h */,
-				D6C74DFC2C2D38990078F7D1 /* pixelshader.h */,
-			);
-			path = inc;
-			sourceTree = "<group>";
-		};
-		D6C74DFF2C2D38990078F7D1 /* direct3d */ = {
-			isa = PBXGroup;
-			children = (
-				D6C74DFD2C2D38990078F7D1 /* inc */,
-				D6C74E052C3114150078F7D1 /* hwvertexshader.c */,
-				D6C74DFE2C2D38990078F7D1 /* r200pixelshader.c */,
-			);
-			name = direct3d;
-			path = ../../../SDK/chaplin/direct3d;
 			sourceTree = "<group>";
 		};
 		D6E6B55F2C0234EE003F6D85 /* quickjs */ = {
@@ -844,9 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6E6B5582C01CB70003F6D85 /* Document.cpp in Sources */,
-				D6B4C8312C1BFE03006123EF /* pshdrval.cpp in Sources */,
 				D6F563FE2BE9D568006D32D9 /* Profiler.cpp in Sources */,
-				D6B4C8432C1BFEEF006123EF /* pch.cpp in Sources */,
 				D62FEBF42BE53D41004E9FDF /* About.cpp in Sources */,
 				D666E2E92BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6346EF02BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
@@ -857,24 +665,19 @@
 				D63370782B382156001D4057 /* Log.cpp in Sources */,
 				D60790C22BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6B4C85F2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
-				D6B4C83D2C1BFE03006123EF /* valbase.cpp in Sources */,
 				D6E6B5682C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D60790FD2BF501DC008810BD /* Console.cpp in Sources */,
 				D6B4C8592C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6530A022BB70A270006AD64 /* ImportFBX.cpp in Sources */,
-				D6B4C8352C1BFE03006123EF /* errlog.cpp in Sources */,
 				D6D26F9E2BDE36B400D57772 /* Tools.cpp in Sources */,
 				30A9A7C325ADC7C0000FA104 /* Editor.cpp in Sources */,
 				D60790BB2BEE6C5F008810BD /* Project.cpp in Sources */,
-				D6B4C84D2C1C01DD006123EF /* psval10.cpp in Sources */,
-				D6B4C8492C1C01DD006123EF /* psval14.cpp in Sources */,
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
 				D60791092BF61829008810BD /* Setup.cpp in Sources */,
 				D666E3CF2BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
 				D6C74DD82C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
-				D6B4C8392C1BFE03006123EF /* vshdrval.cpp in Sources */,
 				D60790F72BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6D26FA42BDEAF5400D57772 /* Scene.cpp in Sources */,
 			);
@@ -884,13 +687,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6B4C84C2C1C01DD006123EF /* psval14.cpp in Sources */,
-				D6B4C8502C1C01DD006123EF /* psval10.cpp in Sources */,
 				D6D26FA12BDE36B400D57772 /* Tools.cpp in Sources */,
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
 				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */,
 				D60791002BF501DC008810BD /* Console.cpp in Sources */,
-				D6B4C8402C1BFE03006123EF /* valbase.cpp in Sources */,
 				D62FEBF72BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FA2BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6F564012BE9D568006D32D9 /* Profiler.cpp in Sources */,
@@ -901,20 +701,16 @@
 				D6A25B7F2B4644B600974946 /* Inspector.cpp in Sources */,
 				D63370722B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6E6B56B2C0234EE003F6D85 /* quickjs-io.c in Sources */,
-				D6B4C8342C1BFE03006123EF /* pshdrval.cpp in Sources */,
-				D6B4C8382C1BFE03006123EF /* errlog.cpp in Sources */,
 				D607910C2BF61829008810BD /* Setup.cpp in Sources */,
 				D6C74DDB2C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
 				D6B4C85C2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D6D26FA72BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
-				D6B4C8462C1BFEEF006123EF /* pch.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
 				D6169D1C2BB1802100E5490C /* tls.cpp in Sources */,
 				D62FEBED2BE50FD3004E9FDF /* dllmain.cpp in Sources */,
 				D6E6B55B2C01CB70003F6D85 /* Document.cpp in Sources */,
 				D666E3D22BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
-				D6B4C83C2C1BFE03006123EF /* vshdrval.cpp in Sources */,
 				D6012A222B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D666E2EC2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				CE93601F25AC457A00CEF503 /* Editor.cpp in Sources */,
@@ -930,22 +726,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D666E2EA2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
-				D6B4C8442C1BFEEF006123EF /* pch.cpp in Sources */,
-				D6B4C8322C1BFE03006123EF /* pshdrval.cpp in Sources */,
-				D6B4C83E2C1BFE03006123EF /* valbase.cpp in Sources */,
 				D6386A5E2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */,
 				D6346EF12BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
 				D6012A202B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D60790C32BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26F9F2BDE36B400D57772 /* Tools.cpp in Sources */,
-				D6B4C83A2C1BFE03006123EF /* vshdrval.cpp in Sources */,
 				D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FE2BF501DC008810BD /* Console.cpp in Sources */,
 				D60790F82BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6B4C85A2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
-				D6B4C8362C1BFE03006123EF /* errlog.cpp in Sources */,
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6E6B5692C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -960,9 +751,7 @@
 				D6B4C8542C1C4056006123EF /* ShaderAssembler.cpp in Sources */,
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707D2B382156001D4057 /* Hierarchy.cpp in Sources */,
-				D6B4C84A2C1C01DD006123EF /* psval14.cpp in Sources */,
 				D6F563FF2BE9D568006D32D9 /* Profiler.cpp in Sources */,
-				D6B4C84E2C1C01DD006123EF /* psval10.cpp in Sources */,
 				D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -972,22 +761,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D666E2EB2BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
-				D6B4C8452C1BFEEF006123EF /* pch.cpp in Sources */,
-				D6B4C8332C1BFE03006123EF /* pshdrval.cpp in Sources */,
-				D6B4C83F2C1BFE03006123EF /* valbase.cpp in Sources */,
 				D6386A5F2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */,
 				D6346EF22BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
 				D6012A212B1DE28F00C3875A /* Grid.cpp in Sources */,
 				D60790C42BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26FA02BDE36B400D57772 /* Tools.cpp in Sources */,
-				D6B4C83B2C1BFE03006123EF /* vshdrval.cpp in Sources */,
 				D62FEBF62BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FF2BF501DC008810BD /* Console.cpp in Sources */,
 				D60790F92BF33502008810BD /* TextureTools.cpp in Sources */,
 				D6B4C85B2C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
-				D6B4C8372C1BFE03006123EF /* errlog.cpp in Sources */,
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6E6B56A2C0234EE003F6D85 /* quickjs-io.c in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -1002,9 +786,7 @@
 				D6B4C8552C1C4056006123EF /* ShaderAssembler.cpp in Sources */,
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707E2B382156001D4057 /* Hierarchy.cpp in Sources */,
-				D6B4C84B2C1C01DD006123EF /* psval14.cpp in Sources */,
 				D6F564002BE9D568006D32D9 /* Profiler.cpp in Sources */,
-				D6B4C84F2C1C01DD006123EF /* psval10.cpp in Sources */,
 				D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,8 +20,8 @@ typedef float D3DVALUE;
 #endif
 
 #define DEBUG 0
-#include <chaplin/direct3d/hwvertexshader.c>
-#include <chaplin/direct3d/r200pixelshader.c>
+#include <xxShaderAssembler/ati/chaplin/direct3d/hwvertexshader.c>
+#include <xxShaderAssembler/ati/chaplin/direct3d/r200pixelshader.c>
 
 //==============================================================================
 static std::string* debugMessage = nullptr;

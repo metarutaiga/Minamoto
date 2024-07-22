@@ -42,6 +42,26 @@ mad oPos, c11, r1.w, r0
 mov oD0, v5
 mov oT0.xy, v7)";
 //------------------------------------------------------------------------------
+static char const vs_1_1[] =
+R"(vs_1_1
+dcl_position v0
+dcl_color v1
+dcl_texcoord v2
+mul r0, c0, v0.x
+mad r0, c1, v0.y, r0
+mad r0, c2, v0.z, r0
+add r0, c3, r0
+mul r1, c4, r0.x
+mad r1, c5, r0.y, r1
+mad r1, c6, r0.z, r1
+mad r1, c7, r0.w, r1
+mul r0, c8, r1.x
+mad r0, c9, r1.y, r0
+mad r0, c10, r1.z, r0
+mad oPos, c11, r1.w, r0
+mov oD0, v1
+mov oT0.xy, v2)";
+//------------------------------------------------------------------------------
 static char const ps_1_0[] =
 R"(ps_1_0
 tex t0
@@ -70,6 +90,8 @@ bool ShaderAssembler::Update(const UpdateData& updateData, bool& show)
         bool compile = false;
         char const* example = nullptr;
         if (ImGui::Button("vs 1.0"))    example = vs_1_0;
+        ImGui::SameLine();
+        if (ImGui::Button("vs 1.1"))    example = vs_1_1;
         ImGui::SameLine();
         if (ImGui::Button("ps 1.0"))    example = ps_1_0;
         ImGui::SameLine();
@@ -102,7 +124,7 @@ bool ShaderAssembler::Update(const UpdateData& updateData, bool& show)
             switch (mode)
             {
             case "D3D8"_cc:
-                output = ShaderAssemblerD3D8::Disassemble(ShaderAssemblerD3D8::Assemble(input, message));
+                output = ShaderAssemblerD3D8::Disassemble(ShaderAssemblerD3D8::Assemble(input, message), message);
                 break;
             case "NV20"_cc:
             {

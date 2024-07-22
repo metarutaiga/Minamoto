@@ -63,5 +63,8 @@
       <FileRef
          location = "group:Build/xxGraphicPlus.xcodeproj">
       </FileRef>
+      <FileRef
+         location = "group:Build/xxShaderAssembler.xcodeproj">
+      </FileRef>
    </Group>
 </Workspace>

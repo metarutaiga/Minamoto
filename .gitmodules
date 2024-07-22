@@ -28,12 +28,6 @@
 [submodule "SDK/quickjs"]
 	path = SDK/quickjs
 	url = https://github.com/metarutaiga/quickjs
-[submodule "SDK/shval"]
-	path = SDK/shval
-	url = https://github.com/metarutaiga/shval
-[submodule "SDK/kelvin"]
-	path = SDK/kelvin
-	url = https://github.com/metarutaiga/kelvin
-[submodule "SDK/chaplin"]
-	path = SDK/chaplin
-	url = https://github.com/metarutaiga/chaplin
+[submodule "SDK/xxShaderAssembler"]
+	path = SDK/xxShaderAssembler
+	url = https://github.com/metarutaiga/xxShaderAssembler

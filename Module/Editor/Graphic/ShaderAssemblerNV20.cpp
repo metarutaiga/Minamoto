@@ -24,10 +24,10 @@ typedef float D3DVALUE;
 #define FreeIPM free
 #define NVARCH 0x20
 #define nvAssert assert
-#include <kelvin/nvPShad.cpp>
-#include <kelvin/nvKelvinProgram.cpp>
-#include <kelvin/vpcompilekelvin.c>
-#include <kelvin/vpoptimize.c>
+#include <xxShaderAssembler/nvidia/kelvin/nvPShad.cpp>
+#include <xxShaderAssembler/nvidia/kelvin/nvKelvinProgram.cpp>
+#include <xxShaderAssembler/nvidia/kelvin/vpcompilekelvin.c>
+#include <xxShaderAssembler/nvidia/kelvin/vpoptimize.c>
 static GLOBALDATA DriverData;
 GLOBALDATA* pDriverData = &DriverData;
 
@@ -461,7 +461,7 @@ std::string ShaderAssemblerNV20::DisassembleCheops(std::vector<uint32_t> const& 
     return text;
 }
 //------------------------------------------------------------------------------
-std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& code) __attribute__((optnone))
+std::string ShaderAssemblerNV20::DisassembleKelvin(std::vector<uint32_t> const& code)
 {
     char temp[256];
     std::string text;
