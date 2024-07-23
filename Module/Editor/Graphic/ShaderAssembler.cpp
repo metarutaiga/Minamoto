@@ -6,6 +6,7 @@
 //==============================================================================
 #include "Editor.h"
 #include "ShaderAssemblerD3D8.h"
+#include "ShaderAssemblerNV10.h"
 #include "ShaderAssemblerNV20.h"
 #include "ShaderAssemblerR200.h"
 #include "ShaderAssembler.h"
@@ -108,6 +109,8 @@ bool ShaderAssembler::Update(const UpdateData& updateData, bool& show)
 
         compile |= ImGui::RadioButton("D3D8", &mode, "D3D8"_cc);
         ImGui::SameLine();
+        compile |= ImGui::RadioButton("NV10", &mode, "NV10"_cc);
+        ImGui::SameLine();
         compile |= ImGui::RadioButton("NV20", &mode, "NV20"_cc);
         ImGui::SameLine();
         compile |= ImGui::RadioButton("R200", &mode, "R200"_cc);
@@ -126,6 +129,23 @@ bool ShaderAssembler::Update(const UpdateData& updateData, bool& show)
             case "D3D8"_cc:
                 output = ShaderAssemblerD3D8::Disassemble(ShaderAssemblerD3D8::Assemble(input, message), message);
                 break;
+            case "NV10"_cc:
+            {
+                auto shader = ShaderAssemblerD3D8::Assemble(input, message);
+                if (shader.empty() == false)
+                {
+                    switch (shader.front() & 0xFFFF0000)
+                    {
+                    case 0xFFFE0000:
+                        output = ShaderAssemblerNV10::DisassembleCheops(ShaderAssemblerNV10::CompileCheops(shader, message));
+                        break;
+                    case 0xFFFF0000:
+                        output = ShaderAssemblerNV10::DisassembleCelsius(ShaderAssemblerNV10::CompileCelsius(shader, message));
+                        break;
+                    }
+                }
+                break;
+            }
             case "NV20"_cc:
             {
                 auto shader = ShaderAssemblerD3D8::Assemble(input, message);

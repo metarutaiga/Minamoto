@@ -48,6 +48,10 @@
 		D62CAC8D2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D62CAC8C2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib */; };
 		D62CAC8F2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D62CAC8E2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a */; };
 		D62CAC912C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D62CAC902C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a */; };
+		D62CAC9B2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC992C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp */; };
+		D62CAC9C2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC992C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp */; };
+		D62CAC9D2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC992C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp */; };
+		D62CAC9E2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC992C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp */; };
 		D62FEBED2BE50FD3004E9FDF /* dllmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBEC2BE50FD2004E9FDF /* dllmain.cpp */; };
 		D62FEBF42BE53D41004E9FDF /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBF22BE53D41004E9FDF /* About.cpp */; };
 		D62FEBF52BE53D41004E9FDF /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62FEBF22BE53D41004E9FDF /* About.cpp */; };
@@ -207,6 +211,8 @@
 		D62CAC8C2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = xxShaderAssembler.Windows.lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62CAC8E2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libxxShaderAssembler.iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62CAC902C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libxxShaderAssembler.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62CAC992C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderAssemblerNV10.cpp; path = ../Graphic/ShaderAssemblerNV10.cpp; sourceTree = "<group>"; };
+		D62CAC9A2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderAssemblerNV10.h; path = ../Graphic/ShaderAssemblerNV10.h; sourceTree = "<group>"; };
 		D62FEBEC2BE50FD2004E9FDF /* dllmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dllmain.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/dllmain.cpp"; sourceTree = "<group>"; };
 		D62FEBF22BE53D41004E9FDF /* About.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = About.cpp; path = ../Window/About.cpp; sourceTree = "<group>"; };
 		D62FEBF32BE53D41004E9FDF /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = About.h; path = ../Window/About.h; sourceTree = "<group>"; };
@@ -468,10 +474,12 @@
 				D6B4C8512C1C4056006123EF /* ShaderAssembler.h */,
 				D6B4C8582C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp */,
 				D6B4C8572C1C9BB9006123EF /* ShaderAssemblerD3D8.h */,
-				D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */,
-				D6C74DD62C298AE40078F7D1 /* ShaderAssemblerR200.h */,
+				D62CAC992C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp */,
+				D62CAC9A2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.h */,
 				D6B4C85D2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp */,
 				D6B4C85E2C1DBBE1006123EF /* ShaderAssemblerNV20.h */,
+				D6C74DD72C298AE40078F7D1 /* ShaderAssemblerR200.cpp */,
+				D6C74DD62C298AE40078F7D1 /* ShaderAssemblerR200.h */,
 				D6386A5C2BDAAB2C0008C9D1 /* ShaderDisassembler.cpp */,
 				D6386A5B2BDAAB2C0008C9D1 /* ShaderDisassembler.h */,
 			);
@@ -687,6 +695,7 @@
 				D60790BB2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D63370822B3958F3001D4057 /* Import.cpp in Sources */,
 				D60791092BF61829008810BD /* Setup.cpp in Sources */,
+				D62CAC9B2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */,
 				D666E3CF2BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D633707C2B382156001D4057 /* Hierarchy.cpp in Sources */,
 				D6C74DD82C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
@@ -701,6 +710,7 @@
 			files = (
 				D6D26FA12BDE36B400D57772 /* Tools.cpp in Sources */,
 				D633707B2B382156001D4057 /* Log.cpp in Sources */,
+				D62CAC9E2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */,
 				D6386A602BDAAB2C0008C9D1 /* ShaderDisassembler.cpp in Sources */,
 				D60791002BF501DC008810BD /* Console.cpp in Sources */,
 				D62FEBF72BE53D41004E9FDF /* About.cpp in Sources */,
@@ -751,6 +761,7 @@
 				D63370792B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA52BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6E6B5692C0234EE003F6D85 /* quickjs-io.c in Sources */,
+				D62CAC9C2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6C74DD92C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
 				D60790BC2BEE6C5F008810BD /* Project.cpp in Sources */,
@@ -786,6 +797,7 @@
 				D633707A2B382156001D4057 /* Log.cpp in Sources */,
 				D6D26FA62BDEAF5400D57772 /* Scene.cpp in Sources */,
 				D6E6B56A2C0234EE003F6D85 /* quickjs-io.c in Sources */,
+				D62CAC9D2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6C74DDA2C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
 				D60790BD2BEE6C5F008810BD /* Project.cpp in Sources */,

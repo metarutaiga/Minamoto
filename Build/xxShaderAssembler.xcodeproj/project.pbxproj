@@ -51,6 +51,10 @@
 		D62CAC892C4E3D3B0035DBE9 /* asm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC872C4E3D3B0035DBE9 /* asm.cpp */; };
 		D62CAC8A2C4E3D3B0035DBE9 /* asm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC872C4E3D3B0035DBE9 /* asm.cpp */; };
 		D62CAC8B2C4E3D3B0035DBE9 /* asm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC872C4E3D3B0035DBE9 /* asm.cpp */; };
+		D62CAC952C4E97350035DBE9 /* cheops.c in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC942C4E97350035DBE9 /* cheops.c */; };
+		D62CAC962C4E97350035DBE9 /* cheops.c in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC942C4E97350035DBE9 /* cheops.c */; };
+		D62CAC972C4E97350035DBE9 /* cheops.c in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC942C4E97350035DBE9 /* cheops.c */; };
+		D62CAC982C4E97350035DBE9 /* cheops.c in Sources */ = {isa = PBXBuildFile; fileRef = D62CAC942C4E97350035DBE9 /* cheops.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +118,8 @@
 		D62CAC502C4E16400035DBE9 /* radeonpm4debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radeonpm4debug.h; sourceTree = "<group>"; };
 		D62CAC862C4E3D3B0035DBE9 /* asm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asm.h; path = ../SDK/xxShaderAssembler/asm.h; sourceTree = "<group>"; };
 		D62CAC872C4E3D3B0035DBE9 /* asm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = asm.cpp; path = ../SDK/xxShaderAssembler/asm.cpp; sourceTree = "<group>"; };
+		D62CAC932C4E97350035DBE9 /* cheops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cheops.h; path = ../SDK/xxShaderAssembler/nvidia/celsius/cheops.h; sourceTree = "<group>"; };
+		D62CAC942C4E97350035DBE9 /* cheops.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cheops.c; path = ../SDK/xxShaderAssembler/nvidia/celsius/cheops.c; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* libxxShaderAssembler.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxxShaderAssembler.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +199,7 @@
 		D62CAC1B2C4E161E0035DBE9 /* nvidia */ = {
 			isa = PBXGroup;
 			children = (
+				D62CAC922C4E97240035DBE9 /* celsius */,
 				D62CAC272C4E16330035DBE9 /* kelvin */,
 			);
 			name = nvidia;
@@ -292,6 +299,15 @@
 			);
 			name = chaplin;
 			path = ../SDK/xxShaderAssembler/ati/chaplin;
+			sourceTree = "<group>";
+		};
+		D62CAC922C4E97240035DBE9 /* celsius */ = {
+			isa = PBXGroup;
+			children = (
+				D62CAC942C4E97350035DBE9 /* cheops.c */,
+				D62CAC932C4E97350035DBE9 /* cheops.h */,
+			);
+			name = celsius;
 			sourceTree = "<group>";
 		};
 		D644A038231ED82900B75B77 = {
@@ -451,6 +467,7 @@
 				D62CAC842C4E16B20035DBE9 /* vshdrval.cpp in Sources */,
 				D62CAC852C4E16B20035DBE9 /* vsutil.cpp in Sources */,
 				D62CAC112C4D13D60035DBE9 /* disasm.c in Sources */,
+				D62CAC952C4E97350035DBE9 /* cheops.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +486,7 @@
 				D62CAC682C4E167B0035DBE9 /* vshdrval.cpp in Sources */,
 				D62CAC6A2C4E167B0035DBE9 /* vsutil.cpp in Sources */,
 				D62CAC142C4D13D60035DBE9 /* disasm.c in Sources */,
+				D62CAC982C4E97350035DBE9 /* cheops.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +505,7 @@
 				D62CAC7B2C4E16A30035DBE9 /* vshdrval.cpp in Sources */,
 				D62CAC7C2C4E16A30035DBE9 /* vsutil.cpp in Sources */,
 				D62CAC122C4D13D60035DBE9 /* disasm.c in Sources */,
+				D62CAC962C4E97350035DBE9 /* cheops.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +524,7 @@
 				D62CAC722C4E16920035DBE9 /* vshdrval.cpp in Sources */,
 				D62CAC732C4E16920035DBE9 /* vsutil.cpp in Sources */,
 				D62CAC132C4D13D60035DBE9 /* disasm.c in Sources */,
+				D62CAC972C4E97350035DBE9 /* cheops.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
