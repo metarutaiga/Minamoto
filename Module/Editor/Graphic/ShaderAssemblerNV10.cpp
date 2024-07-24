@@ -13,8 +13,30 @@
 #include <xxShaderAssembler/nvidia/celsius/cheops.h>
 
 //------------------------------------------------------------------------------
+static std::string* debugMessage = nullptr;
+//------------------------------------------------------------------------------
+int ShaderAssemblerNV10::DebugPrintf(char const* format, ...)
+{
+    if (debugMessage == nullptr)
+        return 0;
+
+    char temp[256];
+
+    va_list arg;
+    va_start(arg, format);
+    vsnprintf(temp, 256, format, arg);
+    va_end(arg);
+
+    debugMessage->append(temp);
+
+    return 0;
+}
+//------------------------------------------------------------------------------
 std::vector<uint32_t> ShaderAssemblerNV10::CompileCheops(std::vector<uint32_t> const& binary, std::string& message)
 {
+    PrintfCheops = DebugPrintf;
+    debugMessage = &message;
+
     std::vector<uint32_t> code;
     for (size_t i = 1, count = 0; i < binary.size(); i += count)
     {
@@ -31,6 +53,8 @@ std::vector<uint32_t> ShaderAssemblerNV10::CompileCheops(std::vector<uint32_t> c
         size_t size = CompileCheopsFromD3DSI(cheops, tokens);
         code.insert(code.end(), (uint32_t*)cheops, (uint32_t*)cheops + size * 2);
     }
+
+    debugMessage = nullptr;
     return code;
 }
 //------------------------------------------------------------------------------
@@ -40,8 +64,11 @@ std::vector<uint32_t> ShaderAssemblerNV10::CompileCelsius(std::vector<uint32_t> 
     return code;
 }
 //------------------------------------------------------------------------------
-std::string ShaderAssemblerNV10::DisassembleCheops(std::vector<uint32_t> const& code)
+std::string ShaderAssemblerNV10::DisassembleCheops(std::vector<uint32_t> const& code, std::string& message)
 {
+    PrintfCheops = DebugPrintf;
+    debugMessage = &message;
+
     std::string text;
     for (size_t i = 0; i < code.size(); i += 2)
     {
@@ -62,10 +89,12 @@ std::string ShaderAssemblerNV10::DisassembleCheops(std::vector<uint32_t> const& 
 
         text += '\n';
     }
+
+    debugMessage = nullptr;
     return text;
 }
 //------------------------------------------------------------------------------
-std::string ShaderAssemblerNV10::DisassembleCelsius(std::vector<uint32_t> const& code)
+std::string ShaderAssemblerNV10::DisassembleCelsius(std::vector<uint32_t> const& code, std::string& message)
 {
     std::string text;
     for (size_t i = 0; i < code.size(); i += 4)

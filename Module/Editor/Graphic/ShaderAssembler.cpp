@@ -137,10 +137,10 @@ bool ShaderAssembler::Update(const UpdateData& updateData, bool& show)
                     switch (shader.front() & 0xFFFF0000)
                     {
                     case 0xFFFE0000:
-                        output = ShaderAssemblerNV10::DisassembleCheops(ShaderAssemblerNV10::CompileCheops(shader, message));
+                        output = ShaderAssemblerNV10::DisassembleCheops(ShaderAssemblerNV10::CompileCheops(shader, message), message);
                         break;
                     case 0xFFFF0000:
-                        output = ShaderAssemblerNV10::DisassembleCelsius(ShaderAssemblerNV10::CompileCelsius(shader, message));
+                        output = ShaderAssemblerNV10::DisassembleCelsius(ShaderAssemblerNV10::CompileCelsius(shader, message), message);
                         break;
                     }
                 }

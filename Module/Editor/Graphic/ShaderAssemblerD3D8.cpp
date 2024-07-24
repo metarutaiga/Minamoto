@@ -39,21 +39,24 @@ std::vector<uint32_t> ShaderAssemblerD3D8::Assemble(std::string const& shader, s
 
     char* lasts = nullptr;
     char const* line = strtok_r(lines.data(), "\n", &lasts);
-    do
+    while (line)
     {
         uint32_t tokens[8];
         size_t count = AssembleD3DSI(tokens, binary.empty() ? 0 : binary.front(), line);
-        if (count > 8)
+        if (count <= 8)
+        {
+            binary.insert(binary.end(), tokens, tokens + count);
+        }
+        else
         {
             message += line;
-            continue;
         }
-        binary.insert(binary.end(), tokens, tokens + count);
-    } while ((line = strtok_r(nullptr, "\n", &lasts)));
+        line = strtok_r(nullptr, "\n", &lasts);
+    }
     binary.push_back(D3DSIO_END);
 
     // Validator
-    if (binary.empty() == false && message.empty())
+    if (binary.size() > 2 && message.empty())
     {
         D3DCAPS8 caps = {};
         caps.VertexShaderVersion = D3DVS_VERSION(1, 1);

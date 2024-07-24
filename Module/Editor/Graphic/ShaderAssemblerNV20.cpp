@@ -319,10 +319,10 @@ static void dumpRegisterCombiners(uint32_t* cw, uint32_t stage)
 //------------------------------------------------------------------------------
 static std::string* debugMessage = nullptr;
 //------------------------------------------------------------------------------
-void ShaderAssemblerNV20::DebugPrintf(bool breakline, char const* format, ...)
+int ShaderAssemblerNV20::DebugPrintf(bool breakline, char const* format, ...)
 {
     if (debugMessage == nullptr)
-        return;
+        return 0;
 
     char temp[256];
 
@@ -336,6 +336,8 @@ void ShaderAssemblerNV20::DebugPrintf(bool breakline, char const* format, ...)
     {
         debugMessage->append("\n");
     }
+
+    return 0;
 }
 //------------------------------------------------------------------------------
 std::vector<uint32_t> ShaderAssemblerNV20::CompileCheops(std::vector<uint32_t> const& shader, std::string& message)
