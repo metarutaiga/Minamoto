@@ -8,6 +8,7 @@
 #include <freetype/freetype.h>
 #include "Modifier/Modifier.h"
 #include "Graphic/Binding.h"
+#include "Graphic/Buffer.h"
 #include "Graphic/Pipeline.h"
 #include "Graphic/RenderPass.h"
 #include "Graphic/Sampler.h"
@@ -31,6 +32,7 @@ void Runtime::Initialize()
     initialized = true;
 
     Binding::Initialize();
+    Buffer::Initialize();
     Modifier::Initialize();
     Pipeline::Initialize();
     RenderPass::Initialize();
@@ -54,6 +56,11 @@ void Runtime::Initialize()
     xxLog("Runtime", QuickJS::Version);
 }
 //------------------------------------------------------------------------------
+void Runtime::Update()
+{
+    Buffer::Update();
+}
+//------------------------------------------------------------------------------
 void Runtime::Shutdown(bool suspend)
 {
     if (initialized == false)
@@ -67,6 +74,7 @@ void Runtime::Shutdown(bool suspend)
     RenderPass::Shutdown();
     Pipeline::Shutdown();
     Modifier::Shutdown();
+    Buffer::Shutdown();
     Binding::Shutdown();
 
     if (suspend == false)

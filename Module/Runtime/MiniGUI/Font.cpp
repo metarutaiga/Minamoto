@@ -35,7 +35,7 @@ static std::vector<Font::CharGlyph> codepoints;
 void Font::Initialize()
 {
     FT_Init_FreeType(&library);
-    FT_New_Face(library, "/System/Library/Fonts/PingFang.ttc", 0, &face);
+    FT_New_Face(library, "/System/Library/Fonts/STHeiti Medium.ttc", 0, &face);
     if (face)
     {
         FT_Select_Charmap(face, FT_ENCODING_UNICODE);
@@ -328,7 +328,7 @@ xxMeshPtr Font::MeshScale(xxMeshPtr const& mesh, xxVector2 const& scale)
         xxVector3& position = (*positions++);
         position.xy *= rescale;
     }
-    mesh->SetVertexCount(mesh->VertexCount);
+    mesh->SetVertexCount(1 + vertexCount);
 
     return mesh;
 }

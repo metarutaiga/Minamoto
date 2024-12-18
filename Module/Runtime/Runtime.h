@@ -27,6 +27,7 @@
 struct RuntimeAPI Runtime
 {
     static void Initialize();
+    static void Update();
     static void Shutdown(bool suspend = false);
     static char const Compiler[];
     static char const Target[];

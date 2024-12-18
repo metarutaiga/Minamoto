@@ -49,7 +49,7 @@ std::vector<uint32_t> ShaderAssemblerNV10::CompileCheops(std::vector<uint32_t> c
                 break;
             continue;
         }
-        uint64_t cheops[4];
+        uint64_t cheops[8];
         size_t size = CompileCheopsFromD3DSI(cheops, tokens);
         code.insert(code.end(), (uint32_t*)cheops, (uint32_t*)cheops + size * 2);
     }

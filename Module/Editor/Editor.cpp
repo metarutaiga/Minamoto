@@ -161,6 +161,8 @@ moduleAPI bool Update(const UpdateData& updateData)
     updated |= ShaderAssembler::Update(updateData, showShaderAssembler);
     updated |= ShaderDisassembler::Update(updateData, showShaderDisassembler);
 
+    Runtime::Update();
+
     return updated;
 }
 //------------------------------------------------------------------------------
