@@ -48,6 +48,12 @@ void Buffer::Shutdown()
 {
     if (xxDestroyBufferSystem == nullptr)
         return;
+    while (destroyBuffers.empty() == false)
+    {
+        auto& destroyBuffer = destroyBuffers.front();
+        xxDestroyBufferSystem(destroyBuffer.device, destroyBuffer.buffer);
+        destroyBuffers.pop_front();
+    }
     xxDestroyBuffer = xxDestroyBufferSystem;
     xxDestroyBufferSystem = nullptr;
 }

@@ -159,9 +159,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30A9A74D25ADC5C3000FA104 /* Build configuration list for PBXNativeTarget "quickjs-Android" */;
 			buildPhases = (
+				D6F49BA12BFC8AB500A442C2 /* Run Script */,
 				30A9A74725ADC5C3000FA104 /* Sources */,
 				30A9A74825ADC5C3000FA104 /* Frameworks */,
-				D6F49BA12BFC8AB500A442C2 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -176,9 +176,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE935F5625AC2F4800CEF503 /* Build configuration list for PBXNativeTarget "quickjs-Windows" */;
 			buildPhases = (
+				D6F49B9F2BFC8AAA00A442C2 /* ShellScript */,
 				CE935F5025AC2F4800CEF503 /* Sources */,
 				CE935F5125AC2F4800CEF503 /* Frameworks */,
-				D6F49B9F2BFC8AAA00A442C2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -193,9 +193,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6022C3B23258B5D00B9BFB8 /* Build configuration list for PBXNativeTarget "quickjs-iOS" */;
 			buildPhases = (
+				D6F49BA02BFC8AB000A442C2 /* ShellScript */,
 				D6022C3123258B5D00B9BFB8 /* Sources */,
 				D6022C3223258B5D00B9BFB8 /* Frameworks */,
-				D6F49BA02BFC8AB000A442C2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -210,9 +210,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D644A04C231ED82900B75B77 /* Build configuration list for PBXNativeTarget "quickjs-macOS" */;
 			buildPhases = (
+				D6F49B9E2BFC8A3C00A442C2 /* ShellScript */,
 				D644A03E231ED82900B75B77 /* Sources */,
 				D644A03F231ED82900B75B77 /* Frameworks */,
-				D6F49B9E2BFC8A3C00A442C2 /* ShellScript */,
 			);
 			buildRules = (
 			);

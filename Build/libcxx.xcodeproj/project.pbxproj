@@ -22,7 +22,6 @@
 		D6169CD32BB1742700E5490C /* condition_variable_destructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA52BB1742600E5490C /* condition_variable_destructor.cpp */; };
 		D6169CD42BB1742700E5490C /* functional.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA62BB1742600E5490C /* functional.cpp */; };
 		D6169CD52BB1742700E5490C /* iostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA92BB1742600E5490C /* iostream.cpp */; };
-		D6169CD62BB1742700E5490C /* legacy_debug_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAA2BB1742600E5490C /* legacy_debug_handler.cpp */; };
 		D6169CD72BB1742700E5490C /* charconv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAB2BB1742600E5490C /* charconv.cpp */; };
 		D6169CD82BB1742700E5490C /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAC2BB1742600E5490C /* new.cpp */; };
 		D6169CD92BB1742700E5490C /* valarray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAD2BB1742600E5490C /* valarray.cpp */; };
@@ -54,6 +53,22 @@
 		D6169CFC2BB17A7B00E5490C /* support.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CF92BB17A7B00E5490C /* support.cpp */; };
 		D6346EFF2BFB55560075D7F1 /* udivmodti4.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFA2BFB55550075D7F1 /* udivmodti4.c */; };
 		D6346F032BFB55560075D7F1 /* udivti3.c in Sources */ = {isa = PBXBuildFile; fileRef = D6346EFB2BFB55550075D7F1 /* udivti3.c */; };
+		D68CADFD2D14262700ACE81B /* error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF82D14262700ACE81B /* error_category.cpp */; };
+		D68CADFE2D14262700ACE81B /* fstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF92D14262700ACE81B /* fstream.cpp */; };
+		D68CAE012D14262700ACE81B /* ostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADFA2D14262700ACE81B /* ostream.cpp */; };
+		D68CAE022D14262700ACE81B /* call_once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF72D14262700ACE81B /* call_once.cpp */; };
+		D68CAE032D14262700ACE81B /* error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF82D14262700ACE81B /* error_category.cpp */; };
+		D68CAE042D14262700ACE81B /* fstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF92D14262700ACE81B /* fstream.cpp */; };
+		D68CAE072D14262700ACE81B /* ostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADFA2D14262700ACE81B /* ostream.cpp */; };
+		D68CAE082D14262700ACE81B /* call_once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF72D14262700ACE81B /* call_once.cpp */; };
+		D68CAE092D14262700ACE81B /* error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF82D14262700ACE81B /* error_category.cpp */; };
+		D68CAE0A2D14262700ACE81B /* fstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF92D14262700ACE81B /* fstream.cpp */; };
+		D68CAE0D2D14262700ACE81B /* ostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADFA2D14262700ACE81B /* ostream.cpp */; };
+		D68CAE0E2D14262700ACE81B /* call_once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF72D14262700ACE81B /* call_once.cpp */; };
+		D68CAE0F2D14262700ACE81B /* error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF82D14262700ACE81B /* error_category.cpp */; };
+		D68CAE102D14262700ACE81B /* fstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF92D14262700ACE81B /* fstream.cpp */; };
+		D68CAE132D14262700ACE81B /* ostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADFA2D14262700ACE81B /* ostream.cpp */; };
+		D68CAE142D14262700ACE81B /* call_once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CADF72D14262700ACE81B /* call_once.cpp */; };
 		D6E6B5782C0446C0003F6D85 /* algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA12BB1742600E5490C /* algorithm.cpp */; };
 		D6E6B5792C0446C0003F6D85 /* any.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169C992BB1742600E5490C /* any.cpp */; };
 		D6E6B57A2C0446C0003F6D85 /* atomic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169C982BB1742600E5490C /* atomic.cpp */; };
@@ -70,7 +85,6 @@
 		D6E6B5852C0446C0003F6D85 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB72BB1742700E5490C /* ios.cpp */; };
 		D6E6B5862C0446C0003F6D85 /* ios.instantiations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CC42BB1742700E5490C /* ios.instantiations.cpp */; };
 		D6E6B5872C0446C0003F6D85 /* iostream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA92BB1742600E5490C /* iostream.cpp */; };
-		D6E6B5882C0446C0003F6D85 /* legacy_debug_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CAA2BB1742600E5490C /* legacy_debug_handler.cpp */; };
 		D6E6B5892C0446C0003F6D85 /* legacy_pointer_safety.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CA32BB1742600E5490C /* legacy_pointer_safety.cpp */; };
 		D6E6B58A2C0446C0003F6D85 /* locale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CB82BB1742700E5490C /* locale.cpp */; };
 		D6E6B58B2C0446C0003F6D85 /* memory_resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6169CBA2BB1742700E5490C /* memory_resource.cpp */; };
@@ -126,7 +140,6 @@
 		D6169CA72BB1742600E5490C /* memory_resource_init_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memory_resource_init_helper.h; path = ../SDK/ClangPlatform/libcxx/src/memory_resource_init_helper.h; sourceTree = "<group>"; };
 		D6169CA82BB1742600E5490C /* std_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = std_stream.h; path = ../SDK/ClangPlatform/libcxx/src/std_stream.h; sourceTree = "<group>"; };
 		D6169CA92BB1742600E5490C /* iostream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = iostream.cpp; path = ../SDK/ClangPlatform/libcxx/src/iostream.cpp; sourceTree = "<group>"; };
-		D6169CAA2BB1742600E5490C /* legacy_debug_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = legacy_debug_handler.cpp; path = ../SDK/ClangPlatform/libcxx/src/legacy_debug_handler.cpp; sourceTree = "<group>"; };
 		D6169CAB2BB1742600E5490C /* charconv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = charconv.cpp; path = ../SDK/ClangPlatform/libcxx/src/charconv.cpp; sourceTree = "<group>"; };
 		D6169CAC2BB1742600E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = ../SDK/ClangPlatform/libcxx/src/new.cpp; sourceTree = "<group>"; };
 		D6169CAD2BB1742600E5490C /* valarray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = valarray.cpp; path = ../SDK/ClangPlatform/libcxx/src/valarray.cpp; sourceTree = "<group>"; };
@@ -160,6 +173,10 @@
 		D6346EFA2BFB55550075D7F1 /* udivmodti4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udivmodti4.c; path = "../SDK/ClangPlatform/compiler-rt/udivmodti4.c"; sourceTree = "<group>"; };
 		D6346EFB2BFB55550075D7F1 /* udivti3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = udivti3.c; path = "../SDK/ClangPlatform/compiler-rt/udivti3.c"; sourceTree = "<group>"; };
 		D644A041231ED82900B75B77 /* libcxx.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcxx.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68CADF72D14262700ACE81B /* call_once.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = call_once.cpp; path = ../SDK/ClangPlatform/libcxx/src/call_once.cpp; sourceTree = SOURCE_ROOT; };
+		D68CADF82D14262700ACE81B /* error_category.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = error_category.cpp; path = ../SDK/ClangPlatform/libcxx/src/error_category.cpp; sourceTree = SOURCE_ROOT; };
+		D68CADF92D14262700ACE81B /* fstream.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = fstream.cpp; path = ../SDK/ClangPlatform/libcxx/src/fstream.cpp; sourceTree = SOURCE_ROOT; };
+		D68CADFA2D14262700ACE81B /* ostream.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ostream.cpp; path = ../SDK/ClangPlatform/libcxx/src/ostream.cpp; sourceTree = SOURCE_ROOT; };
 		D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
 		D6E6B5A42C0453F3003F6D85 /* powidf2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = powidf2.c; path = "../SDK/ClangPlatform/compiler-rt/powidf2.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -245,34 +262,37 @@
 				D6169C982BB1742600E5490C /* atomic.cpp */,
 				D6169CBE2BB1742700E5490C /* barrier.cpp */,
 				D6169CBB2BB1742700E5490C /* bind.cpp */,
+				D68CADF72D14262700ACE81B /* call_once.cpp */,
 				D6169CAB2BB1742600E5490C /* charconv.cpp */,
-				D6169C9F2BB1742600E5490C /* chrono_system_time_init.h */,
 				D6169CC32BB1742700E5490C /* chrono.cpp */,
-				D6169CA52BB1742600E5490C /* condition_variable_destructor.cpp */,
+				D6169C9F2BB1742600E5490C /* chrono_system_time_init.h */,
 				D6169CB22BB1742700E5490C /* condition_variable.cpp */,
+				D6169CA52BB1742600E5490C /* condition_variable_destructor.cpp */,
+				D68CADF82D14262700ACE81B /* error_category.cpp */,
 				D6169CB62BB1742700E5490C /* exception.cpp */,
+				D68CADF92D14262700ACE81B /* fstream.cpp */,
 				D6169CA62BB1742600E5490C /* functional.cpp */,
 				D6169C9A2BB1742600E5490C /* future.cpp */,
 				D6169CC02BB1742700E5490C /* hash.cpp */,
 				D6169CB72BB1742700E5490C /* ios.cpp */,
 				D6169CC42BB1742700E5490C /* ios.instantiations.cpp */,
-				D6169CB02BB1742700E5490C /* iostream_init.h */,
 				D6169CA92BB1742600E5490C /* iostream.cpp */,
-				D6169CAA2BB1742600E5490C /* legacy_debug_handler.cpp */,
+				D6169CB02BB1742700E5490C /* iostream_init.h */,
 				D6169CA32BB1742600E5490C /* legacy_pointer_safety.cpp */,
 				D6169CB82BB1742700E5490C /* locale.cpp */,
-				D6169CA72BB1742600E5490C /* memory_resource_init_helper.h */,
-				D6169CBA2BB1742700E5490C /* memory_resource.cpp */,
 				D6169CBC2BB1742700E5490C /* memory.cpp */,
-				D6169CBD2BB1742700E5490C /* mutex_destructor.cpp */,
+				D6169CBA2BB1742700E5490C /* memory_resource.cpp */,
+				D6169CA72BB1742600E5490C /* memory_resource_init_helper.h */,
 				D6169CB12BB1742700E5490C /* mutex.cpp */,
+				D6169CBD2BB1742700E5490C /* mutex_destructor.cpp */,
+				D6169CAC2BB1742600E5490C /* new.cpp */,
 				D6169C9B2BB1742600E5490C /* new_handler.cpp */,
 				D6169CB42BB1742700E5490C /* new_helpers.cpp */,
-				D6169CAC2BB1742600E5490C /* new.cpp */,
 				D6169CC52BB1742700E5490C /* optional.cpp */,
+				D68CADFA2D14262700ACE81B /* ostream.cpp */,
 				D6169CA22BB1742600E5490C /* print.cpp */,
-				D6169C9D2BB1742600E5490C /* random_shuffle.cpp */,
 				D6169C9C2BB1742600E5490C /* random.cpp */,
+				D6169C9D2BB1742600E5490C /* random_shuffle.cpp */,
 				D6169CBF2BB1742700E5490C /* regex.cpp */,
 				D6169CAF2BB1742600E5490C /* shared_mutex.cpp */,
 				D6169CA82BB1742600E5490C /* std_stream.h */,
@@ -428,6 +448,10 @@
 				D6E6B57E2C0446C0003F6D85 /* chrono.cpp in Sources */,
 				D6E6B57F2C0446C0003F6D85 /* condition_variable_destructor.cpp in Sources */,
 				D6E6B5802C0446C0003F6D85 /* condition_variable.cpp in Sources */,
+				D68CAE0F2D14262700ACE81B /* error_category.cpp in Sources */,
+				D68CAE102D14262700ACE81B /* fstream.cpp in Sources */,
+				D68CAE132D14262700ACE81B /* ostream.cpp in Sources */,
+				D68CAE142D14262700ACE81B /* call_once.cpp in Sources */,
 				D6E6B5812C0446C0003F6D85 /* exception.cpp in Sources */,
 				D6E6B5822C0446C0003F6D85 /* functional.cpp in Sources */,
 				D6E6B5832C0446C0003F6D85 /* future.cpp in Sources */,
@@ -435,7 +459,6 @@
 				D6E6B5852C0446C0003F6D85 /* ios.cpp in Sources */,
 				D6E6B5862C0446C0003F6D85 /* ios.instantiations.cpp in Sources */,
 				D6E6B5872C0446C0003F6D85 /* iostream.cpp in Sources */,
-				D6E6B5882C0446C0003F6D85 /* legacy_debug_handler.cpp in Sources */,
 				D6E6B5892C0446C0003F6D85 /* legacy_pointer_safety.cpp in Sources */,
 				D6E6B58A2C0446C0003F6D85 /* locale.cpp in Sources */,
 				D6E6B58B2C0446C0003F6D85 /* memory_resource.cpp in Sources */,
@@ -475,7 +498,6 @@
 				D6169CE02BB1742700E5490C /* verbose_abort.cpp in Sources */,
 				D6169CE42BB1742700E5490C /* memory_resource.cpp in Sources */,
 				D6E6B5A62C0453F3003F6D85 /* powidf2.c in Sources */,
-				D6169CD62BB1742700E5490C /* legacy_debug_handler.cpp in Sources */,
 				D6169CDD2BB1742700E5490C /* condition_variable.cpp in Sources */,
 				D6169CFA2BB17A7B00E5490C /* thread_win32.cpp in Sources */,
 				D6169CC92BB1742700E5490C /* future.cpp in Sources */,
@@ -517,6 +539,10 @@
 				D6169CF02BB1742700E5490C /* variant.cpp in Sources */,
 				D6169CD92BB1742700E5490C /* valarray.cpp in Sources */,
 				D6169CCF2BB1742700E5490C /* algorithm.cpp in Sources */,
+				D68CAE032D14262700ACE81B /* error_category.cpp in Sources */,
+				D68CAE042D14262700ACE81B /* fstream.cpp in Sources */,
+				D68CAE072D14262700ACE81B /* ostream.cpp in Sources */,
+				D68CAE082D14262700ACE81B /* call_once.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +550,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D68CAE092D14262700ACE81B /* error_category.cpp in Sources */,
+				D68CAE0A2D14262700ACE81B /* fstream.cpp in Sources */,
+				D68CAE0D2D14262700ACE81B /* ostream.cpp in Sources */,
+				D68CAE0E2D14262700ACE81B /* call_once.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +561,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D68CADFD2D14262700ACE81B /* error_category.cpp in Sources */,
+				D68CADFE2D14262700ACE81B /* fstream.cpp in Sources */,
+				D68CAE012D14262700ACE81B /* ostream.cpp in Sources */,
+				D68CAE022D14262700ACE81B /* call_once.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
