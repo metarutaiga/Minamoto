@@ -13,6 +13,7 @@
 #include <Runtime/Tools/NodeTools.h>
 #include <ImGuiFileDialog/ImGuiFileDialog.h>
 #include "Import/ImportFBX.h"
+#include "Import/ImportPLY.h"
 #include "Import/ImportWavefront.h"
 #include "Utility/Tools.h"
 #include "Hierarchy.h"
@@ -75,6 +76,8 @@ static xxNodePtr ImportFile(char const* name)
         node = ImportFBX::Create(name);
     if (strcasestr(name, ".obj"))
         node = ImportWavefront::Create(name);
+    if (strcasestr(name, ".ply"))
+        node = ImportPLY::Create(name);
     if (strcasestr(name, ".xxb"))
         node = Binary::Load(name);
     if (node)
@@ -310,10 +313,17 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             }
 
             bool opened = (node->Flags & TEST_OPEN_FLAG) != 0;
-            if (node->Name.empty())
-                snprintf(name, sizeof(name), "%s%p", node->Mesh ? ICON_FA_CUBE : opened ? ICON_FA_CIRCLE_O : ICON_FA_CIRCLE, node.get());
+            char const* type;
+            if (node->Camera)
+                type = ICON_FA_CAMERA;
+            else if (node->Mesh)
+                type = ICON_FA_CUBE;
             else
-                snprintf(name, sizeof(name), "%s%s", node->Mesh ? ICON_FA_CUBE : opened ? ICON_FA_CIRCLE_O : ICON_FA_CIRCLE, node->Name.c_str());
+                type = opened ? ICON_FA_CIRCLE_O : ICON_FA_CIRCLE;
+            if (node->Name.empty())
+                snprintf(name, sizeof(name), "%s%p", type, node.get());
+            else
+                snprintf(name, sizeof(name), "%s%s", type, node->Name.c_str());
             ImGui::Selectable(name, selectedLeft == node);
 
             // Hovered
@@ -429,6 +439,19 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             else
                 ImGui::Text("%s", selectedRight->Name.c_str());
             ImGui::Separator();
+            if (selectedRight && (selectedRight == root || MiniGUI::Window::Cast(selectedRight) != nullptr) && ImGui::Button("Add Camera"))
+            {
+                update = true;
+                xxNodePtr node = xxNode::Create();
+                node->Camera = xxCamera::Create();
+                node->Camera->Up = xxVector3::Z;
+                node->Camera->Right = -xxVector3::X;
+                node->Camera->Direction = xxVector3::Y;
+                node->Camera->SetFOV(16.0f / 9.0f, 60.0f, 10000.0f);
+                selectedRight->AttachChild(node);
+                selectedRight->Flags |= TEST_OPEN_FLAG;
+                selectedRight = nullptr;
+            }
 #if HAVE_MINIGUI
             if (selectedRight && (selectedRight == root || MiniGUI::Window::Cast(selectedRight) == nullptr) && ImGui::Button("Add Node"))
 #else
@@ -455,8 +478,8 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
                 if (selectedLeft == selectedRight)
                 {
                     selectedLeft = nullptr;
-                    Inspector::Select(selectedRight);
-                    Scene::Select(selectedRight);
+                    Inspector::Select(nullptr);
+                    Scene::Select(nullptr);
                 }
                 selectedRight->GetParent()->DetachChild(selectedRight);
                 selectedRight = nullptr;

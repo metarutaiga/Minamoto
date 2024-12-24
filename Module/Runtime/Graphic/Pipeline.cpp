@@ -14,12 +14,12 @@
 static std::map<uint64_t, uint64_t>                 blendStates;
 static uint64_t                                     depthStencilStates[1 << 4];
 static uint64_t                                     rasterizerStates[1 << 2];
-static std::map<std::array<uint64_t, 7>, uint64_t>  pipelines;
+static std::map<std::array<uint64_t, 8>, uint64_t>  pipelines;
 //------------------------------------------------------------------------------
 static uint64_t (*xxCreateBlendStateSystem)(uint64_t device, char const* sourceColor, char const* operationColor, char const* destinationColor, char const* sourceAlpha, char const* operationAlpha, char const* destinationAlpha);
 static uint64_t (*xxCreateDepthStencilStateSystem)(uint64_t device, char const* depthTest, bool depthWrite);
 static uint64_t (*xxCreateRasterizerStateSystem)(uint64_t device, bool cull, bool scissor);
-static uint64_t (*xxCreatePipelineSystem)(uint64_t device, uint64_t renderPass, uint64_t blendState, uint64_t depthStencilState, uint64_t rasterizerState, uint64_t vertexAttribute, uint64_t vertexShader, uint64_t fragmentShader);
+static uint64_t (*xxCreatePipelineSystem)(uint64_t device, uint64_t renderPass, uint64_t blendState, uint64_t depthStencilState, uint64_t rasterizerState, uint64_t vertexAttribute, uint64_t meshShader, uint64_t vertexShader, uint64_t fragmentShader);
 static void     (*xxDestroyBlendStateSystem)(uint64_t blendState);
 static void     (*xxDestroyDepthStencilStateSystem)(uint64_t depthStencilState);
 static void     (*xxDestroyRasterizerStateSystem)(uint64_t rasterizerState);
@@ -81,23 +81,24 @@ static uint64_t xxCreateRasterizerStateRuntime(uint64_t device, bool cull, bool 
     return output;
 }
 //------------------------------------------------------------------------------
-static uint64_t xxCreatePipelineRuntime(uint64_t device, uint64_t renderPass, uint64_t blendState, uint64_t depthStencilState, uint64_t rasterizerState, uint64_t vertexAttribute, uint64_t vertexShader, uint64_t fragmentShader)
+static uint64_t xxCreatePipelineRuntime(uint64_t device, uint64_t renderPass, uint64_t blendState, uint64_t depthStencilState, uint64_t rasterizerState, uint64_t vertexAttribute, uint64_t meshShader, uint64_t vertexShader, uint64_t fragmentShader)
 {
-    std::array<uint64_t, 7> hash;
+    std::array<uint64_t, 8> hash;
     hash[0] = renderPass;
     hash[1] = blendState;
     hash[2] = depthStencilState;
     hash[3] = rasterizerState;
     hash[4] = vertexAttribute;
-    hash[5] = vertexShader;
-    hash[6] = fragmentShader;
+    hash[5] = meshShader;
+    hash[6] = vertexShader;
+    hash[7] = fragmentShader;
 
     auto it = pipelines.find(hash);
     if (it != pipelines.end())
     {
         return (*it).second;
     }
-    uint64_t output = xxCreatePipelineSystem(device, renderPass, blendState, depthStencilState, rasterizerState, vertexAttribute, vertexShader, fragmentShader);
+    uint64_t output = xxCreatePipelineSystem(device, renderPass, blendState, depthStencilState, rasterizerState, vertexAttribute, meshShader, vertexShader, fragmentShader);
     if (output != 0)
     {
         pipelines.insert(it, {hash, output});

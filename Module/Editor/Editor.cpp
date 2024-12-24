@@ -19,7 +19,12 @@
 #include "Window/Project.h"
 #include "Window/QuickJSConsole.h"
 #include "Window/Scene.h"
+#include "Window/Game.h"
 #include "Window/Setup.h"
+
+#if defined(__ANDROID__)
+extern "C" void __cxa_pure_virtual(void) {}
+#endif
 
 //------------------------------------------------------------------------------
 moduleAPI char const* Create(const CreateData& createData)
@@ -38,6 +43,7 @@ moduleAPI char const* Create(const CreateData& createData)
     Profiler::Initialize();
     Project::Initialize();
     Scene::Initialize();
+    Game::Initialize();
     Setup::Initialize();
 
     return MODULE_NAME;
@@ -55,6 +61,7 @@ moduleAPI void Shutdown(const ShutdownData& shutdownData)
     Profiler::Shutdown();
     Project::Shutdown();
     Scene::Shutdown();
+    Game::Shutdown();
     Setup::Shutdown();
 
     ShaderAssembler::Shutdown();
@@ -73,10 +80,12 @@ moduleAPI void Message(const MessageData& messageData)
             ShaderDisassembler::Initialize();
             Project::Initialize();
             Scene::Initialize();
+            Game::Initialize();
             break;
         case xxHash("SHUTDOWN"):
             Project::Shutdown(true);
             Scene::Shutdown(true);
+            Game::Shutdown(true);
             ShaderDisassembler::Shutdown();
             Runtime::Shutdown(true);
             break;
@@ -98,6 +107,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     static bool showHierarchy = true;
     static bool showInspector = true;
     static bool showScene = true;
+    static bool showGame = true;
     static bool showShaderAssembler = false;
     static bool showShaderDisassembler = false;
     bool updated = false;
@@ -118,6 +128,7 @@ moduleAPI bool Update(const UpdateData& updateData)
             ImGui::MenuItem(ICON_FA_LIST            "Hierarchy", nullptr, &showHierarchy);
             ImGui::MenuItem(ICON_FA_INFO_CIRCLE     "Inspector", nullptr, &showInspector);
             ImGui::MenuItem(ICON_FA_GLOBE           "Scene", nullptr, &showScene);
+            ImGui::MenuItem(ICON_FA_GAMEPAD         "Game", nullptr, &showGame);
             ImGui::Separator();
             ImGui::MenuItem(ICON_FA_PENCIL          "Shader Assembler", nullptr, &showShaderAssembler);
             ImGui::MenuItem(ICON_FA_FILE_TEXT       "Shader Disassembler", nullptr, &showShaderDisassembler);
@@ -144,6 +155,7 @@ moduleAPI bool Update(const UpdateData& updateData)
         ImGui::DockBuilderDockWindow(ICON_FA_LIST       "Hierarchy", left);
         ImGui::DockBuilderDockWindow(ICON_FA_INFO_CIRCLE"Inspector", right);
         ImGui::DockBuilderDockWindow(ICON_FA_GLOBE      "Scene", id);
+        ImGui::DockBuilderDockWindow(ICON_FA_GAMEPAD    "Game", id);
         ImGui::DockBuilderFinish(id);
     }
 
@@ -158,6 +170,7 @@ moduleAPI bool Update(const UpdateData& updateData)
     updated |= Hierarchy::Update(updateData, showHierarchy, Scene::sceneRoot);
     updated |= Inspector::Update(updateData, showInspector, Scene::sceneCamera);
     updated |= Scene::Update(updateData, showScene);
+    updated |= Game::Update(updateData, showGame);
     updated |= ShaderAssembler::Update(updateData, showShaderAssembler);
     updated |= ShaderDisassembler::Update(updateData, showShaderDisassembler);
 

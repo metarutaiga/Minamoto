@@ -189,7 +189,7 @@ xxMeshPtr Font::Mesh(xxMeshPtr const& mesh, std::string_view text, xxMatrix3x4 c
     if (output->IndexCount != meshCount * 6)
     {
         output->SetIndexCount(meshCount * 6);
-        auto indices = output->Index;
+        auto indices = (uint16_t*)output->Index;
         for (size_t i = 0, x = 1; i < meshCount; ++i)
         {
             (*indices++) = x + 0;
@@ -366,7 +366,7 @@ xxMeshPtr Font::MeshShadow(xxMeshPtr const& mesh, float shadow)
         mesh->SetVertexCount(1 + vertexCount * 2);
 
         int meshCount = vertexCount / 4 * 2;
-        auto indices = mesh->Index;
+        auto indices = (uint16_t*)mesh->Index;
         for (size_t i = 0, x = 1; i < meshCount; ++i)
         {
             (*indices++) = x + 0;

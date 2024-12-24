@@ -58,6 +58,9 @@ void Profiler::Begin(unsigned int hashName)
     case xxHash("Scene Render"):
         time = &(times[hashName] = {"Scene Render", 0.0}).second;
         break;
+    case xxHash("Game Render"):
+        time = &(times[hashName] = {"Game Render", 0.0}).second;
+        break;
 #if HAVE_MINIGUI
     case xxHash("MiniGUI Update"):
         time = &(times[hashName] = {"MiniGUI Update", 0.0}).second;
@@ -83,6 +86,7 @@ void Profiler::End(unsigned int hashName)
     {
     case xxHash("Scene Update"):
     case xxHash("Scene Render"):
+    case xxHash("Game Render"):
 #if HAVE_MINIGUI
     case xxHash("MiniGUI Update"):
     case xxHash("MiniGUI Render"):

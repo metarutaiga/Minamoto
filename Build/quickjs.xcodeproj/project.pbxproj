@@ -230,7 +230,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					30A9A74925ADC5C3000FA104 = {
 						CreatedOnToolsVersion = 12.3;
@@ -407,7 +407,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = quickjs.Android;
 			};
 			name = Debug;
@@ -416,7 +415,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC63426A85BA60051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = quickjs.Android;
 			};
 			name = Release;
@@ -434,7 +432,6 @@
 					"../Build/include/quickjs-win32",
 					"$(inherited)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = quickjs.Windows;
@@ -458,7 +455,6 @@
 					"../Build/include/quickjs-win32",
 					"$(inherited)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = quickjs.Windows;
@@ -473,7 +469,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = quickjs.iOS;
 				SDKROOT = iphoneos;
 			};
@@ -483,7 +478,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6AA5DB92BD7DA9E00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = quickjs.iOS;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -554,7 +548,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				OBJROOT = ../Build/temp;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
@@ -634,7 +628,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				OBJROOT = ../Build/temp;
 				OTHER_CFLAGS = (
 					"-fdata-sections",

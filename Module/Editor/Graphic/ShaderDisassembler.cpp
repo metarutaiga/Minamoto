@@ -22,6 +22,7 @@ struct ShaderDisassemblyData
     uint64_t device = 0;
     uint64_t blendState = 0;
     uint64_t vertexAttribute = 0;
+    uint64_t meshShader = 0;
     uint64_t vertexShader = 0;
     uint64_t fragmentShader = 0;
     std::string vertexDisassembly;
@@ -30,14 +31,14 @@ struct ShaderDisassemblyData
 };
 static std::map<uint64_t, ShaderDisassemblyData> allShaderDisassembly;
 //------------------------------------------------------------------------------
-static uint64_t (*xxCreatePipelineSystem)(uint64_t device, uint64_t renderPass, uint64_t blendState, uint64_t depthStencilState, uint64_t rasterizerState, uint64_t vertexAttribute, uint64_t vertexShader, uint64_t fragmentShader);
+static uint64_t (*xxCreatePipelineSystem)(uint64_t device, uint64_t renderPass, uint64_t blendState, uint64_t depthStencilState, uint64_t rasterizerState, uint64_t vertexAttribute, uint64_t meshShader, uint64_t vertexShader, uint64_t fragmentShader);
 //------------------------------------------------------------------------------
-static uint64_t xxCreatePipelineRuntime(uint64_t device, uint64_t renderPass, uint64_t blendState, uint64_t depthStencilState, uint64_t rasterizerState, uint64_t vertexAttribute, uint64_t vertexShader, uint64_t fragmentShader)
+static uint64_t xxCreatePipelineRuntime(uint64_t device, uint64_t renderPass, uint64_t blendState, uint64_t depthStencilState, uint64_t rasterizerState, uint64_t vertexAttribute, uint64_t meshShader, uint64_t vertexShader, uint64_t fragmentShader)
 {
-    uint64_t output = xxCreatePipelineSystem(device, renderPass, blendState, depthStencilState, rasterizerState, vertexAttribute, vertexShader, fragmentShader);
+    uint64_t output = xxCreatePipelineSystem(device, renderPass, blendState, depthStencilState, rasterizerState, vertexAttribute, meshShader, vertexShader, fragmentShader);
     if (output)
     {
-        allShaderDisassembly[output] = {device, blendState, vertexAttribute, vertexShader, fragmentShader};
+        allShaderDisassembly[output] = {device, blendState, vertexAttribute, meshShader, vertexShader, fragmentShader};
     }
     return output;
 }

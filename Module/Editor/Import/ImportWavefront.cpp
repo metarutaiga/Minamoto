@@ -9,6 +9,7 @@
 #include <xxGraphicPlus/xxMaterial.h>
 #include <xxGraphicPlus/xxMesh.h>
 #include <xxGraphicPlus/xxNode.h>
+#include "MeshTools.h"
 #include "ImportWavefront.h"
 
 //==============================================================================
@@ -178,7 +179,7 @@ xxNodePtr ImportWavefront::Create(char const* obj)
             return;
         if (faceVertices.empty() == false)
         {
-            child->Mesh = CreateMesh(faceVertices, faceNormals, {}, faceTextures);
+            child->Mesh = MeshTools::CreateMesh(faceVertices, faceNormals, {}, faceTextures);
             if (child->Mesh)
             {
                 child->Mesh->Name = child->Name;

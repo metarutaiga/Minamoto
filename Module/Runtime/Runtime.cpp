@@ -87,7 +87,7 @@ void Runtime::Shutdown(bool suspend)
     MiniGUI::Font::Shutdown(suspend);
 #endif
 
-    xxLog("Runtime", "Shutdown");
+    xxLog("Runtime", suspend ? "Suspend" : "Shutdown");
 }
 //==============================================================================
 //  Information

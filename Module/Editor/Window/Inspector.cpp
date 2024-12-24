@@ -63,6 +63,10 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
 #endif
             {
                 UpdateNode(updateData, selected);
+                if (selected->Camera)
+                {
+                    UpdateCamera(updateData, selected->Camera);
+                }
                 if (selected->Material)
                 {
                     UpdateMaterial(updateData, selected->Material);
@@ -90,6 +94,9 @@ void Inspector::UpdateCamera(const UpdateData& updateData, xxCameraPtr const& ca
         ImGui::SliderFloat3("Up" Q, camera->Up.Array(), -1.0f, 1.0f);
         ImGui::SliderFloat3("Direction" Q, camera->Direction.Array(), -1.0f, 1.0f);
         ImGui::InputFloat3("Location" Q, camera->Location.Array());
+        ImGui::SliderFloat2("Left Right" Q, &camera->FrustumLeft, -1.0f, 1.0f);
+        ImGui::SliderFloat2("Bottom Top" Q, &camera->FrustumBottom, -1.0f, 1.0f);
+        ImGui::SliderFloat2("Near Far" Q, &camera->FrustumNear, 0.0f, 10000.0f);
     }
     if (ImGui::CollapsingHeader(ICON_FA_LIGHTBULB_O "Light" Q, nullptr, ImGuiTreeNodeFlags_DefaultOpen))
     {
@@ -251,6 +258,12 @@ void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const
             Combo("Operation" Q, blendOps, material->BlendOperationAlpha);
             Combo("Destination" Q, blendTypes, material->BlendDestinationAlpha);
         }
+        if (ImGui::Checkbox("Cull" Q, &material->Cull))
+            invalidate = material;
+        if (ImGui::Checkbox("Backface Culling" Q, &material->BackfaceCulling))
+            invalidate = material;
+        if (ImGui::Checkbox("Frustum Culling" Q, &material->FrustumCulling))
+            invalidate = material;
         for (auto& texture : material->Textures)
         {
             char name[64];
@@ -309,13 +322,19 @@ void Inspector::UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh)
     ImGui::Separator();
     if (ImGui::CollapsingHeader(ICON_FA_CUBES "Mesh" Q, nullptr, ImGuiTreeNodeFlags_None))
     {
+        int a[3] = { mesh->NormalCount, mesh->ColorCount, mesh->TextureCount };
+        int i[2] = { mesh->IndexCount, mesh->VertexCount < 65536 ? 16 : 32 };
+        int v[2] = { mesh->VertexCount, mesh->VertexStride };
+        int s[2] = { mesh->Count[xxMesh::STORAGE0], mesh->Stride[xxMesh::STORAGE0] };
         ImGui::InputTextEx("Name" Q, nullptr, mesh->Name);
-        ImGui::InputChar("Color" Q, (char*)&mesh->ColorCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
-        ImGui::InputChar("Normal" Q, (char*)&mesh->NormalCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
-        ImGui::InputChar("Texture" Q, (char*)&mesh->TextureCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
-        ImGui::InputInt("Stride" Q, (int*)&mesh->Stride, 0, 0, ImGuiInputTextFlags_ReadOnly);
-        ImGui::InputInt("Vertex" Q, (int*)&mesh->VertexCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
-        ImGui::InputInt("Index" Q, (int*)&mesh->IndexCount, 0, 0, ImGuiInputTextFlags_ReadOnly);
+        ImGui::InputInt3("Attribute" Q, a, ImGuiInputTextFlags_ReadOnly);
+        if (ImGui::IsItemHovered()) ImGui::SetTooltip("Normal Count : %d\nColor Count : %d\nTexture Count : %d", a[0], a[1], a[2]);
+        ImGui::InputInt2("Index" Q, i, ImGuiInputTextFlags_ReadOnly);
+        if (ImGui::IsItemHovered()) ImGui::SetTooltip("Index Count : %d (%d Bits)", i[0], i[1]);
+        ImGui::InputInt2("Vertex" Q, v, ImGuiInputTextFlags_ReadOnly);
+        if (ImGui::IsItemHovered()) ImGui::SetTooltip("Vertex Count : %d\nVertex Stride : %d", v[0], v[1]);
+        ImGui::InputInt2("Storage" Q, s,  ImGuiInputTextFlags_ReadOnly);
+        if (ImGui::IsItemHovered()) ImGui::SetTooltip("Storage Count : %d\nStorage Stride : %d", s[0], s[1]);
         ImGui::InputFloat3("Bound" Q, (float*)mesh->Bound.Array(), "%.3f", ImGuiInputTextFlags_ReadOnly);
         ImGui::InputFloat("" Q, (float*)&mesh->Bound.w, 0, 0, "%.3f", ImGuiInputTextFlags_ReadOnly);
     }

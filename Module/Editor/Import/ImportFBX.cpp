@@ -19,6 +19,7 @@
 #include <Runtime/Modifier/BakedQuaternionModifier.h>
 #include <Runtime/Modifier/Quaternion16Modifier.h>
 #include <Runtime/Modifier/BakedQuaternion16Modifier.h>
+#include "MeshTools.h"
 #include "ImportFBX.h"
 
 #include "ufbx/ufbx.h"
@@ -252,7 +253,7 @@ static xxMeshPtr CreateMesh(ufbx_mesh* mesh, xxNodePtr const& node, xxNodePtr co
     textureCount = std::min((int)mesh->uv_sets.count, 8);
     xxMeshPtr output = xxMesh::Create(skin_deformer != nullptr, normalCount, colorCount, textureCount);
     output->Name = str(mesh->name);
-    output->SetVertexCount((int)mesh->num_indices);
+    output->SetVertexCount(static_cast<int>(mesh->num_indices));
 
     xxStrideIterator<xxVector3> positions = output->GetPosition();
     xxStrideIterator<xxVector3> boneWeight = output->GetBoneWeight();
@@ -401,7 +402,7 @@ static xxNodePtr CreateNode(ufbx_node* node, xxNodePtr root)
         geometryNode->Mesh = CreateMesh(node->mesh, geometryNode, root);
         if (Import::EnableOptimizeMesh)
         {
-            geometryNode->Mesh = Import::OptimizeMesh(geometryNode->Mesh);
+            geometryNode->Mesh = MeshTools::IndexingMesh(geometryNode->Mesh);
         }
     }
     return output;

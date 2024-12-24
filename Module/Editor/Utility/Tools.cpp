@@ -44,7 +44,7 @@ void Tools::Draw(xxCameraPtr const& camera, xxVector2 const& scale, xxVector2 co
     {
         xxVector4 from = CameraTools::GetWorldPosToScreenPos(camera, line.from);
         xxVector4 to = CameraTools::GetWorldPosToScreenPos(camera, line.to);
-        if (from.w < 0.0f || to.w < 0.0f)
+        if (from.w < 0.0f && to.w < 0.0f)
             continue;
         from.xy = from.xy * scale + offset;
         to.xy = to.xy * scale + offset;

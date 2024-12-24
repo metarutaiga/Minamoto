@@ -96,6 +96,22 @@
 		D666E3D02BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E3CD2BE3BCEC00EFA1F2 /* LuaConsole.cpp */; };
 		D666E3D12BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E3CD2BE3BCEC00EFA1F2 /* LuaConsole.cpp */; };
 		D666E3D22BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D666E3CD2BE3BCEC00EFA1F2 /* LuaConsole.cpp */; };
+		D68CAE172D16706800ACE81B /* ImportPLY.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE162D16706800ACE81B /* ImportPLY.cpp */; };
+		D68CAE182D16706800ACE81B /* ImportPLY.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE162D16706800ACE81B /* ImportPLY.cpp */; };
+		D68CAE192D16706800ACE81B /* ImportPLY.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE162D16706800ACE81B /* ImportPLY.cpp */; };
+		D68CAE1A2D16706800ACE81B /* ImportPLY.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE162D16706800ACE81B /* ImportPLY.cpp */; };
+		D68CAE6D2D17F88500ACE81B /* meshoptimizer.Windows.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D68CAE6C2D17F88500ACE81B /* meshoptimizer.Windows.lib */; };
+		D68CAE6F2D17F89200ACE81B /* libmeshoptimizer.macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68CAE6E2D17F89200ACE81B /* libmeshoptimizer.macOS.a */; };
+		D68CAE712D17F89C00ACE81B /* libmeshoptimizer.iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68CAE702D17F89C00ACE81B /* libmeshoptimizer.iOS.a */; };
+		D68CAE732D17F8A900ACE81B /* libmeshoptimizer.Android.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68CAE722D17F8A900ACE81B /* libmeshoptimizer.Android.a */; };
+		D68CAE822D1961FD00ACE81B /* MeshTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE812D1961FD00ACE81B /* MeshTools.cpp */; };
+		D68CAE832D1961FD00ACE81B /* MeshTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE812D1961FD00ACE81B /* MeshTools.cpp */; };
+		D68CAE842D1961FD00ACE81B /* MeshTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE812D1961FD00ACE81B /* MeshTools.cpp */; };
+		D68CAE852D1961FD00ACE81B /* MeshTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE812D1961FD00ACE81B /* MeshTools.cpp */; };
+		D68CAE882D19621200ACE81B /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE872D19621200ACE81B /* Game.cpp */; };
+		D68CAE892D19621200ACE81B /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE872D19621200ACE81B /* Game.cpp */; };
+		D68CAE8A2D19621200ACE81B /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE872D19621200ACE81B /* Game.cpp */; };
+		D68CAE8B2D19621200ACE81B /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68CAE872D19621200ACE81B /* Game.cpp */; };
 		D6A25B7C2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
 		D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
 		D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6A25B7B2B4644B600974946 /* Inspector.cpp */; };
@@ -244,6 +260,16 @@
 		D666E3CD2BE3BCEC00EFA1F2 /* LuaConsole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LuaConsole.cpp; path = ../Window/LuaConsole.cpp; sourceTree = "<group>"; };
 		D666E3CE2BE3BCEC00EFA1F2 /* LuaConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuaConsole.h; path = ../Window/LuaConsole.h; sourceTree = "<group>"; };
 		D67F2EF82BCC279600B4AA86 /* ImGuiHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImGuiHelper.h; path = ../ImGuiHelper.h; sourceTree = "<group>"; };
+		D68CAE152D16706800ACE81B /* ImportPLY.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImportPLY.h; path = ../Import/ImportPLY.h; sourceTree = SOURCE_ROOT; };
+		D68CAE162D16706800ACE81B /* ImportPLY.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ImportPLY.cpp; path = ../Import/ImportPLY.cpp; sourceTree = SOURCE_ROOT; };
+		D68CAE6C2D17F88500ACE81B /* meshoptimizer.Windows.lib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = meshoptimizer.Windows.lib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68CAE6E2D17F89200ACE81B /* libmeshoptimizer.macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libmeshoptimizer.macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68CAE702D17F89C00ACE81B /* libmeshoptimizer.iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libmeshoptimizer.iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68CAE722D17F8A900ACE81B /* libmeshoptimizer.Android.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libmeshoptimizer.Android.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68CAE802D1961FD00ACE81B /* MeshTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MeshTools.h; path = ../Utility/MeshTools.h; sourceTree = SOURCE_ROOT; };
+		D68CAE812D1961FD00ACE81B /* MeshTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MeshTools.cpp; path = ../Utility/MeshTools.cpp; sourceTree = SOURCE_ROOT; };
+		D68CAE862D19621200ACE81B /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../Window/Game.h; sourceTree = SOURCE_ROOT; };
+		D68CAE872D19621200ACE81B /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../Window/Game.cpp; sourceTree = SOURCE_ROOT; };
 		D6A25B7A2B4644B600974946 /* Inspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Inspector.h; path = ../Window/Inspector.h; sourceTree = "<group>"; };
 		D6A25B7B2B4644B600974946 /* Inspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Inspector.cpp; path = ../Window/Inspector.cpp; sourceTree = "<group>"; };
 		D6AA5DBC2BD7DB4400AE1C30 /* ClangPlatform.Darwin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ClangPlatform.Darwin.xcconfig; path = ../../ClangPlatform.Darwin.xcconfig; sourceTree = "<group>"; };
@@ -290,6 +316,7 @@
 			files = (
 				D60790DE2BF24990008810BD /* libimgui.so in Frameworks */,
 				D6CB0B2D2BB95D0D009DCD26 /* libRuntime.so in Frameworks */,
+				D68CAE732D17F8A900ACE81B /* libmeshoptimizer.Android.a in Frameworks */,
 				D62CAC912C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a in Frameworks */,
 				D6E6B5752C044673003F6D85 /* libcxx.Android.a in Frameworks */,
 			);
@@ -301,6 +328,7 @@
 			files = (
 				D60790DA2BF2497A008810BD /* imgui.dll in Frameworks */,
 				D6CB0B292BB95CEF009DCD26 /* Runtime.dll in Frameworks */,
+				D68CAE6D2D17F88500ACE81B /* meshoptimizer.Windows.lib in Frameworks */,
 				D62CAC8D2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib in Frameworks */,
 				D6E6B56D2C0445F1003F6D85 /* libcxx.Windows.lib in Frameworks */,
 			);
@@ -312,6 +340,7 @@
 			files = (
 				D60790DC2BF24986008810BD /* imgui.bundle in Frameworks */,
 				D6CB0B2B2BB95D00009DCD26 /* Runtime.bundle in Frameworks */,
+				D68CAE712D17F89C00ACE81B /* libmeshoptimizer.iOS.a in Frameworks */,
 				D62CAC8F2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +351,7 @@
 			files = (
 				D60790D62BF24543008810BD /* imgui.dylib in Frameworks */,
 				D6CB0B272BB95CE5009DCD26 /* Runtime.dylib in Frameworks */,
+				D68CAE6F2D17F89200ACE81B /* libmeshoptimizer.macOS.a in Frameworks */,
 				D62CAC082C4CBCD80035DBE9 /* libxxShaderAssembler.macOS.a in Frameworks */,
 				D6386A622BDAAE500008C9D1 /* Metal.framework in Frameworks */,
 			);
@@ -333,6 +363,10 @@
 		300264BD24266097004559E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D68CAE722D17F8A900ACE81B /* libmeshoptimizer.Android.a */,
+				D68CAE702D17F89C00ACE81B /* libmeshoptimizer.iOS.a */,
+				D68CAE6E2D17F89200ACE81B /* libmeshoptimizer.macOS.a */,
+				D68CAE6C2D17F88500ACE81B /* meshoptimizer.Windows.lib */,
 				D62CAC902C4E56AE0035DBE9 /* libxxShaderAssembler.Android.a */,
 				D62CAC8E2C4E56A60035DBE9 /* libxxShaderAssembler.iOS.a */,
 				D62CAC8C2C4E569E0035DBE9 /* xxShaderAssembler.Windows.lib */,
@@ -391,6 +425,8 @@
 			children = (
 				D6012A1E2B1DE28F00C3875A /* Grid.cpp */,
 				D6012A1D2B1DE28F00C3875A /* Grid.h */,
+				D68CAE812D1961FD00ACE81B /* MeshTools.cpp */,
+				D68CAE802D1961FD00ACE81B /* MeshTools.h */,
 				D60790F52BF33502008810BD /* TextureTools.cpp */,
 				D60790F62BF33502008810BD /* TextureTools.h */,
 				D6D26F9C2BDE36B400D57772 /* Tools.cpp */,
@@ -420,6 +456,8 @@
 				D63370802B3958F3001D4057 /* Import.h */,
 				D6530A002BB70A270006AD64 /* ImportFBX.cpp */,
 				D6530A012BB70A270006AD64 /* ImportFBX.h */,
+				D68CAE162D16706800ACE81B /* ImportPLY.cpp */,
+				D68CAE152D16706800ACE81B /* ImportPLY.h */,
 				D633706D2B372A04001D4057 /* ImportWavefront.cpp */,
 				D633706E2B372A04001D4057 /* ImportWavefront.h */,
 			);
@@ -435,6 +473,8 @@
 				D62FEBF32BE53D41004E9FDF /* About.h */,
 				D6E6B5562C01CB6F003F6D85 /* Document.cpp */,
 				D6E6B5572C01CB70003F6D85 /* Document.h */,
+				D68CAE872D19621200ACE81B /* Game.cpp */,
+				D68CAE862D19621200ACE81B /* Game.h */,
 				D63370762B382155001D4057 /* Hierarchy.cpp */,
 				D63370772B382155001D4057 /* Hierarchy.h */,
 				D6A25B7B2B4644B600974946 /* Inspector.cpp */,
@@ -631,7 +671,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					30A9A7BA25ADC792000FA104 = {
 						CreatedOnToolsVersion = 12.3;
@@ -673,9 +713,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D68CAE892D19621200ACE81B /* Game.cpp in Sources */,
 				D6E6B5582C01CB70003F6D85 /* Document.cpp in Sources */,
 				D6F563FE2BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D62FEBF42BE53D41004E9FDF /* About.cpp in Sources */,
+				D68CAE182D16706800ACE81B /* ImportPLY.cpp in Sources */,
 				D666E2E92BE1EBAB00EFA1F2 /* ufbx.c in Sources */,
 				D6346EF02BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
 				D6012A1F2B1DE28F00C3875A /* Grid.cpp in Sources */,
@@ -686,6 +728,7 @@
 				D60790C22BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6B4C85F2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
 				D6E6B5682C0234EE003F6D85 /* quickjs-io.c in Sources */,
+				D68CAE832D1961FD00ACE81B /* MeshTools.cpp in Sources */,
 				D60790FD2BF501DC008810BD /* Console.cpp in Sources */,
 				D6B4C8592C1C9BB9006123EF /* ShaderAssemblerD3D8.cpp in Sources */,
 				D633706F2B372A04001D4057 /* ImportWavefront.cpp in Sources */,
@@ -715,6 +758,7 @@
 				D60791002BF501DC008810BD /* Console.cpp in Sources */,
 				D62FEBF72BE53D41004E9FDF /* About.cpp in Sources */,
 				D60790FA2BF33502008810BD /* TextureTools.cpp in Sources */,
+				D68CAE172D16706800ACE81B /* ImportPLY.cpp in Sources */,
 				D6F564012BE9D568006D32D9 /* Profiler.cpp in Sources */,
 				D6B4C8562C1C4056006123EF /* ShaderAssembler.cpp in Sources */,
 				D6346EF32BFA10210075D7F1 /* QuickJSConsole.cpp in Sources */,
@@ -739,7 +783,9 @@
 				D6B4C8622C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
 				D60790BE2BEE6C5F008810BD /* Project.cpp in Sources */,
 				D63370852B3958F3001D4057 /* Import.cpp in Sources */,
+				D68CAE842D1961FD00ACE81B /* MeshTools.cpp in Sources */,
 				D633707F2B382156001D4057 /* Hierarchy.cpp in Sources */,
+				D68CAE8A2D19621200ACE81B /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,7 +810,9 @@
 				D62CAC9C2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */,
 				D63370702B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6C74DD92C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
+				D68CAE822D1961FD00ACE81B /* MeshTools.cpp in Sources */,
 				D60790BC2BEE6C5F008810BD /* Project.cpp in Sources */,
+				D68CAE8B2D19621200ACE81B /* Game.cpp in Sources */,
 				D666E3D02BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D6E6B5592C01CB70003F6D85 /* Document.cpp in Sources */,
 				D6B4C8602C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
@@ -775,6 +823,7 @@
 				D63370832B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707D2B382156001D4057 /* Hierarchy.cpp in Sources */,
 				D6F563FF2BE9D568006D32D9 /* Profiler.cpp in Sources */,
+				D68CAE192D16706800ACE81B /* ImportPLY.cpp in Sources */,
 				D633709A2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -800,7 +849,9 @@
 				D62CAC9D2C4F5ABC0035DBE9 /* ShaderAssemblerNV10.cpp in Sources */,
 				D63370712B372A04001D4057 /* ImportWavefront.cpp in Sources */,
 				D6C74DDA2C298AE40078F7D1 /* ShaderAssemblerR200.cpp in Sources */,
+				D68CAE852D1961FD00ACE81B /* MeshTools.cpp in Sources */,
 				D60790BD2BEE6C5F008810BD /* Project.cpp in Sources */,
+				D68CAE882D19621200ACE81B /* Game.cpp in Sources */,
 				D666E3D12BE3BCEC00EFA1F2 /* LuaConsole.cpp in Sources */,
 				D6E6B55A2C01CB70003F6D85 /* Document.cpp in Sources */,
 				D6B4C8612C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
@@ -811,6 +862,7 @@
 				D63370842B3958F3001D4057 /* Import.cpp in Sources */,
 				D633707E2B382156001D4057 /* Hierarchy.cpp in Sources */,
 				D6F564002BE9D568006D32D9 /* Profiler.cpp in Sources */,
+				D68CAE1A2D16706800ACE81B /* ImportPLY.cpp in Sources */,
 				D633709B2B399792001D4057 /* ImGuiFileDialog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,7 +874,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Debug;
 		};
@@ -830,7 +881,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Release;
 		};
@@ -838,7 +888,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 			};
@@ -848,7 +897,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 			};
@@ -859,7 +907,6 @@
 			baseConfigurationReference = D6AA5DBC2BD7DB4400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -869,7 +916,6 @@
 			baseConfigurationReference = D6AA5DBC2BD7DB4400AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -947,7 +993,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				OBJROOT = ../../../Build/temp;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
@@ -1033,7 +1079,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				OBJROOT = ../../../Build/temp;
 				OTHER_CFLAGS = (
 					"-fdata-sections",

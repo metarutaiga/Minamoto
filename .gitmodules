@@ -31,3 +31,6 @@
 [submodule "SDK/xxShaderAssembler"]
 	path = SDK/xxShaderAssembler
 	url = https://github.com/metarutaiga/xxShaderAssembler
+[submodule "SDK/meshoptimizer"]
+	path = SDK/meshoptimizer
+	url = https://github.com/zeux/meshoptimizer

@@ -28,9 +28,14 @@ void CameraTools::MoveArcball(xxVector3& offset, xxVector3& arcball, float x, fl
     offset.z = xsin * arcball.z;
 }
 //------------------------------------------------------------------------------
-bool CameraTools::MoveCamera(xxCameraPtr const& camera, float elapsed, float forward_backward, float left_right, float x, float y)
+bool CameraTools::MoveCamera(xxCameraPtr const& camera, float elapsed, float forward_backward, float left_right, float up_down, float x, float y)
 {
     bool update = false;
+    if (up_down != 0)
+    {
+        camera->Location = (camera->Location + camera->Up * up_down * elapsed);
+        update = true;
+    }
     if (left_right != 0)
     {
         camera->Location = (camera->Location + camera->Right * left_right * elapsed);
@@ -91,10 +96,15 @@ xxVector3 CameraTools::GetDirectionFromScreenPos(xxCameraPtr const& camera, floa
     return direction;
 }
 //------------------------------------------------------------------------------
+xxVector3 CameraTools::GetScreenPosToWorldPos(xxCameraPtr const& camera, xxVector3 const& point)
+{
+    return camera->Location + GetDirectionFromScreenPos(camera, point.x, point.y) * point.z;
+}
+//------------------------------------------------------------------------------
 xxVector4 CameraTools::GetWorldPosToScreenPos(xxCameraPtr const& camera, xxVector3 const& point)
 {
     xxVector4 screen = camera->ViewProjectionMatrix * xxVector4{point.x, point.y, point.z, 1.0f};
-    screen.xyz /= screen.w;
+    screen.xyz /= std::fabs(screen.w);
     screen.x = screen.x *  0.5f + 0.5f;
     screen.y = screen.y * -0.5f + 0.5f;
     return screen;

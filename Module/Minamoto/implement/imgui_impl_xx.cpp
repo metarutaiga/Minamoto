@@ -148,7 +148,7 @@ void ImGui_ImplXX_RenderDrawData(ImDrawData* draw_data, uint64_t commandEncoder)
     {
         xxDestroyBuffer(g_device, indexBuffer);
         indexBufferSize = draw_data->TotalIdxCount + 10000;
-        indexBuffer = xxCreateIndexBuffer(g_device, indexBufferSize * sizeof(ImDrawIdx));
+        indexBuffer = xxCreateIndexBuffer(g_device, indexBufferSize * sizeof(ImDrawIdx), 16);
         if (indexBuffer == 0)
             return;
     }
@@ -238,7 +238,7 @@ void ImGui_ImplXX_RenderDrawData(ImDrawData* draw_data, uint64_t commandEncoder)
                     }
 
                     // Draw
-                    xxDrawIndexed(commandEncoder, indexBuffer, pcmd->ElemCount, 1, pcmd->IdxOffset + global_idx_offset, pcmd->VtxOffset + global_vtx_offset, 0);
+                    xxDrawIndexed(commandEncoder, indexBuffer, pcmd->ElemCount, 65535, 1, pcmd->IdxOffset + global_idx_offset, pcmd->VtxOffset + global_vtx_offset, 0);
                 }
             }
         }
@@ -327,9 +327,9 @@ bool ImGui_ImplXX_CreateDeviceObjects()
     ImDrawVert vert;
     int attributes[] =
     {
-        0, (int)xxOffsetOf(ImDrawVert, pos), 'POS3', xxSizeOf(vert.pos) + xxSizeOf(vert.z),
-        0, (int)xxOffsetOf(ImDrawVert, col), 'COL4', xxSizeOf(vert.col),
-        0, (int)xxOffsetOf(ImDrawVert, uv),  'TEX2', xxSizeOf(vert.uv)
+        0, xxOffsetOf(ImDrawVert, pos), 'POS3', xxSizeOf(vert.pos) + xxSizeOf(vert.z),
+        0, xxOffsetOf(ImDrawVert, col), 'COL4', xxSizeOf(vert.col),
+        0, xxOffsetOf(ImDrawVert, uv),  'TEX2', xxSizeOf(vert.uv)
     };
 
     g_fontSampler = xxCreateSampler(g_device, false, false, false, true, true, true, 1);
@@ -339,7 +339,7 @@ bool ImGui_ImplXX_CreateDeviceObjects()
     g_blendState = xxCreateBlendState(g_device, "SrcAlpha", "+", "1-SrcAlpha", "1", "+", "0");
     g_depthStencilState = xxCreateDepthStencilState(g_device, "Always", false);
     g_rasterizerState = xxCreateRasterizerState(g_device, false, true);
-    g_pipeline = xxCreatePipeline(g_device, g_renderPass, g_blendState, g_depthStencilState, g_rasterizerState, g_vertexAttribute, g_vertexShader, g_fragmentShader);
+    g_pipeline = xxCreatePipeline(g_device, g_renderPass, g_blendState, g_depthStencilState, g_rasterizerState, g_vertexAttribute, 0, g_vertexShader, g_fragmentShader);
 
     return true;
 }

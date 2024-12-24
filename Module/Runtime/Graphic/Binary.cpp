@@ -14,6 +14,7 @@
 //==============================================================================
 Binary::Binary()
 {
+    const_cast<int&>(Version) = Current;
 }
 //------------------------------------------------------------------------------
 Binary::~Binary()
@@ -28,6 +29,7 @@ xxNodePtr Binary::Load(char const* name)
     if (file)
     {
         Binary binary;
+        int version = xxHTONL(binary.Version);
 
         binary.m_file = file;
         binary.m_reference.resize(1);
@@ -36,10 +38,12 @@ xxNodePtr Binary::Load(char const* name)
 
         char signature[12];
         if (file->Read(signature, 12) == 12 &&
-            file->Read(const_cast<int*>(&binary.Version), 4) == 4 &&
+            file->Read(&version, 4) == 4 &&
             strcmp(signature, xxBINARY_SIGNATURE) == 0)
         {
-            if (binary.Version == binary.xxBinary::Version)
+            const_cast<int&>(binary.Version) = xxNTOHL(version);
+
+            if ((binary.Version & 1) == 1)
             {
                 delete file;
                 auto output = xxBinary::Load(name);
@@ -76,6 +80,7 @@ bool Binary::Save(char const* name, xxNodePtr const& node)
     if (file)
     {
         Binary binary;
+        int version = xxHTONL(binary.Version);
 
         binary.m_file = file;
         binary.m_reference.resize(1);
@@ -84,7 +89,7 @@ bool Binary::Save(char const* name, xxNodePtr const& node)
 
         char signature[12] = xxBINARY_SIGNATURE;
         if (file->Write(signature, 12) == 12 &&
-            file->Write(&binary.Version, 4) == 4)
+            file->Write(&version, 4) == 4)
         {
             if (node)
             {

@@ -28,7 +28,7 @@ void Buffer::Initialize()
     xxDestroyBufferSystem = xxDestroyBuffer;
     xxDestroyBuffer = xxDestroyBufferRuntime;
 
-    xxMesh::BufferCount(1);
+    xxMesh::TransitionBufferCount(1);
 }
 //------------------------------------------------------------------------------
 void Buffer::Update()

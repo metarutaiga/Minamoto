@@ -60,8 +60,8 @@ void Scene::Initialize()
         screenCamera->FrustumRight = 1;
         screenCamera->FrustumTop = 0;
         screenCamera->FrustumBottom = 1;
-        screenCamera->Right = xxVector3::X;
         screenCamera->Up = xxVector3::Y;
+        screenCamera->Right = xxVector3::X;
         screenCamera->Direction = xxVector3::Z;
         screenCamera->Location = xxVector3::ZERO;
         screenCamera->Update();
@@ -135,6 +135,42 @@ void Scene::DrawBoneLine(xxNodePtr const& root)
             }
             return true;
         });
+    }
+}
+//------------------------------------------------------------------------------
+void Scene::DrawCameraLine(const UpdateData& updateData, xxCameraPtr const& camera)
+{
+    if (camera)
+    {
+        float frustumNear = camera->FrustumNear;
+        float frustumFar = std::min(camera->FrustumFar, 10.0f);
+        xxVector3 const& location = camera->Location;
+        xxVector3 near[4] =
+        {
+            { 0.0f, 0.0f, frustumNear },
+            { 0.0f, 1.0f, frustumNear },
+            { 1.0f, 1.0f, frustumNear },
+            { 1.0f, 0.0f, frustumNear },
+        };
+        xxVector3 far[4] =
+        {
+            { 0.0f, 0.0f, frustumFar },
+            { 0.0f, 1.0f, frustumFar },
+            { 1.0f, 1.0f, frustumFar },
+            { 1.0f, 0.0f, frustumFar },
+        };
+        for (int i = 0; i < 4; ++i)
+        {
+            near[i] = CameraTools::GetScreenPosToWorldPos(camera, near[i]);
+            far[i] = CameraTools::GetScreenPosToWorldPos(camera, far[i]);
+        }
+        for (int i = 0; i < 4; ++i)
+        {
+            Tools::Line(location, near[i]);
+            Tools::Line(near[i], far[i]);
+            Tools::Line(near[i], near[(i + 1) % 4]);
+            Tools::Line(far[i], far[(i + 1) % 4]);
+        }
     }
 }
 //------------------------------------------------------------------------------
@@ -362,6 +398,7 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
 #endif
             node->Update(updateData.time);
         }
+        sceneRoot->UpdateBound();
         Profiler::End(xxHash("Scene Update"));
 
         // MiniGUI
@@ -378,9 +415,17 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         }
         Profiler::End(xxHash("MiniGUI Update"));
 
-        DrawBoneLine(sceneRoot);
-        DrawNodeLine(sceneRoot);
-        DrawNodeBound(sceneRoot);
+        if (show)
+        {
+            DrawBoneLine(sceneRoot);
+            DrawNodeLine(sceneRoot);
+            DrawNodeBound(sceneRoot);
+
+            if (selected)
+            {
+                DrawCameraLine(updateData, selected->Camera);
+            }
+        }
     }
 
     if (ImGui::Begin(ICON_FA_GLOBE "Scene", &show))
@@ -424,6 +469,12 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         float speed = 10.0f;
         if (ImGui::IsWindowFocused())
         {
+            if (ImGui::IsKeyDown(ImGuiKey_Escape))
+            {
+                Hierarchy::Select(nullptr);
+                Inspector::Select(nullptr);
+                Scene::Select(nullptr);
+            }
             if (ImGui::IsKeyDown(ImGuiKey_LeftShift))
             {
                 speed = 50.0f;
@@ -444,9 +495,16 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
             {
                 forward_backward = speed;
             }
-            if (ImGui::IsKeyPressed(ImGuiKey_Z) && sceneCamera && sceneRoot)
+            if (ImGui::IsKeyPressed(ImGuiKey_Z) && sceneCamera)
             {
-                Tools::LookAtFromBound(sceneCamera, sceneRoot->WorldBound, xxVector3::Z);
+                if (selected)
+                {
+                    Tools::LookAtFromBound(sceneCamera, selected->WorldBound, xxVector3::Z);
+                }
+                else if (sceneRoot)
+                {
+                    Tools::LookAtFromBound(sceneCamera, sceneRoot->WorldBound, xxVector3::Z);
+                }
             }
         }
 
@@ -470,7 +528,7 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
 
         if (forward_backward || left_right || x || y)
         {
-            CameraTools::MoveCamera(sceneCamera, updateData.elapsed, forward_backward, left_right, x, y);
+            CameraTools::MoveCamera(sceneCamera, updateData.elapsed, forward_backward, left_right, 0.0f, x, y);
             updated = true;
         }
 
@@ -574,9 +632,10 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
         auto& window = MiniGUI::Window::Cast(node);
         if (window)
         {
+            xxCamera* camera = sceneDrawData.camera;
             sceneDrawData.camera = screenCamera.get();
             xxNode::Traversal(node, callback);
-            sceneDrawData.camera = sceneCamera.get();
+            sceneDrawData.camera = camera;
             continue;
         }
 #endif

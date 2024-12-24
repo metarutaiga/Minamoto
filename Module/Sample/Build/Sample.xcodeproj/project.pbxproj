@@ -255,7 +255,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					30A9A7BA25ADC792000FA104 = {
 						CreatedOnToolsVersion = 12.3;
@@ -334,7 +334,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Debug;
 		};
@@ -342,7 +341,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Release;
 		};
@@ -350,7 +348,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 			};
@@ -360,7 +357,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 			};
@@ -371,7 +367,6 @@
 			baseConfigurationReference = D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -381,7 +376,6 @@
 			baseConfigurationReference = D6AA5DBF2BD7DBAD00AE1C30 /* ClangPlatform.Darwin.xcconfig */;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = bundle;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -455,7 +449,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				OBJROOT = ../../../Build/temp;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
@@ -537,7 +531,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PREFIX)$(PRODUCT_NAME).$(EXECUTABLE_EXTENSION)";
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				OBJROOT = ../../../Build/temp;
 				OTHER_CFLAGS = (
 					"-fdata-sections",

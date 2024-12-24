@@ -38,7 +38,7 @@ xxNodePtr Grid::Create(xxVector3 const& translate, xxVector2 const& size)
 
     int index_count = 6;
     mesh->SetIndexCount(index_count);
-    uint16_t* it_index = mesh->Index;
+    auto it_index = (uint16_t*)mesh->Storage[xxMesh::INDEX];
     (*it_index++) = 0;
     (*it_index++) = 1;
     (*it_index++) = 2;
