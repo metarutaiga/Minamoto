@@ -9,6 +9,7 @@
 #include <xxGraphicPlus/xxMaterial.h>
 #include <xxGraphicPlus/xxNode.h>
 #include <Tools/CameraTools.h>
+#include <Tools/DrawTools.h>
 #if HAVE_MINIGUI
 #include <MiniGUI/Window.h>
 #endif
@@ -18,7 +19,7 @@
 
 //==============================================================================
 static xxCameraPtr screenCamera;
-static xxDrawData sceneDrawData;
+static xxCameraPtr sceneCamera;
 static xxVector2 viewPos;
 static xxVector2 viewSize;
 static ImGuiViewport* viewViewport;
@@ -48,7 +49,6 @@ void Game::Shutdown(bool suspend)
         return;
 
     screenCamera = nullptr;
-    sceneDrawData = xxDrawData{};
     viewViewport = nullptr;
 }
 //------------------------------------------------------------------------------
@@ -60,12 +60,12 @@ bool Game::Update(const UpdateData& updateData, bool& show)
     bool updated = false;
     if (ImGui::Begin(ICON_FA_GAMEPAD "Game", &show))
     {
-        xxCameraPtr camera;
+        sceneCamera = nullptr;
         for (xxNodePtr const& node : (*Scene::sceneRoot))
         {
             if (node->Camera)
             {
-                camera = node->Camera;
+                sceneCamera = node->Camera;
                 break;
             }
         }
@@ -74,7 +74,6 @@ bool Game::Update(const UpdateData& updateData, bool& show)
         ImVec2 size = ImGui::GetWindowSize();
         ImVec2 cursor = ImGui::GetCursorPos();
         ImVec2 framePadding = ImGui::GetStyle().FramePadding;
-        sceneDrawData = xxDrawData{updateData.device, 0, camera.get()};
         viewPos.x = pos.x + cursor.x;
         viewPos.y = pos.y + cursor.y;
         viewSize.x = size.x - cursor.x - framePadding.x * 2.0f;
@@ -122,9 +121,9 @@ bool Game::Update(const UpdateData& updateData, bool& show)
             }
         }
 
-        if (camera && (forward_backward || left_right || up_down))
+        if (sceneCamera && (forward_backward || left_right || up_down))
         {
-            CameraTools::MoveCamera(camera, updateData.elapsed, forward_backward, left_right, up_down, 0.0f, 0.0f);
+            CameraTools::MoveCamera(sceneCamera, updateData.elapsed, forward_backward, left_right, up_down, 0.0f, 0.0f);
             updated = true;
         }
 
@@ -142,7 +141,7 @@ bool Game::Update(const UpdateData& updateData, bool& show)
         ImGui::ColorButton("", ImVec4(0.45f, 0.55f, 0.60f, 1.00f), flags, { viewSize.x, viewSize.y });
 
         ImDrawList* drawList = ImGui::GetWindowDrawList();
-        drawList->AddCallback(Callback, nullptr);
+        drawList->AddCallback(Callback, (void*)&updateData, sizeof(updateData));
         drawList->AddCallback(ImDrawCallback_ResetRenderState, nullptr);
     }
     ImGui::End();
@@ -192,46 +191,26 @@ void Game::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
     viewport_width = std::min(viewport_width, width - viewport_x) * dpiScale;
     viewport_height = std::min(viewport_height, height - viewport_y) * dpiScale;
 
-    if (sceneDrawData.camera)
-    {
-        sceneDrawData.camera->SetFOV(viewport_width / viewport_height, 60.0f, 10000.0f);
-        sceneDrawData.camera->Update();
-    }
-
     xxSetViewport(commandEncoder, int(viewport_x), int(viewport_y), int(viewport_width), int(viewport_height), 0.0f, 1.0f);
     xxSetScissor(commandEncoder, int(viewport_x), int(viewport_y), int(viewport_width), int(viewport_height));
-    sceneDrawData.commandEncoder = commandEncoder;
 
-    auto callback = [](xxNodePtr const& node)
+    const UpdateData* updateData = (UpdateData*)cmd->UserCallbackData;
+
+    DrawTools::DrawData drawData;
+    drawData.device = updateData->device;
+    drawData.commandEncoder = commandEncoder;
+    drawData.camera2D = screenCamera;
+    drawData.camera3D = sceneCamera;
+    drawData.materialIndex = 1;
+
+    if (sceneCamera)
     {
-        xxMesh* mesh = node->Mesh.get();
-        xxMaterial* material = node->Material.get();
-        if (mesh && material)
-        {
-            bool scissor = material->Scissor;
-            material->Scissor = true;
-            node->Draw(sceneDrawData);
-            material->Scissor = scissor;
-        }
-        return true;
-    };
+        sceneCamera->SetFOV(viewport_width / viewport_height, 60.0f, 10000.0f);
+        sceneCamera->Update();
+    }
 
     Profiler::Begin(xxHash("Game Render"));
-    for (xxNodePtr const& node : (*Scene::sceneRoot))
-    {
-#if HAVE_MINIGUI
-        auto& window = MiniGUI::Window::Cast(node);
-        if (window)
-        {
-            xxCamera* camera = sceneDrawData.camera;
-            sceneDrawData.camera = screenCamera.get();
-            xxNode::Traversal(node, callback);
-            sceneDrawData.camera = camera;
-            continue;
-        }
-#endif
-        xxNode::Traversal(node, callback);
-    }
+    DrawTools::Draw(drawData, Scene::sceneRoot);
     Profiler::End(xxHash("Game Render"));
 }
 //------------------------------------------------------------------------------

@@ -6,13 +6,22 @@
 //==============================================================================
 #include "Editor.h"
 #include <map>
+#include <xxGraphicPlus/xxFile.h>
 #include <xxGraphicPlus/xxMaterial.h>
 #include <xxGraphicPlus/xxMesh.h>
 #include <xxGraphicPlus/xxNode.h>
 #include <xxGraphicPlus/xxTexture.h>
 #include "Import.h"
 
-#define STBI_ONLY_PNG
+//#define STBI_NO_JPEG
+//#define STBI_NO_PNG
+#define STBI_NO_BMP
+#define STBI_NO_PSD
+#define STBI_NO_TGA
+#define STBI_NO_GIF
+#define STBI_NO_HDR
+#define STBI_NO_PIC
+#define STBI_NO_PNM
 #define STBI_NO_FAILURE_STRINGS
 #define STBI_NO_THREAD_LOCALS
 #define STB_IMAGE_IMPLEMENTATION
@@ -51,13 +60,7 @@ xxTexturePtr Import::CreateTexture(char const* img)
     xxTexturePtr texture = xxTexture::Create2D(format, width, height, 1);
     if (texture)
     {
-        char const* name = strrchr(img, '/');
-        if (name == nullptr)
-            name = strrchr(img, '\\');
-        if (name == nullptr)
-            name = img - 1;
-        name += 1;
-        texture->Name = name;
+        texture->Name = xxFile::GetName(img);
         if (uc)
         {
 #if defined(xxWINDOWS)

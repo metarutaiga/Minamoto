@@ -112,7 +112,9 @@ static void ShowFolders(std::string const& root, std::string& selected)
             if (filename[0] != '.' && strstr(filename, "/") == nullptr)
             {
                 xxTexturePtr texture;
-                if (strcasestr(filename, ".dds") || strcasestr(filename, ".png"))
+                if (strcasestr(filename, ".dds") ||
+                    strcasestr(filename, ".jpg") ||
+                    strcasestr(filename, ".png"))
                 {
                     texture = xxTexture::Create();
                     texture->Name = filename;

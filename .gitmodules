@@ -34,3 +34,6 @@
 [submodule "SDK/meshoptimizer"]
 	path = SDK/meshoptimizer
 	url = https://github.com/zeux/meshoptimizer
+[submodule "SDK/ImGuizmo"]
+	path = SDK/ImGuizmo
+	url = https://github.com/CedricGuillemet/ImGuizmo

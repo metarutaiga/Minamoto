@@ -11,7 +11,9 @@
 #include <xxGraphicPlus/xxModifier.h>
 #include <xxGraphicPlus/xxNode.h>
 #include <xxGraphicPlus/xxTexture.h>
+#include <ImGuizmo/ImGuizmo.h>
 #include <Tools/CameraTools.h>
+#include <Tools/DrawTools.h>
 #include <Tools/NodeTools.h>
 #if HAVE_MINIGUI
 #include <MiniGUI/Window.h>
@@ -26,13 +28,13 @@
 //==============================================================================
 xxCameraPtr Scene::screenCamera;
 xxCameraPtr Scene::sceneCamera;
+xxCameraPtr Scene::mainCamera;
 xxNodePtr Scene::sceneRoot;
 xxNodePtr Scene::selected;
 //------------------------------------------------------------------------------
 static xxVector3 sceneArcball = {0.85f, -M_PI_2, 14.0f};
-static xxVector3 sceneCameraOffset = {1.0f, 0.0f, 0.0f};
+static xxVector3 mainCameraOffset = {1.0f, 0.0f, 0.0f};
 static xxNodePtr sceneGrid;
-static xxDrawData sceneDrawData;
 static xxVector2 viewPos;
 static xxVector2 viewSize;
 static ImGuiViewport* viewViewport;
@@ -42,16 +44,16 @@ static bool drawNodeBound = false;
 //------------------------------------------------------------------------------
 void Scene::Initialize()
 {
-    if (sceneCamera == nullptr)
+    if (mainCamera == nullptr)
     {
-        sceneCamera = xxCamera::Create();
-        CameraTools::MoveArcball(sceneCameraOffset, sceneArcball, 0, 0);
-        sceneCamera->Location = (xxVector3::Y * -10 + xxVector3::Z * 10);
-        sceneCamera->LookAt(xxVector3::ZERO, xxVector3::Z);
-        sceneCamera->Update();
+        mainCamera = xxCamera::Create();
+        CameraTools::MoveArcball(mainCameraOffset, sceneArcball, 0, 0);
+        mainCamera->Location = (xxVector3::Y * -10 + xxVector3::Z * 10);
+        mainCamera->LookAt(xxVector3::ZERO, xxVector3::Z);
+        mainCamera->Update();
 
-        sceneCamera->LightColor = {1.0f, 0.5f, 0.5f};
-        sceneCamera->LightDirection = -xxVector3::Y;
+        mainCamera->LightColor = {1.0f, 0.5f, 0.5f};
+        mainCamera->LightDirection = -xxVector3::Y;
     }
     if (screenCamera == nullptr)
     {
@@ -102,10 +104,9 @@ void Scene::Shutdown(bool suspend)
         return;
 
     screenCamera = nullptr;
-    sceneCamera = nullptr;
+    mainCamera = nullptr;
     sceneRoot = nullptr;
     sceneGrid = nullptr;
-    sceneDrawData = xxDrawData{};
     selected = nullptr;
     viewViewport = nullptr;
 }
@@ -204,6 +205,103 @@ void Scene::DrawNodeBound(xxNodePtr const& root)
             return true;
         });
     }
+}
+//------------------------------------------------------------------------------
+static bool CameraMoveWASD(const UpdateData& updateData, bool mani)
+{
+    ImGuiIO& io = ImGui::GetIO();
+
+    float forward_backward = 0.0f;
+    float left_right = 0.0f;
+    float speed = 10.0f;
+    if (ImGui::IsWindowFocused())
+    {
+        if (ImGui::IsKeyDown(ImGuiKey_Escape))
+        {
+            Hierarchy::Select(nullptr);
+            Inspector::Select(nullptr);
+            Scene::Select(nullptr);
+        }
+        if (ImGui::IsKeyDown(ImGuiKey_LeftShift))
+        {
+            speed = 50.0f;
+        }
+        if (ImGui::IsKeyDown(ImGuiKey_A))
+        {
+            left_right = -speed;
+        }
+        if (ImGui::IsKeyDown(ImGuiKey_D))
+        {
+            left_right = speed;
+        }
+        if (ImGui::IsKeyDown(ImGuiKey_S))
+        {
+            forward_backward = -speed;
+        }
+        if (ImGui::IsKeyDown(ImGuiKey_W))
+        {
+            forward_backward = speed;
+        }
+        if (ImGui::IsKeyPressed(ImGuiKey_Z) && Scene::mainCamera)
+        {
+            if (Scene::selected)
+            {
+                Tools::LookAtFromBound(Scene::mainCamera, Scene::selected->WorldBound, xxVector3::Z);
+            }
+            else if (Scene::sceneRoot)
+            {
+                Tools::LookAtFromBound(Scene::mainCamera, Scene::sceneRoot->WorldBound, xxVector3::Z);
+            }
+        }
+    }
+
+    static xxVector2 mouse = xxVector2::ZERO;
+    float x = 0.0f;
+    float y = 0.0f;
+    if (ImGui::IsWindowHovered() && mani == false)
+    {
+        if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
+        {
+            // ImGui::GetCurrentWindow() failed on MSVC
+            ImGuiContext* context = ImGui::GetCurrentContext();
+            ImGui::FocusWindow(context->CurrentWindow);
+            x = (io.MousePos.x - mouse.x) / 1000.0f;
+            y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f);
+        }
+    }
+    mouse.x = io.MousePos.x;
+    mouse.y = io.MousePos.y;
+
+    if (forward_backward || left_right || x || y)
+    {
+        CameraTools::MoveCamera(Scene::mainCamera, updateData.elapsed, forward_backward, left_right, 0.0f, x, y);
+        return true;
+    }
+
+    return false;
+}
+//------------------------------------------------------------------------------
+static bool CameraMoveManipulate(bool mani, ImVec2 const& maniSize, ImVec2 const& maniPos)
+{
+    xxMatrix4 identityMatrix = xxMatrix4::IDENTITY;
+    xxMatrix4 viewMatrix = Scene::mainCamera->ViewMatrix;
+
+    if (mani)
+    {
+        ImGui::ClearActiveID();
+    }
+    ImGuizmo::SetDrawlist();
+    ImGuizmo::SetRect(viewPos.x, viewPos.y, viewSize.x, viewSize.y);
+    ImGuizmo::ViewManipulate(viewMatrix, Scene::mainCamera->ProjectionMatrix, ImGuizmo::ROTATE, ImGuizmo::WORLD, identityMatrix, 8.0f, maniPos, maniSize, 0x10101010);
+    if (mani)
+    {
+        Scene::mainCamera->Right = { viewMatrix[0].x, viewMatrix[1].x, viewMatrix[2].x };
+        Scene::mainCamera->Up = { viewMatrix[0].y, viewMatrix[1].y, viewMatrix[2].y };
+        Scene::mainCamera->Direction = { viewMatrix[0].z, viewMatrix[1].z, viewMatrix[2].z };
+        return true;
+    }
+
+    return false;
 }
 //------------------------------------------------------------------------------
 #if HAVE_MINIGUI
@@ -448,11 +546,20 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
             ImGui::SetTooltip("%s", "Draw Node Bound");
         }
 
+        sceneCamera = nullptr;
+        for (xxNodePtr const& node : (*Scene::sceneRoot))
+        {
+            if (node->Camera)
+            {
+                sceneCamera = node->Camera;
+                break;
+            }
+        }
+
         ImVec2 pos = ImGui::GetWindowPos();
         ImVec2 size = ImGui::GetWindowSize();
         ImVec2 cursor = ImGui::GetCursorPos();
         ImVec2 framePadding = ImGui::GetStyle().FramePadding;
-        sceneDrawData = xxDrawData{updateData.device, 0, sceneCamera.get()};
         viewPos.x = pos.x + cursor.x;
         viewPos.y = pos.y + cursor.y;
         viewSize.x = size.x - cursor.x - framePadding.x * 2.0f;
@@ -461,74 +568,6 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         if (viewViewport != viewport)
         {
             viewViewport = viewport;
-            updated = true;
-        }
-
-        float forward_backward = 0.0f;
-        float left_right = 0.0f;
-        float speed = 10.0f;
-        if (ImGui::IsWindowFocused())
-        {
-            if (ImGui::IsKeyDown(ImGuiKey_Escape))
-            {
-                Hierarchy::Select(nullptr);
-                Inspector::Select(nullptr);
-                Scene::Select(nullptr);
-            }
-            if (ImGui::IsKeyDown(ImGuiKey_LeftShift))
-            {
-                speed = 50.0f;
-            }
-            if (ImGui::IsKeyDown(ImGuiKey_A))
-            {
-                left_right = -speed;
-            }
-            if (ImGui::IsKeyDown(ImGuiKey_D))
-            {
-                left_right = speed;
-            }
-            if (ImGui::IsKeyDown(ImGuiKey_S))
-            {
-                forward_backward = -speed;
-            }
-            if (ImGui::IsKeyDown(ImGuiKey_W))
-            {
-                forward_backward = speed;
-            }
-            if (ImGui::IsKeyPressed(ImGuiKey_Z) && sceneCamera)
-            {
-                if (selected)
-                {
-                    Tools::LookAtFromBound(sceneCamera, selected->WorldBound, xxVector3::Z);
-                }
-                else if (sceneRoot)
-                {
-                    Tools::LookAtFromBound(sceneCamera, sceneRoot->WorldBound, xxVector3::Z);
-                }
-            }
-        }
-
-        static xxVector2 mouse = xxVector2::ZERO;
-        float x = 0.0f;
-        float y = 0.0f;
-        ImGuiIO& io = ImGui::GetIO();
-        if (ImGui::IsWindowHovered())
-        {
-            if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
-            {
-                // ImGui::GetCurrentWindow() failed on MSVC
-                ImGuiContext* context = ImGui::GetCurrentContext();
-                ImGui::FocusWindow(context->CurrentWindow);
-                x = (io.MousePos.x - mouse.x) / 1000.0f;
-                y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f);
-            }
-        }
-        mouse.x = io.MousePos.x;
-        mouse.y = io.MousePos.y;
-
-        if (forward_backward || left_right || x || y)
-        {
-            CameraTools::MoveCamera(sceneCamera, updateData.elapsed, forward_backward, left_right, 0.0f, x, y);
             updated = true;
         }
 
@@ -546,14 +585,22 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
         ImGui::ColorButton("", ImVec4(0.45f, 0.55f, 0.60f, 1.00f), flags, { viewSize.x, viewSize.y });
 
         ImDrawList* drawList = ImGui::GetWindowDrawList();
-        drawList->AddCallback(Callback, nullptr);
+        drawList->AddCallback(Callback, (void*)&updateData, sizeof(updateData));
         drawList->AddCallback(ImDrawCallback_ResetRenderState, nullptr);
+
+        Tools::Draw(mainCamera, viewSize, viewPos);
 
 #if HAVE_MINIGUI
         MiniGUIEditor(MiniGUI::Window::Cast(selected));
 #endif
 
-        Tools::Draw(sceneCamera, viewSize, viewPos);
+        // ViewManipulate
+        ImVec2 maniSize = ImVec2(128, 128);
+        ImVec2 maniPos = ImVec2(viewPos.x + viewSize.x - maniSize.x, viewPos.y);
+        bool mani = ImGui::IsMouseHoveringRect(maniPos, { maniPos.x + maniSize.x, maniPos.y + maniSize.y });
+
+        updated |= CameraMoveWASD(updateData, mani);
+        updated |= CameraMoveManipulate(mani, maniSize, maniPos);
     }
     ImGui::End();
 
@@ -602,45 +649,35 @@ void Scene::Callback(const ImDrawList* list, const ImDrawCmd* cmd)
     viewport_width = std::min(viewport_width, width - viewport_x) * dpiScale;
     viewport_height = std::min(viewport_height, height - viewport_y) * dpiScale;
 
-    sceneCamera->SetFOV(viewport_width / viewport_height, 60.0f, 10000.0f);
-    sceneCamera->Update();
-
     xxSetViewport(commandEncoder, int(viewport_x), int(viewport_y), int(viewport_width), int(viewport_height), 0.0f, 1.0f);
     xxSetScissor(commandEncoder, int(viewport_x), int(viewport_y), int(viewport_width), int(viewport_height));
-    sceneDrawData.commandEncoder = commandEncoder;
 
-    auto callback = [](xxNodePtr const& node)
+    const UpdateData* updateData = (UpdateData*)cmd->UserCallbackData;
+
+    DrawTools::DrawData drawData;
+    drawData.device = updateData->device;
+    drawData.commandEncoder = commandEncoder;
+    drawData.camera2D = screenCamera;
+    drawData.camera3D = mainCamera;
+    drawData.materialIndex = 0;
+
+    if (mainCamera)
     {
-        xxMesh* mesh = node->Mesh.get();
-        xxMaterial* material = node->Material.get();
-        if (mesh && material)
-        {
-            bool scissor = material->Scissor;
-            material->Scissor = true;
-            node->Draw(sceneDrawData);
-            material->Scissor = scissor;
-        }
-        return true;
-    };
+        mainCamera->SetFOV(viewport_width / viewport_height, 60.0f, 10000.0f);
+        mainCamera->Update();
+    }
 
-    xxNode::Traversal(sceneGrid, callback);
+    DrawTools::Draw(drawData, sceneGrid);
+
+    xxMatrix4x2 frustum[6];
+    if (sceneCamera)
+    {
+        drawData.frustum = frustum;
+        sceneCamera->GetFrustumPlanes(frustum[0], frustum[1], frustum[2], frustum[3], frustum[4], frustum[5]);
+    }
 
     Profiler::Begin(xxHash("Scene Render"));
-    for (xxNodePtr const& node : (*sceneRoot))
-    {
-#if HAVE_MINIGUI
-        auto& window = MiniGUI::Window::Cast(node);
-        if (window)
-        {
-            xxCamera* camera = sceneDrawData.camera;
-            sceneDrawData.camera = screenCamera.get();
-            xxNode::Traversal(node, callback);
-            sceneDrawData.camera = camera;
-            continue;
-        }
-#endif
-        xxNode::Traversal(node, callback);
-    }
+    DrawTools::Draw(drawData, sceneRoot);
     Profiler::End(xxHash("Scene Render"));
 }
 //------------------------------------------------------------------------------

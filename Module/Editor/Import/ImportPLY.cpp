@@ -43,22 +43,20 @@ xxNodePtr ImportPLY::Create(char const* ply)
     if (file == nullptr)
         return root;
 
+    root = xxNode::Create();
+    root->Name = xxFile::GetName(ply);
+    root->Material = xxMaterial::Create();
+    root->Material->Lighting = true;
+    root->Material->DiffuseColor = xxVector3::WHITE;
+    root->Material->DepthTest = "LessEqual";
+    root->Material->DepthWrite = true;
+    root->Material->Cull = true;
+    root->Material->Scissor = false;
+
     auto finish = [&]()
     {
         if (vertices.empty() == false)
         {
-            if (root == nullptr)
-            {
-                root = xxNode::Create();
-                root->Name = xxFile::GetName(ply);
-                root->Material = xxMaterial::Create();
-                root->Material->Lighting = true;
-                root->Material->DiffuseColor = xxVector3::WHITE;
-                root->Material->DepthTest = "LessEqual";
-                root->Material->DepthWrite = true;
-                root->Material->Cull = true;
-                root->Material->Scissor = false;
-            }
             xxMeshPtr mesh = root->Mesh = xxMesh::Create(false, 0, 0, 0);
             if (mesh)
             {
@@ -199,6 +197,10 @@ xxNodePtr ImportPLY::Create(char const* ply)
 
     finish();
 
+    if (root->GetChildCount() == 0)
+    {
+        return root->Mesh ? root : nullptr;
+    }
     return root;
 }
 //==============================================================================

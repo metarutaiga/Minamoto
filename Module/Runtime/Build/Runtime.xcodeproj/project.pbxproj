@@ -168,6 +168,10 @@
 		D6FEF4252C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
 		D6FEF4262C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
 		D6FEF4272C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
+		F5E4C8322D219C5200111AC3 /* DrawTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5E4C8312D219C5000111AC3 /* DrawTools.cpp */; };
+		F5E4C8332D219C5200111AC3 /* DrawTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5E4C8312D219C5000111AC3 /* DrawTools.cpp */; };
+		F5E4C8342D219C5200111AC3 /* DrawTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5E4C8312D219C5000111AC3 /* DrawTools.cpp */; };
+		F5E4C8352D219C5200111AC3 /* DrawTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5E4C8312D219C5000111AC3 /* DrawTools.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -188,7 +192,7 @@
 		CE93601825AC454200CEF503 /* Runtime.dll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Runtime.dll; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6022C3523258B5D00B9BFB8 /* Runtime.bundle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Runtime.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60791012BF5F1B8008810BD /* CSV.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CSV.cpp; path = ../Tools/CSV.cpp; sourceTree = "<group>"; };
-		D60791022BF5F1B8008810BD /* CSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSV.h; path = ../Tools/CSV.h; sourceTree = "<group>"; };
+		D60791022BF5F1B8008810BD /* CSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSV.h; sourceTree = "<group>"; };
 		D60EC62A26A85B260051A948 /* ClangPlatform.Android.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Android.xcconfig; path = ../../ClangPlatform.Android.xcconfig; sourceTree = "<group>"; };
 		D60EC62B26A85B260051A948 /* ClangPlatform.Windows.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ClangPlatform.Windows.xcconfig; path = ../../ClangPlatform.Windows.xcconfig; sourceTree = "<group>"; };
 		D6169D152BB17FE200E5490C /* new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = new.cpp; path = "../../../SDK/ClangPlatform/windows-msvc/new.cpp"; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 		D6FEF41D2C0B4B0E003272C2 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../MiniGUI/Font.cpp; sourceTree = "<group>"; };
 		D6FEF4222C0D9315003272C2 /* ArrayModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrayModifier.h; path = ../Modifier/ArrayModifier.h; sourceTree = "<group>"; };
 		D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ArrayModifier.cpp; path = ../Modifier/ArrayModifier.cpp; sourceTree = "<group>"; };
+		F5E4C8302D219C4700111AC3 /* DrawTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTools.h; sourceTree = "<group>"; };
+		F5E4C8312D219C5000111AC3 /* DrawTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DrawTools.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +415,7 @@
 				D6346EE12BFA06520075D7F1 /* QuickJS.h */,
 			);
 			name = Script;
+			path = ../Script;
 			sourceTree = "<group>";
 		};
 		D6386A512BDA263D0008C9D1 /* Graphic */ = {
@@ -434,6 +441,7 @@
 				D6D26F902BDE0AF400D57772 /* VertexAttribute.cpp */,
 			);
 			name = Graphic;
+			path = ../Graphic;
 			sourceTree = "<group>";
 		};
 		D644A038231ED82900B75B77 = {
@@ -501,6 +509,7 @@
 				D645C4CD2BD145C400A89E16 /* TranslateModifier.h */,
 			);
 			name = Modifier;
+			path = ../Modifier;
 			sourceTree = "<group>";
 		};
 		D6F564022BEA003D006D32D9 /* Tools */ = {
@@ -510,11 +519,14 @@
 				D6F5640A2BEA15C7006D32D9 /* CameraTools.h */,
 				D60791012BF5F1B8008810BD /* CSV.cpp */,
 				D60791022BF5F1B8008810BD /* CSV.h */,
+				F5E4C8312D219C5000111AC3 /* DrawTools.cpp */,
+				F5E4C8302D219C4700111AC3 /* DrawTools.h */,
 				D6F564042BEA004F006D32D9 /* NodeTools.cpp */,
 				D6F564032BEA004F006D32D9 /* NodeTools.h */,
 				D69568812C20743200360B0E /* WindowsHeader.h */,
 			);
 			name = Tools;
+			path = ../Tools;
 			sourceTree = "<group>";
 		};
 		D6FEF4152C09DCD3003272C2 /* MiniGUI */ = {
@@ -526,6 +538,7 @@
 				D6FEF4172C09DCE3003272C2 /* Window.h */,
 			);
 			name = MiniGUI;
+			path = ../MiniGUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -648,6 +661,7 @@
 				D6386A652BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D6FEF4182C09DCE3003272C2 /* Window.cpp in Sources */,
 				D62286C12BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
+				F5E4C8322D219C5200111AC3 /* DrawTools.cpp in Sources */,
 				D6F564172BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066812BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D6F564112BEA3FF9006D32D9 /* Binding.cpp in Sources */,
@@ -706,6 +720,7 @@
 				D6D26F8F2BDDFAC400D57772 /* RenderPass.cpp in Sources */,
 				D6D26F952BDE0AF500D57772 /* VertexAttribute.cpp in Sources */,
 				D6FEF4272C0D9315003272C2 /* ArrayModifier.cpp in Sources */,
+				F5E4C8352D219C5200111AC3 /* DrawTools.cpp in Sources */,
 				D62FEBD72BE493A3004E9FDF /* Lua.cpp in Sources */,
 				D6346EE52BFA06520075D7F1 /* QuickJS.cpp in Sources */,
 				D60791062BF5F1B8008810BD /* CSV.cpp in Sources */,
@@ -732,6 +747,7 @@
 				D6386A662BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D6FEF4192C09DCE3003272C2 /* Window.cpp in Sources */,
 				D62286C22BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
+				F5E4C8342D219C5200111AC3 /* DrawTools.cpp in Sources */,
 				D6F564182BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066822BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D6F564122BEA3FF9006D32D9 /* Binding.cpp in Sources */,
@@ -772,6 +788,7 @@
 				D6386A672BDBE0AC0008C9D1 /* Shader.cpp in Sources */,
 				D6FEF41A2C09DCE3003272C2 /* Window.cpp in Sources */,
 				D62286C32BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
+				F5E4C8332D219C5200111AC3 /* DrawTools.cpp in Sources */,
 				D6F564192BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066832BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D6F564132BEA3FF9006D32D9 /* Binding.cpp in Sources */,

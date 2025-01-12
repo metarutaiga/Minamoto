@@ -139,10 +139,10 @@ moduleAPI bool Update(const UpdateData& updateData)
 
     ImGuiID id = ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
 
-    static bool dockInitialized = false;
-    if (dockInitialized == false)
+    static bool dockPreInitialized = false;
+    if (dockPreInitialized == false)
     {
-        dockInitialized = true;
+        dockPreInitialized = true;
 
         ImGuiID right = ImGui::DockBuilderSplitNode(id, ImGuiDir_Right, 1.0f / 5.0f, nullptr, &id);
         ImGuiID down = ImGui::DockBuilderSplitNode(id, ImGuiDir_Down, 1.0f / 3.0f, nullptr, &id);
@@ -168,11 +168,20 @@ moduleAPI bool Update(const UpdateData& updateData)
     updated |= QuickJSConsole::Update(updateData, showQuickJSConsole);
     updated |= Profiler::Update(updateData, showLuaConsole);
     updated |= Hierarchy::Update(updateData, showHierarchy, Scene::sceneRoot);
-    updated |= Inspector::Update(updateData, showInspector, Scene::sceneCamera);
+    updated |= Inspector::Update(updateData, showInspector, Scene::mainCamera);
     updated |= Scene::Update(updateData, showScene);
     updated |= Game::Update(updateData, showGame);
     updated |= ShaderAssembler::Update(updateData, showShaderAssembler);
     updated |= ShaderDisassembler::Update(updateData, showShaderDisassembler);
+
+    static bool dockPostInitialized = false;
+    if (dockPostInitialized == false)
+    {
+        dockPostInitialized = true;
+
+        ImGui::SetWindowFocus(ICON_FA_BOOKMARK  "Project");
+        ImGui::SetWindowFocus(ICON_FA_GLOBE     "Scene");
+    }
 
     Runtime::Update();
 

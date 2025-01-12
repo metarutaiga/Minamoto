@@ -14,7 +14,15 @@
 #include <Tools/WindowsHeader.h>
 #include <dxsdk/ddraw.h>
 
-#define STBI_ONLY_PNG
+//#define STBI_NO_JPEG
+//#define STBI_NO_PNG
+#define STBI_NO_BMP
+#define STBI_NO_PSD
+#define STBI_NO_TGA
+#define STBI_NO_GIF
+#define STBI_NO_HDR
+#define STBI_NO_PIC
+#define STBI_NO_PNM
 #define STBI_NO_FAILURE_STRINGS
 #define STBI_NO_THREAD_LOCALS
 #define STB_IMAGE_IMPLEMENTATION
@@ -105,9 +113,11 @@ void Texture::Reader(xxTexturePtr const& texture)
     {
         DDSReader(texture, filename);
     }
-    else if (strcasestr(texture->Name.c_str(), ".png"))
+    else if (strcasestr(texture->Name.c_str(), ".jpeg") ||
+             strcasestr(texture->Name.c_str(), ".jpg") ||
+             strcasestr(texture->Name.c_str(), ".png"))
     {
-        PNGReader(texture, filename);
+        STBReader(texture, filename);
     }
     if ((*texture)() == nullptr)
     {
@@ -337,7 +347,7 @@ void Texture::DDSWriter(xxTexturePtr const& texture, std::string const& filename
     delete file;
 }
 //------------------------------------------------------------------------------
-void Texture::PNGReader(xxTexturePtr const& texture, std::string const& filename)
+void Texture::STBReader(xxTexturePtr const& texture, std::string const& filename)
 {
     if (texture == nullptr || (*texture)() != nullptr)
         return;

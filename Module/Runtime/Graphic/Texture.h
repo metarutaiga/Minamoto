@@ -17,5 +17,5 @@ struct RuntimeAPI Texture
     static void Reader(xxTexturePtr const& texture);
     static void DDSReader(xxTexturePtr const& texture, std::string const& filename);
     static void DDSWriter(xxTexturePtr const& texture, std::string const& filename);
-    static void PNGReader(xxTexturePtr const& texture, std::string const& filename);
+    static void STBReader(xxTexturePtr const& texture, std::string const& filename);
 };

@@ -375,7 +375,8 @@
     [_window setDelegate:self];
     [_window setOpaque:YES];
     [_window setTitle:@(Runtime::Version)];
-    [_window makeKeyAndOrderFront:NSApp];
+    [_window makeKeyAndOrderFront:nil];
+    [_window zoom:nil];
 
     return (_window);
 }

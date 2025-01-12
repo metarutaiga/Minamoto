@@ -11,6 +11,7 @@ class Scene
 public:
     static xxCameraPtr screenCamera;
     static xxCameraPtr sceneCamera;
+    static xxCameraPtr mainCamera;
     static xxNodePtr sceneRoot;
     static xxNodePtr selected;
 public:

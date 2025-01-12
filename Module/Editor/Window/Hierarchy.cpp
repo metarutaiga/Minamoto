@@ -42,6 +42,33 @@ char Hierarchy::exportName[1024];
 ImGuiFileDialog* Hierarchy::importFileDialog;
 ImGuiFileDialog* Hierarchy::exportFileDialog;
 //==============================================================================
+static void AddCamera(xxNodePtr const& root)
+{
+    auto node = xxNode::Create();
+    node->Camera = xxCamera::Create();
+    node->Camera->Up = xxVector3::Z;
+    node->Camera->Right = -xxVector3::X;
+    node->Camera->Direction = xxVector3::Y;
+    node->Camera->Location = root->WorldBound.xyz - xxVector3::Y * root->WorldBound.z * 2.0f;
+    node->Camera->SetFOV(16.0f / 9.0f, 60.0f, 10000.0f);
+    node->Camera->LightDirection.y = -1.0f;
+    root->AttachChild(node);
+}
+//------------------------------------------------------------------------------
+static void AddNode(xxNodePtr const& root)
+{
+    auto node = xxNode::Create();
+    root->AttachChild(node);
+}
+//------------------------------------------------------------------------------
+#if HAVE_MINIGUI
+static void AddWindow(xxNodePtr const& root)
+{
+    auto window = MiniGUI::Window::Create();
+    root->AttachChild(window);
+}
+#endif
+//------------------------------------------------------------------------------
 void Hierarchy::Initialize()
 {
     selectedLeft = nullptr;
@@ -442,13 +469,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             if (selectedRight && (selectedRight == root || MiniGUI::Window::Cast(selectedRight) != nullptr) && ImGui::Button("Add Camera"))
             {
                 update = true;
-                xxNodePtr node = xxNode::Create();
-                node->Camera = xxCamera::Create();
-                node->Camera->Up = xxVector3::Z;
-                node->Camera->Right = -xxVector3::X;
-                node->Camera->Direction = xxVector3::Y;
-                node->Camera->SetFOV(16.0f / 9.0f, 60.0f, 10000.0f);
-                selectedRight->AttachChild(node);
+                AddCamera(selectedRight);
                 selectedRight->Flags |= TEST_OPEN_FLAG;
                 selectedRight = nullptr;
             }
@@ -459,7 +480,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
 #endif
             {
                 update = true;
-                selectedRight->AttachChild(xxNode::Create());
+                AddNode(selectedRight);
                 selectedRight->Flags |= TEST_OPEN_FLAG;
                 selectedRight = nullptr;
             }
@@ -467,7 +488,7 @@ bool Hierarchy::Update(const UpdateData& updateData, bool& show, xxNodePtr const
             if (selectedRight && (selectedRight == root || MiniGUI::Window::Cast(selectedRight) != nullptr) && ImGui::Button("Add Window"))
             {
                 update = true;
-                selectedRight->AttachChild(MiniGUI::Window::Create());
+                AddWindow(selectedRight);
                 selectedRight->Flags |= TEST_OPEN_FLAG;
                 selectedRight = nullptr;
             }
