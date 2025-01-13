@@ -25,6 +25,7 @@ struct ShaderDisassemblyData
     uint64_t meshShader = 0;
     uint64_t vertexShader = 0;
     uint64_t fragmentShader = 0;
+    std::string meshDisassembly;
     std::string vertexDisassembly;
     std::string fragmentDisassembly;
     bool disassembly = false;
@@ -57,16 +58,30 @@ static void Disassemble(ShaderDisassemblyData& data)
                                                                                error:&error];
         MTLRenderPipelineColorAttachmentDescriptor* mtlRenderPipelineColorAttachmentDescriptor = (__bridge MTLRenderPipelineColorAttachmentDescriptor*)(void*)data.blendState;
         MTLVertexDescriptor* mtlVertexDescriptor = (__bridge MTLVertexDescriptor*)(void*)data.vertexAttribute;
+        id <MTLFunction> mtlMeshFunction = (__bridge id <MTLFunction>)(void*)data.meshShader;
         id <MTLFunction> mtlVertexFunction = (__bridge id <MTLFunction>)(void*)data.vertexShader;
         id <MTLFunction> mtlFragmentFunction = (__bridge id <MTLFunction>)(void*)data.fragmentShader;
-        MTLRenderPipelineDescriptor* mtlDesc = [MTLRenderPipelineDescriptor new];
-        mtlDesc.vertexDescriptor = mtlVertexDescriptor;
-        mtlDesc.vertexFunction = mtlVertexFunction;
-        mtlDesc.fragmentFunction = mtlFragmentFunction;
-        mtlDesc.colorAttachments[0] = mtlRenderPipelineColorAttachmentDescriptor;
-        mtlDesc.depthAttachmentPixelFormat = MTLPixelFormatDepth32Float;
-        [mtlArchive addRenderPipelineFunctionsWithDescriptor:mtlDesc
-                                                       error:&error];
+        if (mtlMeshFunction)
+        {
+            MTLMeshRenderPipelineDescriptor* mtlDesc = [MTLMeshRenderPipelineDescriptor new];
+            mtlDesc.meshFunction = mtlMeshFunction;
+            mtlDesc.fragmentFunction = mtlFragmentFunction;
+            mtlDesc.colorAttachments[0] = mtlRenderPipelineColorAttachmentDescriptor;
+            mtlDesc.depthAttachmentPixelFormat = MTLPixelFormatDepth32Float;
+            [mtlArchive addMeshRenderPipelineFunctionsWithDescriptor:mtlDesc
+                                                               error:&error];
+        }
+        else
+        {
+            MTLRenderPipelineDescriptor* mtlDesc = [MTLRenderPipelineDescriptor new];
+            mtlDesc.vertexDescriptor = mtlVertexDescriptor;
+            mtlDesc.vertexFunction = mtlVertexFunction;
+            mtlDesc.fragmentFunction = mtlFragmentFunction;
+            mtlDesc.colorAttachments[0] = mtlRenderPipelineColorAttachmentDescriptor;
+            mtlDesc.depthAttachmentPixelFormat = MTLPixelFormatDepth32Float;
+            [mtlArchive addRenderPipelineFunctionsWithDescriptor:mtlDesc
+                                                           error:&error];
+        }
         if (error)
         {
             xxLog("Shader", "%s", error.localizedDescription.UTF8String);
@@ -129,53 +144,42 @@ static void Disassemble(ShaderDisassemblyData& data)
                     }
                 }
 
-                if (found == 1)
+                if (found == 1 || found == 2)
                 {
                     found++;
 
-                    snprintf(command, 1024, "/usr/bin/python3 %s/applegpu/disassemble.py /tmp/minamoto.pipeline.bin %zd > /tmp/minamoto.vertex.txt", xxGetDocumentPath(), offset_prolog);
+                    snprintf(command, 1024, "/usr/bin/python3 %s/applegpu/disassemble.py /tmp/minamoto.pipeline.bin %zd > /tmp/minamoto.pipeline.txt", xxGetDocumentPath(), offset_prolog);
                     system(command);
                     if (offset_main != SIZE_T_MAX)
                     {
                         snprintf(command, 1024, "echo -------------------------------------------- >> /tmp/minamoto.vertex.txt");
                         system(command);
-                        snprintf(command, 1024, "/usr/bin/python3 %s/applegpu/disassemble.py /tmp/minamoto.pipeline.bin %zd >> /tmp/minamoto.vertex.txt", xxGetDocumentPath(), offset_main);
+                        snprintf(command, 1024, "/usr/bin/python3 %s/applegpu/disassemble.py /tmp/minamoto.pipeline.bin %zd >> /tmp/minamoto.pipeline.txt", xxGetDocumentPath(), offset_main);
                         system(command);
                     }
-                    file = xxFile::Load("/tmp/minamoto.vertex.txt");
+                    file = xxFile::Load("/tmp/minamoto.pipeline.txt");
                     if (file)
                     {
                         size_t size = file->Size();
-                        data.vertexDisassembly.resize(size);
-                        file->Read(data.vertexDisassembly.data(), size);
+                        if (mtlMeshFunction)
+                        {
+                            data.meshDisassembly.resize(size);
+                            file->Read(data.meshDisassembly.data(), size);
+                        }
+                        else if (found == 2)
+                        {
+                            data.vertexDisassembly.resize(size);
+                            file->Read(data.vertexDisassembly.data(), size);
+                        }
+                        else
+                        {
+                            data.fragmentDisassembly.resize(size);
+                            file->Read(data.fragmentDisassembly.data(), size);
+                        }
                         delete file;
                     }
-                    remove("/tmp/minamoto.vertex.txt");
+                    remove("/tmp/minamoto.pipeline.txt");
                     continue;
-                }
-                else if (found == 2)
-                {
-                    found++;
-
-                    snprintf(command, 1024, "/usr/bin/python3 %s/applegpu/disassemble.py /tmp/minamoto.pipeline.bin %zd > /tmp/minamoto.fragment.txt", xxGetDocumentPath(), offset_prolog);
-                    system(command);
-                    if (offset_main != SIZE_T_MAX)
-                    {
-                        snprintf(command, 1024, "echo -------------------------------------------- >> /tmp/minamoto.fragment.txt");
-                        system(command);
-                        snprintf(command, 1024, "/usr/bin/python3 %s/applegpu/disassemble.py /tmp/minamoto.pipeline.bin %zd >> /tmp/minamoto.fragment.txt", xxGetDocumentPath(), offset_main);
-                        system(command);
-                    }
-                    file = xxFile::Load("/tmp/minamoto.fragment.txt");
-                    if (file)
-                    {
-                        size_t size = file->Size();
-                        data.fragmentDisassembly.resize(size);
-                        file->Read(data.fragmentDisassembly.data(), size);
-                        delete file;
-                    }
-                    remove("/tmp/minamoto.fragment.txt");
-                    break;
                 }
             }
         }
@@ -249,15 +253,21 @@ bool ShaderDisassembler::Update(const UpdateData& updateData, bool& show)
 
         // Shader
         static int type = 0;
-        ImGui::RadioButton("Vertex Shader", &type, 0);
+        ImGui::RadioButton("Mesh Shader", &type, 0);
         ImGui::SameLine();
-        ImGui::RadioButton("Fragment Shader", &type, 1);
+        ImGui::RadioButton("Vertex Shader", &type, 1);
+        ImGui::SameLine();
+        ImGui::RadioButton("Fragment Shader", &type, 2);
 
         if (type == 0)
         {
-            ImGui::InputTextMultiline("", data.second.vertexDisassembly.data(), data.second.vertexDisassembly.size(), ImVec2(size.x - 128.0f, size.y), ImGuiInputTextFlags_ReadOnly);
+            ImGui::InputTextMultiline("", data.second.meshDisassembly.data(), data.second.meshDisassembly.size(), ImVec2(size.x - 128.0f, size.y), ImGuiInputTextFlags_ReadOnly);
         }
         else if (type == 1)
+        {
+            ImGui::InputTextMultiline("", data.second.vertexDisassembly.data(), data.second.vertexDisassembly.size(), ImVec2(size.x - 128.0f, size.y), ImGuiInputTextFlags_ReadOnly);
+        }
+        else if (type == 2)
         {
             ImGui::InputTextMultiline("", data.second.fragmentDisassembly.data(), data.second.fragmentDisassembly.size(), ImVec2(size.x - 128.0f, size.y), ImGuiInputTextFlags_ReadOnly);
         }

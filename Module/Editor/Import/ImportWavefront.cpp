@@ -6,10 +6,10 @@
 //==============================================================================
 #include "Editor.h"
 #include <xxGraphicPlus/xxFile.h>
-#include <xxGraphicPlus/xxMaterial.h>
 #include <xxGraphicPlus/xxMesh.h>
 #include <xxGraphicPlus/xxNode.h>
 #include <xxGraphicPlus/xxTexture.h>
+#include <Runtime/Graphic/Material.h>
 #include "MeshTools.h"
 #include "ImportWavefront.h"
 
@@ -32,12 +32,12 @@ static float ToFloat(char const* text)
     return text ? float(atof(text)) : 0.0f;
 }
 //------------------------------------------------------------------------------
-static std::string CheckName(xxNodePtr const& node, std::string const& name)
+static std::string CheckDuplicateName(xxNodePtr const& node, std::string const& name)
 {
-    std::string output = name + "#0";
+    std::string output = name;
     for (size_t i = node->GetChildCount(); i > 0; --i)
     {
-        xxNodePtr const& child = node->GetChild(i);
+        xxNodePtr const& child = node->GetChild(i - 1);
         if (child == nullptr)
             continue;
         if (child->Name.find(name) != 0)
@@ -89,6 +89,9 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
     if (file == nullptr)
         return materials;
 
+    material.output = xxMaterial::Create();
+    material.output->Name = xxFile::GetName(mtl);
+
     auto finish = [&]()
     {
         if (material.output)
@@ -115,7 +118,11 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
             material.output->Blending = material.output->Opacity != 1.0f;
             if (material.map_Kd)
             {
-                material.output->SetTexture(0, material.map_Kd);
+                material.output->SetTexture(::Material::BASE, material.map_Kd);
+            }
+            if (material.bump)
+            {
+                material.output->SetTexture(::Material::BUMP, material.bump);
             }
             materials[material.output->Name] = material;
         }
@@ -133,8 +140,9 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
         if (statement == nullptr || lasts == nullptr)
             continue;
 
-        if (xxHash(statement) == xxHash("newmtl"))
+        switch (xxHash(statement))
         {
+        case xxHash("newmtl"):
             finish();
 
             xxLog("ImportWavefront", "Create Material : %s", lasts);
@@ -143,12 +151,7 @@ std::map<std::string, ImportWavefront::Material> ImportWavefront::CreateMaterial
             material.output->DepthTest = "LessEqual";
             material.output->DepthWrite = true;
             material.output->Cull = true;
-        }
-        if (material.output == nullptr)
-            continue;
-
-        switch (xxHash(statement))
-        {
+            break;
         case xxHash("d"):
             material.output->Opacity = ToFloat(strtok_r(nullptr, delim, &lasts));
             break;
@@ -255,7 +258,7 @@ xxNodePtr ImportWavefront::Create(char const* obj)
         if (faceVertices.empty())
             return;
         xxNodePtr child = xxNode::Create();
-        child->Name = CheckName(root, name);
+        child->Name = CheckDuplicateName(root, name);
         child->Mesh = MeshTools::CreateMesh(faceVertices, faceNormals, {}, faceTextures);
         if (child->Mesh)
         {
@@ -264,11 +267,15 @@ xxNodePtr ImportWavefront::Create(char const* obj)
         if (material)
         {
             child->Material = material->output;
+            if (material->bump)
+            {
+                child->Mesh = MeshTools::NormalizeMesh(child->Mesh, true);
+            }
         }
+        root->AttachChild(child);
         faceVertices.clear();
         faceNormals.clear();
         faceTextures.clear();
-        root->AttachChild(child);
         material = nullptr;
     };
 

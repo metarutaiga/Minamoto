@@ -9,6 +9,7 @@
 #include "Modifier/Modifier.h"
 #include "Graphic/Binding.h"
 #include "Graphic/Buffer.h"
+#include "Graphic/Material.h"
 #include "Graphic/Pipeline.h"
 #include "Graphic/RenderPass.h"
 #include "Graphic/Sampler.h"
@@ -33,6 +34,7 @@ void Runtime::Initialize()
 
     Binding::Initialize();
     Buffer::Initialize();
+    Material::Initialize();
     Modifier::Initialize();
     Pipeline::Initialize();
     RenderPass::Initialize();
@@ -74,6 +76,7 @@ void Runtime::Shutdown(bool suspend)
     RenderPass::Shutdown();
     Pipeline::Shutdown();
     Modifier::Shutdown();
+    Material::Initialize();
     Buffer::Shutdown();
     Binding::Shutdown();
 

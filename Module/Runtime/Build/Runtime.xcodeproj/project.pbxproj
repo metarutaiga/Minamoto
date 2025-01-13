@@ -168,6 +168,10 @@
 		D6FEF4252C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
 		D6FEF4262C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
 		D6FEF4272C0D9315003272C2 /* ArrayModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */; };
+		F5054E262D34FF2900D62FC6 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5054E252D34FF2700D62FC6 /* Material.cpp */; };
+		F5054E272D34FF2900D62FC6 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5054E252D34FF2700D62FC6 /* Material.cpp */; };
+		F5054E282D34FF2900D62FC6 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5054E252D34FF2700D62FC6 /* Material.cpp */; };
+		F5054E292D34FF2900D62FC6 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5054E252D34FF2700D62FC6 /* Material.cpp */; };
 		F5E4C8322D219C5200111AC3 /* DrawTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5E4C8312D219C5000111AC3 /* DrawTools.cpp */; };
 		F5E4C8332D219C5200111AC3 /* DrawTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5E4C8312D219C5000111AC3 /* DrawTools.cpp */; };
 		F5E4C8342D219C5200111AC3 /* DrawTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5E4C8312D219C5000111AC3 /* DrawTools.cpp */; };
@@ -296,6 +300,8 @@
 		D6FEF41D2C0B4B0E003272C2 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../MiniGUI/Font.cpp; sourceTree = "<group>"; };
 		D6FEF4222C0D9315003272C2 /* ArrayModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrayModifier.h; path = ../Modifier/ArrayModifier.h; sourceTree = "<group>"; };
 		D6FEF4232C0D9315003272C2 /* ArrayModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ArrayModifier.cpp; path = ../Modifier/ArrayModifier.cpp; sourceTree = "<group>"; };
+		F5054E242D34FF2000D62FC6 /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
+		F5054E252D34FF2700D62FC6 /* Material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
 		F5E4C8302D219C4700111AC3 /* DrawTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTools.h; sourceTree = "<group>"; };
 		F5E4C8312D219C5000111AC3 /* DrawTools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DrawTools.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -427,6 +433,8 @@
 				D6F564102BEA3FF9006D32D9 /* Binding.cpp */,
 				D68CADF12D1323CE00ACE81B /* Buffer.h */,
 				D68CADF22D1323CE00ACE81B /* Buffer.cpp */,
+				F5054E242D34FF2000D62FC6 /* Material.h */,
+				F5054E252D34FF2700D62FC6 /* Material.cpp */,
 				D6D26F962BDE11D900D57772 /* Pipeline.h */,
 				D6D26F972BDE11D900D57772 /* Pipeline.cpp */,
 				D6D26F8A2BDDFAC400D57772 /* RenderPass.h */,
@@ -616,7 +624,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					30A9A7BA25ADC792000FA104 = {
 						CreatedOnToolsVersion = 12.3;
@@ -666,6 +674,7 @@
 				D6F066812BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D6F564112BEA3FF9006D32D9 /* Binding.cpp in Sources */,
 				D6D26F982BDE11D900D57772 /* Pipeline.cpp in Sources */,
+				F5054E262D34FF2900D62FC6 /* Material.cpp in Sources */,
 				D645C4C92BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B72BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6386A742BDC09EA0008C9D1 /* Binary.cpp in Sources */,
@@ -713,6 +722,7 @@
 				D6F5641A2BEA69A3006D32D9 /* Sampler.cpp in Sources */,
 				D6F066842BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D645C4D82BD145E700A89E16 /* QuaternionModifier.cpp in Sources */,
+				F5054E282D34FF2900D62FC6 /* Material.cpp in Sources */,
 				D6D26F9B2BDE11D900D57772 /* Pipeline.cpp in Sources */,
 				D62286C42BD559B000440C24 /* ConstantQuaternionModifier.cpp in Sources */,
 				D62286D82BD7936300440C24 /* BakedQuaternionModifier.cpp in Sources */,
@@ -752,6 +762,7 @@
 				D6F066822BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D6F564122BEA3FF9006D32D9 /* Binding.cpp in Sources */,
 				D6D26F992BDE11D900D57772 /* Pipeline.cpp in Sources */,
+				F5054E272D34FF2900D62FC6 /* Material.cpp in Sources */,
 				D645C4CA2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B82BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6386A752BDC09EA0008C9D1 /* Binary.cpp in Sources */,
@@ -793,6 +804,7 @@
 				D6F066832BC6EEF600C4DFE6 /* Runtime.cpp in Sources */,
 				D6F564132BEA3FF9006D32D9 /* Binding.cpp in Sources */,
 				D6D26F9A2BDE11D900D57772 /* Pipeline.cpp in Sources */,
+				F5054E292D34FF2900D62FC6 /* Material.cpp in Sources */,
 				D645C4CB2BD145AF00A89E16 /* ScaleModifier.cpp in Sources */,
 				D62286B92BD2AFC500440C24 /* Modifier.cpp in Sources */,
 				D6386A762BDC09EA0008C9D1 /* Binary.cpp in Sources */,

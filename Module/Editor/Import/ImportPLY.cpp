@@ -82,7 +82,7 @@ xxNodePtr ImportPLY::Create(char const* ply)
                 }
                 mesh = root->Mesh = MeshTools::OptimizeMesh(mesh);
                 mesh = root->Mesh = MeshTools::CreateMeshlet(mesh);
-                mesh = root->Mesh = MeshTools::NormalizeMesh(mesh);
+                mesh = root->Mesh = MeshTools::NormalizeMesh(mesh, false);
                 mesh->CalculateBound();
             }
             vertices.clear();

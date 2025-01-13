@@ -34,6 +34,8 @@ struct RuntimeAPI Runtime
     static char const Version[];
 };
 
+typedef std::shared_ptr<class Material> MaterialPtr;
+
 #define HAVE_MINIGUI 1
 #if HAVE_MINIGUI
 namespace MiniGUI

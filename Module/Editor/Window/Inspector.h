@@ -17,7 +17,7 @@ public:
     static bool Update(const UpdateData& updateData, bool& show, xxCameraPtr const& camera);
     static void UpdateCamera(const UpdateData& updateData, xxCameraPtr const& camera);
     static void UpdateNode(const UpdateData& updateData, xxNodePtr const& node);
-    static void UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const& material);
+    static void UpdateMaterial(const UpdateData& updateData, MaterialPtr const& material);
     static void UpdateMesh(const UpdateData& updateData, xxMeshPtr const& mesh);
     static void UpdateModifier(const UpdateData& updateData, std::vector<xxModifierData> const& modifierData);
     static void UpdateWindow(const UpdateData& updateData, MiniGUI::WindowPtr const& window);

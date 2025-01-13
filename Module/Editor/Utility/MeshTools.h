@@ -33,6 +33,6 @@ struct MeshTools
     static xxMeshPtr CreateMesh(std::vector<xxVector3> const& vertices, std::vector<xxVector3> const& normals, std::vector<xxVector4> const& colors, std::vector<xxVector2> const& textures);
     static xxMeshPtr CreateMeshlet(xxMeshPtr const& mesh);
     static xxMeshPtr IndexingMesh(xxMeshPtr const& mesh);
-    static xxMeshPtr NormalizeMesh(xxMeshPtr const& mesh);
+    static xxMeshPtr NormalizeMesh(xxMeshPtr const& mesh, bool tangent);
     static xxMeshPtr OptimizeMesh(xxMeshPtr const& mesh);
 };

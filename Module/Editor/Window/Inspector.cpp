@@ -6,10 +6,10 @@
 //==============================================================================
 #include "Editor.h"
 #include <xxGraphicPlus/xxCamera.h>
-#include <xxGraphicPlus/xxMaterial.h>
 #include <xxGraphicPlus/xxMesh.h>
 #include <xxGraphicPlus/xxNode.h>
 #include <xxGraphicPlus/xxTexture.h>
+#include <Runtime/Graphic/Material.h>
 #include <Runtime/MiniGUI/Window.h>
 #include <Runtime/Modifier/Modifier.h>
 #include <Runtime/Tools/NodeTools.h>
@@ -69,7 +69,7 @@ bool Inspector::Update(const UpdateData& updateData, bool& show, xxCameraPtr con
                 }
                 if (selected->Material)
                 {
-                    UpdateMaterial(updateData, selected->Material);
+                    UpdateMaterial(updateData, (MaterialPtr&)selected->Material);
                 }
                 if (selected->Mesh)
                 {
@@ -181,7 +181,7 @@ void Inspector::UpdateNode(const UpdateData& updateData, xxNodePtr const& node)
     }
 }
 //------------------------------------------------------------------------------
-void Inspector::UpdateMaterial(const UpdateData& updateData, xxMaterialPtr const& material)
+void Inspector::UpdateMaterial(const UpdateData& updateData, MaterialPtr const& material)
 {
     xxMaterialPtr invalidate;
 

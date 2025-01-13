@@ -391,11 +391,13 @@ xxMeshPtr MeshTools::IndexingMesh(xxMeshPtr const& mesh)
     return output;
 }
 //------------------------------------------------------------------------------
-xxMeshPtr MeshTools::NormalizeMesh(xxMeshPtr const& mesh)
+xxMeshPtr MeshTools::NormalizeMesh(xxMeshPtr const& mesh, bool tangent)
 {
     if (mesh == nullptr)
         return nullptr;
-    if (mesh->NormalCount)
+    if (tangent == false && mesh->NormalCount == 1)
+        return mesh;
+    if (tangent == true && mesh->NormalCount == 3)
         return mesh;
 
     float begin = xxGetCurrentTime();
@@ -404,29 +406,73 @@ xxMeshPtr MeshTools::NormalizeMesh(xxMeshPtr const& mesh)
     if (data.positions.empty())
         return mesh;
 
-    data.normalCount = 1;
-    data.normals.resize(data.positions.size());
-    for (size_t i = 0; i < data.indices.size(); i += 3)
+    data.normalCount = tangent ? 3 : 1;
+    std::vector<xxVector3> normals(data.positions.size() * data.normalCount);
+    size_t count = data.indices.size();
+    if (count == 0)
+        count = data.positions.size();
+    for (uint32_t i = 0; i < count; i += 3)
     {
-        uint32_t i0 = data.indices[i + 0];
-        uint32_t i1 = data.indices[i + 1];
-        uint32_t i2 = data.indices[i + 2];
+        uint32_t i0 = data.indices.empty() ? (i + 0) : data.indices[i + 0];
+        uint32_t i1 = data.indices.empty() ? (i + 1) : data.indices[i + 1];
+        uint32_t i2 = data.indices.empty() ? (i + 2) : data.indices[i + 2];
 
-        xxVector3 a = data.positions[i1] - data.positions[i0];
-        xxVector3 b = data.positions[i2] - data.positions[i0];
-        xxVector3 n = a.Cross(b);
+        xxVector3 x = data.positions[i1] - data.positions[i0];
+        xxVector3 y = data.positions[i2] - data.positions[i0];
+        xxVector3 n = xxVector3::Z;
+        xxVector3 t = xxVector3::Y;
+        xxVector3 b = xxVector3::X;
 
-        data.normals[i0] += n;
-        data.normals[i1] += n;
-        data.normals[i2] += n;
+        if (mesh->NormalCount == 0)
+        {
+            n = x.Cross(y);
+        }
+        else
+        {
+            n = data.normals[i0] + data.normals[i1] + data.normals[i2];
+        }
+
+        if (tangent && data.textureCount)
+        {
+            float u = data.textures[data.textureCount * i1].y - data.textures[data.textureCount * i0].y;
+            float v = data.textures[data.textureCount * i2].y - data.textures[data.textureCount * i0].y;
+            t = x * v - y * u;
+            b = n.Cross(t);
+        }
+
+        if (mesh->NormalCount <= 0)
+        {
+            normals[data.normalCount * i0 + 0] += n;
+            normals[data.normalCount * i1 + 0] += n;
+            normals[data.normalCount * i2 + 0] += n;
+        }
+        if (mesh->NormalCount <= 1)
+        {
+            if (mesh->NormalCount == 1)
+            {
+                normals[data.normalCount * i0 + 0] = data.normals[i0];
+                normals[data.normalCount * i1 + 0] = data.normals[i1];
+                normals[data.normalCount * i2 + 0] = data.normals[i2];
+            }
+            if (data.normalCount == 3)
+            {
+                normals[data.normalCount * i0 + 1] += t;
+                normals[data.normalCount * i1 + 1] += t;
+                normals[data.normalCount * i2 + 1] += t;
+                normals[data.normalCount * i0 + 2] += b;
+                normals[data.normalCount * i1 + 2] += b;
+                normals[data.normalCount * i2 + 2] += b;
+            }
+        }
     }
-    for (xxVector3& n : data.normals)
+    for (xxVector3& n : normals)
     {
         float l = n.Length();
         if (l == 0.0f)
             continue;
         n /= l;
     }
+    data.normals.swap(normals);
 
     xxMeshPtr output = CreateMeshFromMeshData(data);
     output->Name = mesh->Name;
