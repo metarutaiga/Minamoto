@@ -157,22 +157,18 @@
 		D6EFE1552D1EF6CA00E77042 /* ImCurveEdit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14D2D1EF6CA00E77042 /* ImCurveEdit.cpp */; };
 		D6EFE1562D1EF6CA00E77042 /* GraphEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14B2D1EF6CA00E77042 /* GraphEditor.cpp */; };
 		D6EFE1572D1EF6CA00E77042 /* ImSequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE1532D1EF6CA00E77042 /* ImSequencer.cpp */; };
-		D6EFE1582D1EF6CA00E77042 /* ImGuizmo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE1512D1EF6CA00E77042 /* ImGuizmo.cpp */; };
 		D6EFE1592D1EF6CA00E77042 /* ImGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14F2D1EF6CA00E77042 /* ImGradient.cpp */; };
 		D6EFE15A2D1EF6CA00E77042 /* ImCurveEdit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14D2D1EF6CA00E77042 /* ImCurveEdit.cpp */; };
 		D6EFE15B2D1EF6CA00E77042 /* GraphEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14B2D1EF6CA00E77042 /* GraphEditor.cpp */; };
 		D6EFE15C2D1EF6CA00E77042 /* ImSequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE1532D1EF6CA00E77042 /* ImSequencer.cpp */; };
-		D6EFE15D2D1EF6CA00E77042 /* ImGuizmo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE1512D1EF6CA00E77042 /* ImGuizmo.cpp */; };
 		D6EFE15E2D1EF6CA00E77042 /* ImGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14F2D1EF6CA00E77042 /* ImGradient.cpp */; };
 		D6EFE15F2D1EF6CA00E77042 /* ImCurveEdit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14D2D1EF6CA00E77042 /* ImCurveEdit.cpp */; };
 		D6EFE1602D1EF6CA00E77042 /* GraphEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14B2D1EF6CA00E77042 /* GraphEditor.cpp */; };
 		D6EFE1612D1EF6CA00E77042 /* ImSequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE1532D1EF6CA00E77042 /* ImSequencer.cpp */; };
-		D6EFE1622D1EF6CA00E77042 /* ImGuizmo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE1512D1EF6CA00E77042 /* ImGuizmo.cpp */; };
 		D6EFE1632D1EF6CA00E77042 /* ImGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14F2D1EF6CA00E77042 /* ImGradient.cpp */; };
 		D6EFE1642D1EF6CA00E77042 /* ImCurveEdit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14D2D1EF6CA00E77042 /* ImCurveEdit.cpp */; };
 		D6EFE1652D1EF6CA00E77042 /* GraphEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14B2D1EF6CA00E77042 /* GraphEditor.cpp */; };
 		D6EFE1662D1EF6CA00E77042 /* ImSequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE1532D1EF6CA00E77042 /* ImSequencer.cpp */; };
-		D6EFE1672D1EF6CA00E77042 /* ImGuizmo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE1512D1EF6CA00E77042 /* ImGuizmo.cpp */; };
 		D6EFE1682D1EF6CA00E77042 /* ImGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6EFE14F2D1EF6CA00E77042 /* ImGradient.cpp */; };
 		D6F563FE2BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
 		D6F563FF2BE9D568006D32D9 /* Profiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6F563FD2BE9D568006D32D9 /* Profiler.cpp */; };
@@ -317,7 +313,6 @@
 		D6E6B55C2C0234EE003F6D85 /* quickjs-io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "quickjs-io.c"; sourceTree = "<group>"; };
 		D6E6B55D2C0234EE003F6D85 /* quickjs.bat */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = quickjs.bat; sourceTree = "<group>"; };
 		D6E6B55E2C0234EE003F6D85 /* quickjs.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = quickjs.sh; sourceTree = "<group>"; };
-		D6E6B5602C0234EE003F6D85 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		D6E6B5622C0234EE003F6D85 /* dirent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dirent.h; sourceTree = "<group>"; };
 		D6E6B5632C0234EE003F6D85 /* pthread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pthread.h; sourceTree = "<group>"; };
 		D6E6B5642C0234EE003F6D85 /* stdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdlib.h; sourceTree = "<group>"; };
@@ -332,12 +327,12 @@
 		D6EFE14E2D1EF6CA00E77042 /* ImGradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImGradient.h; path = ../../../SDK/ImGuizmo/ImGradient.h; sourceTree = SOURCE_ROOT; };
 		D6EFE14F2D1EF6CA00E77042 /* ImGradient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ImGradient.cpp; path = ../../../SDK/ImGuizmo/ImGradient.cpp; sourceTree = SOURCE_ROOT; };
 		D6EFE1502D1EF6CA00E77042 /* ImGuizmo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImGuizmo.h; path = ../../../SDK/ImGuizmo/ImGuizmo.h; sourceTree = SOURCE_ROOT; };
-		D6EFE1512D1EF6CA00E77042 /* ImGuizmo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ImGuizmo.cpp; path = ../../../SDK/ImGuizmo/ImGuizmo.cpp; sourceTree = SOURCE_ROOT; };
 		D6EFE1522D1EF6CA00E77042 /* ImSequencer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImSequencer.h; path = ../../../SDK/ImGuizmo/ImSequencer.h; sourceTree = SOURCE_ROOT; };
 		D6EFE1532D1EF6CA00E77042 /* ImSequencer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ImSequencer.cpp; path = ../../../SDK/ImGuizmo/ImSequencer.cpp; sourceTree = SOURCE_ROOT; };
 		D6EFE1542D1EF6CA00E77042 /* ImZoomSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImZoomSlider.h; path = ../../../SDK/ImGuizmo/ImZoomSlider.h; sourceTree = SOURCE_ROOT; };
 		D6F563FC2BE9D568006D32D9 /* Profiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profiler.h; path = ../Window/Profiler.h; sourceTree = "<group>"; };
 		D6F563FD2BE9D568006D32D9 /* Profiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Profiler.cpp; path = ../Window/Profiler.cpp; sourceTree = "<group>"; };
+		F53DE7352D3DFD450083B457 /* ImGuizmo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ImGuizmo.cpp; path = ../../../SDK/ImGuizmo/ImGuizmo.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,12 +634,11 @@
 				D6EFE14C2D1EF6CA00E77042 /* ImCurveEdit.h */,
 				D6EFE14F2D1EF6CA00E77042 /* ImGradient.cpp */,
 				D6EFE14E2D1EF6CA00E77042 /* ImGradient.h */,
-				D6EFE1512D1EF6CA00E77042 /* ImGuizmo.cpp */,
+				F53DE7352D3DFD450083B457 /* ImGuizmo.cpp */,
 				D6EFE1502D1EF6CA00E77042 /* ImGuizmo.h */,
 				D6EFE1532D1EF6CA00E77042 /* ImSequencer.cpp */,
 				D6EFE1522D1EF6CA00E77042 /* ImSequencer.h */,
 				D6EFE1542D1EF6CA00E77042 /* ImZoomSlider.h */,
-				D6E6B5602C0234EE003F6D85 /* time.h */,
 			);
 			name = ImGuizmo;
 			sourceTree = "<group>";
@@ -782,7 +776,6 @@
 				D6EFE15A2D1EF6CA00E77042 /* ImCurveEdit.cpp in Sources */,
 				D6EFE15B2D1EF6CA00E77042 /* GraphEditor.cpp in Sources */,
 				D6EFE15C2D1EF6CA00E77042 /* ImSequencer.cpp in Sources */,
-				D6EFE15D2D1EF6CA00E77042 /* ImGuizmo.cpp in Sources */,
 				D6EFE15E2D1EF6CA00E77042 /* ImGradient.cpp in Sources */,
 				D60790C22BF1AF46008810BD /* Folder.cpp in Sources */,
 				D6B4C85F2C1DBBE1006123EF /* ShaderAssemblerNV20.cpp in Sources */,
@@ -833,7 +826,6 @@
 				D6EFE15F2D1EF6CA00E77042 /* ImCurveEdit.cpp in Sources */,
 				D6EFE1602D1EF6CA00E77042 /* GraphEditor.cpp in Sources */,
 				D6EFE1612D1EF6CA00E77042 /* ImSequencer.cpp in Sources */,
-				D6EFE1622D1EF6CA00E77042 /* ImGuizmo.cpp in Sources */,
 				D6EFE1632D1EF6CA00E77042 /* ImGradient.cpp in Sources */,
 				D6169D1A2BB1801100E5490C /* ucrt.cpp in Sources */,
 				D6169D162BB17FE200E5490C /* new.cpp in Sources */,
@@ -865,7 +857,6 @@
 				D6EFE1642D1EF6CA00E77042 /* ImCurveEdit.cpp in Sources */,
 				D6EFE1652D1EF6CA00E77042 /* GraphEditor.cpp in Sources */,
 				D6EFE1662D1EF6CA00E77042 /* ImSequencer.cpp in Sources */,
-				D6EFE1672D1EF6CA00E77042 /* ImGuizmo.cpp in Sources */,
 				D6EFE1682D1EF6CA00E77042 /* ImGradient.cpp in Sources */,
 				D6A25B7D2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26F9F2BDE36B400D57772 /* Tools.cpp in Sources */,
@@ -909,7 +900,6 @@
 				D6EFE1552D1EF6CA00E77042 /* ImCurveEdit.cpp in Sources */,
 				D6EFE1562D1EF6CA00E77042 /* GraphEditor.cpp in Sources */,
 				D6EFE1572D1EF6CA00E77042 /* ImSequencer.cpp in Sources */,
-				D6EFE1582D1EF6CA00E77042 /* ImGuizmo.cpp in Sources */,
 				D6EFE1592D1EF6CA00E77042 /* ImGradient.cpp in Sources */,
 				D6A25B7E2B4644B600974946 /* Inspector.cpp in Sources */,
 				D6D26FA02BDE36B400D57772 /* Tools.cpp in Sources */,

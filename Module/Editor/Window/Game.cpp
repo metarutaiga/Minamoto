@@ -127,20 +127,8 @@ bool Game::Update(const UpdateData& updateData, bool& show)
             updated = true;
         }
 
-        ImGuiColorEditFlags flags = 0;
-        flags |= ImGuiColorEditFlags_NoAlpha;
-        flags |= ImGuiColorEditFlags_NoPicker;
-        flags |= ImGuiColorEditFlags_NoOptions;
-        flags |= ImGuiColorEditFlags_NoSmallPreview;
-        flags |= ImGuiColorEditFlags_NoInputs;
-        flags |= ImGuiColorEditFlags_NoTooltip;
-        flags |= ImGuiColorEditFlags_NoLabel;
-        flags |= ImGuiColorEditFlags_NoSidePreview;
-        flags |= ImGuiColorEditFlags_NoDragDrop;
-        flags |= ImGuiColorEditFlags_NoBorder;
-        ImGui::ColorButton("", ImVec4(0.45f, 0.55f, 0.60f, 1.00f), flags, { viewSize.x, viewSize.y });
-
         ImDrawList* drawList = ImGui::GetWindowDrawList();
+        drawList->AddRectFilled({ viewPos.x, viewPos.y }, { viewPos.x + viewSize.x, viewPos.y + viewSize.y }, 0xFF998877);
         drawList->AddCallback(Callback, (void*)&updateData, sizeof(updateData));
         drawList->AddCallback(ImDrawCallback_ResetRenderState, nullptr);
     }

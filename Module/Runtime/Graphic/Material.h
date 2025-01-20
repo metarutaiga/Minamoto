@@ -32,12 +32,20 @@ protected:
     int                 GetVertexConstantSize(xxDrawData const& data) const override;
     int                 GetFragmentConstantSize(xxDrawData const& data) const override;
 
-    void                UpdateAlphaTestingConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr) const;
-    void                UpdateBlendingConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr) const;
-    void                UpdateCullingConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr) const;
-    void                UpdateLightingConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr) const;
-    void                UpdateSkinningConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr) const;
-    void                UpdateWorldViewProjectionConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr) const;
+    void                ShaderDefault(xxDrawData const& data, struct MaterialSelector& s) const;
+    void                ShaderAttribute(xxDrawData const& data, struct MaterialSelector& s) const;
+    void                ShaderConstant(xxDrawData const& data, struct MaterialSelector& s) const;
+    void                ShaderVarying(xxDrawData const& data, struct MaterialSelector& s) const;
+    void                ShaderMesh(xxDrawData const& data, struct MaterialSelector& s) const;
+    void                ShaderVertex(xxDrawData const& data, struct MaterialSelector& s) const;
+    void                ShaderFragment(xxDrawData const& data, struct MaterialSelector& s) const;
+
+    void                UpdateAlphaTestingConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr, struct MaterialSelector* s = nullptr) const;
+    void                UpdateBlendingConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr, struct MaterialSelector* s = nullptr) const;
+    void                UpdateCullingConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr, struct MaterialSelector* s = nullptr) const;
+    void                UpdateLightingConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr, struct MaterialSelector* s = nullptr) const;
+    void                UpdateSkinningConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr, struct MaterialSelector* s = nullptr) const;
+    void                UpdateWorldViewProjectionConstant(xxDrawData const& data, int& size, xxVector4** pointer = nullptr, struct MaterialSelector* s = nullptr) const;
 
     uint64_t            m_meshShader = 0;
     uint16_t            m_meshTextureSlot = 0;

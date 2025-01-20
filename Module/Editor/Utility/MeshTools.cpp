@@ -432,7 +432,7 @@ xxMeshPtr MeshTools::NormalizeMesh(xxMeshPtr const& mesh, bool tangent)
             n = data.normals[i0] + data.normals[i1] + data.normals[i2];
         }
 
-        if (tangent && data.textureCount)
+        if (data.normalCount == 3 && data.textureCount)
         {
             float u = data.textures[data.textureCount * i1].y - data.textures[data.textureCount * i0].y;
             float v = data.textures[data.textureCount * i2].y - data.textures[data.textureCount * i0].y;
@@ -440,29 +440,26 @@ xxMeshPtr MeshTools::NormalizeMesh(xxMeshPtr const& mesh, bool tangent)
             b = n.Cross(t);
         }
 
-        if (mesh->NormalCount <= 0)
+        if (mesh->NormalCount == 0)
         {
             normals[data.normalCount * i0 + 0] += n;
             normals[data.normalCount * i1 + 0] += n;
             normals[data.normalCount * i2 + 0] += n;
         }
-        if (mesh->NormalCount <= 1)
+        else if (mesh->NormalCount == 1)
         {
-            if (mesh->NormalCount == 1)
-            {
-                normals[data.normalCount * i0 + 0] = data.normals[i0];
-                normals[data.normalCount * i1 + 0] = data.normals[i1];
-                normals[data.normalCount * i2 + 0] = data.normals[i2];
-            }
-            if (data.normalCount == 3)
-            {
-                normals[data.normalCount * i0 + 1] += t;
-                normals[data.normalCount * i1 + 1] += t;
-                normals[data.normalCount * i2 + 1] += t;
-                normals[data.normalCount * i0 + 2] += b;
-                normals[data.normalCount * i1 + 2] += b;
-                normals[data.normalCount * i2 + 2] += b;
-            }
+            normals[data.normalCount * i0 + 0] = data.normals[i0];
+            normals[data.normalCount * i1 + 0] = data.normals[i1];
+            normals[data.normalCount * i2 + 0] = data.normals[i2];
+        }
+        if (data.normalCount == 3)
+        {
+            normals[data.normalCount * i0 + 1] += t;
+            normals[data.normalCount * i1 + 1] += t;
+            normals[data.normalCount * i2 + 1] += t;
+            normals[data.normalCount * i0 + 2] += b;
+            normals[data.normalCount * i1 + 2] += b;
+            normals[data.normalCount * i2 + 2] += b;
         }
     }
     for (xxVector3& n : normals)

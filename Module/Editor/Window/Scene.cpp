@@ -11,7 +11,7 @@
 #include <xxGraphicPlus/xxModifier.h>
 #include <xxGraphicPlus/xxNode.h>
 #include <xxGraphicPlus/xxTexture.h>
-#include <ImGuizmo/ImGuizmo.h>
+#include <ImGuizmo/ImGuizmo.cpp>
 #include <Tools/CameraTools.h>
 #include <Tools/DrawTools.h>
 #include <Tools/NodeTools.h>
@@ -256,17 +256,23 @@ static bool CameraMoveWASD(const UpdateData& updateData, bool mani)
     }
 
     static xxVector2 mouse = xxVector2::ZERO;
+    static bool pressed = false;
     float x = 0.0f;
     float y = 0.0f;
-    if (ImGui::IsWindowHovered() && mani == false)
+    if (pressed || (ImGui::IsWindowHovered() && mani == false))
     {
         if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
         {
             // ImGui::GetCurrentWindow() failed on MSVC
             ImGuiContext* context = ImGui::GetCurrentContext();
             ImGui::FocusWindow(context->CurrentWindow);
-            x = (io.MousePos.x - mouse.x) / 1000.0f;
-            y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f);
+            x = (io.MousePos.x - mouse.x) / 1000.0f * updateData.scale;
+            y = (io.MousePos.y - mouse.y) / 1000.0f * (16.0f / 9.0f) * updateData.scale;
+            pressed = true;
+        }
+        else
+        {
+            pressed = false;
         }
     }
     mouse.x = io.MousePos.x;
@@ -571,20 +577,8 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
             updated = true;
         }
 
-        ImGuiColorEditFlags flags = 0;
-        flags |= ImGuiColorEditFlags_NoAlpha;
-        flags |= ImGuiColorEditFlags_NoPicker;
-        flags |= ImGuiColorEditFlags_NoOptions;
-        flags |= ImGuiColorEditFlags_NoSmallPreview;
-        flags |= ImGuiColorEditFlags_NoInputs;
-        flags |= ImGuiColorEditFlags_NoTooltip;
-        flags |= ImGuiColorEditFlags_NoLabel;
-        flags |= ImGuiColorEditFlags_NoSidePreview;
-        flags |= ImGuiColorEditFlags_NoDragDrop;
-        flags |= ImGuiColorEditFlags_NoBorder;
-        ImGui::ColorButton("", ImVec4(0.45f, 0.55f, 0.60f, 1.00f), flags, { viewSize.x, viewSize.y });
-
         ImDrawList* drawList = ImGui::GetWindowDrawList();
+        drawList->AddRectFilled({ viewPos.x, viewPos.y }, { viewPos.x + viewSize.x, viewPos.y + viewSize.y }, 0xFF998877);
         drawList->AddCallback(Callback, (void*)&updateData, sizeof(updateData));
         drawList->AddCallback(ImDrawCallback_ResetRenderState, nullptr);
 
@@ -593,6 +587,36 @@ bool Scene::Update(const UpdateData& updateData, bool& show)
 #if HAVE_MINIGUI
         MiniGUIEditor(MiniGUI::Window::Cast(selected));
 #endif
+
+        // Manipulate
+        if (selected)
+        {
+            ImGuizmo::gContext.mbOverGizmoHotspot = false;
+            ImGuizmo::SetRect(viewPos.x, viewPos.y, viewSize.x, viewSize.y);
+            if (selected->Camera)
+            {
+                static ImGuizmo::OPERATION operation = ImGuizmo::TRANSLATE | ImGuizmo::ROTATE_X | ImGuizmo::ROTATE_Z;
+                static ImGuizmo::MODE mode = ImGuizmo::WORLD;
+                xxMatrix4 camera;
+                camera[0].xyz = selected->Camera->Up;
+                camera[1].xyz = selected->Camera->Right;
+                camera[2].xyz = selected->Camera->Direction;
+                camera[3].xyz = selected->Camera->Location;
+                camera[3].w = 1.0f;
+                ImGuizmo::Manipulate(Scene::mainCamera->ViewMatrix, Scene::mainCamera->ProjectionMatrix, operation, mode, camera);
+                selected->Camera->Up = camera[0].xyz;
+                selected->Camera->Right = camera[1].xyz;
+                selected->Camera->Direction = camera[2].xyz;
+                selected->Camera->Location = camera[3].xyz;
+                selected->Camera->Update();
+            }
+            else
+            {
+                static ImGuizmo::OPERATION operation = ImGuizmo::TRANSLATE | ImGuizmo::ROTATE;
+                static ImGuizmo::MODE mode = ImGuizmo::LOCAL;
+                ImGuizmo::Manipulate(Scene::mainCamera->ViewMatrix, Scene::mainCamera->ProjectionMatrix, operation, mode, selected->LocalMatrix);
+            }
+        }
 
         // ViewManipulate
         ImVec2 maniSize = ImVec2(128, 128);
